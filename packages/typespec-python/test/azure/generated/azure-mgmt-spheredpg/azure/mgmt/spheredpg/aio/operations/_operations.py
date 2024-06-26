@@ -9,7 +9,21 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import (
+    Any,
+    AsyncIterable,
+    AsyncIterator,
+    Callable,
+    Dict,
+    IO,
+    List,
+    Optional,
+    Type,
+    TypeVar,
+    Union,
+    cast,
+    overload,
+)
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -108,7 +122,6 @@ class Operations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable["_models.Operation"]:
-        # pylint: disable=line-too-long
         """List the operations for the provider.
 
         :return: An iterator like instance of Operation
@@ -120,30 +133,16 @@ class Operations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionType": "str",  # Optional. Extensible enum. Indicates the action type.
-                      "Internal" refers to actions that are for internal only APIs. "Internal"
+                    "actionType": "str",
                     "display": {
-                        "description": "str",  # Optional. The short, localized friendly
-                          description of the operation; suitable for tool tips and detailed views.
-                        "operation": "str",  # Optional. The concise, localized friendly name
-                          for the operation; suitable for dropdowns. E.g. "Create or Update Virtual
-                          Machine", "Restart Virtual Machine".
-                        "provider": "str",  # Optional. The localized friendly form of the
-                          resource provider name, e.g. "Microsoft Monitoring Insights" or "Microsoft
-                          Compute".
-                        "resource": "str"  # Optional. The localized friendly name of the
-                          resource type related to this operation. E.g. "Virtual Machines" or "Job
-                          Schedule Collections".
+                        "description": "str",
+                        "operation": "str",
+                        "provider": "str",
+                        "resource": "str"
                     },
-                    "isDataAction": bool,  # Optional. Whether the operation applies to
-                      data-plane. This is "true" for data-plane operations and "false" for Azure
-                      Resource Manager/control-plane operations.
-                    "name": "str",  # Optional. The name of the operation, as per Resource-Based
-                      Access Control (RBAC). Examples: "Microsoft.Compute/virtualMachines/write",
-                      "Microsoft.Compute/virtualMachines/capture/action".
-                    "origin": "str"  # Optional. The intended executor of the operation; as in
-                      Resource Based Access Control (RBAC) and audit logs UX. Default value is
-                      "user,system". Known values are: "user", "system", and "user,system".
+                    "isDataAction": bool,
+                    "name": "str",
+                    "origin": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -203,8 +202,6 @@ class Operations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -233,7 +230,6 @@ class CatalogsOperations:
 
     @distributed_trace_async
     async def get(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> _models.Catalog:
-        # pylint: disable=line-too-long
         """Get a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -250,38 +246,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -337,7 +320,7 @@ class CatalogsOperations:
         catalog_name: str,
         resource: Union[_models.Catalog, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -350,7 +333,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -371,7 +354,7 @@ class CatalogsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -379,20 +362,22 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -409,7 +394,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Catalog]:
-        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -432,74 +416,48 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -513,7 +471,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Catalog]:
-        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -536,38 +493,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -581,7 +525,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Catalog]:
-        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -604,38 +547,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -647,7 +577,6 @@ class CatalogsOperations:
         resource: Union[_models.Catalog, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Catalog]:
-        # pylint: disable=line-too-long
         """Create a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -668,74 +597,48 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -757,6 +660,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -793,7 +697,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
-        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -816,44 +719,31 @@ class CatalogsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -867,7 +757,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
-        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -889,38 +778,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -934,7 +810,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Catalog:
-        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -956,38 +831,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -999,7 +861,6 @@ class CatalogsOperations:
         properties: Union[_models.CatalogUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> _models.Catalog:
-        # pylint: disable=line-too-long
         """Update a Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1020,44 +881,31 @@ class CatalogsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1117,9 +965,7 @@ class CatalogsOperations:
 
         return deserialized  # type: ignore
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, catalog_name: str, **kwargs: Any
-    ) -> None:
+    async def _delete_initial(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -1131,7 +977,7 @@ class CatalogsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_catalogs_delete_request(
             resource_group_name=resource_group_name,
@@ -1143,7 +989,7 @@ class CatalogsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1151,19 +997,28 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(self, resource_group_name: str, catalog_name: str, **kwargs: Any) -> AsyncLROPoller[None]:
@@ -1186,7 +1041,7 @@ class CatalogsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 cls=lambda x, y, z: x,
@@ -1194,6 +1049,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -1217,7 +1073,6 @@ class CatalogsOperations:
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable["_models.Catalog"]:
-        # pylint: disable=line-too-long
         """List Catalog resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1232,38 +1087,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1325,8 +1167,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1337,7 +1177,6 @@ class CatalogsOperations:
 
     @distributed_trace
     def list_by_subscription(self, **kwargs: Any) -> AsyncIterable["_models.Catalog"]:
-        # pylint: disable=line-too-long
         """List Catalog resources by subscription ID.
 
         :return: An iterator like instance of Catalog
@@ -1349,38 +1188,25 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # The geo-location where the resource lives. Required.
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "tenantId": "str"  # Optional. The Azure Sphere tenant ID associated
-                          with the catalog.
+                        "provisioningState": "str",
+                        "tenantId": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1441,8 +1267,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1471,7 +1295,7 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": 0  # Number of children resources in parent resource. Required.
+                    "value": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1532,7 +1356,6 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
-        # pylint: disable=line-too-long
         """Lists deployments for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1555,90 +1378,48 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1706,8 +1487,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -1729,7 +1508,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1757,49 +1535,31 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "deviceGroupName": "str"  # Optional. Device Group name.
+                    "deviceGroupName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1816,7 +1576,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1844,44 +1603,26 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1898,7 +1639,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1926,44 +1666,26 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -1979,7 +1701,6 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """List the device groups for the catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2005,49 +1726,31 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "deviceGroupName": "str"  # Optional. Device Group name.
+                    "deviceGroupName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2124,8 +1827,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2167,15 +1868,14 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "description": "str",  # Event description. Required.
-                    "deviceId": "str",  # Device ID. Required.
-                    "endTimestampUtc": "2020-02-20 00:00:00",  # Event end timestamp. Required.
-                    "eventCategory": "str",  # Event category. Required.
-                    "eventClass": "str",  # Event class. Required.
-                    "eventCount": 0,  # Event count. Required.
-                    "eventType": "str",  # Event type. Required.
-                    "startTimestampUtc": "2020-02-20 00:00:00"  # Event start timestamp.
-                      Required.
+                    "description": "str",
+                    "deviceId": "str",
+                    "endTimestampUtc": "2020-02-20 00:00:00",
+                    "eventCategory": "str",
+                    "eventClass": "str",
+                    "eventCount": 0,
+                    "eventType": "str",
+                    "startTimestampUtc": "2020-02-20 00:00:00"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2243,8 +1943,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2264,7 +1962,6 @@ class CatalogsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Device"]:
-        # pylint: disable=line-too-long
         """Lists devices for catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2287,42 +1984,26 @@ class CatalogsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2390,8 +2071,6 @@ class CatalogsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2400,9 +2079,9 @@ class CatalogsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    async def _upload_image_initial(  # pylint: disable=inconsistent-return-statements
+    async def _upload_image_initial(
         self, resource_group_name: str, catalog_name: str, body: Union[_models.Image, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -2415,7 +2094,7 @@ class CatalogsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -2436,7 +2115,7 @@ class CatalogsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2444,8 +2123,7 @@ class CatalogsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2454,8 +2132,12 @@ class CatalogsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     async def begin_upload_image(
@@ -2467,7 +2149,6 @@ class CatalogsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[None]:
-        # pylint: disable=line-too-long
         """Creates an image. Use this action when the image ID is unknown.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2489,48 +2170,28 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -2592,7 +2253,6 @@ class CatalogsOperations:
     async def begin_upload_image(
         self, resource_group_name: str, catalog_name: str, body: Union[_models.Image, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[None]:
-        # pylint: disable=line-too-long
         """Creates an image. Use this action when the image ID is unknown.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2612,48 +2272,28 @@ class CatalogsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -2665,7 +2305,7 @@ class CatalogsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._upload_image_initial(  # type: ignore
+            raw_result = await self._upload_image_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 body=body,
@@ -2675,6 +2315,7 @@ class CatalogsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -2718,7 +2359,6 @@ class CertificatesOperations:
     async def get(
         self, resource_group_name: str, catalog_name: str, serial_number: str, **kwargs: Any
     ) -> _models.Certificate:
-        # pylint: disable=line-too-long
         """Get a Certificate.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2738,42 +2378,26 @@ class CertificatesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
-                        "subject": "str",  # Optional. The certificate subject.
-                        "thumbprint": "str"  # Optional. The certificate thumbprint.
+                        "certificate": "str",
+                        "expiryUtc": "2020-02-20 00:00:00",
+                        "notBeforeUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str",
+                        "status": "str",
+                        "subject": "str",
+                        "thumbprint": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2835,7 +2459,6 @@ class CertificatesOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Certificate"]:
-        # pylint: disable=line-too-long
         """List Certificate resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2858,42 +2481,26 @@ class CertificatesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "certificate": "str",  # Optional. The certificate as a UTF-8 encoded
-                          base 64 string.
-                        "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          expiry date.
-                        "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate
-                          not before date.
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "status": "str",  # Optional. The certificate status. Known values
-                          are: "Active", "Inactive", "Expired", and "Revoked".
-                        "subject": "str",  # Optional. The certificate subject.
-                        "thumbprint": "str"  # Optional. The certificate thumbprint.
+                        "certificate": "str",
+                        "expiryUtc": "2020-02-20 00:00:00",
+                        "notBeforeUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str",
+                        "status": "str",
+                        "subject": "str",
+                        "thumbprint": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2961,8 +2568,6 @@ class CertificatesOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -2995,7 +2600,7 @@ class CertificatesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "certificateChain": "str"  # Optional. The certificate chain.
+                    "certificateChain": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3057,7 +2662,6 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3083,23 +2687,18 @@ class CertificatesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
+                    "proofOfPossessionNonce": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    "certificate": "str",
+                    "expiryUtc": "2020-02-20 00:00:00",
+                    "notBeforeUtc": "2020-02-20 00:00:00",
+                    "provisioningState": "str",
+                    "status": "str",
+                    "subject": "str",
+                    "thumbprint": "str"
                 }
         """
 
@@ -3114,7 +2713,6 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3140,18 +2738,13 @@ class CertificatesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    "certificate": "str",
+                    "expiryUtc": "2020-02-20 00:00:00",
+                    "notBeforeUtc": "2020-02-20 00:00:00",
+                    "provisioningState": "str",
+                    "status": "str",
+                    "subject": "str",
+                    "thumbprint": "str"
                 }
         """
 
@@ -3166,7 +2759,6 @@ class CertificatesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3192,18 +2784,13 @@ class CertificatesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    "certificate": "str",
+                    "expiryUtc": "2020-02-20 00:00:00",
+                    "notBeforeUtc": "2020-02-20 00:00:00",
+                    "provisioningState": "str",
+                    "status": "str",
+                    "subject": "str",
+                    "thumbprint": "str"
                 }
         """
 
@@ -3216,7 +2803,6 @@ class CertificatesOperations:
         body: Union[_models.ProofOfPossessionNonceRequest, JSON, IO[bytes]],
         **kwargs: Any
     ) -> _models.ProofOfPossessionNonceResponse:
-        # pylint: disable=line-too-long
         """Gets the proof of possession nonce.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3240,23 +2826,18 @@ class CertificatesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "proofOfPossessionNonce": "str"  # The proof of possession nonce. Required.
+                    "proofOfPossessionNonce": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "certificate": "str",  # Optional. The certificate as a UTF-8 encoded base 64
-                      string.
-                    "expiryUtc": "2020-02-20 00:00:00",  # Optional. The certificate expiry date.
-                    "notBeforeUtc": "2020-02-20 00:00:00",  # Optional. The certificate not
-                      before date.
-                    "provisioningState": "str",  # Optional. The status of the last operation.
-                      Known values are: "Succeeded", "Failed", "Canceled", "Provisioning", "Updating",
-                      "Deleting", and "Accepted".
-                    "status": "str",  # Optional. The certificate status. Known values are:
-                      "Active", "Inactive", "Expired", and "Revoked".
-                    "subject": "str",  # Optional. The certificate subject.
-                    "thumbprint": "str"  # Optional. The certificate thumbprint.
+                    "certificate": "str",
+                    "expiryUtc": "2020-02-20 00:00:00",
+                    "notBeforeUtc": "2020-02-20 00:00:00",
+                    "provisioningState": "str",
+                    "status": "str",
+                    "subject": "str",
+                    "thumbprint": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3337,7 +2918,6 @@ class ImagesOperations:
 
     @distributed_trace_async
     async def get(self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any) -> _models.Image:
-        # pylint: disable=line-too-long
         """Get a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3356,48 +2936,28 @@ class ImagesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3455,7 +3015,7 @@ class ImagesOperations:
         image_name: str,
         resource: Union[_models.Image, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3468,7 +3028,7 @@ class ImagesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -3490,7 +3050,7 @@ class ImagesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -3498,20 +3058,22 @@ class ImagesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -3529,7 +3091,6 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Image]:
-        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3554,94 +3115,54 @@ class ImagesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -3656,7 +3177,6 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Image]:
-        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3681,48 +3201,28 @@ class ImagesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -3737,7 +3237,6 @@ class ImagesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Image]:
-        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3762,48 +3261,28 @@ class ImagesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -3816,7 +3295,6 @@ class ImagesOperations:
         resource: Union[_models.Image, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Image]:
-        # pylint: disable=line-too-long
         """Create a Image.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3839,94 +3317,54 @@ class ImagesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -3949,6 +3387,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -3975,9 +3414,9 @@ class ImagesOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(
         self, resource_group_name: str, catalog_name: str, image_name: str, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -3989,7 +3428,7 @@ class ImagesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_images_delete_request(
             resource_group_name=resource_group_name,
@@ -4002,7 +3441,7 @@ class ImagesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4010,19 +3449,28 @@ class ImagesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(
@@ -4049,7 +3497,7 @@ class ImagesOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 image_name=image_name,
@@ -4058,6 +3506,7 @@ class ImagesOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -4090,7 +3539,6 @@ class ImagesOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Image"]:
-        # pylint: disable=line-too-long
         """List Image resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -4113,48 +3561,28 @@ class ImagesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "componentId": "str",  # Optional. The image component id.
-                        "description": "str",  # Optional. The image description.
-                        "image": "str",  # Optional. Image as a UTF-8 encoded base 64 string
-                          on image create. This field contains the image URI on image reads.
-                        "imageId": "str",  # Optional. Image ID.
-                        "imageName": "str",  # Optional. Image name.
-                        "imageType": "str",  # Optional. The image type. Known values are:
-                          "InvalidImageType", "OneBl", "PlutonRuntime", "WifiFirmware",
-                          "SecurityMonitor", "NormalWorldLoader", "NormalWorldDtb",
-                          "NormalWorldKernel", "RootFs", "Services", "Applications", "FwConfig",
-                          "BootManifest", "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                          "UpdateCertStore", "BaseSystemUpdateManifest", "FirmwareUpdateManifest",
-                          "CustomerUpdateManifest", "RecoveryManifest", "ManifestSet", and "Other".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for an image. Known values are: "None" and "EU".
-                        "uri": "str"  # Optional. Location the image.
+                        "componentId": "str",
+                        "description": "str",
+                        "image": "str",
+                        "imageId": "str",
+                        "imageName": "str",
+                        "imageType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "uri": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -4222,8 +3650,6 @@ class ImagesOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -4254,7 +3680,6 @@ class ProductsOperations:
     async def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> _models.Product:
-        # pylint: disable=line-too-long
         """Get a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4274,33 +3699,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4358,7 +3771,7 @@ class ProductsOperations:
         product_name: str,
         resource: Union[_models.Product, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4371,7 +3784,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -4393,7 +3806,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4401,20 +3814,22 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4432,7 +3847,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4458,64 +3872,40 @@ class ProductsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -4530,7 +3920,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4556,33 +3945,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -4597,7 +3974,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4623,33 +3999,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -4662,7 +4026,6 @@ class ProductsOperations:
         resource: Union[_models.Product, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Create a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4686,64 +4049,40 @@ class ProductsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -4766,6 +4105,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -4799,7 +4139,7 @@ class ProductsOperations:
         product_name: str,
         properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4812,7 +4152,7 @@ class ProductsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -4834,7 +4174,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -4842,20 +4182,20 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -4873,7 +4213,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4900,39 +4239,27 @@ class ProductsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. Description of the product.
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -4947,7 +4274,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -4973,33 +4299,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -5014,7 +4328,6 @@ class ProductsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -5040,33 +4353,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -5079,7 +4380,6 @@ class ProductsOperations:
         properties: Union[_models.ProductUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
-        # pylint: disable=line-too-long
         """Update a Product. '.default' and '.unassigned' are system defined values and cannot be used for
         product name.
 
@@ -5104,39 +4404,27 @@ class ProductsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "description": "str"  # Optional. Description of the product.
+                        "description": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -5159,6 +4447,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -5185,9 +4474,9 @@ class ProductsOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5199,7 +4488,7 @@ class ProductsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_products_delete_request(
             resource_group_name=resource_group_name,
@@ -5212,7 +4501,7 @@ class ProductsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5220,19 +4509,28 @@ class ProductsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(
@@ -5260,7 +4558,7 @@ class ProductsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
@@ -5269,6 +4567,7 @@ class ProductsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -5294,7 +4593,6 @@ class ProductsOperations:
     def list_by_catalog(
         self, resource_group_name: str, catalog_name: str, **kwargs: Any
     ) -> AsyncIterable["_models.Product"]:
-        # pylint: disable=line-too-long
         """List Product resources by Catalog.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -5311,33 +4609,21 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str",  # Optional. Description of the product.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "description": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -5400,8 +4686,6 @@ class ProductsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5433,7 +4717,7 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": 0  # Number of children resources in parent resource. Required.
+                    "value": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5488,7 +4772,6 @@ class ProductsOperations:
     def generate_default_device_groups(
         self, resource_group_name: str, catalog_name: str, product_name: str, **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """Generates default device groups for the product. '.default' and '.unassigned' are system
         defined values and cannot be used for product name.
 
@@ -5508,44 +4791,26 @@ class ProductsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -5609,8 +4874,6 @@ class ProductsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -5641,7 +4904,6 @@ class DeviceGroupsOperations:
     async def get(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> _models.DeviceGroup:
-        # pylint: disable=line-too-long
         """Get a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5663,44 +4925,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5760,7 +5004,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         resource: Union[_models.DeviceGroup, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5773,7 +5017,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -5796,7 +5040,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -5804,20 +5048,22 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -5836,7 +5082,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5864,86 +5109,50 @@ class DeviceGroupsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -5959,7 +5168,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -5987,44 +5195,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -6040,7 +5230,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6068,44 +5257,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -6119,7 +5290,6 @@ class DeviceGroupsOperations:
         resource: Union[_models.DeviceGroup, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Create a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6145,86 +5315,50 @@ class DeviceGroupsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -6248,6 +5382,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6282,7 +5417,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6295,7 +5430,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -6318,7 +5453,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -6326,20 +5461,20 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -6358,7 +5493,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6387,59 +5521,36 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "osFeedType": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -6455,7 +5566,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6483,44 +5593,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -6536,7 +5628,6 @@ class DeviceGroupsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6564,44 +5655,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -6615,7 +5688,6 @@ class DeviceGroupsOperations:
         properties: Union[_models.DeviceGroupUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.DeviceGroup]:
-        # pylint: disable=line-too-long
         """Update a DeviceGroup. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -6642,59 +5714,36 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "osFeedType": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -6718,6 +5767,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -6744,9 +5794,9 @@ class DeviceGroupsOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -6758,7 +5808,7 @@ class DeviceGroupsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_device_groups_delete_request(
             resource_group_name=resource_group_name,
@@ -6772,7 +5822,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -6780,19 +5830,28 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(
@@ -6822,7 +5881,7 @@ class DeviceGroupsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
@@ -6832,6 +5891,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -6865,7 +5925,6 @@ class DeviceGroupsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.DeviceGroup"]:
-        # pylint: disable=line-too-long
         """List DeviceGroup resources by Product. '.default' and '.unassigned' are system defined values
         and cannot be used for product name.
 
@@ -6891,44 +5950,26 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "allowCrashDumpsCollection": "str",  # Optional. Flag to define if
-                          the user allows for crash dump collection. Known values are: "Enabled" and
-                          "Disabled".
-                        "description": "str",  # Optional. Description of the device group.
-                        "hasDeployment": bool,  # Optional. Deployment status for the device
-                          group.
-                        "osFeedType": "str",  # Optional. Operating system feed type of the
-                          device group. Known values are: "Retail" and "RetailEval".
-                        "provisioningState": "str",  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
-                        "regionalDataBoundary": "str",  # Optional. Regional data boundary
-                          for the device group. Known values are: "None" and "EU".
-                        "updatePolicy": "str"  # Optional. Update policy of the device group.
-                          Known values are: "UpdateAll" and "No3rdPartyAppUpdates".
+                        "allowCrashDumpsCollection": "str",
+                        "description": "str",
+                        "hasDeployment": bool,
+                        "osFeedType": "str",
+                        "provisioningState": "str",
+                        "regionalDataBoundary": "str",
+                        "updatePolicy": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -6997,8 +6038,6 @@ class DeviceGroupsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -7007,7 +6046,7 @@ class DeviceGroupsOperations:
 
         return AsyncItemPaged(get_next, extract_data)
 
-    async def _claim_devices_initial(  # pylint: disable=inconsistent-return-statements
+    async def _claim_devices_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -7015,7 +6054,7 @@ class DeviceGroupsOperations:
         device_group_name: str,
         body: Union[_models.ClaimDevicesRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7028,7 +6067,7 @@ class DeviceGroupsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -7051,7 +6090,7 @@ class DeviceGroupsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -7059,8 +6098,7 @@ class DeviceGroupsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -7069,8 +6107,12 @@ class DeviceGroupsOperations:
         response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
         response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+        deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     async def begin_claim_devices(
@@ -7111,7 +6153,7 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "deviceIdentifiers": [
-                        "str"  # Device identifiers of the devices to be claimed. Required.
+                        "str"
                     ]
                 }
         """
@@ -7219,7 +6261,7 @@ class DeviceGroupsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "deviceIdentifiers": [
-                        "str"  # Device identifiers of the devices to be claimed. Required.
+                        "str"
                     ]
                 }
         """
@@ -7232,7 +6274,7 @@ class DeviceGroupsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._claim_devices_initial(  # type: ignore
+            raw_result = await self._claim_devices_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
@@ -7244,6 +6286,7 @@ class DeviceGroupsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -7290,7 +6333,7 @@ class DeviceGroupsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": 0  # Number of children resources in parent resource. Required.
+                    "value": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7370,7 +6413,6 @@ class DeploymentsOperations:
         deployment_name: str,
         **kwargs: Any
     ) -> _models.Deployment:
-        # pylint: disable=line-too-long
         """Get a Deployment. '.default' and '.unassigned' are system defined values and cannot be used for
         product or device group name.
 
@@ -7395,90 +6437,48 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7540,7 +6540,7 @@ class DeploymentsOperations:
         deployment_name: str,
         resource: Union[_models.Deployment, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -7553,7 +6553,7 @@ class DeploymentsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -7577,7 +6577,7 @@ class DeploymentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -7585,20 +6585,22 @@ class DeploymentsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -7618,7 +6620,6 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Deployment]:
-        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7649,178 +6650,94 @@ class DeploymentsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -7837,7 +6754,6 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Deployment]:
-        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7868,90 +6784,48 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -7968,7 +6842,6 @@ class DeploymentsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Deployment]:
-        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -7999,90 +6872,48 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -8097,7 +6928,6 @@ class DeploymentsOperations:
         resource: Union[_models.Deployment, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Deployment]:
-        # pylint: disable=line-too-long
         """Create a Deployment. '.default' and '.unassigned' are system defined values and cannot be used
         for product or device group name.
 
@@ -8126,178 +6956,94 @@ class DeploymentsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -8322,6 +7068,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -8348,7 +7095,7 @@ class DeploymentsOperations:
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -8356,7 +7103,7 @@ class DeploymentsOperations:
         device_group_name: str,
         deployment_name: str,
         **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -8368,7 +7115,7 @@ class DeploymentsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_deployments_delete_request(
             resource_group_name=resource_group_name,
@@ -8383,7 +7130,7 @@ class DeploymentsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -8391,19 +7138,28 @@ class DeploymentsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(
@@ -8442,7 +7198,7 @@ class DeploymentsOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
@@ -8453,6 +7209,7 @@ class DeploymentsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -8487,7 +7244,6 @@ class DeploymentsOperations:
         skip: Optional[int] = None,
         **kwargs: Any
     ) -> AsyncIterable["_models.Deployment"]:
-        # pylint: disable=line-too-long
         """List Deployment resources by DeviceGroup. '.default' and '.unassigned' are system defined
         values and cannot be used for product or device group name.
 
@@ -8515,90 +7271,48 @@ class DeploymentsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
                         "deployedImages": [
                             {
-                                "id": "str",  # Optional. Fully qualified resource ID
-                                  for the resource. Ex -
-                                  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                                "name": "str",  # Optional. The name of the resource.
+                                "id": "str",
+                                "name": "str",
                                 "properties": {
-                                    "componentId": "str",  # Optional. The image
-                                      component id.
-                                    "description": "str",  # Optional. The image
-                                      description.
-                                    "image": "str",  # Optional. Image as a UTF-8
-                                      encoded base 64 string on image create. This field contains the
-                                      image URI on image reads.
-                                    "imageId": "str",  # Optional. Image ID.
-                                    "imageName": "str",  # Optional. Image name.
-                                    "imageType": "str",  # Optional. The image
-                                      type. Known values are: "InvalidImageType", "OneBl",
-                                      "PlutonRuntime", "WifiFirmware", "SecurityMonitor",
-                                      "NormalWorldLoader", "NormalWorldDtb", "NormalWorldKernel",
-                                      "RootFs", "Services", "Applications", "FwConfig", "BootManifest",
-                                      "Nwfs", "TrustedKeystore", "Policy", "CustomerBoardConfig",
-                                      "UpdateCertStore", "BaseSystemUpdateManifest",
-                                      "FirmwareUpdateManifest", "CustomerUpdateManifest",
-                                      "RecoveryManifest", "ManifestSet", and "Other".
-                                    "provisioningState": "str",  # Optional. The
-                                      status of the last operation. Known values are: "Succeeded",
-                                      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and
-                                      "Accepted".
-                                    "regionalDataBoundary": "str",  # Optional.
-                                      Regional data boundary for an image. Known values are: "None" and
-                                      "EU".
-                                    "uri": "str"  # Optional. Location the image.
+                                    "componentId": "str",
+                                    "description": "str",
+                                    "image": "str",
+                                    "imageId": "str",
+                                    "imageName": "str",
+                                    "imageType": "str",
+                                    "provisioningState": "str",
+                                    "regionalDataBoundary": "str",
+                                    "uri": "str"
                                 },
                                 "systemData": {
-                                    "createdAt": "2020-02-20",  # Optional. The
-                                      type of identity that created the resource.
-                                    "createdBy": "str",  # Optional. The identity
-                                      that created the resource.
-                                    "createdByType": "str",  # Optional. The type
-                                      of identity that created the resource. Known values are: "User",
-                                      "Application", "ManagedIdentity", and "Key".
-                                    "lastModifiedAt": "2020-02-20",  # Optional.
-                                      The timestamp of resource last modification (UTC).
-                                    "lastModifiedBy": "str",  # Optional. The
-                                      identity that last modified the resource.
-                                    "lastModifiedByType": "str"  # Optional. The
-                                      type of identity that last modified the resource. Known values
-                                      are: "User", "Application", "ManagedIdentity", and "Key".
+                                    "createdAt": "2020-02-20 00:00:00",
+                                    "createdBy": "str",
+                                    "createdByType": "str",
+                                    "lastModifiedAt": "2020-02-20 00:00:00",
+                                    "lastModifiedBy": "str",
+                                    "lastModifiedByType": "str"
                                 },
-                                "type": "str"  # Optional. The type of the resource.
-                                  E.g. "Microsoft.Compute/virtualMachines" or
-                                  "Microsoft.Storage/storageAccounts".
+                                "type": "str"
                             }
                         ],
-                        "deploymentDateUtc": "2020-02-20 00:00:00",  # Optional. Deployment
-                          date UTC.
-                        "deploymentId": "str",  # Optional. Deployment ID.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "deploymentDateUtc": "2020-02-20 00:00:00",
+                        "deploymentId": "str",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -8668,8 +7382,6 @@ class DeploymentsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -8706,7 +7418,6 @@ class DevicesOperations:
         device_name: str,
         **kwargs: Any
     ) -> _models.Device:
-        # pylint: disable=line-too-long
         """Get a Device. Use '.unassigned' or '.default' for the device group and product names when a
         device does not belong to a device group and product.
 
@@ -8730,42 +7441,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -8827,7 +7522,7 @@ class DevicesOperations:
         device_name: str,
         resource: Union[_models.Device, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> JSON:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -8840,7 +7535,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -8864,7 +7559,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -8872,20 +7567,22 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -8905,7 +7602,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Device]:
-        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -8935,82 +7631,50 @@ class DevicesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9027,7 +7691,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Device]:
-        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -9057,42 +7720,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9109,7 +7756,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Device]:
-        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -9139,42 +7785,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9189,7 +7819,6 @@ class DevicesOperations:
         resource: Union[_models.Device, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.Device]:
-        # pylint: disable=line-too-long
         """Create a Device. Use '.unassigned' or '.default' for the device group and product names to
         claim a device to the catalog only.
 
@@ -9217,82 +7846,50 @@ class DevicesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 201
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -9317,6 +7914,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -9356,7 +7954,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
-        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9386,48 +7983,32 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "deviceGroupId": "str"  # Optional. Device group id.
+                        "deviceGroupId": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9444,7 +8025,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
-        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9473,42 +8053,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9525,7 +8089,6 @@ class DevicesOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> _models.Device:
-        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9554,42 +8117,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
 
@@ -9604,7 +8151,6 @@ class DevicesOperations:
         properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
         **kwargs: Any
     ) -> _models.Device:
-        # pylint: disable=line-too-long
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9632,48 +8178,32 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 properties = {
                     "properties": {
-                        "deviceGroupId": "str"  # Optional. Device group id.
+                        "deviceGroupId": "str"
                     }
                 }
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -9746,7 +8276,7 @@ class DevicesOperations:
 
         return deserialized  # type: ignore
 
-    async def _delete_initial(  # pylint: disable=inconsistent-return-statements
+    async def _delete_initial(
         self,
         resource_group_name: str,
         catalog_name: str,
@@ -9754,7 +8284,7 @@ class DevicesOperations:
         device_group_name: str,
         device_name: str,
         **kwargs: Any
-    ) -> None:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -9766,7 +8296,7 @@ class DevicesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_devices_delete_request(
             resource_group_name=resource_group_name,
@@ -9781,7 +8311,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -9789,19 +8319,28 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
+        if response.status_code == 200:
+            deserialized = response.iter_bytes()
+
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
 
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 204:
+            deserialized = response.iter_bytes()
+
         if cls:
-            return cls(pipeline_response, None, response_headers)  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+
+        return deserialized  # type: ignore
 
     @distributed_trace_async
     async def begin_delete(
@@ -9838,7 +8377,7 @@ class DevicesOperations:
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
         if cont_token is None:
-            raw_result = await self._delete_initial(  # type: ignore
+            raw_result = await self._delete_initial(
                 resource_group_name=resource_group_name,
                 catalog_name=catalog_name,
                 product_name=product_name,
@@ -9849,6 +8388,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -9874,7 +8414,6 @@ class DevicesOperations:
     def list_by_device_group(
         self, resource_group_name: str, catalog_name: str, product_name: str, device_group_name: str, **kwargs: Any
     ) -> AsyncIterable["_models.Device"]:
-        # pylint: disable=line-too-long
         """List Device resources by DeviceGroup. '.default' and '.unassigned' are system defined values
         and cannot be used for product or device group name.
 
@@ -9896,42 +8435,26 @@ class DevicesOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional. Fully qualified resource ID for the resource. Ex -
-                      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-                    "name": "str",  # Optional. The name of the resource.
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "chipSku": "str",  # Optional. SKU of the chip.
-                        "deviceId": "str",  # Optional. Device ID.
-                        "lastAvailableOsVersion": "str",  # Optional. OS version available
-                          for installation when update requested.
-                        "lastInstalledOsVersion": "str",  # Optional. OS version running on
-                          device when update requested.
-                        "lastOsUpdateUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update requested and new OS version available.
-                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",  # Optional. Time when
-                          update was last requested.
-                        "provisioningState": "str"  # Optional. The status of the last
-                          operation. Known values are: "Succeeded", "Failed", "Canceled",
-                          "Provisioning", "Updating", "Deleting", and "Accepted".
+                        "chipSku": "str",
+                        "deviceId": "str",
+                        "lastAvailableOsVersion": "str",
+                        "lastInstalledOsVersion": "str",
+                        "lastOsUpdateUtc": "2020-02-20 00:00:00",
+                        "lastUpdateRequestUtc": "2020-02-20 00:00:00",
+                        "provisioningState": "str"
                     },
                     "systemData": {
-                        "createdAt": "2020-02-20",  # Optional. The type of identity that
-                          created the resource.
-                        "createdBy": "str",  # Optional. The identity that created the
-                          resource.
-                        "createdByType": "str",  # Optional. The type of identity that
-                          created the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
-                        "lastModifiedAt": "2020-02-20",  # Optional. The timestamp of
-                          resource last modification (UTC).
-                        "lastModifiedBy": "str",  # Optional. The identity that last modified
-                          the resource.
-                        "lastModifiedByType": "str"  # Optional. The type of identity that
-                          last modified the resource. Known values are: "User", "Application",
-                          "ManagedIdentity", and "Key".
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
-                    "type": "str"  # Optional. The type of the resource. E.g.
-                      "Microsoft.Compute/virtualMachines" or "Microsoft.Storage/storageAccounts".
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -9996,8 +8519,6 @@ class DevicesOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 error = _deserialize(_models.ErrorResponse, response.json())
                 raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
@@ -10015,7 +8536,7 @@ class DevicesOperations:
         device_name: str,
         body: Union[_models.GenerateCapabilityImageRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -10028,7 +8549,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -10052,7 +8573,7 @@ class DevicesOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -10060,20 +8581,20 @@ class DevicesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        deserialized = None
         response_headers = {}
         if response.status_code == 200:
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 202:
             response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -10125,14 +8646,13 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "capabilities": [
-                        "str"  # List of capabilities to create. Required.
+                        "str"
                     ]
                 }
 
                 # response body for status code(s): 202, 200
                 response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                    "image": "str"
                 }
         """
 
@@ -10180,8 +8700,7 @@ class DevicesOperations:
 
                 # response body for status code(s): 202, 200
                 response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                    "image": "str"
                 }
         """
 
@@ -10229,8 +8748,7 @@ class DevicesOperations:
 
                 # response body for status code(s): 202, 200
                 response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                    "image": "str"
                 }
         """
 
@@ -10275,14 +8793,13 @@ class DevicesOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "capabilities": [
-                        "str"  # List of capabilities to create. Required.
+                        "str"
                     ]
                 }
 
                 # response body for status code(s): 202, 200
                 response == {
-                    "image": "str"  # Optional. The signed device capability image as a UTF-8
-                      encoded base 64 string.
+                    "image": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -10307,6 +8824,7 @@ class DevicesOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

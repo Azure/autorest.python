@@ -68,8 +68,8 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "aniType": "str",  # Optional.
-                    "name": "str"  # Optional. Gets the Pet by id.
+                    "aniType": "str",
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -102,8 +102,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)  # type: ignore
             raise HttpResponseError(response=response)
 
@@ -134,7 +132,7 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionResponse": "str"  # Optional. action feedback.
+                    "actionResponse": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -166,8 +164,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -224,8 +220,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

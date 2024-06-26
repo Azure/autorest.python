@@ -113,6 +113,8 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
+        case "nullable":
+            return getType(context, type.type);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -219,6 +221,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         base: type.isGeneratedName && fromBody ? "json" : "dpg",
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
+        usage: type.usage,
     };
 
     typesMap.set(type, newValue);

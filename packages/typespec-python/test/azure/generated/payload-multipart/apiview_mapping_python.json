@@ -2,7 +2,7 @@
     "CrossLanguagePackageId": "Payload.MultiPart",
     "CrossLanguageDefinitionId": {
         "payload.multipart.models.Address": "Payload.MultiPart.Address",
-        "payload.multipart.models.AnonymousModelRequest": "AnonymousModelRequest",
+        "payload.multipart.models.AnonymousModelRequest": "anonymousModel.Request.anonymous",
         "payload.multipart.models.BinaryArrayPartsRequest": "Payload.MultiPart.BinaryArrayPartsRequest",
         "payload.multipart.models.ComplexPartsRequest": "Payload.MultiPart.ComplexPartsRequest",
         "payload.multipart.models.JsonArrayPartsRequest": "Payload.MultiPart.JsonArrayPartsRequest",

@@ -376,7 +376,7 @@ class Int32ValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -441,7 +441,7 @@ class Int32ValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
 
@@ -509,8 +509,6 @@ class Int32ValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -547,7 +545,7 @@ class Int64ValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -612,7 +610,7 @@ class Int64ValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0  # Optional.
+                    "str": 0
                 }
         """
 
@@ -680,8 +678,6 @@ class Int64ValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -718,7 +714,7 @@ class BooleanValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": bool  # Optional.
+                    "str": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -783,7 +779,7 @@ class BooleanValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": bool  # Optional.
+                    "str": bool
                 }
         """
 
@@ -851,8 +847,6 @@ class BooleanValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -889,7 +883,7 @@ class StringValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "str"  # Optional.
+                    "str": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -954,7 +948,7 @@ class StringValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "str"  # Optional.
+                    "str": "str"
                 }
         """
 
@@ -1022,8 +1016,6 @@ class StringValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1060,7 +1052,7 @@ class Float32ValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0.0  # Optional.
+                    "str": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1125,7 +1117,7 @@ class Float32ValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0.0  # Optional.
+                    "str": 0.0
                 }
         """
 
@@ -1193,8 +1185,6 @@ class Float32ValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1231,7 +1221,7 @@ class DatetimeValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "2020-02-20 00:00:00"  # Optional.
+                    "str": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1296,7 +1286,7 @@ class DatetimeValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "2020-02-20 00:00:00"  # Optional.
+                    "str": "2020-02-20 00:00:00"
                 }
         """
 
@@ -1364,8 +1354,6 @@ class DatetimeValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1402,7 +1390,7 @@ class DurationValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": "1 day, 0:00:00"  # Optional.
+                    "str": "1 day, 0:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1467,7 +1455,7 @@ class DurationValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": "1 day, 0:00:00"  # Optional.
+                    "str": "1 day, 0:00:00"
                 }
         """
 
@@ -1535,8 +1523,6 @@ class DurationValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1573,7 +1559,7 @@ class UnknownValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {}  # Optional.
+                    "str": {}
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1638,7 +1624,7 @@ class UnknownValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": {}  # Optional.
+                    "str": {}
                 }
         """
 
@@ -1706,8 +1692,6 @@ class UnknownValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1745,7 +1729,7 @@ class ModelValueOperations:
                 # response body for status code(s): 200
                 response == {
                     "str": {
-                        "property": "str",  # Required string property. Required.
+                        "property": "str",
                         "children": {
                             "str": ...
                         }
@@ -1815,7 +1799,7 @@ class ModelValueOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "str": {
-                        "property": "str",  # Required string property. Required.
+                        "property": "str",
                         "children": {
                             "str": ...
                         }
@@ -1887,8 +1871,6 @@ class ModelValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1926,7 +1908,7 @@ class RecursiveModelValueOperations:
                 # response body for status code(s): 200
                 response == {
                     "str": {
-                        "property": "str",  # Required string property. Required.
+                        "property": "str",
                         "children": {
                             "str": ...
                         }
@@ -1996,7 +1978,7 @@ class RecursiveModelValueOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "str": {
-                        "property": "str",  # Required string property. Required.
+                        "property": "str",
                         "children": {
                             "str": ...
                         }
@@ -2068,8 +2050,6 @@ class RecursiveModelValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2106,7 +2086,7 @@ class NullableFloatValueOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0.0  # Optional.
+                    "str": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2171,7 +2151,7 @@ class NullableFloatValueOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "str": 0.0  # Optional.
+                    "str": 0.0
                 }
         """
 
@@ -2239,8 +2219,6 @@ class NullableFloatValueOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

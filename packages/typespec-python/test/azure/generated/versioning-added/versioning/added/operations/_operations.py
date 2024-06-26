@@ -112,10 +112,6 @@ class InterfaceV2Operations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2_in_interface(
         self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -135,24 +131,20 @@ class InterfaceV2Operations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2_in_interface(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
 
@@ -170,17 +162,13 @@ class InterfaceV2Operations:
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2_in_interface(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV2:
@@ -200,9 +188,9 @@ class InterfaceV2Operations:
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -225,16 +213,16 @@ class InterfaceV2Operations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -297,9 +285,6 @@ class InterfaceV2Operations:
 class AddedClientOperationsMixin(AddedClientMixinABC):
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     def v1(
         self, body: _models.ModelV1, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -321,25 +306,20 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     def v1(
         self, body: JSON, *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -361,17 +341,13 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        params_added_on={"v2": ["header_v2"]},
-    )
     def v1(
         self, body: IO[bytes], *, header_v2: str, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV1:
@@ -393,10 +369,9 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -420,18 +395,16 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. Known values are: "enumMemberV1" and
-                      "enumMemberV2".
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -492,10 +465,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2(self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
 
@@ -513,24 +482,20 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
 
@@ -548,17 +513,13 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
     @overload
-    @api_version_validation(
-        method_added_on="v2",
-        params_added_on={"v2": ["content_type", "accept"]},
-    )
     def v2(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:
         """v2.
 
@@ -576,9 +537,9 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -601,16 +562,16 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "enumMember"
-                    "prop": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "prop": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

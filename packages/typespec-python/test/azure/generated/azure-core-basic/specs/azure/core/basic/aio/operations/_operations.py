@@ -84,7 +84,7 @@ class TwoModelsAsPageItemOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0  # The id of the item. Required.
+                    "id": 0
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -144,8 +144,6 @@ class TwoModelsAsPageItemOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -167,7 +165,7 @@ class TwoModelsAsPageItemOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name of the item. Required.
+                    "name": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -227,8 +225,6 @@ class TwoModelsAsPageItemOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -263,28 +259,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -314,14 +310,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -351,14 +347,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -386,28 +382,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -497,28 +493,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -548,14 +544,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -585,14 +581,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -620,28 +616,28 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -724,14 +720,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -819,14 +815,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -896,8 +892,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -918,14 +912,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -987,8 +981,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1024,19 +1016,19 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body_input = {
-                    "inputName": "str"  # The name of the input. Required.
+                    "inputName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -1070,14 +1062,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -1111,14 +1103,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -1149,19 +1141,19 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body_input = {
-                    "inputName": "str"  # The name of the input. Required.
+                    "inputName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -1233,8 +1225,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1255,14 +1245,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }
@@ -1324,8 +1314,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -1374,8 +1362,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1401,14 +1387,14 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "etag": "str",  # The entity tag for this resource. Required.
-                    "id": 0,  # The user's id. Required.
-                    "name": "str",  # The user's name. Required.
+                    "etag": "str",
+                    "id": 0,
+                    "name": "str",
                     "orders": [
                         {
-                            "detail": "str",  # The user's order detail. Required.
-                            "id": 0,  # The user's id. Required.
-                            "userId": 0  # The user's id. Required.
+                            "detail": "str",
+                            "id": 0,
+                            "userId": 0
                         }
                     ]
                 }

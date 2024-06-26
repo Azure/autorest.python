@@ -677,8 +677,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -725,8 +723,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -773,8 +769,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -828,8 +822,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -880,8 +872,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -924,8 +914,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -968,8 +956,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1012,8 +998,6 @@ class ImplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1082,8 +1066,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1134,8 +1116,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1187,8 +1167,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1242,8 +1220,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1271,7 +1247,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": 0  # Required.
+                    "value": 0
                 }
         """
 
@@ -1310,7 +1286,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": 0  # Required.
+                    "value": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1352,8 +1328,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1380,7 +1354,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": 0  # Optional.
+                    "value": 0
                 }
         """
 
@@ -1417,7 +1391,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": 0  # Optional.
+                    "value": 0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1462,8 +1436,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1511,8 +1483,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1559,8 +1529,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1612,8 +1580,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1667,8 +1633,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1696,7 +1660,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "str"  # Required.
+                    "value": "str"
                 }
         """
 
@@ -1735,7 +1699,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "str"  # Required.
+                    "value": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1777,8 +1741,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1805,7 +1767,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "str"  # Optional.
+                    "value": "str"
                 }
         """
 
@@ -1842,7 +1804,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "value": "str"  # Optional.
+                    "value": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1887,8 +1849,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1936,8 +1896,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1984,8 +1942,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2013,8 +1969,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
 
@@ -2053,8 +2009,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2096,8 +2052,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2124,8 +2078,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
 
@@ -2162,8 +2116,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
-                    "id": 0,  # Required.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2208,8 +2162,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2238,8 +2190,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional. Required.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2280,8 +2232,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional. Required.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2324,8 +2276,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2353,8 +2303,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2393,8 +2343,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": {
-                        "id": 0,  # Required.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2440,8 +2390,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2469,7 +2417,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -2542,8 +2490,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2570,7 +2516,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = [
-                    "str"  # Optional.
+                    "str"
                 ]
         """
 
@@ -2644,8 +2590,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2674,7 +2618,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": [
-                        "str"  # Required.
+                        "str"
                     ]
                 }
         """
@@ -2715,7 +2659,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": [
-                        "str"  # Required.
+                        "str"
                     ]
                 }
         """
@@ -2758,8 +2702,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2787,7 +2729,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
@@ -2826,7 +2768,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                 # JSON input template you can fill out and use as your body input.
                 body_parameter = {
                     "value": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
@@ -2872,8 +2814,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2921,8 +2861,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2969,8 +2907,6 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -1,0 +1,33 @@
+{
+    "CrossLanguagePackageId": "Azure.Arm.Models.Resources",
+    "CrossLanguageDefinitionId": {
+        "azure.arm.models.resources.models.ErrorAdditionalInfo": "Azure.ResourceManager.CommonTypes.ErrorAdditionalInfo",
+        "azure.arm.models.resources.models.ErrorDetail": "Azure.ResourceManager.CommonTypes.ErrorDetail",
+        "azure.arm.models.resources.models.ErrorResponse": "Azure.ResourceManager.CommonTypes.ErrorResponse",
+        "azure.arm.models.resources.models.Resource": "Azure.ResourceManager.CommonTypes.Resource",
+        "azure.arm.models.resources.models.ProxyResource": "Azure.ResourceManager.CommonTypes.ProxyResource",
+        "azure.arm.models.resources.models.NestedProxyResource": "Azure.Arm.Models.Resources.NestedProxyResource",
+        "azure.arm.models.resources.models.NestedProxyResourceProperties": "Azure.Arm.Models.Resources.NestedProxyResourceProperties",
+        "azure.arm.models.resources.models.NestedProxyResourceUpdate": "Azure.ResourceManager.Foundations.ResourceUpdateModel",
+        "azure.arm.models.resources.models.NestedProxyResourceUpdateProperties": "Azure.ResourceManager.Foundations.ResourceUpdateModelProperties",
+        "azure.arm.models.resources.models.SystemData": "Azure.ResourceManager.CommonTypes.SystemData",
+        "azure.arm.models.resources.models.TrackedResource": "Azure.ResourceManager.CommonTypes.TrackedResource",
+        "azure.arm.models.resources.models.TopLevelTrackedResource": "Azure.Arm.Models.Resources.TopLevelTrackedResource",
+        "azure.arm.models.resources.models.TopLevelTrackedResourceProperties": "Azure.Arm.Models.Resources.TopLevelTrackedResourceProperties",
+        "azure.arm.models.resources.models.TopLevelTrackedResourceUpdate": "Azure.ResourceManager.Foundations.ResourceUpdateModel",
+        "azure.arm.models.resources.models.TopLevelTrackedResourceUpdateProperties": "Azure.ResourceManager.Foundations.ResourceUpdateModelProperties",
+        "azure.arm.models.resources.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
+        "azure.arm.models.resources.models.ProvisioningState": "Azure.Arm.Models.Resources.ProvisioningState",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.get": "Azure.Arm.Models.Resources.TopLevelTrackedResources.get",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.begin_create_or_replace": "Azure.Arm.Models.Resources.TopLevelTrackedResources.createOrReplace",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.begin_update": "Azure.Arm.Models.Resources.TopLevelTrackedResources.update",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.begin_delete": "Azure.Arm.Models.Resources.TopLevelTrackedResources.delete",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.list_by_resource_group": "Azure.Arm.Models.Resources.TopLevelTrackedResources.listByResourceGroup",
+        "azure.arm.models.resources.ResourcesClient.top_level_tracked_resources.list_by_subscription": "Azure.Arm.Models.Resources.TopLevelTrackedResources.listBySubscription",
+        "azure.arm.models.resources.ResourcesClient.nested_proxy_resources.get": "Azure.Arm.Models.Resources.NestedProxyResources.get",
+        "azure.arm.models.resources.ResourcesClient.nested_proxy_resources.begin_create_or_replace": "Azure.Arm.Models.Resources.NestedProxyResources.createOrReplace",
+        "azure.arm.models.resources.ResourcesClient.nested_proxy_resources.begin_update": "Azure.Arm.Models.Resources.NestedProxyResources.update",
+        "azure.arm.models.resources.ResourcesClient.nested_proxy_resources.begin_delete": "Azure.Arm.Models.Resources.NestedProxyResources.delete",
+        "azure.arm.models.resources.ResourcesClient.nested_proxy_resources.list_by_top_level_tracked_resource": "Azure.Arm.Models.Resources.NestedProxyResources.listByTopLevelTrackedResource"
+    }
+}

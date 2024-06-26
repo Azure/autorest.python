@@ -113,8 +113,6 @@ class QueryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -160,8 +158,6 @@ class QueryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -207,8 +203,6 @@ class QueryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -254,8 +248,6 @@ class QueryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -301,8 +293,6 @@ class QueryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -347,12 +337,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -376,7 +366,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -400,7 +390,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -420,12 +410,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -500,12 +490,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -529,7 +519,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -553,7 +543,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -573,12 +563,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -653,12 +643,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -682,7 +672,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -706,7 +696,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -726,12 +716,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -807,12 +797,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -837,7 +827,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -862,7 +852,7 @@ class PropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
 
@@ -884,12 +874,12 @@ class PropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "value": "2020-02-20 00:00:00"  # Required.
+                    "value": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -966,14 +956,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
         """
@@ -1000,7 +990,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
         """
@@ -1027,7 +1017,7 @@ class PropertyOperations:
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
         """
@@ -1051,14 +1041,14 @@ class PropertyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "value": [
-                        "2020-02-20 00:00:00"  # Required.
+                        "2020-02-20 00:00:00"
                     ]
                 }
         """
@@ -1171,8 +1161,6 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1218,8 +1206,6 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1265,8 +1251,6 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1312,8 +1296,6 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1359,8 +1341,6 @@ class HeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1419,8 +1399,6 @@ class ResponseHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1464,8 +1442,6 @@ class ResponseHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1509,8 +1485,6 @@ class ResponseHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1554,8 +1528,6 @@ class ResponseHeaderOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

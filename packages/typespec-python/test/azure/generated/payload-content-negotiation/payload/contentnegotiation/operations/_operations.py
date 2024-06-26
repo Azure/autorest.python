@@ -284,7 +284,7 @@ class DifferentBodyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "content": bytes("bytes", encoding="utf-8")  # Required.
+                    "content": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

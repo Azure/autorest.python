@@ -31,3 +31,14 @@ class TestUsageModelInOperationOperations(UsageClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @UsagePreparer()
+    @recorded_by_proxy
+    def test_model_in_read_only_property(self, usage_endpoint):
+        client = self.create_client(endpoint=usage_endpoint)
+        response = client.model_in_operation.model_in_read_only_property(
+            body={"result": {"name": "str"}},
+        )
+
+        # please add some check logic here by yourself
+        # ...

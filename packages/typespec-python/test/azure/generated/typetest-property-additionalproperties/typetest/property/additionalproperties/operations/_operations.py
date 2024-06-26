@@ -983,7 +983,7 @@ class ExtendsUnknownOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1048,7 +1048,7 @@ class ExtendsUnknownOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -1103,7 +1103,7 @@ class ExtendsUnknownOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1143,8 +1143,6 @@ class ExtendsUnknownOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1184,9 +1182,9 @@ class ExtendsUnknownDerivedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1256,9 +1254,9 @@ class ExtendsUnknownDerivedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
 
@@ -1314,9 +1312,9 @@ class ExtendsUnknownDerivedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1356,8 +1354,6 @@ class ExtendsUnknownDerivedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1400,10 +1396,10 @@ class ExtendsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 extends_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # response body for status code(s): 200
@@ -1479,10 +1475,10 @@ class ExtendsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 extends_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -1544,10 +1540,10 @@ class ExtendsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 extends_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -1590,8 +1586,6 @@ class ExtendsUnknownDiscriminatedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1630,7 +1624,7 @@ class IsUnknownOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1695,7 +1689,7 @@ class IsUnknownOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -1750,7 +1744,7 @@ class IsUnknownOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1790,8 +1784,6 @@ class IsUnknownOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1830,9 +1822,9 @@ class IsUnknownDerivedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1901,9 +1893,9 @@ class IsUnknownDerivedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
 
@@ -1958,9 +1950,9 @@ class IsUnknownDerivedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "index": 0,  # The index property. Required.
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "index": 0,
+                    "name": "str",
+                    "age": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2000,8 +1992,6 @@ class IsUnknownDerivedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2044,10 +2034,10 @@ class IsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 is_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # response body for status code(s): 200
@@ -2123,10 +2113,10 @@ class IsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 is_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -2188,10 +2178,10 @@ class IsUnknownDiscriminatedOperations:
 
                 # JSON input template for discriminator value "derived":
                 is_unknown_additional_properties_discriminated = {
-                    "index": 0,  # The index property. Required.
+                    "index": 0,
                     "kind": "derived",
-                    "name": "str",  # The name property. Required.
-                    "age": 0.0  # Optional. The age property.
+                    "name": "str",
+                    "age": 0.0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -2234,8 +2224,6 @@ class IsUnknownDiscriminatedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2274,7 +2262,7 @@ class ExtendsStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2339,7 +2327,7 @@ class ExtendsStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -2394,7 +2382,7 @@ class ExtendsStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2434,8 +2422,6 @@ class ExtendsStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2474,7 +2460,7 @@ class IsStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2539,7 +2525,7 @@ class IsStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -2594,7 +2580,7 @@ class IsStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2634,8 +2620,6 @@ class IsStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2673,7 +2657,7 @@ class SpreadStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2738,7 +2722,7 @@ class SpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -2792,7 +2776,7 @@ class SpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2832,8 +2816,6 @@ class SpreadStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2872,7 +2854,7 @@ class ExtendsFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -2937,7 +2919,7 @@ class ExtendsFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
 
@@ -2992,7 +2974,7 @@ class ExtendsFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3032,8 +3014,6 @@ class ExtendsFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3072,7 +3052,7 @@ class IsFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3137,7 +3117,7 @@ class IsFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
 
@@ -3192,7 +3172,7 @@ class IsFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3232,8 +3212,6 @@ class IsFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3271,7 +3249,7 @@ class SpreadFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3336,7 +3314,7 @@ class SpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
 
@@ -3390,7 +3368,7 @@ class SpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The id property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -3430,8 +3408,6 @@ class SpreadFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3471,7 +3447,7 @@ class ExtendsModelOperations:
                 # response body for status code(s): 200
                 response == {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3538,7 +3514,7 @@ class ExtendsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3595,7 +3571,7 @@ class ExtendsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3636,8 +3612,6 @@ class ExtendsModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3677,7 +3651,7 @@ class IsModelOperations:
                 # response body for status code(s): 200
                 response == {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3744,7 +3718,7 @@ class IsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3801,7 +3775,7 @@ class IsModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3842,8 +3816,6 @@ class IsModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3882,7 +3854,7 @@ class SpreadModelOperations:
                 # response body for status code(s): 200
                 response == {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -3949,7 +3921,7 @@ class SpreadModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -4005,7 +3977,7 @@ class SpreadModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "knownProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     }
                 }
         """
@@ -4046,8 +4018,6 @@ class SpreadModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4088,7 +4058,7 @@ class ExtendsModelArrayOperations:
                 response == {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4162,7 +4132,7 @@ class ExtendsModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4222,7 +4192,7 @@ class ExtendsModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4264,8 +4234,6 @@ class ExtendsModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4306,7 +4274,7 @@ class IsModelArrayOperations:
                 response == {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4375,7 +4343,7 @@ class IsModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4434,7 +4402,7 @@ class IsModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4476,8 +4444,6 @@ class IsModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4517,7 +4483,7 @@ class SpreadModelArrayOperations:
                 response == {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4586,7 +4552,7 @@ class SpreadModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4645,7 +4611,7 @@ class SpreadModelArrayOperations:
                 body = {
                     "knownProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ]
                 }
@@ -4687,8 +4653,6 @@ class SpreadModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4727,7 +4691,7 @@ class SpreadDifferentStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0.0  # The name property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4792,7 +4756,7 @@ class SpreadDifferentStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The name property. Required.
+                    "id": 0.0
                 }
         """
 
@@ -4847,7 +4811,7 @@ class SpreadDifferentStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": 0.0  # The name property. Required.
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4887,8 +4851,6 @@ class SpreadDifferentStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4927,7 +4889,7 @@ class SpreadDifferentFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The id property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -4992,7 +4954,7 @@ class SpreadDifferentFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The id property. Required.
+                    "name": "str"
                 }
         """
 
@@ -5047,7 +5009,7 @@ class SpreadDifferentFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The id property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5087,8 +5049,6 @@ class SpreadDifferentFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5127,7 +5087,7 @@ class SpreadDifferentModelOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5192,7 +5152,7 @@ class SpreadDifferentModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
 
@@ -5247,7 +5207,7 @@ class SpreadDifferentModelOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5287,8 +5247,6 @@ class SpreadDifferentModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5327,7 +5285,7 @@ class SpreadDifferentModelArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5392,7 +5350,7 @@ class SpreadDifferentModelArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
 
@@ -5447,7 +5405,7 @@ class SpreadDifferentModelArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5487,8 +5445,6 @@ class SpreadDifferentModelArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5527,8 +5483,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "derivedProp": "str",  # The index property. Required.
-                    "id": 0.0  # The name property. Required.
+                    "derivedProp": "str",
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5593,8 +5549,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": "str",  # The index property. Required.
-                    "id": 0.0  # The name property. Required.
+                    "derivedProp": "str",
+                    "id": 0.0
                 }
         """
 
@@ -5649,8 +5605,8 @@ class ExtendsDifferentSpreadStringOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": "str",  # The index property. Required.
-                    "id": 0.0  # The name property. Required.
+                    "derivedProp": "str",
+                    "id": 0.0
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5690,8 +5646,6 @@ class ExtendsDifferentSpreadStringOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5730,8 +5684,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "derivedProp": 0.0,  # The index property. Required.
-                    "name": "str"  # The id property. Required.
+                    "derivedProp": 0.0,
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5796,8 +5750,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": 0.0,  # The index property. Required.
-                    "name": "str"  # The id property. Required.
+                    "derivedProp": 0.0,
+                    "name": "str"
                 }
         """
 
@@ -5852,8 +5806,8 @@ class ExtendsDifferentSpreadFloatOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "derivedProp": 0.0,  # The index property. Required.
-                    "name": "str"  # The id property. Required.
+                    "derivedProp": 0.0,
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -5893,8 +5847,6 @@ class ExtendsDifferentSpreadFloatOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5934,9 +5886,9 @@ class ExtendsDifferentSpreadModelOperations:
                 # response body for status code(s): 200
                 response == {
                     "derivedProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     },
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6002,9 +5954,9 @@ class ExtendsDifferentSpreadModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "derivedProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     },
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
 
@@ -6060,9 +6012,9 @@ class ExtendsDifferentSpreadModelOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "derivedProp": {
-                        "state": "str"  # The state property. Required.
+                        "state": "str"
                     },
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6102,8 +6054,6 @@ class ExtendsDifferentSpreadModelOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6144,10 +6094,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                 response == {
                     "derivedProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ],
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6214,10 +6164,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                 body = {
                     "derivedProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ],
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
 
@@ -6274,10 +6224,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
                 body = {
                     "derivedProp": [
                         {
-                            "state": "str"  # The state property. Required.
+                            "state": "str"
                         }
                     ],
-                    "knownProp": "str"  # Required.
+                    "knownProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6317,8 +6267,6 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6356,7 +6304,7 @@ class MultipleSpreadOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6421,7 +6369,7 @@ class MultipleSpreadOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
 
@@ -6476,7 +6424,7 @@ class MultipleSpreadOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6516,8 +6464,6 @@ class MultipleSpreadOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6555,7 +6501,7 @@ class SpreadRecordUnionOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6620,7 +6566,7 @@ class SpreadRecordUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
 
@@ -6675,7 +6621,7 @@ class SpreadRecordUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "flag": bool  # The name property. Required.
+                    "flag": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6715,8 +6661,6 @@ class SpreadRecordUnionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6755,7 +6699,7 @@ class SpreadRecordDiscriminatedUnionOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6820,7 +6764,7 @@ class SpreadRecordDiscriminatedUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -6875,7 +6819,7 @@ class SpreadRecordDiscriminatedUnionOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -6915,8 +6859,6 @@ class SpreadRecordDiscriminatedUnionOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6955,7 +6897,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7024,7 +6966,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -7079,7 +7021,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7119,8 +7061,6 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -7159,7 +7099,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7229,7 +7169,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -7285,7 +7225,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7325,8 +7265,6 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -7365,7 +7303,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7435,7 +7373,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
 
@@ -7491,7 +7429,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # The name property. Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -7531,8 +7469,6 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -182,7 +182,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -254,7 +254,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -313,7 +313,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -356,8 +356,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -380,7 +378,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -444,7 +442,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "golden":
                 dog = {
                     "kind": "golden",
-                    "weight": 0  # Weight of the dog. Required.
+                    "weight": 0
                 }
 
                 # response body for status code(s): 200
@@ -508,7 +506,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200
@@ -580,7 +578,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -639,7 +637,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -682,8 +680,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -706,7 +702,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200
@@ -770,7 +766,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
                 # JSON input template for discriminator value "cobra":
                 snake = {
                     "kind": "cobra",
-                    "length": 0  # Length of the snake. Required.
+                    "length": 0
                 }
 
                 # response body for status code(s): 200

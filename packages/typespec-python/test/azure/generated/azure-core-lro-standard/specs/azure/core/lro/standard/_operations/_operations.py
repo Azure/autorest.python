@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -123,7 +123,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> JSON:
+    ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -136,7 +136,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -155,7 +155,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -163,8 +163,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 201]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -174,14 +173,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if response.status_code == 201:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(JSON, response.json())
+            deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -212,14 +211,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -247,8 +246,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -276,8 +275,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -303,14 +302,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -331,6 +330,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 params=_params,
                 **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -362,7 +362,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _delete_initial(self, name: str, **kwargs: Any) -> JSON:
+    def _delete_initial(self, name: str, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -374,7 +374,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_standard_delete_request(
             name=name,
@@ -384,7 +384,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -392,15 +392,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -430,6 +429,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             raw_result = self._delete_initial(
                 name=name, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
@@ -451,7 +451,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             )
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> JSON:
+    def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -463,7 +463,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_standard_export_request(
             name=name,
@@ -474,7 +474,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -482,15 +482,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
+            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -517,8 +516,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 202
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "resourceUri": "str"  # The exported URI. Required.
+                    "name": "str",
+                    "resourceUri": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -532,6 +531,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             raw_result = self._export_initial(
                 name=name, format=format, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

@@ -340,7 +340,6 @@ class StringsOnlyOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.GetResponse9:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
@@ -352,8 +351,7 @@ class StringsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "a"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -402,7 +400,6 @@ class StringsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -419,8 +416,7 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "a"
                 }
         """
 
@@ -461,7 +457,6 @@ class StringsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal["a", "b", "c"] = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -478,8 +473,7 @@ class StringsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
+                    "prop": "a"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -524,8 +518,6 @@ class StringsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -563,8 +555,7 @@ class StringExtensibleOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                    "prop": "b"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -629,8 +620,7 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                    "prop": "b"
                 }
         """
 
@@ -689,8 +679,7 @@ class StringExtensibleOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "b"  # Default value is "b". Required. Is one of the following types:
-                      Literal["b"], Literal["c"], str
+                    "prop": "b"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -735,8 +724,6 @@ class StringExtensibleOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -774,7 +761,7 @@ class StringExtensibleNamedOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -839,7 +826,7 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "str"
                 }
         """
 
@@ -902,7 +889,7 @@ class StringExtensibleNamedOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
+                    "prop": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -947,8 +934,6 @@ class StringExtensibleNamedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -986,8 +971,7 @@ class IntsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 1
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1052,8 +1036,7 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 1
                 }
         """
 
@@ -1108,8 +1091,7 @@ class IntsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
+                    "prop": 1
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1154,8 +1136,6 @@ class IntsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1193,8 +1173,7 @@ class FloatsOnlyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 1.1
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1259,8 +1238,7 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 1.1
                 }
         """
 
@@ -1315,8 +1293,7 @@ class FloatsOnlyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
+                    "prop": 1.1
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1361,8 +1338,6 @@ class FloatsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1401,7 +1376,7 @@ class ModelsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -1468,7 +1443,7 @@ class ModelsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -1525,7 +1500,7 @@ class ModelsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     }
                 }
         """
@@ -1571,8 +1546,6 @@ class ModelsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1599,7 +1572,6 @@ class EnumsOnlyOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.GetResponse3:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
@@ -1612,12 +1584,8 @@ class EnumsOnlyOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
-                        "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                        "lr": "left",
+                        "ud": "up"
                     }
                 }
         """
@@ -1667,7 +1635,6 @@ class EnumsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -1685,12 +1652,8 @@ class EnumsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                        "lr": "left",
+                        "ud": "up"
                     }
                 }
         """
@@ -1731,7 +1694,6 @@ class EnumsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.EnumsOnlyCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -1748,12 +1710,8 @@ class EnumsOnlyOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "lr": "left",  # Default value is "left". This should be receive/send
-                          the left variant. Required. Is one of the following types: Literal["left"],
-                          Literal["right"], Literal["up"], Literal["down"]
-                        "ud": "up"  # Default value is "up". This should be receive/send the
-                          up variant. Required. Is either a Literal["up"] type or a Literal["down"]
-                          type.
+                        "lr": "left",
+                        "ud": "up"
                     }
                 }
         """
@@ -1799,8 +1757,6 @@ class EnumsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1827,7 +1783,6 @@ class StringAndArrayOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.GetResponse2:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
@@ -1840,10 +1795,8 @@ class StringAndArrayOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                        "array": "str",
+                        "string": "str"
                     }
                 }
         """
@@ -1893,7 +1846,6 @@ class StringAndArrayOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -1911,10 +1863,8 @@ class StringAndArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                        "array": "str",
+                        "string": "str"
                     }
                 }
         """
@@ -1955,7 +1905,6 @@ class StringAndArrayOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.StringAndArrayCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -1972,10 +1921,8 @@ class StringAndArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
+                        "array": "str",
+                        "string": "str"
                     }
                 }
         """
@@ -2021,8 +1968,6 @@ class StringAndArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2049,7 +1994,6 @@ class MixedLiteralsOperations:
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.GetResponse1:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
@@ -2062,18 +2006,10 @@ class MixedLiteralsOperations:
                 # response body for status code(s): 200
                 response == {
                     "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                        "booleanLiteral": "a",
+                        "floatLiteral": "a",
+                        "intLiteral": "a",
+                        "stringLiteral": "a"
                     }
                 }
         """
@@ -2123,7 +2059,6 @@ class MixedLiteralsOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -2141,18 +2076,10 @@ class MixedLiteralsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                        "booleanLiteral": "a",
+                        "floatLiteral": "a",
+                        "intLiteral": "a",
+                        "stringLiteral": "a"
                     }
                 }
         """
@@ -2193,7 +2120,6 @@ class MixedLiteralsOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.MixedLiteralsCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -2210,18 +2136,10 @@ class MixedLiteralsOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
+                        "booleanLiteral": "a",
+                        "floatLiteral": "a",
+                        "intLiteral": "a",
+                        "stringLiteral": "a"
                     }
                 }
         """
@@ -2267,8 +2185,6 @@ class MixedLiteralsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2309,20 +2225,20 @@ class MixedTypesOperations:
                     "prop": {
                         "array": [
                             {
-                                "name": "str"  # Required.
+                                "name": "str"
                             }
                         ],
                         "boolean": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "int": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "literal": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "model": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         }
                     }
                 }
@@ -2392,20 +2308,20 @@ class MixedTypesOperations:
                     "prop": {
                         "array": [
                             {
-                                "name": "str"  # Required.
+                                "name": "str"
                             }
                         ],
                         "boolean": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "int": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "literal": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "model": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         }
                     }
                 }
@@ -2465,20 +2381,20 @@ class MixedTypesOperations:
                     "prop": {
                         "array": [
                             {
-                                "name": "str"  # Required.
+                                "name": "str"
                             }
                         ],
                         "boolean": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "int": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "literal": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         },
                         "model": {
-                            "name": "str"  # Required.
+                            "name": "str"
                         }
                     }
                 }
@@ -2525,8 +2441,6 @@ class MixedTypesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

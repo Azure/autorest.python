@@ -124,6 +124,41 @@ class CollectionsModelProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class CollectionsStringProperty(_model_base.Model):
+    """Model with collection string properties.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar required_property: Required property. Required.
+    :vartype required_property: str
+    :ivar nullable_property: Property. Required.
+    :vartype nullable_property: list[str]
+    """
+
+    required_property: str = rest_field(name="requiredProperty")
+    """Required property. Required."""
+    nullable_property: List[str] = rest_field(name="nullableProperty")
+    """Property. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        required_property: str,
+        nullable_property: List[str],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class DatetimeProperty(_model_base.Model):
     """Model with a datetime property.
 

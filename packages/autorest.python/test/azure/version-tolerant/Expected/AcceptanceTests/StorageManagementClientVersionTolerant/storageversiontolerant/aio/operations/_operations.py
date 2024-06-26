@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -72,7 +72,6 @@ class StorageAccountsOperations:
     async def check_name_availability(
         self, account_name: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -91,21 +90,15 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 account_name = {
-                    "name": "str",  # Required.
-                    "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
-                      "Microsoft.Storage/storageAccounts".
+                    "name": "str",
+                    "type": "Microsoft.Storage/storageAccounts"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",  # Optional. Gets an error message explaining the Reason
-                      value in more detail.
-                    "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
-                      whether the name is available for you to use. If true, the name is available. If
-                      false, the name has already been taken or invalid and cannot be used.
-                    "reason": "str"  # Optional. Gets the reason that a storage account name
-                      could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" and "AlreadyExists".
+                    "message": "str",
+                    "nameAvailable": bool,
+                    "reason": "str"
                 }
         """
 
@@ -113,7 +106,6 @@ class StorageAccountsOperations:
     async def check_name_availability(
         self, account_name: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -132,20 +124,14 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",  # Optional. Gets an error message explaining the Reason
-                      value in more detail.
-                    "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
-                      whether the name is available for you to use. If true, the name is available. If
-                      false, the name has already been taken or invalid and cannot be used.
-                    "reason": "str"  # Optional. Gets the reason that a storage account name
-                      could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" and "AlreadyExists".
+                    "message": "str",
+                    "nameAvailable": bool,
+                    "reason": "str"
                 }
         """
 
     @distributed_trace_async
     async def check_name_availability(self, account_name: Union[JSON, IO[bytes]], **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Checks that account name is valid and is not in use.
 
         :param account_name: The name of the storage account within the specified resource group.
@@ -161,21 +147,15 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 account_name = {
-                    "name": "str",  # Required.
-                    "type": "Microsoft.Storage/storageAccounts"  # Optional. Default value is
-                      "Microsoft.Storage/storageAccounts".
+                    "name": "str",
+                    "type": "Microsoft.Storage/storageAccounts"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",  # Optional. Gets an error message explaining the Reason
-                      value in more detail.
-                    "nameAvailable": bool,  # Optional. Gets a boolean value that indicates
-                      whether the name is available for you to use. If true, the name is available. If
-                      false, the name has already been taken or invalid and cannot be used.
-                    "reason": "str"  # Optional. Gets the reason that a storage account name
-                      could not be used. The Reason element is only returned if NameAvailable is false.
-                      Known values are: "AccountNameInvalid" and "AlreadyExists".
+                    "message": "str",
+                    "nameAvailable": bool,
+                    "reason": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -219,8 +199,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -236,7 +214,7 @@ class StorageAccountsOperations:
 
     async def _create_initial(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> Optional[JSON]:
+    ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -249,7 +227,7 @@ class StorageAccountsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[Optional[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _json = None
@@ -272,7 +250,7 @@ class StorageAccountsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -280,22 +258,20 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
+            await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = None
         if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+            deserialized = response.iter_bytes()
+
+        if response.status_code == 202:
+            deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return deserialized  # type: ignore
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @overload
     async def begin_create(
@@ -307,7 +283,6 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
-        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -334,85 +309,63 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str"  # Optional. Gets or sets the account type.
-                          Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
+                        "accountType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
 
@@ -426,7 +379,6 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
-        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -453,69 +405,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
 
@@ -523,7 +455,6 @@ class StorageAccountsOperations:
     async def begin_create(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
-        # pylint: disable=line-too-long
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
         cannot be updated with this API and should instead use the Update Storage Account API. If an
         account is already created and subsequent PUT request is issued with exact same set of
@@ -548,85 +479,63 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str"  # Optional. Gets or sets the account type.
-                          Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
+                        "accountType": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -648,6 +557,7 @@ class StorageAccountsOperations:
                 params=_params,
                 **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -723,8 +633,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -733,7 +641,6 @@ class StorageAccountsOperations:
 
     @distributed_trace_async
     async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Returns the properties for the specified storage account including but not limited to name,
         account type, location, and account status. The ListKeys operation should be used to retrieve
         storage keys.
@@ -754,69 +661,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -850,8 +737,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -875,7 +760,6 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -906,94 +790,67 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets or sets the account type.
-                          Note that StandardZRS and PremiumLRS accounts cannot be changed to other
-                          account types, and other account types cannot be changed to StandardZRS or
-                          PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
+                        "accountType": "str",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         }
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
 
@@ -1007,7 +864,6 @@ class StorageAccountsOperations:
         content_type: str = "application/json",
         **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1038,69 +894,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
 
@@ -1108,7 +944,6 @@ class StorageAccountsOperations:
     async def update(
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
-        # pylint: disable=line-too-long
         """Updates the account type or tags for a storage account. It can also be used to add a custom
         domain (note that custom domains cannot be added via the Create operation). Only one custom
         domain is supported per storage account. This API can only be used to update one of tags,
@@ -1136,94 +971,67 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets or sets the account type.
-                          Note that StandardZRS and PremiumLRS accounts cannot be changed to other
-                          account types, and other account types cannot be changed to StandardZRS or
-                          PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
+                        "accountType": "str",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         }
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1269,8 +1077,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1302,8 +1108,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",  # Optional. Gets the value of key 1.
-                    "key2": "str"  # Optional. Gets the value of key 2.
+                    "key1": "str",
+                    "key2": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1337,8 +1143,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1354,7 +1158,6 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncIterable[JSON]:
-        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -1367,69 +1170,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1490,8 +1273,6 @@ class StorageAccountsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1501,7 +1282,6 @@ class StorageAccountsOperations:
 
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncIterable[JSON]:
-        # pylint: disable=line-too-long
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -1517,69 +1297,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",  # Resource location. Required.
-                    "id": "str",  # Optional. Resource Id.
-                    "name": "str",  # Optional. Resource name.
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "accountType": "str",  # Optional. Gets the type of the storage
-                          account. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-                          "Standard_RAGRS", and "Premium_LRS".
-                        "creationTime": "2020-02-20 00:00:00",  # Optional. Gets the creation
-                          date and time of the storage account in UTC.
+                        "accountType": "str",
+                        "creationTime": "2020-02-20 00:00:00",
                         "customDomain": {
-                            "name": "str",  # Optional. Gets or sets the custom domain
-                              name. Name is the CNAME source.
-                            "useSubDomain": bool  # Optional. Indicates whether indirect
-                              CName validation is enabled. Default value is false. This should only be
-                              set on updates.
+                            "name": "str",
+                            "useSubDomain": bool
                         },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",  # Optional. Gets the
-                          timestamp of the most recent instance of a failover to the secondary
-                          location. Only the most recent timestamp is retained. This element is not
-                          returned if there has never been a failover instance. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
+                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
                         "primaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "primaryLocation": "str",  # Optional. Gets the location of the
-                          primary for the storage account.
-                        "provisioningState": "str",  # Optional. Gets the status of the
-                          storage account at the time the operation was called. Known values are:
-                          "Creating", "ResolvingDNS", and "Succeeded".
+                        "primaryLocation": "str",
+                        "provisioningState": "str",
                         "secondaryEndpoints": {
                             "FooPoint": {
                                 "Bar.Point": {
                                     "RecursivePoint": ...
                                 }
                             },
-                            "blob": "str",  # Optional. Gets the blob endpoint.
+                            "blob": "str",
                             "dummyEndPoint": ...,
-                            "queue": "str",  # Optional. Gets the queue endpoint.
-                            "table": "str"  # Optional. Gets the table endpoint.
+                            "queue": "str",
+                            "table": "str"
                         },
-                        "secondaryLocation": "str",  # Optional. Gets the location of the geo
-                          replicated secondary for the storage account. Only available if the
-                          accountType is StandardGRS or StandardRAGRS.
-                        "statusOfPrimary": "str",  # Optional. Gets the status indicating
-                          whether the primary location of the storage account is available or
-                          unavailable. Known values are: "Available" and "Unavailable".
-                        "statusOfSecondary": "str"  # Optional. Gets the status indicating
-                          whether the secondary location of the storage account is available or
-                          unavailable. Only available if the accountType is StandardGRS or
-                          StandardRAGRS. Known values are: "Available" and "Unavailable".
+                        "secondaryLocation": "str",
+                        "statusOfPrimary": "str",
+                        "statusOfSecondary": "str"
                     },
                     "tags": {
-                        "str": "str"  # Optional. Resource tags.
+                        "str": "str"
                     },
-                    "type": "str"  # Optional. Resource type.
+                    "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1641,8 +1401,6 @@ class StorageAccountsOperations:
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1683,13 +1441,13 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
+                    "keyName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",  # Optional. Gets the value of key 1.
-                    "key2": "str"  # Optional. Gets the value of key 2.
+                    "key1": "str",
+                    "key2": "str"
                 }
         """
 
@@ -1726,8 +1484,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",  # Optional. Gets the value of key 1.
-                    "key2": "str"  # Optional. Gets the value of key 2.
+                    "key1": "str",
+                    "key2": "str"
                 }
         """
 
@@ -1756,13 +1514,13 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"  # Optional. Known values are: "key1" and "key2".
+                    "keyName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",  # Optional. Gets the value of key 1.
-                    "key2": "str"  # Optional. Gets the value of key 2.
+                    "key1": "str",
+                    "key2": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1808,8 +1566,6 @@ class StorageAccountsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1843,7 +1599,6 @@ class UsageOperations:
 
     @distributed_trace_async
     async def list(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Gets the current usage count and the limit for the resources under the subscription.
 
         :return: JSON object
@@ -1857,19 +1612,13 @@ class UsageOperations:
                 response == {
                     "value": [
                         {
-                            "currentValue": 0,  # Optional. Gets the current count of the
-                              allocated resources in the subscription.
-                            "limit": 0,  # Optional. Gets the maximum count of the
-                              resources that can be allocated in the subscription.
+                            "currentValue": 0,
+                            "limit": 0,
                             "name": {
-                                "localizedValue": "str",  # Optional. Gets a
-                                  localized string describing the resource name.
-                                "value": "str"  # Optional. Gets a string describing
-                                  the resource name.
+                                "localizedValue": "str",
+                                "value": "str"
                             },
-                            "unit": "str"  # Optional. Gets the unit of measurement.
-                              Known values are: "Count", "Bytes", "Seconds", "Percent",
-                              "CountsPerSecond", and "BytesPerSecond".
+                            "unit": "str"
                         }
                     ]
                 }
@@ -1903,8 +1652,6 @@ class UsageOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

@@ -63,9 +63,8 @@ class Dinosaur(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     TRex
 
-    All required parameters must be populated in order to send to server.
 
-    :ivar kind: Required. Default value is None.
+    :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
     :vartype kind: str
     :ivar size: Required.
     :vartype size: int
@@ -73,7 +72,7 @@ class Dinosaur(_model_base.Model):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
+    """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field()
     """Required."""
 
@@ -240,7 +239,6 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar size: Required.
     :vartype size: int

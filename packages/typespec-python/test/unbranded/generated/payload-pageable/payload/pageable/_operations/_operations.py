@@ -75,7 +75,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # User name. Required.
+                    "name": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -125,8 +125,6 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 

@@ -17,7 +17,7 @@ from .helpers import (
 from .python_mappings import CADL_RESERVED_WORDS, RESERVED_WORDS, PadType
 
 from .. import YamlUpdatePlugin
-from ..utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES
+from ..utils import parse_args, get_body_type_for_description, JSON_REGEXP, KNOWN_TYPES, update_enum_value
 
 
 def update_overload_section(
@@ -241,11 +241,24 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
                 type["snakeCaseName"] = to_snake_case(type["name"])
             if type.get("values"):
                 # we're enums
+                values_to_add = []
                 for value in type["values"]:
                     padded_name = self.pad_reserved_words(value["name"].lower(), PadType.ENUM).upper()
-                    if padded_name[0] in "0123456789":
-                        padded_name = "ENUM_" + padded_name
-                    value["name"] = padded_name
+                    if self.version_tolerant:
+                        if padded_name[0] in "0123456789":
+                            padded_name = "ENUM_" + padded_name
+                            value["name"] = padded_name
+                    else:
+                        if value["name"] != padded_name:
+                            values_to_add.append(
+                                update_enum_value(
+                                    name=padded_name,
+                                    value=value["value"],
+                                    description=value["description"],
+                                    enum_type=value["enumType"],
+                                )
+                            )
+                type["values"].extend(values_to_add)
 
         # add type for reference
         for v in HEADERS_CONVERT_IN_METHOD.values():
@@ -274,7 +287,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         if prop_name.endswith("Client"):
             prop_name = prop_name[: len(prop_name) - len("Client")]
         yaml_data["builderPadName"] = to_snake_case(prop_name)
-        for og in yaml_data["operationGroups"]:
+        for og in yaml_data.get("operationGroups", []):
             for o in og["operations"]:
                 property_if_match = None
                 property_if_none_match = None
@@ -412,12 +425,18 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data: Dict[str, Any],
         is_overload: bool = False,
     ) -> None:
+        def convert_initial_operation_response_type(data: Dict[str, Any]) -> None:
+            for response in data.get("responses", []):
+                response["type"] = KNOWN_TYPES["binary"]
+
         self.update_operation(code_model, yaml_data, is_overload=is_overload)
         self.update_operation(code_model, yaml_data["initialOperation"], is_overload=is_overload)
+        convert_initial_operation_response_type(yaml_data["initialOperation"])
         self._update_lro_operation_helper(yaml_data)
         for overload in yaml_data.get("overloads", []):
             self._update_lro_operation_helper(overload)
             self.update_operation(code_model, overload["initialOperation"], is_overload=True)
+            convert_initial_operation_response_type(overload["initialOperation"])
 
     def update_paging_operation(
         self,
@@ -443,7 +462,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
             self.update_paging_operation(code_model, overload, is_overload=True, item_type=item_type)
 
     def update_operation_groups(self, code_model: Dict[str, Any], client: Dict[str, Any]) -> None:
-        operation_groups_yaml_data = client["operationGroups"]
+        operation_groups_yaml_data = client.get("operationGroups", [])
         for operation_group in operation_groups_yaml_data:
             operation_group["identifyName"] = self.pad_reserved_words(
                 operation_group.get("name", operation_group["propertyName"]),
@@ -466,6 +485,7 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
     def update_yaml(self, yaml_data: Dict[str, Any]) -> None:
         """Convert in place the YAML str."""
         self.update_types(yaml_data["types"])
+        yaml_data["types"] += KNOWN_TYPES.values()
         for client in yaml_data["clients"]:
             self.update_client(client)
             self.update_operation_groups(yaml_data, client)

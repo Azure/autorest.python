@@ -76,7 +76,7 @@ class PublicOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -138,7 +138,7 @@ class PublicOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -220,7 +220,7 @@ class InternalOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -289,7 +289,7 @@ class InternalOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -357,7 +357,7 @@ class InternalOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -436,7 +436,7 @@ class SharedModelInOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -497,7 +497,7 @@ class SharedModelInOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -590,9 +590,9 @@ class RelativeModelInOperationOperations:
                 # response body for status code(s): 200
                 response == {
                     "inner": {
-                        "name": "str"  # Required.
+                        "name": "str"
                     },
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -667,7 +667,7 @@ class RelativeModelInOperationOperations:
                 # JSON input template for discriminator value "real":
                 abstract_model = {
                     "kind": "real",
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200

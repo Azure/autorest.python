@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 from ._serialization import Serializer, Deserializer
 from io import IOBase
-from typing import Any, IO, Iterable, Optional, Union
+from typing import Any, IO, Iterable, Iterator, Optional, Union
 
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller

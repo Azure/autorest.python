@@ -91,7 +91,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]
@@ -147,7 +147,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]
@@ -190,8 +190,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -211,7 +209,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "level": 0,  # Required.
+                    "level": 0,
                     "extension": [
                         ...
                     ]

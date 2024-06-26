@@ -146,7 +146,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -178,7 +178,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -216,8 +216,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -242,13 +240,13 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype],
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -283,13 +281,13 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype],
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -329,8 +327,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -355,7 +351,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
                     "profileImage": filetype
                 }
@@ -389,7 +385,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "address": {
-                        "city": "str"  # Required.
+                        "city": "str"
                     },
                     "profileImage": filetype
                 }
@@ -428,8 +424,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -453,7 +447,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype]
                 }
         """
@@ -485,7 +479,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "pictures": [filetype]
                 }
         """
@@ -523,8 +517,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -550,7 +542,7 @@ class FormDataOperations:
                 body = {
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -586,7 +578,7 @@ class FormDataOperations:
                 body = {
                     "previousAddresses": [
                         {
-                            "city": "str"  # Required.
+                            "city": "str"
                         }
                     ],
                     "profileImage": filetype
@@ -626,8 +618,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -721,8 +711,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -746,7 +734,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -780,7 +768,7 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "id": "str",  # Required.
+                    "id": "str",
                     "profileImage": filetype
                 }
         """
@@ -818,8 +806,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -918,8 +904,6 @@ class FormDataOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -64,9 +64,9 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
 
@@ -119,9 +119,9 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -161,8 +161,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -182,9 +180,9 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -249,16 +247,16 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
 
@@ -280,9 +278,9 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
 
@@ -306,9 +304,9 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
 
@@ -327,16 +325,16 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "age": 0,  # Required.
-                    "name": "str",  # Required.
-                    "smart": bool  # Required.
+                    "age": 0,
+                    "name": "str",
+                    "smart": bool
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

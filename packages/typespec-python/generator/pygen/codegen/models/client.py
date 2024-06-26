@@ -111,7 +111,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                         )
                     )
 
-        queue = self.yaml_data["operationGroups"].copy()
+        queue = self.yaml_data.get("operationGroups", []).copy()
         while queue:
             now = queue.pop(0)
             add_og_request_builder(now)
