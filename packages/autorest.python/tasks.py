@@ -202,6 +202,9 @@ _PACKAGES_WITH_CLIENT_SIDE_VALIDATION = [
 ]
 
 _POSTPROCESS_PACKAGES = [
+    "DPGTestModels",
+    "BodyComplex",
+    "DPGCustomizationCustomized",
 ]
 
 
