@@ -105,6 +105,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
         case "password":
         case "guid":
         case "url":
+        case "uri":
         case "uuid":
         case "eTag":
         case "armId":
@@ -358,6 +359,7 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     password: "string",
     guid: "string",
     url: "string",
+    uri: "string",
     uuid: "string",
     etag: "string",
     armId: "string",
