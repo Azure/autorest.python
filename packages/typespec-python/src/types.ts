@@ -11,7 +11,7 @@ import {
     SdkArrayType,
     SdkDictionaryType,
     SdkConstantType,
-    SdkDatetimeType,
+    SdkDateTimeType,
     SdkDurationType,
     SdkCredentialType,
     SdkServiceOperation,
@@ -312,7 +312,7 @@ function emitEnumMember(type: SdkEnumValueType, enumType: Record<string, any>): 
     };
 }
 
-function emitDurationOrDateType(type: SdkDurationType | SdkDatetimeType): Record<string, any> {
+function emitDurationOrDateType(type: SdkDurationType | SdkDateTimeType): Record<string, any> {
     return getSimpleTypeResult({
         ...emitBuiltInType(type),
         wireType: emitBuiltInType(type.wireType),
@@ -367,7 +367,7 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     azureLocation: "string",
 };
 
-function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
+function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDateTimeType): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],
