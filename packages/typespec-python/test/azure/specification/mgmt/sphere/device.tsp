@@ -45,7 +45,11 @@ interface Devices {
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/lro-location-header" "Existing API"
   @parameterVisibility
-  update is ArmCustomPatchAsync<Device, DeviceUpdate, LroHeaders = Azure.Core.Foundations.RetryAfterHeader>;
+  update is ArmCustomPatchAsync<
+    Device,
+    DeviceUpdate,
+    LroHeaders = Azure.Core.Foundations.RetryAfterHeader
+  >;
 
   /**
    * Delete a Device
@@ -69,6 +73,14 @@ interface Devices {
   >;
 }
 
-@@doc(Devices.generateCapabilityImage::parameters.body, "Generate capability image request body.");
-@@encodedName(Devices.generateCapabilityImage::parameters.body, "application/json", "generateDeviceCapabilityRequest");
-@@extension(Devices.generateCapabilityImage::parameters.body, "x-ms-client-name", "generateDeviceCapabilityRequest");
+@@doc(Devices.generateCapabilityImage::parameters.body,
+  "Generate capability image request body."
+);
+@@encodedName(Devices.generateCapabilityImage::parameters.body,
+  "application/json",
+  "generateDeviceCapabilityRequest"
+);
+@@extension(Devices.generateCapabilityImage::parameters.body,
+  "x-ms-client-name",
+  "generateDeviceCapabilityRequest"
+);
