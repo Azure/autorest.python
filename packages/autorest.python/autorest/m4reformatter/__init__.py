@@ -11,7 +11,7 @@ import copy
 import logging
 from typing import Callable, Dict, Any, Iterable, List, Optional, Set
 
-from .._utils import (
+from pygen.utils import (
     to_snake_case,
     KNOWN_TYPES,
     get_body_type_for_description,

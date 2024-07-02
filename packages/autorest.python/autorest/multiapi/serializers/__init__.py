@@ -6,13 +6,15 @@
 from pathlib import Path
 from typing import Any, Optional, Union, List
 from jinja2 import PackageLoader, Environment
+from pygen import ReaderAndWriter
+from pygen.utils import build_policies
 
 from .import_serializer import FileImportSerializer
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel, GlobalParameter
-from ... import ReaderAndWriter, ReaderAndWriterAutorest
-from ..._utils import build_policies
+from ... import ReaderAndWriterAutorest
+
 
 __all__ = [
     "MultiAPISerializer",
@@ -123,7 +125,7 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         if not code_model.client.client_side_validation:
             codegen_env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates"),
+                loader=PackageLoader("pygen.codegen", "templates"),
                 keep_trailing_newline=True,
                 line_statement_prefix="##",
                 line_comment_prefix="###",

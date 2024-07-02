@@ -7,7 +7,8 @@ import logging
 from typing import Any, Dict
 from pathlib import Path
 from jinja2 import Environment, PackageLoader
-from .. import Plugin, PluginAutorest
+from pygen import Plugin
+from .. import PluginAutorest
 
 _LOGGER = logging.getLogger(__name__)
 

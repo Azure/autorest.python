@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 
 import pytest
-from autorest.codegen.models import (
+from pygen.codegen.models import (
     Operation,
     LROOperation,
     PagingOperation,
@@ -15,8 +15,8 @@ from autorest.codegen.models import (
     RequestBuilder,
     Client,
 )
-from autorest.codegen.models.parameter_list import RequestBuilderParameterList
-from autorest.codegen.models.primitive_types import StringType
+from pygen.codegen.models.parameter_list import RequestBuilderParameterList
+from pygen.codegen.models.primitive_types import StringType
 
 
 @pytest.fixture
