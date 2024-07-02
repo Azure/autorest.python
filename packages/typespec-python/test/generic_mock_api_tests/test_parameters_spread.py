@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from parameters.spread import SpreadClient
-from parameters.spread.models import BodyParameter, CompositeRequestMix
+from parameters.spread.models import BodyParameter
 
 
 @pytest.fixture
