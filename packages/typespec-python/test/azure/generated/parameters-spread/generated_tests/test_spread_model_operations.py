@@ -18,6 +18,7 @@ class TestSpreadModelOperations(SpreadClientTestBase):
         client = self.create_client(endpoint=spread_endpoint)
         response = client.model.spread_as_request_body(
             body={"name": "str"},
+            name="str",
         )
 
         # please add some check logic here by yourself
@@ -67,6 +68,7 @@ class TestSpreadModelOperations(SpreadClientTestBase):
             name="str",
             body={"prop": "str"},
             test_header="str",
+            prop="str",
         )
 
         # please add some check logic here by yourself
