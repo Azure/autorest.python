@@ -30,6 +30,7 @@ class TestBodyOptionalityAsync(BodyOptionalityClientTestBaseAsync):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
         response = await client.required_implicit(
             body={"name": "str"},
+            name="str",
         )
 
         # please add some check logic here by yourself

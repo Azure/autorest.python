@@ -12,6 +12,7 @@ import {
     SdkQueryParameter,
     SdkServiceMethod,
     SdkServiceResponseHeader,
+    UsageFlags,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -178,7 +179,7 @@ function emitHttpOperation(
     if (
         result.bodyParameter &&
         operation.bodyParam?.type.kind === "model" &&
-        operation.bodyParam?.type.isGeneratedName
+        (operation.bodyParam?.type.usage & UsageFlags.Spread) > 0
     ) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
@@ -327,8 +328,8 @@ function emitHttpResponse(
             typeof statusCodes === "object"
                 ? [(statusCodes as HttpStatusCodeRange).start]
                 : statusCodes === "*"
-                ? ["default"]
-                : [statusCodes],
+                    ? ["default"]
+                    : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,

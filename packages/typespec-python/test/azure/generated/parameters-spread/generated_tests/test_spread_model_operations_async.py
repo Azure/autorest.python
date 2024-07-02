@@ -19,6 +19,7 @@ class TestSpreadModelOperationsAsync(SpreadClientTestBaseAsync):
         client = self.create_async_client(endpoint=spread_endpoint)
         response = await client.model.spread_as_request_body(
             body={"name": "str"},
+            name="str",
         )
 
         # please add some check logic here by yourself
@@ -68,6 +69,7 @@ class TestSpreadModelOperationsAsync(SpreadClientTestBaseAsync):
             name="str",
             body={"prop": "str"},
             test_header="str",
+            prop="str",
         )
 
         # please add some check logic here by yourself

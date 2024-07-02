@@ -42,9 +42,9 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
-_Unset: Any = object()
 
 
 class ModelOperations:
@@ -66,12 +66,12 @@ class ModelOperations:
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
         :param body: Required.
-        :type body: ~parameters.spread.models.BodyParameter
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -90,12 +90,12 @@ class ModelOperations:
 
     @overload
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, *, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -122,12 +122,14 @@ class ModelOperations:
 
     @distributed_trace_async
     async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
 
-        :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
+        :keyword name: Required.
+        :paramtype name: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -154,6 +156,11 @@ class ModelOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            body = {"name": name}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -496,20 +503,14 @@ class ModelOperations:
 
     @overload
     async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
-        self,
-        name: str,
-        body: _models.CompositeRequestMix,
-        *,
-        test_header: str,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
 
         :param name: Required.
         :type name: str
         :param body: Required.
-        :type body: ~parameters.spread.models.CompositeRequestMix
+        :type body: JSON
         :keyword test_header: Required.
         :paramtype test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -530,16 +531,16 @@ class ModelOperations:
 
     @overload
     async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
-        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
+        self, name: str, *, test_header: str, prop: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
 
         :param name: Required.
         :type name: str
-        :param body: Required.
-        :type body: JSON
         :keyword test_header: Required.
         :paramtype test_header: str
+        :keyword prop: Required.
+        :paramtype prop: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -570,16 +571,18 @@ class ModelOperations:
 
     @distributed_trace_async
     async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
-        self, name: str, body: Union[_models.CompositeRequestMix, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
+        self, name: str, body: Union[JSON, IO[bytes]] = _Unset, *, test_header: str, prop: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
 
         :param name: Required.
         :type name: str
-        :param body: Is one of the following types: CompositeRequestMix, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.CompositeRequestMix or JSON or IO[bytes]
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
         :keyword test_header: Required.
         :paramtype test_header: str
+        :keyword prop: Required.
+        :paramtype prop: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -606,6 +609,11 @@ class ModelOperations:
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if prop is _Unset:
+                raise TypeError("missing required argument: prop")
+            body = {"prop": prop}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):

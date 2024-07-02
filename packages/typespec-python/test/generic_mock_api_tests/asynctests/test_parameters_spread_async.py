@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from parameters.spread.aio import SpreadClient
-from parameters.spread.models import BodyParameter, CompositeRequestMix
+from parameters.spread.models import BodyParameter
 
 
 @pytest.fixture
@@ -16,7 +16,7 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_model_body(client: SpreadClient):
-    await client.model.spread_as_request_body(BodyParameter(name="foo"))
+    await client.model.spread_as_request_body(name="foo")
 
 
 @pytest.mark.asyncio
@@ -36,7 +36,7 @@ async def test_model_composite_request(client: SpreadClient):
 
 @pytest.mark.asyncio
 async def test_model_composite_request_mix(client: SpreadClient):
-    await client.model.spread_composite_request_mix(name="foo", body=CompositeRequestMix(prop="foo"), test_header="bar")
+    await client.model.spread_composite_request_mix(name="foo", prop="foo", test_header="bar")
 
 
 @pytest.mark.asyncio

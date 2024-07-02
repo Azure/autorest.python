@@ -41,6 +41,7 @@ else:
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+_Unset: Any = object()
 
 
 class OptionalExplicitOperations:
@@ -428,12 +429,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_implicit.
 
         :param body: Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -452,12 +453,12 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, *, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_implicit.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -484,12 +485,14 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @distributed_trace_async
     async def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """required_implicit.
 
-        :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.
-        :type body: ~parameters.bodyoptionality.models.BodyModel or JSON or IO[bytes]
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
+        :keyword name: Required.
+        :paramtype name: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -516,6 +519,11 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            body = {"name": name}
+            body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body, (IOBase, bytes)):
