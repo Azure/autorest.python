@@ -1,5 +1,12 @@
 # Release
 
+## 0.25.0
+
+### Bug Fixes
+
+- [#2663](https://github.com/Azure/autorest.python/pull/2663) Support SdkType "uri"
+
+
 ## 0.24.3
 
 ### Bug Fixes
