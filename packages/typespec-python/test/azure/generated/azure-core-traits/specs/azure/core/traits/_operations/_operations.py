@@ -162,8 +162,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # The user's id. Required.
-                    "name": "str"  # Optional. The user's name.
+                    "id": 0,
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -250,12 +250,12 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "userActionValue": "str"  # User action value. Required.
+                    "userActionValue": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "userActionResult": "str"  # User action result. Required.
+                    "userActionResult": "str"
                 }
         """
 
@@ -281,7 +281,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "userActionResult": "str"  # User action result. Required.
+                    "userActionResult": "str"
                 }
         """
 
@@ -307,7 +307,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "userActionResult": "str"  # User action result. Required.
+                    "userActionResult": "str"
                 }
         """
 
@@ -330,12 +330,12 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "userActionValue": "str"  # User action value. Required.
+                    "userActionValue": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "userActionResult": "str"  # User action result. Required.
+                    "userActionResult": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

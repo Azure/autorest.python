@@ -25,7 +25,7 @@ class Fish(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar kind: Required. Default value is None.
+    :ivar kind: Discriminator property for Fish. Required. Default value is None.
     :vartype kind: str
     :ivar age: Required.
     :vartype age: int
@@ -33,7 +33,7 @@ class Fish(_model_base.Model):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
+    """Discriminator property for Fish. Required. Default value is None."""
     age: int = rest_field()
     """Required."""
 

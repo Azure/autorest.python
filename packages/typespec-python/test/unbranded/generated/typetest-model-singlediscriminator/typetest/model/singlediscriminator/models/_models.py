@@ -64,7 +64,7 @@ class Dinosaur(_model_base.Model):
     TRex
 
 
-    :ivar kind: Required. Default value is None.
+    :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
     :vartype kind: str
     :ivar size: Required.
     :vartype size: int
@@ -72,7 +72,7 @@ class Dinosaur(_model_base.Model):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
+    """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field()
     """Required."""
 

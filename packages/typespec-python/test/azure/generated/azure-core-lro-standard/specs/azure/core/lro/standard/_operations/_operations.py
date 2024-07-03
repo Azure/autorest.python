@@ -211,14 +211,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -246,8 +246,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -275,8 +275,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
 
@@ -302,14 +302,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 resource = {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
 
                 # response body for status code(s): 201, 200
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "role": "str"  # The role of user. Required.
+                    "name": "str",
+                    "role": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -516,8 +516,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
                 # response body for status code(s): 202
                 response == {
-                    "name": "str",  # The name of user. Required.
-                    "resourceUri": "str"  # The exported URI. Required.
+                    "name": "str",
+                    "resourceUri": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

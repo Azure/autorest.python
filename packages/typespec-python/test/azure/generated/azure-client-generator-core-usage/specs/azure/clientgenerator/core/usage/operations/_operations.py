@@ -72,6 +72,25 @@ def build_model_in_operation_output_to_input_output_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+def build_model_in_operation_model_in_read_only_property_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/azure/client-generator-core/usage/modelInReadOnlyProperty"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
 class ModelInOperationOperations:
     """
     .. warning::
@@ -115,7 +134,7 @@ class ModelInOperationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
 
@@ -186,7 +205,7 @@ class ModelInOperationOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -251,7 +270,7 @@ class ModelInOperationOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"  # Required.
+                    "name": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -290,6 +309,232 @@ class ModelInOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.OutputModel, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    def model_in_read_only_property(
+        self, body: _models.RoundTripModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.RoundTripModel:
+        """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
+        Expected body parameter:
+
+        .. code-block:: json
+
+           {
+           }
+
+        Expected response body:
+
+        .. code-block:: json
+
+           {
+             "name": <any string>
+           }.
+
+        :param body: Required.
+        :type body: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+        """
+
+    @overload
+    def model_in_read_only_property(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.RoundTripModel:
+        """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
+        Expected body parameter:
+
+        .. code-block:: json
+
+           {
+           }
+
+        Expected response body:
+
+        .. code-block:: json
+
+           {
+             "name": <any string>
+           }.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+        """
+
+    @overload
+    def model_in_read_only_property(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.RoundTripModel:
+        """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
+        Expected body parameter:
+
+        .. code-block:: json
+
+           {
+           }
+
+        Expected response body:
+
+        .. code-block:: json
+
+           {
+             "name": <any string>
+           }.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+        """
+
+    @distributed_trace
+    def model_in_read_only_property(
+        self, body: Union[_models.RoundTripModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.RoundTripModel:
+        """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
+        Expected body parameter:
+
+        .. code-block:: json
+
+           {
+           }
+
+        Expected response body:
+
+        .. code-block:: json
+
+           {
+             "name": <any string>
+           }.
+
+        :param body: Is one of the following types: RoundTripModel, JSON, IO[bytes] Required.
+        :type body: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel or JSON or IO[bytes]
+        :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
+        :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+
+                # response body for status code(s): 200
+                response == {
+                    "result": {
+                        "name": "str"
+                    }
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.RoundTripModel] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_model_in_operation_model_in_read_only_property_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        _request.url = self._client.format_url(_request.url)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                response.read()  # Load the body in memory and close the socket
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.RoundTripModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

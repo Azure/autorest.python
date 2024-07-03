@@ -246,10 +246,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         getType(sdkContext, sdkEnum);
     }
     for (const client of sdkPackage.clients) {
-        if (client.initialization.access === "public") {
-            // right now to keep python changes minimal, we're just supporting top level clients
-            codeModel["clients"].push(emitClient(sdkContext, client));
-        }
+        codeModel["clients"].push(emitClient(sdkContext, client));
         if (client.nameSpace === sdkPackage.rootNamespace) {
         } else {
             codeModel["subnamespaceToClients"][client.nameSpace] = emitClient(sdkContext, client);

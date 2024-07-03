@@ -16,6 +16,10 @@ from ._operations import DurationValueOperations
 from ._operations import UnknownValueOperations
 from ._operations import ModelValueOperations
 from ._operations import NullableFloatValueOperations
+from ._operations import NullableInt32ValueOperations
+from ._operations import NullableBooleanValueOperations
+from ._operations import NullableStringValueOperations
+from ._operations import NullableModelValueOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
@@ -32,6 +36,10 @@ __all__ = [
     "UnknownValueOperations",
     "ModelValueOperations",
     "NullableFloatValueOperations",
+    "NullableInt32ValueOperations",
+    "NullableBooleanValueOperations",
+    "NullableStringValueOperations",
+    "NullableModelValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

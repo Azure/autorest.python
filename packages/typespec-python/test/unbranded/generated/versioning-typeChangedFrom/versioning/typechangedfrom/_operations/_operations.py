@@ -85,14 +85,14 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
         """
 
@@ -118,8 +118,8 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
         """
 
@@ -145,8 +145,8 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
         """
 
@@ -166,14 +166,14 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "changedProp": "str",  # Required.
-                    "prop": "str"  # Required.
+                    "changedProp": "str",
+                    "prop": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

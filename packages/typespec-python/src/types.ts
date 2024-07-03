@@ -11,7 +11,7 @@ import {
     SdkArrayType,
     SdkDictionaryType,
     SdkConstantType,
-    SdkDatetimeType,
+    SdkDateTimeType,
     SdkDurationType,
     SdkCredentialType,
     SdkServiceOperation,
@@ -105,6 +105,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
         case "password":
         case "guid":
         case "url":
+        case "uri":
         case "uuid":
         case "eTag":
         case "armId":
@@ -113,6 +114,8 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
+        case "nullable":
+            return getType(context, type.type);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
@@ -309,7 +312,7 @@ function emitEnumMember(type: SdkEnumValueType, enumType: Record<string, any>): 
     };
 }
 
-function emitDurationOrDateType(type: SdkDurationType | SdkDatetimeType): Record<string, any> {
+function emitDurationOrDateType(type: SdkDurationType | SdkDateTimeType): Record<string, any> {
     return getSimpleTypeResult({
         ...emitBuiltInType(type),
         wireType: emitBuiltInType(type.wireType),
@@ -356,6 +359,7 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     password: "string",
     guid: "string",
     url: "string",
+    uri: "string",
     uuid: "string",
     etag: "string",
     armId: "string",
@@ -363,7 +367,7 @@ const sdkScalarKindToPythonKind: Record<string, string> = {
     azureLocation: "string",
 };
 
-function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDatetimeType): Record<string, any> {
+function emitBuiltInType(type: SdkBuiltInType | SdkDurationType | SdkDateTimeType): Record<string, any> {
     if (type.kind === "duration" && type.encode === "seconds") {
         return getSimpleTypeResult({
             type: sdkScalarKindToPythonKind[type.wireType.kind],

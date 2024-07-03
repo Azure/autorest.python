@@ -21,6 +21,14 @@
         "typetest.array.ArrayClient.model_value.get": "Type.Array.ModelValue.get",
         "typetest.array.ArrayClient.model_value.put": "Type.Array.ModelValue.put",
         "typetest.array.ArrayClient.nullable_float_value.get": "Type.Array.NullableFloatValue.get",
-        "typetest.array.ArrayClient.nullable_float_value.put": "Type.Array.NullableFloatValue.put"
+        "typetest.array.ArrayClient.nullable_float_value.put": "Type.Array.NullableFloatValue.put",
+        "typetest.array.ArrayClient.nullable_int32_value.get": "Type.Array.NullableInt32Value.get",
+        "typetest.array.ArrayClient.nullable_int32_value.put": "Type.Array.NullableInt32Value.put",
+        "typetest.array.ArrayClient.nullable_boolean_value.get": "Type.Array.NullableBooleanValue.get",
+        "typetest.array.ArrayClient.nullable_boolean_value.put": "Type.Array.NullableBooleanValue.put",
+        "typetest.array.ArrayClient.nullable_string_value.get": "Type.Array.NullableStringValue.get",
+        "typetest.array.ArrayClient.nullable_string_value.put": "Type.Array.NullableStringValue.put",
+        "typetest.array.ArrayClient.nullable_model_value.get": "Type.Array.NullableModelValue.get",
+        "typetest.array.ArrayClient.nullable_model_value.put": "Type.Array.NullableModelValue.put"
     }
 }

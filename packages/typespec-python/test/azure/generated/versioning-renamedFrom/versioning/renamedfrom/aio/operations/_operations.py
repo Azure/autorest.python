@@ -78,16 +78,16 @@ class NewInterfaceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -111,9 +111,9 @@ class NewInterfaceOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -137,9 +137,9 @@ class NewInterfaceOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -160,16 +160,16 @@ class NewInterfaceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -253,16 +253,16 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -288,9 +288,9 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -316,9 +316,9 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
 
@@ -341,16 +341,16 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "enumProp": "str",  # Required. "newEnumMember"
-                    "newProp": "str",  # Required.
-                    "unionProp": "str"  # Required. Is either a str type or a int type.
+                    "enumProp": "str",
+                    "newProp": "str",
+                    "unionProp": "str"
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {

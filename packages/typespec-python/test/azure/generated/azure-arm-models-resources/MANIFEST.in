@@ -1,0 +1,8 @@
+include *.md
+include LICENSE
+include azure/arm/models/resources/py.typed
+recursive-include tests *.py
+recursive-include samples *.py *.md
+include azure/__init__.py
+include azure/arm/__init__.py
+include azure/arm/models/__init__.py
