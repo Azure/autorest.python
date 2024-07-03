@@ -3,8 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.preprocess import PreProcessPlugin
-from autorest.preprocess.python_mappings import PadType
+from pygen.preprocess import PreProcessPlugin
+from pygen.preprocess.python_mappings import PadType
 
 
 def pad_reserved_words(name: str, pad_type: PadType) -> str:
