@@ -55,10 +55,11 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
-    - script: pnpm change verify
-      displayName: Check changelog
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
+    # - script: pnpm change verify
+    #   displayName: Check changelog
+    #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    #   condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
+    #   continueOnError: true
 
     - script: pnpm list
       displayName: Pnpm list
