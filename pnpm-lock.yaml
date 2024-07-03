@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 importers:
 
   .:
@@ -56,9 +52,6 @@ importers:
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
-      semver:
-        specifier: ~7.6.2
-        version: 7.6.2
     devDependencies:
       '@microsoft.azure/autorest.testserver':
         specifier: ^3.3.46
@@ -6601,3 +6594,7 @@ packages:
   /zod@3.23.8:
     resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
     dev: true
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
