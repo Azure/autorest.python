@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 
-from autorest.codegen.models import CodeModel, DPGModelType
+from pygen.codegen.models import CodeModel, DPGModelType
 
 
 def get_code_model():
