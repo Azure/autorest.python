@@ -328,8 +328,8 @@ function emitHttpResponse(
             typeof statusCodes === "object"
                 ? [(statusCodes as HttpStatusCodeRange).start]
                 : statusCodes === "*"
-                    ? ["default"]
-                    : [statusCodes],
+                ? ["default"]
+                : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,
