@@ -17,9 +17,11 @@ class TestRpcAsync(RpcClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_begin_long_running_rpc(self, rpc_endpoint):
         client = self.create_async_client(endpoint=rpc_endpoint)
-        response = await client.begin_long_running_rpc(
-            body={"prompt": "str"},
-        )
-        result = await response.result()  # poll until service return final result
+        response = await (
+            await client.begin_long_running_rpc(
+                body={"prompt": "str"},
+            )
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...

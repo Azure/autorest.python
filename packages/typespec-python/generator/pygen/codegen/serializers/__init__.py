@@ -131,7 +131,6 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
             self.code_model.options["show_operations"]
             and self.code_model.has_operations
             and self.code_model.options["generate_test"]
-            and not self.code_model.options["azure_arm"]
         ):
             self._serialize_and_write_test(env, namespace_path)
 
@@ -545,13 +544,14 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
         out_path = self._package_root_folder(namespace_path) / Path("generated_tests")
         general_serializer = TestGeneralSerializer(code_model=self.code_model, env=env)
         self.write_file(out_path / "conftest.py", general_serializer.serialize_conftest())
-        for is_async in (True, False):
-            async_suffix = "_async" if is_async else ""
-            general_serializer.is_async = is_async
-            self.write_file(
-                out_path / f"testpreparer{async_suffix}.py",
-                general_serializer.serialize_testpreparer(),
-            )
+        if not self.code_model.options["azure_arm"]:
+            for is_async in (True, False):
+                async_suffix = "_async" if is_async else ""
+                general_serializer.is_async = is_async
+                self.write_file(
+                    out_path / f"testpreparer{async_suffix}.py",
+                    general_serializer.serialize_testpreparer(),
+                )
 
         for client in self.code_model.clients:
             for og in client.operation_groups:
