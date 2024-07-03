@@ -10,12 +10,13 @@ import json
 from collections import defaultdict
 from pathlib import Path
 from typing import Dict, List, Optional, cast, Any
+from pygen import Plugin, ReaderAndWriter
 
 from .serializers import MultiAPISerializer, MultiAPISerializerAutorest
 from .models import CodeModel
 from .utils import _get_default_api_version_from_list
 
-from .. import Plugin, PluginAutorest, ReaderAndWriter, ReaderAndWriterAutorest
+from .. import PluginAutorest, ReaderAndWriterAutorest
 
 _LOGGER = logging.getLogger(__name__)
 

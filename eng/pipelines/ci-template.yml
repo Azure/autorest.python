@@ -69,8 +69,16 @@ steps:
       displayName: Build project
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
+    - script: pip list
+      displayName: List installed packages
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
     - script: pip install -r dev_requirements.txt
       displayName: Pip install dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
+    - script: pip list
+      displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
     - script: pylint ${{parameters.pythonFolderName}}
