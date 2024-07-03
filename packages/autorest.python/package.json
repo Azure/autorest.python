@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
     "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
-    "copy-generator": "node ./scripts/copy-generator.js",
-    "install": "npm run copy-generator && node ./scripts/run-python3.js ./scripts/install.py",
+    "build": "node ./scripts/copy-generator.js",
+    "install": "node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
   },
   "main": "index.js",
