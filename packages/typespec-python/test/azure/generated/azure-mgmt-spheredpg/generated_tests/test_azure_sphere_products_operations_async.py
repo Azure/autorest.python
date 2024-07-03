@@ -44,10 +44,10 @@ class TestAzureSphereProductsOperationsAsync(AzureMgmtRecordedTestCase):
                     "name": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
-                        "createdAt": "2020-02-20",
+                        "createdAt": "2020-02-20 00:00:00",
                         "createdBy": "str",
                         "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
                         "lastModifiedBy": "str",
                         "lastModifiedByType": "str",
                     },
