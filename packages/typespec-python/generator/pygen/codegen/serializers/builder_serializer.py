@@ -470,7 +470,7 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
         headers = [
             h
             for h in builder.parameters.headers
-            if not builder.has_form_data_body or h.wire_name.lower() != "content-type"
+            if (not builder.has_form_data_body or h.wire_name.lower() != "content-type") and h.constant
         ]
         retval = ["# Construct headers"] if headers else []
         for header in headers:
