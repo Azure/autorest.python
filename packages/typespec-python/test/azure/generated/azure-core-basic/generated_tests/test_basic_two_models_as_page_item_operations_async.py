@@ -17,8 +17,8 @@ class TestBasicTwoModelsAsPageItemOperationsAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list_first_item(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.two_models_as_page_item.list_first_item()
-
+        response = client.two_models_as_page_item.list_first_item()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
 
@@ -26,7 +26,7 @@ class TestBasicTwoModelsAsPageItemOperationsAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list_second_item(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.two_models_as_page_item.list_second_item()
-
+        response = client.two_models_as_page_item.list_second_item()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...

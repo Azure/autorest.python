@@ -19,8 +19,8 @@ class TestStandard(StandardClientTestBase):
         response = client.begin_create_or_replace(
             name="str",
             resource={"name": "str", "role": "str"},
-        )
-        result = response.result()  # poll until service return final result
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...
 
@@ -30,8 +30,8 @@ class TestStandard(StandardClientTestBase):
         client = self.create_client(endpoint=standard_endpoint)
         response = client.begin_delete(
             name="str",
-        )
-        result = response.result()  # poll until service return final result
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...
 
@@ -42,7 +42,7 @@ class TestStandard(StandardClientTestBase):
         response = client.begin_export(
             name="str",
             format="str",
-        )
-        result = response.result()  # poll until service return final result
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...

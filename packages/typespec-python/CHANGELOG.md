@@ -1,5 +1,17 @@
 # Release
 
+## 0.25.0
+
+### Bug Fixes
+
+- [#2663](https://github.com/Azure/autorest.python/pull/2663) Support SdkType "uri"
+
+### Features
+
+- [#2588](https://github.com/Azure/autorest.python/pull/2588) add package pygen that both autorest.python and typespec-python will rely on
+- [#2677](https://github.com/Azure/autorest.python/pull/2677) Enable test generation for ARM SDK
+
+
 ## 0.24.3
 
 ### Bug Fixes

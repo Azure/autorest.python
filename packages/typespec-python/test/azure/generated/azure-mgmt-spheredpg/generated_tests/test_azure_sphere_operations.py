@@ -6,19 +6,22 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import pytest
-from devtools_testutils import recorded_by_proxy
-from testpreparer import RpcClientTestBase, RpcPreparer
+from azure.mgmt.spheredpg import AzureSphereClient
+
+from devtools_testutils import AzureMgmtRecordedTestCase, RandomNameResourceGroupPreparer, recorded_by_proxy
+
+AZURE_LOCATION = "eastus"
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestRpc(RpcClientTestBase):
-    @RpcPreparer()
-    @recorded_by_proxy
-    def test_begin_long_running_rpc(self, rpc_endpoint):
-        client = self.create_client(endpoint=rpc_endpoint)
-        response = client.begin_long_running_rpc(
-            body={"prompt": "str"},
-        ).result()  # call '.result()' to poll until service return final result
+class TestAzureSphereOperations(AzureMgmtRecordedTestCase):
+    def setup_method(self, method):
+        self.client = self.create_mgmt_client(AzureSphereClient)
 
+    @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
+    @recorded_by_proxy
+    def test_list(self, resource_group):
+        response = self.client.operations.list()
+        result = [r for r in response]
         # please add some check logic here by yourself
         # ...

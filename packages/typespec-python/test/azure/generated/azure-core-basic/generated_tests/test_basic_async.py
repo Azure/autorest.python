@@ -52,8 +52,8 @@ class TestBasicAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.list()
-
+        response = client.list()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
 
@@ -61,8 +61,8 @@ class TestBasicAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list_with_page(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.list_with_page()
-
+        response = client.list_with_page()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
 
@@ -70,10 +70,10 @@ class TestBasicAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list_with_parameters(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.list_with_parameters(
+        response = client.list_with_parameters(
             body_input={"inputName": "str"},
         )
-
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
 
@@ -81,8 +81,8 @@ class TestBasicAsync(BasicClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_list_with_custom_page_model(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
-        response = await client.list_with_custom_page_model()
-
+        response = client.list_with_custom_page_model()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
 
