@@ -412,12 +412,17 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
     @staticmethod
     def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
         def _get_value(param):
+            declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.HEADER else "params"
-                return f"_{kwarg_dict}.pop('{param.wire_name}', {param.get_declaration()})"
-            return f"{param.get_declaration()}"
+                return f"_{kwarg_dict}.pop('{param.wire_name}', {declaration})"
+            return declaration
 
-        return [f"{p.client_name} = {_get_value(p)}" for p in builder.parameters.constant if not p.in_method_signature]
+        return [
+            f"{p.client_name} = {_get_value(p)}"
+            for p in (builder.parameters.headers + builder.parameters.query)
+            if not p.in_method_signature
+        ]
 
     @property
     def _function_def(self) -> str:
@@ -470,7 +475,7 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
         headers = [
             h
             for h in builder.parameters.headers
-            if (not builder.has_form_data_body or h.wire_name.lower() != "content-type") and h.constant
+            if (not builder.has_form_data_body or h.wire_name.lower() != "content-type")
         ]
         retval = ["# Construct headers"] if headers else []
         for header in headers:
