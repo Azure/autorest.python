@@ -410,7 +410,7 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
         return "response.json()"
 
     @staticmethod
-    def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
+    def declare_non_inputtable_headers_queries(builder: RequestBuilderType) -> List[str]:
         def _get_value(param):
             declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
