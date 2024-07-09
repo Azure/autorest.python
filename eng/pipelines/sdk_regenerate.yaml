@@ -45,6 +45,9 @@ jobs:
     inputs:
       versionSpec: '$(NodeVersion)'
 
+  - script: npm install -g pnpm@8.3.1
+    displayName: Install pnpm 8.3.1
+
   - task: PowerShell@2
     displayName: 'Build typespec-python'
     inputs:
