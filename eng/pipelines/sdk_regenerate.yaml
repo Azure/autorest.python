@@ -64,18 +64,33 @@ jobs:
     displayName: 'Install tsp-client'
 
   - script: |
-      python3 $(Build.SourcesDirectory)/autorest.python/eng/scripts/sdk_regenerate.py --sdk-root=$(Build.SourcesDirectory)/azure-sdk-for-python --typespec-python-root=$(Build.SourcesDirectory)/autorest.python
+      python3 $(Build.SourcesDirectory)/autorest.python/eng/scripts/sdk_regenerate.py --sdk-root=$(Build.SourcesDirectory)/azure-sdk-for-python --typespec-python-root=$(Build.SourcesDirectory)/autorest.python --typespec-python-branch=$(Build.SourceBranchName)
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
 
+  - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+    parameters:
+      WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+      ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+      BaseRepoBranch: typespec-python-$(Build.SourceBranchName)
+      TargetRepoName: azure-sdk-for-python
+      CommitMsg: 'Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
+      PushArgs: '--force'
+
   - ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
-    - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-for-python
-      parameters:
+    - task: PowerShell@2
+      displayName: Create pull request
+      condition: and(succeeded(), eq(variables['HasChanges'], 'true'))
+      inputs:
+        pwsh: true
         WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
-        ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
-        RepoOwner: azure-sdk
-        RepoName: azure-sdk-for-python
-        BaseBranchName: 'refs/heads/typespec-python-main'
-        PRBranchName: typespec-python-$(Build.SourceBranchName)
-        PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
-        OpenAsDraft: 'true'
+        filePath:  $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+        arguments: >
+          -RepoOwner "Azure"
+          -RepoName "azure-sdk-for-python"
+          -BaseBranch "refs/heads/main"
+          -PROwner "azure-sdk"
+          -PRBranch "typespec-python-$(Build.SourceBranchName)"
+          -AuthToken "$(azuresdk-github-pat)"
+          -PRTitle "[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`"
+          -OpenAsDraft "true"

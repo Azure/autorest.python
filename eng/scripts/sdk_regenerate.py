@@ -58,36 +58,33 @@ def regenerate_sdk() -> Dict[str, List[str]]:
     return result
 
 
-def checkout_base_branch():
-    base_branch = "typespec-python-main"
-    check_call("git remote add azure-sdk https://github.com/azure-sdk/azure-sdk-for-python.git", shell=True)
+def checkout_branch(branch: str):
     try:
-        check_call(f"git fetch azure-sdk {base_branch}", shell=True)
-        check_call(f"git checkout {base_branch}", shell=True)
+        check_call(f"git fetch azure-sdk {branch}", shell=True)
+        check_call(f"git checkout {branch}", shell=True)
     except Exception:
-        check_call(f"git checkout -b {base_branch}", shell=True)
+        check_call(f"git checkout -b {branch}", shell=True)
 
 
-def checkout_new_branch_and_commit(typespec_python_root: str):
+def prepare_branch(typespec_python_branch: str):
+    check_call("git remote add azure-sdk https://github.com/azure-sdk/azure-sdk-for-python.git", shell=True)
+    checkout_branch("typespec-python-main")
+
+    if typespec_python_branch != "main":
+        checkout_branch(f"typespec-python-{typespec_python_branch}")
+
+
+def git_add():
     check_call("git add .", shell=True)
-    typespec_python_branch = (
-        check_output("git rev-parse --abbrev-ref HEAD", shell=True, cwd=typespec_python_root).decode().strip(" \n")
-    )
-    if typespec_python_branch == "main":
-        check_call('git commit -m "regenerate all SDK with main"', shell=True)
-        check_call("git push azure-sdk HEAD --force", shell=True)
-    else:
-        check_call(f'git commit -m "regenerate all SDK with {typespec_python_branch}"', shell=True)
-        check_call(f"git push azure-sdk HEAD:typespec-python-{typespec_python_branch} --force", shell=True)
 
 
-def main(sdk_root: str, typespec_python_root: str):
-    checkout_base_branch()
+def main(sdk_root: str, typespec_python_root: str, typespec_python_branch: str):
+    prepare_branch(typespec_python_branch)
     update_emitter_package(sdk_root, typespec_python_root)
     result = regenerate_sdk()
     with open("aaaa-regenerate-sdk-result.json", "w") as f:
         json.dump(result, f, indent=2)
-    checkout_new_branch_and_commit(typespec_python_root)
+    git_add()
 
 
 if __name__ == "__main__":
@@ -105,6 +102,12 @@ if __name__ == "__main__":
         type=str,
     )
 
+    parser.add_argument(
+        "--typespec-python-branch",
+        help="branch of typespec-python repo",
+        type=str,
+    )
+
     args = parser.parse_args()
 
-    main(args.sdk_root, args.typespec_python_root)
+    main(args.sdk_root, args.typespec_python_root, args.typespec_python_branch)
