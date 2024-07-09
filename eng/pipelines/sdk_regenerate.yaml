@@ -17,9 +17,7 @@ pool:
   vmImage: "MMSUbuntu20.04"
 
 variables:
-  group: Release Secrets for GitHub
-  NodeVersion: "20.x"
-  PythonVersion: "3.10"
+  - group: Release Secrets for GitHub
 
 
 resources:
@@ -41,9 +39,9 @@ jobs:
   - checkout: azure-sdk-for-python
 
   - task: NodeTool@0
-    displayName: 'Install Node.js $(NodeVersion)'
+    displayName: 'Install Node.js 20.x'
     inputs:
-      versionSpec: '$(NodeVersion)'
+      versionSpec: '20.x'
 
   - script: npm install -g pnpm@8.3.1
     displayName: Install pnpm 8.3.1
