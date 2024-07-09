@@ -68,29 +68,14 @@ jobs:
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
 
-  - template: /eng/common/pipelines/templates/steps/git-push-changes.yml@azure-sdk-for-python
+  - template: /eng/common/pipelines/templates/steps//create-pull-request.yml@azure-sdk-for-python
     parameters:
       WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
       ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
-      BaseRepoBranch: typespec-python-$(Build.SourceBranchName)
-      TargetRepoName: azure-sdk-for-python
+      RepoName: azure-sdk-for-python
+      BaseBranchName: 'refs/heads/main'
+      PRBranchName: typespec-python-$(Build.SourceBranchName)
       CommitMsg: 'Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
+      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
       PushArgs: '--force'
-
-  - ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
-    - task: PowerShell@2
-      displayName: Create pull request
-      condition: and(succeeded(), eq(variables['HasChanges'], 'true'))
-      inputs:
-        pwsh: true
-        WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
-        filePath:  $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts/Submit-PullRequest.ps1
-        arguments: >
-          -RepoOwner "Azure"
-          -RepoName "azure-sdk-for-python"
-          -BaseBranch "refs/heads/main"
-          -PROwner "azure-sdk"
-          -PRBranch "typespec-python-$(Build.SourceBranchName)"
-          -AuthToken "$(azuresdk-github-pat)"
-          -PRTitle "[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`"
-          -OpenAsDraft "true"
+      OpenAsDraft: 'true'
