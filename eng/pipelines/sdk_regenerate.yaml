@@ -60,7 +60,7 @@ jobs:
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
 
-  - ${{ if ne($(Build.SourceBranchName), 'main') }}:
+  - ${{ if ne(variables['Build.SourceBranchName'], 'main') }}:
     - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-for-python
       parameters:
         WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
