@@ -59,14 +59,14 @@ jobs:
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
 
-  - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-for-python
-    condition: and(succeeded(), ne($(Build.SourceBranchName), 'main'))
-    parameters:
-      WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
-      ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
-      RepoOwner: azure-sdk
-      RepoName: azure-sdk-for-python
-      BaseBranchName: 'refs/heads/typespec-python-main'
-      PRBranchName: typespec-python-$(Build.SourceBranchName)
-      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `typespec-python-$(Build.SourceBranchName)`'
-      OpenAsDraft: 'true'
+  - ${{ if ne($(Build.SourceBranchName), 'main') }}:
+    - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-for-python
+      parameters:
+        WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+        ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+        RepoOwner: azure-sdk
+        RepoName: azure-sdk-for-python
+        BaseBranchName: 'refs/heads/typespec-python-main'
+        PRBranchName: typespec-python-$(Build.SourceBranchName)
+        PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `typespec-python-$(Build.SourceBranchName)`'
+        OpenAsDraft: 'true'
