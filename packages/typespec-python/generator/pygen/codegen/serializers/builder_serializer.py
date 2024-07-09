@@ -410,14 +410,19 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
         return "response.json()"
 
     @staticmethod
-    def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
+    def declare_non_inputtable_headers_queries(builder: RequestBuilderType) -> List[str]:
         def _get_value(param):
+            declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.HEADER else "params"
-                return f"_{kwarg_dict}.pop('{param.wire_name}', {param.get_declaration()})"
-            return f"{param.get_declaration()}"
+                return f"_{kwarg_dict}.pop('{param.wire_name}', {declaration})"
+            return declaration
 
-        return [f"{p.client_name} = {_get_value(p)}" for p in builder.parameters.constant if not p.in_method_signature]
+        return [
+            f"{p.client_name} = {_get_value(p)}"
+            for p in (builder.parameters.headers + builder.parameters.query)
+            if not p.in_method_signature
+        ]
 
     @property
     def _function_def(self) -> str:

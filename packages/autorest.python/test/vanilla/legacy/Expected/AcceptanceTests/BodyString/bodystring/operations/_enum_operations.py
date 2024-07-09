@@ -117,7 +117,6 @@ def build_put_referenced_constant_request(**kwargs: Any) -> HttpRequest:
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
-    color_constant = "green-color"
 
     # Construct URL
     _url = kwargs.pop("template_url", "/string/enum/ReferencedConstant")
