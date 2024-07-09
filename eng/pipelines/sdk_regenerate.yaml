@@ -1,0 +1,64 @@
+trigger:
+  branches:
+    include:
+      - main
+pr: none
+
+pool:
+  name: "azsdk-pool-mms-ubuntu-2004-general"
+  vmImage: "MMSUbuntu20.04"
+
+variables:
+  group: Release Secrets for GitHub
+  NodeVersion: "18.x"
+  PythonVersion: "3.10"
+
+
+resources:
+  repositories:
+    - repository: azure-sdk-for-python
+      type: github
+      endpoint: azure-sdk
+      name: azure-sdk/azure-sdk-for-python
+
+jobs:
+- job: Generate_SDK
+
+  timeoutInMinutes: 120
+
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - checkout: azure-sdk-for-python
+
+  - task: NodeTool@0
+    displayName: 'Install Node.js $(NodeVersion)'
+    inputs:
+      versionSpec: '$(NodeVersion)'
+
+  - task: PowerShell@2
+    displayName: 'Build typespec-python'
+    inputs:
+      pwsh: true
+      filePath: $(Build.SourcesDirectory)/autorest.python/eng/scripts/Build-Packages.ps1
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python
+      
+  - script: npm install -g @azure-tools/typespec-client-generator-cli
+    displayName: 'Install tsp-client'
+
+  - script: |
+      python3 ./eng/scripts/sdk_regenerate.py --sdk-root=$(Build.SourcesDirectory)/azure-sdk-for-python --typespec-python-root=$(Build.SourcesDirectory)/autorest.python
+    displayName: 'Generate SDK'
+    workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+
+  - template: /eng/common/pipelines/templates/steps/create-pull-request.yml@azure-sdk-for-python
+    condition: and(succeeded(), ne($(Build.SourceBranchName), 'main'))
+    parameters:
+      WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+      ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+      RepoOwner: azure-sdk
+      RepoName: azure-sdk-for-python
+      BaseBranchName: 'refs/heads/typespec-python-main'
+      PRBranchName: typespec-python-$(Build.SourceBranchName)
+      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `typespec-python-$(Build.SourceBranchName)`'
+      OpenAsDraft: 'true'
