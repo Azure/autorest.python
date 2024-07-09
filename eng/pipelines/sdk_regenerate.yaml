@@ -17,7 +17,7 @@ pool:
   vmImage: "MMSUbuntu20.04"
 
 variables:
-- group: Release Secrets for GitHub
+  group: Release Secrets for GitHub
   NodeVersion: "20.x"
   PythonVersion: "3.10"
 
