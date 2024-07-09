@@ -130,7 +130,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -162,7 +162,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -189,7 +189,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -216,7 +216,8 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: GenerationOptions, JSON,
+         IO[bytes] Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :return: An instance of LROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping

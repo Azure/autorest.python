@@ -236,7 +236,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -267,7 +267,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -293,7 +293,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -319,7 +319,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: UserActionParam, JSON,
+         IO[bytes] Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam or JSON or IO[bytes]
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
