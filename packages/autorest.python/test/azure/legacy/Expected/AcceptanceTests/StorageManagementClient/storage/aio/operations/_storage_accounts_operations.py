@@ -219,6 +219,7 @@ class StorageAccountsOperations:
         )
         _request.url = self._client.format_url(_request.url)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -232,10 +233,10 @@ class StorageAccountsOperations:
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.stream_download(self._client._pipeline, decompress=_decompress)
 
         if response.status_code == 202:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.stream_download(self._client._pipeline, decompress=_decompress)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
