@@ -45,7 +45,7 @@ def regenerate_sdk() -> Dict[str, List[str]]:
     result = {"succeed_to_regenerate": [], "fail_to_regenerate": []}
     # get all tsp-location.yaml
     for item in Path(".").rglob("tsp-location.yaml"):
-        package_folder = item.parent.absolute()
+        package_folder = item.parent
         try:
             check_call("tsp-client update", shell=True, cwd=str(package_folder))
         except Exception as e:
@@ -60,7 +60,9 @@ def regenerate_sdk() -> Dict[str, List[str]]:
 
 def checkout_base_branch():
     base_branch = "typespec-python-main"
+    check_call("git remote add azure-sdk https://github.com/azure-sdk/azure-sdk-for-python.git", shell=True)
     try:
+        check_call(f"git fetch azure-sdk {base_branch}", shell=True)
         check_call(f"git checkout {base_branch}", shell=True)
     except Exception:
         check_call(f"git checkout -b {base_branch}", shell=True)
@@ -72,10 +74,10 @@ def checkout_new_branch_and_commit(typespec_python_root: str):
     typespec_python_branch = (
         check_output("git rev-parse --abbrev-ref HEAD", shell=True, cwd=typespec_python_root).decode().strip(" \n")
     )
-    if typespec_python_branch != "main":
-        check_call(f"git push origin HEAD:typespec-python-{typespec_python_branch} --force", shell=True)
+    if typespec_python_branch == "main":
+        check_call("git push azure-sdk HEAD --force", shell=True)
     else:
-        check_call("git push origin HEAD --force", shell=True)
+        check_call(f"git push azure-sdk HEAD:typespec-python-{typespec_python_branch} --force", shell=True)
 
 
 def main(sdk_root: str, typespec_python_root: str):

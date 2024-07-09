@@ -26,8 +26,9 @@ resources:
   repositories:
     - repository: azure-sdk-for-python
       type: github
-      endpoint: azure-sdk
-      name: azure-sdk/azure-sdk-for-python
+      name: Azure/azure-sdk-for-python
+      endpoint: azure
+      ref: main
 
 jobs:
 - job: Generate_SDK
@@ -64,9 +65,8 @@ jobs:
       parameters:
         WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
         ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
-        RepoOwner: azure-sdk
         RepoName: azure-sdk-for-python
         BaseBranchName: 'refs/heads/typespec-python-main'
         PRBranchName: typespec-python-$(Build.SourceBranchName)
-        PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `typespec-python-$(Build.SourceBranchName)`'
+        PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
         OpenAsDraft: 'true'
