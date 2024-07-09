@@ -70,13 +70,14 @@ def checkout_base_branch():
 
 def checkout_new_branch_and_commit(typespec_python_root: str):
     check_call("git add .", shell=True)
-    check_call('git commit -m "regenerate all SDK"', shell=True)
     typespec_python_branch = (
         check_output("git rev-parse --abbrev-ref HEAD", shell=True, cwd=typespec_python_root).decode().strip(" \n")
     )
     if typespec_python_branch == "main":
+        check_call('git commit -m "regenerate all SDK with main"', shell=True)
         check_call("git push azure-sdk HEAD --force", shell=True)
     else:
+        check_call(f'git commit -m "regenerate all SDK with {typespec_python_branch}"', shell=True)
         check_call(f"git push azure-sdk HEAD:typespec-python-{typespec_python_branch} --force", shell=True)
 
 

@@ -65,6 +65,7 @@ jobs:
       parameters:
         WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
         ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+        RepoOwner: azure-sdk
         RepoName: azure-sdk-for-python
         BaseBranchName: 'refs/heads/typespec-python-main'
         PRBranchName: typespec-python-$(Build.SourceBranchName)
