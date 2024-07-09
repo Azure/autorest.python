@@ -973,7 +973,13 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
 
     def handle_error_response(self, builder: OperationType) -> List[str]:
         async_await = "await " if self.async_mode else ""
-        retval = [f"if response.status_code not in {str(builder.success_status_codes)}:"]
+        retval = [
+            f"if response.status_code not in {str(builder.success_status_codes)}:",
+            "    try:",
+            f"        {async_await}response.read()  # Load the body in memory and close the socket",
+            "    except (StreamConsumedError, StreamClosedError):",
+            "        pass",
+        ]
         response_read = f"    {async_await}response.read()  # Load the body in memory and close the socket"
         if builder.stream_value is True:  # _stream is True so no need to judge it
             retval.append(response_read)

@@ -17,6 +17,8 @@ from corehttp.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
@@ -175,6 +177,10 @@ class OptionalExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -296,6 +302,10 @@ class OptionalExplicitOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -417,6 +427,10 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -542,6 +556,10 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
