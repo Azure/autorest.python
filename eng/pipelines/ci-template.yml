@@ -25,8 +25,8 @@ steps:
       inputs:
           versionSpec: 3.11
 
-    - script: npm install -g pnpm@8.3.1
-      displayName: Install pnpm 8.3.1
+    - script: npm install -g pnpm@9.5.0
+      displayName: Install pnpm 9.5.0
 
     - script: npm install -g autorest
       displayName: Install autorest
