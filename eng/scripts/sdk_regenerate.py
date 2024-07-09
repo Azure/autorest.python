@@ -16,7 +16,7 @@ import json
 def update_emitter_package(sdk_root: str, typespec_python_root: str):
     # find the typespec-python.tgz
     typespec_python_tgz = None
-    for item in (Path(typespec_python_root) / "artifacts/packages").iterdir():
+    for item in (Path(typespec_python_root) / "packages/typespec-python").iterdir():
         if "typespec-python" in item.name and item.name.endswith(".tgz"):
             typespec_python_tgz = item
             break

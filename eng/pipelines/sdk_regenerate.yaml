@@ -48,13 +48,18 @@ jobs:
   - script: npm install -g pnpm@8.3.1
     displayName: Install pnpm 8.3.1
 
-  - task: PowerShell@2
-    displayName: 'Build typespec-python'
-    inputs:
-      pwsh: true
-      filePath: $(Build.SourcesDirectory)/autorest.python/eng/scripts/Build-Packages.ps1
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python
-      
+  - script: pnpm install
+    displayName: pnpm install
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+
+  - script: pnpm build
+    displayName: pnpm build
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+ 
+  - script: npm pack
+    displayName: npm pack
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
+
   - script: npm install -g @azure-tools/typespec-client-generator-cli
     displayName: 'Install tsp-client'
 
