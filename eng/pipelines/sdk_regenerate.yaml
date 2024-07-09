@@ -18,8 +18,8 @@ pool:
 
 variables:
 - group: Release Secrets for GitHub
--  NodeVersion: "20.x"
-- PythonVersion: "3.10"
+  NodeVersion: "20.x"
+  PythonVersion: "3.10"
 
 
 resources:
