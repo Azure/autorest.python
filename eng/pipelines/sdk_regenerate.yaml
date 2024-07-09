@@ -75,7 +75,6 @@ jobs:
       RepoName: azure-sdk-for-python
       BaseBranchName: 'refs/heads/main'
       PRBranchName: typespec-python-$(Build.SourceBranchName)
-      CommitMsg: 'Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
-      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
-      PushArgs: '--force'
+      CommitMsg: 'Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
+      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
       OpenAsDraft: 'true'
