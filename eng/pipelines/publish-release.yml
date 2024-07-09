@@ -23,8 +23,8 @@ extends:
                 AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
             steps:
-                - script: npm install -g pnpm@8.3.1
-                  displayName: Install PNPM 8.3.1
+                - script: npm install -g pnpm@9.5.0
+                  displayName: Install PNPM 9.5.0
 
                 - script: npm install -g @azure-tools/cadl-ranch
                   displayName: Install cadl ranch

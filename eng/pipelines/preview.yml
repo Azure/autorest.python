@@ -65,9 +65,9 @@ extends:
     OnlyGenerateTypespec: ${{ parameters.UseTypeSpecNext }}
     AutorestInitializationSteps:
     - task: NodeTool@0
-      displayName: "Install Node.js 16.x"
+      displayName: "Install Node.js 18.x"
       inputs:
-          versionSpec: "16.x"
+          versionSpec: "18.x"
     - task: UsePythonVersion@0
       displayName: "Use Python 3.11"
       inputs:
