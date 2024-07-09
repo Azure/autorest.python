@@ -19,7 +19,7 @@ def test_required_explicit(client: BodyOptionalityClient):
 
 
 def test_required_implicit(client: BodyOptionalityClient):
-    client.required_implicit(BodyModel(name="foo"))
+    client.required_implicit(name="foo")
 
 
 def test_optional_explicit(client: BodyOptionalityClient):

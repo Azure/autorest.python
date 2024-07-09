@@ -148,7 +148,7 @@ class ParameterSerializer:
             param.wire_name,
             ParameterSerializer.serialize_parameter(param, serializer_name),
         )
-        if not param.optional:
+        if not param.optional and (param.in_method_signature or param.constant):
             retval = [set_parameter]
         else:
             retval = [

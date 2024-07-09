@@ -29,6 +29,7 @@ class TestBodyOptionality(BodyOptionalityClientTestBase):
         client = self.create_client(endpoint=bodyoptionality_endpoint)
         response = client.required_implicit(
             body={"name": "str"},
+            name="str",
         )
 
         # please add some check logic here by yourself
