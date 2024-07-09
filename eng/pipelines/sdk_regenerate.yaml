@@ -68,7 +68,7 @@ jobs:
     displayName: 'Generate SDK'
     workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
 
-  - template: /eng/common/pipelines/templates/steps/git-push-changes.yml
+  - template: /eng/common/pipelines/templates/steps/git-push-changes.yml@azure-sdk-for-python
     parameters:
       WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
       ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
@@ -84,7 +84,7 @@ jobs:
       inputs:
         pwsh: true
         WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
-        filePath:  $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+        filePath:  $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts/Submit-PullRequest.ps1
         arguments: >
           -RepoOwner "Azure"
           -RepoName "azure-sdk-for-python"
