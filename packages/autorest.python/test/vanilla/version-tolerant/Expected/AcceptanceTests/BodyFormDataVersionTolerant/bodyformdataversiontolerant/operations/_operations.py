@@ -128,7 +128,6 @@ class FormdataOperations:  # pylint: disable=abstract-class-instantiated
                 response.read()  # Load the body in memory and close the socket
             except (StreamConsumedError, StreamClosedError):
                 pass
-            response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
