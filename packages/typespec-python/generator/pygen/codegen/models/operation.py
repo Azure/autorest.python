@@ -343,7 +343,7 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             "ResourceExistsError",
             "ResourceNotModifiedError",
         ]
-        if not (self.stream_value is False):
+        if self.stream_value:
             errors.extend(["StreamConsumedError", "StreamClosedError"])
         for error in errors:
             file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
