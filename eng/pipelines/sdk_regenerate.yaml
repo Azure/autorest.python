@@ -1,0 +1,79 @@
+trigger:
+  branches:
+    include:
+      - main
+
+schedules:
+- cron: '0 0 * * *'
+  displayName: Daily midnight build to regenerate SDK
+  branches:
+    include:
+    - main
+
+pr: none
+
+pool:
+  name: "azsdk-pool-mms-ubuntu-2004-general"
+  vmImage: "MMSUbuntu20.04"
+
+variables:
+  - group: Release Secrets for GitHub
+
+
+resources:
+  repositories:
+    - repository: azure-sdk-for-python
+      type: github
+      name: Azure/azure-sdk-for-python
+      endpoint: azure
+      ref: main
+
+jobs:
+- job: Generate_SDK
+
+  timeoutInMinutes: 120
+
+  steps:
+  - checkout: self
+    fetchDepth: 1
+  - checkout: azure-sdk-for-python
+
+  - task: NodeTool@0
+    displayName: 'Install Node.js 18.x'
+    inputs:
+      versionSpec: '18.x'
+
+  - script: npm install -g pnpm@9.5.0
+    displayName: Install pnpm 9.5.0
+
+  - script: pnpm install
+    displayName: pnpm install
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+
+  - script: pnpm build
+    displayName: pnpm build
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+ 
+  - script: npm pack
+    displayName: npm pack
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
+
+  - script: npm install -g @azure-tools/typespec-client-generator-cli
+    displayName: 'Install tsp-client'
+
+  - script: |
+      python3 $(Build.SourcesDirectory)/autorest.python/eng/scripts/sdk_regenerate.py --sdk-root=$(Build.SourcesDirectory)/azure-sdk-for-python --typespec-python-root=$(Build.SourcesDirectory)/autorest.python --typespec-python-branch=$(Build.SourceBranchName)
+    displayName: 'Generate SDK'
+    workingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+
+  - template: /eng/common/pipelines/templates/steps//create-pull-request.yml@azure-sdk-for-python
+    parameters:
+      WorkingDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python
+      ScriptDirectory: $(Build.SourcesDirectory)/azure-sdk-for-python/eng/common/scripts
+      RepoName: azure-sdk-for-python
+      BaseBranchName: 'refs/heads/main'
+      PRBranchName: typespec-python-$(Build.SourceBranchName)
+      CommitMsg: 'Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
+      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
+      OpenAsDraft: 'true'
+      PushArgs: '--force'
