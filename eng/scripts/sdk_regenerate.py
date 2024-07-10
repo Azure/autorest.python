@@ -6,6 +6,7 @@
 # --------------------------------------------------------------------------------------------
 from typing import Dict, List
 from pathlib import Path
+import subprocess
 from datetime import datetime
 from subprocess import check_call, check_output
 import argparse
@@ -47,7 +48,14 @@ def regenerate_sdk() -> Dict[str, List[str]]:
     for item in Path(".").rglob("tsp-location.yaml"):
         package_folder = item.parent
         try:
-            check_call("tsp-client update", shell=True, cwd=str(package_folder))
+            output = (
+                check_output("tsp-client update", shell=True, cwd=str(package_folder), stderr=subprocess.STDOUT)
+                .decode("utf-8")
+                .split("\n")
+            )
+            errors = [line for line in output if "- error " in line.lower()]
+            if errors:
+                raise Exception("\n".join(errors))
         except Exception as e:
             logging.error(f"failed to regenerate {package_folder.name}")
             logging.error(e)
