@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------------------------
 from typing import Dict, List
 from pathlib import Path
-from functools import wraps
+from datetime import datetime
 from subprocess import check_call, check_output
 import argparse
 import logging
@@ -42,7 +42,7 @@ def update_emitter_package(sdk_root: str, typespec_python_root: str):
 
 
 def regenerate_sdk() -> Dict[str, List[str]]:
-    result = {"succeed_to_regenerate": [], "fail_to_regenerate": []}
+    result = {"succeed_to_regenerate": [], "fail_to_regenerate": [], "time_to_regenerate": str(datetime.now())}
     # get all tsp-location.yaml
     for item in Path(".").rglob("tsp-location.yaml"):
         package_folder = item.parent
