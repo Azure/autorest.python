@@ -18,6 +18,8 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.paging import ItemPaged
@@ -712,7 +714,10 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -944,7 +949,10 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         if response.status_code not in [200, 201]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1024,7 +1032,10 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1692,7 +1703,10 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
