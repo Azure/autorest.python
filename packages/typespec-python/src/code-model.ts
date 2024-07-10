@@ -234,7 +234,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         subnamespaceToClients: {},
     };
     for (const model of sdkPackage.models) {
-        if (model.name === "") {
+        if (model.name === "" || (model.usage & UsageFlags.Spread) > 0) {
             continue;
         }
         getType(sdkContext, model);

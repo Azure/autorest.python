@@ -410,14 +410,19 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
         return "response.json()"
 
     @staticmethod
-    def declare_non_inputtable_constants(builder: RequestBuilderType) -> List[str]:
+    def declare_non_inputtable_headers_queries(builder: RequestBuilderType) -> List[str]:
         def _get_value(param):
+            declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
                 kwarg_dict = "headers" if param.location == ParameterLocation.HEADER else "params"
-                return f"_{kwarg_dict}.pop('{param.wire_name}', {param.get_declaration()})"
-            return f"{param.get_declaration()}"
+                return f"_{kwarg_dict}.pop('{param.wire_name}', {declaration})"
+            return declaration
 
-        return [f"{p.client_name} = {_get_value(p)}" for p in builder.parameters.constant if not p.in_method_signature]
+        return [
+            f"{p.client_name} = {_get_value(p)}"
+            for p in (builder.parameters.headers + builder.parameters.query)
+            if not p.in_method_signature
+        ]
 
     @property
     def _function_def(self) -> str:
@@ -561,16 +566,22 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         return retval
 
     def make_pipeline_call(self, builder: OperationType) -> List[str]:
+        retval = []
         type_ignore = self.async_mode and builder.group_name == ""  # is in a mixin
-        return [
-            f"_stream = {builder.stream_value}",
-            f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
-            + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
-            "    _request,",
-            "    stream=_stream,",
-            "    **kwargs",
-            ")",
-        ]
+        if builder.stream_value is True and not self.code_model.options["version_tolerant"]:
+            retval.append("_decompress = kwargs.pop('decompress', True)")
+        retval.extend(
+            [
+                f"_stream = {builder.stream_value}",
+                f"pipeline_response: PipelineResponse = {self._call_method}self._client.{self.pipeline_name}.run(  "
+                + f"{'# type: ignore' if type_ignore else ''} # pylint: disable=protected-access",
+                "    _request,",
+                "    stream=_stream,",
+                "    **kwargs",
+                ")",
+            ]
+        )
+        return retval
 
     @property
     def _function_def(self) -> str:
@@ -913,7 +924,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 if self.code_model.options["version_tolerant"]:
                     deserialized = "response.iter_bytes()"
                 else:
-                    deserialized = f"response.stream_download(self._client.{self.pipeline_name})"
+                    deserialized = (
+                        f"response.stream_download(self._client.{self.pipeline_name}, decompress=_decompress)"
+                    )
             deserialize_code.append(f"deserialized = {deserialized}")
         elif response.type:
             pylint_disable = ""
