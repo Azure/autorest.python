@@ -54,7 +54,6 @@ def regenerate_sdk() -> Dict[str, List[str]]:
             result["fail_to_regenerate"].append(package_folder.name)
         else:
             result["succeed_to_regenerate"].append(package_folder.name)
-        break
     return result
 
 
