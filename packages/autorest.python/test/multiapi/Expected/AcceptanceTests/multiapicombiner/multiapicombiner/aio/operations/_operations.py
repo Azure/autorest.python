@@ -48,8 +48,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
-    StreamClosedError,
-    StreamConsumedError,
+from azure.core.exceptions import StreamClosedError
+from azure.core.exceptions import StreamConsumedError
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload

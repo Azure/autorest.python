@@ -43,8 +43,8 @@ _SERIALIZER.client_side_validation = False
 
 
 from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, Type, TypeVar, Union, cast, overload
-    StreamClosedError,
-    StreamConsumedError,
+from azure.core.exceptions import StreamClosedError
+from azure.core.exceptions import StreamConsumedError
 from azure.core.polling import LROPoller, NoPolling, PollingMethod
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
