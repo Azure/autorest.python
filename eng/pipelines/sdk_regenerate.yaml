@@ -39,12 +39,12 @@ jobs:
   - checkout: azure-sdk-for-python
 
   - task: NodeTool@0
-    displayName: 'Install Node.js 20.x'
+    displayName: 'Install Node.js 18.x'
     inputs:
-      versionSpec: '20.x'
+      versionSpec: '18.x'
 
-  - script: npm install -g pnpm@8.3.1
-    displayName: Install pnpm 8.3.1
+  - script: npm install -g pnpm@9.5.0
+    displayName: Install pnpm 9.5.0
 
   - script: pnpm install
     displayName: pnpm install
@@ -73,7 +73,7 @@ jobs:
       RepoName: azure-sdk-for-python
       BaseBranchName: 'refs/heads/main'
       PRBranchName: typespec-python-$(Build.SourceBranchName)
-      CommitMsg: 'Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
-      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch `$(Build.SourceBranchName)`'
+      CommitMsg: 'Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
+      PRTitle: '[Automation] Regenerate SDK based on typespec-python branch $(Build.SourceBranchName)'
       OpenAsDraft: 'true'
       PushArgs: '--force'
