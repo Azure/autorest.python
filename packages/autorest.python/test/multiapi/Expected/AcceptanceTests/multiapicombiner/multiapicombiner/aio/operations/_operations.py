@@ -48,6 +48,8 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from azure.core.exceptions import StreamClosedError
+from azure.core.exceptions import StreamConsumedError
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
@@ -452,6 +454,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -460,11 +463,14 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            await response.read()  # Load the body in memory and close the socket
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        deserialized = response.stream_download(self._client._pipeline)
+        deserialized = response.stream_download(self._client._pipeline, decompress=_decompress)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -509,6 +515,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -517,16 +524,19 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 204]:
-            await response.read()  # Load the body in memory and close the socket
+            try:
+                await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if response.status_code == 200:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.stream_download(self._client._pipeline, decompress=_decompress)
 
         if response.status_code == 204:
-            deserialized = response.stream_download(self._client._pipeline)
+            deserialized = response.stream_download(self._client._pipeline, decompress=_decompress)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

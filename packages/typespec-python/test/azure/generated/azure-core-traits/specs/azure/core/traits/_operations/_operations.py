@@ -21,6 +21,8 @@ from azure.core.exceptions import (
     ResourceModifiedError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -207,7 +209,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -236,7 +241,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -267,7 +272,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -293,7 +298,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -319,7 +324,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: UserActionParam, JSON,
+         IO[bytes] Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam or JSON or IO[bytes]
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
@@ -378,7 +384,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -1,5 +1,13 @@
 # Release
 
+## 6.15.0
+
+### Features
+
+- [#2588](https://github.com/Azure/autorest.python/pull/2588) add package pygen that both autorest.python and typespec-python will rely on
+- [#2677](https://github.com/Azure/autorest.python/pull/2677) Enable test generation for ARM SDK
+
+
 ## 6.14.3
 
 ### Bug Fixes

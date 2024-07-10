@@ -18,7 +18,7 @@ class TestRpc(RpcClientTestBase):
         client = self.create_client(endpoint=rpc_endpoint)
         response = client.begin_long_running_rpc(
             body={"prompt": "str"},
-        )
-        result = response.result()  # poll until service return final result
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...

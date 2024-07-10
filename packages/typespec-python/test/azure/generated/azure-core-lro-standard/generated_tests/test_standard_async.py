@@ -17,11 +17,13 @@ class TestStandardAsync(StandardClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_begin_create_or_replace(self, standard_endpoint):
         client = self.create_async_client(endpoint=standard_endpoint)
-        response = await client.begin_create_or_replace(
-            name="str",
-            resource={"name": "str", "role": "str"},
-        )
-        result = await response.result()  # poll until service return final result
+        response = await (
+            await client.begin_create_or_replace(
+                name="str",
+                resource={"name": "str", "role": "str"},
+            )
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...
 
@@ -29,10 +31,12 @@ class TestStandardAsync(StandardClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_begin_delete(self, standard_endpoint):
         client = self.create_async_client(endpoint=standard_endpoint)
-        response = await client.begin_delete(
-            name="str",
-        )
-        result = await response.result()  # poll until service return final result
+        response = await (
+            await client.begin_delete(
+                name="str",
+            )
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...
 
@@ -40,10 +44,12 @@ class TestStandardAsync(StandardClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_begin_export(self, standard_endpoint):
         client = self.create_async_client(endpoint=standard_endpoint)
-        response = await client.begin_export(
-            name="str",
-            format="str",
-        )
-        result = await response.result()  # poll until service return final result
+        response = await (
+            await client.begin_export(
+                name="str",
+                format="str",
+            )
+        ).result()  # call '.result()' to poll until service return final result
+
         # please add some check logic here by yourself
         # ...

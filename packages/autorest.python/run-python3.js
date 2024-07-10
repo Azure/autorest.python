@@ -4,7 +4,7 @@
 // path resolution algorithm as AutoRest so that the behavior
 // is fully consistent (and also supports AUTOREST_PYTHON_EXE).
 //
-// Invoke it like so: "node run-python3.js script.py"
+// Invoke it like so: "node run-python3.cjs script.py"
 
 const cp = require("child_process");
 const extension = require("@autorest/system-requirements");

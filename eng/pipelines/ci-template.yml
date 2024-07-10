@@ -17,16 +17,16 @@ steps:
           TestProxy: true
           templateRoot: azure-sdk-tools
     - task: NodeTool@0
-      displayName: "Install Node.js 16.x"
+      displayName: "Install Node.js 18.x"
       inputs:
-          versionSpec: "16.x"
+          versionSpec: "18.x"
     - task: UsePythonVersion@0
       displayName: "Use Python 3.11"
       inputs:
           versionSpec: 3.11
 
-    - script: npm install -g pnpm@8.3.1
-      displayName: Install pnpm 8.3.1
+    - script: npm install -g pnpm@9.5.0
+      displayName: Install pnpm 9.5.0
 
     - script: npm install -g autorest
       displayName: Install autorest
@@ -55,11 +55,11 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
-    - script: pnpm change verify
-      displayName: Check changelog
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
-      continueOnError: true
+    # - script: pnpm change verify
+    #   displayName: Check changelog
+    #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    #   condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
+    #   continueOnError: true
 
     - script: pnpm list
       displayName: Pnpm list
@@ -69,8 +69,16 @@ steps:
       displayName: Build project
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
+    - script: pip list
+      displayName: List installed packages
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
     - script: pip install -r dev_requirements.txt
       displayName: Pip install dev requirements
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
+    - script: pip list
+      displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
     - script: pylint ${{parameters.pythonFolderName}}

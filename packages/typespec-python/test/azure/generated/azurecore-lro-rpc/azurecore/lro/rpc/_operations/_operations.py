@@ -17,6 +17,8 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -108,7 +110,10 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            response.read()  # Load the body in memory and close the socket
+            try:
+                response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -130,7 +135,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -162,7 +167,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -189,7 +194,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -216,7 +221,8 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: GenerationOptions, JSON,
+         IO[bytes] Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :return: An instance of LROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
