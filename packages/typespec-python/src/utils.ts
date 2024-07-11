@@ -12,16 +12,11 @@ import {
 import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
 import { PythonSdkContext } from "./lib.js";
+import { snakeCase } from "change-case";
 
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
-    const camelToSnakeCaseRe = (str: string) =>
-        str
-            .replace(/[^a-zA-Z0-9]/g, "_")
-            .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
-            .replace(/_+/g, "_");
-
-    return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
+    return snakeCase(name);
 }
 
 export function removeUnderscoresFromNamespace(name?: string): string {
