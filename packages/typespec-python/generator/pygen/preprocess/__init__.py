@@ -8,7 +8,7 @@
 import copy
 from typing import Callable, Dict, Any, List, Optional
 
-from ..utils import to_snake_case
+from ..utils import to_snake_case, extract_original_name
 from .helpers import (
     add_redefined_builtin_info,
     pad_builtin_namespaces,
@@ -362,7 +362,12 @@ class PreProcessPlugin(YamlUpdatePlugin):  # pylint: disable=abstract-method
         yaml_data["groupName"] = self.pad_reserved_words(yaml_data["groupName"], PadType.OPERATION_GROUP)
         yaml_data["groupName"] = to_snake_case(yaml_data["groupName"])
         yaml_data["name"] = yaml_data["name"].lower()
-        yaml_data["name"] = self.pad_reserved_words(yaml_data["name"], PadType.METHOD)
+        if yaml_data.get("isLroInitialOperation") is True:
+            yaml_data["name"] = (
+                "_" + self.pad_reserved_words(extract_original_name(yaml_data["name"]), PadType.METHOD) + "_initial"
+            )
+        else:
+            yaml_data["name"] = self.pad_reserved_words(yaml_data["name"], PadType.METHOD)
         yaml_data["description"] = update_description(yaml_data["description"], yaml_data["name"])
         yaml_data["summary"] = update_description(yaml_data.get("summary", ""))
         body_parameter = yaml_data.get("bodyParameter")
