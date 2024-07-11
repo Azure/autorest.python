@@ -62,20 +62,24 @@ def regenerate_sdk() -> Dict[str, List[str]]:
             result["fail_to_regenerate"].append(package_folder.name)
         else:
             result["succeed_to_regenerate"].append(package_folder.name)
+    result["succeed_to_regenerate"].sort()
+    result["fail_to_regenerate"].sort()
     return result
 
 
-def checkout_branch(branch: str):
+def checkout_branch(branch: str, sync_main: bool = False):
     try:
         check_call(f"git fetch azure-sdk {branch}", shell=True)
         check_call(f"git checkout {branch}", shell=True)
+        if sync_main:
+            check_call(f"git pull azure-sdk main:{branch} --force", shell=True)
     except Exception:
         check_call(f"git checkout -b {branch}", shell=True)
 
 
 def prepare_branch(typespec_python_branch: str):
     check_call("git remote add azure-sdk https://github.com/azure-sdk/azure-sdk-for-python.git", shell=True)
-    checkout_branch("typespec-python-main")
+    checkout_branch("typespec-python-main", typespec_python_branch == "main")
 
     if typespec_python_branch != "main":
         checkout_branch(f"typespec-python-{typespec_python_branch}")
