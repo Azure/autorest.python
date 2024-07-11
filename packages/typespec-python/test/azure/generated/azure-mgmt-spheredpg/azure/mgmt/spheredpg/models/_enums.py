@@ -171,5 +171,5 @@ class UpdatePolicy(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     UPDATE_ALL = "UpdateAll"
     """Update all policy."""
-    NO3RD_PARTY_APP_UPDATES = "No3rdPartyAppUpdates"
+    NO3_RD_PARTY_APP_UPDATES = "No3rdPartyAppUpdates"
     """No update for 3rd party app policy."""

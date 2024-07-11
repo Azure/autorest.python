@@ -12,6 +12,7 @@ import {
 import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
 import { PythonSdkContext } from "./lib.js";
+import { Style } from "@azure-tools/codegen";
 
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
@@ -21,6 +22,9 @@ export function camelToSnakeCase(name: string): string {
             .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
             .replace(/_+/g, "_");
 
+    if (!name.toLocaleLowerCase().includes("constructor")) {
+        return Style.snake(name, false);
+    }
     return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
 }
 
