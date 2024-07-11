@@ -555,6 +555,10 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         for client in self.code_model.clients:
             for og in client.operation_groups:
+                if self.code_model.options["multiapi"] and any(
+                    o.api_versions[0] != self.code_model.options["default_api_version"] for o in og.operations
+                ):
+                    continue
                 test_serializer = TestSerializer(self.code_model, env, client=client, operation_group=og)
                 for is_async in (True, False):
                     try:
