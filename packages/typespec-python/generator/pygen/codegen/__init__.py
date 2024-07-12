@@ -164,6 +164,10 @@ class OptionsRetriever:
         except AttributeError:
             return packaging_files_config
 
+    @property
+    def package_version(self) -> Optional[str]:
+        return str(self.options.get("package-version", ""))
+
 
 class CodeGenerator(Plugin):
     def __init__(self, *args, **kwargs: Any) -> None:
