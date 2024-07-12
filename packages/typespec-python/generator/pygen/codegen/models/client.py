@@ -18,6 +18,7 @@ from .request_builder import (
 from .parameter import Parameter, ParameterMethodLocation
 from .lro_operation import LROOperation
 from .lro_paging_operation import LROPagingOperation
+from ...utils import extract_original_name
 
 ParameterListType = TypeVar(
     "ParameterListType",
@@ -92,7 +93,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
                 if operation_yaml.get("isLroInitialOperation"):
                     # we want to change the name
                     request_builder.name = request_builder.get_name(
-                        request_builder.yaml_data["name"][1 : -len("_initial")],
+                        extract_original_name(request_builder.yaml_data["name"]),
                         request_builder.yaml_data,
                         request_builder.code_model,
                         request_builder.client,
