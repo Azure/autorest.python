@@ -8,7 +8,7 @@ from typing import Dict, List
 from pathlib import Path
 import subprocess
 from datetime import datetime
-from subprocess import check_call, check_output
+from subprocess import check_call, check_output, call
 import argparse
 import logging
 import json
@@ -72,7 +72,8 @@ def checkout_branch(branch: str, sync_main: bool = False):
         check_call(f"git fetch azure-sdk {branch}", shell=True)
         check_call(f"git checkout {branch}", shell=True)
         if sync_main:
-            check_call(f"git pull azure-sdk main:{branch} --force", shell=True)
+            logging.info(f"sync {branch} with main branch")
+            call(f"git pull azure-sdk main:{branch} --force", shell=True)
     except Exception:
         check_call(f"git checkout -b {branch}", shell=True)
 
