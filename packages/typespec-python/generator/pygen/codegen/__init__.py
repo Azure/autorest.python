@@ -165,8 +165,8 @@ class OptionsRetriever:
             return packaging_files_config
 
     @property
-    def package_version(self) -> str:
-        return str(self.options.get("package-version"))
+    def package_version(self) -> Optional[str]:
+        return str(self.options.get("package-version", ""))
 
 
 class CodeGenerator(Plugin):
