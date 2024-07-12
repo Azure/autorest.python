@@ -147,3 +147,7 @@ def build_policies(
             "self._config.logging_policy",
         ]
     return [p for p in policies if p]
+
+
+def extract_original_name(name: str) -> str:
+    return name[1 : -len("_initial")]
