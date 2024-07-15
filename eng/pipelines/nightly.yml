@@ -17,6 +17,8 @@ resources:
 variables:
   PythonVersion: "3.10"
 
+timeoutInMinutes: 120
+
 steps:
     - script: npm install -g @typespec/compiler@next
       displayName: Install @typespec/compiler@next
