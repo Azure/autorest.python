@@ -17,26 +17,29 @@ resources:
 variables:
   PythonVersion: "3.10"
 
-timeoutInMinutes: 120
+jobs:
+- job: nightly build
 
-steps:
-    - script: npm install -g @typespec/compiler@next
-      displayName: Install @typespec/compiler@next
+  timeoutInMinutes: 120
 
-    - template: ci-template.yml
-      parameters:
-        installCadlRanch: true
-        folderName: "typespec-python"
-        regenerate: true
-        updateToLatestTypespec: true
-        checkChange: false
-
-    - template: generated-code-checks-template.yml
-      parameters:
-        package: "typespec-python"
-        folderName: "azure"
-
-    - template: generated-code-checks-template.yml
-      parameters:
-        package: "typespec-python"
-        folderName: "unbranded"
+  steps:
+      - script: npm install -g @typespec/compiler@next
+        displayName: Install @typespec/compiler@next
+  
+      - template: ci-template.yml
+        parameters:
+          installCadlRanch: true
+          folderName: "typespec-python"
+          regenerate: true
+          updateToLatestTypespec: true
+          checkChange: false
+  
+      - template: generated-code-checks-template.yml
+        parameters:
+          package: "typespec-python"
+          folderName: "azure"
+  
+      - template: generated-code-checks-template.yml
+        parameters:
+          package: "typespec-python"
+          folderName: "unbranded"
