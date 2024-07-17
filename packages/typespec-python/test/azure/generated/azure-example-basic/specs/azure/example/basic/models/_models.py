@@ -109,12 +109,12 @@ class Model(_model_base.Model):
     :ivar float32_property:
     :vartype float32_property: float
     :ivar enum_property: "EnumValue1"
-    :vartype enum_property: str or ~specs.azure.example.basic.models.Enum
+    :vartype enum_property: str or ~specs.azure.example.basic.models.EnumEnum
     """
 
     int32_property: Optional[int] = rest_field(name="int32Property")
     float32_property: Optional[float] = rest_field(name="float32Property")
-    enum_property: Optional[Union[str, "_models.Enum"]] = rest_field(name="enumProperty")
+    enum_property: Optional[Union[str, "_models.EnumEnum"]] = rest_field(name="enumProperty")
     """\"EnumValue1\""""
 
     @overload
@@ -123,7 +123,7 @@ class Model(_model_base.Model):
         *,
         int32_property: Optional[int] = None,
         float32_property: Optional[float] = None,
-        enum_property: Optional[Union[str, "_models.Enum"]] = None,
+        enum_property: Optional[Union[str, "_models.EnumEnum"]] = None,
     ): ...
 
     @overload

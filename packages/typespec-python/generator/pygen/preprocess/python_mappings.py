@@ -53,9 +53,10 @@ basic_latin_chars = {
 
 class PadType(str, Enum):
     MODEL = "Model"
+    ENUM_CLASS = "Enum"
     METHOD = "_method"
     PARAMETER = "_parameter"
-    ENUM = "_enum"
+    ENUM_VALUE = "_enum"
     PROPERTY = "_property"
     OPERATION_GROUP = "Operations"
 
@@ -177,7 +178,8 @@ RESERVED_WORDS = {
     ],
     PadType.MODEL: [*_always_reserved],
     PadType.PROPERTY: ["self", *_always_reserved],
-    PadType.ENUM: ["mro", *_always_reserved],
+    PadType.ENUM_CLASS: ["enum", *_always_reserved],
+    PadType.ENUM_VALUE: ["mro", *_always_reserved],
     PadType.OPERATION_GROUP: [*_always_reserved],
 }
 
