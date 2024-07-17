@@ -6,6 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
+from ._models import Cat
+from ._models import Dog
+from ._models import EnumsOnlyCases
 from ._models import GetResponse
 from ._models import GetResponse1
 from ._models import GetResponse2
@@ -16,11 +19,19 @@ from ._models import GetResponse6
 from ._models import GetResponse7
 from ._models import GetResponse8
 from ._models import GetResponse9
+from ._models import MixedLiteralsCases
+from ._models import MixedTypesCases
+from ._models import StringAndArrayCases
+
+from ._enums import StringExtensibleNamedUnion
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "Cat",
+    "Dog",
+    "EnumsOnlyCases",
     "GetResponse",
     "GetResponse1",
     "GetResponse2",
@@ -31,6 +42,10 @@ __all__ = [
     "GetResponse7",
     "GetResponse8",
     "GetResponse9",
+    "MixedLiteralsCases",
+    "MixedTypesCases",
+    "StringAndArrayCases",
+    "StringExtensibleNamedUnion",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
 _patch_sdk()

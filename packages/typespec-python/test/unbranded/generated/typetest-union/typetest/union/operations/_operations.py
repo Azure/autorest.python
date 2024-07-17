@@ -839,7 +839,7 @@ class StringExtensibleNamedOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self,
         *,
-        prop: Union[str, _models._enums.StringExtensibleNamedUnion],
+        prop: Union[str, _models.StringExtensibleNamedUnion],
         content_type: str = "application/json",
         **kwargs: Any
     ) -> None:
@@ -875,7 +875,7 @@ class StringExtensibleNamedOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, _models._enums.StringExtensibleNamedUnion] = _Unset,
+        prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
@@ -1458,16 +1458,12 @@ class ModelsOnlyOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        *,
-        prop: Union[_models._models.Cat, _models._models.Dog],
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, *, prop: Union[_models.Cat, _models.Dog], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Is either a Cat type or a Dog type. Required.
-        :paramtype prop: ~typetest.union.models._models.Cat or ~typetest.union.models._models.Dog
+        :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1493,18 +1489,14 @@ class ModelsOnlyOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: Union[_models._models.Cat, _models._models.Dog] = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Union[_models.Cat, _models.Dog] = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword prop: Is either a Cat type or a Dog type. Required.
-        :paramtype prop: ~typetest.union.models._models.Cat or ~typetest.union.models._models.Dog
+        :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1677,12 +1669,12 @@ class EnumsOnlyOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models._models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
+        self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.EnumsOnlyCases
+        :paramtype prop: ~typetest.union.models.EnumsOnlyCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1708,14 +1700,14 @@ class EnumsOnlyOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models._models.EnumsOnlyCases = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.EnumsOnlyCases = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.EnumsOnlyCases
+        :paramtype prop: ~typetest.union.models.EnumsOnlyCases
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1889,12 +1881,12 @@ class StringAndArrayOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models._models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
+        self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.StringAndArrayCases
+        :paramtype prop: ~typetest.union.models.StringAndArrayCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1920,18 +1912,14 @@ class StringAndArrayOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[JSON, IO[bytes]] = _Unset,
-        *,
-        prop: _models._models.StringAndArrayCases = _Unset,
-        **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.StringAndArrayCases = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.StringAndArrayCases
+        :paramtype prop: ~typetest.union.models.StringAndArrayCases
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2109,12 +2097,12 @@ class MixedLiteralsOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models._models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
+        self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.MixedLiteralsCases
+        :paramtype prop: ~typetest.union.models.MixedLiteralsCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2140,14 +2128,14 @@ class MixedLiteralsOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models._models.MixedLiteralsCases = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.MixedLiteralsCases = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.MixedLiteralsCases
+        :paramtype prop: ~typetest.union.models.MixedLiteralsCases
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2353,12 +2341,12 @@ class MixedTypesOperations:
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models._models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
+        self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.MixedTypesCases
+        :paramtype prop: ~typetest.union.models.MixedTypesCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2384,14 +2372,14 @@ class MixedTypesOperations:
         """
 
     def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models._models.MixedTypesCases = _Unset, **kwargs: Any
+        self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.MixedTypesCases = _Unset, **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
         :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models._models.MixedTypesCases
+        :paramtype prop: ~typetest.union.models.MixedTypesCases
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
