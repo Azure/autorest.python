@@ -50,6 +50,16 @@
               "${workspaceFolder}/core/packages/*/dist/**/*.js",
               "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
             ]
+        },
+        {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug Current Test File",
+          "autoAttachChildProcesses": true,
+          "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+          "program": "${workspaceFolder}/packages/typespec-python/node_modules/vitest/vitest.mjs",
+          "args": ["run", "${relativeFile}"],
+          "smartStep": true
         }
     ]
 }
