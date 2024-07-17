@@ -13,75 +13,6 @@ import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
 import { PythonSdkContext } from "./lib.js";
 
-const ones = [
-    "",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-    "eleven",
-    "twelve",
-    "thirteen",
-    "fourteen",
-    "fifteen",
-    "sixteen",
-    "seventeen",
-    "eighteen",
-    "nineteen",
-];
-const tens = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-const magnitude = [
-    "thousand",
-    "million",
-    "billion",
-    "trillion",
-    "quadrillion",
-    "quintillion",
-    "septillion",
-    "octillion",
-];
-const magvalues = [10 ** 3, 10 ** 6, 10 ** 9, 10 ** 12, 10 ** 15, 10 ** 18, 10 ** 21, 10 ** 24, 10 ** 27];
-
-function* convert(num: number): Iterable<string> {
-    if (!num) {
-        yield "zero";
-        return;
-    }
-    if (num > 1e30) {
-        yield "lots";
-        return;
-    }
-
-    if (num > 999) {
-        for (let i = magvalues.length; i > -1; i--) {
-            const c = magvalues[i];
-            if (num > c) {
-                yield* convert(Math.floor(num / c));
-                yield magnitude[i];
-                num = num % c;
-            }
-        }
-    }
-    if (num > 99) {
-        yield ones[Math.floor(num / 100)];
-        yield "hundred";
-        num %= 100;
-    }
-    if (num > 19) {
-        yield tens[Math.floor(num / 10)];
-        num %= 10;
-    }
-    if (num) {
-        yield ones[num];
-    }
-}
-
 function IsFullyUpperCase(identifier: string, maxUppercasePreserve: number) {
     const len = identifier.length;
     if (len > 1) {
@@ -114,13 +45,6 @@ function deconstruct(identifier: string | Array<string>, maxUppercasePreserve: n
         .split(/[\W|_]+/)
         .map((each) => (IsFullyUpperCase(each, maxUppercasePreserve) ? each : each.toLowerCase()));
 }
-
-function fixLeadingNumber(identifier: Array<string>): Array<string> {
-    if (identifier.length > 0 && /^\d+/.exec(identifier[0])) {
-        return [...convert(parseInt(identifier[0])), ...identifier.slice(1)];
-    }
-    return identifier;
-}
 function isEqual(s1: string, s2: string): boolean {
     // when s2 is undefined and s1 is the string 'undefined', it returns 0, making this true.
     // To prevent that, first we need to check if s2 is undefined.
@@ -148,18 +72,14 @@ function normalize(
         return [""];
     }
     return typeof identifier === "string"
-        ? normalize(
-              fixLeadingNumber(deconstruct(identifier, maxUppercasePreserve)),
-              removeDuplicates,
-              maxUppercasePreserve,
-          )
+        ? normalize(deconstruct(identifier, maxUppercasePreserve), removeDuplicates, maxUppercasePreserve)
         : removeDuplicates
         ? removeSequentialDuplicates(identifier)
         : identifier;
 }
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
-    const words = normalize(name, true, 6);
+    const words = normalize(name, false, 6);
     const result = words.join("_").toLowerCase();
     const result_final = result.replace(/([^\d])_(\d+)/g, "$1$2");
     return result_final;
