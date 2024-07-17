@@ -243,6 +243,62 @@ class IntLiteralProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class PlaindateProperty(_model_base.Model):
+    """Model with a plaindate property.
+
+    :ivar property: Property.
+    :vartype property: ~datetime.date
+    """
+
+    property: Optional[datetime.date] = rest_field()
+    """Property."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[datetime.date] = None,  # pylint: disable=redefined-builtin
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class PlainTimeProperty(_model_base.Model):
+    """Model with a plaintime property.
+
+    :ivar property: Property.
+    :vartype property: ~datetime.time
+    """
+
+    property: Optional[datetime.time] = rest_field()
+    """Property."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[datetime.time] = None,  # pylint: disable=redefined-builtin
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 

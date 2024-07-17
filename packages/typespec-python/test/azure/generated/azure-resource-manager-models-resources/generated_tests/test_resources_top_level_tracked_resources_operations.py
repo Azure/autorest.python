@@ -62,7 +62,22 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
         response = self.client.top_level_tracked_resources.begin_update(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
-            properties={"properties": {"description": "str"}, "tags": {"str": "str"}},
+            properties={
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {"description": "str", "provisioningState": "str"},
+                "systemData": {
+                    "createdAt": "2020-02-20 00:00:00",
+                    "createdBy": "str",
+                    "createdByType": "str",
+                    "lastModifiedAt": "2020-02-20 00:00:00",
+                    "lastModifiedBy": "str",
+                    "lastModifiedByType": "str",
+                },
+                "tags": {"str": "str"},
+                "type": "str",
+            },
         ).result()  # call '.result()' to poll until service return final result
 
         # please add some check logic here by yourself
