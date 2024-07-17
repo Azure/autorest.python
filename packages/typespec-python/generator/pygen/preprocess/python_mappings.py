@@ -176,11 +176,11 @@ RESERVED_WORDS = {
         "retry_on_status_codes",
         *_always_reserved,
     ],
-    PadType.MODEL: [*_always_reserved],
+    PadType.MODEL: ["enum", *_always_reserved],
     PadType.PROPERTY: ["self", *_always_reserved],
     PadType.ENUM_CLASS: ["enum", *_always_reserved],
     PadType.ENUM_VALUE: ["mro", *_always_reserved],
-    PadType.OPERATION_GROUP: [*_always_reserved],
+    PadType.OPERATION_GROUP: ["enum", *_always_reserved],
 }
 
 CADL_RESERVED_WORDS = {
