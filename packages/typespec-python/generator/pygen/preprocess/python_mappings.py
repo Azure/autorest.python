@@ -180,7 +180,7 @@ RESERVED_WORDS = {
     PadType.PROPERTY: ["self", *_always_reserved],
     PadType.ENUM_CLASS: ["enum", *_always_reserved],
     PadType.ENUM_VALUE: ["mro", *_always_reserved],
-    PadType.OPERATION_GROUP: ["enum", *_always_reserved],
+    PadType.OPERATION_GROUP: [*_always_reserved],
 }
 
 CADL_RESERVED_WORDS = {
