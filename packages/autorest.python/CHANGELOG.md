@@ -1,5 +1,17 @@
 # Release
 
+## 6.16.0
+
+### Bug Fixes
+
+- [#2684](https://github.com/Azure/autorest.python/pull/2684) don't throw if stream is already read or consumed when we load in the error body
+- [#2681](https://github.com/Azure/autorest.python/pull/2681) Fix for construct headers and queries when build request
+
+### Features
+
+- [#2680](https://github.com/Azure/autorest.python/pull/2680) Expose kwargs `decompress` for API whose response type is binary
+
+
 ## 6.15.0
 
 ### Features
