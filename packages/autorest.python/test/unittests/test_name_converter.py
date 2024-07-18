@@ -40,4 +40,4 @@ def test_escaped_reserved_words():
         "continuation_token": "continuation_token",
     }
     for name in expected_conversion_enum:
-        assert pad_reserved_words(name, pad_type=PadType.ENUM) == expected_conversion_enum[name]
+        assert pad_reserved_words(name, pad_type=PadType.ENUM_VALUE) == expected_conversion_enum[name]

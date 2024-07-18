@@ -63,6 +63,7 @@ class Dinosaur(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     TRex
 
+    All required parameters must be populated in order to send to server.
 
     :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
     :vartype kind: str
@@ -239,6 +240,7 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
+    All required parameters must be populated in order to send to server.
 
     :ivar size: Required.
     :vartype size: int
