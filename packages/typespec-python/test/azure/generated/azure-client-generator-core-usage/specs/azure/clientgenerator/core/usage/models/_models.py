@@ -111,6 +111,7 @@ class OutputModel(_model_base.Model):
 class ResultModel(_model_base.Model):
     """ResultModel.
 
+    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

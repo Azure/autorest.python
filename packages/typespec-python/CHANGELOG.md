@@ -1,5 +1,25 @@
 # Release
 
+## 0.26.0
+
+### Bug Fixes
+
+- [#2684](https://github.com/Azure/autorest.python/pull/2684) don't throw if stream is already read or consumed when we load in the error body
+- [#2681](https://github.com/Azure/autorest.python/pull/2681) Fix for construct headers and queries when build request
+- [#2695](https://github.com/Azure/autorest.python/pull/2695) always interpret `package-version` as a string
+- [#2690](https://github.com/Azure/autorest.python/pull/2690) Fix import error when method name is reserved word in Pyhton
+
+### Bump dependencies
+
+- [#2704](https://github.com/Azure/autorest.python/pull/2704) Bump typespec 0.58.0
+
+### Features
+
+- [#2680](https://github.com/Azure/autorest.python/pull/2680) Expose kwargs `decompress` for API whose response type is binary
+- [#2692](https://github.com/Azure/autorest.python/pull/2692) Optimize test generation for multiapi package
+- [#2676](https://github.com/Azure/autorest.python/pull/2676) spread object when it is spread in TypeSpec
+
+
 ## 0.25.0
 
 ### Bug Fixes

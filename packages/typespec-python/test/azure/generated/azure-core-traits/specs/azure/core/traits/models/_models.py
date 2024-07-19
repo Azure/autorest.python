@@ -18,6 +18,7 @@ class User(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
+    All required parameters must be populated in order to send to server.
 
     :ivar id: The user's id. Required.
     :vartype id: int
@@ -81,6 +82,7 @@ class UserActionParam(_model_base.Model):
 class UserActionResponse(_model_base.Model):
     """User action response.
 
+    All required parameters must be populated in order to send to server.
 
     :ivar user_action_result: User action result. Required.
     :vartype user_action_result: str

@@ -43,7 +43,7 @@ function addDefaultOptions(sdkContext: SdkContext) {
     }
     if (!options["package-name"]) {
         options["package-name"] = removeUnderscoresFromNamespace(
-            sdkContext.experimental_sdkPackage.rootNamespace.toLowerCase(),
+            sdkContext.sdkPackage.rootNamespace.toLowerCase(),
         ).replace(/\./g, "-");
     }
     if (options.flavor !== "azure") {
