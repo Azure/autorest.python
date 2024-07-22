@@ -54,7 +54,7 @@ class ReaderAndWriter:
             fd.write(file_content)
 
     def list_file(self) -> List[str]:
-        return [str(f) for f in self.output_folder.glob("**/*") if f.is_file()]
+        return [str(f.relative_to(self.output_folder)) for f in self.output_folder.glob("**/*") if f.is_file()]
 
 
 class Plugin(ReaderAndWriter, ABC):
