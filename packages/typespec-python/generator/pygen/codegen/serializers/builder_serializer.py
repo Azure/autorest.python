@@ -59,7 +59,7 @@ OperationType = TypeVar(
 
 
 def _all_same(data: List[List[str]]) -> bool:
-    return all(sorted(data[0]) == sorted(data[i]) for i in range(1, len(data)))
+    return len(data) > 1 and all(sorted(data[0]) == sorted(data[i]) for i in range(1, len(data)))
 
 
 def _json_serializable(content_type: str) -> bool:

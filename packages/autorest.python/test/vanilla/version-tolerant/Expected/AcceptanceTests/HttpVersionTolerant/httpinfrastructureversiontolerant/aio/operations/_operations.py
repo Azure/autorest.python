@@ -1356,7 +1356,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 300:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1409,12 +1410,13 @@ class HttpRedirectsOperations:
 
         deserialized = None
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 300:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1460,7 +1462,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 301:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1504,7 +1507,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 301:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1606,7 +1610,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 302:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1650,7 +1655,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 302:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1766,7 +1772,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 303:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1810,7 +1817,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1854,7 +1862,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1898,7 +1907,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -1955,7 +1965,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -2012,7 +2023,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -2069,7 +2081,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -2126,7 +2139,8 @@ class HttpRedirectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+        if response.status_code == 307:
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -4131,10 +4145,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4190,10 +4205,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4249,10 +4265,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4308,10 +4325,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4367,10 +4385,11 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        if response.status_code == 200:
+            if response.content:
+                deserialized = response.json()
+            else:
+                deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
