@@ -207,8 +207,7 @@ class HeaderOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         response_headers = {}
-        if response.status_code == 200:
-            response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
+        response_headers["foo-request-id"] = self._deserialize("str", response.headers.get("foo-request-id"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore

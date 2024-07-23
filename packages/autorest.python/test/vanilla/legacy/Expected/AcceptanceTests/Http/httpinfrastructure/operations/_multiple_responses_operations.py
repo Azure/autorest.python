@@ -555,8 +555,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response.http_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -605,8 +604,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response.http_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -655,8 +653,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response.http_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -705,8 +702,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response.http_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -755,8 +751,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
-        if response.status_code == 200:
-            deserialized = self._deserialize("MyException", pipeline_response.http_response)
+        deserialized = self._deserialize("MyException", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

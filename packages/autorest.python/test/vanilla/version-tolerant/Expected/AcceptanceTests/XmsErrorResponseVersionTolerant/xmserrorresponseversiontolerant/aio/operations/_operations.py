@@ -106,11 +106,10 @@ class PetOperations:
             raise HttpResponseError(response=response)
 
         deserialized = None
-        if response.status_code == 200:
-            if response.content:
-                deserialized = response.json()
-            else:
-                deserialized = None
+        if response.content:
+            deserialized = response.json()
+        else:
+            deserialized = None
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

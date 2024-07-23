@@ -633,17 +633,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
-        if response.status_code == 200:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.ManagedIdentityTrackedResource, response.json())
-
-        if response.status_code == 201:
-            if _stream:
-                deserialized = response.iter_bytes()
-            else:
-                deserialized = _deserialize(_models.ManagedIdentityTrackedResource, response.json())
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ManagedIdentityTrackedResource, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

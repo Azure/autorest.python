@@ -1049,12 +1049,11 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                         retval.extend(res_deserialization[0])
                         retval.append("")
                     else:
-                        for status_code, headers, deserialization in zip(
-                            status_codes, res_headers, res_deserialization
-                        ):
-                            retval.append(f"if response.status_code == {status_code}:")
-                            retval.extend([f"    {line}" for line in headers])
-                            retval.append("")
+                        for status_code, headers in zip(status_codes, res_headers):
+                            if headers:
+                                retval.append(f"if response.status_code == {status_code}:")
+                                retval.extend([f"    {line}" for line in headers])
+                                retval.append("")
                         retval.extend(res_deserialization[0])
                         retval.append("")
                 else:
