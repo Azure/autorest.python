@@ -40,7 +40,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
-    _url = "/azure/special-headers/x-ms-client-request-id"
+    _url = "/azure/special-headers/x-ms-client-request-id/"
 
     # Construct headers
 

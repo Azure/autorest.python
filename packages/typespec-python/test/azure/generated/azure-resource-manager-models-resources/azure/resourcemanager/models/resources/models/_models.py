@@ -227,62 +227,6 @@ class NestedProxyResourceProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NestedProxyResourceUpdate(_model_base.Model):
-    """The type used for update operations of the NestedProxyResource.
-
-    :ivar properties:
-    :vartype properties:
-     ~azure.resourcemanager.models.resources.models.NestedProxyResourceUpdateProperties
-    """
-
-    properties: Optional["_models.NestedProxyResourceUpdateProperties"] = rest_field()
-
-    @overload
-    def __init__(
-        self,
-        *,
-        properties: Optional["_models.NestedProxyResourceUpdateProperties"] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class NestedProxyResourceUpdateProperties(_model_base.Model):
-    """The updatable properties of the NestedProxyResource.
-
-    :ivar description: Nested resource description.
-    :vartype description: str
-    """
-
-    description: Optional[str] = rest_field()
-    """Nested resource description."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        description: Optional[str] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
 class SystemData(_model_base.Model):
     """Metadata pertaining to creation and last modification of the resource.
 
@@ -459,67 +403,6 @@ class TopLevelTrackedResourceProperties(_model_base.Model):
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
-    description: Optional[str] = rest_field()
-    """The description of the resource."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        description: Optional[str] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class TopLevelTrackedResourceUpdate(_model_base.Model):
-    """The type used for update operations of the TopLevelTrackedResource.
-
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar properties:
-    :vartype properties:
-     ~azure.resourcemanager.models.resources.models.TopLevelTrackedResourceUpdateProperties
-    """
-
-    tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
-    properties: Optional["_models.TopLevelTrackedResourceUpdateProperties"] = rest_field()
-
-    @overload
-    def __init__(
-        self,
-        *,
-        tags: Optional[Dict[str, str]] = None,
-        properties: Optional["_models.TopLevelTrackedResourceUpdateProperties"] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class TopLevelTrackedResourceUpdateProperties(_model_base.Model):
-    """The updatable properties of the TopLevelTrackedResource.
-
-    :ivar description: The description of the resource.
-    :vartype description: str
-    """
-
     description: Optional[str] = rest_field()
     """The description of the resource."""
 

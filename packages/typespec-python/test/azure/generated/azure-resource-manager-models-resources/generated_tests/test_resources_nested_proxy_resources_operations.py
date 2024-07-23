@@ -63,7 +63,20 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
             nexted_proxy_resource_name="str",
-            properties={"properties": {"description": "str"}},
+            properties={
+                "id": "str",
+                "name": "str",
+                "properties": {"description": "str", "provisioningState": "str"},
+                "systemData": {
+                    "createdAt": "2020-02-20 00:00:00",
+                    "createdBy": "str",
+                    "createdByType": "str",
+                    "lastModifiedAt": "2020-02-20 00:00:00",
+                    "lastModifiedBy": "str",
+                    "lastModifiedByType": "str",
+                },
+                "type": "str",
+            },
         ).result()  # call '.result()' to poll until service return final result
 
         # please add some check logic here by yourself

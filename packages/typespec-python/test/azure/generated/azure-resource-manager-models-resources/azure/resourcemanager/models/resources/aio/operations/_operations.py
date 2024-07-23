@@ -564,7 +564,7 @@ class TopLevelTrackedResourcesOperations:
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
-        properties: Union[_models.TopLevelTrackedResourceUpdate, JSON, IO[bytes]],
+        properties: Union[_models.TopLevelTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -636,7 +636,7 @@ class TopLevelTrackedResourcesOperations:
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
-        properties: _models.TopLevelTrackedResourceUpdate,
+        properties: _models.TopLevelTrackedResource,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -649,7 +649,7 @@ class TopLevelTrackedResourcesOperations:
         :param top_level_tracked_resource_name: arm resource name for path. Required.
         :type top_level_tracked_resource_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.resourcemanager.models.resources.models.TopLevelTrackedResourceUpdate
+        :type properties: ~azure.resourcemanager.models.resources.models.TopLevelTrackedResource
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -664,12 +664,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 properties = {
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str"
+                        "description": "str",
+                        "provisioningState": "str"
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
                         "str": "str"
-                    }
+                    },
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 202
@@ -811,7 +824,7 @@ class TopLevelTrackedResourcesOperations:
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
-        properties: Union[_models.TopLevelTrackedResourceUpdate, JSON, IO[bytes]],
+        properties: Union[_models.TopLevelTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.TopLevelTrackedResource]:
         """Update a TopLevelTrackedResource.
@@ -822,9 +835,9 @@ class TopLevelTrackedResourcesOperations:
         :param top_level_tracked_resource_name: arm resource name for path. Required.
         :type top_level_tracked_resource_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         TopLevelTrackedResourceUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.resourcemanager.models.resources.models.TopLevelTrackedResourceUpdate
-         or JSON or IO[bytes]
+         TopLevelTrackedResource, JSON, IO[bytes] Required.
+        :type properties: ~azure.resourcemanager.models.resources.models.TopLevelTrackedResource or
+         JSON or IO[bytes]
         :return: An instance of AsyncLROPoller that returns TopLevelTrackedResource. The
          TopLevelTrackedResource is compatible with MutableMapping
         :rtype:
@@ -836,12 +849,25 @@ class TopLevelTrackedResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 properties = {
+                    "location": "str",
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str"
+                        "description": "str",
+                        "provisioningState": "str"
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
                     },
                     "tags": {
                         "str": "str"
-                    }
+                    },
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 202
@@ -1720,7 +1746,7 @@ class NestedProxyResourcesOperations:
         resource_group_name: str,
         top_level_tracked_resource_name: str,
         nexted_proxy_resource_name: str,
-        properties: Union[_models.NestedProxyResourceUpdate, JSON, IO[bytes]],
+        properties: Union[_models.NestedProxyResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1794,7 +1820,7 @@ class NestedProxyResourcesOperations:
         resource_group_name: str,
         top_level_tracked_resource_name: str,
         nexted_proxy_resource_name: str,
-        properties: _models.NestedProxyResourceUpdate,
+        properties: _models.NestedProxyResource,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -1809,7 +1835,7 @@ class NestedProxyResourcesOperations:
         :param nexted_proxy_resource_name: Name of the nested resource. Required.
         :type nexted_proxy_resource_name: str
         :param properties: The resource properties to be updated. Required.
-        :type properties: ~azure.resourcemanager.models.resources.models.NestedProxyResourceUpdate
+        :type properties: ~azure.resourcemanager.models.resources.models.NestedProxyResource
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1824,9 +1850,21 @@ class NestedProxyResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 properties = {
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str"
-                    }
+                        "description": "str",
+                        "provisioningState": "str"
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
+                    },
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 202
@@ -1963,7 +2001,7 @@ class NestedProxyResourcesOperations:
         resource_group_name: str,
         top_level_tracked_resource_name: str,
         nexted_proxy_resource_name: str,
-        properties: Union[_models.NestedProxyResourceUpdate, JSON, IO[bytes]],
+        properties: Union[_models.NestedProxyResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncLROPoller[_models.NestedProxyResource]:
         """Update a NestedProxyResource.
@@ -1976,9 +2014,9 @@ class NestedProxyResourcesOperations:
         :param nexted_proxy_resource_name: Name of the nested resource. Required.
         :type nexted_proxy_resource_name: str
         :param properties: The resource properties to be updated. Is one of the following types:
-         NestedProxyResourceUpdate, JSON, IO[bytes] Required.
-        :type properties: ~azure.resourcemanager.models.resources.models.NestedProxyResourceUpdate or
-         JSON or IO[bytes]
+         NestedProxyResource, JSON, IO[bytes] Required.
+        :type properties: ~azure.resourcemanager.models.resources.models.NestedProxyResource or JSON or
+         IO[bytes]
         :return: An instance of AsyncLROPoller that returns NestedProxyResource. The
          NestedProxyResource is compatible with MutableMapping
         :rtype:
@@ -1990,9 +2028,21 @@ class NestedProxyResourcesOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 properties = {
+                    "id": "str",
+                    "name": "str",
                     "properties": {
-                        "description": "str"
-                    }
+                        "description": "str",
+                        "provisioningState": "str"
+                    },
+                    "systemData": {
+                        "createdAt": "2020-02-20 00:00:00",
+                        "createdBy": "str",
+                        "createdByType": "str",
+                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedBy": "str",
+                        "lastModifiedByType": "str"
+                    },
+                    "type": "str"
                 }
 
                 # response body for status code(s): 200, 202

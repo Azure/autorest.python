@@ -46,6 +46,7 @@ class GenerationOptions(_model_base.Model):
 class GenerationResult(_model_base.Model):
     """Result of the generation.
 
+    All required parameters must be populated in order to send to server.
 
     :ivar data: The data. Required.
     :vartype data: str
