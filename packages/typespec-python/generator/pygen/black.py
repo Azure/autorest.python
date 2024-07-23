@@ -37,15 +37,14 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
                 [
                     Path(f)
                     for f in self.list_file()
-                    if all(
-                        item not in f
-                        for item in (
-                            "__pycache__",
-                            "node_modules",
-                            ".tox",
-                            ".mypy_cache",
-                        )
+                    if Path(f).parts[0]
+                    not in (
+                        "__pycache__",
+                        "node_modules",
+                        "venv",
+                        "env",
                     )
+                    and not Path(f).parts[0].startswith(".")
                     and Path(f).suffix == ".py"
                 ],
             )
