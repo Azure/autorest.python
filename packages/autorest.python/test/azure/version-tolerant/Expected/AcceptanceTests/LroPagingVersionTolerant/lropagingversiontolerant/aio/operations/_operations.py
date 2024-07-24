@@ -289,15 +289,12 @@ class QuestionAnsweringProjectsOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        if response.status_code == 200:
-            deserialized = response.iter_bytes()
-
         if response.status_code == 202:
             response_headers["Operation-Location"] = self._deserialize(
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = response.iter_bytes()
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), response_headers)  # type: ignore
