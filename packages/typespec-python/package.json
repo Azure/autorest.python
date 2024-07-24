@@ -88,6 +88,7 @@
     "@typespec/http": "~0.58.0",
     "@typespec/rest": "~0.58.0",
     "@typespec/versioning": "~0.58.0",
-    "@azure-tools/typespec-azure-rulesets": "0.44.0"
+    "@azure-tools/typespec-azure-rulesets": "0.44.0",
+    "pyodide": "0.26.1"
   }
 }

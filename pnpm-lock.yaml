@@ -139,6 +139,9 @@ importers:
       mocha:
         specifier: ~10.2.0
         version: 10.2.0
+      pyodide:
+        specifier: 0.26.1
+        version: 0.26.1
       rimraf:
         specifier: ~5.0.0
         version: 5.0.0
@@ -2734,6 +2737,10 @@ packages:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
 
+  pyodide@0.26.1:
+    resolution: {integrity: sha512-P+Gm88nwZqY7uBgjbQH8CqqU6Ei/rDn7pS1t02sNZsbyLJMyE2OVXjgNuqVT3KqYWnyGREUN0DbBUCJqk8R0ew==}
+    engines: {node: '>=18.0.0'}
+
   qs@6.11.0:
     resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
     engines: {node: '>=0.6'}
@@ -3410,6 +3417,18 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   xml2js@0.4.23:
     resolution: {integrity: sha512-ySPiMjM0+pLDftHgXY4By0uswI3SPKLDw/i3UXbnO8M/p28zqexCUoPmQFrYD+/1BzhGJSs2i1ERWKJAtiLrug==}
@@ -6734,6 +6753,13 @@ snapshots:
 
   punycode@2.3.0: {}
 
+  pyodide@0.26.1:
+    dependencies:
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   qs@6.11.0:
     dependencies:
       side-channel: 1.0.6
@@ -7499,6 +7525,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.18.0: {}
 
   xml2js@0.4.23:
     dependencies:
