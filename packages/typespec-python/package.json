@@ -35,7 +35,8 @@
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
     "install": "node ./scripts/run-python3.cjs ./scripts/install.py",
-    "prepare": "node ./scripts/run-python3.cjs ./scripts/prepare.py"
+    "prepare": "node ./scripts/run-python3.cjs ./scripts/prepare.py",
+    "regenerate": "node ./dist/scripts/regenerate.js"
   },
   "files": [
     "dist/**",
@@ -75,6 +76,8 @@
     "@types/js-yaml": "~4.0.5",
     "@types/mocha": "~10.0.1",
     "@types/node": "^18.16.3",
+    "@types/yargs": "17.0.32",
+    "@types/glob": "8.1.0",
     "@typespec/eslint-config-typespec": "~0.55.0",
     "@typespec/openapi": "~0.58.0",
     "c8": "~7.13.0",
@@ -89,6 +92,6 @@
     "@typespec/rest": "~0.58.0",
     "@typespec/versioning": "~0.58.0",
     "@azure-tools/typespec-azure-rulesets": "0.44.0",
-    "pyodide": "0.26.1"
+    "yargs": "~17.2.1"
   }
 }
