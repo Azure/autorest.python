@@ -1,5 +1,5 @@
 # This is for CI requirements or dev only
-pyright==1.1.371
+pyright==1.1.373
 pylint==3.2.6
 tox==4.16.0
 mypy==1.10.1
