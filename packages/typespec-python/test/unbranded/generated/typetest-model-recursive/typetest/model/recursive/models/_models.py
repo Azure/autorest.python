@@ -47,7 +47,6 @@ class Element(_model_base.Model):
 class Extension(Element):
     """extension.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar extension:
     :vartype extension: list[~typetest.model.recursive.models.Extension]

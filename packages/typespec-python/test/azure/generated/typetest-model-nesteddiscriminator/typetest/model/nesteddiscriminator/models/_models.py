@@ -23,7 +23,6 @@ class Fish(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Salmon, Shark
 
-    All required parameters must be populated in order to send to server.
 
     :ivar kind: Discriminator property for Fish. Required. Default value is None.
     :vartype kind: str
@@ -63,7 +62,6 @@ class Shark(Fish, discriminator="shark"):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     GoblinShark, SawShark
 
-    All required parameters must be populated in order to send to server.
 
     :ivar age: Required.
     :vartype age: int
@@ -101,7 +99,6 @@ class Shark(Fish, discriminator="shark"):
 class GoblinShark(Shark, discriminator="goblin"):
     """The third level model GoblinShark in polymorphic multiple levels inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar age: Required.
     :vartype age: int
@@ -137,7 +134,6 @@ class Salmon(Fish, discriminator="salmon"):
     """The second level model in polymorphic multiple levels inheritance which contains references to
     other polymorphic instances.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar age: Required.
     :vartype age: int
@@ -181,7 +177,6 @@ class Salmon(Fish, discriminator="salmon"):
 class SawShark(Shark, discriminator="saw"):
     """The third level model SawShark in polymorphic multiple levels inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar age: Required.
     :vartype age: int

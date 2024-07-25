@@ -62,7 +62,6 @@ class ActionRequest(_model_base.Model):
 class ActionResponse(_model_base.Model):
     """ActionResponse.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar string_property: Required.
     :vartype string_property: str
