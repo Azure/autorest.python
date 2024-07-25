@@ -2,6 +2,9 @@
 trigger: none
 pr: none
 
+variables:
+  PythonVersion: "3.10"
+
 extends: 
   template: /eng/pipelines/templates/stages/1es-redirect.yml
   parameters:
