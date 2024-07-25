@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class ModelV1(_model_base.Model):
     """ModelV1.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: str
@@ -60,7 +59,6 @@ class ModelV1(_model_base.Model):
 class ModelV2(_model_base.Model):
     """ModelV2.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: str

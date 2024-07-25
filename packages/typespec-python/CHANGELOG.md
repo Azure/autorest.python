@@ -1,5 +1,16 @@
 # Release
 
+## 0.27.0
+
+### Bug Fixes
+
+- [#2716](https://github.com/Azure/autorest.python/pull/2716) Fix the logic to judge whether model is output or not
+
+### Features
+
+- [#2706](https://github.com/Azure/autorest.python/pull/2706) Generate API for multi content types of internal operation
+
+
 ## 0.26.0
 
 ### Bug Fixes

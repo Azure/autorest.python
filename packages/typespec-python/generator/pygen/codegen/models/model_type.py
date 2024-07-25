@@ -32,6 +32,10 @@ class UsageFlags(Enum):
     ApiVersionEnum = 8
     JsonMergePatch = 16
     MultipartFormData = 32
+    Spread = 64
+    Error = 128
+    Json = 256
+    Xml = 512
 
 
 def _get_properties(type: "ModelType", properties: List[Property]) -> List[Property]:
@@ -86,7 +90,7 @@ class ModelType(  # pylint: disable=abstract-method
 
     @property
     def is_usage_output(self) -> bool:
-        return self.usage == UsageFlags.Output.value
+        return self.usage & UsageFlags.Output.value
 
     @property
     def flattened_property(self) -> Optional[Property]:

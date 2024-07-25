@@ -25,7 +25,6 @@ class BooleanLiteralProperty(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Default value is True.
     :vartype property: bool
@@ -42,7 +41,6 @@ class BooleanLiteralProperty(_model_base.Model):
 class BooleanProperty(_model_base.Model):
     """Model with a boolean property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: bool
@@ -72,7 +70,6 @@ class BooleanProperty(_model_base.Model):
 class BytesProperty(_model_base.Model):
     """Model with a bytes property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: bytes
@@ -102,7 +99,6 @@ class BytesProperty(_model_base.Model):
 class CollectionsIntProperty(_model_base.Model):
     """Model with collection int properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: list[int]
@@ -132,7 +128,6 @@ class CollectionsIntProperty(_model_base.Model):
 class CollectionsModelProperty(_model_base.Model):
     """Model with collection model properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: list[~typetest.property.valuetypes.models.InnerModel]
@@ -162,7 +157,6 @@ class CollectionsModelProperty(_model_base.Model):
 class CollectionsStringProperty(_model_base.Model):
     """Model with collection string properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: list[str]
@@ -192,7 +186,6 @@ class CollectionsStringProperty(_model_base.Model):
 class DatetimeProperty(_model_base.Model):
     """Model with a datetime property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: ~datetime.datetime
@@ -222,7 +215,6 @@ class DatetimeProperty(_model_base.Model):
 class Decimal128Property(_model_base.Model):
     """Model with a decimal128 property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: ~decimal.Decimal
@@ -252,7 +244,6 @@ class Decimal128Property(_model_base.Model):
 class DecimalProperty(_model_base.Model):
     """Model with a decimal property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: ~decimal.Decimal
@@ -282,7 +273,6 @@ class DecimalProperty(_model_base.Model):
 class DictionaryStringProperty(_model_base.Model):
     """Model with dictionary string properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: dict[str, str]
@@ -312,7 +302,6 @@ class DictionaryStringProperty(_model_base.Model):
 class DurationProperty(_model_base.Model):
     """Model with a duration property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: ~datetime.timedelta
@@ -342,7 +331,6 @@ class DurationProperty(_model_base.Model):
 class EnumProperty(_model_base.Model):
     """Model with enum properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
     :vartype property: str or ~typetest.property.valuetypes.models.FixedInnerEnum
@@ -372,7 +360,6 @@ class EnumProperty(_model_base.Model):
 class ExtensibleEnumProperty(_model_base.Model):
     """Model with extensible enum properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
     :vartype property: str or ~typetest.property.valuetypes.models.InnerEnum
@@ -404,7 +391,6 @@ class FloatLiteralProperty(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Default value is 43.125.
     :vartype property: float
@@ -421,7 +407,6 @@ class FloatLiteralProperty(_model_base.Model):
 class FloatProperty(_model_base.Model):
     """Model with a float property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: float
@@ -451,7 +436,6 @@ class FloatProperty(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Inner model. Will be a property type for ModelWithModelProperties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Required string property. Required.
     :vartype property: str
@@ -483,7 +467,6 @@ class IntLiteralProperty(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Default value is 42.
     :vartype property: int
@@ -500,7 +483,6 @@ class IntLiteralProperty(_model_base.Model):
 class IntProperty(_model_base.Model):
     """Model with a int property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: int
@@ -530,7 +512,6 @@ class IntProperty(_model_base.Model):
 class ModelProperty(_model_base.Model):
     """Model with model properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: ~typetest.property.valuetypes.models.InnerModel
@@ -566,7 +547,6 @@ class StringLiteralProperty(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Default value is "hello".
     :vartype property: str
@@ -583,7 +563,6 @@ class StringLiteralProperty(_model_base.Model):
 class StringProperty(_model_base.Model):
     """Model with a string property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: str
@@ -614,7 +593,6 @@ class UnionEnumValueProperty(_model_base.Model):
     """Template type for testing models with specific properties. Pass in the type of the property you
     are looking for.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
@@ -644,7 +622,6 @@ class UnionEnumValueProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with a union of float literal as property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Is either a float type or a float type.
     :vartype property: float or float
@@ -674,7 +651,6 @@ class UnionFloatLiteralProperty(_model_base.Model):
 class UnionIntLiteralProperty(_model_base.Model):
     """Model with a union of int literal as property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Is either a Literal[42] type or a Literal[43] type.
     :vartype property: int or int
@@ -704,7 +680,6 @@ class UnionIntLiteralProperty(_model_base.Model):
 class UnionStringLiteralProperty(_model_base.Model):
     """Model with a union of string literal as property.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
      type.
@@ -735,7 +710,6 @@ class UnionStringLiteralProperty(_model_base.Model):
 class UnknownArrayProperty(_model_base.Model):
     """Model with a property unknown, and the data is an array.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: any
@@ -765,7 +739,6 @@ class UnknownArrayProperty(_model_base.Model):
 class UnknownDictProperty(_model_base.Model):
     """Model with a property unknown, and the data is a dictionnary.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: any
@@ -795,7 +768,6 @@ class UnknownDictProperty(_model_base.Model):
 class UnknownIntProperty(_model_base.Model):
     """Model with a property unknown, and the data is a int32.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: any
@@ -825,7 +797,6 @@ class UnknownIntProperty(_model_base.Model):
 class UnknownStringProperty(_model_base.Model):
     """Model with a property unknown, and the data is a string.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Property. Required.
     :vartype property: any

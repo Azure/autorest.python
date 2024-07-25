@@ -17,7 +17,6 @@ from .._model_base import rest_field
 class DefaultDatetimeProperty(_model_base.Model):
     """DefaultDatetimeProperty.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime
@@ -47,7 +46,6 @@ class DefaultDatetimeProperty(_model_base.Model):
 class Rfc3339DatetimeProperty(_model_base.Model):
     """Rfc3339DatetimeProperty.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime
@@ -77,7 +75,6 @@ class Rfc3339DatetimeProperty(_model_base.Model):
 class Rfc7231DatetimeProperty(_model_base.Model):
     """Rfc7231DatetimeProperty.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime
@@ -107,7 +104,6 @@ class Rfc7231DatetimeProperty(_model_base.Model):
 class UnixTimestampArrayDatetimeProperty(_model_base.Model):
     """UnixTimestampArrayDatetimeProperty.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: list[~datetime.datetime]
@@ -137,7 +133,6 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
 class UnixTimestampDatetimeProperty(_model_base.Model):
     """UnixTimestampDatetimeProperty.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime
