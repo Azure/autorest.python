@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class NewModel(_model_base.Model):
     """NewModel.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar new_prop: Required.
     :vartype new_prop: str

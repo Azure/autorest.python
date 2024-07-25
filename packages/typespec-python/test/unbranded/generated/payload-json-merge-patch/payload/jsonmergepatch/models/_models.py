@@ -51,7 +51,6 @@ class InnerModel(_model_base.Model):
 class Resource(_model_base.Model):
     """Details about a resource.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

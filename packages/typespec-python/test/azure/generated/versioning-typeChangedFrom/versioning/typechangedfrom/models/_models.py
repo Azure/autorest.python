@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class TestModel(_model_base.Model):
     """TestModel.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: str
