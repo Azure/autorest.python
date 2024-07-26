@@ -176,10 +176,16 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: SdkBodyModelPropertyType,
 ): Record<string, any> {
+    const emitType = type.multipartOptions?.isMulti
+        ? getSimpleTypeResult({
+              type: "list",
+              elementType: getType(context, type.type),
+          })
+        : getType(context, type.type);
     return {
         clientName: camelToSnakeCase(type.name),
         wireName: type.serializedName,
-        type: getType(context, type.type),
+        type: emitType,
         optional: type.optional,
         description: type.description,
         addedOn: getAddedOn(context, type),
