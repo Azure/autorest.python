@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -63,12 +63,12 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: bytes
     """
 
     id: str = rest_field()
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: FileType = rest_field(is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -76,7 +76,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
         self,
         *,
         id: str,  # pylint: disable=redefined-builtin
-        pictures: List[FileType],
+        pictures: FileType,
     ): ...
 
     @overload
@@ -102,9 +102,9 @@ class ComplexPartsRequest(_model_base.Model):
     :ivar profile_image: Required.
     :vartype profile_image: bytes
     :ivar previous_addresses: Required.
-    :vartype previous_addresses: list[~payload.multipart.models.Address]
+    :vartype previous_addresses: ~payload.multipart.models.Address
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: bytes
     """
 
     id: str = rest_field()
@@ -113,9 +113,9 @@ class ComplexPartsRequest(_model_base.Model):
     """Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    previous_addresses: "_models.Address" = rest_field(name="previousAddresses")
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: FileType = rest_field(is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -125,8 +125,8 @@ class ComplexPartsRequest(_model_base.Model):
         id: str,  # pylint: disable=redefined-builtin
         address: "_models.Address",
         profile_image: FileType,
-        previous_addresses: List["_models.Address"],
-        pictures: List[FileType],
+        previous_addresses: "_models.Address",
+        pictures: FileType,
     ): ...
 
     @overload
@@ -148,12 +148,12 @@ class JsonArrayPartsRequest(_model_base.Model):
     :ivar profile_image: Required.
     :vartype profile_image: bytes
     :ivar previous_addresses: Required.
-    :vartype previous_addresses: list[~payload.multipart.models.Address]
+    :vartype previous_addresses: ~payload.multipart.models.Address
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    previous_addresses: "_models.Address" = rest_field(name="previousAddresses")
     """Required."""
 
     @overload
@@ -161,7 +161,7 @@ class JsonArrayPartsRequest(_model_base.Model):
         self,
         *,
         profile_image: FileType,
-        previous_addresses: List["_models.Address"],
+        previous_addresses: "_models.Address",
     ): ...
 
     @overload

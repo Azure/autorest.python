@@ -174,12 +174,10 @@ class FormDataOperations:
                         "city": "str"
                     },
                     "id": "str",
-                    "pictures": [filetype],
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
+                    "pictures": filetype,
+                    "previousAddresses": {
+                        "city": "str"
+                    },
                     "profileImage": filetype
                 }
         """
@@ -215,12 +213,10 @@ class FormDataOperations:
                         "city": "str"
                     },
                     "id": "str",
-                    "pictures": [filetype],
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
+                    "pictures": filetype,
+                    "previousAddresses": {
+                        "city": "str"
+                    },
                     "profileImage": filetype
                 }
         """
@@ -379,7 +375,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",
-                    "pictures": [filetype]
+                    "pictures": filetype
                 }
         """
 
@@ -413,7 +409,7 @@ class FormDataOperations:
                 # JSON input template you can fill out and use as your body input.
                 body = {
                     "id": "str",
-                    "pictures": [filetype]
+                    "pictures": filetype
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -473,11 +469,9 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
+                    "previousAddresses": {
+                        "city": "str"
+                    },
                     "profileImage": filetype
                 }
         """
@@ -511,11 +505,9 @@ class FormDataOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
+                    "previousAddresses": {
+                        "city": "str"
+                    },
                     "profileImage": filetype
                 }
         """

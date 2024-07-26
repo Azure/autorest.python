@@ -102,15 +102,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
         case "decimal":
         case "decimal128":
         case "string":
-        case "password":
-        case "guid":
         case "url":
-        case "uri":
-        case "uuid":
-        case "eTag":
-        case "armId":
-        case "ipAddress":
-        case "azureLocation":
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;

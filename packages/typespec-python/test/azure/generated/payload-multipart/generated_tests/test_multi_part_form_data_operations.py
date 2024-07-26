@@ -31,8 +31,8 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
             body={
                 "address": {"city": "str"},
                 "id": "str",
-                "pictures": ["filetype"],
-                "previousAddresses": [{"city": "str"}],
+                "pictures": "filetype",
+                "previousAddresses": {"city": "str"},
                 "profileImage": "filetype",
             },
         )
@@ -56,7 +56,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
     def test_binary_array_parts(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.binary_array_parts(
-            body={"id": "str", "pictures": ["filetype"]},
+            body={"id": "str", "pictures": "filetype"},
         )
 
         # please add some check logic here by yourself
@@ -67,7 +67,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
     def test_json_array_parts(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.json_array_parts(
-            body={"previousAddresses": [{"city": "str"}], "profileImage": "filetype"},
+            body={"previousAddresses": {"city": "str"}, "profileImage": "filetype"},
         )
 
         # please add some check logic here by yourself
