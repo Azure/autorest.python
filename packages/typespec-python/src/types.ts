@@ -15,6 +15,8 @@ import {
     SdkDurationType,
     SdkCredentialType,
     SdkServiceOperation,
+    UsageFlags,
+    SdkModelPropertyType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
 import { camelToSnakeCase, getAddedOn } from "./utils.js";
@@ -195,6 +197,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
         isDiscriminator: type.discriminator,
         flatten: type.flatten,
         isMultipartFileInput: type.isMultipartFileInput,
+        getXmlMetadata: getXmlMetadata(type),
     };
 }
 
@@ -223,6 +226,8 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,
+        isXml: type.usage & UsageFlags.Xml ? true : false,
+        getXmlMetadata: getXmlMetadata(type),
     };
 
     typesMap.set(type, newValue);
@@ -422,3 +427,35 @@ export const KnownTypes = {
     anyObject: { type: "any-object" },
     any: { type: "any" },
 };
+
+function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, any> {
+    const xmlMetadata: Record<string, any> = {};
+    const xmlDecorators = type.decorators.filter((x) => x.name.startsWith("Typespec.Xml."));
+    for (const decorator of xmlDecorators) {
+        switch (decorator.name) {
+            case "TypeSpec.Xml.@attribute":
+                xmlMetadata["attribute"] = true;
+                break;
+            case "TypeSpec.Xml.@name":
+                xmlMetadata["name"] = decorator.arguments["name"];
+                break;
+            case "TypeSpec.Xml.@ns":
+                if (decorator.arguments["ns"].kind === "enumvalue") {
+                    xmlMetadata["namespace"] = (decorator.arguments["ns"] as SdkEnumValueType).value;
+                    xmlMetadata["prefix"] = (decorator.arguments["ns"] as SdkEnumValueType).name;;
+                } else {
+                    xmlMetadata["namespace"] = decorator.arguments["ns"];
+                    xmlMetadata["prefix"] = decorator.arguments["prefix"];
+                }
+                break;
+            case "TypeSpec.Xml.@unwrapped":
+                xmlMetadata["wrapped"] = false;
+                break;
+        }
+    }
+    if (xmlMetadata["wrapped"] === undefined) {
+        xmlMetadata["wrapped"] = true;
+    }
+    return xmlMetadata;
+}
+

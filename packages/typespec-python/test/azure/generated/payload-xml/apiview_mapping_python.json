@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": "Payload.Xml",
+    "CrossLanguageDefinitionId": {
+        "payload.xml.models.ModelWithArrayOfModel": "Payload.Xml.ModelWithArrayOfModel",
+        "payload.xml.models.ModelWithOptionalField": "Payload.Xml.ModelWithOptionalField",
+        "payload.xml.models.ModelWithSimpleArrays": "Payload.Xml.ModelWithSimpleArrays",
+        "payload.xml.models.SimpleModel": "Payload.Xml.SimpleModel",
+        "payload.xml.XmlClient.simple_model_value.get": "Payload.Xml.SimpleModelValue.get",
+        "payload.xml.XmlClient.simple_model_value.put": "Payload.Xml.SimpleModelValue.put",
+        "payload.xml.XmlClient.model_with_simple_arrays_value.get": "Payload.Xml.ModelWithSimpleArraysValue.get",
+        "payload.xml.XmlClient.model_with_simple_arrays_value.put": "Payload.Xml.ModelWithSimpleArraysValue.put",
+        "payload.xml.XmlClient.model_with_array_of_model_value.get": "Payload.Xml.ModelWithArrayOfModelValue.get",
+        "payload.xml.XmlClient.model_with_array_of_model_value.put": "Payload.Xml.ModelWithArrayOfModelValue.put",
+        "payload.xml.XmlClient.model_with_optional_field_value.get": "Payload.Xml.ModelWithOptionalFieldValue.get",
+        "payload.xml.XmlClient.model_with_optional_field_value.put": "Payload.Xml.ModelWithOptionalFieldValue.put"
+    }
+}
