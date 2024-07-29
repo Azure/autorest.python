@@ -174,25 +174,25 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 
 function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
-    type: SdkBodyModelPropertyType,
+    property: SdkBodyModelPropertyType,
 ): Record<string, any> {
-    const emitType = type.multipartOptions?.isMulti
+    const emitType = property.multipartOptions?.isMulti
         ? getSimpleTypeResult({
               type: "list",
-              elementType: getType(context, type.type),
+              elementType: getType(context, property.type),
           })
-        : getType(context, type.type);
+        : getType(context, property.type);
     return {
-        clientName: camelToSnakeCase(type.name),
-        wireName: type.serializedName,
+        clientName: camelToSnakeCase(property.name),
+        wireName: property.serializedName,
         type: emitType,
-        optional: type.optional,
-        description: type.description,
-        addedOn: getAddedOn(context, type),
-        visibility: visibilityMapping(type.visibility),
-        isDiscriminator: type.discriminator,
-        flatten: type.flatten,
-        isMultipartFileInput: type.isMultipartFileInput,
+        optional: property.optional,
+        description: property.description,
+        addedOn: getAddedOn(context, property),
+        visibility: visibilityMapping(property.visibility),
+        isDiscriminator: property.discriminator,
+        flatten: property.flatten,
+        isMultipartFileInput: property.isMultipartFileInput,
     };
 }
 
