@@ -114,7 +114,7 @@ class OperationGroup(BaseModel):
             and not self.is_mixin
         ):
             file_import.add_submodule_import(relative_path, "models", ImportType.LOCAL, alias="_models")
-        if self.code_model.need_mixin_abc:
+        if self.is_mixin:
             file_import.add_submodule_import(".._vendor", f"{self.client.name}MixinABC", ImportType.LOCAL)
         if self.has_abstract_operations:
             file_import.add_submodule_import(".._vendor", "raise_if_not_implemented", ImportType.LOCAL)
