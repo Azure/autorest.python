@@ -58,6 +58,10 @@ OperationType = TypeVar(
 )
 
 
+def _all_same(data: List[List[str]]) -> bool:
+    return len(data) > 1 and all(sorted(data[0]) == sorted(data[i]) for i in range(1, len(data)))
+
+
 def _json_serializable(content_type: str) -> bool:
     return bool(JSON_REGEXP.match(content_type.split(";")[0].strip().lower()))
 
@@ -905,6 +909,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         builder: OperationType,
         response: Response,
     ) -> List[str]:
+        return self.response_headers(response) + self.response_deserialization(builder, response)
+
+    def response_headers(self, response: Response) -> List[str]:
         retval: List[str] = [
             (
                 f"response_headers['{response_header.wire_name}']=self._deserialize("
@@ -914,6 +921,14 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         ]
         if response.headers:
             retval.append("")
+        return retval
+
+    def response_deserialization(
+        self,
+        builder: OperationType,
+        response: Response,
+    ) -> List[str]:
+        retval: List[str] = []
         deserialize_code: List[str] = []
         stream_logic = True
         if builder.has_stream_response:
@@ -1018,13 +1033,34 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             retval.append("response_headers = {}")
         if builder.has_response_body or builder.any_response_has_headers:
             if len(builder.responses) > 1:
+                status_codes, res_headers, res_deserialization = [], [], []
                 for status_code in builder.success_status_codes:
                     response = builder.get_response_from_status(status_code)
                     if response.headers or response.type:
+                        status_codes.append(status_code)
+                        res_headers.append(self.response_headers(response))
+                        res_deserialization.append(self.response_deserialization(builder, response))
+
+                is_headers_same = _all_same(res_headers)
+                is_deserialization_same = _all_same(res_deserialization)
+                if is_deserialization_same:
+                    if is_headers_same:
+                        retval.extend(res_headers[0])
+                        retval.extend(res_deserialization[0])
+                        retval.append("")
+                    else:
+                        for status_code, headers in zip(status_codes, res_headers):
+                            if headers:
+                                retval.append(f"if response.status_code == {status_code}:")
+                                retval.extend([f"    {line}" for line in headers])
+                                retval.append("")
+                        retval.extend(res_deserialization[0])
+                        retval.append("")
+                else:
+                    for status_code, headers, deserialization in zip(status_codes, res_headers, res_deserialization):
                         retval.append(f"if response.status_code == {status_code}:")
-                        retval.extend(
-                            [f"    {line}" for line in self.response_headers_and_deserialization(builder, response)]
-                        )
+                        retval.extend([f"    {line}" for line in headers])
+                        retval.extend([f"    {line}" for line in deserialization])
                         retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(builder, builder.responses[0]))

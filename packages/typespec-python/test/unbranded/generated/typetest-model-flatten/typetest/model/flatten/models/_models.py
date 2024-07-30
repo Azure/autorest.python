@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class ChildFlattenModel(_model_base.Model):
     """This is the child model to be flattened. And it has flattened property as well.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar summary: Required.
     :vartype summary: str
@@ -75,7 +74,6 @@ class ChildFlattenModel(_model_base.Model):
 class ChildModel(_model_base.Model):
     """This is the child model to be flattened.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar description: Required.
     :vartype description: str
@@ -110,7 +108,6 @@ class ChildModel(_model_base.Model):
 class FlattenModel(_model_base.Model):
     """This is the model with one level of flattening.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -165,7 +162,6 @@ class FlattenModel(_model_base.Model):
 class NestedFlattenModel(_model_base.Model):
     """This is the model with two levels of flattening.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

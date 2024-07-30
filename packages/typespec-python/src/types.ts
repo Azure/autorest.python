@@ -104,15 +104,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
         case "decimal":
         case "decimal128":
         case "string":
-        case "password":
-        case "guid":
         case "url":
-        case "uri":
-        case "uuid":
-        case "eTag":
-        case "armId":
-        case "ipAddress":
-        case "azureLocation":
             return emitBuiltInType(type);
         case "any":
             return KnownTypes.any;
@@ -184,20 +176,20 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 
 function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
-    type: SdkBodyModelPropertyType,
+    property: SdkBodyModelPropertyType,
 ): Record<string, any> {
     return {
-        clientName: camelToSnakeCase(type.name),
-        wireName: type.serializedName,
-        type: getType(context, type.type),
-        optional: type.optional,
-        description: type.description,
-        addedOn: getAddedOn(context, type),
-        visibility: visibilityMapping(type.visibility),
-        isDiscriminator: type.discriminator,
-        flatten: type.flatten,
-        isMultipartFileInput: type.isMultipartFileInput,
-        getXmlMetadata: getXmlMetadata(type),
+        clientName: camelToSnakeCase(property.name),
+        wireName: property.serializedName,
+        type: getType(context, property.type),
+        optional: property.optional,
+        description: property.description,
+        addedOn: getAddedOn(context, property),
+        visibility: visibilityMapping(property.visibility),
+        isDiscriminator: property.discriminator,
+        flatten: property.flatten,
+        isMultipartFileInput: property.isMultipartFileInput,
+        getXmlMetadata: getXmlMetadata(property),
     };
 }
 

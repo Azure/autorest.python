@@ -128,11 +128,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.status_code == 200:
-            deserialized = response.iter_bytes()
-
-        if response.status_code == 204:
-            deserialized = response.iter_bytes()
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
