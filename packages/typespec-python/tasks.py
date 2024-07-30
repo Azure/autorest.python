@@ -225,7 +225,7 @@ def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
 @task
 def regenerate_azure(c, name=None, debug=False):
     specs = [s for s in _all_specification_folders("azure") if not is_invalid_folder(s)]
-    special_flags = {"flavor": "azure", "generate-test": "true"}
+    special_flags = {"flavor": "azure", "generate-test": "true", "generate-sample": "true"}
     _regenerate(
         c,
         specs,
