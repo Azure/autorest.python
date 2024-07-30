@@ -2,6 +2,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
+
 """Customize generated code here.
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
@@ -33,9 +34,11 @@ class Helpers:
         accept = _headers.pop("Accept", "application/json")
 
         # Construct URL
+
         _url = "/reservedWords/operation/data"
 
         # Construct headers
+
         if content_type is not None:
             _headers["Content-Type"] = content_type
         _headers["Accept"] = accept
@@ -70,9 +73,11 @@ class Helpers:
         accept = _headers.pop("Accept", "application/json")
 
         # Construct URL
+
         _url = "/reservedWords/operation/files"
 
         # Construct headers
+
         if content_type is not None:
             _headers["Content-Type"] = content_type
         _headers["Accept"] = accept
