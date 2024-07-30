@@ -1,5 +1,13 @@
 # Release
 
+## 0.28.0
+
+### Bug Fixes
+
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+- [#2729](https://github.com/Azure/autorest.python/pull/2729) Fix import for multipart
+
+
 ## 0.27.0
 
 ### Bug Fixes
