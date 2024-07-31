@@ -591,6 +591,8 @@ class ByteArraySchema(PrimitiveType):
         return "bytearray"
 
     def docstring_type(self, **kwargs: Any) -> str:
+        if kwargs.get("is_multipart_file_input"):
+            return f"~{self.code_model.namespace}._vendor.FileType"
         return "bytes"
 
     def get_declaration(self, value: str) -> str:
