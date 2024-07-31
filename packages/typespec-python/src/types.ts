@@ -186,7 +186,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
         visibility: visibilityMapping(property.visibility),
         isDiscriminator: property.discriminator,
         flatten: property.flatten,
-        isMultipartFileInput: property.isMultipartFileInput,
+        isMultipartFileInput: property.multipartOptions?.isFilePart,
     };
 }
 
