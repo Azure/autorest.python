@@ -25,7 +25,6 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 from ..._serialization import Serializer
-from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

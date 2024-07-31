@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_client_request(**kwargs: Any) -> HttpRequest:
+def build_client_model_client_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -55,7 +55,7 @@ def build_model_client_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_language_request(**kwargs: Any) -> HttpRequest:
+def build_client_model_language_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -175,14 +175,14 @@ def build_naming_response_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ModelOperations:
+class ClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.NamingClient`'s
-        :attr:`model` attribute.
+        :attr:`client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -289,7 +289,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_request(
+        _request = build_client_model_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -408,7 +408,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_language_request(
+        _request = build_client_model_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
