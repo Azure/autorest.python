@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import ModelOperations
+from ._operations import ClientModelOperations
 from ._operations import UnionEnumOperations
 from ._operations import NamingClientOperationsMixin
 
@@ -15,7 +15,7 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ModelOperations",
+    "ClientModelOperations",
     "UnionEnumOperations",
     "NamingClientOperationsMixin",
 ]

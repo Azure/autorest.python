@@ -27,8 +27,8 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder
 from ...operations._operations import (
-    build_model_client_request,
-    build_model_language_request,
+    build_client_model_client_request,
+    build_client_model_language_request,
     build_naming_client_name_request,
     build_naming_client_request,
     build_naming_compatible_with_encoded_name_request,
@@ -50,14 +50,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ModelOperations:
+class ClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.aio.NamingClient`'s
-        :attr:`model` attribute.
+        :attr:`client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -164,7 +164,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_request(
+        _request = build_client_model_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -283,7 +283,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_language_request(
+        _request = build_client_model_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
