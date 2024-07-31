@@ -83,7 +83,7 @@
     "rimraf": "~5.0.0",
     "typescript": "~5.1.3",
     "@azure-tools/typespec-azure-core": "~0.44.0",
-    "@azure-tools/typespec-client-generator-core": "~0.44.3",
+    "@azure-tools/typespec-client-generator-core": "C:/Users/yuchaoyan/Downloads/azure-tools-typespec-client-generator-core-0.45.0-pr-1269.20240730.20.tgz",
     "@typespec/compiler": "~0.58.1",
     "@typespec/http": "~0.58.0",
     "@typespec/rest": "~0.58.0",
