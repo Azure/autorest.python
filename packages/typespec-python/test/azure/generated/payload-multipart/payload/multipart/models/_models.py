@@ -111,11 +111,11 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
     """Required."""
     address: "_models.Address" = rest_field()
     """Required."""
-    profile_image: "_models.FileRequiredMetaData" = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
-    pictures: List["_models.FileRequiredMetaData"] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
     """Required."""
 
     @overload
@@ -124,9 +124,9 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         address: "_models.Address",
-        profile_image: "_models.FileRequiredMetaData",
+        profile_image: FileType,
         previous_addresses: List["_models.Address"],
-        pictures: List["_models.FileRequiredMetaData"],
+        pictures: List[FileType],
     ): ...
 
     @overload
@@ -346,14 +346,14 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart.models.FileOptionalContentType
     """
 
-    profile_image: "_models.FileOptionalContentType" = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        profile_image: "_models.FileOptionalContentType",
+        profile_image: FileType,
     ): ...
 
     @overload
@@ -376,14 +376,14 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart.models.FileRequiredMetaData
     """
 
-    profile_image: "_models.FileRequiredMetaData" = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        profile_image: "_models.FileRequiredMetaData",
+        profile_image: FileType,
     ): ...
 
     @overload
@@ -406,14 +406,14 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart.models.FileSpecificContentType
     """
 
-    profile_image: "_models.FileSpecificContentType" = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        profile_image: "_models.FileSpecificContentType",
+        profile_image: FileType,
     ): ...
 
     @overload

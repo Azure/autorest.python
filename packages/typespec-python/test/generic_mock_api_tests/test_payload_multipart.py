@@ -87,6 +87,7 @@ def test_multi_binary_parts(client: MultiPartClient):
         )
     )
 
+
 def test_file_with_http_part_specific_content_type(client: MultiPartClient):
     client.form_data.file_with_http_part_specific_content_type(
         models.FileWithHttpPartSpecificContentTypeRequest(
@@ -94,12 +95,14 @@ def test_file_with_http_part_specific_content_type(client: MultiPartClient):
         )
     )
 
+
 def test_file_with_http_part_required_content_type(client: MultiPartClient):
     client.form_data.file_with_http_part_required_content_type(
         models.FileWithHttpPartRequiredContentTypeRequest(
             profile_image=open(str(JPG), "rb"),
         )
     )
+
 
 def test_file_with_http_part_optional_content_type(client: MultiPartClient):
     # call twice: one with content type, one without
@@ -113,6 +116,7 @@ def test_file_with_http_part_optional_content_type(client: MultiPartClient):
             profile_image=("hello.jpg", open(str(JPG), "rb").read(), "application/octet-stream"),
         )
     )
+
 
 def test_complex_with_http_part(client: MultiPartClient):
     client.form_data.complex_with_http_part(

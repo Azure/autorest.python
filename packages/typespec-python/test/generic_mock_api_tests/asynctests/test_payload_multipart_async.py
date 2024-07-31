@@ -104,6 +104,7 @@ async def test_file_with_http_part_specific_content_type(client: MultiPartClient
         )
     )
 
+
 @pytest.mark.asyncio
 async def test_file_with_http_part_required_content_type(client: MultiPartClient):
     await client.form_data.file_with_http_part_required_content_type(
@@ -111,6 +112,7 @@ async def test_file_with_http_part_required_content_type(client: MultiPartClient
             profile_image=open(str(JPG), "rb"),
         )
     )
+
 
 @pytest.mark.asyncio
 async def test_file_with_http_part_optional_content_type(client: MultiPartClient):
@@ -125,6 +127,7 @@ async def test_file_with_http_part_optional_content_type(client: MultiPartClient
             profile_image=("hello.jpg", open(str(JPG), "rb").read(), "application/octet-stream"),
         )
     )
+
 
 @pytest.mark.asyncio
 async def test_complex_with_http_part(client: MultiPartClient):
