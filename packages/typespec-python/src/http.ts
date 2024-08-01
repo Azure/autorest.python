@@ -92,7 +92,7 @@ function addPagingInformation(
 ) {
     for (const response of method.operation.responses.values()) {
         if (response.type && !isAzureCoreModel(response.type)) {
-            getType(context, response.type)["pageResultModel"] = true;
+            getType(context, response.type)["usage"] = UsageFlags.None;
         }
     }
     const itemType = getType(context, method.response.type!);

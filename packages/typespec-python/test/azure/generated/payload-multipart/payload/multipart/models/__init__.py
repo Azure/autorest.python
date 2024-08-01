@@ -10,10 +10,6 @@ from ._models import Address
 from ._models import BinaryArrayPartsRequest
 from ._models import ComplexHttpPartsModelRequest
 from ._models import ComplexPartsRequest
-from ._models import File
-from ._models import FileOptionalContentType
-from ._models import FileRequiredMetaData
-from ._models import FileSpecificContentType
 from ._models import FileWithHttpPartOptionalContentTypeRequest
 from ._models import FileWithHttpPartRequiredContentTypeRequest
 from ._models import FileWithHttpPartSpecificContentTypeRequest
@@ -29,10 +25,6 @@ __all__ = [
     "BinaryArrayPartsRequest",
     "ComplexHttpPartsModelRequest",
     "ComplexPartsRequest",
-    "File",
-    "FileOptionalContentType",
-    "FileRequiredMetaData",
-    "FileSpecificContentType",
     "FileWithHttpPartOptionalContentTypeRequest",
     "FileWithHttpPartRequiredContentTypeRequest",
     "FileWithHttpPartSpecificContentTypeRequest",

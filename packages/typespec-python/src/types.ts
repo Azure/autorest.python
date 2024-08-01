@@ -1,4 +1,4 @@
-import { Type } from "@typespec/compiler";
+import { Type, UsageFlags } from "@typespec/compiler";
 import { HttpAuth, Visibility } from "@typespec/http";
 import {
     SdkEnumValueType,
@@ -19,6 +19,7 @@ import {
 import { dump } from "js-yaml";
 import { camelToSnakeCase, getAddedOn } from "./utils.js";
 import { PythonSdkContext } from "./lib.js";
+import { emit } from "process";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
@@ -172,21 +173,40 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
+function clearUsage(emitType: Record<string, any>) {
+    if (emitType.type === "model") {
+        if (emitType.usage != UsageFlags.None) {
+            emitType.usage = UsageFlags.None;
+            for (const p of emitType.parents) {
+                clearUsage(p);
+            }
+        }
+    } else if (emitType.type === "list") {
+        clearUsage(emitType.elementType);
+    }
+}
+
 function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     property: SdkBodyModelPropertyType,
 ): Record<string, any> {
+    const emitType = getType(context, property.type);
+    const isMultipartFileInput = property.multipartOptions?.isFilePart;
+    if (isMultipartFileInput) {
+        // Python convert all the type of file part to FileType so clear these models' usage so that they won't be generated
+        clearUsage(emitType);
+    }
     return {
         clientName: camelToSnakeCase(property.name),
         wireName: property.serializedName,
-        type: getType(context, property.type),
+        type: emitType,
         optional: property.optional,
         description: property.description,
         addedOn: getAddedOn(context, property),
         visibility: visibilityMapping(property.visibility),
         isDiscriminator: property.discriminator,
         flatten: property.flatten,
-        isMultipartFileInput: property.multipartOptions?.isFilePart,
+        isMultipartFileInput: isMultipartFileInput,
     };
 }
 

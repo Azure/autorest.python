@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import sys
-from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
@@ -21,7 +21,7 @@ else:
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from .. import _model_base, models as _models
+    from .. import models as _models
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
@@ -183,158 +183,6 @@ class ComplexPartsRequest(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
-
-
-class File(_model_base.Model):
-    """File.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar content_type:
-    :vartype content_type: str
-    :ivar filename:
-    :vartype filename: str
-    :ivar contents: Required.
-    :vartype contents: ~payload.multipart._vendor.FileType
-    """
-
-    content_type: Optional[str] = rest_field(name="contentType")
-    filename: Optional[str] = rest_field()
-    contents: FileType = rest_field(is_multipart_file_input=True)
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        contents: FileType,
-        content_type: Optional[str] = None,
-        filename: Optional[str] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class FileOptionalContentType(File):
-    """FileOptionalContentType.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar content_type:
-    :vartype content_type: str
-    :ivar contents: Required.
-    :vartype contents: ~payload.multipart._vendor.FileType
-    :ivar filename: Required.
-    :vartype filename: str
-    """
-
-    filename: str = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        contents: FileType,
-        filename: str,
-        content_type: Optional[str] = None,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class FileRequiredMetaData(File):
-    """FileRequiredMetaData.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar contents: Required.
-    :vartype contents: ~payload.multipart._vendor.FileType
-    :ivar filename: Required.
-    :vartype filename: str
-    :ivar content_type: Required.
-    :vartype content_type: str
-    """
-
-    filename: str = rest_field()
-    """Required."""
-    content_type: str = rest_field(name="contentType")
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        contents: FileType,
-        filename: str,
-        content_type: str,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
-class FileSpecificContentType(File):
-    """FileSpecificContentType.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    All required parameters must be populated in order to send to server.
-
-    :ivar contents: Required.
-    :vartype contents: ~payload.multipart._vendor.FileType
-    :ivar filename: Required.
-    :vartype filename: str
-    :ivar content_type: Required. Default value is "image/jpg".
-    :vartype content_type: str
-    """
-
-    filename: str = rest_field()
-    """Required."""
-    content_type: Literal["image/jpg"] = rest_field(name="contentType")
-    """Required. Default value is \"image/jpg\"."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        contents: FileType,
-        filename: str,
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.content_type: Literal["image/jpg"] = "image/jpg"
 
 
 class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
