@@ -85,7 +85,7 @@ class ModelType(  # pylint: disable=abstract-method
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
-        self.usage: int = self.yaml_data.get("usage", UsageFlags.Input.value & UsageFlags.Output.value)
+        self.usage: int = self.yaml_data.get("usage", UsageFlags.Input.value | UsageFlags.Output.value)
 
     @property
     def is_usage_output(self) -> bool:
