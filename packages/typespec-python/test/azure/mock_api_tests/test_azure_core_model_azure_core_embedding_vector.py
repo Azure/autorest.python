@@ -15,7 +15,7 @@ def client():
 
 
 def test_azure_core_embedding_vector_post(client: ModelClient):
-    embedding_model = AzureEmbeddingModel(embedding=[ 0, 1, 2, 3, 4 ])
+    embedding_model = AzureEmbeddingModel(embedding=[0, 1, 2, 3, 4])
     result = client.azure_core_embedding_vector.post(
         body=embedding_model,
     )
@@ -23,7 +23,7 @@ def test_azure_core_embedding_vector_post(client: ModelClient):
 
 
 def test_azure_core_embedding_vector_put(client: ModelClient):
-    client.azure_core_embedding_vector.put(body=[ 0, 1, 2, 3, 4 ])
+    client.azure_core_embedding_vector.put(body=[0, 1, 2, 3, 4])
 
 
 def test_azure_core_embedding_vector_get(client: ModelClient):

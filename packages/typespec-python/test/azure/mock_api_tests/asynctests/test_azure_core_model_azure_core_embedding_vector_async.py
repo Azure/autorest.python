@@ -16,7 +16,7 @@ async def client():
 
 @pytest.mark.asyncio
 async def test_azure_core_embedding_vector_post(client: ModelClient):
-    embedding_model = AzureEmbeddingModel(embedding=[ 0, 1, 2, 3, 4 ])
+    embedding_model = AzureEmbeddingModel(embedding=[0, 1, 2, 3, 4])
     result = await client.azure_core_embedding_vector.post(
         body=embedding_model,
     )
@@ -25,8 +25,8 @@ async def test_azure_core_embedding_vector_post(client: ModelClient):
 
 @pytest.mark.asyncio
 async def test_azure_core_embedding_vector_put(client: ModelClient):
-    await client.azure_core_embedding_vector.put(body=[ 0, 1, 2, 3, 4 ])
-                    
+    await client.azure_core_embedding_vector.put(body=[0, 1, 2, 3, 4])
+
 
 @pytest.mark.asyncio
 async def test_azure_core_embedding_vector_get(client: ModelClient):
