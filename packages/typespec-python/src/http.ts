@@ -331,7 +331,12 @@ function emitHttpResponse(
     let type = undefined;
     if (response.type && !isAzureCoreModel(response.type)) {
         type = getType(context, response.type);
-    } else if (method && method.response.type && !isAzureCoreModel(method.response.type)) {
+    } else if (
+        method &&
+        method.response.type &&
+        method.kind.includes("lro") &&
+        !isAzureCoreModel(method.response.type)
+    ) {
         type = getType(context, method.response.type);
     }
     return {

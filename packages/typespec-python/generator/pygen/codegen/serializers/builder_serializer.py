@@ -1036,10 +1036,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                 status_codes, res_headers, res_deserialization = [], [], []
                 for status_code in builder.success_status_codes:
                     response = builder.get_response_from_status(status_code)
-                    if response.headers or response.type:
-                        status_codes.append(status_code)
-                        res_headers.append(self.response_headers(response))
-                        res_deserialization.append(self.response_deserialization(builder, response))
+                    status_codes.append(status_code)
+                    res_headers.append(self.response_headers(response))
+                    res_deserialization.append(self.response_deserialization(builder, response))
 
                 is_headers_same = _all_same(res_headers)
                 is_deserialization_same = _all_same(res_deserialization)
@@ -1058,10 +1057,13 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
                         retval.append("")
                 else:
                     for status_code, headers, deserialization in zip(status_codes, res_headers, res_deserialization):
-                        retval.append(f"if response.status_code == {status_code}:")
-                        retval.extend([f"    {line}" for line in headers])
-                        retval.extend([f"    {line}" for line in deserialization])
-                        retval.append("")
+                        if headers or deserialization:
+                            retval.append(f"if response.status_code == {status_code}:")
+                            if headers:
+                                retval.extend([f"    {line}" for line in headers])
+                            if deserialization:
+                                retval.extend([f"    {line}" for line in deserialization])
+                            retval.append("")
             else:
                 retval.extend(self.response_headers_and_deserialization(builder, builder.responses[0]))
                 retval.append("")
