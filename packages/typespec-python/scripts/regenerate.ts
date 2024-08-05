@@ -111,9 +111,8 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
 }
 
 function getEmitterOption(spec: string, flags: RegenerateFlags): Record<string, string>[] {
-    const result = EMITTER_OPTIONS[spec] || [];
+    const result = EMITTER_OPTIONS[dirname(relative(CADL_RANCH_DIR, spec))] || [];
     return Array.isArray(result) ? result : [result];
-
 }
 
 // Function to execute CLI commands asynchronously
@@ -152,12 +151,15 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const mainTspPath = join(subDirPath, 'main.tsp');
                 const clientTspPath = join(subDirPath, 'client.tsp');
 
+                if (!mainTspPath.includes(flags.name || "")) return;
+                if (flags.flavor === "unbranded" && mainTspPath.includes("azure")) return;
+
                 const hasMainTsp = await promises.access(mainTspPath).then(() => true).catch(() => false);
                 const hasClientTsp = await promises.access(clientTspPath).then(() => true).catch(() => false);
 
-                if (hasClientTsp && clientTspPath.includes(flags.name || "")) {
+                if (hasClientTsp) {
                     subdirectories.push(resolve(subDirPath, "client.tsp"));
-                } else if (hasMainTsp && mainTspPath.includes(flags.name || "")) {
+                } else if (hasMainTsp) {
                     subdirectories.push(resolve(subDirPath, "main.tsp"));
                 }
 
