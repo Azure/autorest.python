@@ -1,10 +1,10 @@
+/* eslint-disable no-console */
 import { exec as execCallback } from "child_process";
 import { promisify } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { dirname, join, relative, resolve } from "path";
-import { lstatSync, readdirSync, promises, access } from "fs";
-import { sync } from "glob";
+import { promises } from "fs";
 import { fileURLToPath } from "url";
 
 // Promisify the exec function
