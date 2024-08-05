@@ -30,7 +30,6 @@ jobs:
         parameters:
           installCadlRanch: true
           folderName: "typespec-python"
-          regenerate: true
           updateToLatestTypespec: true
           checkChange: false
   

@@ -80,7 +80,8 @@ jobs:
             folderName: "autorest.python"
             pythonCodeChecks: true
             pythonFolderName: autorest
-            regenerate: true
+            regenerateWithNpm: false
+            regenerateWithInv: true
 
       - script: |
           pip install pip
@@ -179,7 +180,6 @@ jobs:
             installTypeSpec: true
             installCadlRanch: true
             folderName: "typespec-python"
-            regenerate: true
 
       - template: generated-code-checks-template.yml
         parameters:
