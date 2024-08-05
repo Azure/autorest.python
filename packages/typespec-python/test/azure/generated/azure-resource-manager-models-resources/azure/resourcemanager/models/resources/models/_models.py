@@ -291,7 +291,6 @@ class TrackedResource(Resource):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
@@ -340,7 +339,6 @@ class TopLevelTrackedResource(TrackedResource):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long

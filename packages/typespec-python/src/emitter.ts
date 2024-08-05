@@ -55,18 +55,18 @@ function addDefaultOptions(sdkContext: SdkContext) {
     }
 }
 
-function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
+async function createPythonSdkContext<TServiceOperation extends SdkServiceOperation>(
     context: EmitContext<PythonEmitterOptions>,
-): PythonSdkContext<TServiceOperation> {
+): Promise<PythonSdkContext<TServiceOperation>> {
     return {
-        ...createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python"),
+        ...(await createSdkContext<PythonEmitterOptions, TServiceOperation>(context, "@azure-tools/typespec-python")),
         __endpointPathParameters: [],
     };
 }
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const program = context.program;
-    const sdkContext = createPythonSdkContext<SdkHttpOperation>(context);
+    const sdkContext = await createPythonSdkContext<SdkHttpOperation>(context);
     const root = path.join(dirname(fileURLToPath(import.meta.url)), "..", "..");
     const outputDir = context.emitterOutputDir;
     const yamlMap = emitCodeModel(sdkContext);

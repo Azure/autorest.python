@@ -149,24 +149,19 @@ def _add_options(
     generated_foder: Path,
     special_flags: Dict[str, Any],
     debug=False,
-) -> List[str]:
-    result = []
+) -> str:
+    result = {}
     for config in _get_emitter_option(spec, category):
         config_copy = copy.copy(config)
         config_copy["emitter-output-dir"] = f"{generated_foder}/{config['package-name']}"
-        result.append(config_copy)
+        result.update(config_copy)
     if not result:
-        result.append({"emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"})
-    emitter_configs = []
-    for options in result:
-        emitter_option = ""
-        if debug:
-            emitter_option += " --option @azure-tools/typespec-python.debug=true"
-        for item in [options, special_flags]:
-            for k, v in item.items():
-                emitter_option += f" --option @azure-tools/typespec-python.{k}={v}"
-        emitter_configs.append(emitter_option)
-    return emitter_configs
+        result.update({"emitter-output-dir": f"{generated_foder}/{_default_package_name(spec, category)}"})
+    result.update({"examples-directory": str(spec / "examples")})
+    result.update(special_flags)
+    if debug:
+        result.update({"debug": "true"})
+    return "".join([f" --option @azure-tools/typespec-python.{k}={v}" for k, v in result.items()])
 
 
 def _entry_file_name(path: Path) -> Path:
@@ -209,9 +204,8 @@ def _regenerate(
             (generated_folder / package_name).mkdir(parents=True, exist_ok=True)
     _run_cadl(
         [
-            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {option}"
+            f"tsp compile {_entry_file_name(spec)} --emit={PLUGIN_DIR} {_add_options(spec, category, generated_folder, special_flags, debug)}"
             for spec in specs
-            for option in _add_options(spec, category, generated_folder, special_flags, debug)
         ]
     )
 
@@ -225,7 +219,7 @@ def is_invalid_folder(s: Path, invalid_folders: List[str] = []) -> bool:
 @task
 def regenerate_azure(c, name=None, debug=False):
     specs = [s for s in _all_specification_folders("azure") if not is_invalid_folder(s)]
-    special_flags = {"flavor": "azure", "generate-test": "true"}
+    special_flags = {"flavor": "azure", "generate-test": "true", "generate-sample": "true"}
     _regenerate(
         c,
         specs,

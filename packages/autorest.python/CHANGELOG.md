@@ -1,5 +1,16 @@
 # Release
 
+## 6.17.1
+
+### Bug Fixes
+
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+
+
+## 6.17.0
+
+No changes, version bump only.
+
 ## 6.16.0
 
 ### Bug Fixes

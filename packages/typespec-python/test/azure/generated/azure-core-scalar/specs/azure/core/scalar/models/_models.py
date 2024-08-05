@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class AzureLocationModel(_model_base.Model):
     """AzureLocationModel.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar location: Required.
     :vartype location: str
