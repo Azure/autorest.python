@@ -13,6 +13,7 @@ import {
     SdkServiceMethod,
     SdkServiceResponseHeader,
     UsageFlags,
+    SdkHttpOperationExample,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -32,6 +33,16 @@ function isContentTypeParameter(parameter: SdkHeaderParameter) {
     return parameter.serializedName.toLowerCase() === "content-type";
 }
 
+function arrayToRecord(examples: SdkHttpOperationExample[] | undefined): Record<string, any> {
+    const result: Record<string, any> = {};
+    if (examples) {
+        for (const [index, example] of examples.entries()) {
+            result[index] = { ...example.rawExample, "x-ms-original-file": example.filePath };
+        }
+    }
+    return result;
+}
+
 export function emitBasicHttpMethod(
     context: PythonSdkContext<SdkHttpOperation>,
     rootClient: SdkClientType<SdkHttpOperation>,
@@ -46,6 +57,7 @@ export function emitBasicHttpMethod(
             name: camelToSnakeCase(method.name),
             description: getDescriptionAndSummary(method).description,
             summary: getDescriptionAndSummary(method).summary,
+            samples: arrayToRecord(method.operation.examples),
         },
     ];
 }
