@@ -110,7 +110,7 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     ],
 }
 
-function getEmitterOption(spec: string, flags: RegenerateFlags): Record<string, string>[] {
+function getEmitterOption(spec: string): Record<string, string>[] {
     const result = EMITTER_OPTIONS[dirname(relative(CADL_RANCH_DIR, spec))] || [];
     return Array.isArray(result) ? result : [result];
 }
@@ -185,7 +185,7 @@ function addOptions(
     flags: RegenerateFlags
 ): string[] {
     let options: Record<string, string> ={};
-    for (const config of getEmitterOption(spec, flags)) {
+    for (const config of getEmitterOption(spec)) {
         options = Object.assign(options, config);
     }
     options["flavor"] = flags.flavor;
@@ -196,9 +196,13 @@ function addOptions(
     if (flags.debug) {
         options["debug"] = "true";
     }
+    if (flags.flavor === "unbranded") {
+        options["company-name"] = "Unbranded";
+    }
     const emitterConfigs = Object.entries(options).flatMap(([k, v]) => {
         return `--option @azure-tools/typespec-python.${k}=${v}`;
     })
+
     return emitterConfigs;
 }
 
