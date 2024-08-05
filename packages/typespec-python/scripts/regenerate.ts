@@ -1,18 +1,18 @@
-import { exec as execCallback } from 'child_process';
-import { promisify } from 'util';
-import yargs from 'yargs';
+import { exec as execCallback } from "child_process";
+import { promisify } from "util";
+import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { dirname, join, relative, resolve } from 'path';
+import { dirname, join, relative, resolve } from "path";
 import { lstatSync, readdirSync, promises, access } from "fs";
 import { sync } from "glob";
-import { fileURLToPath } from 'url';
+import { fileURLToPath } from "url";
 
 // Promisify the exec function
 const exec = promisify(execCallback);
 
 // Get the directory of the current file
-const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), '../../../');
-const CADL_RANCH_DIR = resolve(PLUGIN_DIR, 'node_modules/@azure-tools/cadl-ranch-specs/http');
+const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
+const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
@@ -68,9 +68,9 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-name": "typetest-model-usage",
     },
     "type/model/visibility": [
-        {"package-name": "typetest-model-visibility"},
-        {"package-name": "headasbooleantrue", "head-as-boolean": "true"},
-        {"package-name": "headasbooleanfalse", "head-as-boolean": "false"},
+        { "package-name": "typetest-model-visibility" },
+        { "package-name": "headasbooleantrue", "head-as-boolean": "true" },
+        { "package-name": "headasbooleanfalse", "head-as-boolean": "false" },
     ],
     "type/property/nullable": {
         "package-name": "typetest-property-nullable",
@@ -105,10 +105,8 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
     },
-    "mgmt/sphere": [
-        {"package-name": "azure-mgmt-spheredpg"},
-    ],
-}
+    "mgmt/sphere": [{ "package-name": "azure-mgmt-spheredpg" }],
+};
 
 function getEmitterOption(spec: string): Record<string, string>[] {
     const result = EMITTER_OPTIONS[dirname(relative(CADL_RANCH_DIR, spec))] || [];
@@ -148,14 +146,20 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
         const promisesArray = items.map(async (item) => {
             const subDirPath = join(currentDir, item.name);
             if (item.isDirectory()) {
-                const mainTspPath = join(subDirPath, 'main.tsp');
-                const clientTspPath = join(subDirPath, 'client.tsp');
+                const mainTspPath = join(subDirPath, "main.tsp");
+                const clientTspPath = join(subDirPath, "client.tsp");
 
                 if (!mainTspPath.includes(flags.name || "")) return;
                 if (flags.flavor === "unbranded" && mainTspPath.includes("azure")) return;
 
-                const hasMainTsp = await promises.access(mainTspPath).then(() => true).catch(() => false);
-                const hasClientTsp = await promises.access(clientTspPath).then(() => true).catch(() => false);
+                const hasMainTsp = await promises
+                    .access(mainTspPath)
+                    .then(() => true)
+                    .catch(() => false);
+                const hasClientTsp = await promises
+                    .access(clientTspPath)
+                    .then(() => true)
+                    .catch(() => false);
 
                 if (hasClientTsp) {
                     subdirectories.push(resolve(subDirPath, "client.tsp"));
@@ -179,12 +183,8 @@ function defaultPackageName(spec: string): string {
     return relative(CADL_RANCH_DIR, dirname(spec)).replace(/\//g, "-").toLowerCase();
 }
 
-function addOptions(
-    spec: string,
-    generatedFolder: string,
-    flags: RegenerateFlags
-): string[] {
-    let options: Record<string, string> ={};
+function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): string[] {
+    let options: Record<string, string> = {};
     for (const config of getEmitterOption(spec)) {
         options = Object.assign(options, config);
     }
@@ -201,7 +201,7 @@ function addOptions(
     }
     const emitterConfigs = Object.entries(options).flatMap(([k, v]) => {
         return `--option @azure-tools/typespec-python.${k}=${v}`;
-    })
+    });
 
     return emitterConfigs;
 }
@@ -216,12 +216,12 @@ async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<
 
 async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
     if (flags.flavor === undefined) {
-        const azureGeneration = await regenerate({...flags, flavor: "azure" });
-        const unbrandedGeneration = await regenerate({...flags, flavor: "unbranded" });
+        const azureGeneration = await regenerate({ ...flags, flavor: "azure" });
+        const unbrandedGeneration = await regenerate({ ...flags, flavor: "unbranded" });
         return azureGeneration && unbrandedGeneration;
     } else {
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
-        const CADL_RANCH_DIR = resolve(PLUGIN_DIR, 'node_modules/@azure-tools/cadl-ranch-specs/http');
+        const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
         const subdirectories = await getSubdirectories(CADL_RANCH_DIR, flagsResolved);
         const promises = subdirectories.map(async (subdirectory) => {
             // Perform additional asynchronous operations on each subdirectory here
@@ -230,7 +230,7 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
         await Promise.all(promises);
         return true;
     }
-};
+}
 
 //   try {
 //     const output = await executeCommand('tsp compile');
@@ -241,24 +241,22 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
 
 // PARSE INPUT ARGUMENTS
 const argv = yargs(hideBin(process.argv))
-  .option('flavor', {
-    type: 'string',
-    choices: ['azure', 'unbranded'],
-    description: 'Specify the flavor',
-  })
-  .option('debug', {
-    alias: 'd',
-    type: 'boolean',
-    description: 'Debug mode',
-  })
-  .option('name', {
-    alias: 'n',
-    type: 'string',
-    description: 'Specify filename if you only want to generate a subset',
-  })
-  .argv;
+    .option("flavor", {
+        type: "string",
+        choices: ["azure", "unbranded"],
+        description: "Specify the flavor",
+    })
+    .option("debug", {
+        alias: "d",
+        type: "boolean",
+        description: "Debug mode",
+    })
+    .option("name", {
+        alias: "n",
+        type: "string",
+        description: "Specify filename if you only want to generate a subset",
+    }).argv;
 
-  regenerate(argv as RegenerateFlags)
-    .then(() => console.log('Regeneration successful'))
-    .catch(error => console.error(`Regeneration failed: ${error.message}`));
-
+regenerate(argv as RegenerateFlags)
+    .then(() => console.log("Regeneration successful"))
+    .catch((error) => console.error(`Regeneration failed: ${error.message}`));
