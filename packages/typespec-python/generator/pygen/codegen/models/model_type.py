@@ -84,9 +84,8 @@ class ModelType(  # pylint: disable=abstract-method
         self._got_polymorphic_subtypes = False
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
-        self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
-        self.usage: int = self.yaml_data.get("usage", 0)
+        self.usage: int = self.yaml_data.get("usage", UsageFlags.Input.value | UsageFlags.Output.value)
 
     @property
     def is_usage_output(self) -> bool:
@@ -295,6 +294,8 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
         return retval if is_operation_file or skip_quote else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
+        if kwargs.get("is_multipart_file_input"):
+            return f"~{self.code_model.namespace}._vendor.FileType"
         return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, skip_quote=True)}"
 
     def docstring_text(self, **kwargs: Any) -> str:

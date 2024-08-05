@@ -17,7 +17,8 @@ def _documentation_string(prop: Property, description_keyword: str, docstring_ty
     sphinx_prefix = f":{description_keyword} {prop.client_name}:"
     description = prop.description(is_operation_file=False).replace("\\", "\\\\")
     retval.append(f"{sphinx_prefix} {description}" if description else sphinx_prefix)
-    retval.append(f":{docstring_type_keyword} {prop.client_name}: {prop.type.docstring_type()}")
+    docstring_type = prop.type.docstring_type(is_multipart_file_input=prop.is_multipart_file_input)
+    retval.append(f":{docstring_type_keyword} {prop.client_name}: {docstring_type}")
     return retval
 
 
