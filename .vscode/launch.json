@@ -55,7 +55,7 @@
           "name": "npm: regenerate",
           "request": "launch",
           "type": "node",
-          "runtimeArgs": ["run", "regenerate", "--"],
+          "runtimeArgs": ["run", "regenerate", "--", "--name", "model"],
           "runtimeExecutable": "npm",
           "cwd": "${workspaceFolder}/packages/typespec-python",
       }

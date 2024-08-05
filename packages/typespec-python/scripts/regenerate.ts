@@ -140,24 +140,24 @@ interface RegenerateFlags {
     name?: string;
 }
 
-async function getSubdirectories(baseDir: string): Promise<string[]> {
+async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promise<string[]> {
     const subdirectories: string[] = [];
 
     async function searchDir(currentDir: string) {
         const items = await promises.readdir(currentDir, { withFileTypes: true });
 
         const promisesArray = items.map(async (item) => {
+            const subDirPath = join(currentDir, item.name);
             if (item.isDirectory()) {
-                const subDirPath = join(currentDir, item.name);
                 const mainTspPath = join(subDirPath, 'main.tsp');
                 const clientTspPath = join(subDirPath, 'client.tsp');
 
                 const hasMainTsp = await promises.access(mainTspPath).then(() => true).catch(() => false);
                 const hasClientTsp = await promises.access(clientTspPath).then(() => true).catch(() => false);
 
-                if (hasClientTsp) {
+                if (hasClientTsp && clientTspPath.includes(flags.name || "")) {
                     subdirectories.push(resolve(subDirPath, "client.tsp"));
-                } else if (hasMainTsp) {
+                } else if (hasMainTsp && mainTspPath.includes(flags.name || "")) {
                     subdirectories.push(resolve(subDirPath, "main.tsp"));
                 }
 
@@ -188,7 +188,8 @@ function addOptions(
     }
     options["flavor"] = flags.flavor;
     if (options["emitter-output-dir"] === undefined) {
-        options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${defaultPackageName(spec)}`;
+        const packageName = options["package-name"] || defaultPackageName(spec);
+        options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`;
     }
     if (flags.debug) {
         options["debug"] = "true";
@@ -213,12 +214,12 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
         const unbrandedGeneration = await regenerate({...flags, flavor: "unbranded" });
         return azureGeneration && unbrandedGeneration;
     } else {
-        const flagsDefault: RegenerateFlags = {debug: false, flavor: flags.flavor};
+        const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
         const CADL_RANCH_DIR = resolve(PLUGIN_DIR, 'node_modules/@azure-tools/cadl-ranch-specs/http');
-        const subdirectories = await getSubdirectories(CADL_RANCH_DIR);
+        const subdirectories = await getSubdirectories(CADL_RANCH_DIR, flagsResolved);
         const promises = subdirectories.map(async (subdirectory) => {
             // Perform additional asynchronous operations on each subdirectory here
-            await _regenerateSingle(subdirectory, { ...flagsDefault, ...flags });
+            await _regenerateSingle(subdirectory, flagsResolved);
         });
         await Promise.all(promises);
         return true;
