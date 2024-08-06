@@ -9483,7 +9483,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.Device:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9503,8 +9503,8 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :return: Device or None. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9517,7 +9517,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 200
                 response == {
                     "id": "str",
                     "name": "str",
@@ -9554,7 +9554,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.Device:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9574,14 +9574,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :return: Device or None. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 200
                 response == {
                     "id": "str",
                     "name": "str",
@@ -9618,7 +9618,7 @@ class DevicesOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> _models.Device:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9638,14 +9638,14 @@ class DevicesOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :return: Device or None. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
             .. code-block:: python
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 200
                 response == {
                     "id": "str",
                     "name": "str",
@@ -9680,7 +9680,7 @@ class DevicesOperations:
         device_name: str,
         properties: Union[_models.DeviceUpdate, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> _models.Device:
+    ) -> Optional[_models.Device]:
         """Update a Device. Use '.unassigned' or '.default' for the device group and product names to move
         a device to the catalog level.
 
@@ -9698,8 +9698,8 @@ class DevicesOperations:
         :param properties: The resource properties to be updated. Is one of the following types:
          DeviceUpdate, JSON, IO[bytes] Required.
         :type properties: ~azure.mgmt.spheredpg.models.DeviceUpdate or JSON or IO[bytes]
-        :return: Device. The Device is compatible with MutableMapping
-        :rtype: ~azure.mgmt.spheredpg.models.Device
+        :return: Device or None. The Device is compatible with MutableMapping
+        :rtype: ~azure.mgmt.spheredpg.models.Device or None
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -9712,7 +9712,7 @@ class DevicesOperations:
                     }
                 }
 
-                # response body for status code(s): 200, 202
+                # response body for status code(s): 200
                 response == {
                     "id": "str",
                     "name": "str",
@@ -9748,7 +9748,7 @@ class DevicesOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Device] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[_models.Device]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -9789,14 +9789,16 @@ class DevicesOperations:
             error = _deserialize(_models.ErrorResponse, response.json())
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
+        deserialized = None
         response_headers = {}
+        if response.status_code == 200:
+            if _stream:
+                deserialized = response.iter_bytes()
+            else:
+                deserialized = _deserialize(_models.Device, response.json())
+
         if response.status_code == 202:
             response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
-
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(_models.Device, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
