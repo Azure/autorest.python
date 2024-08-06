@@ -138,6 +138,13 @@ interface RegenerateFlags {
     name?: string;
 }
 
+const SpecialFlags: Record<string, Record<string, any>> = {
+    azure: {
+        "generate-test": true,
+        "generate-sample": true,
+    },
+};
+
 async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promise<string[]> {
     const subdirectories: string[] = [];
 
@@ -197,6 +204,9 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         options = Object.assign(options, config);
     }
     options["flavor"] = flags.flavor;
+    for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
+        options[k] = v;
+    }
     if (options["emitter-output-dir"] === undefined) {
         const packageName = options["package-name"] || defaultPackageName(spec);
         options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`;
