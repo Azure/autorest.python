@@ -22,3 +22,5 @@ If you're adding flags, you'll need to add a `--` before including the flags
 ## @autorest/python
 
 ### Regenerating
+
+`inv regenerate`
