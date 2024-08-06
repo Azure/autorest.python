@@ -161,7 +161,11 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                     .then(() => true)
                     .catch(() => false);
 
-                if (toPosix(relative(baseDir, mainTspPath)).includes(flags.name || "")) {
+                if (
+                    toPosix(relative(baseDir, mainTspPath))
+                        .toLowerCase()
+                        .includes(flags.name || "")
+                ) {
                     if (hasClientTsp) {
                         subdirectories.push(resolve(subDirPath, "client.tsp"));
                     } else if (hasMainTsp) {
