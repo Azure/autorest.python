@@ -110,7 +110,7 @@ function toPosix(dir: string): string {
 }
 
 function getEmitterOption(spec: string): Record<string, string>[] {
-    const result = EMITTER_OPTIONS[toPosix(dirname(relative(CADL_RANCH_DIR, spec)))] || [];
+    const result = EMITTER_OPTIONS[toPosix(dirname(relative(CADL_RANCH_DIR, spec)))] || [{}];
     return Array.isArray(result) ? result : [result];
 }
 
