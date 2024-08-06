@@ -3431,7 +3431,8 @@ def test_required_prop_not_passed():
         model["requiredProperty"]
 
 
-def test_null_serilization(core_library):
+@pytest.fixture()
+def test_null_serialization(core_library):
     dict_response = {
         "name": "it's me!",
         "listOfMe": [
@@ -3945,7 +3946,7 @@ def test_deserialize():
     assert result == expected
 
 
-def test_enum_deserealization():
+def test_enum_deserialization():
     class MyEnum(Enum):
         A = "a"
         B = "b"
@@ -4049,3 +4050,7 @@ def test_additional_properties_serialization():
     model["durationProp"] = datetime.timedelta(days=1)
 
     assert json.loads(json.dumps(model, cls=SdkJSONEncoder)) == value
+
+
+if __name__ == "__main__":
+    pytest.main([__file__])
