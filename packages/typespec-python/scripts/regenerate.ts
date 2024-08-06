@@ -182,7 +182,9 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 }
 
 function defaultPackageName(spec: string): string {
-    return toPosix(relative(CADL_RANCH_DIR, dirname(spec))).replace(/\//g, "-").toLowerCase();
+    return toPosix(relative(CADL_RANCH_DIR, dirname(spec)))
+        .replace(/\//g, "-")
+        .toLowerCase();
 }
 
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): string[] {
