@@ -441,12 +441,9 @@ function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, an
                 }
                 break;
             case "TypeSpec.Xml.@unwrapped":
-                xmlMetadata["wrapped"] = false;
+                xmlMetadata["unwrapped"] = true;
                 break;
         }
-    }
-    if (xmlMetadata["wrapped"] === undefined) {
-        xmlMetadata["wrapped"] = true;
     }
     return xmlMetadata;
 }

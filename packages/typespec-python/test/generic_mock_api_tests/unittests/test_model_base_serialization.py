@@ -903,10 +903,10 @@ def test_deserialization_callback_override():
         return [str(entry) for entry in obj]
 
     class MyModel(Model):
-        prop: Sequence[int] = rest_field()
+        prop: Sequence[float] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Sequence[int]): ...
+        def __init__(self, *, prop: Sequence[float]): ...
 
         @overload
         def __init__(self, mapping: Mapping[str, Any], /): ...
@@ -919,7 +919,7 @@ def test_deserialization_callback_override():
     assert model_without_callback["prop"] == [1.3, 2.4, 3.5]
 
     class MyModel(Model):
-        prop: Sequence[int] = rest_field(type=_callback)
+        prop: Sequence[float] = rest_field(type=_callback)
 
         @overload
         def __init__(self, *, prop: Any): ...
@@ -1000,7 +1000,7 @@ def test_inheritance_basic():
 
 
 class ParentA(Model):
-    prop: int = rest_field()
+    prop: float = rest_field()
 
     @overload
     def __init__(self, *, prop: Any): ...

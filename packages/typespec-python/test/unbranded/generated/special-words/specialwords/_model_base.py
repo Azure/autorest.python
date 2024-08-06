@@ -25,6 +25,7 @@ from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.serialization import _Null
+import xml.etree.ElementTree as ET
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -378,13 +379,16 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
             return default
 
     @typing.overload
-    def pop(self, key: str) -> typing.Any: ...
+    def pop(self, key: str) -> typing.Any:
+        ...
 
     @typing.overload
-    def pop(self, key: str, default: _T) -> _T: ...
+    def pop(self, key: str, default: _T) -> _T:
+        ...
 
     @typing.overload
-    def pop(self, key: str, default: typing.Any) -> typing.Any: ...
+    def pop(self, key: str, default: typing.Any) -> typing.Any:
+        ...
 
     def pop(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         if default is _UNSET:
@@ -401,10 +405,12 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
         self._data.update(*args, **kwargs)
 
     @typing.overload
-    def setdefault(self, key: str, default: None = None) -> None: ...
+    def setdefault(self, key: str, default: None = None) -> None:
+        ...
 
     @typing.overload
-    def setdefault(self, key: str, default: typing.Any) -> typing.Any: ...
+    def setdefault(self, key: str, default: typing.Any) -> typing.Any:
+        ...
 
     def setdefault(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         if default is _UNSET:
@@ -471,6 +477,8 @@ def _create_value(rf: typing.Optional["_RestField"], value: typing.Any) -> typin
         return value
     if rf._is_model:
         return _deserialize(rf._type, value)
+    if isinstance(value, ET.Element):
+        value = _deserialize(rf._type, value)
     return _serialize(value, rf._format)
 
 
@@ -487,9 +495,55 @@ class Model(_MyMutableMapping):
             if rest_field._default is not _UNSET
         }
         if args:
-            dict_to_pass.update(
-                {k: _create_value(_get_rest_field(self._attr_to_rest_field, k), v) for k, v in args[0].items()}
-            )
+            if isinstance(args[0], ET.Element):
+                existed_attr_keys = []
+                model_meta = getattr(self, "_xml", {})
+
+                for _, rf in self._attr_to_rest_field.items():
+                    prop_meta = getattr(rf, "_xml", {})
+                    xml_name = prop_meta.get("name", rf._rest_name)
+                    xml_ns = prop_meta.get("ns", model_meta.get("ns", None))
+                    if xml_ns:
+                        xml_name = "{" + xml_ns + "}" + xml_name
+
+                    # attribute
+                    if prop_meta.get("attr", False) and args[0].get(xml_name) is not None:
+                        existed_attr_keys.append(xml_name)
+                        dict_to_pass[rf._rest_name] = args[0].get(xml_name)
+                        continue
+
+                    # unwrapped element
+                    if prop_meta.get("unwrapped", False):
+                        # unwrapped array could either use prop items meta/prop meta
+                        if prop_meta.get("itemsName"):
+                            xml_name = prop_meta.get("itemsName")
+                            xml_ns = prop_meta.get("itemNs")
+                            if xml_ns:
+                                xml_name = "{" + xml_ns + "}" + xml_name
+                        items = args[0].findall(xml_name)
+                        if len(items) > 0:
+                            existed_attr_keys.append(xml_name)
+                            dict_to_pass[rf._rest_name] = _create_value(rf, items)
+                            continue
+
+                        # unwrapped element could only be text or array
+                        if args[0].text is not None:
+                            dict_to_pass[rf._rest_name] = _create_value(rf, args[0].text)
+                        continue
+
+                    # wrapped element could be normal property or array, it should only have one element
+                    item = args[0].find(xml_name)
+                    if item is not None:
+                        existed_attr_keys.append(xml_name)
+                        dict_to_pass[rf._rest_name] = _create_value(rf, item)
+
+                for e in args[0]:
+                    if e.tag not in existed_attr_keys:
+                        dict_to_pass[e.tag] = _convert_element(e)
+            else:
+                dict_to_pass.update(
+                    {k: _create_value(_get_rest_field(self._attr_to_rest_field, k), v) for k, v in args[0].items()}
+                )
         else:
             non_attr_kwargs = [k for k in kwargs if k not in self._attr_to_rest_field]
             if non_attr_kwargs:
@@ -535,12 +589,12 @@ class Model(_MyMutableMapping):
                 base.__mapping__[discriminator or cls.__name__] = cls  # type: ignore  # pylint: disable=no-member
 
     @classmethod
-    def _get_discriminator(cls, exist_discriminators) -> typing.Optional[str]:
+    def _get_discriminator(cls, exist_discriminators) -> typing.Optional["_RestField"]:
         for v in cls.__dict__.values():
             if (
                 isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators
             ):  # pylint: disable=protected-access
-                return v._rest_name  # pylint: disable=protected-access
+                return v  # pylint: disable=protected-access
         return None
 
     @classmethod
@@ -548,10 +602,24 @@ class Model(_MyMutableMapping):
         if not hasattr(cls, "__mapping__"):  # pylint: disable=no-member
             return cls(data)
         discriminator = cls._get_discriminator(exist_discriminators)
-        exist_discriminators.append(discriminator)
-        mapped_cls = cls.__mapping__.get(data.get(discriminator), cls)  # pyright: ignore # pylint: disable=no-member
-        if mapped_cls == cls:
+        if discriminator is None:
             return cls(data)
+        exist_discriminators.append(discriminator._rest_name)
+        if isinstance(data, ET.Element):
+            model_meta = getattr(cls, "_xml", {})
+            prop_meta = getattr(discriminator, "_xml", {})
+            xml_name = prop_meta.get("name", discriminator._rest_name)
+            xml_ns = prop_meta.get("ns", model_meta.get("ns", None))
+            if xml_ns:
+                xml_name = "{" + xml_ns + "}" + xml_name
+
+            if data.get(xml_name) is not None:
+                discriminator_value = data.get(xml_name)
+            else:
+                discriminator_value = data.find(xml_name).text
+        else:
+            discriminator_value = data.get(discriminator._rest_name)
+        mapped_cls = cls.__mapping__.get(discriminator_value, cls)  # pyright: ignore # pylint: disable=no-member
         return mapped_cls._deserialize(data, exist_discriminators)  # pylint: disable=protected-access
 
     def as_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
@@ -618,6 +686,8 @@ def _deserialize_dict(
 ):
     if obj is None:
         return obj
+    if isinstance(obj, ET.Element):
+        obj = {child.tag: child for child in obj}
     return {k: _deserialize(value_deserializer, v, module) for k, v in obj.items()}
 
 
@@ -638,6 +708,8 @@ def _deserialize_sequence(
 ):
     if obj is None:
         return obj
+    if isinstance(obj, ET.Element):
+        obj = [child for child in obj]
     return type(obj)(_deserialize(deserializer, entry, module) for entry in obj)
 
 
@@ -653,7 +725,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
     module: typing.Optional[str],
     rf: typing.Optional["_RestField"] = None,
 ) -> typing.Optional[typing.Callable[[typing.Any], typing.Any]]:
-    if not annotation or annotation in [int, float]:
+    if not annotation:
         return None
 
     # is it a type alias?
@@ -746,6 +818,14 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         deserializer,
         obj,
     ):
+        if deserializer is str and isinstance(obj, ET.Element):
+            return obj.text or ""
+        if deserializer is int and isinstance(obj, ET.Element):
+            return int(obj.text) if obj.text else None
+        if deserializer is float and isinstance(obj, ET.Element):
+            return float(obj.text) if obj.text else None
+        if deserializer is bool and isinstance(obj, ET.Element):
+            return obj.text == "true" if obj.text else None
         if obj is None:
             return obj
         try:
@@ -809,6 +889,7 @@ class _RestField:
         default: typing.Any = _UNSET,
         format: typing.Optional[str] = None,
         is_multipart_file_input: bool = False,
+        xml: typing.Dict[str, typing.Any] = {},
     ):
         self._type = type
         self._rest_name_input = name
@@ -819,6 +900,7 @@ class _RestField:
         self._default = default
         self._format = format
         self._is_multipart_file_input = is_multipart_file_input
+        self._xml = xml
 
     @property
     def _class_type(self) -> typing.Any:
@@ -869,6 +951,7 @@ def rest_field(
     default: typing.Any = _UNSET,
     format: typing.Optional[str] = None,
     is_multipart_file_input: bool = False,
+    xml: typing.Dict[str, typing.Any] = {},
 ) -> typing.Any:
     return _RestField(
         name=name,
@@ -877,6 +960,7 @@ def rest_field(
         default=default,
         format=format,
         is_multipart_file_input=is_multipart_file_input,
+        xml=xml,
     )
 
 
@@ -885,5 +969,181 @@ def rest_discriminator(
     name: typing.Optional[str] = None,
     type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
     visibility: typing.Optional[typing.List[str]] = None,
+    xml: typing.Optional[typing.Dict[str, typing.Any]] = {},
 ) -> typing.Any:
-    return _RestField(name=name, type=type, is_discriminator=True, visibility=visibility)
+    return _RestField(name=name, type=type, is_discriminator=True, visibility=visibility, xml=xml)
+
+
+def serialize_xml(model: Model, exclude_readonly: bool = False) -> str:
+    """Serialize a model to XML.
+
+    :param Model model: The model to serialize.
+    :param bool exclude_readonly: Whether to exclude readonly properties.
+    :returns: The XML representation of the model.
+    :rtype: str
+    """
+    return ET.tostring(_get_element(model, exclude_readonly), encoding="unicode")
+
+
+def _get_element(
+    o: typing.Any,
+    exclude_readonly: bool = False,
+    parent_meta: typing.Optional[typing.Dict[str, typing.Any]] = None,
+    wrapped_element: typing.Optional[ET.Element] = None,
+) -> typing.Union[ET.Element, typing.List[ET.Element]]:
+    if _is_model(o):
+        model_meta = getattr(o, "_xml", {})
+
+        # if prop is a model, then use the prop element directly, else generate a wrapper of model
+        if wrapped_element is None:
+            wrapped_element = _create_xml_element(
+                model_meta.get("name", o.__class__.__name__),
+                model_meta.get("prefix"),
+                model_meta.get("ns"),
+            )
+
+        if exclude_readonly:
+            readonly_props = [
+                p._rest_name for p in o._attr_to_rest_field.values() if _is_readonly(p)
+            ]
+
+        for k, v in o.items():
+            # do not serialize readonly properties
+            if exclude_readonly and k in readonly_props:
+                continue
+
+            prop_rest_field = _get_rest_field(o._attr_to_rest_field, k)
+            if prop_rest_field:
+                prop_meta = getattr(prop_rest_field, "_xml")
+                # use the wire name as xml name if no specific name is set
+                if prop_meta.get("name") is None:
+                    prop_meta["name"] = k
+            else:
+                # additional properties will not have rest field, use the wire name as xml name
+                prop_meta = {"name": k}
+
+            # if no ns for prop, use model's
+            if prop_meta.get("ns") is None and model_meta.get("ns"):
+                prop_meta["ns"] = model_meta.get("ns")
+                prop_meta["prefix"] = model_meta.get("prefix")
+
+            if prop_meta.get("unwrapped", False):
+                # unwrapped could only set on array or primitive type
+                if isinstance(v, list):
+                    wrapped_element.extend(_get_element(v, exclude_readonly, prop_meta))
+                else:
+                    wrapped_element.text = _get_primitive_type_value(v)
+            elif prop_meta.get("attr", False):
+                xml_name = prop_meta.get("name", k)
+                if prop_meta.get("ns"):
+                    ET.register_namespace(prop_meta.get("prefix"), prop_meta.get("ns"))
+                    xml_name = "{" + prop_meta.get("ns") + "}" + xml_name
+                # attribute should be primitive type
+                wrapped_element.set(xml_name, _get_primitive_type_value(v))
+            else:
+                # other wrapped prop element
+                wrapped_element.append(
+                    _get_wrapped_element(v, exclude_readonly, prop_meta)
+                )
+        return wrapped_element
+    if isinstance(o, list):
+        return [_get_element(x, exclude_readonly, parent_meta) for x in o]
+    if isinstance(o, dict):
+        result = []
+        for k, v in o.items():
+            result.append(
+                _get_wrapped_element(
+                    v,
+                    exclude_readonly,
+                    {
+                        "name": k,
+                        "ns": parent_meta.get("ns"),
+                        "prefix": parent_meta.get("prefix"),
+                    },
+                )
+            )
+        return result
+
+    # primitive case need to create element based on parent_meta
+    if parent_meta:
+        return _get_wrapped_element(
+            o,
+            exclude_readonly,
+            {
+                "name": parent_meta.get("itemsName", parent_meta.get("name")),
+                "prefix": parent_meta.get("itemsPrefix", parent_meta.get("prefix")),
+                "ns": parent_meta.get("itemsNs", parent_meta.get("ns")),
+            },
+        )
+
+    raise ValueError("Could not serialize value into xml: " + o)
+
+
+def _get_wrapped_element(
+    v: typing.Any,
+    exclude_readonly: bool,
+    meta: typing.Optional[typing.Dict[str, typing.Any]],
+) -> ET.Element:
+    wrapped_element = _create_xml_element(
+        meta.get("name"), meta.get("prefix"), meta.get("ns")
+    )
+    if isinstance(v, list) or isinstance(v, dict):
+        wrapped_element.extend(_get_element(v, exclude_readonly, meta))
+    elif _is_model(v):
+        _get_element(v, exclude_readonly, meta, wrapped_element)
+    else:
+        wrapped_element.text = _get_primitive_type_value(v)
+    return wrapped_element
+
+
+def _get_primitive_type_value(v) -> str:
+    if v is True:
+        return "true"
+    elif v is False:
+        return "false"
+    elif isinstance(v, _Null):
+        return ""
+    else:
+        return str(v)
+
+
+def _create_xml_element(tag, prefix=None, ns=None):
+    if prefix and ns:
+        ET.register_namespace(prefix, ns)
+    if ns:
+        return ET.Element("{" + ns + "}" + tag)
+    else:
+        return ET.Element(tag)
+
+
+def _deserialize_xml(
+    model: Model,
+    value: str,
+) -> typing.Any:
+    element = ET.fromstring(value)
+    return _deserialize(model, element)
+
+
+def _convert_element(e: ET.Element):
+    # dict case
+    if len(e.attrib) > 0 or len(set([child.tag for child in e])) > 1:
+        result = {}
+        for child in e:
+            if result.get(child.tag) is not None:
+                if isinstance(result[child.tag], list):
+                    result[child.tag].append(_convert_element(child))
+                else:
+                    result[child.tag] = [result[child.tag], _convert_element(child)]
+            else:
+                result[child.tag] = _convert_element(child)
+        result.update(e.attrib)
+        return result
+    # array case
+    elif len(e) > 0:
+        result = []
+        for child in e:
+            result.append(_convert_element(child))
+        return result
+    # primitive case
+    else:
+        return e.text
