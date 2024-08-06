@@ -200,38 +200,41 @@ function defaultPackageName(spec: string): string {
 }
 
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): string[] {
-    let options: Record<string, string> = {};
+    const emitterConfigs: string[] = [];
     for (const config of getEmitterOption(spec)) {
-        options = Object.assign(options, config);
+        const options: Record<string, string> = { ...config };
+        options["flavor"] = flags.flavor;
+        for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
+            options[k] = v;
+        }
+        if (options["emitter-output-dir"] === undefined) {
+            const packageName = options["package-name"] || defaultPackageName(spec);
+            options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`;
+        }
+        if (flags.debug) {
+            options["debug"] = "true";
+        }
+        if (flags.flavor === "unbranded") {
+            options["company-name"] = "Unbranded";
+        }
+        options["examples-directory"] = join(dirname(spec), "examples");
+        const configs = Object.entries(options).flatMap(([k, v]) => {
+            return `--option @azure-tools/typespec-python.${k}=${v}`;
+        });
+        emitterConfigs.push(configs.join(" "));
     }
-    options["flavor"] = flags.flavor;
-    for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
-        options[k] = v;
-    }
-    if (options["emitter-output-dir"] === undefined) {
-        const packageName = options["package-name"] || defaultPackageName(spec);
-        options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`;
-    }
-    if (flags.debug) {
-        options["debug"] = "true";
-    }
-    if (flags.flavor === "unbranded") {
-        options["company-name"] = "Unbranded";
-    }
-    options["examples-directory"] = join(dirname(spec), "examples");
-    const emitterConfigs = Object.entries(options).flatMap(([k, v]) => {
-        return `--option @azure-tools/typespec-python.${k}=${v}`;
-    });
-
     return emitterConfigs;
 }
 
 async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<void> {
     // Perform some asynchronous operation here
     const options = addOptions(spec, PLUGIN_DIR, flags);
-    const command = `tsp compile ${spec} --emit=${PLUGIN_DIR} ${options.join(" ")}`;
-    console.log(command);
-    await executeCommand(command);
+    const commandPromises = options.map((option) => {
+        const command = `tsp compile ${spec} --emit=${PLUGIN_DIR} ${option}`;
+        console.log(command);
+        return executeCommand(command);
+    });
+    await Promise.all(commandPromises);
 }
 
 async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
