@@ -90,9 +90,6 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "type/union": {
         "package-name": "typetest-union",
     },
-    "azure/core/lro/rpc-legacy": {
-        "package-name": "azurecore-lro-rpclegacy",
-    },
     "azure/core/lro/rpc": {
         "package-name": "azurecore-lro-rpc",
     },
@@ -108,8 +105,12 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "mgmt/sphere": [{ "package-name": "azure-mgmt-spheredpg" }],
 };
 
+function toPosix(dir: string): string {
+    return dir.replace(/\\/g, "/");
+}
+
 function getEmitterOption(spec: string): Record<string, string>[] {
-    const result = EMITTER_OPTIONS[dirname(relative(CADL_RANCH_DIR, spec))] || [];
+    const result = EMITTER_OPTIONS[toPosix(dirname(relative(CADL_RANCH_DIR, spec)))] || [];
     return Array.isArray(result) ? result : [result];
 }
 
@@ -149,7 +150,6 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const mainTspPath = join(subDirPath, "main.tsp");
                 const clientTspPath = join(subDirPath, "client.tsp");
 
-                if (!mainTspPath.includes(flags.name || "")) return;
                 if (flags.flavor === "unbranded" && mainTspPath.includes("azure")) return;
 
                 const hasMainTsp = await promises
@@ -161,10 +161,12 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                     .then(() => true)
                     .catch(() => false);
 
-                if (hasClientTsp) {
-                    subdirectories.push(resolve(subDirPath, "client.tsp"));
-                } else if (hasMainTsp) {
-                    subdirectories.push(resolve(subDirPath, "main.tsp"));
+                if (toPosix(relative(baseDir, mainTspPath)).includes(flags.name || "")) {
+                    if (hasClientTsp) {
+                        subdirectories.push(resolve(subDirPath, "client.tsp"));
+                    } else if (hasMainTsp) {
+                        subdirectories.push(resolve(subDirPath, "main.tsp"));
+                    }
                 }
 
                 // Recursively search in the subdirectory
@@ -180,7 +182,7 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 }
 
 function defaultPackageName(spec: string): string {
-    return relative(CADL_RANCH_DIR, dirname(spec)).replace(/\//g, "-").toLowerCase();
+    return toPosix(relative(CADL_RANCH_DIR, dirname(spec))).replace(/\//g, "-").toLowerCase();
 }
 
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): string[] {
