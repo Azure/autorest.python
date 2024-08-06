@@ -20,6 +20,7 @@ steps:
           installTypeSpec: true
           installCadlRanch: true
           folderName: "typespec-python"
+          regenerate: true
 
     - script: |
             tox run -e ci

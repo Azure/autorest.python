@@ -5,8 +5,7 @@ parameters:
     folderName: ""
     pythonCodeChecks: false
     pythonFolderName: ""
-    regenerateWithNpm: true
-    regenerateWithInv: false
+    regenerate: false
     checkChange: true
     updateToLatestTypespec: false
 
@@ -117,12 +116,12 @@ steps:
     - script: inv regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerateWithInv }})
+      condition: and(succeeded(), ${{ parameters.regenerate }}, eq(${{parameters.folderName}}, "autorest.python"))
 
     - script: npm run regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerateWithNpm }})
+      condition: and(succeeded(), ${{ parameters.regenerate }}, eq(${{parameters.folderName}}, "typespec-python"))
 
     - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Typespec
