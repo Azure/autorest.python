@@ -218,6 +218,7 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
     if (flags.flavor === "unbranded") {
         options["company-name"] = "Unbranded";
     }
+    options["examples-directory"] = join(dirname(spec), "examples");
     const emitterConfigs = Object.entries(options).flatMap(([k, v]) => {
         return `--option @azure-tools/typespec-python.${k}=${v}`;
     });
