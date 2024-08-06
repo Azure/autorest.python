@@ -157,7 +157,8 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const mainTspPath = join(subDirPath, "main.tsp");
                 const clientTspPath = join(subDirPath, "client.tsp");
 
-                if (flags.flavor === "unbranded" && mainTspPath.includes("azure")) return;
+                const mainTspRelativePath = relative(baseDir, mainTspPath);
+                if (flags.flavor === "unbranded" && mainTspRelativePath.includes("azure")) return;
 
                 const hasMainTsp = await promises
                     .access(mainTspPath)
@@ -169,7 +170,7 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                     .catch(() => false);
 
                 if (
-                    toPosix(relative(baseDir, mainTspPath))
+                    toPosix(mainTspRelativePath)
                         .toLowerCase()
                         .includes(flags.name || "")
                 ) {
