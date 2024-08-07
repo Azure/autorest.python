@@ -110,7 +110,9 @@ function toPosix(dir: string): string {
 }
 
 function getEmitterOption(spec: string): Record<string, string>[] {
-    const result = EMITTER_OPTIONS[toPosix(dirname(relative(CADL_RANCH_DIR, spec)))] || [{}];
+    const relativeSpec = toPosix(relative(CADL_RANCH_DIR, spec));
+    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
+    const result = EMITTER_OPTIONS[key] || [{}];
     return Array.isArray(result) ? result : [result];
 }
 
@@ -157,7 +159,7 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const mainTspPath = join(subDirPath, "main.tsp");
                 const clientTspPath = join(subDirPath, "client.tsp");
 
-                const mainTspRelativePath = relative(baseDir, mainTspPath);
+                const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
                 if (flags.flavor === "unbranded" && mainTspRelativePath.includes("azure")) return;
 
                 const hasMainTsp = await promises
@@ -169,11 +171,10 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                     .then(() => true)
                     .catch(() => false);
 
-                if (
-                    toPosix(mainTspRelativePath)
-                        .toLowerCase()
-                        .includes(flags.name || "")
-                ) {
+                if (mainTspRelativePath.toLowerCase().includes(flags.name || "")) {
+                    if (mainTspRelativePath.includes("resiliency/srv-driven")) {
+                        subdirectories.push(resolve(subDirPath, "old.tsp"));
+                    }
                     if (hasClientTsp) {
                         subdirectories.push(resolve(subDirPath, "client.tsp"));
                     } else if (hasMainTsp) {
