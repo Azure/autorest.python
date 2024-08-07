@@ -524,7 +524,7 @@ class Model(_MyMutableMapping):
         # label whether current class's _attr_to_rest_field has been calculated
         # could not see _attr_to_rest_field directly because subclass inherits it from parent class
         if not hasattr(cls, "_calculated"):
-            cls._calculated = set()
+            cls._calculated: typing.Set[str] = set()
         if cls.__name__ not in cls._calculated:
             # we know the last nine classes in mro are going to be 'Model', '_MyMutableMapping', 'MutableMapping', 
             # 'Mapping', 'Collection', 'Sized', 'Iterable', 'Container' and 'object'
