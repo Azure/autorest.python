@@ -508,24 +508,31 @@ class Model(_MyMutableMapping):
         return Model(self.__dict__)
 
     def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> Self:  # pylint: disable=unused-argument
-        # we know the last three classes in mro are going to be 'Model', 'dict', and 'object'
-        mros = cls.__mro__[:-3][::-1]  # ignore model, dict, and object parents, and reverse the mro order
-        attr_to_rest_field: typing.Dict[str, _RestField] = {  # map attribute name to rest_field property
-            k: v for mro_class in mros for k, v in mro_class.__dict__.items() if k[0] != "_" and hasattr(v, "_type")
-        }
-        annotations = {
-            k: v
-            for mro_class in mros
-            if hasattr(mro_class, "__annotations__")  # pylint: disable=no-member
-            for k, v in mro_class.__annotations__.items()  # pylint: disable=no-member
-        }
-        for attr, rf in attr_to_rest_field.items():
-            rf._module = cls.__module__
-            if not rf._type:
-                rf._type = rf._get_deserialize_callable_from_annotation(annotations.get(attr, None))
-            if not rf._rest_name_input:
-                rf._rest_name_input = attr
-        cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(attr_to_rest_field.items())
+        # label whether current class's _attr_to_rest_field has been calculated
+        # could not see _attr_to_rest_field directly because subclass inherits it from parent class
+        if not hasattr(cls, "_calculated"):
+            cls._calculated = set()
+        if cls.__name__ not in cls._calculated:
+            # we know the last nine classes in mro are going to be 'Model', '_MyMutableMapping', 'MutableMapping',
+            # 'Mapping', 'Collection', 'Sized', 'Iterable', 'Container' and 'object'
+            mros = cls.__mro__[:-9][::-1]  # ignore model, dict, and object parents, and reverse the mro order
+            attr_to_rest_field: typing.Dict[str, _RestField] = {  # map attribute name to rest_field property
+                k: v for mro_class in mros for k, v in mro_class.__dict__.items() if k[0] != "_" and hasattr(v, "_type")
+            }
+            annotations = {
+                k: v
+                for mro_class in mros
+                if hasattr(mro_class, "__annotations__")  # pylint: disable=no-member
+                for k, v in mro_class.__annotations__.items()  # pylint: disable=no-member
+            }
+            for attr, rf in attr_to_rest_field.items():
+                rf._module = cls.__module__
+                if not rf._type:
+                    rf._type = rf._get_deserialize_callable_from_annotation(annotations.get(attr, None))
+                if not rf._rest_name_input:
+                    rf._rest_name_input = attr
+            cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(attr_to_rest_field.items())
+            cls._calculated.add(cls.__name__)
 
         return super().__new__(cls)  # pylint: disable=no-value-for-parameter
 
