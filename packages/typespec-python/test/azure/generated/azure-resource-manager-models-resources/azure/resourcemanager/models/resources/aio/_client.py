@@ -37,8 +37,8 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :param base_url: Service host. Default value is "https://management.azure.com".
-    :type base_url: str
+    :keyword endpoint: Service host. Default value is "https://management.azure.com".
+    :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -51,10 +51,14 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         self,
         credential: "AsyncTokenCredential",
         subscription_id: str,
-        base_url: str = "https://management.azure.com",
+        *,
+        endpoint: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = ResourcesClientConfiguration(credential=credential, subscription_id=subscription_id, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = ResourcesClientConfiguration(
+            credential=credential, subscription_id=subscription_id, endpoint=endpoint, **kwargs
+        )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -73,7 +77,7 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -106,7 +110,11 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
