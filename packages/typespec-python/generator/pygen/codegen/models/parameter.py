@@ -374,7 +374,7 @@ class ClientParameter(Parameter):
     def method_location(self) -> ParameterMethodLocation:
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.client_default_value is not None:
+        if self.client_default_value is not None and self.code_model.options["version_tolerant"]:
             return ParameterMethodLocation.KEYWORD_ONLY
         if (
             self.is_host
