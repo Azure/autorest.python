@@ -116,8 +116,7 @@ export function isAzureCoreModel(t: SdkType | undefined): boolean {
     return (
         tspType.kind === "Model" &&
         tspType.namespace !== undefined &&
-        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace)) &&
-        !["EmbeddingVector"].includes(tspType.name)
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace))
     );
 }
 
