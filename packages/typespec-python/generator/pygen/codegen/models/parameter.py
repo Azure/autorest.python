@@ -374,14 +374,14 @@ class ClientParameter(Parameter):
     def method_location(self) -> ParameterMethodLocation:
         if self.constant:
             return ParameterMethodLocation.KWARG
-        if self.client_default_value is not None and self.code_model.options["version_tolerant"]:
-            return ParameterMethodLocation.KEYWORD_ONLY
         if (
             self.is_host
             and (self.code_model.options["version_tolerant"] or self.code_model.options["low_level_client"])
             and not self.code_model.options["azure_arm"]
         ):
             # this means i am the base url
+            return ParameterMethodLocation.KEYWORD_ONLY
+        if self.client_default_value is not None and self.code_model.options["from_typespec"]:
             return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
