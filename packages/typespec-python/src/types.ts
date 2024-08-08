@@ -416,7 +416,10 @@ export const KnownTypes = {
     any: { type: "any" },
 };
 
-export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(context: PythonSdkContext<TServiceOperation>, type: SdkEndpointType): Record<string, any>[] {
+export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkEndpointType,
+): Record<string, any>[] {
     const params: Record<string, any>[] = [];
     for (const param of type.templateArguments) {
         params.push({
