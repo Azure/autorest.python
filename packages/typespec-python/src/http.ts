@@ -69,7 +69,7 @@ function emitInitialLroHttpMethod(
     operationGroupName: string,
 ): Record<string, any> {
     return {
-        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation),
+        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation, method),
         name: `_${camelToSnakeCase(method.name)}_initial`,
         isLroInitialOperation: true,
         wantTracing: false,
@@ -169,7 +169,7 @@ function emitHttpOperation(
         responses.push(emitHttpResponse(context, statusCodes, response, method)!);
     }
     for (const [statusCodes, exception] of operation.exceptions) {
-        exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
+        exceptions.push(emitHttpResponse(context, statusCodes, exception, undefined, true)!);
     }
     const result = {
         url: operation.path,
@@ -326,13 +326,20 @@ function emitHttpResponse(
     statusCodes: HttpStatusCodeRange | number | "*",
     response: SdkHttpResponse,
     method?: SdkServiceMethod<SdkHttpOperation>,
+    isException = false,
 ): Record<string, any> | undefined {
     if (!response) return undefined;
     let type = undefined;
-    if (response.type && !isAzureCoreModel(response.type)) {
+    if (isException) {
+        if (response.type && !isAzureCoreModel(response.type)) {
+            type = getType(context, response.type);
+        }
+    } else if (method && !method.kind.includes("basic")) {
+        if (method.response.type) {
+            type = getType(context, method.response.type);
+        }
+    } else if (response.type) {
         type = getType(context, response.type);
-    } else if (method && method.response.type && !isAzureCoreModel(method.response.type)) {
-        type = getType(context, method.response.type);
     }
     return {
         headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
