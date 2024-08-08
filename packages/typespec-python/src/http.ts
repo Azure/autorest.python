@@ -23,7 +23,7 @@ import {
     getDescriptionAndSummary,
     getImplementation,
     isAbstract,
-    isAzureCoreModel,
+    isAzureCoreErrorResponse,
 } from "./utils.js";
 import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
@@ -103,8 +103,8 @@ function addPagingInformation(
     operationGroupName: string,
 ) {
     for (const response of method.operation.responses.values()) {
-        if (response.type && !isAzureCoreModel(response.type)) {
-            getType(context, response.type)["pageResultModel"] = true;
+        if (response.type) {
+            getType(context, response.type)["usage"] = UsageFlags.None;
         }
     }
     const itemType = getType(context, method.response.type!);
@@ -331,7 +331,7 @@ function emitHttpResponse(
     if (!response) return undefined;
     let type = undefined;
     if (isException) {
-        if (response.type && !isAzureCoreModel(response.type)) {
+        if (response.type && !isAzureCoreErrorResponse(response.type)) {
             type = getType(context, response.type);
         }
     } else if (method && !method.kind.includes("basic")) {

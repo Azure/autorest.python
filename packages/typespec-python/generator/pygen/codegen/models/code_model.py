@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Set, Union, Literal
 
 from .base import BaseType
 from .enum_type import EnumType
-from .model_type import ModelType
+from .model_type import ModelType, UsageFlags
 from .combined_type import CombinedType
 from .client import Client
 from .request_builder import RequestBuilder, OverloadedRequestBuilder
@@ -164,7 +164,7 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
             self._model_types = [
                 t
                 for t in self.types_map.values()
-                if isinstance(t, ModelType) and not (self.options["models_mode"] == "dpg" and t.page_result_model)
+                if isinstance(t, ModelType) and t.usage != UsageFlags.Default.value
             ]
         return self._model_types
 

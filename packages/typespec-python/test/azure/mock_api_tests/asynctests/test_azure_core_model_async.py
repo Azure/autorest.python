@@ -30,4 +30,4 @@ async def test_azure_core_embedding_vector_put(client: ModelClient):
 
 @pytest.mark.asyncio
 async def test_azure_core_embedding_vector_get(client: ModelClient):
-    await [0, 1, 2, 3, 4] == client.azure_core_embedding_vector.get()
+    assert [0, 1, 2, 3, 4] == (await client.azure_core_embedding_vector.get())
