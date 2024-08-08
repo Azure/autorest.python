@@ -4,27 +4,30 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from specs.azure.core.model import ModelClient
+from specs.azure.core.model.aio import ModelClient
 from specs.azure.core.model.models import AzureEmbeddingModel
 
 
 @pytest.fixture
-def client():
-    with ModelClient() as client:
+async def client():
+    async with ModelClient() as client:
         yield client
 
 
-def test_azure_core_embedding_vector_post(client: ModelClient):
+@pytest.mark.asyncio
+async def test_azure_core_embedding_vector_post(client: ModelClient):
     embedding_model = AzureEmbeddingModel(embedding=[0, 1, 2, 3, 4])
-    result = client.azure_core_embedding_vector.post(
+    result = await client.azure_core_embedding_vector.post(
         body=embedding_model,
     )
     assert result == AzureEmbeddingModel(embedding=[5, 6, 7, 8, 9])
 
 
-def test_azure_core_embedding_vector_put(client: ModelClient):
-    client.azure_core_embedding_vector.put(body=[0, 1, 2, 3, 4])
+@pytest.mark.asyncio
+async def test_azure_core_embedding_vector_put(client: ModelClient):
+    await client.azure_core_embedding_vector.put(body=[0, 1, 2, 3, 4])
 
 
-def test_azure_core_embedding_vector_get(client: ModelClient):
-    client.azure_core_embedding_vector.get()
+@pytest.mark.asyncio
+async def test_azure_core_embedding_vector_get(client: ModelClient):
+    await [0, 1, 2, 3, 4] == client.azure_core_embedding_vector.get()
