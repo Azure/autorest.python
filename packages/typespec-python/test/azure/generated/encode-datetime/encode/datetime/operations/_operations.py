@@ -98,7 +98,7 @@ def build_query_unix_timestamp_array_request(*, value: List[datetime.datetime], 
     _url = "/encode/datetime/query/unix-timestamp-array"
 
     # Construct parameters
-    _params["value"] = [_SERIALIZER.query("value", q, "unix-time") if q is not None else "" for q in value]
+    _params["value"] = _SERIALIZER.query("value", value, "[unix-time]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -245,7 +245,7 @@ def build_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
     _url = "/encode/datetime/header/unix-timestamp-array"
 
     # Construct headers
-    _headers["value"] = [_SERIALIZER.header("value", q, "unix-time") if q is not None else "" for q in value]
+    _headers["value"] = _SERIALIZER.header("value", value, "[unix-time]", div=",")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 

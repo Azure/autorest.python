@@ -89,7 +89,7 @@ def build_query_csv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
     _url = "/parameters/collection-format/query/csv"
 
     # Construct parameters
-    _params["colors"] = [_SERIALIZER.query("colors", q, "str") if q is not None else "" for q in colors]
+    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -101,7 +101,7 @@ def build_header_csv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest
     _url = "/parameters/collection-format/header/csv"
 
     # Construct headers
-    _headers["colors"] = [_SERIALIZER.header("colors", q, "str") if q is not None else "" for q in colors]
+    _headers["colors"] = _SERIALIZER.header("colors", colors, "[str]", div=",")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 

@@ -85,7 +85,7 @@ def build_query_base64url_array_request(*, value: List[bytes], **kwargs: Any) ->
     _url = "/encode/bytes/query/base64url-array"
 
     # Construct parameters
-    _params["value"] = [_SERIALIZER.query("value", q, "base64") if q is not None else "" for q in value]
+    _params["value"] = _SERIALIZER.query("value", value, "[base64]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -201,7 +201,7 @@ def build_header_base64url_array_request(*, value: List[bytes], **kwargs: Any) -
     _url = "/encode/bytes/header/base64url-array"
 
     # Construct headers
-    _headers["value"] = [_SERIALIZER.header("value", q, "base64") if q is not None else "" for q in value]
+    _headers["value"] = _SERIALIZER.header("value", value, "[base64]", div=",")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
