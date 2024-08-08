@@ -15,9 +15,10 @@ import {
     SdkDurationType,
     SdkCredentialType,
     SdkServiceOperation,
+    SdkEndpointType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
-import { camelToSnakeCase, getAddedOn } from "./utils.js";
+import { camelToSnakeCase, emitParamBase, getAddedOn, getImplementation } from "./utils.js";
 import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
@@ -414,3 +415,23 @@ export const KnownTypes = {
     anyObject: { type: "any-object" },
     any: { type: "any" },
 };
+
+export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkEndpointType,
+): Record<string, any>[] {
+    const params: Record<string, any>[] = [];
+    for (const param of type.templateArguments) {
+        params.push({
+            ...emitParamBase(context, param),
+            optional: Boolean(param.clientDefaultValue),
+            wireName: param.name,
+            location: "endpointPath",
+            implementation: getImplementation(context, param),
+            clientDefaultValue: param.clientDefaultValue,
+            skipUrlEncoding: param.urlEncode === false,
+        });
+        context.__endpointPathParameters!.push(params.at(-1)!);
+    }
+    return params;
+}

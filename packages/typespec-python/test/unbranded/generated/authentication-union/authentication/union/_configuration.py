@@ -28,13 +28,21 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
      ServiceKeyCredential type or a TokenCredential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.TokenCredential
+    :param endpoint: Service host. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(self, credential: Union[ServiceKeyCredential, "TokenCredential"], **kwargs: Any) -> None:
+    def __init__(
+        self,
+        credential: Union[ServiceKeyCredential, "TokenCredential"],
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any,
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.endpoint = endpoint
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
         kwargs.setdefault("sdk_moniker", "authentication-union/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
