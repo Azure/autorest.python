@@ -84,9 +84,8 @@ class ModelType(  # pylint: disable=abstract-method
         self._got_polymorphic_subtypes = False
         self.internal: bool = self.yaml_data.get("internal", False)
         self.snake_case_name: str = self.yaml_data["snakeCaseName"]
-        self.page_result_model: bool = self.yaml_data.get("pageResultModel", False)
         self.cross_language_definition_id: Optional[str] = self.yaml_data.get("crossLanguageDefinitionId")
-        self.usage: int = self.yaml_data.get("usage", 0)
+        self.usage: int = self.yaml_data.get("usage", UsageFlags.Input.value | UsageFlags.Output.value)
 
     @property
     def is_usage_output(self) -> bool:

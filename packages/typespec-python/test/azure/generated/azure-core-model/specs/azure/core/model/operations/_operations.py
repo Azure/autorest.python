@@ -105,12 +105,20 @@ class AzureCoreEmbeddingVectorOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def get(self, **kwargs: Any) -> List[int]:
         """get an embedding vector.
 
-        :return: None
-        :rtype: None
+        :return: list of int
+        :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # response body for status code(s): 200
+                response == [
+                    0
+                ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -123,7 +131,7 @@ class AzureCoreEmbeddingVectorOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
         _request = build_azure_core_embedding_vector_get_request(
             headers=_headers,
@@ -134,7 +142,7 @@ class AzureCoreEmbeddingVectorOperations:
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -142,11 +150,23 @@ class AzureCoreEmbeddingVectorOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(List[int], response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
     def put(  # pylint: disable=inconsistent-return-statements

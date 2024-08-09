@@ -109,14 +109,15 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     };
 }
 
-export function isAzureCoreModel(t: SdkType | undefined): boolean {
+export function isAzureCoreErrorResponse(t: SdkType | undefined): boolean {
     if (!t) return false;
     const tspType = t.__raw;
     if (!tspType) return false;
     return (
         tspType.kind === "Model" &&
         tspType.namespace !== undefined &&
-        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace))
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace)) &&
+        tspType.name === "ErrorResponse"
     );
 }
 

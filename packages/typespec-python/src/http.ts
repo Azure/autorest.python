@@ -23,7 +23,7 @@ import {
     getDescriptionAndSummary,
     getImplementation,
     isAbstract,
-    isAzureCoreModel,
+    isAzureCoreErrorResponse,
 } from "./utils.js";
 import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
@@ -68,7 +68,7 @@ function emitInitialLroHttpMethod(
     operationGroupName: string,
 ): Record<string, any> {
     return {
-        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation),
+        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation, method),
         name: `_${camelToSnakeCase(method.name)}_initial`,
         isLroInitialOperation: true,
         wantTracing: false,
@@ -102,8 +102,8 @@ function addPagingInformation(
     operationGroupName: string,
 ) {
     for (const response of method.operation.responses.values()) {
-        if (response.type && !isAzureCoreModel(response.type)) {
-            getType(context, response.type)["pageResultModel"] = true;
+        if (response.type) {
+            getType(context, response.type)["usage"] = UsageFlags.None;
         }
     }
     const itemType = getType(context, method.response.type!);
@@ -168,7 +168,7 @@ function emitHttpOperation(
         responses.push(emitHttpResponse(context, statusCodes, response, method)!);
     }
     for (const [statusCodes, exception] of operation.exceptions) {
-        exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
+        exceptions.push(emitHttpResponse(context, statusCodes, exception, undefined, true)!);
     }
     const result = {
         url: operation.path,
@@ -326,13 +326,20 @@ function emitHttpResponse(
     statusCodes: HttpStatusCodeRange | number | "*",
     response: SdkHttpResponse,
     method?: SdkServiceMethod<SdkHttpOperation>,
+    isException = false,
 ): Record<string, any> | undefined {
     if (!response) return undefined;
     let type = undefined;
-    if (response.type && !isAzureCoreModel(response.type)) {
+    if (isException) {
+        if (response.type && !isAzureCoreErrorResponse(response.type)) {
+            type = getType(context, response.type);
+        }
+    } else if (method && !method.kind.includes("basic")) {
+        if (method.response.type) {
+            type = getType(context, method.response.type);
+        }
+    } else if (response.type) {
         type = getType(context, response.type);
-    } else if (method && method.response.type && !isAzureCoreModel(method.response.type)) {
-        type = getType(context, method.response.type);
     }
     return {
         headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),
