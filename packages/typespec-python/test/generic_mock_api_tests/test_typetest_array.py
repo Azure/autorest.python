@@ -89,8 +89,8 @@ def test_nullable_model_value(client: ArrayClient):
 
 
 def test_nullable_string_value(client: ArrayClient):
-    assert client.nullable_string_value.get() == ['hello', None, 'world']
-    client.nullable_string_value.put(['hello', None, 'world'])
+    assert client.nullable_string_value.get() == ["hello", None, "world"]
+    client.nullable_string_value.put(["hello", None, "world"])
 
 
 def test_string_value(client: ArrayClient):

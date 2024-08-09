@@ -35,4 +35,6 @@ def test_delete_model(client):
 
 
 def test_put_read_only_model(client):
-    client.put_read_only_model(models.ReadOnlyModel(optional_nullable_int_list=[1, 2], optional_string_record={"foo", "bar"}))
+    client.put_read_only_model(
+        models.ReadOnlyModel(optional_nullable_int_list=[1, 2], optional_string_record={"foo", "bar"})
+    )

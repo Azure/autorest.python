@@ -42,4 +42,6 @@ async def test_delete_model(client):
 
 @pytest.mark.asyncio
 async def test_put_read_only_model(client):
-    await client.put_read_only_model(models.ReadOnlyModel(optional_nullable_int_list=[1, 2], optional_string_record={"foo", "bar"}))
+    await client.put_read_only_model(
+        models.ReadOnlyModel(optional_nullable_int_list=[1, 2], optional_string_record={"foo", "bar"})
+    )

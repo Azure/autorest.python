@@ -102,8 +102,8 @@ async def test_nullable_model_value(client: ArrayClient):
 
 @pytest.mark.asyncio
 async def test_nullable_string_value(client: ArrayClient):
-    assert await client.nullable_string_value.get() == ['hello', None, 'world']
-    await client.nullable_string_value.put(['hello', None, 'world'])
+    assert await client.nullable_string_value.get() == ["hello", None, "world"]
+    await client.nullable_string_value.put(["hello", None, "world"])
 
 
 @pytest.mark.asyncio

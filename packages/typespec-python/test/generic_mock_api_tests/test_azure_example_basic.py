@@ -17,11 +17,7 @@ def client():
 def test_basic_action(client: AzureExampleClient):
     body = ActionRequest(
         string_property="text",
-        model_property=Model(
-            int32_property=1,
-            float32_property=1.5,
-            enum_property="EnumValue1"
-        ),
+        model_property=Model(int32_property=1, float32_property=1.5, enum_property="EnumValue1"),
         array_property=["item"],
         record_property={"record": "value"},
     )
