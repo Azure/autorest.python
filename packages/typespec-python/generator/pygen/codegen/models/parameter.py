@@ -381,6 +381,8 @@ class ClientParameter(Parameter):
         ):
             # this means i am the base url
             return ParameterMethodLocation.KEYWORD_ONLY
+        if self.client_default_value is not None and self.code_model.options["from_typespec"]:
+            return ParameterMethodLocation.KEYWORD_ONLY
         return ParameterMethodLocation.POSITIONAL
 
 
