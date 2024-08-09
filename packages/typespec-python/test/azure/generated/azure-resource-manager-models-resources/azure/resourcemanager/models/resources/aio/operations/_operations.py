@@ -151,7 +151,7 @@ class TopLevelTrackedResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -221,7 +221,7 @@ class TopLevelTrackedResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -547,7 +547,7 @@ class TopLevelTrackedResourcesOperations:
             return deserialized
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -608,7 +608,7 @@ class TopLevelTrackedResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -932,7 +932,7 @@ class TopLevelTrackedResourcesOperations:
             return deserialized
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -979,7 +979,7 @@ class TopLevelTrackedResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -1050,7 +1050,7 @@ class TopLevelTrackedResourcesOperations:
                 return cls(pipeline_response, None, {})  # type: ignore
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -1135,7 +1135,7 @@ class TopLevelTrackedResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
@@ -1155,7 +1155,7 @@ class TopLevelTrackedResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
@@ -1246,7 +1246,7 @@ class TopLevelTrackedResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
@@ -1266,7 +1266,7 @@ class TopLevelTrackedResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
@@ -1382,7 +1382,7 @@ class NestedProxyResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -1454,7 +1454,7 @@ class NestedProxyResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -1769,7 +1769,7 @@ class NestedProxyResourcesOperations:
             return deserialized
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -1832,7 +1832,7 @@ class NestedProxyResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -2145,7 +2145,7 @@ class NestedProxyResourcesOperations:
             return deserialized
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -2197,7 +2197,7 @@ class NestedProxyResourcesOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -2275,7 +2275,7 @@ class NestedProxyResourcesOperations:
                 return cls(pipeline_response, None, {})  # type: ignore
 
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         if polling is True:
@@ -2359,7 +2359,7 @@ class NestedProxyResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
@@ -2379,7 +2379,7 @@ class NestedProxyResourcesOperations:
                 )
                 path_format_arguments = {
                     "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
+                        "self._config.base_url", self._config.base_url, "str", skip_quote=True
                     ),
                 }
                 _request.url = self._client.format_url(_request.url, **path_format_arguments)
