@@ -21,6 +21,7 @@ azure-mgmt-core==1.3.2
 -e ./generated/authentication-http-custom
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
+-e ./generated/azure-example-basic
 -e ./generated/client-naming
 -e ./generated/encode-duration
 -e ./generated/parameters-basic

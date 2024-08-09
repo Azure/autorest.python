@@ -93,6 +93,24 @@ async def test_int_literal(client):
 
 
 @pytest.mark.asyncio
+async def test_plaindate(client):
+    body = models.PlaindateProperty(property="2022-12-12")
+    assert await client.plaindate.get_all() == body
+    assert await client.plaindate.get_default() == models.PlaindateProperty()
+    await client.plaindate.put_all(body)
+    await client.plaindate.put_default(models.PlaindateProperty())
+
+
+@pytest.mark.asyncio
+async def test_plaintime(client):
+    body = models.PlainTimeProperty(property="13:06:12")
+    assert await client.plaintime.get_all() == body
+    assert await client.plaintime.get_default() == models.PlainTimeProperty()
+    await client.plaintime.put_all(body)
+    await client.plaintime.put_default(models.PlainTimeProperty())
+
+
+@pytest.mark.asyncio
 async def test_required_and_optional(client):
     all_body = {
         "optionalProperty": "hello",
