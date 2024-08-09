@@ -34,8 +34,8 @@ class ManagedIdentityClient:  # pylint: disable=client-accepts-api-version-keywo
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :keyword base_url: Service host. Default value is "https://management.azure.com".
-    :paramtype base_url: str
+    :param base_url: Service host. Default value is "https://management.azure.com".
+    :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -46,7 +46,6 @@ class ManagedIdentityClient:  # pylint: disable=client-accepts-api-version-keywo
         self,
         credential: "AsyncTokenCredential",
         subscription_id: str,
-        *,
         base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:

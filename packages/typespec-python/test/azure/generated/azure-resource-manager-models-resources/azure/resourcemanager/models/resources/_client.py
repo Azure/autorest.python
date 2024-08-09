@@ -37,8 +37,8 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :keyword base_url: Service host. Default value is "https://management.azure.com".
-    :paramtype base_url: str
+    :param base_url: Service host. Default value is "https://management.azure.com".
+    :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -51,7 +51,6 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         self,
         credential: "TokenCredential",
         subscription_id: str,
-        *,
         base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
