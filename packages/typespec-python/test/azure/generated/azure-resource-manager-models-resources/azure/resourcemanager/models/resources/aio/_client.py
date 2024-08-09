@@ -37,8 +37,8 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :keyword endpoint: Service host. Default value is "https://management.azure.com".
-    :paramtype endpoint: str
+    :keyword base_url: Service host. Default value is "https://management.azure.com".
+    :paramtype base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -52,12 +52,12 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         credential: "AsyncTokenCredential",
         subscription_id: str,
         *,
-        endpoint: str = "https://management.azure.com",
+        base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ResourcesClientConfiguration(
-            credential=credential, subscription_id=subscription_id, endpoint=endpoint, **kwargs
+            credential=credential, subscription_id=subscription_id, base_url=base_url, **kwargs
         )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -111,7 +111,7 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

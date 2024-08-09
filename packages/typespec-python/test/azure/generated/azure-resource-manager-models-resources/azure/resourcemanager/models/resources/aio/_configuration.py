@@ -28,8 +28,8 @@ class ResourcesClientConfiguration:  # pylint: disable=too-many-instance-attribu
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :param endpoint: Service host. Default value is "https://management.azure.com".
-    :type endpoint: str
+    :param base_url: Service host. Default value is "https://management.azure.com".
+    :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
      behavior.
@@ -40,7 +40,7 @@ class ResourcesClientConfiguration:  # pylint: disable=too-many-instance-attribu
         self,
         credential: "AsyncTokenCredential",
         subscription_id: str,
-        endpoint: str = "https://management.azure.com",
+        base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
         api_version: str = kwargs.pop("api_version", "2023-12-01-preview")
@@ -52,7 +52,7 @@ class ResourcesClientConfiguration:  # pylint: disable=too-many-instance-attribu
 
         self.credential = credential
         self.subscription_id = subscription_id
-        self.endpoint = endpoint
+        self.base_url = base_url
         self.api_version = api_version
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "resourcemanager-models-resources/{}".format(VERSION))
