@@ -13,13 +13,13 @@ azure-core==1.30.0
 -e ./generated/azure-core-lro-standard
 -e ./generated/azure-core-traits
 -e ./generated/azure-special-headers-client-request-id/
+-e ./generated/azure-example-basic
 
 # common test case
 -e ./generated/authentication-api-key
 -e ./generated/authentication-http-custom
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
--e ./generated/azure-example-basic
 -e ./generated/client-naming
 -e ./generated/encode-duration
 -e ./generated/parameters-basic
