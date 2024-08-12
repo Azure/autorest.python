@@ -30,7 +30,8 @@ class EnumDiscriminatorClient(
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = EnumDiscriminatorClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = EnumDiscriminatorClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -42,7 +43,7 @@ class EnumDiscriminatorClient(
                 self._config.authentication_policy,
                 self._config.logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -69,7 +70,11 @@ class EnumDiscriminatorClient(
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:

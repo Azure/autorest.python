@@ -3,6 +3,7 @@ import {
     SdkClientType,
     SdkCredentialParameter,
     SdkEndpointParameter,
+    SdkEndpointType,
     SdkLroPagingServiceMethod,
     SdkLroServiceMethod,
     SdkMethodParameter,
@@ -12,7 +13,7 @@ import {
     UsageFlags,
     getCrossLanguagePackageId,
 } from "@azure-tools/typespec-client-generator-core";
-import { KnownTypes, getType, simpleTypesMap, typesMap } from "./types.js";
+import { KnownTypes, emitEndpointType, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
 import { PythonSdkContext } from "./lib.js";
@@ -83,34 +84,12 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
     parameter: SdkEndpointParameter | SdkCredentialParameter | SdkMethodParameter,
 ): Record<string, any>[] {
     if (parameter.kind === "endpoint") {
-        if (parameter.type.serverUrl && parameter.type.templateArguments.length > 0) {
-            const params: Record<string, any>[] = [];
-            for (const param of parameter.type.templateArguments) {
-                params.push({
-                    ...emitParamBase(context, param),
-                    wireName: param.name,
-                    location: "endpointPath",
-                    implementation: getImplementation(context, param),
-                    clientDefaultValue: param.clientDefaultValue,
-                    skipUrlEncoding: param.urlEncode === false,
-                });
-                context.__endpointPathParameters!.push(params.at(-1)!);
+        if (parameter.type.kind === "union") {
+            for (const endpointVal of parameter.type.values) {
+                return emitEndpointType(context, endpointVal as SdkEndpointType);
             }
-            return params;
         } else {
-            return [
-                {
-                    optional: parameter.optional,
-                    description: parameter.description || "",
-                    clientName: context.arm ? "base_url" : "endpoint",
-                    clientDefaultValue: parameter.type.serverUrl,
-                    wireName: "$host",
-                    location: "path",
-                    type: KnownTypes.string,
-                    implementation: getImplementation(context, parameter),
-                    inOverload: false,
-                },
-            ];
+            return emitEndpointType(context, parameter.type);
         }
     }
     const base = {
@@ -212,12 +191,18 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
         | SdkEndpointParameter
         | undefined;
     const operationGroups = emitOperationGroups(context, client, client, "");
+    let url: string | undefined;
+    if (endpointParameter?.type.kind === "union") {
+        url = (endpointParameter.type.values[0] as SdkEndpointType).serverUrl;
+    } else {
+        url = endpointParameter?.type.serverUrl;
+    }
     return {
         name: client.name,
         description: client.description ?? "",
         parameters,
         operationGroups,
-        url: endpointParameter?.type.serverUrl,
+        url,
         apiVersions: client.apiVersions,
         arm: context.arm,
     };

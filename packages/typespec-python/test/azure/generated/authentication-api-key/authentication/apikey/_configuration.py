@@ -22,13 +22,16 @@ class ApiKeyClientConfiguration:  # pylint: disable=too-many-instance-attributes
 
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
+    :param endpoint: Service host. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
+    def __init__(self, credential: AzureKeyCredential, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "authentication-apikey/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

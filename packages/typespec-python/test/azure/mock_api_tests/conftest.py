@@ -129,3 +129,22 @@ def async_polling_method():
 
 
 # ================== after azure-core fix, the up code can be removed (end) ==================
+
+
+@pytest.fixture()
+def credential():
+    """I actually don't need anything, since the authentication policy
+    will bypass it.
+    """
+
+    class FakeCredential:
+        pass
+
+    return FakeCredential()
+
+
+@pytest.fixture()
+def authentication_policy():
+    from azure.core.pipeline.policies import SansIOHTTPPolicy
+
+    return SansIOHTTPPolicy()
