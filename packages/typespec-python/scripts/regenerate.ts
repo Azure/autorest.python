@@ -210,7 +210,7 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         }
         if (options["emitter-output-dir"] === undefined) {
             const packageName = options["package-name"] || defaultPackageName(spec);
-            options["emitter-output-dir"] = `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`;
+            options["emitter-output-dir"] = toPosix(`${generatedFolder}/test/${flags.flavor}/generated/${packageName}`);
         }
         if (flags.debug) {
             options["debug"] = "true";
@@ -218,7 +218,7 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         if (flags.flavor === "unbranded") {
             options["company-name"] = "Unbranded";
         }
-        options["examples-directory"] = join(dirname(spec), "examples");
+        options["examples-directory"] = toPosix(join(dirname(spec), "examples"));
         const configs = Object.entries(options).flatMap(([k, v]) => {
             return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
@@ -231,7 +231,7 @@ async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<
     // Perform some asynchronous operation here
     const options = addOptions(spec, PLUGIN_DIR, flags);
     const commandPromises = options.map((option) => {
-        const command = `tsp compile ${spec} --emit=${PLUGIN_DIR} ${option}`;
+        const command = `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option}`;
         console.log(command);
         return executeCommand(command);
     });
