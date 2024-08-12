@@ -1,5 +1,12 @@
 # Release
 
+## 6.18.0
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
 ## 6.17.1
 
 ### Bug Fixes
