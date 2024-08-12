@@ -1,5 +1,17 @@
 # Release
 
+## 0.28.0
+
+### Bug Fixes
+
+- [#2759](https://github.com/Azure/autorest.python/pull/2759) Fix sample generation for lro and paging operation
+- [#2758](https://github.com/Azure/autorest.python/pull/2758) Revert client signature `endpoint` to `base_url` to avoid breaking for Mgmt SDK
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
 ## 0.27.1
 
 ### Bug Fixes
