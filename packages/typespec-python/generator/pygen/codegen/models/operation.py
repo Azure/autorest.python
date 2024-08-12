@@ -504,7 +504,6 @@ class Operation(OperationBase[Response]):
         if self.has_response_body and not self.has_optional_return_type and not self.code_model.options["models_mode"]:
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
 
-
         return file_import
 
 
