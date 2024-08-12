@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/Azure/autorest.python#readme",
   "devDependencies": {
-    "@azure-tools/cadl-ranch": "~0.13.4",
+    "@azure-tools/cadl-ranch": "~0.14.1",
     "@actions/github": "6.0.0",
     "@chronus/chronus": "^0.10.2",
     "@chronus/github": "^0.3.2",
