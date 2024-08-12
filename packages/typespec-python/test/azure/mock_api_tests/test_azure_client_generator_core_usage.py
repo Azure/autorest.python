@@ -23,6 +23,6 @@ def test_output_to_input_output(client: UsageClient):
 
 
 def test_model_usage(client: UsageClient):
-    assert models.RoundTripModel(
-        result=models.ResultModel(name="Madge")
-    ) == client.model_in_operation.model_in_read_only_property(body=models.RoundTripModel())
+    assert models.ResultModel(name="Madge") == client.model_in_operation.model_in_read_only_property(
+        body=models.RoundTripModel()
+    )

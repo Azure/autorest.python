@@ -96,8 +96,21 @@ async def test_int_literal(client):
 async def test_plaindate(client):
     body = models.PlaindateProperty(property="2022-12-12")
     assert await client.plaindate.get_all() == body
+
+
+@pytest.mark.asyncio
+async def test_plaindate(client):
     assert await client.plaindate.get_default() == models.PlaindateProperty()
+
+
+@pytest.mark.asyncio
+async def test_plaindate(client):
+    body = models.PlaindateProperty(property="2022-12-12")
     await client.plaindate.put_all(body)
+
+
+@pytest.mark.asyncio
+async def test_plaindate(client):
     await client.plaindate.put_default(models.PlaindateProperty())
 
 
@@ -105,8 +118,21 @@ async def test_plaindate(client):
 async def test_plaintime(client):
     body = models.PlainTimeProperty(property="13:06:12")
     assert await client.plaintime.get_all() == body
+
+
+@pytest.mark.asyncio
+async def test_plaintime(client):
     assert await client.plaintime.get_default() == models.PlainTimeProperty()
+
+
+@pytest.mark.asyncio
+async def test_plaintime(client):
+    body = models.PlainTimeProperty(property="13:06:12")
     await client.plaintime.put_all(body)
+
+
+@pytest.mark.asyncio
+async def test_plaintime(client):
     await client.plaintime.put_default(models.PlainTimeProperty())
 
 
