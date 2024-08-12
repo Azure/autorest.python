@@ -58,6 +58,7 @@ corehttp==1.0.0b3
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
 -e ./generated/payload-media-type
+-e ./generated/payload-xml
 -e ./generated/versioning-added
 -e ./generated/versioning-madeoptional
 -e ./generated/versioning-removed

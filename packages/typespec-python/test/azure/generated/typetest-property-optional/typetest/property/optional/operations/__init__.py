@@ -10,8 +10,8 @@ from ._operations import StringOperations
 from ._operations import BytesOperations
 from ._operations import DatetimeOperations
 from ._operations import DurationOperations
-from ._operations import PlaindateOperations
-from ._operations import PlaintimeOperations
+from ._operations import PlainDateOperations
+from ._operations import PlainTimeOperations
 from ._operations import CollectionsByteOperations
 from ._operations import CollectionsModelOperations
 from ._operations import StringLiteralOperations
@@ -32,8 +32,8 @@ __all__ = [
     "BytesOperations",
     "DatetimeOperations",
     "DurationOperations",
-    "PlaindateOperations",
-    "PlaintimeOperations",
+    "PlainDateOperations",
+    "PlainTimeOperations",
     "CollectionsByteOperations",
     "CollectionsModelOperations",
     "StringLiteralOperations",
