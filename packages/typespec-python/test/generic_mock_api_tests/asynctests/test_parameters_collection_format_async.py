@@ -34,6 +34,7 @@ async def test_query_ssv(client: CollectionFormatClient):
 
 
 @pytest.mark.asyncio
+@pytest.mark.skip(reason="https://github.com/aio-libs/aiohttp/issues/5904")
 async def test_query_tsv(client: CollectionFormatClient):
     await client.query.tsv(colors=["blue", "red", "green"])
 
