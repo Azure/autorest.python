@@ -195,6 +195,8 @@ class DpgModelSerializer(_ModelSerializer):
         )
 
         for model in self.code_model.model_types:
+            if model.base == "json":
+                continue
             file_import.merge(model.imports(is_operation_file=False))
             for prop in model.properties:
                 file_import.merge(prop.imports())

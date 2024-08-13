@@ -13,6 +13,7 @@ import {
     SdkServiceMethod,
     SdkServiceResponseHeader,
     UsageFlags,
+    SdkHttpOperationExample,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -30,6 +31,16 @@ import { HttpStatusCodeRange } from "@typespec/http";
 
 function isContentTypeParameter(parameter: SdkHeaderParameter) {
     return parameter.serializedName.toLowerCase() === "content-type";
+}
+
+function arrayToRecord(examples: SdkHttpOperationExample[] | undefined): Record<string, any> {
+    const result: Record<string, any> = {};
+    if (examples) {
+        for (const [index, example] of examples.entries()) {
+            result[index] = { ...example.rawExample, "x-ms-original-file": example.filePath };
+        }
+    }
+    return result;
 }
 
 export function emitBasicHttpMethod(
@@ -175,6 +186,7 @@ function emitHttpOperation(
         wantTracing: true,
         exposeStreamKeyword: true,
         crossLanguageDefinitionId: method?.crossLanguageDefintionId,
+        samples: arrayToRecord(method?.operation.examples),
     };
     if (
         result.bodyParameter &&
