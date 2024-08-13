@@ -20,7 +20,6 @@ import {
 import { dump } from "js-yaml";
 import { camelToSnakeCase, emitParamBase, getAddedOn, getImplementation } from "./utils.js";
 import { PythonSdkContext } from "./lib.js";
-import { emit } from "process";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
