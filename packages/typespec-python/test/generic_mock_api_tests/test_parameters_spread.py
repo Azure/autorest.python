@@ -56,3 +56,11 @@ def test_alias_multiple_parameter(client: SpreadClient):
         {"requiredString": "foo", "optionalInt": 1, "requiredIntList": [1, 2], "optionalStringList": ["foo", "bar"]},
         x_ms_test_header="bar",
     )
+
+
+def test_inner_model(client: SpreadClient):
+    client.alias.spread_parameter_with_inner_model(id="1", x_ms_test_header="bar", body={"name": "foo"})
+
+
+def test_inner_alias(client: SpreadClient):
+    client.alias.spread_parameter_with_inner_alias(id="1", x_ms_test_header="bar", body={"name": "foo", "age": 1})
