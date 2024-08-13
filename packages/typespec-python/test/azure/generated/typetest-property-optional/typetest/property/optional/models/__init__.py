@@ -14,8 +14,8 @@ from ._models import DatetimeProperty
 from ._models import DurationProperty
 from ._models import FloatLiteralProperty
 from ._models import IntLiteralProperty
+from ._models import PlainDateProperty
 from ._models import PlainTimeProperty
-from ._models import PlaindateProperty
 from ._models import RequiredAndOptionalProperty
 from ._models import StringLiteralProperty
 from ._models import StringProperty
@@ -35,8 +35,8 @@ __all__ = [
     "DurationProperty",
     "FloatLiteralProperty",
     "IntLiteralProperty",
+    "PlainDateProperty",
     "PlainTimeProperty",
-    "PlaindateProperty",
     "RequiredAndOptionalProperty",
     "StringLiteralProperty",
     "StringProperty",

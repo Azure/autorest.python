@@ -294,7 +294,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -342,7 +344,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -383,7 +387,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -424,7 +430,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Is one of the following types: RoundTripModel, JSON, IO[bytes] Required.
