@@ -53,6 +53,7 @@ corehttp==1.0.0b3
 -e ./generated/client-structure-multiclient
 -e ./generated/client-structure-renamedoperation
 -e ./generated/client-structure-twooperationgroup
+-e ./generated/client-structure-client-operation-group
 -e ./generated/payload-content-negotiation
 -e ./generated/payload-json-merge-patch
 -e ./generated/payload-pageable
