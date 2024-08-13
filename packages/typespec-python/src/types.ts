@@ -175,7 +175,7 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
 
 function clearUsage(emitType: Record<string, any>) {
     if (emitType.type === "model") {
-        if (emitType.usage != UsageFlags.None) {
+        if (emitType.usage !== UsageFlags.None) {
             emitType.usage = UsageFlags.None;
             for (const p of emitType.parents) {
                 clearUsage(p);
