@@ -83,6 +83,42 @@ def test_int_literal(client):
     client.int_literal.put_default(models.IntLiteralProperty())
 
 
+def test_plaindate_get_all(client):
+    body = models.PlaindateProperty(property="2022-12-12")
+    assert client.plaindate.get_all() == body
+
+
+def test_plaindate_get_default(client):
+    assert client.plaindate.get_default() == models.PlaindateProperty()
+
+
+def test_plaindate_put_all(client):
+    body = models.PlaindateProperty(property="2022-12-12")
+    client.plaindate.put_all(body)
+
+
+def test_plaindate_put_default(client):
+    client.plaindate.put_default(models.PlaindateProperty())
+
+
+def test_plaintime_get_all(client):
+    body = models.PlainTimeProperty(property="13:06:12")
+    assert client.plaintime.get_all() == body
+
+
+def test_plaintime_get_default(client):
+    assert client.plaintime.get_default() == models.PlainTimeProperty()
+
+
+def test_plaintime_put_all(client):
+    body = models.PlainTimeProperty(property="13:06:12")
+    client.plaintime.put_all(body)
+
+
+def test_plaintime_put_default(client):
+    client.plaintime.put_default(models.PlainTimeProperty())
+
+
 def test_required_and_optional(client):
     all_body = {
         "optionalProperty": "hello",

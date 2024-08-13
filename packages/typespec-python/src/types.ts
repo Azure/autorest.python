@@ -422,8 +422,10 @@ export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
 ): Record<string, any>[] {
     const params: Record<string, any>[] = [];
     for (const param of type.templateArguments) {
+        const paramBase = emitParamBase(context, param);
+        paramBase.clientName = context.arm ? "base_url" : paramBase.clientName;
         params.push({
-            ...emitParamBase(context, param),
+            ...paramBase,
             optional: Boolean(param.clientDefaultValue),
             wireName: param.name,
             location: "endpointPath",

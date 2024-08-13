@@ -14,6 +14,7 @@ azure-mgmt-core==1.3.2
 -e ./generated/azure-core-model
 -e ./generated/azure-core-traits
 -e ./generated/azure-special-headers-client-request-id/
+-e ./generated/azure-example-basic
 -e ./generated/azure-resource-manager-models-common-types-managed-identity
 -e ./generated/azure-resource-manager-models-resources
 

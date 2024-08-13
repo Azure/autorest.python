@@ -57,7 +57,6 @@ export function emitBasicHttpMethod(
             name: camelToSnakeCase(method.name),
             description: getDescriptionAndSummary(method).description,
             summary: getDescriptionAndSummary(method).summary,
-            samples: arrayToRecord(method.operation.examples),
         },
     ];
 }
@@ -187,6 +186,7 @@ function emitHttpOperation(
         wantTracing: true,
         exposeStreamKeyword: true,
         crossLanguageDefinitionId: method?.crossLanguageDefintionId,
+        samples: arrayToRecord(method?.operation.examples),
     };
     if (
         result.bodyParameter &&

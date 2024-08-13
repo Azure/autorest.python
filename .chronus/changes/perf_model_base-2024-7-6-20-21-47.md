@@ -1,8 +1,7 @@
 ---
 changeKind: feature
 packages:
-  - "@autorest/python"
   - "@azure-tools/typespec-python"
 ---
 
-Support generate samples from Typespec
+optimize performance of dpg model
