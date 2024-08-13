@@ -61,14 +61,14 @@ from ...operations._operations import (
     build_int_literal_get_default_request,
     build_int_literal_put_all_request,
     build_int_literal_put_default_request,
-    build_plaindate_get_all_request,
-    build_plaindate_get_default_request,
-    build_plaindate_put_all_request,
-    build_plaindate_put_default_request,
-    build_plaintime_get_all_request,
-    build_plaintime_get_default_request,
-    build_plaintime_put_all_request,
-    build_plaintime_put_default_request,
+    build_plain_date_get_all_request,
+    build_plain_date_get_default_request,
+    build_plain_date_put_all_request,
+    build_plain_date_put_default_request,
+    build_plain_time_get_all_request,
+    build_plain_time_get_default_request,
+    build_plain_time_put_all_request,
+    build_plain_time_put_default_request,
     build_required_and_optional_get_all_request,
     build_required_and_optional_get_required_only_request,
     build_required_and_optional_put_all_request,
@@ -1664,14 +1664,14 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlaindateOperations:
+class PlainDateOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plaindate` attribute.
+        :attr:`plain_date` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1682,11 +1682,11 @@ class PlaindateOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_all(self, **kwargs: Any) -> _models.PlaindateProperty:
+    async def get_all(self, **kwargs: Any) -> _models.PlainDateProperty:
         """Get models that will return all properties in the model.
 
-        :return: PlaindateProperty. The PlaindateProperty is compatible with MutableMapping
-        :rtype: ~typetest.property.optional.models.PlaindateProperty
+        :return: PlainDateProperty. The PlainDateProperty is compatible with MutableMapping
+        :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -1708,9 +1708,9 @@ class PlaindateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PlaindateProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaindate_get_all_request(
+        _request = build_plain_date_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -1738,7 +1738,7 @@ class PlaindateOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PlaindateProperty, response.json())
+            deserialized = _deserialize(_models.PlainDateProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1746,11 +1746,11 @@ class PlaindateOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_default(self, **kwargs: Any) -> _models.PlaindateProperty:
+    async def get_default(self, **kwargs: Any) -> _models.PlainDateProperty:
         """Get models that will return the default object.
 
-        :return: PlaindateProperty. The PlaindateProperty is compatible with MutableMapping
-        :rtype: ~typetest.property.optional.models.PlaindateProperty
+        :return: PlainDateProperty. The PlainDateProperty is compatible with MutableMapping
+        :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~azure.core.exceptions.HttpResponseError:
 
         Example:
@@ -1772,9 +1772,9 @@ class PlaindateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PlaindateProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaindate_get_default_request(
+        _request = build_plain_date_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1802,7 +1802,7 @@ class PlaindateOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PlaindateProperty, response.json())
+            deserialized = _deserialize(_models.PlainDateProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1811,12 +1811,12 @@ class PlaindateOperations:
 
     @overload
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.PlaindateProperty, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty
+        :type body: ~typetest.property.optional.models.PlainDateProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1867,12 +1867,12 @@ class PlaindateOperations:
 
     @distributed_trace_async
     async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlaindateProperty, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: PlaindateProperty, JSON, IO[bytes] Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty or JSON or IO[bytes]
+        :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.PlainDateProperty or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1906,7 +1906,7 @@ class PlaindateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaindate_put_all_request(
+        _request = build_plain_date_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1933,12 +1933,12 @@ class PlaindateOperations:
 
     @overload
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.PlaindateProperty, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty
+        :type body: ~typetest.property.optional.models.PlainDateProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1989,12 +1989,12 @@ class PlaindateOperations:
 
     @distributed_trace_async
     async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlaindateProperty, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: PlaindateProperty, JSON, IO[bytes] Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty or JSON or IO[bytes]
+        :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.PlainDateProperty or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2028,7 +2028,7 @@ class PlaindateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaindate_put_default_request(
+        _request = build_plain_date_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2054,14 +2054,14 @@ class PlaindateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlaintimeOperations:
+class PlainTimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plaintime` attribute.
+        :attr:`plain_time` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2100,7 +2100,7 @@ class PlaintimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaintime_get_all_request(
+        _request = build_plain_time_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -2164,7 +2164,7 @@ class PlaintimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaintime_get_default_request(
+        _request = build_plain_time_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -2296,7 +2296,7 @@ class PlaintimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaintime_put_all_request(
+        _request = build_plain_time_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2418,7 +2418,7 @@ class PlaintimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaintime_put_default_request(
+        _request = build_plain_time_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -94,46 +94,46 @@ async def test_int_literal(client):
 
 @pytest.mark.asyncio
 async def test_plaindate(client):
-    body = models.PlaindateProperty(property="2022-12-12")
-    assert await client.plaindate.get_all() == body
+    body = models.PlainDateProperty(property="2022-12-12")
+    assert await client.plain_date.get_all() == body
 
 
 @pytest.mark.asyncio
 async def test_plaindate(client):
-    assert await client.plaindate.get_default() == models.PlaindateProperty()
+    assert await client.plain_date.get_default() == models.PlainDateProperty()
 
 
 @pytest.mark.asyncio
 async def test_plaindate(client):
-    body = models.PlaindateProperty(property="2022-12-12")
-    await client.plaindate.put_all(body)
+    body = models.PlainDateProperty(property="2022-12-12")
+    await client.plain_date.put_all(body)
 
 
 @pytest.mark.asyncio
 async def test_plaindate(client):
-    await client.plaindate.put_default(models.PlaindateProperty())
+    await client.plain_date.put_default(models.PlainDateProperty())
 
 
 @pytest.mark.asyncio
 async def test_plaintime(client):
     body = models.PlainTimeProperty(property="13:06:12")
-    assert await client.plaintime.get_all() == body
+    assert await client.plain_time.get_all() == body
 
 
 @pytest.mark.asyncio
 async def test_plaintime(client):
-    assert await client.plaintime.get_default() == models.PlainTimeProperty()
+    assert await client.plain_time.get_default() == models.PlainTimeProperty()
 
 
 @pytest.mark.asyncio
 async def test_plaintime(client):
     body = models.PlainTimeProperty(property="13:06:12")
-    await client.plaintime.put_all(body)
+    await client.plain_time.put_all(body)
 
 
 @pytest.mark.asyncio
 async def test_plaintime(client):
-    await client.plaintime.put_default(models.PlainTimeProperty())
+    await client.plain_time.put_default(models.PlainTimeProperty())
 
 
 @pytest.mark.asyncio

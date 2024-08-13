@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -28,6 +28,8 @@ from ..._model_base import SdkJSONEncoder
 from ...operations._operations import (
     build_alias_spread_as_request_body_request,
     build_alias_spread_as_request_parameter_request,
+    build_alias_spread_parameter_with_inner_alias_request,
+    build_alias_spread_parameter_with_inner_model_request,
     build_alias_spread_with_multiple_parameters_request,
     build_model_spread_as_request_body_request,
     build_model_spread_composite_request_mix_request,
@@ -801,6 +803,158 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
+    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_parameter_with_inner_model.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"
+                }
+        """
+
+    @overload
+    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+        self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_parameter_with_inner_model.
+
+        :param id: Required.
+        :type id: str
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword name: Required.
+        :paramtype name: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_parameter_with_inner_model.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+        self,
+        id: str,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        name: str = _Unset,
+        **kwargs: Any
+    ) -> None:
+        """spread_parameter_with_inner_model.
+
+        :param id: Required.
+        :type id: str
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword name: Required.
+        :paramtype name: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "name": "str"
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            body = {"name": name}
+            body = {k: v for k, v in body.items() if v is not None}
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_alias_spread_parameter_with_inner_model_request(
+            id=id,
+            x_ms_test_header=x_ms_test_header,
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
     async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
@@ -976,12 +1130,14 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop1": "str",
-                    "prop2": "str",
-                    "prop3": "str",
-                    "prop4": "str",
-                    "prop5": "str",
-                    "prop6": "str"
+                    "requiredIntList": [
+                        0
+                    ],
+                    "requiredString": "str",
+                    "optionalInt": 0,
+                    "optionalStringList": [
+                        "str"
+                    ]
                 }
         """
 
@@ -991,13 +1147,11 @@ class AliasOperations:
         id: str,
         *,
         x_ms_test_header: str,
-        prop1: str,
-        prop2: str,
-        prop3: str,
-        prop4: str,
-        prop5: str,
-        prop6: str,
+        required_string: str,
+        required_int_list: List[int],
         content_type: str = "application/json",
+        optional_int: Optional[int] = None,
+        optional_string_list: Optional[List[str]] = None,
         **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1006,21 +1160,17 @@ class AliasOperations:
         :type id: str
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
-        :keyword prop1: Required.
-        :paramtype prop1: str
-        :keyword prop2: Required.
-        :paramtype prop2: str
-        :keyword prop3: Required.
-        :paramtype prop3: str
-        :keyword prop4: Required.
-        :paramtype prop4: str
-        :keyword prop5: Required.
-        :paramtype prop5: str
-        :keyword prop6: Required.
-        :paramtype prop6: str
+        :keyword required_string: required string. Required.
+        :paramtype required_string: str
+        :keyword required_int_list: required int. Required.
+        :paramtype required_int_list: list[int]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
+        :keyword optional_int: optional int. Default value is None.
+        :paramtype optional_int: int
+        :keyword optional_string_list: optional string. Default value is None.
+        :paramtype optional_string_list: list[str]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1052,12 +1202,10 @@ class AliasOperations:
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
         x_ms_test_header: str,
-        prop1: str = _Unset,
-        prop2: str = _Unset,
-        prop3: str = _Unset,
-        prop4: str = _Unset,
-        prop5: str = _Unset,
-        prop6: str = _Unset,
+        required_string: str = _Unset,
+        required_int_list: List[int] = _Unset,
+        optional_int: Optional[int] = None,
+        optional_string_list: Optional[List[str]] = None,
         **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1068,18 +1216,14 @@ class AliasOperations:
         :type body: JSON or IO[bytes]
         :keyword x_ms_test_header: Required.
         :paramtype x_ms_test_header: str
-        :keyword prop1: Required.
-        :paramtype prop1: str
-        :keyword prop2: Required.
-        :paramtype prop2: str
-        :keyword prop3: Required.
-        :paramtype prop3: str
-        :keyword prop4: Required.
-        :paramtype prop4: str
-        :keyword prop5: Required.
-        :paramtype prop5: str
-        :keyword prop6: Required.
-        :paramtype prop6: str
+        :keyword required_string: required string. Required.
+        :paramtype required_string: str
+        :keyword required_int_list: required int. Required.
+        :paramtype required_int_list: list[int]
+        :keyword optional_int: optional int. Default value is None.
+        :paramtype optional_int: int
+        :keyword optional_string_list: optional string. Default value is None.
+        :paramtype optional_string_list: list[str]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1089,12 +1233,14 @@ class AliasOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "prop1": "str",
-                    "prop2": "str",
-                    "prop3": "str",
-                    "prop4": "str",
-                    "prop5": "str",
-                    "prop6": "str"
+                    "requiredIntList": [
+                        0
+                    ],
+                    "requiredString": "str",
+                    "optionalInt": 0,
+                    "optionalStringList": [
+                        "str"
+                    ]
                 }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1112,19 +1258,16 @@ class AliasOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body is _Unset:
-            if prop1 is _Unset:
-                raise TypeError("missing required argument: prop1")
-            if prop2 is _Unset:
-                raise TypeError("missing required argument: prop2")
-            if prop3 is _Unset:
-                raise TypeError("missing required argument: prop3")
-            if prop4 is _Unset:
-                raise TypeError("missing required argument: prop4")
-            if prop5 is _Unset:
-                raise TypeError("missing required argument: prop5")
-            if prop6 is _Unset:
-                raise TypeError("missing required argument: prop6")
-            body = {"prop1": prop1, "prop2": prop2, "prop3": prop3, "prop4": prop4, "prop5": prop5, "prop6": prop6}
+            if required_string is _Unset:
+                raise TypeError("missing required argument: required_string")
+            if required_int_list is _Unset:
+                raise TypeError("missing required argument: required_int_list")
+            body = {
+                "optionalInt": optional_int,
+                "optionalStringList": optional_string_list,
+                "requiredIntList": required_int_list,
+                "requiredString": required_string,
+            }
             body = {k: v for k, v in body.items() if v is not None}
         content_type = content_type or "application/json"
         _content = None
@@ -1134,6 +1277,174 @@ class AliasOperations:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_alias_spread_with_multiple_parameters_request(
+            id=id,
+            x_ms_test_header=x_ms_test_header,
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread an alias with contains another alias property as body.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "age": 0,
+                    "name": "str"
+                }
+        """
+
+    @overload
+    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+        self,
+        id: str,
+        *,
+        x_ms_test_header: str,
+        name: str,
+        age: int,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """spread an alias with contains another alias property as body.
+
+        :param id: Required.
+        :type id: str
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword name: name of the Thing. Required.
+        :paramtype name: str
+        :keyword age: age of the Thing. Required.
+        :paramtype age: int
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+        self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread an alias with contains another alias property as body.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+        self,
+        id: str,
+        body: Union[JSON, IO[bytes]] = _Unset,
+        *,
+        x_ms_test_header: str,
+        name: str = _Unset,
+        age: int = _Unset,
+        **kwargs: Any
+    ) -> None:
+        """spread an alias with contains another alias property as body.
+
+        :param id: Required.
+        :type id: str
+        :param body: Is either a JSON type or a IO[bytes] type. Required.
+        :type body: JSON or IO[bytes]
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword name: name of the Thing. Required.
+        :paramtype name: str
+        :keyword age: age of the Thing. Required.
+        :paramtype age: int
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+
+        Example:
+            .. code-block:: python
+
+                # JSON input template you can fill out and use as your body input.
+                body = {
+                    "age": 0,
+                    "name": "str"
+                }
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        if body is _Unset:
+            if name is _Unset:
+                raise TypeError("missing required argument: name")
+            if age is _Unset:
+                raise TypeError("missing required argument: age")
+            body = {"age": age, "name": name}
+            body = {k: v for k, v in body.items() if v is not None}
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_alias_spread_parameter_with_inner_alias_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,

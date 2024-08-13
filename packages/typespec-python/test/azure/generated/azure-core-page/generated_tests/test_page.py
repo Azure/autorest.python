@@ -7,25 +7,36 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import BasicClientTestBase, BasicPreparer
+from testpreparer import PageClientTestBase, PagePreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestBasicTwoModelsAsPageItemOperations(BasicClientTestBase):
-    @BasicPreparer()
+class TestPage(PageClientTestBase):
+    @PagePreparer()
     @recorded_by_proxy
-    def test_list_first_item(self, basic_endpoint):
-        client = self.create_client(endpoint=basic_endpoint)
-        response = client.two_models_as_page_item.list_first_item()
+    def test_list_with_page(self, page_endpoint):
+        client = self.create_client(endpoint=page_endpoint)
+        response = client.list_with_page()
         result = [r for r in response]
         # please add some check logic here by yourself
         # ...
 
-    @BasicPreparer()
+    @PagePreparer()
     @recorded_by_proxy
-    def test_list_second_item(self, basic_endpoint):
-        client = self.create_client(endpoint=basic_endpoint)
-        response = client.two_models_as_page_item.list_second_item()
+    def test_list_with_parameters(self, page_endpoint):
+        client = self.create_client(endpoint=page_endpoint)
+        response = client.list_with_parameters(
+            body_input={"inputName": "str"},
+        )
+        result = [r for r in response]
+        # please add some check logic here by yourself
+        # ...
+
+    @PagePreparer()
+    @recorded_by_proxy
+    def test_list_with_custom_page_model(self, page_endpoint):
+        client = self.create_client(endpoint=page_endpoint)
+        response = client.list_with_custom_page_model()
         result = [r for r in response]
         # please add some check logic here by yourself
         # ...

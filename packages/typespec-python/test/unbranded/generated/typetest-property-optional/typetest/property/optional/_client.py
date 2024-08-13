@@ -24,8 +24,8 @@ from .operations import (
     DurationOperations,
     FloatLiteralOperations,
     IntLiteralOperations,
-    PlaindateOperations,
-    PlaintimeOperations,
+    PlainDateOperations,
+    PlainTimeOperations,
     RequiredAndOptionalOperations,
     StringLiteralOperations,
     StringOperations,
@@ -46,10 +46,10 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     :vartype datetime: typetest.property.optional.operations.DatetimeOperations
     :ivar duration: DurationOperations operations
     :vartype duration: typetest.property.optional.operations.DurationOperations
-    :ivar plaindate: PlaindateOperations operations
-    :vartype plaindate: typetest.property.optional.operations.PlaindateOperations
-    :ivar plaintime: PlaintimeOperations operations
-    :vartype plaintime: typetest.property.optional.operations.PlaintimeOperations
+    :ivar plain_date: PlainDateOperations operations
+    :vartype plain_date: typetest.property.optional.operations.PlainDateOperations
+    :ivar plain_time: PlainTimeOperations operations
+    :vartype plain_time: typetest.property.optional.operations.PlainTimeOperations
     :ivar collections_byte: CollectionsByteOperations operations
     :vartype collections_byte: typetest.property.optional.operations.CollectionsByteOperations
     :ivar collections_model: CollectionsModelOperations operations
@@ -101,8 +101,8 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
         self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.plaindate = PlaindateOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.plaintime = PlaintimeOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.plain_date = PlainDateOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.plain_time = PlainTimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.collections_byte = CollectionsByteOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
