@@ -6,7 +6,7 @@
 # --------------------------------------------------------------------------
 
 import json
-from typing import Any, Dict, IO, List, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, IO, List, Mapping, Optional, Tuple, Union
 
 from ._model_base import Model, SdkJSONEncoder
 
