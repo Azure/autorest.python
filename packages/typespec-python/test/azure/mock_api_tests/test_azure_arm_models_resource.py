@@ -58,3 +58,131 @@ def test_top_level_tracked_resources_begin_create_or_replace(client):
     assert result.name == "top"
     assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources"
     assert result.system_data.created_by == "AzureSDK"
+
+
+def test_top_level_tracked_resources_begin_update(client):
+    result = client.top_level_tracked_resources.begin_update(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        properties=models.TopLevelTrackedResource(
+            location="eastus",
+            properties=models.TopLevelTrackedResourceProperties(
+                models.TopLevelTrackedResourceProperties(description="valid2")
+            ),
+        ),
+        polling_interval=0,  # set polling_interval to 0 s to make the test faster since default is 30s
+    ).result()
+    assert result.location == "eastus"
+    assert result.properties.description == "valid2"
+    assert result.properties.provisioning_state == "Succeeded"
+    assert result.name == "top"
+    assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources"
+    assert result.system_data.created_by == "AzureSDK"
+
+
+def test_top_level_tracked_resources_begin_delete(client):
+    client.top_level_tracked_resources.begin_delete(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        polling_interval=0,  # set polling_interval to 0 s to make the test faster since default is 30s
+    ).result()
+
+
+def test_top_level_tracked_resources_list_by_resource_group(client):
+    response = client.top_level_tracked_resources.list_by_resource_group(
+        resource_group_name=RESOURCE_GROUP_NAME,
+    )
+    result = [r for r in response]
+    for result in result:
+        assert result.location == "eastus"
+        assert result.properties.description == "valid"
+        assert result.properties.provisioning_state == "Succeeded"
+        assert result.name == "top"
+        assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources"
+        assert result.system_data.created_by == "AzureSDK"
+
+
+def test_top_level_tracked_resources_list_by_subscription(client):
+    response = client.top_level_tracked_resources.list_by_subscription()
+    result = [r for r in response]
+    for result in result:
+        assert result.location == "eastus"
+        assert result.properties.description == "valid"
+        assert result.properties.provisioning_state == "Succeeded"
+        assert result.name == "top"
+        assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources"
+        assert result.system_data.created_by == "AzureSDK"
+
+
+def test_nested_proxy_resources_get(client):
+    result = client.nested_proxy_resources.get(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        nexted_proxy_resource_name="nested",
+    )
+    assert result.properties.description == "valid"
+    assert result.properties.provisioning_state == "Succeeded"
+    assert result.name == "nested"
+    assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources"
+    assert result.system_data.created_by == "AzureSDK"
+
+
+def test_nested_proxy_resources_begin_create_or_replace(client):
+    result = client.nested_proxy_resources.begin_create_or_replace(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        nexted_proxy_resource_name="nested",
+        resource=models.TopLevelTrackedResource(
+            properties=models.TopLevelTrackedResourceProperties(
+                models.TopLevelTrackedResourceProperties(description="valid")
+            ),
+        ),
+        polling_interval=0,  # set polling_interval to 0 s to make the test faster since default is 30s
+    ).result()
+    assert result.properties.description == "valid"
+    assert result.properties.provisioning_state == "Succeeded"
+    assert result.name == "nested"
+    assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources"
+    assert result.system_data.created_by == "AzureSDK"
+
+
+def test_nested_proxy_resources_begin_update(client):
+    result = client.nested_proxy_resources.begin_update(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        nexted_proxy_resource_name="nested",
+        properties=models.TopLevelTrackedResource(
+            properties=models.TopLevelTrackedResourceProperties(
+                models.TopLevelTrackedResourceProperties(description="valid2")
+            ),
+        ),
+        polling_interval=0,  # set polling_interval to 0 s to make the test faster since default is 30s
+    ).result()
+    assert result.properties.description == "valid2"
+    assert result.properties.provisioning_state == "Succeeded"
+    assert result.name == "nested"
+    assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources"
+    assert result.system_data.created_by == "AzureSDK"
+
+
+def test_nested_proxy_resources_begin_delete(client):
+    client.nested_proxy_resources.begin_delete(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+        nexted_proxy_resource_name="nested",
+        polling_interval=0,  # set polling_interval to 0 s to make the test faster since default is 30s
+    ).result()
+
+
+def test_nested_proxy_resources_list_by_top_level_tracked_resource(client):
+    response = client.nested_proxy_resources.list_by_top_level_tracked_resource(
+        resource_group_name=RESOURCE_GROUP_NAME,
+        top_level_tracked_resource_name="top",
+    )
+    result = [r for r in response]
+    for result in result:
+        assert result.properties.description == "valid"
+        assert result.properties.provisioning_state == "Succeeded"
+        assert result.name == "nested"
+        assert result.type == "Azure.ResourceManager.Models.Resources/topLevelTrackedResources/top/nestedProxyResources"
+        assert result.system_data.created_by == "AzureSDK"
