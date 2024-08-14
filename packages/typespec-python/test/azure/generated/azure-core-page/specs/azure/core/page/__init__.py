@@ -6,16 +6,21 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._operations import TwoModelsAsPageItemOperations
-from ._operations import BasicClientOperationsMixin
+from ._client import PageClient
+from ._version import VERSION
 
-from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+__version__ = VERSION
+
+try:
+    from ._patch import __all__ as _patch_all
+    from ._patch import *  # pylint: disable=unused-wildcard-import
+except ImportError:
+    _patch_all = []
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "TwoModelsAsPageItemOperations",
-    "BasicClientOperationsMixin",
+    "PageClient",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
+
 _patch_sdk()

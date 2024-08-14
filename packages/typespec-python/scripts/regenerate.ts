@@ -162,6 +162,9 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
                 if (flags.flavor === "unbranded" && mainTspRelativePath.includes("azure")) return;
 
+                // after xml support, remove this check
+                if (mainTspRelativePath.includes("xml")) return;
+
                 const hasMainTsp = await promises
                     .access(mainTspPath)
                     .then(() => true)

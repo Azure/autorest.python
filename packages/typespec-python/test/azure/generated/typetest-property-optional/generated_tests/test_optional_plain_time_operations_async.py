@@ -12,12 +12,12 @@ from testpreparer_async import OptionalClientTestBaseAsync
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestOptionalPlaindateOperationsAsync(OptionalClientTestBaseAsync):
+class TestOptionalPlainTimeOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
     async def test_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = await client.plaindate.get_all()
+        response = await client.plain_time.get_all()
 
         # please add some check logic here by yourself
         # ...
@@ -26,7 +26,7 @@ class TestOptionalPlaindateOperationsAsync(OptionalClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = await client.plaindate.get_default()
+        response = await client.plain_time.get_default()
 
         # please add some check logic here by yourself
         # ...
@@ -35,8 +35,8 @@ class TestOptionalPlaindateOperationsAsync(OptionalClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = await client.plaindate.put_all(
-            body={"property": "2020-02-20"},
+        response = await client.plain_time.put_all(
+            body={"property": "12:30:00"},
         )
 
         # please add some check logic here by yourself
@@ -46,8 +46,8 @@ class TestOptionalPlaindateOperationsAsync(OptionalClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
-        response = await client.plaindate.put_default(
-            body={"property": "2020-02-20"},
+        response = await client.plain_time.put_default(
+            body={"property": "12:30:00"},
         )
 
         # please add some check logic here by yourself
