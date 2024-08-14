@@ -233,6 +233,12 @@ class NumberType(PrimitiveType):  # pylint: disable=abstract-method
 
 
 class IntegerType(NumberType):
+
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        if yaml_data.get("encode") == "string":
+            self.encode = "str"
+
     @property
     def serialization_type(self) -> str:
         return "int"

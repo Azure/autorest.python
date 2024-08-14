@@ -118,6 +118,7 @@ __all__ = [
     "ClientParameter",
     "ConfigParameter",
     "ParameterListType",
+    "IntegerType",
 ]
 
 TYPE_TO_OBJECT = {

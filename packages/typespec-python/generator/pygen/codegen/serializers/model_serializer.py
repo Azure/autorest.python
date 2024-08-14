@@ -6,7 +6,7 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from ..models import ModelType, Property, ConstantType, EnumValue
+from ..models import ModelType, Property, ConstantType, EnumValue, IntegerType
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 from .base_serializer import BaseSerializer
@@ -250,6 +250,8 @@ class DpgModelSerializer(_ModelSerializer):
             args.append("is_multipart_file_input=True")
         elif hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
             args.append(f'format="{prop.type.encode}"')  # type: ignore
+        if isinstance(prop.type, IntegerType) and getattr(prop.type, "encode", None) == "str":
+            args.append("type=int")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
