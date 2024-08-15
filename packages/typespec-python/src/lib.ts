@@ -41,6 +41,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "generate-test": { type: "boolean", nullable: true },
         "debug": { type: "boolean", nullable: true },
         "flavor": { type: "string", nullable: true },
+        "examples-dir": { type: "string", nullable: true, format: "absolute-path" },
     },
     required: [],
 };
