@@ -259,13 +259,6 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
     }
 }
 
-//   try {
-//     const output = await executeCommand('tsp compile');
-//     console.log(`Command output: ${output}`);
-//   } catch (error) {
-//     console.error(`Command failed: ${error}`);
-//   }
-
 // PARSE INPUT ARGUMENTS
 const argv = yargs(hideBin(process.argv))
     .option("flavor", {
