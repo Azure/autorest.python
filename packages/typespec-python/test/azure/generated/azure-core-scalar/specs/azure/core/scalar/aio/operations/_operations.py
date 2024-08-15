@@ -183,19 +183,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -212,14 +199,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -236,14 +215,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @distributed_trace_async
@@ -257,19 +228,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

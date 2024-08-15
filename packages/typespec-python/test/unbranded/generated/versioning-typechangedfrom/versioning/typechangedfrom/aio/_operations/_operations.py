@@ -57,21 +57,6 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.typechangedfrom.models.TestModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
         """
 
     @overload
@@ -90,15 +75,6 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.typechangedfrom.models.TestModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
         """
 
     @overload
@@ -117,15 +93,6 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.typechangedfrom.models.TestModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
         """
 
     async def test(
@@ -140,21 +107,6 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.typechangedfrom.models.TestModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "changedProp": "str",
-                    "prop": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

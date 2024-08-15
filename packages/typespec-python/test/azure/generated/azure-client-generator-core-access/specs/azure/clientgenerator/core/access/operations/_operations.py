@@ -246,14 +246,6 @@ class PublicOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -314,14 +306,6 @@ class PublicOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -402,14 +386,6 @@ class InternalOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models._models.NoDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -477,14 +453,6 @@ class InternalOperationOperations:
         :rtype:
          ~specs.azure.clientgenerator.core.access.models._models.InternalDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -549,14 +517,6 @@ class InternalOperationOperations:
          MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -634,14 +594,6 @@ class SharedModelInOperationOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -701,14 +653,6 @@ class SharedModelInOperationOperations:
         :return: SharedModel. The SharedModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -797,17 +741,6 @@ class RelativeModelInOperationOperations:
         :return: OuterModel. The OuterModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models._models.OuterModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "inner": {
-                        "name": "str"
-                    },
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -877,21 +810,6 @@ class RelativeModelInOperationOperations:
         :return: AbstractModel. The AbstractModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.access.models._models.AbstractModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "real":
-                abstract_model = {
-                    "kind": "real",
-                    "name": "str"
-                }
-
-                # response body for status code(s): 200
-                response == abstract_model
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

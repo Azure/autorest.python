@@ -55,17 +55,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "level": 0,
-                    "extension": [
-                        ...
-                    ]
-                }
         """
 
     @overload
@@ -110,17 +99,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "level": 0,
-                    "extension": [
-                        ...
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -174,17 +152,6 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         :return: Extension. The Extension is compatible with MutableMapping
         :rtype: ~typetest.model.recursive.models.Extension
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "level": 0,
-                    "extension": [
-                        ...
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
