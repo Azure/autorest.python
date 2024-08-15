@@ -1,4 +1,4 @@
-import { Type, UsageFlags } from "@typespec/compiler";
+import { Type } from "@typespec/compiler";
 import { HttpAuth, Visibility } from "@typespec/http";
 import {
     SdkEnumValueType,
