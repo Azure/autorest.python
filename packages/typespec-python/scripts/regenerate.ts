@@ -11,7 +11,7 @@ import { fileURLToPath } from "url";
 const exec = promisify(execCallback);
 
 // Get the directory of the current file
-const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
+const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../");
 const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
@@ -258,13 +258,6 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
         return true;
     }
 }
-
-//   try {
-//     const output = await executeCommand('tsp compile');
-//     console.log(`Command output: ${output}`);
-//   } catch (error) {
-//     console.error(`Command failed: ${error}`);
-//   }
 
 // PARSE INPUT ARGUMENTS
 const argv = yargs(hideBin(process.argv))
