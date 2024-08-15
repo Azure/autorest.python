@@ -111,23 +111,6 @@ class NewInterfaceOperations:
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -144,16 +127,6 @@ class NewInterfaceOperations:
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -170,16 +143,6 @@ class NewInterfaceOperations:
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     def new_op_in_new_interface(
@@ -192,23 +155,6 @@ class NewInterfaceOperations:
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -288,23 +234,6 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -323,16 +252,6 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -351,16 +270,6 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
 
     def new_op(
@@ -375,23 +284,6 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         :return: NewModel. The NewModel is compatible with MutableMapping
         :rtype: ~versioning.renamedfrom.models.NewModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "newProp": "str",
-                    "unionProp": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

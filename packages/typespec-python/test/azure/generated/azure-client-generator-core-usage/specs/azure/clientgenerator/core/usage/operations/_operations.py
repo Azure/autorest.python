@@ -130,14 +130,6 @@ class ModelInOperationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
@@ -201,14 +193,6 @@ class ModelInOperationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -269,14 +253,6 @@ class ModelInOperationOperations:
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -357,23 +333,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "result": {
-                        "name": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @overload
@@ -407,16 +366,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @overload
@@ -450,16 +399,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @distributed_trace
@@ -490,23 +429,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "result": {
-                        "name": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

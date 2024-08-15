@@ -174,14 +174,6 @@ class TwoModelsAsPageItemOperations:
         :return: An iterator like instance of FirstItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.FirstItem]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -265,14 +257,6 @@ class TwoModelsAsPageItemOperations:
         :return: An iterator like instance of SecondItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.SecondItem]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -358,23 +342,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -472,28 +439,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_input = {
-                    "inputName": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -518,23 +463,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -559,23 +487,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @distributed_trace
@@ -597,28 +508,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body_input = {
-                    "inputName": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -711,23 +600,6 @@ class PageClientOperationsMixin(PageClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

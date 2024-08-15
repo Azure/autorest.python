@@ -66,41 +66,6 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         :return: ActionResponse. The ActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.example.basic.models.ActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -121,25 +86,6 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         :return: ActionResponse. The ActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.example.basic.models.ActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -166,25 +112,6 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         :return: ActionResponse. The ActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.example.basic.models.ActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -202,41 +129,6 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         :return: ActionResponse. The ActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.example.basic.models.ActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "stringProperty": "str",
-                    "arrayProperty": [
-                        "str"
-                    ],
-                    "modelProperty": {
-                        "enumProperty": "str",
-                        "float32Property": 0.0,
-                        "int32Property": 0
-                    },
-                    "recordProperty": {
-                        "str": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

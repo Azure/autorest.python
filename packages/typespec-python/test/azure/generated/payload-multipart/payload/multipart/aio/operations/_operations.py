@@ -72,15 +72,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -105,15 +96,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -169,24 +151,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "address": {
-                        "city": "str"
-                    },
-                    "id": "str",
-                    "pictures": [filetype],
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -211,24 +175,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "address": {
-                        "city": "str"
-                    },
-                    "id": "str",
-                    "pictures": [filetype],
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -284,17 +230,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "address": {
-                        "city": "str"
-                    },
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -319,17 +254,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "address": {
-                        "city": "str"
-                    },
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -385,15 +309,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "pictures": [filetype]
-                }
         """
 
     @overload
@@ -420,15 +335,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "pictures": [filetype]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -484,19 +390,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -523,19 +416,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "previousAddresses": [
-                        {
-                            "city": "str"
-                        }
-                    ],
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -591,15 +471,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "profileImage": filetype,
-                    "picture": filetype
-                }
         """
 
     @overload
@@ -626,15 +497,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "profileImage": filetype,
-                    "picture": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -690,15 +552,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -725,15 +578,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": "str",
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -789,14 +633,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "profileImage": filetype
-                }
         """
 
     @overload
@@ -825,14 +661,6 @@ class FormDataOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "profileImage": filetype
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
