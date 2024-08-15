@@ -106,6 +106,9 @@ importers:
       '@types/node':
         specifier: ^18.16.3
         version: 18.16.3
+      '@types/semver':
+        specifier: 7.5.8
+        version: 7.5.8
       '@types/yargs':
         specifier: 17.0.32
         version: 17.0.32
