@@ -56,6 +56,9 @@ importers:
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
+      tsx:
+        specifier: 4.17.0
+        version: 4.17.0
     devDependencies:
       '@azure-tools/typespec-python':
         specifier: workspace:^
