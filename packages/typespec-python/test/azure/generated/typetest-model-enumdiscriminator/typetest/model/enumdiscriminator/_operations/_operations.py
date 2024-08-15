@@ -176,21 +176,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -254,21 +239,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = dog
         """
 
     @overload
@@ -314,21 +284,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = dog
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -383,21 +338,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -454,21 +394,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -525,21 +450,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -603,21 +513,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = snake
         """
 
     @overload
@@ -663,21 +558,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = snake
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -732,21 +612,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -803,21 +668,6 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

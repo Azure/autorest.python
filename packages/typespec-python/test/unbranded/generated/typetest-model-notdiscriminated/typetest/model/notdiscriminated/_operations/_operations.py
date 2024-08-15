@@ -103,16 +103,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -157,16 +147,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -220,16 +200,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -293,23 +263,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -324,16 +277,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -348,16 +291,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     def put_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> _models.Siamese:
@@ -368,23 +301,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

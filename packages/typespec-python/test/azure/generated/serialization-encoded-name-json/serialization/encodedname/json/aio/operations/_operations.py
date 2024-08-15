@@ -70,14 +70,6 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
 
     @overload
@@ -123,14 +115,6 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -185,14 +169,6 @@ class PropertyOperations:
         :return: JsonEncodedNameModel. The JsonEncodedNameModel is compatible with MutableMapping
         :rtype: ~serialization.encodedname.json.models.JsonEncodedNameModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "wireName": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
