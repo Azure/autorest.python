@@ -295,8 +295,6 @@ class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
         return retval if is_operation_file or skip_quote else f'"{retval}"'
 
     def docstring_type(self, **kwargs: Any) -> str:
-        if kwargs.get("is_multipart_file_input"):
-            return f"~{self.code_model.namespace}._vendor.FileType"
         return f"~{self.code_model.namespace}.models.{self.type_annotation(need_module_name=False, skip_quote=True)}"
 
     def docstring_text(self, **kwargs: Any) -> str:
