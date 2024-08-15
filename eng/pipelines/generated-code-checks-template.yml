@@ -3,26 +3,26 @@ parameters:
     package: "autorest.python"
 
 steps:
-    - script: npm run tests -- --command=ci
+    - script: npm run test -- --command=ci
       displayName: Execute ${{ parameters.folderName }} tests - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
 
-    - script: npm run tests -- --command=lint
+    - script: npm run test -- --command=lint
       displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run tests -- --command=mypy
+    - script: npm run test -- --command=mypy
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: and(eq(variables['PythonVersion'], '3.11'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run tests -- --command=pyright
+    - script: npm run test -- --command=pyright
       displayName: Pyright ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run tests -- --command=pyright
+    - script: npm run test -- --command=pyright
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
       condition: eq(variables['PythonVersion'], '3.11')
