@@ -19,7 +19,7 @@ import {
     camelToSnakeCase,
     emitParamBase,
     getAddedOn,
-    getDelimeterAndExplode,
+    getDelimiterAndExplode,
     getDescriptionAndSummary,
     getImplementation,
     isAbstract,
@@ -237,7 +237,7 @@ function emitHttpPathParameter(context: PythonSdkContext<SdkHttpOperation>, para
         location: parameter.kind,
         implementation: getImplementation(context, parameter),
         clientDefaultValue: parameter.clientDefaultValue,
-        skipUrlEncoding: parameter.urlEncode === false,
+        skipUrlEncoding: parameter.allowReserved,
     };
 }
 function emitHttpHeaderParameter(
@@ -245,7 +245,7 @@ function emitHttpHeaderParameter(
     parameter: SdkHeaderParameter,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter);
-    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    const [delimiter, explode] = getDelimiterAndExplode(parameter);
     let clientDefaultValue = parameter.clientDefaultValue;
     if (isContentTypeParameter(parameter)) {
         // we switch to string type for content-type header
@@ -270,7 +270,7 @@ function emitHttpQueryParameter(
     parameter: SdkQueryParameter,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter);
-    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    const [delimiter, explode] = getDelimiterAndExplode(parameter);
     return {
         ...base,
         wireName: parameter.serializedName,
@@ -347,8 +347,8 @@ function emitHttpResponse(
             typeof statusCodes === "object"
                 ? [(statusCodes as HttpStatusCodeRange).start]
                 : statusCodes === "*"
-                ? ["default"]
-                : [statusCodes],
+                    ? ["default"]
+                    : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,
