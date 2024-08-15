@@ -1,6 +1,6 @@
 azure-pylint-guidelines-checker==0.0.8
 colorama==0.4.6
-debugpy==1.8.2
+debugpy==1.8.5
 pytest==8.3.2
 tox==4.16.0
 coverage==7.6.1
