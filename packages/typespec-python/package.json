@@ -30,13 +30,17 @@
     "clean": "rimraf ./dist ./temp",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "test": "mocha",
-    "test-official": "c8 mocha --forbid-only",
     "lint": "eslint . --ext .ts --max-warnings=0",
     "lint:fix": "eslint . --fix --ext .ts",
     "install": "node ./scripts/run-python3.cjs ./scripts/install.py",
     "prepare": "node ./scripts/run-python3.cjs ./scripts/prepare.py",
-    "regenerate": "node ./dist/scripts/regenerate.js"
+    "regenerate": "node ./dist/scripts/regenerate.js",
+    "pretest:ci": "if [ -z \"$folder\" ]; then echo 'Error: folder environment variable is not set.'; exit 1; fi",
+    "test:ci": "cross-env FOLDER=$folder tox -c ./test/$FOLDER/tox.ini -e ci",
+    "test:lint": "FOLDER=${folder} tox run -e lint --workdir ./test/${FOLDER}",
+    "test:mypy": "FOLDER=${folder} tox run -e mypy --workdir ./test/${FOLDER}",
+    "test:pyright": "FOLDER=${folder} tox run -e pyright --workdir ./test/${FOLDER}",
+    "test:apiview": "FOLDER=${folder} tox run -e apiview --workdir ./test/${FOLDER}"
   },
   "files": [
     "dist/**",
