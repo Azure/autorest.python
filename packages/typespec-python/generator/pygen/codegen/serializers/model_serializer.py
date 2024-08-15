@@ -6,7 +6,7 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from ..models import ModelType, Property, ConstantType, EnumValue
+from ..models import ModelType, Property, ConstantType, EnumValue, ByteArraySchema, DPGModelType, ListType
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 from .base_serializer import BaseSerializer
@@ -17,7 +17,17 @@ def _documentation_string(prop: Property, description_keyword: str, docstring_ty
     sphinx_prefix = f":{description_keyword} {prop.client_name}:"
     description = prop.description(is_operation_file=False).replace("\\", "\\\\")
     retval.append(f"{sphinx_prefix} {description}" if description else sphinx_prefix)
-    docstring_type = prop.type.docstring_type(is_multipart_file_input=prop.is_multipart_file_input)
+    docstring_type = prop.type.docstring_type()
+    if prop.is_multipart_file_input:
+        prop_type = prop.type
+        if isinstance(prop.type, ListType):
+            prop_type = prop.type.element_type
+        if isinstance(prop_type, ByteArraySchema):
+            docstring_type = docstring_type.replace("bytes", f"~{prop.code_model.namespace}._vendor.FileType")
+        elif isinstance(prop_type, DPGModelType):
+            docstring_type = docstring_type.replace(
+                f"models.{prop_type.type_annotation(need_module_name=False, skip_quote=True)}", "_vendor.FileType"
+            )
     retval.append(f":{docstring_type_keyword} {prop.client_name}: {docstring_type}")
     return retval
 
