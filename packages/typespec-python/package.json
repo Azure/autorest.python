@@ -35,7 +35,7 @@
     "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
     "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "regenerate": "tsx ./scripts/regenerate.ts",
-    "test:ci": "cross-env FOLDER=$folder tox -c ./test/$FOLDER/tox.ini -e ci",
+    "test:ci": "tsx ./scripts/run-tests.ts",
     "test:lint": "FOLDER=${folder} tox run -e lint --workdir ./test/${FOLDER}",
     "test:mypy": "FOLDER=${folder} tox run -e mypy --workdir ./test/${FOLDER}",
     "test:pyright": "FOLDER=${folder} tox run -e pyright --workdir ./test/${FOLDER}",
