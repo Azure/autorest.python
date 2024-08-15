@@ -173,16 +173,16 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
-function clearUsage(emitType: Record<string, any>) {
+function disableGeneration(emitType: Record<string, any>) {
     if (emitType.type === "model") {
-        if (emitType.usage !== UsageFlags.None) {
-            emitType.usage = UsageFlags.None;
+        if (emitType.enableGeneration) {
+            emitType.enableGeneration = false;
             for (const p of emitType.parents) {
-                clearUsage(p);
+                disableGeneration(p);
             }
         }
     } else if (emitType.type === "list") {
-        clearUsage(emitType.elementType);
+        disableGeneration(emitType.elementType);
     }
 }
 
@@ -194,7 +194,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
     const isMultipartFileInput = property.multipartOptions?.isFilePart;
     if (isMultipartFileInput) {
         // Python convert all the type of file part to FileType so clear these models' usage so that they won't be generated
-        clearUsage(emitType);
+        disableGeneration(emitType);
     }
     return {
         clientName: camelToSnakeCase(property.name),
@@ -235,6 +235,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,
+        enableGeneration: true,
     };
 
     typesMap.set(type, newValue);

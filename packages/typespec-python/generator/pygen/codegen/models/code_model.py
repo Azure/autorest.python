@@ -162,7 +162,9 @@ class CodeModel:  # pylint: disable=too-many-public-methods, disable=too-many-in
         """All of the model types in this class"""
         if not self._model_types:
             self._model_types = [
-                t for t in self.types_map.values() if isinstance(t, ModelType) and t.usage != UsageFlags.Default.value
+                t
+                for t in self.types_map.values()
+                if isinstance(t, ModelType) and t.usage != UsageFlags.Default.value and t.enable_generation
             ]
         return self._model_types
 
