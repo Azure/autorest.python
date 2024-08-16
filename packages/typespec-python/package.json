@@ -34,7 +34,8 @@
     "lint:fix": "eslint . --fix --ext .ts",
     "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
     "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
-    "regenerate": "tsx ./scripts/regenerate.ts"
+    "regenerate": "tsx ./scripts/regenerate.ts",
+    "test": "tsx ./scripts/run-tests.ts"
   },
   "files": [
     "dist/**",
