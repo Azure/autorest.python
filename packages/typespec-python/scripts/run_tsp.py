@@ -8,8 +8,8 @@ import venv
 import logging
 from pathlib import Path
 from venvtools import python_run
-from generator.pygen import m2r, preprocess, codegen, black
-from generator.pygen.utils import parse_args
+from pygen import m2r, preprocess, codegen, black
+from pygen.utils import parse_args
 
 _ROOT_DIR = Path(__file__).parent.parent
 
