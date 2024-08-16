@@ -640,7 +640,7 @@ class MultiPartFileType(PrimitiveType):
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
         relative_path = "..." if kwargs.get("async_mode") else ".."
-        file_import.add_submodule_import(f"{relative_path}_vendor", "FileType", ImportType.LOCAL)
+        file_import.add_submodule_import(f"{relative_path}_vendor", self.name, ImportType.LOCAL)
         return file_import
 
     @property

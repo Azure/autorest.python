@@ -6,7 +6,7 @@
 from typing import List
 from abc import ABC, abstractmethod
 
-from ..models import ModelType, Property, ConstantType, EnumValue, ByteArraySchema, DPGModelType, ListType
+from ..models import ModelType, Property, ConstantType, EnumValue
 from ..models.imports import FileImport, TypingSection, MsrestImportType, ImportType
 from .import_serializer import FileImportSerializer
 from .base_serializer import BaseSerializer
