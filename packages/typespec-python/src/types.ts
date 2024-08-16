@@ -261,7 +261,6 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,
-        enableGeneration: true,
     };
 
     typesMap.set(type, newValue);
