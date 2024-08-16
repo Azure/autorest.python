@@ -4,9 +4,12 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
 interface Arguments {
-    folder: string;
+    folder?: string;
     command?: string;
 }
+
+const validFolders = ["azure", "unbranded"];
+
 const validCommands = ["ci", "lint", "mypy", "pyright", "apiview"];
 
 // Parse command-line arguments using yargs
@@ -14,8 +17,7 @@ const argv = yargs(hideBin(process.argv))
     .option("folder", {
         alias: "f",
         describe: "Specify the folder to use",
-        choices: ["azure", "unbranded"],
-        demandOption: true,
+        choices: validFolders,
         type: "string",
     })
     .option("command", {
@@ -25,31 +27,30 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
     }).argv as Arguments;
 
-const folder = argv.folder;
+const foldersToProcess = argv.folder ? [argv.folder] : validFolders;
+
 const commandToRun = argv.command || "all";
 
-const commands: Record<string, string> = {
-    ci: `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ci`,
-    lint: `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e lint`,
-    mypy: `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e mypy`,
-    pyright: `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e pyright`,
-    apiview: `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e apiview`,
-};
+function getCommand(command: string, folder: string) {
+    return `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ${command}`;
+}
 
-try {
-    if (commandToRun === "all") {
-        for (const key in commands) {
-            console.log(`Running ${key}...`);
-            execSync(commands[key], { stdio: "inherit" });
+foldersToProcess.forEach((folder) => {
+    try {
+        if (commandToRun === "all") {
+            for (const key in validCommands) {
+                console.log(`Running ${key} for folder ${folder}...`);
+                execSync(getCommand(key, folder), { stdio: "inherit" });
+            }
+        } else if (getCommand(commandToRun, folder)) {
+            console.log(`Running ${commandToRun} for folder ${folder}...`);
+            execSync(getCommand(commandToRun, folder), { stdio: "inherit" });
+        } else {
+            console.error(`Error: Unknown command '${commandToRun}'.`);
+            process.exit(1);
         }
-    } else if (commands[commandToRun]) {
-        console.log(`Running ${commandToRun}...`);
-        execSync(commands[commandToRun], { stdio: "inherit" });
-    } else {
-        console.error(`Error: Unknown command '${commandToRun}'.`);
+    } catch (error) {
+        console.error(`Error executing command for folder ${folder}: ${(error as Error).message}`);
         process.exit(1);
     }
-} catch (error) {
-    console.error(`Error executing command: ${(error as Error).message}`);
-    process.exit(1);
-}
+});

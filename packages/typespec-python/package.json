@@ -35,9 +35,7 @@
     "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
     "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "regenerate": "tsx ./scripts/regenerate.ts",
-    "test": "npm run test:azure && npm run test:unbranded",
-    "test:azure": "tsx ./scripts/run-tests.ts --folder=azure",
-    "test:unbranded": "tsx ./scripts/run-tests.ts --folder=unbranded"
+    "test": "tsx ./scripts/run-tests.ts"
   },
   "files": [
     "dist/**",
