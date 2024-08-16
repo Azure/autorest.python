@@ -44,7 +44,7 @@ function getCommand(command: string, folder: string) {
 foldersToProcess.forEach((folder) => {
     try {
         if (commandToRun === "all") {
-            for (const key in validCommands) {
+            for (const key of validCommands) {
                 console.log(`Running ${key} for folder ${folder}...`);
                 execSync(getCommand(key, folder), { stdio: "inherit" });
             }
