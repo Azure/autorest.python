@@ -73,23 +73,6 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.removed.models.ModelV2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -104,16 +87,6 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.removed.models.ModelV2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -128,16 +101,6 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.removed.models.ModelV2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     def v2(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
@@ -148,23 +111,6 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.removed.models.ModelV2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

@@ -73,7 +73,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     const commandArgs = [
-        `${root}/scripts/run-python3.cjs`,
+        `${root}/dist/scripts/run-python3.js`,
         `${root}/scripts/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,

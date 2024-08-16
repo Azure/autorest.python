@@ -203,21 +203,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -238,15 +223,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -267,15 +243,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @distributed_trace
@@ -294,21 +261,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -532,15 +484,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "name": "str",
-                    "resourceUri": "str"
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

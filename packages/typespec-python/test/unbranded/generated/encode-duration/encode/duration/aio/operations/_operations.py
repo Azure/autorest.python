@@ -395,19 +395,6 @@ class PropertyOperations:
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "1 day, 0:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     @overload
@@ -424,14 +411,6 @@ class PropertyOperations:
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     @overload
@@ -448,14 +427,6 @@ class PropertyOperations:
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     async def default(
@@ -468,19 +439,6 @@ class PropertyOperations:
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "1 day, 0:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -554,19 +512,6 @@ class PropertyOperations:
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "1 day, 0:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     @overload
@@ -583,14 +528,6 @@ class PropertyOperations:
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     @overload
@@ -607,14 +544,6 @@ class PropertyOperations:
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
 
     async def iso8601(
@@ -627,19 +556,6 @@ class PropertyOperations:
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "1 day, 0:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "1 day, 0:00:00"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -714,19 +630,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0
-                }
         """
 
     @overload
@@ -744,14 +647,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0
-                }
         """
 
     @overload
@@ -769,14 +664,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0
-                }
         """
 
     async def int32_seconds(
@@ -791,19 +678,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -878,19 +752,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     @overload
@@ -908,14 +769,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     @overload
@@ -933,14 +786,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     async def float_seconds(
@@ -955,19 +800,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1042,19 +874,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     @overload
@@ -1072,14 +891,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     @overload
@@ -1097,14 +908,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
 
     async def float64_seconds(
@@ -1119,19 +922,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.duration.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": 0.0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1206,23 +996,6 @@ class PropertyOperations:
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": [
-                        0.0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        0.0
-                    ]
-                }
         """
 
     @overload
@@ -1240,16 +1013,6 @@ class PropertyOperations:
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        0.0
-                    ]
-                }
         """
 
     @overload
@@ -1267,16 +1030,6 @@ class PropertyOperations:
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        0.0
-                    ]
-                }
         """
 
     async def float_seconds_array(
@@ -1291,23 +1044,6 @@ class PropertyOperations:
          with MutableMapping
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": [
-                        0.0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        0.0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

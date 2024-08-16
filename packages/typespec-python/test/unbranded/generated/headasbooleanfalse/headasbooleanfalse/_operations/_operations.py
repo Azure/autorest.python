@@ -162,35 +162,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -207,22 +178,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -239,22 +194,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     def get_model(
@@ -267,35 +206,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -369,22 +279,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -429,22 +323,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -506,22 +384,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -566,22 +428,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -643,22 +489,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -703,22 +533,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -780,22 +594,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -840,22 +638,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -917,22 +699,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -977,22 +743,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1054,29 +804,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.ReadOnlyModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -1093,19 +820,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.ReadOnlyModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -1122,19 +836,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.ReadOnlyModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     def put_read_only_model(
@@ -1147,29 +848,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.ReadOnlyModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

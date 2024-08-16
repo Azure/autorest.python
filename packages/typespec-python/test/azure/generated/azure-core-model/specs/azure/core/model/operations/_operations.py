@@ -111,14 +111,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0
-                ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -182,14 +174,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0
-                ]
         """
 
     @overload
@@ -280,23 +264,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "embedding": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -311,16 +278,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -337,16 +294,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @distributed_trace
@@ -360,23 +307,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "embedding": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

@@ -70,37 +70,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -121,23 +90,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -158,23 +110,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @distributed_trace_async
@@ -193,37 +128,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -303,37 +207,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -354,23 +227,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @overload
@@ -391,23 +247,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
 
     @distributed_trace_async
@@ -426,37 +265,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -529,23 +337,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -630,23 +421,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~azure.core.async_paging.AsyncItemPaged[~specs.azure.core.basic.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -793,23 +567,6 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.basic.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "etag": "str",
-                    "id": 0,
-                    "name": "str",
-                    "orders": [
-                        {
-                            "detail": "str",
-                            "id": 0,
-                            "userId": 0
-                        }
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
