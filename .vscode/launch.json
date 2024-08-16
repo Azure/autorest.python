@@ -50,6 +50,14 @@
               "${workspaceFolder}/core/packages/*/dist/**/*.js",
               "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
             ]
-        }
+        },
+        {
+          "name": "npm: regenerate",
+          "request": "launch",
+          "type": "node",
+          "runtimeArgs": ["run", "regenerate", "--", "--name", "api-key"],
+          "runtimeExecutable": "npm",
+          "cwd": "${workspaceFolder}/packages/typespec-python",
+      }
     ]
 }

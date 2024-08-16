@@ -16,15 +16,12 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import BasicClientConfiguration
-from .operations import BasicClientOperationsMixin, TwoModelsAsPageItemOperations
+from ._operations import BasicClientOperationsMixin
 
 
 class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates bodies templated with Azure Core.
 
-    :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations
-    :vartype two_models_as_page_item:
-     specs.azure.core.basic.aio.operations.TwoModelsAsPageItemOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Default value is
@@ -36,7 +33,8 @@ class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = BasicClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = BasicClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -54,14 +52,11 @@ class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.two_models_as_page_item = TwoModelsAsPageItemOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -84,7 +79,11 @@ class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:

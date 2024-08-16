@@ -918,7 +918,7 @@ def test_deserialization_callback_override():
     assert model_without_callback.prop == [1.3, 2.4, 3.5]
     assert model_without_callback["prop"] == [1.3, 2.4, 3.5]
 
-    class MyModel(Model):
+    class MyModel2(Model):
         prop: Sequence[int] = rest_field(type=_callback)
 
         @overload
@@ -930,7 +930,7 @@ def test_deserialization_callback_override():
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
 
-    model_with_callback = MyModel(prop=[1.3, 2.4, 3.5])
+    model_with_callback = MyModel2(prop=[1.3, 2.4, 3.5])
     assert model_with_callback.prop == ["1.3", "2.4", "3.5"]
     # since the deserialize function is not roundtrippable, once we deserialize
     # the serialized version is the same

@@ -535,9 +535,9 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         return "response"
 
     def example_template(self, builder: OperationType) -> List[str]:
+        if self.code_model.options["models_mode"] in ("msrest", "dpg"):
+            return []
         retval = super().example_template(builder)
-        if self.code_model.options["models_mode"] == "msrest":
-            return retval
         for response in builder.responses:
             polymorphic_subtypes: List[ModelType] = []
             if not response.type:

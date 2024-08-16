@@ -1,13 +1,14 @@
 {
   "name": "@autorest/python",
-  "version": "6.17.0",
+  "version": "6.18.0",
   "description": "The Python extension for generators in AutoRest.",
   "scripts": {
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
     "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
     "build": "node ./scripts/copy-generator.js --force",
     "install": "node ./scripts/copy-generator.js && node ./scripts/run-python3.js ./scripts/install.py",
-    "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug"
+    "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug",
+    "test": "tsx ./scripts/run-tests.ts"
   },
   "main": "index.js",
   "repository": {
@@ -27,7 +28,8 @@
   "homepage": "https://github.com/Azure/autorest.python/blob/main/README.md",
   "dependencies": {
     "@autorest/system-requirements": "~1.0.2",
-    "fs-extra": "~11.2.0"
+    "fs-extra": "~11.2.0",
+    "tsx": "4.17.0"
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.46",

@@ -16,7 +16,6 @@ import path from "path";
 import os from "os";
 import fs from "fs";
 
-
 export function getModelsMode(context: SdkContext): "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
     if (specifiedModelsMode) {
@@ -88,7 +87,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (!fs.existsSync(venv_path)){
         throw new Error("Virtual environment doesn't exist.")
     }
-    const commandArgs = `${venv_path} ${root}/scripts/run_tsp.py --output-folder=${outputDir} --cadl-file=${yamlPath}`
+    const commandArgs = `${venv_path} ${root}/scripts/run_tsp.py --output-folder=${outputDir} --cadl-file=${yamlPath}`;
     const resolvedOptions = sdkContext.emitContext.options;
     if (resolvedOptions["packaging-files-config"]) {
         const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {

@@ -64,35 +64,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -109,22 +80,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -141,22 +96,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @distributed_trace_async
@@ -170,35 +109,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -227,7 +137,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -269,22 +182,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -324,22 +221,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -368,7 +249,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -399,22 +283,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -460,22 +328,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -504,7 +356,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -534,22 +389,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -595,22 +434,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -639,7 +462,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -669,22 +495,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -730,22 +540,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -774,7 +568,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -804,22 +601,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -865,22 +646,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"
-                    ],
-                    "deleteProp": bool,
-                    "queryProp": 0,
-                    "readProp": "str",
-                    "updateProp": [
-                        0
-                    ]
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -909,7 +674,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -939,29 +707,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -978,19 +723,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     @overload
@@ -1007,19 +739,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -1033,29 +752,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
         :rtype: ~headasbooleantrue.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "optionalNullableIntList": [
-                        0
-                    ],
-                    "optionalStringRecord": {
-                        "str": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1084,7 +780,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

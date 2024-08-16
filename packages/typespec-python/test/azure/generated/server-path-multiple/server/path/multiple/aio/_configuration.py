@@ -21,8 +21,8 @@ class MultipleClientConfiguration:  # pylint: disable=too-many-instance-attribut
 
     :param endpoint: Pass in http://localhost:3000 for endpoint. Required.
     :type endpoint: str
-    :keyword api_version: Pass in v1.0 for API version. Default value is "v1.0". Note that
-     overriding this default value may result in unsupported behavior.
+    :keyword api_version: Pass in v1.0 for API version. Known values are "v1.0" and None. Default
+     value is "v1.0". Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 

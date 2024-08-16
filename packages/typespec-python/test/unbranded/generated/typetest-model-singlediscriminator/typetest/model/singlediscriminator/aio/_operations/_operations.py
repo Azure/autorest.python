@@ -55,46 +55,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -113,7 +73,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -155,46 +118,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
 
     @overload
@@ -239,46 +162,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -307,7 +190,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -329,46 +215,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -387,7 +233,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -429,46 +278,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
 
     @overload
@@ -513,46 +322,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -581,7 +350,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -603,46 +375,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -661,7 +393,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -695,46 +430,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -753,7 +448,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -787,21 +485,6 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Dinosaur. The Dinosaur is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Dinosaur
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "t-rex":
-                dinosaur = {
-                    "kind": "t-rex",
-                    "size": 0
-                }
-
-                # response body for status code(s): 200
-                response == dinosaur
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -820,7 +503,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
