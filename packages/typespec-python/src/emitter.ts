@@ -13,6 +13,9 @@ import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
 import path from "path";
+import os from "os";
+import fs from "fs";
+
 
 export function getModelsMode(context: SdkContext): "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
@@ -72,8 +75,21 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
+    const platform = os.platform();
+    var venv_path = "unknown";
+    switch(platform){
+        case "linux":
+            venv_path = `${root}/venv/bin/python`;
+        case "darwin":
+            venv_path = `${root}/venv/bin/python`;
+        case "win32":
+            venv_path = `${root}/venv/Scripts/python.exe`;
+    }
+    if (!fs.existsSync(venv_path)){
+        throw new Error("Virtual environment doesn't exist.")
+    }
     const commandArgs = [
-        `${root}/scripts/run-python3.cjs`,
+        venv_path,
         `${root}/scripts/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
