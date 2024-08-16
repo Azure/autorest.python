@@ -84,7 +84,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.anonymous_model(
             body={"profileImage": "filetype"},
-            profile_image=bytes("bytes", encoding="utf-8"),
+            profile_image="filetype",
         )
 
         # please add some check logic here by yourself

@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import _model_base, models as _models
 from .._serialization import Serializer
-from .._vendor import prepare_multipart_form_data
+from .._vendor import FileType, prepare_multipart_form_data
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -652,12 +652,12 @@ class FormDataOperations:
 
     @overload
     def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, *, profile_image: bytes, **kwargs: Any
+        self, *, profile_image: FileType, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
         :keyword profile_image: Required.
-        :paramtype profile_image: bytes
+        :paramtype profile_image: ~payload.multipart._vendor.FileType
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -665,14 +665,14 @@ class FormDataOperations:
 
     @distributed_trace
     def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON = _Unset, *, profile_image: bytes = _Unset, **kwargs: Any
+        self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Is one of the following types: JSON Required.
         :type body: JSON
         :keyword profile_image: Required.
-        :paramtype profile_image: bytes
+        :paramtype profile_image: ~payload.multipart._vendor.FileType
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

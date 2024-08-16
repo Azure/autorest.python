@@ -22,7 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import _model_base, models as _models
-from ..._vendor import prepare_multipart_form_data
+from ..._vendor import FileType, prepare_multipart_form_data
 from ...operations._operations import (
     build_form_data_anonymous_model_request,
     build_form_data_basic_request,
@@ -559,12 +559,12 @@ class FormDataOperations:
 
     @overload
     async def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, *, profile_image: bytes, **kwargs: Any
+        self, *, profile_image: FileType, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
         :keyword profile_image: Required.
-        :paramtype profile_image: bytes
+        :paramtype profile_image: ~payload.multipart._vendor.FileType
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -572,14 +572,14 @@ class FormDataOperations:
 
     @distributed_trace_async
     async def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON = _Unset, *, profile_image: bytes = _Unset, **kwargs: Any
+        self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Is one of the following types: JSON Required.
         :type body: JSON
         :keyword profile_image: Required.
-        :paramtype profile_image: bytes
+        :paramtype profile_image: ~payload.multipart._vendor.FileType
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
