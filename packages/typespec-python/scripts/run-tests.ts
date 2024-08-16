@@ -32,6 +32,7 @@ const foldersToProcess = argv.folder ? [argv.folder] : validFolders;
 const commandToRun = argv.command || "all";
 
 function getCommand(command: string, folder: string) {
+    if (!validCommands.includes(command)) throw new Error(`Unknown command '${command}'.`);
     return `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ${command}`;
 }
 
