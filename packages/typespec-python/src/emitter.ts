@@ -87,13 +87,18 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (!fs.existsSync(venv_path)){
         throw new Error("Virtual environment doesn't exist.")
     }
-    const commandArgs = `${venv_path} ${root}/scripts/run_tsp.py --output-folder=${outputDir} --cadl-file=${yamlPath}`;
+    const commandArgs = [
+        venv_path,
+        `${root}/scripts/run_tsp.py`,
+        `--output-folder=${outputDir}`,
+        `--cadl-file=${yamlPath}`,
+    ];
     const resolvedOptions = sdkContext.emitContext.options;
     if (resolvedOptions["packaging-files-config"]) {
         const keyValuePairs = Object.entries(resolvedOptions["packaging-files-config"]).map(([key, value]) => {
             return `${key}:${value}`;
         });
-        commandArgs.concat(` --packaging-files-config='${keyValuePairs.join("|")}'`);
+        commandArgs.push(`--packaging-files-config='${keyValuePairs.join("|")}'`);
         resolvedOptions["packaging-files-config"] = undefined;
     }
     if (
@@ -104,16 +109,16 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
 
     for (const [key, value] of Object.entries(resolvedOptions)) {
-        commandArgs.concat(` --${key}=${value}`);
+        commandArgs.push(`--${key}=${value}`);
     }
     if (sdkContext.arm === true) {
-        commandArgs.concat(" --azure-arm=true");
+        commandArgs.push("--azure-arm=true");
     }
     if (resolvedOptions.flavor === "azure") {
-        commandArgs.concat(" --emit-cross-language-definition-file=true");
+        commandArgs.push("--emit-cross-language-definition-file=true");
     }
-    commandArgs.concat(" --from-typespec=true");
+    commandArgs.push(" --from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        exec(commandArgs);
+        exec(commandArgs.toString());
     }
 }
