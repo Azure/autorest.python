@@ -13,7 +13,6 @@ import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
 import path from "path";
-import os from "os";
 import fs from "fs";
 
 export function getModelsMode(context: SdkContext): "dpg" | "none" {
@@ -74,21 +73,16 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
-    const platform = os.platform();
-    var venv_path = "unknown";
-    switch(platform){
-        case "linux":
-            venv_path = `${root}/venv/bin/python`;
-        case "darwin":
-            venv_path = `${root}/venv/bin/python`;
-        case "win32":
-            venv_path = `${root}\\venv\\Scripts\\python.exe`;
-    }
-    if (!fs.existsSync(venv_path)){
+    var venvPath = path.join(root, "venv");
+    if (fs.existsSync(path.join(venvPath, "bin"))){
+        venvPath = path.join(venvPath, "python")
+    } else if (fs.existsSync(path.join(venvPath, "Scripts"))){
+        venvPath = path.join(venvPath, "Scripts", "python.exe")
+    } else {
         throw new Error("Virtual environment doesn't exist.")
     }
     const commandArgs = [
-        venv_path,
+        venvPath,
         `${root}/scripts/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
@@ -117,7 +111,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     if (resolvedOptions.flavor === "azure") {
         commandArgs.push("--emit-cross-language-definition-file=true");
     }
-    commandArgs.push(" --from-typespec=true");
+    commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
         exec(commandArgs.toString());
     }
