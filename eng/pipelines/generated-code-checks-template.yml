@@ -22,7 +22,7 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run test -- --command=pyright --folder=${{ parameters.folderName }}
+    - script: npm run test -- --command=apiview --folder=${{ parameters.folderName }}
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: eq(variables['PythonVersion'], '3.11')
