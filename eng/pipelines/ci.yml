@@ -175,7 +175,7 @@ jobs:
             installTypeSpec: true
             installCadlRanch: true
             folderName: "typespec-python"
-            pythonFolderName: generator
+            pythonFolderName: generator/pygen
             pythonCodeLintChecks: true
             regenerate: true
 

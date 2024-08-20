@@ -87,7 +87,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
 
     @property
     def is_usage_output(self) -> bool:
-        return self.usage & UsageFlags.Output.value
+        return bool(self.usage & UsageFlags.Output.value)
 
     @property
     def flattened_property(self) -> Optional[Property]:
