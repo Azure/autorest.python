@@ -57,12 +57,6 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
-    # - script: pnpm change verify
-    #   displayName: Check changelog
-    #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-    #   condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
-    #   continueOnError: true
-
     - script: pnpm list
       displayName: Pnpm list
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
@@ -83,22 +77,12 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint ${{parameters.pythonFolderName}} --rcfile $(Build.SourcesDirectory)/autorest.python/pylintrc
+    - script: npm run lint
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
 
-    - script: mypy ${{parameters.pythonFolderName}} --config-file $(Build.SourcesDirectory)/autorest.python/mypy.ini
-      displayName: Mypy
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
-
-    - script: pyright ${{parameters.pythonFolderName}} -p $(Build.SourcesDirectory)/autorest.python/pyrightconfig.json
-      displayName: Pyright
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
-
-    - script: black $(Build.SourcesDirectory)/autorest.python
+    - script: npm run format
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
@@ -118,14 +102,6 @@ steps:
     - script: inv regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
-
-    - script: |
-        find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
-        npm run regenerate
-      displayName: "Regenerate Code"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
 
     - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Typespec
