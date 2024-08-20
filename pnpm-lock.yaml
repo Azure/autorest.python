@@ -12,8 +12,8 @@ importers:
         specifier: 6.0.0
         version: 6.0.0
       '@azure-tools/cadl-ranch':
-        specifier: ~0.14.1
-        version: 0.14.1(@typespec/versioning@0.59.0(@typespec/compiler@0.59.0))
+        specifier: ~0.14.2
+        version: 0.14.2(@typespec/versioning@0.59.0(@typespec/compiler@0.59.0))
       '@chronus/chronus':
         specifier: ^0.10.2
         version: 0.10.2
@@ -89,8 +89,8 @@ importers:
         specifier: ~0.15.1
         version: 0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))
       '@azure-tools/cadl-ranch-specs':
-        specifier: ~0.35.3
-        version: 0.35.3(@azure-tools/cadl-ranch-expect@0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1)))(@azure-tools/typespec-azure-core@0.45.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))))(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))(@typespec/xml@0.59.0(@typespec/compiler@0.59.1))
+        specifier: ~0.35.4
+        version: 0.35.4(@azure-tools/cadl-ranch-expect@0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1)))(@azure-tools/typespec-azure-core@0.45.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))))(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))(@typespec/xml@0.59.0(@typespec/compiler@0.59.1))
       '@azure-tools/typespec-autorest':
         specifier: ~0.45.0
         version: 0.45.0(jf7kycy44t4benafpfquc5zfzy)
@@ -185,8 +185,8 @@ packages:
       '@typespec/rest': ~0.59.0
       '@typespec/versioning': ~0.59.0
 
-  '@azure-tools/cadl-ranch-specs@0.35.3':
-    resolution: {integrity: sha512-sGbOirnvqnOmFgkGj2jVUZxZSrHfRKQbkJaX6BtGWKxchgHPCliV/mbPxsAPqhNXHooQ0yw7vpl8oeXT7i1HqQ==}
+  '@azure-tools/cadl-ranch-specs@0.35.4':
+    resolution: {integrity: sha512-ZGqxbrFzyvV4oVsc0UKSzsKT23eX8xv3AmQu0BAo2IN8T2BF+RhoGbpA2LaOTwpJYa7K3htqfRf11+rdJ5AuNA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       '@azure-tools/cadl-ranch-expect': ~0.15.1
@@ -197,8 +197,8 @@ packages:
       '@typespec/versioning': ~0.59.0
       '@typespec/xml': ~0.59.0
 
-  '@azure-tools/cadl-ranch@0.14.1':
-    resolution: {integrity: sha512-D/wuAiVlBwK5WXmWg+OkSduVosQGuzRJzahFLgAVD9pzWkKwnbAd9z+F9ThqALItcW4PdJnLzE1n1l/m3Dt4kA==}
+  '@azure-tools/cadl-ranch@0.14.2':
+    resolution: {integrity: sha512-5aMzmiCbMXijc9c3TVCxYdoF4ALyu5fGZhv4gGSSHYCNvqc2uE10seURu5jIVp0GZWyKv9Bis152rYKw/gg01g==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -3686,9 +3686,9 @@ snapshots:
       '@typespec/rest': 0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))
       '@typespec/versioning': 0.59.0(@typespec/compiler@0.59.1)
 
-  '@azure-tools/cadl-ranch-specs@0.35.3(@azure-tools/cadl-ranch-expect@0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1)))(@azure-tools/typespec-azure-core@0.45.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))))(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))(@typespec/xml@0.59.0(@typespec/compiler@0.59.1))':
+  '@azure-tools/cadl-ranch-specs@0.35.4(@azure-tools/cadl-ranch-expect@0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1)))(@azure-tools/typespec-azure-core@0.45.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))))(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))(@typespec/xml@0.59.0(@typespec/compiler@0.59.1))':
     dependencies:
-      '@azure-tools/cadl-ranch': 0.14.1(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))
+      '@azure-tools/cadl-ranch': 0.14.2(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))
       '@azure-tools/cadl-ranch-api': 0.4.5
       '@azure-tools/cadl-ranch-expect': 0.15.1(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))
       '@azure-tools/typespec-azure-core': 0.45.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))
@@ -3701,7 +3701,7 @@ snapshots:
       - '@types/express'
       - supports-color
 
-  '@azure-tools/cadl-ranch@0.14.1(@typespec/versioning@0.59.0(@typespec/compiler@0.59.0))':
+  '@azure-tools/cadl-ranch@0.14.2(@typespec/versioning@0.59.0(@typespec/compiler@0.59.0))':
     dependencies:
       '@azure-tools/cadl-ranch-api': 0.4.5
       '@azure-tools/cadl-ranch-coverage-sdk': 0.8.3
@@ -3732,7 +3732,7 @@ snapshots:
       - '@typespec/versioning'
       - supports-color
 
-  '@azure-tools/cadl-ranch@0.14.1(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))':
+  '@azure-tools/cadl-ranch@0.14.2(@typespec/versioning@0.59.0(@typespec/compiler@0.59.1))':
     dependencies:
       '@azure-tools/cadl-ranch-api': 0.4.5
       '@azure-tools/cadl-ranch-coverage-sdk': 0.8.3

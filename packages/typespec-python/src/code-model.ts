@@ -13,7 +13,7 @@ import {
     UsageFlags,
     getCrossLanguagePackageId,
 } from "@azure-tools/typespec-client-generator-core";
-import { KnownTypes, emitEndpointType, getType, simpleTypesMap, typesMap } from "./types.js";
+import { KnownTypes, disableGenerationMap, emitEndpointType, getType, simpleTypesMap, typesMap } from "./types.js";
 import { emitParamBase, getImplementation, removeUnderscoresFromNamespace } from "./utils.js";
 import { emitBasicHttpMethod, emitLroHttpMethod, emitLroPagingHttpMethod, emitPagingHttpMethod } from "./http.js";
 import { PythonSdkContext } from "./lib.js";
@@ -218,24 +218,27 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
         clients: [],
         subnamespaceToClients: {},
     };
-    for (const model of sdkPackage.models) {
-        if (model.name === "" || (model.usage & UsageFlags.Spread) > 0) {
-            continue;
-        }
-        getType(sdkContext, model);
-    }
-    for (const sdkEnum of sdkPackage.enums) {
-        if (sdkEnum.usage === UsageFlags.ApiVersionEnum) {
-            continue;
-        }
-        getType(sdkContext, sdkEnum);
-    }
     for (const client of sdkPackage.clients) {
         codeModel["clients"].push(emitClient(sdkContext, client));
         if (client.nameSpace === sdkPackage.rootNamespace) {
         } else {
             codeModel["subnamespaceToClients"][client.nameSpace] = emitClient(sdkContext, client);
         }
+    }
+    // loop through models and enums since there may be some orphaned models needs to be generated
+    for (const model of sdkPackage.models) {
+        if (model.name === "" || (model.usage & UsageFlags.Spread) > 0) {
+            continue;
+        }
+        if (!disableGenerationMap.has(model)) {
+            getType(sdkContext, model);
+        }
+    }
+    for (const sdkEnum of sdkPackage.enums) {
+        if (sdkEnum.usage === UsageFlags.ApiVersionEnum) {
+            continue;
+        }
+        getType(sdkContext, sdkEnum);
     }
     codeModel["types"] = [...typesMap.values(), ...Object.values(KnownTypes), ...simpleTypesMap.values()];
     codeModel["crossLanguagePackageId"] = ignoreDiagnostics(getCrossLanguagePackageId(sdkContext));
