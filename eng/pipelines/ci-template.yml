@@ -77,12 +77,22 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: npm run lint
+    - script: pylint ${{parameters.pythonFolderName}}
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: npm run format
+    - script: mypy ${{parameters.pythonFolderName}}
+      displayName: Mypy
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: pyright ${{parameters.pythonFolderName}}
+      displayName: Pyright
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+
+    - script: black $(Build.SourcesDirectory)/autorest.python
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
       condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
@@ -102,6 +112,12 @@ steps:
     - script: inv regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
+
+    - script: npm run regenerate
+      displayName: "Regenerate Code"
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
 
     - script: node ../../../eng/scripts/check-for-changed-files.js
       displayName: Fail on regeneration diff in Typespec
