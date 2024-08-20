@@ -74,12 +74,12 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     let venvPath = path.join(root, "venv");
-    if (fs.existsSync(path.join(venvPath, "bin"))){
-        venvPath = path.join(venvPath, "python")
-    } else if (fs.existsSync(path.join(venvPath, "Scripts"))){
-        venvPath = path.join(venvPath, "Scripts", "python.exe")
+    if (fs.existsSync(path.join(venvPath, "bin"))) {
+        venvPath = path.join(venvPath, "python");
+    } else if (fs.existsSync(path.join(venvPath, "Scripts"))) {
+        venvPath = path.join(venvPath, "Scripts", "python.exe");
     } else {
-        throw new Error("Virtual environment doesn't exist.")
+        throw new Error("Virtual environment doesn't exist.");
     }
     const commandArgs = [
         venvPath,
