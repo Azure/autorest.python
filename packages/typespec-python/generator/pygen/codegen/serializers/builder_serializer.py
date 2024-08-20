@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,multiple-statements
+# pylint: disable=too-many-lines
 # -------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for
@@ -218,7 +218,7 @@ def is_json_model_type(parameters: ParameterListType) -> bool:
     )
 
 
-class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-method
+class _BuilderBaseSerializer(Generic[BuilderType]):
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         self.code_model = code_model
         self.async_mode = async_mode
@@ -391,7 +391,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):  # pylint: disable=abstract-
 ############################## REQUEST BUILDERS ##############################
 
 
-class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # pylint: disable=abstract-method
+class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):
     def description_and_summary(self, builder: RequestBuilderType) -> List[str]:
         retval = super().description_and_summary(builder)
         retval += [
@@ -517,7 +517,7 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):  # p
 ############################## NORMAL OPERATIONS ##############################
 
 
-class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: disable=abstract-method
+class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
     def description_and_summary(self, builder: OperationType) -> List[str]:
         retval = super().description_and_summary(builder)
         if builder.deprecated:
@@ -871,7 +871,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
         )
         return retval
 
-    def _call_request_builder_helper(  # pylint: disable=too-many-statements
+    def _call_request_builder_helper(
         self,
         builder: OperationType,
         request_builder: RequestBuilderType,
@@ -1031,7 +1031,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):  # pylint: di
             retval.append("deserialized = None")
         if builder.any_response_has_headers:
             retval.append("response_headers = {}")
-        if builder.has_response_body or builder.any_response_has_headers:
+        if builder.has_response_body or builder.any_response_has_headers:  # pylint: disable=too-many-nested-blocks
             if len(builder.responses) > 1:
                 status_codes, res_headers, res_deserialization = [], [], []
                 for status_code in builder.success_status_codes:
@@ -1173,7 +1173,7 @@ class OperationSerializer(_OperationSerializer[Operation]): ...
 PagingOperationType = TypeVar("PagingOperationType", bound=Union[PagingOperation, LROPagingOperation])
 
 
-class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):  # pylint: disable=abstract-method
+class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):
     def __init__(self, code_model: CodeModel, async_mode: bool) -> None:
         # for pylint reasons need to redefine init
         # probably because inheritance is going too deep
@@ -1458,7 +1458,7 @@ class LROOperationSerializer(_LROOperationSerializer[LROOperation]): ...
 class LROPagingOperationSerializer(
     _LROOperationSerializer[LROPagingOperation],
     _PagingOperationSerializer[LROPagingOperation],
-):  # pylint: disable=abstract-method
+):
     @property
     def _call_method(self) -> str:
         return "await " if self.async_mode else ""

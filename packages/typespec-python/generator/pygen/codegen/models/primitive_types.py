@@ -22,8 +22,8 @@ class RawString(object):
         return "r'{}'".format(self.string.replace("'", "\\'"))
 
 
-class PrimitiveType(BaseType):  # pylint: disable=abstract-method
-    def description(self, *, is_operation_file: bool) -> str:  # pylint: disable=unused-argument
+class PrimitiveType(BaseType):
+    def description(self, *, is_operation_file: bool) -> str:
         return ""
 
     def type_annotation(self, **kwargs: Any) -> str:
@@ -188,7 +188,7 @@ class AnyObjectType(PrimitiveType):
         return "JSON"
 
 
-class NumberType(PrimitiveType):  # pylint: disable=abstract-method
+class NumberType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.precision: Optional[int] = yaml_data.get("precision")
