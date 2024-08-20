@@ -3,11 +3,13 @@ parameters:
     installTypeSpec: false
     installCadlRanch: false
     folderName: ""
-    pythonCodeChecks: false
+    pythonCodeLintChecks: false
+    pythonCodeBlackCheck: false
     pythonFolderName: ""
     regenerate: false
     checkChange: true
     updateToLatestTypespec: false
+    unitTest: false
 
 steps:
     - checkout: self
@@ -81,37 +83,37 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint ${{parameters.pythonFolderName}}
+    - script: pylint ${{parameters.pythonFolderName}} --rcfile $(Build.SourcesDirectory)/autorest.python/pylintrc
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
 
-    - script: mypy ${{parameters.pythonFolderName}}
+    - script: mypy ${{parameters.pythonFolderName}} --config-file $(Build.SourcesDirectory)/autorest.python/mypy.ini
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
 
-    - script: pyright ${{parameters.pythonFolderName}}
+    - script: pyright ${{parameters.pythonFolderName}} -p $(Build.SourcesDirectory)/autorest.python/pyrightconfig.json
       displayName: Pyright
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeLintChecks }})
 
     - script: black $(Build.SourcesDirectory)/autorest.python
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on black autorest diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
 
     - script: |
         cd test/unittests
         tox run -e ci
       displayName: Unit tests
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.unitTest }})
 
     - script: inv regenerate
       displayName: "Regenerate Code"

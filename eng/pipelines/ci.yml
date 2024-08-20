@@ -78,8 +78,10 @@ jobs:
         parameters:
             installAutorest: true
             folderName: "autorest.python"
-            pythonCodeChecks: true
+            pythonCodeLintChecks: true
+            pythonCodeBlackCheck: true
             pythonFolderName: autorest
+            unitTest: true
             regenerate: true
 
       - script: |
@@ -173,6 +175,8 @@ jobs:
             installTypeSpec: true
             installCadlRanch: true
             folderName: "typespec-python"
+            pythonFolderName: generator
+            pythonCodeLintChecks: true
             regenerate: true
 
       - template: generated-code-checks-template.yml
