@@ -12,11 +12,11 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check, AUTOREST_PACKAGE_DIR
+from util import run_check, ROOT_FOLDER
 
 logging.getLogger().setLevel(logging.INFO)
 
-rfc_file_location = os.path.join(AUTOREST_PACKAGE_DIR, "pylintrc")
+rfc_file_location = os.path.join(ROOT_FOLDER, "pylintrc")
 
 
 def _single_dir_pylint(mod):

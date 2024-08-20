@@ -12,7 +12,7 @@ from subprocess import check_output, CalledProcessError
 import logging
 import sys
 import time
-from util import run_check, AUTOREST_PACKAGE_DIR
+from util import run_check, ROOT_FOLDER
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -28,7 +28,7 @@ def _single_dir_pyright(mod):
                     "-m",
                     "pyright",
                     "-p",
-                    str(AUTOREST_PACKAGE_DIR),
+                    str(ROOT_FOLDER),
                     str(inner_class.absolute()),
                 ],
                 text=True,
