@@ -78,7 +78,6 @@ jobs:
         parameters:
             installAutorest: true
             folderName: "autorest.python"
-            pythonFolderName: autorest
             unitTest: true
             regenerate: true
 
@@ -173,7 +172,6 @@ jobs:
             installTypeSpec: true
             installCadlRanch: true
             folderName: "typespec-python"
-            pythonFolderName: generator/pygen
             regenerate: true
 
       - template: generated-code-checks-template.yml

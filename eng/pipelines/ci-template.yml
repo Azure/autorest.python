@@ -3,7 +3,6 @@ parameters:
     installTypeSpec: false
     installCadlRanch: false
     folderName: ""
-    pythonFolderName: ""
     regenerate: false
     checkChange: true
     updateToLatestTypespec: false
