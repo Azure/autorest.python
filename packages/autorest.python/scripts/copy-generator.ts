@@ -26,7 +26,7 @@ const scriptsDestDir: string = join(__dirname, "..", "scripts");
 // Read the contents of the source directory
 const files = readdirSync(scriptsSourceDir);
 
-const filesToCopy = ["run-tests.ts", "pylintrc", "mypy.ini", "pyrightconfig.json", "lint.ts"];
+const filesToCopy = ["run-tests.ts", "pylintrc", "mypy.ini", "pyrightconfig.json", "lint.ts", "utils.ts", "format.ts"];
 
 // Filter and copy .ts files to the destination directory
 files

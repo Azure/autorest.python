@@ -32,7 +32,7 @@
     "watch": "tsc -p . --watch",
     "lint": "eslint . --ext .ts --max-warnings=0 && tsx ./scripts/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
-    "format": "npx prettier **/*.ts --write",
+    "format": "npx prettier **/*.ts --write && tsx ./scripts/format.ts",
     "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
     "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "regenerate": "tsx ./scripts/regenerate.ts",
