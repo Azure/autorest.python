@@ -235,7 +235,7 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         });
         emitterConfigs.push({
             optionsStr: configs.join(" "),
-            outputDir: options["emitter-output-dir"]
+            outputDir: options["emitter-output-dir"],
         });
     }
     return emitterConfigs;
@@ -249,9 +249,8 @@ async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<
         rm(option.outputDir, () => {
             const command = `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option.optionsStr}`;
             console.log(command);
-            return executeCommand(command)
+            return executeCommand(command);
         });
-        ;
     });
     await Promise.all(commandPromises);
 }
