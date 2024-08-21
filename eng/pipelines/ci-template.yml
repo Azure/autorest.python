@@ -3,8 +3,6 @@ parameters:
     installTypeSpec: false
     installCadlRanch: false
     folderName: ""
-    pythonCodeLintChecks: false
-    pythonCodeBlackCheck: false
     pythonFolderName: ""
     regenerate: false
     checkChange: true
@@ -77,30 +75,25 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command pylint
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: mypy ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command mypy
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: pyright ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command pyright
       displayName: Pyright
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: black $(Build.SourcesDirectory)/autorest.python
+    - script: pnpm run format
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on black autorest diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.pythonCodeBlackCheck }})
 
     - script: |
         cd test/unittests
