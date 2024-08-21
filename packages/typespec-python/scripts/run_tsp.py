@@ -7,7 +7,6 @@ import sys
 import venv
 import logging
 from pathlib import Path
-from venvtools import python_run
 from pygen import m2r, preprocess, codegen, black
 from pygen.utils import parse_args
 
