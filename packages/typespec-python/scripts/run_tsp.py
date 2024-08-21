@@ -39,5 +39,5 @@ if __name__ == "__main__":
     args, unknown_args = parse_args()
     m2r.M2R(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()
     preprocess.PreProcessPlugin(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()
-    black.BlackScriptPlugin(output_folder=args.output_folder, **unknown_args).process()
     codegen.CodeGenerator(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()
+    black.BlackScriptPlugin(output_folder=args.output_folder, **unknown_args).process()

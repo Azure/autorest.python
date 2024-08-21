@@ -8,7 +8,7 @@ import {
 import { saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { exec } from "child_process";
+import { execSync } from "child_process";
 import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
@@ -75,7 +75,7 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
     let venvPath = path.join(root, "venv");
     if (fs.existsSync(path.join(venvPath, "bin"))) {
-        venvPath = path.join(venvPath, "python");
+        venvPath = path.join(venvPath, "bin", "python");
     } else if (fs.existsSync(path.join(venvPath, "Scripts"))) {
         venvPath = path.join(venvPath, "Scripts", "python.exe");
     } else {
@@ -113,6 +113,6 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
     commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        exec(commandArgs.toString());
+        execSync(commandArgs.join(" "));
     }
 }
