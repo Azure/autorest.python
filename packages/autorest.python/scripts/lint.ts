@@ -1,11 +1,7 @@
 /* eslint-disable no-console */
-import { exec } from "child_process";
-import { existsSync } from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import chalk from "chalk";
+import { runCommand } from "./utils.js";
 
 interface Arguments {
     folderName: string;
@@ -13,30 +9,6 @@ interface Arguments {
 }
 
 const validCommands = ["pylint", "mypy", "pyright"];
-
-// Function to run a command and log the output
-function runCommand(command: string, prettyName: string) {
-    let pythonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "venv/");
-    if (existsSync(join(pythonPath, "bin"))) {
-        pythonPath = join(pythonPath, "bin", "python");
-    } else if (existsSync(join(pythonPath, "Scripts"))) {
-        pythonPath = join(pythonPath, "Scripts", "python");
-    } else {
-        throw new Error(pythonPath);
-    }
-    command = `${pythonPath} -m ${command}`;
-    exec(command, (error, stdout, stderr) => {
-        if (error) {
-            console.error(chalk.red(`Error executing ${command}: ${stdout}`));
-            return;
-        }
-        if (stderr) {
-            console.error(chalk.yellow(`Error output from ${command}: ${stderr}`));
-            return;
-        }
-        console.log(chalk.green(`${prettyName} passed`));
-    });
-}
 
 // PARSE INPUT ARGUMENTS
 const argv = yargs(hideBin(process.argv))
