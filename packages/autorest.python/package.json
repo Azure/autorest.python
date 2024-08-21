@@ -8,7 +8,7 @@
     "build": "tsx ./scripts/copy-generator.ts --force",
     "install": "tsx ./scripts/copy-generator.ts && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug",
-    "test": "tsx ./scripts/run-tests.ts"
+    "test": "tsx ./scripts/run-tests.ts --validFolders azure/legacy azure/version-tolerant vanilla/legacy vanilla/version-tolerant dpg/version-tolerant"
   },
   "main": "index.js",
   "repository": {

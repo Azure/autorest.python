@@ -6,22 +6,23 @@ import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 
 interface Arguments {
+    validFolders: string[];
     folder?: string;
     command?: string;
 }
 
-const validFolders = [
-    "azure/legacy",
-    "azure/version-tolerant",
-    "vanilla/legacy",
-    "vanilla/version-tolerant",
-    "dpg/version-tolerant",
-];
+const validFolders = ["azure", "unbranded"];
 
 const validCommands = ["ci", "lint", "mypy", "pyright", "apiview"];
 
 // Parse command-line arguments using yargs
 const argv = yargs(hideBin(process.argv))
+    .option("validFolders", {
+        alias: "vf",
+        describe: "Specify the valid folders",
+        type: "array",
+        default: validFolders,
+    })
     .option("folder", {
         alias: "f",
         describe: "Specify the folder to use",
@@ -35,7 +36,7 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
     }).argv as Arguments;
 
-const foldersToProcess = argv.folder ? [argv.folder] : validFolders;
+const foldersToProcess = argv.folder ? [argv.folder] : argv.validFolders;
 
 const commandToRun = argv.command || "all";
 
