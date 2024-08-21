@@ -59,7 +59,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             pass
         except:  # pylint: disable=bare-except
             _LOGGER.error("Error: failed to format %s", file)
-            raise
+            # raise
         else:
             self.write_file(file, file_content)
 

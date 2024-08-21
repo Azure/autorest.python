@@ -142,7 +142,7 @@ interface RegenerateFlags {
 
 const SpecialFlags: Record<string, Record<string, any>> = {
     azure: {
-        "generate-test": true,
+        // "generate-test": true,
         "generate-sample": true,
     },
 };
@@ -166,7 +166,7 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 if (mainTspRelativePath.includes("xml")) return;
 
                 // after fix test generation for nested operation group, remove this check
-                if (mainTspRelativePath.includes("client-operation-group")) return;
+                // if (mainTspRelativePath.includes("client-operation-group")) return;
 
                 const hasMainTsp = await promises
                     .access(mainTspPath)
