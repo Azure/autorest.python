@@ -19,8 +19,6 @@ if (existsSync(destDir)) {
 // Copy the source directory to the destination directory
 copySync(sourceDir, destDir);
 
-
-
 // Define the source and destination directories for the scripts
 const scriptsSourceDir: string = join(typespecModulePath, "scripts");
 const scriptsDestDir: string = join(__dirname, "..", "scripts");
@@ -28,17 +26,14 @@ const scriptsDestDir: string = join(__dirname, "..", "scripts");
 // Read the contents of the source directory
 const files = readdirSync(scriptsSourceDir);
 
-const filesToCopy = [
-    "run-tests.ts",
-    "pylintrc",
-    "mypy.ini",
-    "pyrightconfig.json",
-]
+const filesToCopy = ["run-tests.ts", "pylintrc", "mypy.ini", "pyrightconfig.json", "lint.ts"];
 
 // Filter and copy .ts files to the destination directory
-files.filter(file => filesToCopy.includes(file)).forEach(file => {
-    const sourceFile = join(scriptsSourceDir, file);
-    const destFile = join(scriptsDestDir, file);
+files
+    .filter((file) => filesToCopy.includes(file))
+    .forEach((file) => {
+        const sourceFile = join(scriptsSourceDir, file);
+        const destFile = join(scriptsDestDir, file);
 
-    copyFileSync(sourceFile, destFile);
-});
+        copyFileSync(sourceFile, destFile);
+    });

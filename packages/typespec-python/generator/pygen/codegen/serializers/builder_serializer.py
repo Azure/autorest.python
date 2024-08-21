@@ -23,7 +23,6 @@ from ..models import (
     BinaryType,
     BodyParameter,
     ParameterMethodLocation,
-    RequestBuilderBodyParameter,
     OverloadedRequestBuilder,
     Property,
     RequestBuilderType,
@@ -842,14 +841,14 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
         elif request_builder.overloads:
             seen_body_params = set()
             for overload in request_builder.overloads:
-                body_param = cast(RequestBuilderBodyParameter, overload.parameters.body_parameter)
+                body_param = overload.parameters.body_parameter
                 if body_param.client_name in seen_body_params:
                     continue
                 seen_body_params.add(body_param.client_name)
 
                 retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
         elif request_builder.parameters.has_body:
-            body_param = cast(RequestBuilderBodyParameter, request_builder.parameters.body_parameter)
+            body_param = request_builder.parameters.body_parameter
             retval.append(f"    {body_param.client_name}={body_param.name_in_high_level_operation},")
         retval.append("    headers=_headers,")
         retval.append("    params=_params,")
