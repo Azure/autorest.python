@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node ./scripts/run-python3.js ./scripts/start.py",
     "prepare": "node ./scripts/run-python3.js ./scripts/prepare.py",
-    "build": "node ./scripts/copy-generator.js --force",
-    "install": "node ./scripts/copy-generator.js && node ./scripts/run-python3.js ./scripts/install.py",
+    "build": "tsx ./scripts/copy-generator.ts --force",
+    "install": "tsx ./scripts/copy-generator.ts && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug",
     "test": "tsx ./scripts/run-tests.ts"
   },
