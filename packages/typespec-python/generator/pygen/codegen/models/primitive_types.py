@@ -624,3 +624,29 @@ class SdkCoreType(PrimitiveType):
     @property
     def serialization_type(self) -> str:
         return self.name
+
+
+class MultiPartFileType(PrimitiveType):
+    def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
+        super().__init__(yaml_data=yaml_data, code_model=code_model)
+        self.name = "FileType"
+
+    def type_annotation(self, **kwargs: Any) -> str:
+        return self.name
+
+    def docstring_type(self, **kwargs: Any) -> str:
+        return f"~{self.code_model.namespace}._vendor.{self.name}"
+
+    def imports(self, **kwargs: Any) -> FileImport:
+        file_import = super().imports(**kwargs)
+        relative_path = "..." if kwargs.get("async_mode") else ".."
+        file_import.add_submodule_import(f"{relative_path}_vendor", self.name, ImportType.LOCAL)
+        return file_import
+
+    @property
+    def default_template_representation_declaration(self) -> str:
+        return '"filetype"' if self.code_model.for_test else "filetype"
+
+    @property
+    def instance_check_template(self) -> str:
+        return f"isinstance({{}}, {self.name})"

@@ -165,6 +165,9 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 // after xml support, remove this check
                 if (mainTspRelativePath.includes("xml")) return;
 
+                // after fix test generation for nested operation group, remove this check
+                if (mainTspRelativePath.includes("client-operation-group")) return;
+
                 const hasMainTsp = await promises
                     .access(mainTspPath)
                     .then(() => true)
