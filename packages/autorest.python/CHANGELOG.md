@@ -1,5 +1,16 @@
 # Release
 
+## 6.19.0
+
+### Bug Fixes
+
+- [#2766](https://github.com/Azure/autorest.python/pull/2766) Fix crash when paging operation return type has parent type
+
+### Features
+
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
 ## 6.18.0
 
 ### Features
