@@ -4,6 +4,7 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { fileURLToPath } from "url";
 
 interface Arguments {
     validFolders: string[];
@@ -43,7 +44,7 @@ function getCommand(command: string, folder: string) {
 }
 
 function sectionExistsInToxIni(command: string, folder: string): boolean {
-    const toxIniPath = join(__dirname, `../test/${folder}/tox.ini`);
+    const toxIniPath = join(fileURLToPath(import.meta.url), `../../../test/${folder}/tox.ini`);
     const toxIniContent = readFileSync(toxIniPath, "utf-8");
     const sectionHeader = `[testenv:${command}]`;
     return toxIniContent.includes(sectionHeader);
