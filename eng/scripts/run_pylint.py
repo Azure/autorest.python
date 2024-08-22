@@ -16,7 +16,12 @@ from util import run_check, ROOT_FOLDER
 
 logging.getLogger().setLevel(logging.INFO)
 
-rfc_file_location = os.path.join(os.getcwd(), "../../scripts/eng/pylintrc")
+def get_rfc_file_location():
+    rfc_file_location = os.path.join(os.getcwd(), "../../scripts/eng/pylintrc")
+    if os.path.exists(rfc_file_location):
+        return rfc_file_location
+    else:
+        return os.path.join(os.getcwd(), "../../../scripts/eng/pylintrc")
 
 
 def _single_dir_pylint(mod):
@@ -27,7 +32,7 @@ def _single_dir_pylint(mod):
                 sys.executable,
                 "-m",
                 "pylint",
-                "--rcfile={}".format(rfc_file_location),
+                "--rcfile={}".format(get_rfc_file_location()),
                 "--load-plugins=pylint_guidelines_checker",
                 "--output-format=parseable",
                 str(inner_class.absolute()),
