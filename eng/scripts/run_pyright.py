@@ -8,6 +8,7 @@
 # This script is used to execute pyright within a tox environment. Depending on which package is being executed against,
 # a failure may be suppressed.
 
+import os
 from subprocess import check_output, CalledProcessError
 import logging
 import sys
@@ -20,6 +21,7 @@ logging.getLogger().setLevel(logging.INFO)
 def _single_dir_pyright(mod):
     inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     retries = 3
+    pyright_config = os.path.join(os.getcwd(), "../../scripts/eng/pyrightconfig.json")
     while retries:
         try:
             check_output(
@@ -28,7 +30,7 @@ def _single_dir_pyright(mod):
                     "-m",
                     "pyright",
                     "-p",
-                    str(ROOT_FOLDER),
+                    pyright_config,
                     str(inner_class.absolute()),
                 ],
                 text=True,
