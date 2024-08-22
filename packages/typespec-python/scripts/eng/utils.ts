@@ -7,7 +7,7 @@ import chalk from "chalk";
 
 // Function to run a command and log the output
 export function runCommand(command: string, prettyName: string) {
-    let pythonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "venv/");
+    let pythonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "venv/");
     if (existsSync(join(pythonPath, "bin"))) {
         pythonPath = join(pythonPath, "bin", "python");
     } else if (existsSync(join(pythonPath, "Scripts"))) {

@@ -5,7 +5,7 @@ import { join } from "path";
 const force: boolean = process.argv[2] === "--force";
 
 function copyAndCreateDir(sourceDir: string, destDir: string) {
-   // Delete the destination directory if it exists
+    // Delete the destination directory if it exists
     if (existsSync(destDir)) {
         if (force) removeSync(destDir);
         else process.exit(0);

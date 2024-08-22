@@ -26,15 +26,15 @@ const argv = yargs(hideBin(process.argv))
     }).argv as Arguments;
 
 export function pylint() {
-    runCommand(`pylint ${argv.folderName}/ --rcfile ./scripts/pylintrc`, "pylint");
+    runCommand(`pylint ${argv.folderName}/ --rcfile ./scripts/eng/pylintrc`, "pylint");
 }
 
 export function mypy() {
-    runCommand(`mypy ${argv.folderName}/ --config-file ./scripts/mypy.ini`, "mypy");
+    runCommand(`mypy ${argv.folderName}/ --config-file ./scripts/eng/mypy.ini`, "mypy");
 }
 
 export function pyright() {
-    runCommand(`pyright ${argv.folderName}/ -p ./scripts/pyrightconfig.json`, "pyright");
+    runCommand(`pyright ${argv.folderName}/ -p ./scripts/eng/pyrightconfig.json`, "pyright");
 }
 
 if (argv.command === "pylint") {
