@@ -4,14 +4,14 @@ import { promisify } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { dirname, join, relative, resolve } from "path";
-import { promises } from "fs";
+import { promises, rm } from "fs";
 import { fileURLToPath } from "url";
 
 // Promisify the exec function
 const exec = promisify(execCallback);
 
 // Get the directory of the current file
-const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../");
+const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
 const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
@@ -206,8 +206,13 @@ function defaultPackageName(spec: string): string {
         .toLowerCase();
 }
 
-function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): string[] {
-    const emitterConfigs: string[] = [];
+interface EmitterConfig {
+    optionsStr: string;
+    outputDir: string;
+}
+
+function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): EmitterConfig[] {
+    const emitterConfigs: EmitterConfig[] = [];
     for (const config of getEmitterOption(spec)) {
         const options: Record<string, string> = { ...config };
         options["flavor"] = flags.flavor;
@@ -228,7 +233,10 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         const configs = Object.entries(options).flatMap(([k, v]) => {
             return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
-        emitterConfigs.push(configs.join(" "));
+        emitterConfigs.push({
+            optionsStr: configs.join(" "),
+            outputDir: options["emitter-output-dir"],
+        });
     }
     return emitterConfigs;
 }
@@ -237,9 +245,12 @@ async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<
     // Perform some asynchronous operation here
     const options = addOptions(spec, PLUGIN_DIR, flags);
     const commandPromises = options.map((option) => {
-        const command = `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option}`;
-        console.log(command);
-        return executeCommand(command);
+        // delete the folder, then regenerate into it
+        rm(option.outputDir, () => {
+            const command = `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option.optionsStr}`;
+            console.log(command);
+            return executeCommand(command);
+        });
     });
     await Promise.all(commandPromises);
 }

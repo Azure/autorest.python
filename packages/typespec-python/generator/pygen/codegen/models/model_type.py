@@ -17,9 +17,9 @@ from .property import Property
 from .imports import FileImport, ImportType, TypingSection
 
 if sys.version_info >= (3, 8):
-    from typing import Literal  # pylint: disable=no-name-in-module, ungrouped-imports
+    from typing import Literal
 else:
-    from typing_extensions import Literal  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing_extensions import Literal  # type: ignore
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -50,9 +50,7 @@ def _get_properties(type: "ModelType", properties: List[Property]) -> List[Prope
     return properties
 
 
-class ModelType(  # pylint: disable=abstract-method
-    BaseType
-):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
+class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-many-public-methods
     """Represents a class ready to be serialized in Python.
 
     :param str name: The name of the class.
@@ -89,7 +87,7 @@ class ModelType(  # pylint: disable=abstract-method
 
     @property
     def is_usage_output(self) -> bool:
-        return self.usage & UsageFlags.Output.value
+        return bool(self.usage & UsageFlags.Output.value)
 
     @property
     def flattened_property(self) -> Optional[Property]:
@@ -284,7 +282,7 @@ class JSONModelType(ModelType):
         return file_import
 
 
-class GeneratedModelType(ModelType):  # pylint: disable=abstract-method
+class GeneratedModelType(ModelType):
     def type_annotation(self, **kwargs: Any) -> str:
         is_operation_file = kwargs.pop("is_operation_file", False)
         skip_quote = kwargs.get("skip_quote", False)
