@@ -11,8 +11,6 @@ interface Arguments {
     command?: string;
 }
 
-const validFolders = ["azure", "unbranded"];
-
 const validCommands = ["ci", "lint", "mypy", "pyright", "apiview"];
 
 // Parse command-line arguments using yargs
@@ -21,12 +19,11 @@ const argv = yargs(hideBin(process.argv))
         alias: "vf",
         describe: "Specify the valid folders",
         type: "array",
-        default: validFolders,
+        default: ["azure", "unbranded"],
     })
     .option("folder", {
         alias: "f",
         describe: "Specify the folder to use",
-        choices: validFolders,
         type: "string",
     })
     .option("command", {
