@@ -1,4 +1,4 @@
-/** */
+/* eslint-disable no-console */
 import { exec } from "child_process";
 import { existsSync } from "fs";
 import { dirname, join } from "path";
