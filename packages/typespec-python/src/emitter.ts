@@ -8,11 +8,12 @@ import {
 import { saveCodeModelAsYaml } from "./external-process.js";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { execFileSync } from "child_process";
+import { execSync } from "child_process";
 import { PythonEmitterOptions, PythonSdkContext } from "./lib.js";
 import { emitCodeModel } from "./code-model.js";
 import { removeUnderscoresFromNamespace } from "./utils.js";
 import path from "path";
+import fs from "fs";
 
 export function getModelsMode(context: SdkContext): "dpg" | "none" {
     const specifiedModelsMode = context.emitContext.options["models-mode"];
@@ -72,8 +73,16 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     const yamlMap = emitCodeModel(sdkContext);
     addDefaultOptions(sdkContext);
     const yamlPath = await saveCodeModelAsYaml("typespec-python-yaml-map", yamlMap);
+    let venvPath = path.join(root, "venv");
+    if (fs.existsSync(path.join(venvPath, "bin"))) {
+        venvPath = path.join(venvPath, "bin", "python");
+    } else if (fs.existsSync(path.join(venvPath, "Scripts"))) {
+        venvPath = path.join(venvPath, "Scripts", "python.exe");
+    } else {
+        throw new Error("Virtual environment doesn't exist.");
+    }
     const commandArgs = [
-        `${root}/dist/scripts/run-python3.js`,
+        venvPath,
         `${root}/scripts/run_tsp.py`,
         `--output-folder=${outputDir}`,
         `--cadl-file=${yamlPath}`,
@@ -104,6 +113,6 @@ export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
     }
     commandArgs.push("--from-typespec=true");
     if (!program.compilerOptions.noEmit && !program.hasError()) {
-        execFileSync(process.execPath, commandArgs);
+        execSync(commandArgs.join(" "));
     }
 }
