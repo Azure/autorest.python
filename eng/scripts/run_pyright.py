@@ -13,15 +13,22 @@ from subprocess import check_output, CalledProcessError
 import logging
 import sys
 import time
-from util import run_check, ROOT_FOLDER
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
+
+
+def get_pyright_config_file_location():
+    pyright_config = os.path.join(os.getcwd(), "../../scripts/eng/pyrightconfig.json")
+    if os.path.exists(pyright_config):
+        return pyright_config
+    else:
+        return os.path.join(os.getcwd(), "../../../scripts/eng/pyrightconfig.json")
 
 
 def _single_dir_pyright(mod):
     inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     retries = 3
-    pyright_config = os.path.join(os.getcwd(), "../../scripts/eng/pyrightconfig.json")
     while retries:
         try:
             check_output(
@@ -30,7 +37,7 @@ def _single_dir_pyright(mod):
                     "-m",
                     "pyright",
                     "-p",
-                    pyright_config,
+                    get_pyright_config_file_location(),
                     str(inner_class.absolute()),
                 ],
                 text=True,

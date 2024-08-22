@@ -12,9 +12,10 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check, ROOT_FOLDER
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
+
 
 def get_rfc_file_location():
     rfc_file_location = os.path.join(os.getcwd(), "../../scripts/eng/pylintrc")

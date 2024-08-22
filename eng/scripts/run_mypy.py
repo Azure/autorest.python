@@ -12,9 +12,10 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check, ROOT_FOLDER
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
+
 
 def get_config_file_location():
     mypy_ini_path = os.path.join(os.getcwd(), "../../scripts/eng/mypy.ini")
