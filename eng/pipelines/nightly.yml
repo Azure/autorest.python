@@ -33,6 +33,7 @@ jobs:
           regenerate: true
           updateToLatestTypespec: true
           checkChange: false
+          skipWarning: true
   
       - template: generated-code-checks-template.yml
         parameters:
