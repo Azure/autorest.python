@@ -173,7 +173,6 @@ jobs:
             installCadlRanch: true
             folderName: "typespec-python"
             regenerate: true
-            skipWarning: true
 
       - template: generated-code-checks-template.yml
         parameters:

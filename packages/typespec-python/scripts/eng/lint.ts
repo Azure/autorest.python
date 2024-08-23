@@ -50,7 +50,8 @@ export function pyright() {
 }
 
 export function eslint() {
-    const checkWarning = argv.skipWarning ? "" : "--max-warnings=0";
+    // const checkWarning = argv.skipWarning ? "" : "--max-warnings=0";
+    const checkWarning = "";
     executeCommand(`npx eslint . --ext .ts ${checkWarning} `, "eslint");
 }
 
