@@ -96,8 +96,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
     - script: node ./eng/scripts/check-for-changed-files.js
-      displayName: Fail on black autorest diff
+      displayName: Fail on black diff of root folder
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.checkChange }})
 
     - script: |
         cd test/unittests
