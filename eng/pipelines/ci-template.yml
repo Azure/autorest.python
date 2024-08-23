@@ -46,7 +46,7 @@ steps:
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
     - script: pnpm install --no-frozen-lockfile
-      displayName: Pnpm install
+      displayName: Pnpm install no frozen lockfile
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 

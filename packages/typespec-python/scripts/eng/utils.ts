@@ -10,7 +10,8 @@ import chalk from "chalk";
 export function executeCommand(command: string, prettyName: string) {
     exec(command, (error, stdout, stderr) => {
         if (error) {
-            console.error(chalk.red(`Error executing ${command}: ${stderr || stdout}`));
+            console.error(chalk.red(`Error executing ${command}(stdout): ${stdout}`));
+            console.error(chalk.red(`Error executing ${command}{stderr}: ${stderr}`));
             process.exit(1);
         }
         if (stderr) {
