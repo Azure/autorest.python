@@ -26,6 +26,7 @@ azure-mgmt-core==1.3.2
 -e ./generated/authentication-union
 -e ./generated/client-naming
 -e ./generated/encode-duration
+-e ./generated/encode-numeric
 -e ./generated/parameters-basic
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
