@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { runCommand } from "./utils.js";
+import { runCommand, executeCommand } from "./utils.js";
 
 interface Arguments {
     folderName: string;
@@ -44,8 +44,8 @@ export function pyright() {
 }
 
 export function eslint() {
-    const checkWarning = argv.skipWarning ? "":  "--max-warnings=0";
-    runCommand(`npx eslint . --ext .ts ${checkWarning} `, "eslint");
+    const checkWarning = argv.skipWarning ? "" : "--max-warnings=0";
+    executeCommand(`npx eslint . --ext .ts ${checkWarning} `, "eslint");
 }
 
 if (argv.command === "pylint") {

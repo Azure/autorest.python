@@ -5,17 +5,8 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import chalk from "chalk";
 
-// Function to run a command and log the output
-export function runCommand(command: string, prettyName: string) {
-    let pythonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "venv/");
-    if (existsSync(join(pythonPath, "bin"))) {
-        pythonPath = join(pythonPath, "bin", "python");
-    } else if (existsSync(join(pythonPath, "Scripts"))) {
-        pythonPath = join(pythonPath, "Scripts", "python");
-    } else {
-        throw new Error(pythonPath);
-    }
-    command = `${pythonPath} -m ${command}`;
+// execute the command
+export function executeCommand(command: string, prettyName: string) {
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(chalk.red(`Error executing ${command}: ${stderr || stdout}`));
@@ -27,4 +18,18 @@ export function runCommand(command: string, prettyName: string) {
         }
         console.log(chalk.green(`${prettyName} passed`));
     });
+}
+
+// Function to run a command and log the output
+export function runCommand(command: string, prettyName: string) {
+    let pythonPath = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "venv/");
+    if (existsSync(join(pythonPath, "bin"))) {
+        pythonPath = join(pythonPath, "bin", "python");
+    } else if (existsSync(join(pythonPath, "Scripts"))) {
+        pythonPath = join(pythonPath, "Scripts", "python");
+    } else {
+        throw new Error(pythonPath);
+    }
+    command = `${pythonPath} -m ${command}`;
+    executeCommand(command, prettyName);
 }
