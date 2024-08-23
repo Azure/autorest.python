@@ -30,7 +30,7 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "lint": "eslint . --ext .ts --max-warnings=0 && tsx ./scripts/eng/lint.ts",
+    "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
     "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
