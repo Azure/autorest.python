@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { exec } from "child_process";
+import process from "process";
 import { existsSync } from "fs";
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
@@ -10,11 +11,12 @@ export function executeCommand(command: string, prettyName: string) {
     exec(command, (error, stdout, stderr) => {
         if (error) {
             console.error(chalk.red(`Error executing ${command}: ${stderr || stdout}`));
-            return;
+            process.exit(1);
         }
         if (stderr) {
             // Process stderr output
             console.log(chalk.yellow(`${command}:\n${stderr}`));
+            process.exit(1);
         }
         console.log(chalk.green(`${prettyName} passed`));
     });

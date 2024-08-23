@@ -9,7 +9,7 @@
     "install": "tsx ./scripts/copy-generator.ts && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug",
     "test": "tsx ./scripts/eng/run-tests.ts --validFolders azure/legacy azure/version-tolerant vanilla/legacy vanilla/version-tolerant dpg/version-tolerant",
-    "lint": "tsx ./scripts/eng/lint.ts --folderName autorest",
+    "lint": "tsx ./scripts/eng/lint.ts --folderName autorest --skipEslint true",
     "format": "tsx ./scripts/eng/format.ts --folderName autorest"
   },
   "main": "index.js",

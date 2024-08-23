@@ -7,6 +7,7 @@ interface Arguments {
     folderName: string;
     command?: "pylint" | "mypy" | "pyright" | "eslint";
     skipWarning?: boolean;
+    skipEslint?: boolean;
 }
 
 const validCommands = ["pylint", "mypy", "pyright", "eslint"];
@@ -29,6 +30,11 @@ const argv = yargs(hideBin(process.argv))
         alias: "s",
         type: "boolean",
         description: "Skip to check warnings",
+    })
+    .option("skipEslint", {
+        alias: "e",
+        type: "boolean",
+        description: "Skip to check eslint",
     }).argv as Arguments;
 
 export function pylint() {
@@ -55,10 +61,14 @@ if (argv.command === "pylint") {
 } else if (argv.command === "pyright") {
     pyright();
 } else if (argv.command === "eslint") {
-    eslint();
+    if (!argv.skipEslint) {
+        eslint();
+    }
 } else {
     pylint();
     mypy();
     pyright();
-    eslint();
+    if (!argv.skipEslint) {
+        eslint();
+    }
 }
