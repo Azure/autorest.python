@@ -1,14 +1,16 @@
 /* eslint-disable no-console */
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { runCommand } from "./utils.js";
+import { runCommand, executeCommand } from "./utils.js";
 
 interface Arguments {
     folderName: string;
-    command?: "pylint" | "mypy" | "pyright";
+    command?: "pylint" | "mypy" | "pyright" | "eslint";
+    skipWarning?: boolean;
+    skipEslint?: boolean;
 }
 
-const validCommands = ["pylint", "mypy", "pyright"];
+const validCommands = ["pylint", "mypy", "pyright", "eslint"];
 
 // PARSE INPUT ARGUMENTS
 const argv = yargs(hideBin(process.argv))
@@ -23,6 +25,16 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
         choices: validCommands,
         description: "Specify the command to run",
+    })
+    .option("skipWarning", {
+        alias: "s",
+        type: "boolean",
+        description: "Skip to check warnings",
+    })
+    .option("skipEslint", {
+        alias: "e",
+        type: "boolean",
+        description: "Skip to check eslint",
     }).argv as Arguments;
 
 export function pylint() {
@@ -37,14 +49,26 @@ export function pyright() {
     runCommand(`pyright ${argv.folderName}/ -p ./scripts/eng/pyrightconfig.json`, "pyright");
 }
 
+export function eslint() {
+    const checkWarning = argv.skipWarning ? "" : "--max-warnings=0";
+    executeCommand(`npx eslint . --ext .ts ${checkWarning} `, "eslint");
+}
+
 if (argv.command === "pylint") {
     pylint();
 } else if (argv.command === "mypy") {
     mypy();
 } else if (argv.command === "pyright") {
     pyright();
+} else if (argv.command === "eslint") {
+    if (!argv.skipEslint) {
+        eslint();
+    }
 } else {
     pylint();
     mypy();
     pyright();
+    if (!argv.skipEslint) {
+        eslint();
+    }
 }
