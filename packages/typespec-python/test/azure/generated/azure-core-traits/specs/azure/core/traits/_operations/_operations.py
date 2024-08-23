@@ -158,15 +158,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,
-                    "name": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -252,19 +243,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "userActionValue": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"
-                }
         """
 
     @overload
@@ -283,14 +261,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"
-                }
         """
 
     @overload
@@ -309,14 +279,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"
-                }
         """
 
     @distributed_trace
@@ -333,19 +295,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "userActionValue": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

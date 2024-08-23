@@ -3,11 +3,10 @@ parameters:
     installTypeSpec: false
     installCadlRanch: false
     folderName: ""
-    pythonCodeChecks: false
-    pythonFolderName: ""
     regenerate: false
     checkChange: true
     updateToLatestTypespec: false
+    unitTest: false
 
 steps:
     - checkout: self
@@ -55,12 +54,6 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
-    # - script: pnpm change verify
-    #   displayName: Check changelog
-    #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-    #   condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/publish/')), not(startsWith(variables['Build.SourceBranch'], 'refs/heads/dependabot/')))
-    #   continueOnError: true
-
     - script: pnpm list
       displayName: Pnpm list
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
@@ -81,37 +74,32 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pylint ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command pylint
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: mypy ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command mypy
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: pyright ${{parameters.pythonFolderName}}
+    - script: pnpm run lint --command pyright
       displayName: Pyright
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
-    - script: black $(Build.SourcesDirectory)/autorest.python
+    - script: pnpm run format
       displayName: Black
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: node ./eng/scripts/check-for-changed-files.js
       displayName: Fail on black autorest diff
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
 
     - script: |
         cd test/unittests
         tox run -e ci
       displayName: Unit tests
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.pythonCodeChecks }})
+      condition: and(succeeded(), ${{ parameters.unitTest }})
 
     - script: inv regenerate
       displayName: "Regenerate Code"

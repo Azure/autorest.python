@@ -12,11 +12,17 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check, AUTOREST_PACKAGE_DIR
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
 
-config_file_location = os.path.join(AUTOREST_PACKAGE_DIR, "mypy.ini")
+
+def get_config_file_location():
+    mypy_ini_path = os.path.join(os.getcwd(), "../../scripts/eng/mypy.ini")
+    if os.path.exists(mypy_ini_path):
+        return mypy_ini_path
+    else:
+        return os.path.join(os.getcwd(), "../../../scripts/eng/mypy.ini")
 
 
 def _single_dir_mypy(mod):
@@ -28,7 +34,7 @@ def _single_dir_mypy(mod):
                 "-m",
                 "mypy",
                 "--config-file",
-                config_file_location,
+                get_config_file_location(),
                 "--ignore-missing",
                 str(inner_class.absolute()),
             ]

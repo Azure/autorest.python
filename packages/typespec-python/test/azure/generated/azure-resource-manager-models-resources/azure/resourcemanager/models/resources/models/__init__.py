@@ -11,6 +11,7 @@ from ._models import ErrorDetail
 from ._models import ErrorResponse
 from ._models import NestedProxyResource
 from ._models import NestedProxyResourceProperties
+from ._models import NotificationDetails
 from ._models import ProxyResource
 from ._models import Resource
 from ._models import SystemData
@@ -30,6 +31,7 @@ __all__ = [
     "ErrorResponse",
     "NestedProxyResource",
     "NestedProxyResourceProperties",
+    "NotificationDetails",
     "ProxyResource",
     "Resource",
     "SystemData",

@@ -147,19 +147,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -179,14 +166,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -206,14 +185,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @distributed_trace
@@ -231,19 +202,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

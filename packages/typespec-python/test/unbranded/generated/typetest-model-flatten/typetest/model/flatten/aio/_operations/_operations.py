@@ -58,27 +58,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: FlattenModel. The FlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.FlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
         """
 
     @overload
@@ -95,18 +74,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: FlattenModel. The FlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.FlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
         """
 
     @overload
@@ -123,18 +90,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: FlattenModel. The FlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.FlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
         """
 
     async def put_flatten_model(
@@ -147,27 +102,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: FlattenModel. The FlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.FlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "age": 0,
-                        "description": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -241,33 +175,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: NestedFlattenModel. The NestedFlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.NestedFlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
         """
 
     @overload
@@ -284,21 +191,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: NestedFlattenModel. The NestedFlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.NestedFlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
         """
 
     @overload
@@ -315,21 +207,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: NestedFlattenModel. The NestedFlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.NestedFlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
         """
 
     async def put_nested_flatten_model(
@@ -342,33 +219,6 @@ class FlattenClientOperationsMixin(FlattenClientMixinABC):
         :return: NestedFlattenModel. The NestedFlattenModel is compatible with MutableMapping
         :rtype: ~typetest.model.flatten.models.NestedFlattenModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "properties": {
-                        "properties": {
-                            "age": 0,
-                            "description": "str"
-                        },
-                        "summary": "str"
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

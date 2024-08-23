@@ -78,8 +78,7 @@ jobs:
         parameters:
             installAutorest: true
             folderName: "autorest.python"
-            pythonCodeChecks: true
-            pythonFolderName: autorest
+            unitTest: true
             regenerate: true
 
       - script: |

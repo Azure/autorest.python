@@ -70,8 +70,6 @@ FileType = Union[
     Tuple[Optional[str], FileContent, Optional[str]],
 ]
 
-FilesType = Union[Mapping[str, FileType], Sequence[Tuple[str, FileType]]]
-
 def serialize_multipart_data_entry(data_entry: Any) -> Any:
     if isinstance(data_entry, (list, tuple, dict, Model)):
         return json.dumps(data_entry, cls=SdkJSONEncoder, exclude_readonly=True)

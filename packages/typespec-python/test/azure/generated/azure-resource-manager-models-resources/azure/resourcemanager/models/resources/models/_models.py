@@ -227,6 +227,41 @@ class NestedProxyResourceProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class NotificationDetails(_model_base.Model):
+    """The details of a user notification.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar message: The notification message. Required.
+    :vartype message: str
+    :ivar urgent: If true, the notification is urgent. Required.
+    :vartype urgent: bool
+    """
+
+    message: str = rest_field()
+    """The notification message. Required."""
+    urgent: bool = rest_field()
+    """If true, the notification is urgent. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        message: str,
+        urgent: bool,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
 class SystemData(_model_base.Model):
     """Metadata pertaining to creation and last modification of the resource.
 

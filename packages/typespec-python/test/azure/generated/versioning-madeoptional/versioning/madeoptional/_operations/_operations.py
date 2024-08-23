@@ -88,21 +88,6 @@ class MadeOptionalClientOperationsMixin(MadeOptionalClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.madeoptional.models.TestModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
         """
 
     @overload
@@ -121,15 +106,6 @@ class MadeOptionalClientOperationsMixin(MadeOptionalClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.madeoptional.models.TestModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
         """
 
     @overload
@@ -148,15 +124,6 @@ class MadeOptionalClientOperationsMixin(MadeOptionalClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.madeoptional.models.TestModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
         """
 
     @distributed_trace
@@ -172,21 +139,6 @@ class MadeOptionalClientOperationsMixin(MadeOptionalClientMixinABC):
         :return: TestModel. The TestModel is compatible with MutableMapping
         :rtype: ~versioning.madeoptional.models.TestModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str",
-                    "changedProp": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
