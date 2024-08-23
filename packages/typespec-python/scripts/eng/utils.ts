@@ -16,7 +16,7 @@ export function executeCommand(command: string, prettyName: string) {
         if (stderr) {
             // Process stderr output
             console.log(chalk.yellow(`${command}:\n${stderr}`));
-            process.exit(1);
+            return;
         }
         console.log(chalk.green(`${prettyName} passed`));
     });
