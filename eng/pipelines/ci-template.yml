@@ -7,6 +7,7 @@ parameters:
     checkChange: true
     updateToLatestTypespec: false
     unitTest: false
+    skipWarning: false
 
 steps:
     - checkout: self
@@ -45,7 +46,7 @@ steps:
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
     - script: pnpm install --no-frozen-lockfile
-      displayName: Pnpm install
+      displayName: Pnpm install no frozen lockfile
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
@@ -74,6 +75,10 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
+    - script: pnpm run lint --command eslint --skipWarning ${{ parameters.skipWarning }}
+      displayName: Eslint
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+
     - script: pnpm run lint --command pylint
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
@@ -91,8 +96,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
     - script: node ./eng/scripts/check-for-changed-files.js
-      displayName: Fail on black autorest diff
+      displayName: Fail on black diff of root folder
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+      condition: and(succeeded(), ${{ parameters.checkChange }})
 
     - script: |
         cd test/unittests
@@ -106,7 +112,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
-    - script: npm run regenerate
+    - script: |
+        find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
+        npm run regenerate
       displayName: "Regenerate Code"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
