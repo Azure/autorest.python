@@ -454,8 +454,10 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
         return float(o)
     if isinstance(o, enum.Enum):
         return o.value
-    if isinstance(o, int) and format == "str":
-        return str(o)
+    if isinstance(o, int):
+        if format == "str":
+            return str(o)
+        return o
     try:
         # First try datetime.datetime
         return _serialize_datetime(o, format)
