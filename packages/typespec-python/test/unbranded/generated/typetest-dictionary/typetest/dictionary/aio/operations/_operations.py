@@ -84,14 +84,6 @@ class Int32ValueOperations:
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": 0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -155,14 +147,6 @@ class Int32ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": 0
-                }
         """
 
     @overload
@@ -262,14 +246,6 @@ class Int64ValueOperations:
         :return: dict mapping str to int
         :rtype: dict[str, int]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": 0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -333,14 +309,6 @@ class Int64ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": 0
-                }
         """
 
     @overload
@@ -440,14 +408,6 @@ class BooleanValueOperations:
         :return: dict mapping str to bool
         :rtype: dict[str, bool]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -511,14 +471,6 @@ class BooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": bool
-                }
         """
 
     @overload
@@ -618,14 +570,6 @@ class StringValueOperations:
         :return: dict mapping str to str
         :rtype: dict[str, str]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -689,14 +633,6 @@ class StringValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": "str"
-                }
         """
 
     @overload
@@ -796,14 +732,6 @@ class Float32ValueOperations:
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": 0.0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -867,14 +795,6 @@ class Float32ValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": 0.0
-                }
         """
 
     @overload
@@ -974,14 +894,6 @@ class DatetimeValueOperations:
         :return: dict mapping str to datetime
         :rtype: dict[str, ~datetime.datetime]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": "2020-02-20 00:00:00"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1045,14 +957,6 @@ class DatetimeValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -1152,14 +1056,6 @@ class DurationValueOperations:
         :return: dict mapping str to timedelta
         :rtype: dict[str, ~datetime.timedelta]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": "1 day, 0:00:00"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1223,14 +1119,6 @@ class DurationValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": "1 day, 0:00:00"
-                }
         """
 
     @overload
@@ -1330,14 +1218,6 @@ class UnknownValueOperations:
         :return: dict mapping str to any
         :rtype: dict[str, any]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": {}
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1401,14 +1281,6 @@ class UnknownValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": {}
-                }
         """
 
     @overload
@@ -1508,19 +1380,6 @@ class ModelValueOperations:
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": {
-                        "property": "str",
-                        "children": {
-                            "str": ...
-                        }
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1584,19 +1443,6 @@ class ModelValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": {
-                        "property": "str",
-                        "children": {
-                            "str": ...
-                        }
-                    }
-                }
         """
 
     @overload
@@ -1696,19 +1542,6 @@ class RecursiveModelValueOperations:
         :return: dict mapping str to InnerModel
         :rtype: dict[str, ~typetest.dictionary.models.InnerModel]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": {
-                        "property": "str",
-                        "children": {
-                            "str": ...
-                        }
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1772,19 +1605,6 @@ class RecursiveModelValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": {
-                        "property": "str",
-                        "children": {
-                            "str": ...
-                        }
-                    }
-                }
         """
 
     @overload
@@ -1884,14 +1704,6 @@ class NullableFloatValueOperations:
         :return: dict mapping str to float
         :rtype: dict[str, float]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "str": 0.0
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1955,14 +1767,6 @@ class NullableFloatValueOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "str": 0.0
-                }
         """
 
     @overload

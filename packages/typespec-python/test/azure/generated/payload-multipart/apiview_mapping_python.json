@@ -4,8 +4,11 @@
         "payload.multipart.models.Address": "Payload.MultiPart.Address",
         "payload.multipart.models.AnonymousModelRequest": "anonymousModel.Request.anonymous",
         "payload.multipart.models.BinaryArrayPartsRequest": "Payload.MultiPart.BinaryArrayPartsRequest",
+        "payload.multipart.models.ComplexHttpPartsModelRequest": "Payload.MultiPart.ComplexHttpPartsModelRequest",
         "payload.multipart.models.ComplexPartsRequest": "Payload.MultiPart.ComplexPartsRequest",
-        "payload.multipart.models.JsonArrayPartsRequest": "Payload.MultiPart.JsonArrayPartsRequest",
+        "payload.multipart.models.FileWithHttpPartOptionalContentTypeRequest": "Payload.MultiPart.FileWithHttpPartOptionalContentTypeRequest",
+        "payload.multipart.models.FileWithHttpPartRequiredContentTypeRequest": "Payload.MultiPart.FileWithHttpPartRequiredContentTypeRequest",
+        "payload.multipart.models.FileWithHttpPartSpecificContentTypeRequest": "Payload.MultiPart.FileWithHttpPartSpecificContentTypeRequest",
         "payload.multipart.models.JsonPartRequest": "Payload.MultiPart.JsonPartRequest",
         "payload.multipart.models.MultiBinaryPartsRequest": "Payload.MultiPart.MultiBinaryPartsRequest",
         "payload.multipart.models.MultiPartRequest": "Payload.MultiPart.MultiPartRequest",
@@ -13,9 +16,12 @@
         "payload.multipart.MultiPartClient.form_data.complex": "Payload.MultiPart.FormData.complex",
         "payload.multipart.MultiPartClient.form_data.json_part": "Payload.MultiPart.FormData.jsonPart",
         "payload.multipart.MultiPartClient.form_data.binary_array_parts": "Payload.MultiPart.FormData.binaryArrayParts",
-        "payload.multipart.MultiPartClient.form_data.json_array_parts": "Payload.MultiPart.FormData.jsonArrayParts",
         "payload.multipart.MultiPartClient.form_data.multi_binary_parts": "Payload.MultiPart.FormData.multiBinaryParts",
         "payload.multipart.MultiPartClient.form_data.check_file_name_and_content_type": "Payload.MultiPart.FormData.checkFileNameAndContentType",
-        "payload.multipart.MultiPartClient.form_data.anonymous_model": "Payload.MultiPart.FormData.anonymousModel"
+        "payload.multipart.MultiPartClient.form_data.anonymous_model": "Payload.MultiPart.FormData.anonymousModel",
+        "payload.multipart.MultiPartClient.form_data.file_with_http_part_specific_content_type": "Payload.MultiPart.FormData.fileWithHttpPartSpecificContentType",
+        "payload.multipart.MultiPartClient.form_data.file_with_http_part_required_content_type": "Payload.MultiPart.FormData.fileWithHttpPartRequiredContentType",
+        "payload.multipart.MultiPartClient.form_data.file_with_http_part_optional_content_type": "Payload.MultiPart.FormData.fileWithHttpPartOptionalContentType",
+        "payload.multipart.MultiPartClient.form_data.complex_with_http_part": "Payload.MultiPart.FormData.complexWithHttpPart"
     }
 }

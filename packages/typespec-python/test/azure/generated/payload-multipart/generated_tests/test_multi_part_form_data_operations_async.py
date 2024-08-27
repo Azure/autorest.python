@@ -29,13 +29,7 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
     async def test_complex(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
         response = await client.form_data.complex(
-            body={
-                "address": {"city": "str"},
-                "id": "str",
-                "pictures": ["filetype"],
-                "previousAddresses": [{"city": "str"}],
-                "profileImage": "filetype",
-            },
+            body={"address": {"city": "str"}, "id": "str", "pictures": ["filetype"], "profileImage": "filetype"},
         )
 
         # please add some check logic here by yourself
@@ -58,17 +52,6 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
         client = self.create_async_client(endpoint=multipart_endpoint)
         response = await client.form_data.binary_array_parts(
             body={"id": "str", "pictures": ["filetype"]},
-        )
-
-        # please add some check logic here by yourself
-        # ...
-
-    @MultiPartPreparer()
-    @recorded_by_proxy_async
-    async def test_json_array_parts(self, multipart_endpoint):
-        client = self.create_async_client(endpoint=multipart_endpoint)
-        response = await client.form_data.json_array_parts(
-            body={"previousAddresses": [{"city": "str"}], "profileImage": "filetype"},
         )
 
         # please add some check logic here by yourself
@@ -102,7 +85,57 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
         client = self.create_async_client(endpoint=multipart_endpoint)
         response = await client.form_data.anonymous_model(
             body={"profileImage": "filetype"},
-            profile_image=bytes("bytes", encoding="utf-8"),
+            profile_image="filetype",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_file_with_http_part_specific_content_type(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file_with_http_part_specific_content_type(
+            body={"profileImage": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_file_with_http_part_required_content_type(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file_with_http_part_required_content_type(
+            body={"profileImage": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_file_with_http_part_optional_content_type(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file_with_http_part_optional_content_type(
+            body={"profileImage": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_complex_with_http_part(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.complex_with_http_part(
+            body={
+                "address": {"city": "str"},
+                "id": "str",
+                "pictures": ["filetype"],
+                "previousAddresses": [{"city": "str"}],
+                "profileImage": "filetype",
+            },
         )
 
         # please add some check logic here by yourself

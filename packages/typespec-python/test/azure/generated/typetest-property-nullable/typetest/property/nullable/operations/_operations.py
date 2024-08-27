@@ -458,15 +458,6 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -523,15 +514,6 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -595,15 +577,6 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -649,15 +622,6 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -719,15 +683,6 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -773,15 +728,6 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -854,15 +800,6 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -919,15 +856,6 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -991,15 +919,6 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1045,15 +964,6 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1115,15 +1025,6 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1169,15 +1070,6 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1250,15 +1142,6 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1315,15 +1198,6 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1387,15 +1261,6 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1441,15 +1306,6 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1511,15 +1367,6 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1565,15 +1412,6 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1646,15 +1484,6 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1711,15 +1540,6 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1783,15 +1603,6 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1837,15 +1648,6 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1907,15 +1709,6 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -1961,15 +1754,6 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2042,17 +1826,6 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2109,17 +1882,6 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2187,17 +1949,6 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -2243,17 +1994,6 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2319,17 +2059,6 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -2375,17 +2104,6 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2459,19 +2177,6 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2529,19 +2234,6 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2609,19 +2301,6 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -2667,19 +2346,6 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2745,19 +2411,6 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -2803,19 +2456,6 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2889,17 +2529,6 @@ class CollectionsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -2957,17 +2586,6 @@ class CollectionsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -3035,17 +2653,6 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -3092,17 +2699,6 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -3168,17 +2764,6 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
@@ -3225,17 +2810,6 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

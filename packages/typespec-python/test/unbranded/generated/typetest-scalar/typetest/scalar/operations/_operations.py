@@ -994,14 +994,6 @@ class DecimalVerifyOperations:
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0.0
-                ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -1125,14 +1117,6 @@ class Decimal128VerifyOperations:
         :return: list of decimal.Decimal
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0.0
-                ]
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,

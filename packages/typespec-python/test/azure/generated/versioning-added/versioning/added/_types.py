@@ -9,5 +9,5 @@
 
 from typing import Union
 
-UnionV1 = Union[str, int]
 UnionV2 = Union[str, int]
+UnionV1 = Union[str, int]

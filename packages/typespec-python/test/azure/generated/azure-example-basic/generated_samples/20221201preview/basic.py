@@ -26,6 +26,8 @@ def main():
             "recordProperty": {"record": "value"},
             "stringProperty": "text",
         },
+        query_param="query",
+        header_param="header",
     )
     print(response)
 

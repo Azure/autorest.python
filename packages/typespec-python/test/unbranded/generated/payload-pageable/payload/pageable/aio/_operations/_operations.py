@@ -46,14 +46,6 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         :return: An iterator like instance of User
         :rtype: ~corehttp.paging.AsyncItemPaged[~payload.pageable.models.User]
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
