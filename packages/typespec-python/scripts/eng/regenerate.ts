@@ -4,7 +4,7 @@ import { promisify } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { dirname, join, relative, resolve } from "path";
-import { promises, rm } from "fs";
+import { promises, rmSync } from "fs";
 import { fileURLToPath } from "url";
 
 // Promisify the exec function
@@ -13,6 +13,10 @@ const exec = promisify(execCallback);
 // Get the directory of the current file
 const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
 const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
+interface TspCommand {
+    outputDir: string;
+    command: string;
+}
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
@@ -117,9 +121,15 @@ function getEmitterOption(spec: string): Record<string, string>[] {
 }
 
 // Function to execute CLI commands asynchronously
-async function executeCommand(command: string): Promise<void> {
+async function executeCommand(tspCommand: TspCommand): Promise<void> {
     try {
-        const { stdout, stderr } = await exec(command);
+        rmSync(tspCommand.outputDir, { recursive: true, force: true });
+    } catch (error) {
+        console.error(`rm error: ${error}`);
+    }
+    try {
+        console.log(`exec: ${tspCommand.command}`);
+        const { stdout, stderr } = await exec(tspCommand.command);
         if (stdout) console.log(`stdout: ${stdout}`);
         if (stderr) console.error(`stderr: ${stderr}`);
     } catch (error) {
@@ -240,36 +250,28 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
     }
     return emitterConfigs;
 }
-
-async function _regenerateSingle(spec: string, flags: RegenerateFlags): Promise<void> {
-    // Perform some asynchronous operation here
-    const options = addOptions(spec, PLUGIN_DIR, flags);
-    const commandPromises = options.map((option) => {
-        // delete the folder, then regenerate into it
-        rm(option.outputDir, () => {
-            const command = `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option.optionsStr}`;
-            console.log(command);
-            return executeCommand(command);
-        });
+function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
+    return addOptions(spec, PLUGIN_DIR, flags).map((option) => {
+        return {
+            outputDir: option.outputDir,
+            command: `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${option.optionsStr}`,
+        };
     });
-    await Promise.all(commandPromises);
 }
 
-async function regenerate(flags: RegenerateFlagsInput): Promise<boolean> {
+async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     if (flags.flavor === undefined) {
-        const azureGeneration = await regenerate({ ...flags, flavor: "azure" });
-        const unbrandedGeneration = await regenerate({ ...flags, flavor: "unbranded" });
-        return azureGeneration && unbrandedGeneration;
+        await regenerate({ ...flags, flavor: "azure" });
+        await regenerate({ ...flags, flavor: "unbranded" });
     } else {
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
         const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
         const subdirectories = await getSubdirectories(CADL_RANCH_DIR, flagsResolved);
-        const promises = subdirectories.map(async (subdirectory) => {
-            // Perform additional asynchronous operations on each subdirectory here
-            await _regenerateSingle(subdirectory, flagsResolved);
-        });
-        await Promise.all(promises);
-        return true;
+        const cmdList: TspCommand[] = subdirectories.flatMap((subdirectory) =>
+            _getCmdList(subdirectory, flagsResolved),
+        );
+        const PromiseCommands = cmdList.map((tspCommand) => executeCommand(tspCommand));
+        await Promise.all(PromiseCommands);
     }
 }
 
