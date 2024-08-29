@@ -66,11 +66,10 @@ export function getSimpleTypeResult(result: Record<string, any>): Record<string,
 export function getType<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: CredentialType | CredentialTypeUnion | Type | SdkType | MultiPartFileType,
-    fromBody = false,
 ): Record<string, any> {
     switch (type.kind) {
         case "model":
-            return emitModel(context, type, fromBody);
+            return emitModel(context, type);
         case "union":
             return emitUnion(context, type);
         case "enum":
@@ -239,7 +238,6 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
 function emitModel<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: SdkModelType,
-    fromBody: boolean,
 ): Record<string, any> {
     if (isEmptyModel(type)) {
         return KnownTypes.any;
@@ -257,7 +255,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: camelToSnakeCase(type.name),
-        base: type.isGeneratedName && fromBody ? "json" : "dpg",
+        base: "dpg",
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,

@@ -90,9 +90,8 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     parameter: SdkParameter | SdkHttpParameter,
-    fromBody: boolean = false,
 ): ParamBase {
-    let type = getType(context, parameter.type, fromBody);
+    let type = getType(context, parameter.type);
     if (parameter.isApiVersionParam) {
         if (parameter.clientDefaultValue) {
             type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: type });

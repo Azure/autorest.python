@@ -16,6 +16,7 @@ export interface PythonEmitterOptions {
     "generate-test"?: boolean;
     "debug"?: boolean;
     "flavor"?: "azure";
+    "examples-dir"?: string;
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>

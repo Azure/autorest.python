@@ -227,7 +227,7 @@ export function emitCodeModel<TServiceOperation extends SdkServiceOperation>(
     }
     // loop through models and enums since there may be some orphaned models needs to be generated
     for (const model of sdkPackage.models) {
-        if (model.name === "" || (model.usage & UsageFlags.Spread) > 0) {
+        if (model.name === "" || (model.usage & UsageFlags.Spread) > 0 && (model.usage & UsageFlags.Input) === 0 && (model.usage & UsageFlags.Output) === 0) {
             continue;
         }
         if (!disableGenerationMap.has(model)) {

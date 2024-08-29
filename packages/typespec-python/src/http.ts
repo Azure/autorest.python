@@ -160,7 +160,7 @@ function emitHttpOperation(
     rootClient: SdkClientType<SdkHttpOperation>,
     operationGroupName: string,
     operation: SdkHttpOperation,
-    method?: SdkServiceMethod<SdkHttpOperation>,
+    method: SdkServiceMethod<SdkHttpOperation>,
 ): Record<string, any> {
     const responses: Record<string, any>[] = [];
     const exceptions: Record<string, any>[] = [];
@@ -190,11 +190,14 @@ function emitHttpOperation(
     };
     if (
         result.bodyParameter &&
-        operation.bodyParam?.type.kind === "model" &&
-        (operation.bodyParam?.type.usage & UsageFlags.Spread) > 0
+        isSpreadBody(operation.bodyParam)
     ) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
+        // if body type is not only used for this spread body, but also used in other input/output, we should clone it, then change the type base to json
+        if ((result.bodyParameter.type.usage & UsageFlags.Input) > 0 || (result.bodyParameter.type.usage & UsageFlags.Output) > 0) {
+            result.bodyParameter.type = { ...result.bodyParameter.type, name: `${method.name}Request`};
+        }
         result.bodyParameter.type.base = "json";
         for (const property of result.bodyParameter.type.properties) {
             result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
@@ -202,6 +205,10 @@ function emitHttpOperation(
         }
     }
     return result;
+}
+
+function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
+    return bodyParam?.type.kind === "model" && bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type;
 }
 
 function emitFlattenedParameter(
@@ -310,7 +317,7 @@ function emitHttpBodyParameter(
 ): Record<string, any> | undefined {
     if (bodyParam === undefined) return undefined;
     return {
-        ...emitParamBase(context, bodyParam, true),
+        ...emitParamBase(context, bodyParam),
         contentTypes: bodyParam.contentTypes,
         location: bodyParam.kind,
         clientName: bodyParam.isGeneratedName ? "body" : camelToSnakeCase(bodyParam.name),
