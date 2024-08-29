@@ -108,14 +108,15 @@ steps:
       condition: and(succeeded(), ${{ parameters.unitTest }})
 
     - script: inv regenerate
-      displayName: "Regenerate Code"
+      displayName: "Regenerate Code(autorest)"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: |
         find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
+        find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete
         npm run regenerate
-      displayName: "Regenerate Code"
+      displayName: "Regenerate Code(typespec)"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
 

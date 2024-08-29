@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": "Azure.ClientGenerator.Core.FlattenProperty",
+    "CrossLanguageDefinitionId": {
+        "azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel": "Azure.ClientGenerator.Core.FlattenProperty.ChildFlattenModel",
+        "azure.clientgenerator.core.flattenproperty.models.ChildModel": "Azure.ClientGenerator.Core.FlattenProperty.ChildModel",
+        "azure.clientgenerator.core.flattenproperty.models.FlattenModel": "Azure.ClientGenerator.Core.FlattenProperty.FlattenModel",
+        "azure.clientgenerator.core.flattenproperty.models.NestedFlattenModel": "Azure.ClientGenerator.Core.FlattenProperty.NestedFlattenModel",
+        "azure.clientgenerator.core.flattenproperty.FlattenPropertyClient.put_flatten_model": "Azure.ClientGenerator.Core.FlattenProperty.putFlattenModel",
+        "azure.clientgenerator.core.flattenproperty.FlattenPropertyClient.put_nested_flatten_model": "Azure.ClientGenerator.Core.FlattenProperty.putNestedFlattenModel"
+    }
+}

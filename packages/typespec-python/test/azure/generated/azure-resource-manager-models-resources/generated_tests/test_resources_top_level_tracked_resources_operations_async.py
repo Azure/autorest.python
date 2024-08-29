@@ -118,3 +118,15 @@ class TestResourcesTopLevelTrackedResourcesOperationsAsync(AzureMgmtRecordedTest
         result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
+
+    @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
+    @recorded_by_proxy_async
+    async def test_action_sync(self, resource_group):
+        response = await self.client.top_level_tracked_resources.action_sync(
+            resource_group_name=resource_group.name,
+            top_level_tracked_resource_name="str",
+            body={"message": "str", "urgent": bool},
+        )
+
+        # please add some check logic here by yourself
+        # ...

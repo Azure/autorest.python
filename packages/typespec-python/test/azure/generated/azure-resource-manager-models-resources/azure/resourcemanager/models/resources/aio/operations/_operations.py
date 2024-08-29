@@ -54,6 +54,7 @@ from ...operations._operations import (
     build_nested_proxy_resources_get_request,
     build_nested_proxy_resources_list_by_top_level_tracked_resource_request,
     build_nested_proxy_resources_update_request,
+    build_top_level_tracked_resources_action_sync_request,
     build_top_level_tracked_resources_create_or_replace_request,
     build_top_level_tracked_resources_delete_request,
     build_top_level_tracked_resources_get_request,
@@ -919,6 +920,161 @@ class TopLevelTrackedResourcesOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+
+    @overload
+    async def action_sync(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        top_level_tracked_resource_name: str,
+        body: _models.NotificationDetails,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """A synchronous resource action that returns no content.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param top_level_tracked_resource_name: arm resource name for path. Required.
+        :type top_level_tracked_resource_name: str
+        :param body: The content of the action request. Required.
+        :type body: ~azure.resourcemanager.models.resources.models.NotificationDetails
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def action_sync(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        top_level_tracked_resource_name: str,
+        body: JSON,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """A synchronous resource action that returns no content.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param top_level_tracked_resource_name: arm resource name for path. Required.
+        :type top_level_tracked_resource_name: str
+        :param body: The content of the action request. Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def action_sync(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        top_level_tracked_resource_name: str,
+        body: IO[bytes],
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> None:
+        """A synchronous resource action that returns no content.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param top_level_tracked_resource_name: arm resource name for path. Required.
+        :type top_level_tracked_resource_name: str
+        :param body: The content of the action request. Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def action_sync(  # pylint: disable=inconsistent-return-statements
+        self,
+        resource_group_name: str,
+        top_level_tracked_resource_name: str,
+        body: Union[_models.NotificationDetails, JSON, IO[bytes]],
+        **kwargs: Any
+    ) -> None:
+        """A synchronous resource action that returns no content.
+
+        :param resource_group_name: The name of the resource group. The name is case insensitive.
+         Required.
+        :type resource_group_name: str
+        :param top_level_tracked_resource_name: arm resource name for path. Required.
+        :type top_level_tracked_resource_name: str
+        :param body: The content of the action request. Is one of the following types:
+         NotificationDetails, JSON, IO[bytes] Required.
+        :type body: ~azure.resourcemanager.models.resources.models.NotificationDetails or JSON or
+         IO[bytes]
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_top_level_tracked_resources_action_sync_request(
+            resource_group_name=resource_group_name,
+            top_level_tracked_resource_name=top_level_tracked_resource_name,
+            subscription_id=self._config.subscription_id,
+            content_type=content_type,
+            api_version=self._config.api_version,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = _deserialize(_models.ErrorResponse, response.json())
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
 class NestedProxyResourcesOperations:
