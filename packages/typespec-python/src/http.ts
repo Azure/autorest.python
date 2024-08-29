@@ -188,15 +188,15 @@ function emitHttpOperation(
         crossLanguageDefinitionId: method?.crossLanguageDefintionId,
         samples: arrayToRecord(method?.operation.examples),
     };
-    if (
-        result.bodyParameter &&
-        isSpreadBody(operation.bodyParam)
-    ) {
+    if (result.bodyParameter && isSpreadBody(operation.bodyParam)) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
         // if body type is not only used for this spread body, but also used in other input/output, we should clone it, then change the type base to json
-        if ((result.bodyParameter.type.usage & UsageFlags.Input) > 0 || (result.bodyParameter.type.usage & UsageFlags.Output) > 0) {
-            result.bodyParameter.type = { ...result.bodyParameter.type, name: `${method.name}Request`};
+        if (
+            (result.bodyParameter.type.usage & UsageFlags.Input) > 0 ||
+            (result.bodyParameter.type.usage & UsageFlags.Output) > 0
+        ) {
+            result.bodyParameter.type = { ...result.bodyParameter.type, name: `${method.name}Request` };
         }
         result.bodyParameter.type.base = "json";
         for (const property of result.bodyParameter.type.properties) {
@@ -354,8 +354,8 @@ function emitHttpResponse(
             typeof statusCodes === "object"
                 ? [(statusCodes as HttpStatusCodeRange).start]
                 : statusCodes === "*"
-                    ? ["default"]
-                    : [statusCodes],
+                ? ["default"]
+                : [statusCodes],
         discriminator: "basic",
         type,
         contentTypes: response.contentTypes,

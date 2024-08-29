@@ -187,7 +187,8 @@ class GeneralSerializer(BaseSerializer):
         cross_langauge_def_dict.update(
             {
                 f"{self.code_model.namespace}.models.{enum.name}": enum.cross_language_definition_id
-                for enum in self.code_model.enums if not enum.internal
+                for enum in self.code_model.enums
+                if not enum.internal
             }
         )
         cross_langauge_def_dict.update(
