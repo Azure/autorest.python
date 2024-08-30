@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -18,13 +19,14 @@ from .operations import (
     BytesOperations,
     CollectionsByteOperations,
     CollectionsModelOperations,
+    CollectionsStringOperations,
     DatetimeOperations,
     DurationOperations,
     StringOperations,
 )
 
 
-class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
+class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates models with nullable properties.
 
     :ivar string: StringOperations operations
@@ -40,6 +42,9 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model:
      typetest.property.nullable.aio.operations.CollectionsModelOperations
+    :ivar collections_string: CollectionsStringOperations operations
+    :vartype collections_string:
+     typetest.property.nullable.aio.operations.CollectionsStringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -47,7 +52,8 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = NullableClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = NullableClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -59,7 +65,7 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
                 self._config.authentication_policy,
                 self._config.logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -72,6 +78,9 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.collections_model = CollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.collections_string = CollectionsStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -96,13 +105,17 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "NullableClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

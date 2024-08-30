@@ -26,8 +26,10 @@
 import sys
 import pytest
 
+
 def test_operation_groups():
     from bodycomplexversiontolerant.operations import ArrayOperations
     from bodycomplexversiontolerant.operations._operations import ArrayOperations as ArrayOperationsPy3
+
     assert ArrayOperations == ArrayOperationsPy3
     ArrayOperationsPy3(None, config=None, serializer=None, deserializer=None)

@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -23,6 +24,8 @@ from .operations import (
     DurationOperations,
     FloatLiteralOperations,
     IntLiteralOperations,
+    PlainDateOperations,
+    PlainTimeOperations,
     RequiredAndOptionalOperations,
     StringLiteralOperations,
     StringOperations,
@@ -43,6 +46,10 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     :vartype datetime: typetest.property.optional.aio.operations.DatetimeOperations
     :ivar duration: DurationOperations operations
     :vartype duration: typetest.property.optional.aio.operations.DurationOperations
+    :ivar plain_date: PlainDateOperations operations
+    :vartype plain_date: typetest.property.optional.aio.operations.PlainDateOperations
+    :ivar plain_time: PlainTimeOperations operations
+    :vartype plain_time: typetest.property.optional.aio.operations.PlainTimeOperations
     :ivar collections_byte: CollectionsByteOperations operations
     :vartype collections_byte: typetest.property.optional.aio.operations.CollectionsByteOperations
     :ivar collections_model: CollectionsModelOperations operations
@@ -74,7 +81,8 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = OptionalClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = OptionalClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -86,7 +94,7 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
                 self._config.authentication_policy,
                 self._config.logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -95,6 +103,8 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
         self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
         self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.plain_date = PlainDateOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.plain_time = PlainTimeOperations(self._client, self._config, self._serialize, self._deserialize)
         self.collections_byte = CollectionsByteOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
@@ -139,13 +149,17 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "OptionalClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

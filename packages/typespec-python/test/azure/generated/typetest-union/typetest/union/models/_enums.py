@@ -10,22 +10,8 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class LR(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of LR."""
-
-    LEFT = "left"
-    RIGHT = "right"
-
-
 class StringExtensibleNamedUnion(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of StringExtensibleNamedUnion."""
 
     OPTION_B = "b"
     C = "c"
-
-
-class UD(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Type of UD."""
-
-    UP = "up"
-    DOWN = "down"

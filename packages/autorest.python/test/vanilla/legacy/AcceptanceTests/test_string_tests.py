@@ -41,10 +41,12 @@ from bodystring import AutoRestSwaggerBATService
 from bodystring.models import Colors
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestString(object):
 
@@ -53,7 +55,7 @@ class TestString(object):
         client.string.put_null()
 
     def test_empty(self, client):
-        assert "" ==  client.string.get_empty()
+        assert "" == client.string.get_empty()
         # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
         client.string.put_empty()
 
@@ -73,7 +75,8 @@ class TestString(object):
                 "\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
                 "\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
                 "\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+                "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+            ).decode("utf-8")
 
         except AttributeError:
             test_str = (
@@ -90,34 +93,35 @@ class TestString(object):
                 b"\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
                 b"\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+                b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+            ).decode("utf-8")
 
         assert test_str == client.string.get_mbcs()
         client.string.put_mbcs()
 
     def test_whitespace(self, client):
         test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  client.string.get_whitespace()
+        assert test_str == client.string.get_whitespace()
         client.string.put_whitespace()
 
     def test_get_not_provided(self, client):
         assert client.string.get_not_provided() is None
 
     def test_enum_not_expandable(self, client):
-        assert Colors.RED_COLOR ==  client.enum.get_not_expandable()
-        client.enum.put_not_expandable('red color')
+        assert Colors.RED_COLOR == client.enum.get_not_expandable()
+        client.enum.put_not_expandable("red color")
         client.enum.put_not_expandable(Colors.RED_COLOR)
         # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
         # but now we allow the user to pass strings as enums, so the raised exception is different.
         with pytest.raises(HttpResponseError):
-            client.enum.put_not_expandable('not a colour')
+            client.enum.put_not_expandable("not a colour")
 
     def test_get_base64_encdoded(self, client):
-        assert client.string.get_base64_encoded() ==  'a string that gets encoded with base64'.encode()
+        assert client.string.get_base64_encoded() == "a string that gets encoded with base64".encode()
 
     def test_base64_url_encoded(self, client):
-        assert client.string.get_base64_url_encoded() ==  'a string that gets encoded with base64url'.encode()
-        client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
+        assert client.string.get_base64_url_encoded() == "a string that gets encoded with base64url".encode()
+        client.string.put_base64_url_encoded("a string that gets encoded with base64url".encode())
 
     def test_get_null_base64_url_encoded(self, client):
         assert client.string.get_null_base64_url_encoded() is None
@@ -126,11 +130,11 @@ class TestString(object):
         client.enum.put_referenced(Colors.RED_COLOR)
         client.enum.put_referenced("red color")
 
-        assert client.enum.get_referenced() ==  Colors.RED_COLOR
+        assert client.enum.get_referenced() == Colors.RED_COLOR
 
     def test_enum_referenced_constant(self, client):
         client.enum.put_referenced_constant()
-        assert client.enum.get_referenced_constant().color_constant ==  Colors.GREEN_COLOR.value
+        assert client.enum.get_referenced_constant().color_constant == Colors.GREEN_COLOR.value
 
     def test_patch_file(self):
         from bodystring.models import PatchAddedModel
@@ -143,6 +147,7 @@ class TestString(object):
         from bodystring.models import Error
 
         from bodystring.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -152,4 +157,5 @@ class TestString(object):
             from bodystring.operations import _enum_operations_py3
 
         from bodystring.operations._enum_operations import EnumOperations as EnumOperationsPy2
+
         assert EnumOperations == EnumOperationsPy2

@@ -81,7 +81,9 @@ class TestXmsRequestClientId(object):
     def test_xms_request_client_overwrite_via_parameter(self, client_no_request_id):
         # We DON'T support a Swagger parameter for request_id, the request_id policy will overwrite it.
         # We disable the request_id policy for this test
-        client_no_request_id.xms_client_request_id.param_get(x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
+        client_no_request_id.xms_client_request_id.param_get(
+            x_ms_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
+        )
 
     def test_xms_custom_named_request_id(self, client):
         client.header.custom_named_request_id(foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0")
@@ -90,10 +92,13 @@ class TestXmsRequestClientId(object):
         param_group = models.HeaderCustomNamedRequestIdParamGroupingParameters(
             foo_client_request_id="9C4D50EE-2D56-4CD3-8152-34347DC9F2B0"
         )
-        client.header.custom_named_request_id_param_grouping(header_custom_named_request_id_param_grouping_parameters=param_group)
+        client.header.custom_named_request_id_param_grouping(
+            header_custom_named_request_id_param_grouping_parameters=param_group
+        )
 
     def test_models(self):
         from azurespecialproperties.models import Error
 
         from azurespecialproperties.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3

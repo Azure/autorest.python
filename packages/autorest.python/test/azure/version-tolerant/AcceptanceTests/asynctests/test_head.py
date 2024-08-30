@@ -29,6 +29,8 @@ from headexceptionsversiontolerant.aio import AutoRestHeadExceptionTestService
 from azure.core.exceptions import HttpResponseError
 
 import pytest
+
+
 @pytest.mark.asyncio
 async def test_head(credential, authentication_policy):
 
@@ -37,6 +39,7 @@ async def test_head(credential, authentication_policy):
         assert await client.http_success.head200()
         assert await client.http_success.head204()
         assert not await client.http_success.head404()
+
 
 @pytest.mark.asyncio
 async def test_head_exception(credential, authentication_policy):

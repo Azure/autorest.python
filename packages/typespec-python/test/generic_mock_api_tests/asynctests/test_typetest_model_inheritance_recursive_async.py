@@ -13,24 +13,16 @@ async def client():
     async with RecursiveClient() as client:
         yield client
 
+
 @pytest.fixture
 async def expected():
-    return Extension({
-  "level": 0,
-  "extension": [
-    {
-      "level": 1,
-      "extension": [
+    return Extension(
         {
-          "level": 2
+            "level": 0,
+            "extension": [{"level": 1, "extension": [{"level": 2}]}, {"level": 1}],
         }
-      ]
-    },
-    {
-      "level": 1
-    }
-  ]
-})
+    )
+
 
 @pytest.mark.asyncio
 async def test_put(client: RecursiveClient, expected: Extension):
@@ -40,4 +32,3 @@ async def test_put(client: RecursiveClient, expected: Extension):
 @pytest.mark.asyncio
 async def test_get(client: RecursiveClient, expected: Extension):
     assert await client.get() == expected
-

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
@@ -17,6 +17,8 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -45,6 +47,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class DPGClientOperationsMixin(DPGClientMixinABC):
+
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> JSON:
         """Get models that you will either return to end users as a raw body, or with a model added during
@@ -63,10 +66,10 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -94,8 +97,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -134,12 +135,12 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "hello": "str"  # Required.
+                    "hello": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
 
@@ -168,7 +169,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
 
@@ -193,15 +194,15 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "hello": "str"  # Required.
+                    "hello": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -241,8 +242,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -274,7 +273,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "received": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -282,7 +281,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -323,8 +322,6 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    await response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response)
 
@@ -332,8 +329,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         return AsyncItemPaged(get_next, extract_data)
 
-    async def _lro_initial(self, mode: str, **kwargs: Any) -> JSON:
-        error_map = {
+    async def _lro_initial(self, mode: str, **kwargs: Any) -> AsyncIterator[bytes]:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -344,7 +341,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_dpg_lro_request(
             mode=mode,
@@ -353,7 +350,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -361,20 +358,19 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
+            try:
                 await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(AsyncIterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)  # type: ignore
+        return cast(AsyncIterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace_async
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[JSON]:
@@ -394,8 +390,8 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "provisioningState": "str",  # Required.
-                    "received": "str"  # Required. Known values are: "raw" and "model".
+                    "provisioningState": "str",
+                    "received": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -409,6 +405,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
             raw_result = await self._lro_initial(
                 mode=mode, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):

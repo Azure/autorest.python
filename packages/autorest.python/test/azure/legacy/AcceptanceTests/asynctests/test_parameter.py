@@ -33,15 +33,18 @@ from azurespecialproperties.aio import AutoRestAzureSpecialParametersTestClient
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestParameterGroupingTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 @pytest.fixture
 def valid_subscription():
-    return '1234-5678-9012-3456'
+    return "1234-5678-9012-3456"
+
 
 @pytest.fixture
 @async_generator
@@ -51,52 +54,67 @@ async def azure_client(valid_subscription, credential, authentication_policy):
     ) as client:
         await yield_(client)
 
+
 @pytest.fixture
 def body_parameter():
     return 1234
 
+
 @pytest.fixture
 def header_parameter():
-    return 'header'
+    return "header"
+
 
 @pytest.fixture
 def query_parameter():
     return 21
 
+
 @pytest.fixture
 def path_parameter():
-    return 'path'
+    return "path"
 
 
 @pytest.fixture
 def unencoded_path():
-    return 'path1/path2/path3'
+    return "path1/path2/path3"
+
 
 @pytest.fixture
 def unencoded_query():
-    return 'value1&q2=value2&q3=value3'
+    return "value1&q2=value2&q3=value3"
+
 
 class TestParameter(object):
 
     @pytest.mark.asyncio
-    async def test_post_all_required_parameters(self, client, body_parameter, header_parameter, query_parameter, path_parameter):
+    async def test_post_all_required_parameters(
+        self, client, body_parameter, header_parameter, query_parameter, path_parameter
+    ):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
+
         # Valid required parameters
-        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, custom_header=header_parameter, query=query_parameter)
+        required_parameters = ParameterGroupingPostRequiredParameters(
+            body=body_parameter, path=path_parameter, custom_header=header_parameter, query=query_parameter
+        )
         await client.parameter_grouping.post_required(required_parameters)
 
     @pytest.mark.asyncio
     async def test_post_required_parameters_null_optional_parameters(self, client, body_parameter, path_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
-        #Required parameters but null optional parameters
-        required_parameters = ParameterGroupingPostRequiredParameters(body=body_parameter, path=path_parameter, query=None)
+
+        # Required parameters but null optional parameters
+        required_parameters = ParameterGroupingPostRequiredParameters(
+            body=body_parameter, path=path_parameter, query=None
+        )
         await client.parameter_grouping.post_required(required_parameters)
 
     @pytest.mark.asyncio
     async def test_post_required_parameters_with_null_required_property(self, client, path_parameter):
         from azureparametergrouping.models import ParameterGroupingPostRequiredParameters
-        #Required parameters object is not null, but a required property of the object is
-        required_parameters = ParameterGroupingPostRequiredParameters(body = None, path = path_parameter)
+
+        # Required parameters object is not null, but a required property of the object is
+        required_parameters = ParameterGroupingPostRequiredParameters(body=None, path=path_parameter)
 
         with pytest.raises(ValidationError):
             await client.parameter_grouping.post_required(required_parameters)
@@ -105,47 +123,60 @@ class TestParameter(object):
 
     @pytest.mark.asyncio
     async def test_post_all_optional(self, client, header_parameter, query_parameter):
-        from azureparametergrouping.models import ParameterGroupingPostRequiredParameters, ParameterGroupingPostOptionalParameters
-        #Valid optional parameters
-        optional_parameters = ParameterGroupingPostOptionalParameters(custom_header = header_parameter, query = query_parameter)
+        from azureparametergrouping.models import (
+            ParameterGroupingPostRequiredParameters,
+            ParameterGroupingPostOptionalParameters,
+        )
+
+        # Valid optional parameters
+        optional_parameters = ParameterGroupingPostOptionalParameters(
+            custom_header=header_parameter, query=query_parameter
+        )
         await client.parameter_grouping.post_optional(optional_parameters)
 
     @pytest.mark.asyncio
     async def test_post_none_optional(self, client):
-        #null optional paramters
+        # null optional paramters
         await client.parameter_grouping.post_optional(None)
 
     @pytest.mark.asyncio
     async def test_post_all_multi_param_groups(self, client, header_parameter, query_parameter):
-        from azureparametergrouping.models import FirstParameterGroup, ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        #Multiple grouped parameters
-        first_group = FirstParameterGroup(header_one = header_parameter, query_one = query_parameter)
-        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two = "header2", query_two = 42)
+        from azureparametergrouping.models import (
+            FirstParameterGroup,
+            ParameterGroupingPostMultiParamGroupsSecondParamGroup,
+        )
+
+        # Multiple grouped parameters
+        first_group = FirstParameterGroup(header_one=header_parameter, query_one=query_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(header_two="header2", query_two=42)
 
         await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
     @pytest.mark.asyncio
     async def test_post_some_multi_param_groups(self, client, header_parameter):
-        from azureparametergrouping.models import FirstParameterGroup, ParameterGroupingPostMultiParamGroupsSecondParamGroup
-        #Multiple grouped parameters -- some optional parameters omitted
-        first_group = FirstParameterGroup(header_one = header_parameter)
-        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two = 42)
+        from azureparametergrouping.models import (
+            FirstParameterGroup,
+            ParameterGroupingPostMultiParamGroupsSecondParamGroup,
+        )
+
+        # Multiple grouped parameters -- some optional parameters omitted
+        first_group = FirstParameterGroup(header_one=header_parameter)
+        second_group = ParameterGroupingPostMultiParamGroupsSecondParamGroup(query_two=42)
 
         await client.parameter_grouping.post_multi_param_groups(first_group, second_group)
 
     @pytest.mark.asyncio
     async def test_post_shared_parameter_group_object(self, client, header_parameter):
         from azureparametergrouping.models import FirstParameterGroup
-        first_group = FirstParameterGroup(header_one = header_parameter)
+
+        first_group = FirstParameterGroup(header_one=header_parameter)
         await client.parameter_grouping.post_shared_parameter_group_object(first_group)
 
     @pytest.mark.asyncio
     async def test_post_reserved_words(self, client):
         from azureparametergrouping.models import ParameterGroupingPostReservedWordsParameters
-        group = ParameterGroupingPostReservedWordsParameters(
-            from_property="bob",
-            accept="yes"
-        )
+
+        group = ParameterGroupingPostReservedWordsParameters(from_property="bob", accept="yes")
         await client.parameter_grouping.post_reserved_words(group)
 
     @pytest.mark.asyncio
@@ -196,4 +227,5 @@ class TestParameter(object):
     @pytest.mark.asyncio
     async def test_group_with_constant(self, client):
         from azureparametergrouping.models import Grouper
+
         await client.parameter_grouping.group_with_constant(Grouper(grouped_constant="foo", grouped_parameter="bar"))

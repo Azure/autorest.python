@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -37,6 +38,7 @@ from .operations import (
     NeverOperations,
     StringLiteralOperations,
     StringOperations,
+    UnionEnumValueOperations,
     UnionFloatLiteralOperations,
     UnionIntLiteralOperations,
     UnionStringLiteralOperations,
@@ -112,6 +114,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :ivar union_float_literal: UnionFloatLiteralOperations operations
     :vartype union_float_literal:
      typetest.property.valuetypes.aio.operations.UnionFloatLiteralOperations
+    :ivar union_enum_value: UnionEnumValueOperations operations
+    :vartype union_enum_value: typetest.property.valuetypes.aio.operations.UnionEnumValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -119,7 +123,8 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = ValueTypesClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = ValueTypesClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -137,7 +142,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -182,6 +187,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self.union_float_literal = UnionFloatLiteralOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.union_enum_value = UnionEnumValueOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -204,13 +210,17 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ValueTypesClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

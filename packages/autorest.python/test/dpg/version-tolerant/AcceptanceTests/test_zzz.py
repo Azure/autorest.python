@@ -34,17 +34,17 @@ class TestAcceptance(object):
 
     def test_ensure_coverage(self):
         client = DPGClient()
-        request = HttpRequest("GET", "http://localhost:3000/report/dpg", params={"qualifier": platform.python_version()})
+        request = HttpRequest(
+            "GET", "http://localhost:3000/report/dpg", params={"qualifier": platform.python_version()}
+        )
         response = client.send_request(request)
         response.raise_for_status()
         support_dict = response.json()
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {
-        }
+        not_supported = {}
 
         # Please add missing features or failing tests here
-        missing_features_or_bugs = {
-        }
+        missing_features_or_bugs = {}
         for name in support_dict:
             if "DPG" not in name:
                 # this folder only does dpg
@@ -69,6 +69,6 @@ class TestAcceptance(object):
             print("FAILED TO EXECUTE {0}".format(s))
 
         total_tests = len(report)
-        warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
+        warnings.warn("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
         assert 0 == len(failed)

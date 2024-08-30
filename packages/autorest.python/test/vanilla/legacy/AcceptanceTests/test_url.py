@@ -41,19 +41,23 @@ from url.models import UriColor
 
 import pytest
 
+
 @pytest.fixture
 def client():
-    with AutoRestUrlTestService('', base_url="http://localhost:3000") as client:
+    with AutoRestUrlTestService("", base_url="http://localhost:3000") as client:
         yield client
+
 
 @pytest.fixture
 def multi_client():
     with AutoRestUrlMutliCollectionFormatTestService("http://localhost:3000") as client:
         yield client
 
+
 @pytest.fixture
 def test_array_query():
     return ["ArrayQuery1", r"begin!*'();:@ &=+$,/?#[]end", None, ""]
+
 
 class TestUrl(object):
     def test_byte_empty_and_null(self, client):
@@ -63,7 +67,7 @@ class TestUrl(object):
             client.paths.byte_null(None)
 
     def test_byte_multi_byte(self, client):
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
         client.paths.byte_multi_byte(u_bytes)
 
     def test_date_null(self, client):
@@ -134,7 +138,7 @@ class TestUrl(object):
 
     def test_queries_byte(self, client):
         client.queries.byte_empty()
-        u_bytes = bytearray(u"\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding='utf-8')
+        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
         client.queries.byte_multi_byte(u_bytes)
         client.queries.byte_null()
 
@@ -199,7 +203,7 @@ class TestUrl(object):
         multi_client.queries.array_string_multi_valid(test_array_query)
 
     def test_array_string_no_collection_format(self, client):
-        client.queries.array_string_no_collection_format_empty(['hello', 'nihao', 'bonjour'])
+        client.queries.array_string_no_collection_format_empty(["hello", "nihao", "bonjour"])
 
     def test_get_all_with_values(self, client):
         client._config.global_string_path = "globalStringPath"
@@ -243,6 +247,7 @@ class TestUrl(object):
         from url.models import Error
 
         from url.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -256,7 +261,9 @@ class TestUrl(object):
             from urlmulticollectionformat.operations import _queries_operations_py3
 
         from url.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
+
         assert QueriesOperations == QueriesOperationsPy2
 
         from urlmulticollectionformat.operations._queries_operations import QueriesOperations as QueriesOperationsPy2
+
         assert MultiCollectionFormatQueriesOperations == QueriesOperationsPy2

@@ -7,7 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Dict
+from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
@@ -18,10 +19,6 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
@@ -90,7 +87,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestHeadTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

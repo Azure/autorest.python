@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -22,7 +23,7 @@ from ._operations import CustomClientOperationsMixin
 class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
+    :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -31,7 +32,8 @@ class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(
         self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = CustomClientConfiguration(credential=credential, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = CustomClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -49,7 +51,7 @@ class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accep
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -76,13 +78,17 @@ class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accep
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "CustomClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

@@ -11,7 +11,7 @@ from typing import Any, Dict, Literal, Mapping, overload
 
 from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
-from ._enums import SnakeKind
+from ._enums import DogKind, SnakeKind
 
 
 class Snake(_model_base.Model):
@@ -20,7 +20,6 @@ class Snake(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Cobra
 
-    All required parameters must be populated in order to send to server.
 
     :ivar kind: discriminator property. Required. "cobra"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
@@ -40,8 +39,7 @@ class Snake(_model_base.Model):
         *,
         kind: str,
         length: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -57,7 +55,6 @@ class Snake(_model_base.Model):
 class Cobra(Snake, discriminator="cobra"):
     """Cobra model.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar length: Length of the snake. Required.
     :vartype length: int
@@ -73,8 +70,7 @@ class Cobra(Snake, discriminator="cobra"):
         self,
         *,
         length: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -93,7 +89,6 @@ class Dog(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Golden
 
-    All required parameters must be populated in order to send to server.
 
     :ivar kind: discriminator property. Required. "golden"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
@@ -113,8 +108,7 @@ class Dog(_model_base.Model):
         *,
         kind: str,
         weight: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -130,24 +124,22 @@ class Dog(_model_base.Model):
 class Golden(Dog, discriminator="golden"):
     """Golden dog model.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
-    :ivar kind: discriminator property. Required. Default value is "golden".
-    :vartype kind: str
+    :ivar kind: discriminator property. Required. Species golden
+    :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
 
-    kind: Literal["golden"] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Default value is \"golden\"."""
+    kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind")  # type: ignore
+    """discriminator property. Required. Species golden"""
 
     @overload
     def __init__(
         self,
         *,
         weight: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -157,4 +149,4 @@ class Golden(Dog, discriminator="golden"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, kind="golden", **kwargs)
+        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)

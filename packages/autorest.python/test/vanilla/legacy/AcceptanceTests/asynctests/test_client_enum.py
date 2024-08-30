@@ -26,10 +26,12 @@
 import pytest
 from clientenum import aio, models
 
+
 @pytest.fixture
 async def client():
     async with aio.ClientWithEnum(x_ms_enum=models.Enum0.SINGLE) as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_head(client):

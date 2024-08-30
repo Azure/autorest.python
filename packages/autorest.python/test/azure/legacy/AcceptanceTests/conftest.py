@@ -38,20 +38,25 @@ import pytest
 
 cwd = dirname(realpath(__file__))
 
-#Ideally this would be in a common helper library shared between the tests
+
+# Ideally this would be in a common helper library shared between the tests
 def start_server_process():
-    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver/dist/cli/cli.js run --appendCoverage".format(cwd)
-    if os.name == 'nt': #On windows, subprocess creation works without being in the shell
+    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver/dist/cli/cli.js run --appendCoverage".format(
+        cwd
+    )
+    if os.name == "nt":  # On windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
 
-    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
+    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)  # On linux, have to set shell=True
 
-#Ideally this would be in a common helper library shared between the tests
+
+# Ideally this would be in a common helper library shared between the tests
 def terminate_server_process(process):
-    if os.name == 'nt':
+    if os.name == "nt":
         process.kill()
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+
 
 @pytest.fixture(scope="session")
 def testserver():
@@ -77,6 +82,7 @@ class CookiePolicy(SansIOHTTPPolicy):
         if "Set-Cookie" in http_response.headers:
             self._current_cookie = http_response.headers["Set-Cookie"]
 
+
 @pytest.fixture()
 def cookie_policy():
     return CookiePolicy()
@@ -87,11 +93,15 @@ def credential():
     """I actually don't need anything, since the authentication policy
     will bypass it.
     """
+
     class FakeCredential:
         pass
+
     return FakeCredential()
+
 
 @pytest.fixture()
 def authentication_policy():
     from azure.core.pipeline.policies import SansIOHTTPPolicy
+
     return SansIOHTTPPolicy()

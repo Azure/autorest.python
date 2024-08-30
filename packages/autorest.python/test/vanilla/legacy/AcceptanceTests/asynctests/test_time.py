@@ -31,11 +31,13 @@ from async_generator import yield_, async_generator
 from bodytime.aio import AutoRestTimeTestService
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestTimeTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestTime(object):
 

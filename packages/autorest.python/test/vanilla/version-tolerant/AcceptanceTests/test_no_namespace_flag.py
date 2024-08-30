@@ -26,11 +26,13 @@
 import pytest
 from anything_client import AnythingClient
 
+
 @pytest.fixture
 def client():
     with AnythingClient() as client:
         yield client
 
+
 def test_call(client):
     # make sure we can do a call with an sdk with no namespace flag
-    assert client.get_string() == 'anything'
+    assert client.get_string() == "anything"

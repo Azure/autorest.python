@@ -5,7 +5,7 @@
 
 ## Getting started
 
-### Installating the package
+### Install the package
 
 ```bash
 python -m pip install typetest-property-valuetypes

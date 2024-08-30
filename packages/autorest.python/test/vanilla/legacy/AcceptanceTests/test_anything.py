@@ -27,34 +27,45 @@ import sys
 import pytest
 from anything import AnythingClient
 
+
 @pytest.fixture
 def client():
     with AnythingClient(base_url="http://localhost:3000") as client:
         yield client
 
+
 def test_get_string(client):
-    assert client.get_string() == 'anything'
+    assert client.get_string() == "anything"
+
 
 def test_put_string(client):
     client.put_string(input="anything")
 
+
 def test_get_object(client):
     assert client.get_object() == {"message": "An object was successfully returned"}
 
+
 def test_put_object(client):
-    client.put_object({'foo': 'bar'})
+    client.put_object({"foo": "bar"})
+
 
 def test_get_array(client):
-    assert client.get_array() == ['foo', 'bar']
+    assert client.get_array() == ["foo", "bar"]
+
 
 def test_put_array(client):
-    client.put_array(['foo', 'bar'])
+    client.put_array(["foo", "bar"])
+
 
 def test_operation_groups():
     from anything.operations import AnythingClientOperationsMixin
 
     with pytest.raises(ImportError):
         from anything.operations import _anything_client_operations_py3
-        
-    from anything.operations._anything_client_operations import AnythingClientOperationsMixin as AnythingClientOperationsMixinPy2
+
+    from anything.operations._anything_client_operations import (
+        AnythingClientOperationsMixin as AnythingClientOperationsMixinPy2,
+    )
+
     assert AnythingClientOperationsMixin == AnythingClientOperationsMixinPy2

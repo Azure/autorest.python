@@ -28,6 +28,7 @@ import json
 from bodybinary import BinaryWithContentTypeApplicationJson
 from azure.core.exceptions import HttpResponseError
 
+
 @pytest.fixture
 def client():
     with BinaryWithContentTypeApplicationJson() as client:
@@ -37,8 +38,10 @@ def client():
 def test_upload_file(client):
     client.upload.file(json.dumps({"more": "cowbell"}))
 
+
 def test_upload_binary(client):
     client.upload.binary(b"Hello, world!")
+
 
 def test_error(client):
     with pytest.raises(HttpResponseError):

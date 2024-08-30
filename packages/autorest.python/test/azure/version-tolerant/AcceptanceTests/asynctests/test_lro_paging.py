@@ -27,10 +27,12 @@ import pytest
 from lropagingversiontolerant.aio import LroPagingClient
 from azure.core.exceptions import ResourceNotFoundError
 
+
 @pytest.fixture()
 async def client():
     async with LroPagingClient() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_begin_update_qnas(client):

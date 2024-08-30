@@ -33,11 +33,13 @@ from bodydurationversiontolerant.aio import AutoRestDurationTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDurationTestService() as client:
         await yield_(client)
+
 
 @pytest.mark.asyncio
 async def test_get_null_and_invalid(client):
@@ -46,7 +48,12 @@ async def test_get_null_and_invalid(client):
     with pytest.raises(isodate.ISO8601Error):
         deserialize_duration(await client.duration.get_invalid())
 
+
 @pytest.mark.asyncio
 async def test_positive_duration(client):
-    assert isodate.Duration(4, 45005, 0, years=3, months=6) == deserialize_duration(await client.duration.get_positive_duration())
-    await client.duration.put_positive_duration(serialize_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11)))
+    assert isodate.Duration(4, 45005, 0, years=3, months=6) == deserialize_duration(
+        await client.duration.get_positive_duration()
+    )
+    await client.duration.put_positive_duration(
+        serialize_duration(timedelta(days=123, hours=22, minutes=14, seconds=12, milliseconds=11))
+    )

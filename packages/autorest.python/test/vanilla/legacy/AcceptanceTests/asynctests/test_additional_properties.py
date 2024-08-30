@@ -42,10 +42,11 @@ from additionalproperties.models import (
     PetAPObject,
     PetAPString,
     PetAPInProperties,
-    PetAPInPropertiesWithAPString
+    PetAPInPropertiesWithAPString,
 )
 
 import pytest
+
 
 @pytest.fixture
 @async_generator
@@ -53,104 +54,70 @@ async def client():
     async with AdditionalPropertiesClient(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestAdditionalProperties(object):
 
     @pytest.mark.asyncio
     async def test_create_ap_true(self, client):
         input_ap_true = PetAPTrue(
-            id = 1,
-            name = 'Puppy',
-            additional_properties = {
-                'birthdate': '2017-12-13T02:29:51Z',
-                'complexProperty': {
-                    'color': 'Red'
-                }
-            }
+            id=1,
+            name="Puppy",
+            additional_properties={"birthdate": "2017-12-13T02:29:51Z", "complexProperty": {"color": "Red"}},
         )
         output_ap_true = await client.pets.create_ap_true(input_ap_true)
-        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+        assert output_ap_true.additional_properties["birthdate"] == "2017-12-13T02:29:51Z"
 
     @pytest.mark.asyncio
     async def test_create_cat_ap_true(self, client):
         input_ap_true = CatAPTrue(
-            id = 1,
-            name = 'Lisa',
-            friendly = True,
-            additional_properties = {
-                'birthdate': '2017-12-13T02:29:51Z',
-                'complexProperty': {
-                    'color': 'Red'
-                }
-            }
+            id=1,
+            name="Lisa",
+            friendly=True,
+            additional_properties={"birthdate": "2017-12-13T02:29:51Z", "complexProperty": {"color": "Red"}},
         )
         output_ap_true = await client.pets.create_cat_ap_true(input_ap_true)
-        assert output_ap_true.additional_properties['birthdate'] ==  '2017-12-13T02:29:51Z'
+        assert output_ap_true.additional_properties["birthdate"] == "2017-12-13T02:29:51Z"
 
     @pytest.mark.asyncio
     async def test_create_ap_object(self, client):
         input_ap_obj = PetAPObject(
-            id = 2,
-            name = 'Hira',
-            additional_properties = {
-                'siblings': [{
-                    'id': 1,
-                    'name': 'Puppy',
-                    'birthdate': '2017-12-13T02:29:51Z',
-                    'complexProperty': {
-                        'color': 'Red'
-                    }
-                }],
-                'picture': '//////4='
-            }
+            id=2,
+            name="Hira",
+            additional_properties={
+                "siblings": [
+                    {"id": 1, "name": "Puppy", "birthdate": "2017-12-13T02:29:51Z", "complexProperty": {"color": "Red"}}
+                ],
+                "picture": "//////4=",
+            },
         )
         output_ap_obj = await client.pets.create_ap_object(input_ap_obj)
-        assert output_ap_obj.additional_properties['siblings'][0]['birthdate'] ==  '2017-12-13T02:29:51Z'
+        assert output_ap_obj.additional_properties["siblings"][0]["birthdate"] == "2017-12-13T02:29:51Z"
 
     @pytest.mark.asyncio
     async def test_create_ap_string(self, client):
         input_ap_str = PetAPString(
-            id = 3,
-            name = 'Tommy',
-            additional_properties = {
-                'color': 'red',
-                'weight': '10 kg',
-                'city': 'Bombay'
-            }
+            id=3, name="Tommy", additional_properties={"color": "red", "weight": "10 kg", "city": "Bombay"}
         )
         output_ap_str = await client.pets.create_ap_string(input_ap_str)
-        assert output_ap_str.additional_properties['color'] ==  'red'
+        assert output_ap_str.additional_properties["color"] == "red"
 
     @pytest.mark.asyncio
     async def test_create_ap_in_properties(self, client):
         input_ap_int = PetAPInProperties(
-            id = 4,
-            name = 'Bunny',
-            additional_properties = {
-                'height': 5.61,
-                'weight': 599,
-                'footsize': 11.5
-            }
+            id=4, name="Bunny", additional_properties={"height": 5.61, "weight": 599, "footsize": 11.5}
         )
         output_ap_int = await client.pets.create_ap_in_properties(input_ap_int)
-        assert output_ap_int.additional_properties['weight'] ==  599
+        assert output_ap_int.additional_properties["weight"] == 599
 
     @pytest.mark.asyncio
     async def test_create_ap_in_properties_with_ap_string(self, client):
         input_ap_str_add = PetAPInPropertiesWithAPString(
-            id = 5,
-            name = 'Funny',
-            odata_location = 'westus',
-            additional_properties = {
-                'color': 'red',
-                'city': 'Seattle',
-                'food': 'tikka masala'
-            },
-            additional_properties1 = {
-                'height': 5.61,
-                'weight': 599,
-                'footsize': 11.5
-            }
+            id=5,
+            name="Funny",
+            odata_location="westus",
+            additional_properties={"color": "red", "city": "Seattle", "food": "tikka masala"},
+            additional_properties1={"height": 5.61, "weight": 599, "footsize": 11.5},
         )
         output_ap_str_add = await client.pets.create_ap_in_properties_with_ap_string(input_ap_str_add)
-        assert output_ap_str_add.additional_properties['color'] ==  'red'
-        assert output_ap_str_add.additional_properties1['weight'] ==  599
+        assert output_ap_str_add.additional_properties["color"] == "red"
+        assert output_ap_str_add.additional_properties1["weight"] == 599

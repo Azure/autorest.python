@@ -64,7 +64,8 @@ setup(
     },
     install_requires=[
         "msrest>=0.7.1",
-        "azure-mgmt-core<2.0.0,>=1.3.2",
+        "azure-mgmt-core>=1.3.2",
+        "typing-extensions>=4.6.0",
     ],
     python_requires=">=3.8",
 )

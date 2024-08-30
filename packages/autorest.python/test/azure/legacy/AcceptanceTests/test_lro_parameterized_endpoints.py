@@ -27,6 +27,7 @@ import sys
 import pytest
 from lrowithparameterizedendpoints import LROWithParamaterizedEndpoints
 
+
 @pytest.fixture
 def client(credential):
     with LROWithParamaterizedEndpoints(credential=credential, host="host:3000") as client:
@@ -34,12 +35,14 @@ def client(credential):
 
 
 def test_poll_with_parameterized_endpoints(client):
-    poller = client.begin_poll_with_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert poller.result() == 'success'
+    poller = client.begin_poll_with_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert poller.result() == "success"
+
 
 def test_poll_with_constant_parameterized_endpoints(client):
-    poller = client.begin_poll_with_constant_parameterized_endpoints(account_name='local', polling_interval=0)
-    assert poller.result() == 'success'
+    poller = client.begin_poll_with_constant_parameterized_endpoints(account_name="local", polling_interval=0)
+    assert poller.result() == "success"
+
 
 def test_operation_groups():
     from lrowithparameterizedendpoints.operations import LROWithParamaterizedEndpointsOperationsMixin
@@ -47,5 +50,8 @@ def test_operation_groups():
     with pytest.raises(ImportError):
         from lrowithparameterizedendpoints.operations import _lro_with_paramaterized_endpoints_operations_py3
 
-    from lrowithparameterizedendpoints.operations._lro_with_paramaterized_endpoints_operations import LROWithParamaterizedEndpointsOperationsMixin as LROWithParamaterizedEndpointsOperationsMixinPy2
+    from lrowithparameterizedendpoints.operations._lro_with_paramaterized_endpoints_operations import (
+        LROWithParamaterizedEndpointsOperationsMixin as LROWithParamaterizedEndpointsOperationsMixinPy2,
+    )
+
     assert LROWithParamaterizedEndpointsOperationsMixin == LROWithParamaterizedEndpointsOperationsMixinPy2

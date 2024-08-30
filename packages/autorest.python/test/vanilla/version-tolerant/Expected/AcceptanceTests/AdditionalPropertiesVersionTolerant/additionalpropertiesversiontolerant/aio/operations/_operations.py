@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -78,16 +78,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -111,9 +111,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -132,19 +132,19 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -183,8 +183,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -218,18 +216,18 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "friendly": bool,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "friendly": bool,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -253,10 +251,10 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "friendly": bool,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -275,21 +273,21 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "friendly": bool,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "friendly": bool,  # Optional.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "friendly": bool,
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -328,8 +326,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -363,16 +359,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -396,9 +392,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -417,19 +413,19 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,8 +464,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -503,16 +497,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -536,9 +530,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -557,19 +551,19 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -608,8 +602,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -643,16 +635,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -676,9 +668,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -697,19 +689,19 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,  # Required.
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "id": 0,
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -748,8 +740,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -783,24 +773,24 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                        "str": 0.0
                     },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                        "str": 0.0
                     },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -824,13 +814,13 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                        "str": 0.0
                     },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "name": "str",
+                    "status": bool
                 }
         """
 
@@ -851,27 +841,27 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                        "str": 0.0
                     },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "name": "str",
+                    "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",  # Required.
-                    "id": 0,  # Required.
+                    "@odata.location": "str",
+                    "id": 0,
                     "additionalProperties": {
-                        "str": 0.0  # Optional. Dictionary of :code:`<number>`.
+                        "str": 0.0
                     },
-                    "name": "str",  # Optional.
-                    "status": bool  # Optional.
+                    "name": "str",
+                    "status": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -910,8 +900,6 @@ class PetsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

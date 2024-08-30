@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -68,6 +68,7 @@ def build_error_with_secrets_get_error_with_secrets_request(  # pylint: disable=
 
 
 class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
+
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> JSON:
         """Creates a secret.
@@ -81,11 +82,11 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
 
                 # response body for status code(s): 200
                 response == {
-                    "key": "str",  # The secret key. Required.
-                    "value": "str"  # The secret value. Required.
+                    "key": "str",
+                    "value": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -112,8 +113,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -135,7 +134,7 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -162,8 +161,6 @@ class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -44,24 +44,21 @@ from azure.core.pipeline.policies import ContentDecodePolicy, AsyncRetryPolicy, 
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client(cookie_policy):
-    policies = [
-        RequestIdPolicy(),
-        HeadersPolicy(),
-        ContentDecodePolicy(),
-        AsyncRetryPolicy(),
-        cookie_policy
-    ]
+    policies = [RequestIdPolicy(), HeadersPolicy(), ContentDecodePolicy(), AsyncRetryPolicy(), cookie_policy]
     async with AutoRestPagingTestService(base_url="http://localhost:3000", policies=policies) as client:
         await yield_(client)
+
 
 @pytest.fixture
 @async_generator
 async def custom_url_client():
     async with AutoRestParameterizedHostTestPagingClient(host="host:3000") as client:
         await yield_(client)
+
 
 class TestPaging(object):
     @pytest.mark.asyncio
@@ -98,6 +95,7 @@ class TestPaging(object):
             for obj in list_of_obj:
                 obj.marked = True
             return list_of_obj
+
         async for obj in client.paging.get_single_pages(cls=cb):
             assert obj.marked
 
@@ -131,7 +129,7 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_query_params(self, client):
-        pages = client.paging.get_with_query_params(required_query_parameter='100')
+        pages = client.paging.get_with_query_params(required_query_parameter="100")
         items = []
         async for item in pages:
             items.append(item)
@@ -164,6 +162,7 @@ class TestPaging(object):
     @pytest.mark.asyncio
     async def test_get_multiple_pages_with_offset(self, client):
         from paging.models import PagingGetMultiplePagesWithOffsetOptions
+
         options = PagingGetMultiplePagesWithOffsetOptions(offset=100)
         pages = client.paging.get_multiple_pages_with_offset(paging_get_multiple_pages_with_offset_options=options)
         items = []
@@ -230,9 +229,9 @@ class TestPaging(object):
 
     @pytest.mark.asyncio
     async def test_get_multiple_pages_lro(self, client):
-        """LRO + Paging at the same time.
-        """
+        """LRO + Paging at the same time."""
         from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
+
         poller = await client.paging.begin_get_multiple_pages_lro(polling=AsyncARMPolling(timeout=0))
         pager = await poller.result()
         items = []

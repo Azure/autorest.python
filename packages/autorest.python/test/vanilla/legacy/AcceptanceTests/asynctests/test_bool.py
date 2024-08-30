@@ -41,17 +41,19 @@ from bodyboolean.aio import AutoRestBoolTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestBool(object):
 
     @pytest.mark.asyncio
     async def test_model_get_true(self, client):
-        assert (await client.bool.get_true())
+        assert await client.bool.get_true()
 
     @pytest.mark.asyncio
     async def test_model_get_false(self, client):

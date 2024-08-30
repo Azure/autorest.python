@@ -32,15 +32,18 @@ from bodytimeversiontolerant.aio import AutoRestTimeTestService
 import pytest
 from ..serializer import serialize_time, deserialize_time
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestTimeTestService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_get(client):
     assert deserialize_time(await client.time.get()) == datetime.time(11, 34, 56)
+
 
 @pytest.mark.asyncio
 async def test_put(client):

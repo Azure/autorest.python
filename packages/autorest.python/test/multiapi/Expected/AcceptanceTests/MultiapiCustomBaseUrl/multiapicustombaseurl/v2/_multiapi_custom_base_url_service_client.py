@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -95,7 +96,7 @@ class MultiapiCustomBaseUrlServiceClient(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MultiapiCustomBaseUrlServiceClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

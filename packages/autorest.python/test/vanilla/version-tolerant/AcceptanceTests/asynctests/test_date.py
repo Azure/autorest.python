@@ -30,11 +30,13 @@ from bodydateversiontolerant.aio import AutoRestDateTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDateTestService() as client:
         await yield_(client)
+
 
 @pytest.mark.asyncio
 async def test_model_get_and_put_max_date(client):
@@ -42,25 +44,30 @@ async def test_model_get_and_put_max_date(client):
     await client.date.put_max_date(str(max_date))
     assert max_date == deserialize_date(await client.date.get_max_date())
 
+
 @pytest.mark.asyncio
 async def test_model_get_and_put_min_date(client):
     min_date = deserialize_date("0001-01-01T00:00:00Z")
     await client.date.put_min_date(str(min_date))
     assert min_date == deserialize_date(await client.date.get_min_date())
 
+
 @pytest.mark.asyncio
 async def test_model_get_null(client):
     assert await client.date.get_null() is None
 
+
 @pytest.mark.asyncio
 async def test_model_get_invalid_date(client):
     assert deserialize_date(await client.date.get_invalid_date()) == datetime.date(2001, 1, 1)
+
 
 @pytest.mark.asyncio
 async def test_model_get_overflow_date(client):
     with pytest.raises(ValueError) as ex:
         deserialize_date(await client.date.get_overflow_date())
     assert "day is out of range for month" in str(ex.value)
+
 
 @pytest.mark.asyncio
 async def test_model_get_underflow_date(client):

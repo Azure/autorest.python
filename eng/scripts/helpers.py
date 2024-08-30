@@ -24,10 +24,12 @@ def str2bool(v):
     else:
         raise argparse.ArgumentTypeError("Boolean value expected.")
 
+
 def is_pipeline_build():
     return not not os.environ.get("TF_BUILD", "")
 
-def call(cmd:str, cwd=root_dir, suppress_failures=False, capture_output=False):
+
+def call(cmd: str, cwd=root_dir, suppress_failures=False, capture_output=False):
     print("\n============================================================")
     print(f"From {cwd}\n> {cmd}")
     print("============================================================", flush=True)
@@ -45,13 +47,13 @@ def call(cmd:str, cwd=root_dir, suppress_failures=False, capture_output=False):
 
     returncode = process.returncode
 
-    if(capture_output):
+    if capture_output:
         print(process.stdout.rstrip(), flush=True)
 
     elapsed_time = time.time() - start_time
 
     command_failed = returncode != 0 and not suppress_failures
-    
+
     print("------------------------------------------------------------")
     if command_failed:
         print(f"##[error]Command failed: {cmd}")

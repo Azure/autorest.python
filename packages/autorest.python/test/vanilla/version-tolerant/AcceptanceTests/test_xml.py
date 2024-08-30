@@ -41,6 +41,7 @@ def client():
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
         response.http_response._internal_response.raise_for_status()
+
     try:
         http_response = func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:
@@ -75,7 +76,7 @@ def test_simple(client):
     assert slide2.title == "Overview"
     assert len(slide2.items) == 3
     assert slide2.items[0] == "Why WonderWidgets are great"
-    assert slide2.items[1] == ''
+    assert slide2.items[1] == ""
     assert slide2.items[2] == "Who buys WonderWidgets"
 
     _assert_with_log(client.xml.put_simple, slideshow)
@@ -84,7 +85,7 @@ def test_simple(client):
 def test_empty_child_element(client):
     banana = client.xml.get_empty_child_element()
     # That's the point of this test, it was an empty node.
-    assert banana.flavor == ''
+    assert banana.flavor == ""
     _assert_with_log(client.xml.put_empty_child_element, banana)
 
 
@@ -121,8 +122,8 @@ def test_get_empty(client):
 
 def test_wrapped_lists(client):
     bananas = client.xml.get_wrapped_lists()
-    assert bananas.good_apples == ['Fuji', 'Gala']
-    assert bananas.bad_apples == ['Red Delicious']
+    assert bananas.good_apples == ["Fuji", "Gala"]
+    assert bananas.bad_apples == ["Red Delicious"]
     _assert_with_log(client.xml.put_wrapped_lists, bananas)
 
 
@@ -153,9 +154,9 @@ def test_list_blobs(client):
     assert blob.properties.content_length == 100
     assert blob.properties.content_type == "text/html"
     # Check that an empty field in the XML is empty string
-    assert blob.properties.content_encoding == ''
+    assert blob.properties.content_encoding == ""
     assert blob.properties.content_language == "en-US"
-    assert blob.properties.content_md5 == ''
+    assert blob.properties.content_md5 == ""
     assert blob.properties.cache_control == "no-cache"
     assert blob.properties.blob_type == BlobType.block_blob
     # Check that a field NOT in the XML is None
@@ -176,7 +177,7 @@ def test_service_properties(client):
 def test_acls(client):
     acls = client.xml.get_acls()
     assert len(acls) == 1
-    assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
+    assert acls[0].id == "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI="
     _assert_with_log(client.xml.put_acls, acls)
 
 
@@ -196,5 +197,5 @@ def test_bytes(client):
 def test_url(client):
     url_object = client.xml.get_uri()
     assert isinstance(url_object, ModelWithUrlProperty)
-    assert url_object.url == 'https://myaccount.blob.core.windows.net/'
+    assert url_object.url == "https://myaccount.blob.core.windows.net/"
     client.xml.put_uri(url_object)

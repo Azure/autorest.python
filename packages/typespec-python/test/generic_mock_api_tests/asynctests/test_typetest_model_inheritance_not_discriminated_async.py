@@ -28,7 +28,7 @@ async def test_get_valid(client, valid_body):
 async def test_post_valid(client, valid_body):
     await client.post_valid(valid_body)
 
+
 @pytest.mark.asyncio
 async def test_put_valid(client, valid_body):
     assert valid_body == await client.put_valid(valid_body)
-

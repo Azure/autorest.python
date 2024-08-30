@@ -41,11 +41,13 @@ from bodydate.aio import AutoRestDateTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDateTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestDate(object):
 
@@ -53,13 +55,13 @@ class TestDate(object):
     async def test_model_get_and_put_max_date(self, client):
         max_date = isodate.parse_date("9999-12-31T23:59:59.999999Z")
         await client.date.put_max_date(max_date)
-        assert max_date ==  (await client.date.get_max_date())
+        assert max_date == (await client.date.get_max_date())
 
     @pytest.mark.asyncio
     async def test_model_get_and_put_min_date(self, client):
         min_date = isodate.parse_date("0001-01-01T00:00:00Z")
         await client.date.put_min_date(min_date)
-        assert min_date ==  (await client.date.get_min_date())
+        assert min_date == (await client.date.get_min_date())
 
     @pytest.mark.asyncio
     async def test_model_get_null(self, client):

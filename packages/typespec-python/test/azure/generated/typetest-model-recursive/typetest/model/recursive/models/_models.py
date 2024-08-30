@@ -31,8 +31,7 @@ class Element(_model_base.Model):
         self,
         *,
         extension: Optional[List["_models.Extension"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -48,7 +47,6 @@ class Element(_model_base.Model):
 class Extension(Element):
     """extension.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar extension:
     :vartype extension: list[~typetest.model.recursive.models.Extension]
@@ -65,8 +63,7 @@ class Extension(Element):
         *,
         level: int,
         extension: Optional[List["_models.Extension"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

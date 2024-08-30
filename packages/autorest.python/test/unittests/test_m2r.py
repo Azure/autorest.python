@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from autorest.m2r import M2R
+from pygen.m2r import M2R
 
 
 _MD_LINK = "[inline link](https://github.com/Azure/autorest.python)"
@@ -55,7 +55,4 @@ def test_m2r_cycle():
 
 def test_inline_html():
     m2r = M2R(output_folder="")
-    assert (
-        m2r.convert_to_rst("Dictionary of <FlattenedProduct>.")
-        == "Dictionary of :code:`<FlattenedProduct>`."
-    )
+    assert m2r.convert_to_rst("Dictionary of <FlattenedProduct>.") == "Dictionary of :code:`<FlattenedProduct>`."

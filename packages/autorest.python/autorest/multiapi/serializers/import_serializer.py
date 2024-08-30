@@ -57,9 +57,7 @@ def _serialize_package(
         )
     for submodule_name, alias, version_modules in versioned_modules:
         for n, (version, module_name, comment) in enumerate(version_modules):
-            buffer.append(
-                "{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version)
-            )
+            buffer.append("{} sys.version_info >= {}:".format("if" if n == 0 else "elif", version))
             buffer.append(
                 f"    from {module_name} import {submodule_name}{f' as {alias}' if alias else ''}"
                 f"{f' # {comment}' if comment else ''}"
@@ -141,34 +139,24 @@ class FileImportSerializer:
 
     def _switch_typing_section_key(self, new_key: TypingSection):
         switched_dictionary = {}
-        switched_dictionary[new_key] = self._file_import.imports[
-            TypingSection.CONDITIONAL
-        ]
+        switched_dictionary[new_key] = self._file_import.imports[TypingSection.CONDITIONAL]
         return switched_dictionary
 
-    def _get_imports_dict(
-        self, baseline_typing_section: TypingSection, add_conditional_typing: bool
-    ):
+    def _get_imports_dict(self, baseline_typing_section: TypingSection, add_conditional_typing: bool):
         # If this is a python 3 file, our regular imports include the CONDITIONAL category
         # If this is not a python 3 file, our typing imports include the CONDITIONAL category
         file_import_copy = deepcopy(self._file_import)
-        if add_conditional_typing and self._file_import.imports.get(
-            TypingSection.CONDITIONAL
-        ):
+        if add_conditional_typing and self._file_import.imports.get(TypingSection.CONDITIONAL):
             # we switch the TypingSection key for the CONDITIONAL typing imports so we can merge
             # the imports together
-            switched_imports_dictionary = self._switch_typing_section_key(
-                baseline_typing_section
-            )
+            switched_imports_dictionary = self._switch_typing_section_key(baseline_typing_section)
             switched_imports = FileImport(switched_imports_dictionary)
             file_import_copy.merge(switched_imports)
         return file_import_copy.imports.get(baseline_typing_section, {})
 
     def _add_type_checking_import(self):
         if self._file_import.imports.get(TypingSection.TYPING):
-            self._file_import.add_submodule_import(
-                "typing", "TYPE_CHECKING", ImportType.STDLIB
-            )
+            self._file_import.add_submodule_import("typing", "TYPE_CHECKING", ImportType.STDLIB)
 
     def __str__(self) -> str:
         self._add_type_checking_import()
@@ -179,9 +167,7 @@ class FileImportSerializer:
         )
 
         if regular_imports_dict:
-            regular_imports = "\n\n".join(
-                _get_import_clauses(regular_imports_dict, "\n")
-            )
+            regular_imports = "\n\n".join(_get_import_clauses(regular_imports_dict, "\n"))
 
         typing_imports = ""
         typing_imports_dict = self._get_imports_dict(
@@ -190,8 +176,6 @@ class FileImportSerializer:
         )
         if typing_imports_dict:
             typing_imports += "\n\nif TYPE_CHECKING:\n    # pylint: disable=unused-import,ungrouped-imports\n    "
-            typing_imports += "\n\n    ".join(
-                _get_import_clauses(typing_imports_dict, "\n    ")
-            )
+            typing_imports += "\n\n    ".join(_get_import_clauses(typing_imports_dict, "\n    "))
 
         return regular_imports + typing_imports + self._typing_definitions

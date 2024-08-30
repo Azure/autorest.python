@@ -30,6 +30,7 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 def test_head(credential, authentication_policy):
 
     with AutoRestHeadTestService(credential, authentication_policy=authentication_policy) as client:
@@ -37,6 +38,7 @@ def test_head(credential, authentication_policy):
         assert client.http_success.head200()
         assert client.http_success.head204()
         assert not client.http_success.head404()
+
 
 def test_head_exception(credential, authentication_policy):
 

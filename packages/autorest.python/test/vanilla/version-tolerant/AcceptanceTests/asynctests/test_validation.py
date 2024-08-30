@@ -30,14 +30,16 @@ from validationversiontolerant.aio import AutoRestValidationTest
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestValidationTest(
-            "abc123",
-        ) as client:
+        "abc123",
+    ) as client:
         client.api_version = "12-34-5678"
         await yield_(client)
+
 
 @pytest.fixture
 def constant_body():
@@ -46,16 +48,11 @@ def constant_body():
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
     return {
-        'child': {
-            'constProperty': 'constant'
-        },
-        'constChild': {
-            'constProperty': 'constant',
-            'constProperty2': 'constant2'
-        },
-        'constInt': 0,
-        'constString': 'constant',
-        'constStringAsEnum': 'constant_string_as_enum'
+        "child": {"constProperty": "constant"},
+        "constChild": {"constProperty": "constant", "constProperty2": "constant2"},
+        "constInt": 0,
+        "constString": "constant",
+        "constStringAsEnum": "constant_string_as_enum",
     }
 
 
@@ -63,35 +60,40 @@ def constant_body():
 async def test_with_constant_in_path(client):
     await client.get_with_constant_in_path()
 
+
 @pytest.mark.asyncio
 async def test_post_with_constant_in_body(client, constant_body):
     product = await client.post_with_constant_in_body(body=constant_body)
     assert product is not None
 
-# Note: the client-side-validation is not supported for low-level client, 
+
+# Note: the client-side-validation is not supported for low-level client,
 #       so this request with faked path will be sent to testserver and get an ResourceNotFoundError
 @pytest.mark.asyncio
 async def test_fakedpath_validation(client):
     with pytest.raises(ResourceNotFoundError) as ex:
         await client.validation_of_method_parameters("1", 100)
 
+
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 @pytest.mark.asyncio
 async def test_minimum_ex_validation(client, constant_body):
     with pytest.raises(ValueError) as ex:
-        constant_body['capacity'] = 0
+        constant_body["capacity"] = 0
         await client.validation_of_body("123", 150, constant_body)
+
 
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 @pytest.mark.asyncio
 async def test_maximum_ex_validation(client, constant_body):
     with pytest.raises(ValueError) as ex:
-        constant_body['capacity'] = 100
+        constant_body["capacity"] = 100
         await client.validation_of_body("123", 150, constant_body)
+
 
 @pytest.mark.skip(reason="Not generating models yet, can't validate")
 @pytest.mark.asyncio
 async def test_max_items_validation(client, constant_body):
     with pytest.raises(ValueError) as ex:
-        constant_body.display_names = ["item1","item2","item3","item4","item5","item6","item7"]
+        constant_body.display_names = ["item1", "item2", "item3", "item4", "item5", "item6", "item7"]
         await client.validation_of_body("123", 150, constant_body)

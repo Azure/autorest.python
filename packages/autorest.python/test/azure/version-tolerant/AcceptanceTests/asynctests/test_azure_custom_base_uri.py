@@ -25,7 +25,7 @@
 # --------------------------------------------------------------------------
 
 from async_generator import yield_, async_generator
-import pytest 
+import pytest
 from azure.core.exceptions import ServiceRequestError
 
 from custombaseurlversiontolerant.aio import AutoRestParameterizedHostTestClient
@@ -38,19 +38,23 @@ async def client():
         client._config.retry_policy.retries = 0
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_custom_base_uri_positive(client):
     await client.paths.get_empty("local")
+
 
 @pytest.mark.asyncio
 async def test_custom_base_uri_get_empty(client):
     with pytest.raises(ServiceRequestError):
         await client.paths.get_empty("bad")
 
+
 @pytest.mark.asyncio
 async def test_custom_base_uri_get_none(client):
     with pytest.raises(ValueError):
         await client.paths.get_empty(None)
+
 
 @pytest.mark.asyncio
 async def test_custom_base_uri_bad_host(client):

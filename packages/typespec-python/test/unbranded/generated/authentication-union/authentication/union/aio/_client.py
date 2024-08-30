@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING, Union
+from typing_extensions import Self
 
 from corehttp.credentials import ServiceKeyCredential
 from corehttp.rest import AsyncHttpResponse, HttpRequest
@@ -25,7 +26,7 @@ if TYPE_CHECKING:
 class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
-    :param credential: Credential needed for the client to connect to cloud service. Is either a
+    :param credential: Credential used to authenticate requests to the service. Is either a
      ServiceKeyCredential type or a TokenCredential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.AsyncTokenCredential
@@ -40,7 +41,8 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
         endpoint: str = "http://localhost:3000",
         **kwargs: Any
     ) -> None:
-        self._config = UnionClientConfiguration(credential=credential, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = UnionClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -52,7 +54,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
                 self._config.authentication_policy,
                 self._config.logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -79,13 +81,17 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "UnionClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

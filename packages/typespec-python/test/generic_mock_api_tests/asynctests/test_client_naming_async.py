@@ -26,9 +26,7 @@ async def test_language(client: NamingClient):
 
 @pytest.mark.asyncio
 async def test_compatible_with_encoded_name(client: NamingClient):
-    await client.compatible_with_encoded_name(
-        models.ClientNameAndJsonEncodedNameModel(client_name=True)
-    )
+    await client.compatible_with_encoded_name(models.ClientNameAndJsonEncodedNameModel(client_name=True))
 
 
 @pytest.mark.asyncio
@@ -53,9 +51,19 @@ async def test_header_response(client: NamingClient):
 
 @pytest.mark.asyncio
 async def test_model_client(client: NamingClient):
-    await client.model.client(models.ClientModel(default_name=True))
+    await client.client_model.client(models.ClientModel(default_name=True))
 
 
 @pytest.mark.asyncio
 async def test_model_language(client: NamingClient):
-    await client.model.language(models.PythonModel(default_name=True))
+    await client.client_model.language(models.PythonModel(default_name=True))
+
+
+@pytest.mark.asyncio
+async def test_union_enum_member_name(client: NamingClient):
+    await client.union_enum.union_enum_member_name(models.ExtensibleEnum.CLIENT_ENUM_VALUE1)
+
+
+@pytest.mark.asyncio
+async def test_union_enum_name(client: NamingClient):
+    await client.union_enum.union_enum_name(models.ClientExtensibleEnum.ENUM_VALUE1)

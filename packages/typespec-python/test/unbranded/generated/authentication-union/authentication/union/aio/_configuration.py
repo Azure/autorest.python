@@ -24,17 +24,25 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to cloud service. Is either a
+    :param credential: Credential used to authenticate requests to the service. Is either a
      ServiceKeyCredential type or a TokenCredential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.AsyncTokenCredential
+    :param endpoint: Service host. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(self, credential: Union[ServiceKeyCredential, "AsyncTokenCredential"], **kwargs: Any) -> None:
+    def __init__(
+        self,
+        credential: Union[ServiceKeyCredential, "AsyncTokenCredential"],
+        endpoint: str = "http://localhost:3000",
+        **kwargs: Any,
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.endpoint = endpoint
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://security.microsoft.com/.default"])
         kwargs.setdefault("sdk_moniker", "authentication-union/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)

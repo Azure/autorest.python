@@ -26,6 +26,7 @@
 from azure.packagemode.batch.head import HeadClient
 from azure.packagemode.batch.paging import PagingClient
 
+
 class TestMultiClient(object):
 
     def test_head(self, credential, authentication_policy):

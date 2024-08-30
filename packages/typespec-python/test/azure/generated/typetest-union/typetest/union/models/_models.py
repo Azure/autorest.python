@@ -7,27 +7,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Cat(_model_base.Model):
     """Cat.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -41,8 +33,7 @@ class Cat(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -58,7 +49,6 @@ class Cat(_model_base.Model):
 class Dog(_model_base.Model):
     """Dog.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar bark: Required.
     :vartype bark: str
@@ -72,8 +62,7 @@ class Dog(_model_base.Model):
         self,
         *,
         bark: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -89,31 +78,29 @@ class Dog(_model_base.Model):
 class EnumsOnlyCases(_model_base.Model):
     """EnumsOnlyCases.
 
-    All required parameters must be populated in order to send to server.
 
-    :ivar lr: This should be receive/send the left variant. Required. Is either a Union[str,
-     "_models.LR"] type or a Union[str, "_models.UD"] type.
-    :vartype lr: str or ~typetest.union.models.LR or str or ~typetest.union.models.UD
-    :ivar ud: This should be receive/send the up variant. Required. Is either a Union[str,
-     "_models.UD"] type or a Union[str, "_models.UD"] type.
-    :vartype ud: str or ~typetest.union.models.UD or str or ~typetest.union.models.UD
+    :ivar lr: This should be receive/send the left variant. Required. Is one of the following
+     types: Literal["left"], Literal["right"], Literal["up"], Literal["down"]
+    :vartype lr: str or str or str or str
+    :ivar ud: This should be receive/send the up variant. Required. Is either a Literal["up"] type
+     or a Literal["down"] type.
+    :vartype ud: str or str
     """
 
-    lr: Union[str, "_models.LR", str, "_models.UD"] = rest_field()
-    """This should be receive/send the left variant. Required. Is either a Union[str, \"_models.LR\"]
-     type or a Union[str, \"_models.UD\"] type."""
-    ud: Union[str, "_models.UD"] = rest_field()
-    """This should be receive/send the up variant. Required. Is either a Union[str, \"_models.UD\"]
-     type or a Union[str, \"_models.UD\"] type."""
+    lr: Literal["left", "right", "up", "down"] = rest_field()
+    """This should be receive/send the left variant. Required. Is one of the following types:
+     Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
+    ud: Literal["up", "down"] = rest_field()
+    """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
+     Literal[\"down\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        lr: Union[str, "_models.LR", str, "_models.UD"],
-        ud: Union[str, "_models.UD"],
-    ):
-        ...
+        lr: Literal["left", "right", "up", "down"],
+        ud: Literal["up", "down"],
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -129,7 +116,6 @@ class EnumsOnlyCases(_model_base.Model):
 class GetResponse(_model_base.Model):
     """GetResponse.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: ~typetest.union.models.MixedTypesCases
@@ -143,8 +129,7 @@ class GetResponse(_model_base.Model):
         self,
         *,
         prop: "_models.MixedTypesCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -160,7 +145,6 @@ class GetResponse(_model_base.Model):
 class GetResponse1(_model_base.Model):
     """GetResponse1.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: ~typetest.union.models.MixedLiteralsCases
@@ -174,8 +158,7 @@ class GetResponse1(_model_base.Model):
         self,
         *,
         prop: "_models.MixedLiteralsCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -191,7 +174,6 @@ class GetResponse1(_model_base.Model):
 class GetResponse2(_model_base.Model):
     """GetResponse2.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: ~typetest.union.models.StringAndArrayCases
@@ -205,8 +187,7 @@ class GetResponse2(_model_base.Model):
         self,
         *,
         prop: "_models.StringAndArrayCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -222,7 +203,6 @@ class GetResponse2(_model_base.Model):
 class GetResponse3(_model_base.Model):
     """GetResponse3.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: ~typetest.union.models.EnumsOnlyCases
@@ -236,8 +216,7 @@ class GetResponse3(_model_base.Model):
         self,
         *,
         prop: "_models.EnumsOnlyCases",
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -253,7 +232,6 @@ class GetResponse3(_model_base.Model):
 class GetResponse4(_model_base.Model):
     """GetResponse4.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Is either a Cat type or a Dog type.
     :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
@@ -267,8 +245,7 @@ class GetResponse4(_model_base.Model):
         self,
         *,
         prop: Union["_models.Cat", "_models.Dog"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -284,7 +261,6 @@ class GetResponse4(_model_base.Model):
 class GetResponse5(_model_base.Model):
     """GetResponse5.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Is one of the following types: float, float, float
     :vartype prop: float or float or float
@@ -298,8 +274,7 @@ class GetResponse5(_model_base.Model):
         self,
         *,
         prop: float,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -315,7 +290,6 @@ class GetResponse5(_model_base.Model):
 class GetResponse6(_model_base.Model):
     """GetResponse6.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
     :vartype prop: int or int or int
@@ -329,8 +303,7 @@ class GetResponse6(_model_base.Model):
         self,
         *,
         prop: Literal[1, 2, 3],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -346,7 +319,6 @@ class GetResponse6(_model_base.Model):
 class GetResponse7(_model_base.Model):
     """GetResponse7.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Known values are: "b" and "c".
     :vartype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
@@ -360,8 +332,7 @@ class GetResponse7(_model_base.Model):
         self,
         *,
         prop: Union[str, "_models.StringExtensibleNamedUnion"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -377,22 +348,20 @@ class GetResponse7(_model_base.Model):
 class GetResponse8(_model_base.Model):
     """GetResponse8.
 
-    All required parameters must be populated in order to send to server.
 
-    :ivar prop: Required. Is one of the following types: str, Literal["b"], Literal["c"]
+    :ivar prop: Required. Is one of the following types: Literal["b"], Literal["c"], str
     :vartype prop: str or str or str
     """
 
-    prop: Union[str, Literal["b"], Literal["c"]] = rest_field()
-    """Required. Is one of the following types: str, Literal[\"b\"], Literal[\"c\"]"""
+    prop: Union[Literal["b"], Literal["c"], str] = rest_field()
+    """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[str, Literal["b"], Literal["c"]],
-    ):
-        ...
+        prop: Union[Literal["b"], Literal["c"], str],
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -408,7 +377,6 @@ class GetResponse8(_model_base.Model):
 class GetResponse9(_model_base.Model):
     """GetResponse9.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
     :vartype prop: str or str or str
@@ -422,8 +390,7 @@ class GetResponse9(_model_base.Model):
         self,
         *,
         prop: Literal["a", "b", "c"],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -439,7 +406,6 @@ class GetResponse9(_model_base.Model):
 class MixedLiteralsCases(_model_base.Model):
     """MixedLiteralsCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar string_literal: This should be receive/send the "a" variant. Required. Is one of the
      following types: Literal["a"], Literal[2], float, Literal[True]
@@ -476,8 +442,7 @@ class MixedLiteralsCases(_model_base.Model):
         int_literal: Literal["a", 2, True],
         float_literal: Literal["a", 2, True],
         boolean_literal: Literal["a", 2, True],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -493,7 +458,6 @@ class MixedLiteralsCases(_model_base.Model):
 class MixedTypesCases(_model_base.Model):
     """MixedTypesCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar model: This should be receive/send the Cat variant. Required. Is one of the following
      types: Cat, Literal["a"], int, bool
@@ -507,6 +471,8 @@ class MixedTypesCases(_model_base.Model):
     :ivar boolean: This should be receive/send the boolean variant. Required. Is one of the
      following types: Cat, Literal["a"], int, bool
     :vartype boolean: ~typetest.union.models.Cat or str or int or bool
+    :ivar array: This should be receive/send 4 element with Cat, "a", int, and boolean. Required.
+    :vartype array: list[~typetest.union.models.Cat or str or int or bool]
     """
 
     model: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
@@ -521,6 +487,8 @@ class MixedTypesCases(_model_base.Model):
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
+    array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field()
+    """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
 
     @overload
     def __init__(
@@ -530,8 +498,8 @@ class MixedTypesCases(_model_base.Model):
         literal: Union["_models.Cat", Literal["a"], int, bool],
         int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
-    ):
-        ...
+        array: List[Union["_models.Cat", Literal["a"], int, bool]],
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -547,7 +515,6 @@ class MixedTypesCases(_model_base.Model):
 class StringAndArrayCases(_model_base.Model):
     """StringAndArrayCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar string: This should be receive/send the string variant. Required. Is either a str type or
      a [str] type.
@@ -568,8 +535,7 @@ class StringAndArrayCases(_model_base.Model):
         *,
         string: Union[str, List[str]],
         array: Union[str, List[str]],
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

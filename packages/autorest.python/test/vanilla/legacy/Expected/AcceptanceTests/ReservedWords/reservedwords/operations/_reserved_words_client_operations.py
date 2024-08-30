@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union
+from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -18,14 +18,13 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.pipeline.transport import HttpResponse
-from azure.core.rest import HttpRequest
+from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._serialization import Serializer
-from .._vendor import ReservedWordsClientMixinABC, _convert_request
+from .._vendor import ReservedWordsClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -150,6 +149,7 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
+
     @distributed_trace
     def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:
         """Operation with body param called content. Pass in b'hello, world'.
@@ -160,7 +160,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -182,7 +182,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -196,7 +195,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -213,7 +212,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -235,7 +234,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -249,7 +247,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -268,7 +266,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -296,7 +294,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -310,7 +307,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -329,7 +326,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -355,7 +352,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request, _files)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -369,7 +365,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -395,7 +391,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -415,7 +411,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -429,7 +424,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -447,7 +442,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -465,7 +460,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request = _convert_request(_request)
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
@@ -479,7 +473,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = self._deserialize("object", pipeline_response)
+        deserialized = self._deserialize("object", pipeline_response.http_response)
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

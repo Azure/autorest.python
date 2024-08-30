@@ -25,31 +25,41 @@
 # --------------------------------------------------------------------------
 
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, ARMChallengeAuthenticationPolicy
+
 # Head is azure-arm
 from head import AutoRestHeadTestService
+
 
 class TestConfig(object):
     def test_arm_http_logging_policy_default(self, credential):
         with AutoRestHeadTestService(credential, base_url="http://localhost:3000") as client:
             assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
-            assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+            assert (
+                client._config.http_logging_policy.allowed_header_names
+                == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+            )
 
     def test_arm_http_logging_policy_custom(self, credential):
         http_logging_policy = ARMHttpLoggingPolicy(base_url="test")
         http_logging_policy = ARMHttpLoggingPolicy()
-        http_logging_policy.allowed_header_names.update(
-            {"x-ms-added-header"}
-        )
-        with AutoRestHeadTestService(credential, base_url="http://localhost:3000", http_logging_policy=http_logging_policy) as client:
+        http_logging_policy.allowed_header_names.update({"x-ms-added-header"})
+        with AutoRestHeadTestService(
+            credential, base_url="http://localhost:3000", http_logging_policy=http_logging_policy
+        ) as client:
             assert isinstance(client._config.http_logging_policy, ARMHttpLoggingPolicy)
-            assert client._config.http_logging_policy.allowed_header_names == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+            assert (
+                client._config.http_logging_policy.allowed_header_names
+                == ARMHttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+            )
 
     def test_credential_scopes_default(self, credential):
         with AutoRestHeadTestService(credential) as client:
-            assert client._config.credential_scopes == ['https://management.azure.com/.default']
+            assert client._config.credential_scopes == ["https://management.azure.com/.default"]
 
     def test_credential_scopes_override(self, credential):
-        with AutoRestHeadTestService(credential, credential_scopes=["http://i-should-be-the-only-credential"]) as client:
+        with AutoRestHeadTestService(
+            credential, credential_scopes=["http://i-should-be-the-only-credential"]
+        ) as client:
             assert client._config.credential_scopes == ["http://i-should-be-the-only-credential"]
 
     def test_credential_authentication_policy_default(self, credential):

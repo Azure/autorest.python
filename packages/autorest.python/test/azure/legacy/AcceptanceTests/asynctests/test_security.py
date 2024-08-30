@@ -28,10 +28,12 @@ from securityaadswagger.aio import AutorestSecurityAad
 from securitykeyswagger.aio import AutorestSecurityKey
 from azure.mgmt.core.policies import AsyncARMChallengeAuthenticationPolicy
 
+
 @pytest.mark.asyncio
 async def test_security_aad(credential):
     client = AutorestSecurityAad(credential)
     assert isinstance(client._config.authentication_policy, AsyncARMChallengeAuthenticationPolicy)
+
 
 @pytest.mark.asyncio
 async def test_security_key(credential):

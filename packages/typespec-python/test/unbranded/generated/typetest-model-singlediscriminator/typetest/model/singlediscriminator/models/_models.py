@@ -23,7 +23,6 @@ class Bird(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Eagle, Goose, SeaGull, Sparrow
 
-    All required parameters must be populated in order to send to server.
 
     :ivar kind: Required. Default value is None.
     :vartype kind: str
@@ -43,8 +42,7 @@ class Bird(_model_base.Model):
         *,
         kind: str,
         wingspan: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -64,28 +62,26 @@ class Dinosaur(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     TRex
 
-    All required parameters must be populated in order to send to server.
 
+    :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
+    :vartype kind: str
     :ivar size: Required.
     :vartype size: int
-    :ivar kind: Required. Default value is None.
-    :vartype kind: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
+    kind: str = rest_discriminator(name="kind")
+    """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field()
     """Required."""
-    kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
 
     @overload
     def __init__(
         self,
         *,
-        size: int,
         kind: str,
-    ):
-        ...
+        size: int,
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -102,7 +98,6 @@ class Eagle(Bird, discriminator="eagle"):
     """The second level model in polymorphic single levels inheritance which contains references to
     other polymorphic instances.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -130,8 +125,7 @@ class Eagle(Bird, discriminator="eagle"):
         friends: Optional[List["_models.Bird"]] = None,
         hate: Optional[Dict[str, "_models.Bird"]] = None,
         partner: Optional["_models.Bird"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -147,7 +141,6 @@ class Eagle(Bird, discriminator="eagle"):
 class Goose(Bird, discriminator="goose"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -163,8 +156,7 @@ class Goose(Bird, discriminator="goose"):
         self,
         *,
         wingspan: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -180,7 +172,6 @@ class Goose(Bird, discriminator="goose"):
 class SeaGull(Bird, discriminator="seagull"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -196,8 +187,7 @@ class SeaGull(Bird, discriminator="seagull"):
         self,
         *,
         wingspan: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -213,7 +203,6 @@ class SeaGull(Bird, discriminator="seagull"):
 class Sparrow(Bird, discriminator="sparrow"):
     """The second level model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -229,8 +218,7 @@ class Sparrow(Bird, discriminator="sparrow"):
         self,
         *,
         wingspan: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -246,7 +234,6 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar size: Required.
     :vartype size: int
@@ -262,8 +249,7 @@ class TRex(Dinosaur, discriminator="t-rex"):
         self,
         *,
         size: int,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

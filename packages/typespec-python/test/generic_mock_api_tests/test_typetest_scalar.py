@@ -16,42 +16,38 @@ def client():
         yield client
 
 
-@pytest.mark.parametrize(
-    "og_name,val",
-    [
-        ("string", "test"),
-        ("boolean", True),
-        ("unknown", "test"),
-    ],
-)
-def test_scalar(client: ScalarClient, og_name: str, val):
-    og_group = getattr(client, og_name)
-    assert og_group.get() == val
-    og_group.put(val)
+def test_scalar_string(client: ScalarClient):
+    assert client.string.get() == "test"
+    client.string.put("test")
 
 
-@pytest.mark.parametrize(
-    "og_name,val",
-    [
-        ("decimal_type", decimal.Decimal("0.33333")),
-        ("decimal128_type", decimal.Decimal("0.33333")),
-    ],
-)
-def test_type(client: ScalarClient, og_name: str, val):
-    og_group = getattr(client, og_name)
-    assert og_group.response_body() == val
-    og_group.request_body(val)
-    og_group.request_parameter(value=val)
+def test_scalar_boolean(client: ScalarClient):
+    assert client.boolean.get() == True
+    client.boolean.put(True)
 
 
-@pytest.mark.parametrize(
-    "og_name",
-    [
-        "decimal_verify",
-        "decimal128_verify",
-    ],
-)
-def test_verify(client: ScalarClient, og_name: str):
-    og_group = getattr(client, og_name)
-    prepare = og_group.prepare_verify()
-    og_group.verify(reduce(lambda x, y: x + y, prepare))
+def test_scalar_unknown(client: ScalarClient):
+    assert client.unknown.get() == "test"
+    client.unknown.put("test")
+
+
+def test_decimal128_type(client: ScalarClient):
+    assert client.decimal128_type.response_body() == decimal.Decimal("0.33333")
+    client.decimal128_type.request_body(decimal.Decimal("0.33333"))
+    client.decimal128_type.request_parameter(value=decimal.Decimal("0.33333"))
+
+
+def test_decimal_type(client: ScalarClient):
+    assert client.decimal_type.response_body() == decimal.Decimal("0.33333")
+    client.decimal_type.request_body(decimal.Decimal("0.33333"))
+    client.decimal_type.request_parameter(value=decimal.Decimal("0.33333"))
+
+
+def test_decimal128_verify(client: ScalarClient):
+    prepare = client.decimal128_verify.prepare_verify()
+    client.decimal128_verify.verify(reduce(lambda x, y: x + y, prepare))
+
+
+def test_decimal_verify(client: ScalarClient):
+    prepare = client.decimal_verify.prepare_verify()
+    client.decimal_verify.verify(reduce(lambda x, y: x + y, prepare))

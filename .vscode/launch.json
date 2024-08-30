@@ -10,7 +10,7 @@
             "cwd": "${workspaceFolder}/packages/typespec-python",
             "args": [
                 "compile",
-                "${workspaceFolder}/packages/typespec-python/main.tsp",
+                "${workspaceFolder}/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/http/server/versions/not-versioned",
                  "--emit",
                  "${workspaceFolder}/packages/typespec-python/dist/src/index.js",
                  "--option=@azure-tools/typespec-python.debug=true"
@@ -50,6 +50,14 @@
               "${workspaceFolder}/core/packages/*/dist/**/*.js",
               "${workspaceFolder}/core/packages/*/dist-dev/**/*.js"
             ]
-        }
+        },
+        {
+          "name": "npm: regenerate",
+          "request": "launch",
+          "type": "node",
+          "runtimeArgs": ["run", "regenerate", "--", "--name", "api-key"],
+          "runtimeExecutable": "npm",
+          "cwd": "${workspaceFolder}/packages/typespec-python",
+      }
     ]
 }

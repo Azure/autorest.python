@@ -13,9 +13,7 @@ pipeline_build = is_pipeline_build()
 root_dir = Path.resolve(Path(__file__) / "../../..")
 
 
-def main(
-    package_name: str, regenerate: bool, check_change: bool, check_code: bool = False
-):
+def main(package_name: str, regenerate: bool, check_change: bool, check_code: bool = False):
     if package_name == "autorest.python":
         folder_name = "autorest"
     elif package_name == "typespec-python":
@@ -49,7 +47,7 @@ def main(
         # Pyright
         call(f"pyright {folder_name}", cwd=package_dir)
         # Black
-        call(f"black {folder_name}", cwd=package_dir)
+        call(f"black .", cwd=package_dir)
         # Fail on black autorest diff
         call("node ./eng/scripts/check-for-changed-files.js")
         # Unit tests

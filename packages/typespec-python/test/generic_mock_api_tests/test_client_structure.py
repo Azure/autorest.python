@@ -22,6 +22,7 @@ def test_structure_default():
     client.qux.eight()
     client.qux.bar.nine()
 
+
 def test_structure_multiclient():
     client_a = ClientAClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
     client_a.renamed_one()
@@ -33,6 +34,7 @@ def test_structure_multiclient():
     client_b.renamed_four()
     client_b.renamed_six()
 
+
 def test_structure_renamed_operation():
     client = RenamedOperationClient(endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION)
     client.renamed_one()
@@ -42,6 +44,7 @@ def test_structure_renamed_operation():
     client.group.renamed_two()
     client.group.renamed_four()
     client.group.renamed_six()
+
 
 def test_structure_two_operation_group():
     client = TwoOperationGroupClient(endpoint="http://localhost:3000", client=ClientType.TWO_OPERATION_GROUP)

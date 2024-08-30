@@ -102,11 +102,22 @@ def png_data() -> bytes:
 
 
 def test_request_body(client: BytesClient, png_data: bytes):
-    client.request_body.default(value=bytes("test", "utf-8"), )
-    client.request_body.octet_stream(value=png_data, )
-    client.request_body.custom_content_type(value=png_data, )
-    client.request_body.base64(value=bytes("test", "utf-8"), )
-    client.request_body.base64url(value=bytes("test", "utf-8"), )
+    client.request_body.default(
+        value=bytes("test", "utf-8"),
+    )
+    client.request_body.octet_stream(
+        value=png_data,
+    )
+    client.request_body.custom_content_type(
+        value=png_data,
+    )
+    client.request_body.base64(
+        value=bytes("test", "utf-8"),
+    )
+    client.request_body.base64url(
+        value=bytes("test", "utf-8"),
+    )
+
 
 def test_response_body(client: BytesClient, png_data: bytes):
     expected = b"test"

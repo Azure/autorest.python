@@ -29,18 +29,22 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with ObjectTypeClient() as client:
         yield client
 
+
 def test_get_object(client):
     response = client.get()
     assert response == {"message": "An object was successfully returned"}
 
+
 def test_put_object_success(client):
     response = client.put({"foo": "bar"})
     assert response is None
+
 
 def test_put_object_fail(client):
     with pytest.raises(HttpResponseError) as ex:

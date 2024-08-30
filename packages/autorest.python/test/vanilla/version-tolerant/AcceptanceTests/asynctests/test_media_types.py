@@ -30,11 +30,13 @@ from mediatypesversiontolerant.aio import MediaTypesClient
 import pytest
 import json
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with MediaTypesClient() as client:
         await yield_(client)
+
 
 @pytest.mark.asyncio
 async def test_pdf(client):
@@ -43,37 +45,43 @@ async def test_pdf(client):
     with pytest.raises(TypeError):
         await client.analyze_body(input=b"PDF")
 
+
 @pytest.mark.asyncio
 async def test_json(client):
     json_input = json.loads('{"source":"foo"}')
     result = await client.analyze_body(input=json_input)
     assert result == "Nice job with JSON"
 
+
 @pytest.mark.asyncio
 async def test_content_type_with_encoding(client):
-    result = await client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
+    result = await client.content_type_with_encoding(input="hello", content_type="text/plain; charset=UTF-8")
     assert result == "Nice job sending content type with encoding"
+
 
 @pytest.mark.asyncio
 async def test_pdf_no_accept_header(client):
     await client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
 
 @pytest.mark.asyncio
 async def test_json_no_accept_header(client):
     json_input = json.loads('{"source":"foo"}')
     await client.analyze_body_no_accept_header(input=json_input)
 
+
 @pytest.mark.asyncio
 async def test_binary_body_two_content_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     await client.binary_body_with_two_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     await client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
 
+
 @pytest.mark.asyncio
 async def test_binary_body_three_content_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     await client.binary_body_with_three_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
@@ -82,9 +90,10 @@ async def test_binary_body_three_content_types(client):
     content = "hello, world"
     await client.binary_body_with_three_content_types(content, content_type="text/plain")
 
+
 @pytest.mark.asyncio
 async def test_body_three_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     await client.body_three_types(json_input)
 
     content = b"hello, world"

@@ -29,15 +29,15 @@ class StorageAccountKey(Model):
     """
 
     _validation = {
-        'key_name': {'readonly': True},
-        'value': {'readonly': True},
-        'permissions': {'readonly': True},
+        "key_name": {"readonly": True},
+        "value": {"readonly": True},
+        "permissions": {"readonly": True},
     }
 
     _attribute_map = {
-        'key_name': {'key': 'keyName', 'type': 'str'},
-        'value': {'key': 'value', 'type': 'str'},
-        'permissions': {'key': 'permissions', 'type': 'KeyPermission'},
+        "key_name": {"key": "keyName", "type": "str"},
+        "value": {"key": "value", "type": "str"},
+        "permissions": {"key": "permissions", "type": "KeyPermission"},
     }
 
     def __init__(self):

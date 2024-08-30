@@ -30,11 +30,13 @@ from multipleinheritance.aio import MultipleInheritanceServiceClient
 from multipleinheritance.models import *
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with MultipleInheritanceServiceClient(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestMultipleInheritance(object):
 
@@ -76,9 +78,14 @@ class TestMultipleInheritance(object):
 
     @pytest.mark.asyncio
     async def test_get_kitten(self, client):
-        assert Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False) == await client.get_kitten()
+        assert (
+            Kitten(name="Gatito", likes_milk=True, meows=True, hisses=True, eats_mice_yet=False)
+            == await client.get_kitten()
+        )
 
     @pytest.mark.asyncio
     async def test_put_kitten(self, client):
-        result = await client.put_kitten(Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True))
+        result = await client.put_kitten(
+            Kitten(name="Kitty", likes_milk=False, meows=True, hisses=False, eats_mice_yet=True)
+        )
         assert result == "Kitten was correct!"

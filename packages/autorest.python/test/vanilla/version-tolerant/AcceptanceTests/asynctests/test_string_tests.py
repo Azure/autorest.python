@@ -31,22 +31,26 @@ from bodystringversiontolerant.aio import AutoRestSwaggerBATService
 from ..serializer import deserialize_base64, serialize_base64
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestSwaggerBATService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_null(client):
     assert await client.string.get_null() is None
     await client.string.put_null()
 
+
 @pytest.mark.asyncio
 async def test_empty(client):
-    assert "" ==  await client.string.get_empty()
+    assert "" == await client.string.get_empty()
     # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
     await client.string.put_empty()
+
 
 @pytest.mark.asyncio
 async def test_mbcs(client):
@@ -65,7 +69,8 @@ async def test_mbcs(client):
             "\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
             "\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
             "\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-            "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+            "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+        ).decode("utf-8")
 
     except AttributeError:
         test_str = (
@@ -82,51 +87,68 @@ async def test_mbcs(client):
             b"\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
             b"\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
             b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-            b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+            b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+        ).decode("utf-8")
 
     assert test_str == await client.string.get_mbcs()
     await client.string.put_mbcs()
 
+
 @pytest.mark.asyncio
 async def test_whitespace(client):
     test_str = "    Now is the time for all good men to come to the aid of their country    "
-    assert test_str ==  await client.string.get_whitespace()
+    assert test_str == await client.string.get_whitespace()
     await client.string.put_whitespace()
+
 
 @pytest.mark.asyncio
 async def test_get_not_provided(client):
     assert await client.string.get_not_provided() is None
 
+
 @pytest.mark.asyncio
 async def test_enum_not_expandable(client):
-    assert 'red color' ==  await client.enum.get_not_expandable()
-    await client.enum.put_not_expandable('red color')
+    assert "red color" == await client.enum.get_not_expandable()
+    await client.enum.put_not_expandable("red color")
     # Autorest v3 is switching behavior here. Old Autorest would have thrown a serialization error,
     # but now we allow the user to pass strings as enums, so the raised exception is different.
     with pytest.raises(HttpResponseError):
-        await client.enum.put_not_expandable('not a colour')
+        await client.enum.put_not_expandable("not a colour")
+
 
 @pytest.mark.asyncio
 async def test_get_base64_encoded(client):
-    assert deserialize_base64(await client.string.get_base64_encoded()) ==  'a string that gets encoded with base64'.encode()
+    assert (
+        deserialize_base64(await client.string.get_base64_encoded())
+        == "a string that gets encoded with base64".encode()
+    )
+
 
 @pytest.mark.asyncio
 async def test_base64_url_encoded(client):
-    assert deserialize_base64(await client.string.get_base64_url_encoded()) ==  'a string that gets encoded with base64url'.encode()
-    await client.string.put_base64_url_encoded(serialize_base64('a string that gets encoded with base64url'.encode()))
+    assert (
+        deserialize_base64(await client.string.get_base64_url_encoded())
+        == "a string that gets encoded with base64url".encode()
+    )
+    await client.string.put_base64_url_encoded(serialize_base64("a string that gets encoded with base64url".encode()))
+
 
 @pytest.mark.asyncio
 async def test_get_null_base64_url_encoded(client):
     assert await client.string.get_null_base64_url_encoded() is None
 
+
 @pytest.mark.asyncio
 async def test_enum_referenced(client):
-    await client.enum.put_referenced('red color')
+    await client.enum.put_referenced("red color")
 
-    assert await client.enum.get_referenced() ==  'red color'
+    assert await client.enum.get_referenced() == "red color"
+
 
 @pytest.mark.asyncio
 async def test_enum_referenced_constant(client):
 
     await client.enum.put_referenced_constant({"ColorConstant": "green-color"})
-    assert await client.enum.get_referenced_constant() == {'field1': 'Sample String'} # there's no constant on the response, so just getting field1
+    assert await client.enum.get_referenced_constant() == {
+        "field1": "Sample String"
+    }  # there's no constant on the response, so just getting field1

@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -168,7 +168,7 @@ class ImportOperations:
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -196,8 +196,6 @@ class ImportOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -213,6 +211,7 @@ class ImportOperations:
 
 
 class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
+
     def __init__(self):
         raise_if_not_implemented(
             self.__class__,
@@ -232,7 +231,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -264,8 +263,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -289,7 +286,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -321,8 +318,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -355,7 +350,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -385,8 +380,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -411,7 +404,7 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         :rtype: JSON
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -439,8 +432,6 @@ class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

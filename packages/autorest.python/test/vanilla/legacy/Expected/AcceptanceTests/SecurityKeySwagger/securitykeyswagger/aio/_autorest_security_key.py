@@ -7,7 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Dict
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.credentials import AzureKeyCredential
@@ -17,10 +18,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import AutorestSecurityKeyConfiguration
 from .operations import AutorestSecurityKeyOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -85,7 +82,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutorestSecurityKey":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

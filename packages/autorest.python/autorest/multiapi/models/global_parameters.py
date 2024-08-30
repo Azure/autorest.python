@@ -33,31 +33,21 @@ class GlobalParameters:
         """Return global params specific to multiapi service client + config
         api_version, endpoint (re-adding it in specific are), and profile
         """
-        service_client_params_sync = self.global_parameters_metadata[
-            "service_client_specific"
-        ]["sync"]
-        service_client_params_async = self.global_parameters_metadata[
-            "service_client_specific"
-        ]["async"]
+        service_client_params_sync = self.global_parameters_metadata["service_client_specific"]["sync"]
+        service_client_params_async = self.global_parameters_metadata["service_client_specific"]["async"]
 
-        return _convert_global_parameters(
-            service_client_params_sync, service_client_params_async
-        )
+        return _convert_global_parameters(service_client_params_sync, service_client_params_async)
 
     @property
     def parameters(self) -> List[GlobalParameter]:
         global_parameters_metadata_sync = self.global_parameters_metadata["sync"]
         global_parameters_metadata_async = self.global_parameters_metadata["async"]
 
-        return _convert_global_parameters(
-            global_parameters_metadata_sync, global_parameters_metadata_async
-        )
+        return _convert_global_parameters(global_parameters_metadata_sync, global_parameters_metadata_async)
 
     @property
     def constant_parameters(self) -> List[ConstantGlobalParameter]:
         return [
             ConstantGlobalParameter(constant_name, constant_value)
-            for constant_name, constant_value in self.global_parameters_metadata[
-                "constant"
-            ].items()
+            for constant_name, constant_value in self.global_parameters_metadata["constant"].items()
         ]

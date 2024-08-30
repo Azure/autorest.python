@@ -1,4 +1,4 @@
-import { CompilerHost, joinPaths, Program, resolveModule, ResolveModuleHost } from "@typespec/compiler";
+import { joinPaths } from "@typespec/compiler";
 import { ChildProcess, spawn, SpawnOptions } from "child_process";
 import { randomUUID } from "crypto";
 import { mkdir, writeFile } from "fs/promises";
@@ -49,32 +49,4 @@ export async function execAsync(
             });
         });
     });
-}
-
-/**
- * Resolve root of module.
- * @param program Cadl Program
- * @param name Name of the module (e.g. "@autorest/python")
- * @param baseDir Base directory to start looking from. Use `dirname(fileURLToPath(import.meta.url))` for current dir.
- * @returns Path to the module root if found.
- */
-export async function resolveModuleRoot(program: Program, name: string, baseDir: string): Promise<string> {
-    const moduleHost = getResolveModuleHost(program.host);
-
-    const resolved = await resolveModule(moduleHost, name, {
-        baseDir,
-    });
-
-    return resolved.path;
-}
-
-function getResolveModuleHost(host: CompilerHost): ResolveModuleHost {
-    return {
-        realpath: host.realpath,
-        stat: host.stat,
-        readFile: async (path) => {
-            const file = await host.readFile(path);
-            return file.text;
-        },
-    };
 }

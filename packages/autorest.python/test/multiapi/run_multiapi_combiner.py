@@ -11,6 +11,7 @@ from subprocess import check_call, call
 import tempfile
 import venv
 
+
 def main():
     test_root = Path(os.getcwd()) / "test/multiapi"
 
@@ -36,5 +37,5 @@ def main():
             check_call([venv_context.env_exe, "-m", "packaging_tools.multiapi_combiner", "--pkg-path", os.getcwd()])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

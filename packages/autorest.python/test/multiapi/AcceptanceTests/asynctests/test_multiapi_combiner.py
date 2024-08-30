@@ -32,12 +32,12 @@ from .multiapi_base import NotTested
 @async_generator
 async def default_client(credential, authentication_policy):
     from multiapicombiner.aio import MultiapiServiceClient
+
     async with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         await yield_(default_client)
+
 
 @pytest.fixture
 @async_generator
@@ -45,17 +45,20 @@ async def client(credential, authentication_policy, api_version):
     from multiapi.aio import MultiapiServiceClient
 
     async with MultiapiServiceClient(
-		base_url="http://localhost:3000",
+        base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         await yield_(client)
+
 
 @pytest.fixture
 def namespace_models():
     from multiapicombiner import models
+
     return models
+
 
 class TestMultiapiCombinerClient(NotTested.TestMultiapiBase):
     @pytest.mark.asyncio
@@ -70,12 +73,12 @@ class TestMultiapiCombinerClient(NotTested.TestMultiapiBase):
     async def test_default_models_from_operation_group(self, default_client):
         pass
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    @pytest.mark.parametrize("api_version", ["1.0.0"])
     @pytest.mark.asyncio
     async def test_lro_and_paging(self, client, namespace_models):
         pass
 
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    @pytest.mark.parametrize("api_version", ["2.0.0"])
     @pytest.mark.asyncio
     async def test_version_two_operation_group_one(self, client, namespace_models):
         pass

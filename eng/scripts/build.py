@@ -14,6 +14,7 @@ import json
 pipeline_build = is_pipeline_build()
 root_dir = Path.resolve(Path(__file__) / "../../..")
 
+
 def main(package_name: str, version_suffix: str, output_dir: str, package_versions: dict):
     if package_name == "autorest.python":
         versionVariableName = "generatorVersion"
@@ -46,9 +47,7 @@ def main(package_name: str, version_suffix: str, output_dir: str, package_versio
 
     if pipeline_build:
         # Update version variable
-        print(
-            f"##vso[task.setvariable variable={versionVariableName};isOutput=true]{newVersion}"
-        )
+        print(f"##vso[task.setvariable variable={versionVariableName};isOutput=true]{newVersion}")
 
     # Build project
     call("pnpm run build")
@@ -133,15 +132,17 @@ if __name__ == "__main__":
     if "autorest.python" in package_versions:
         version = package_versions["autorest.python"]
         if args.publish_internal:
-            overrides["@autorest/python"] = f'{feedUrl}/@autorest/python/-/python-{version}.tgz'
+            overrides["@autorest/python"] = f"{feedUrl}/@autorest/python/-/python-{version}.tgz"
 
     if "typespec-python" in package_versions:
         version = package_versions["typespec-python"]
         if args.publish_internal:
-            overrides["@azure-tools/typespec-python"] = f'{feedUrl}/@azure-tools/typespec-python/-/typespec-python-{version}.tgz'
-    
+            overrides["@azure-tools/typespec-python"] = (
+                f"{feedUrl}/@azure-tools/typespec-python/-/typespec-python-{version}.tgz"
+            )
+
     with open(output_dir / "overrides.json", "w") as fp:
-        json.dump(overrides, fp, indent=2) 
+        json.dump(overrides, fp, indent=2)
 
     with open(output_dir / "package-versions.json", "w") as fp:
         json.dump(package_versions, fp, indent=2)

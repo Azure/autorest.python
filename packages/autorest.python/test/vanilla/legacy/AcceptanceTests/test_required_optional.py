@@ -40,25 +40,26 @@ from requiredoptional.models import StringWrapper, ArrayWrapper, ClassWrapper
 
 import pytest
 
+
 @pytest.fixture
 def client_required():
     with AutoRestRequiredOptionalTestService(
-            "required_path",
-            "required_query",
-            base_url="http://localhost:3000") as client:
+        "required_path", "required_query", base_url="http://localhost:3000"
+    ) as client:
         client._config.required_global_path = "required_path"
         client._config.required_global_query = "required_query"
         yield client
 
+
 @pytest.fixture
 def client():
     with AutoRestRequiredOptionalTestService(
-            "required_path",
-            "required_query",
-            base_url="http://localhost:3000") as client:
+        "required_path", "required_query", base_url="http://localhost:3000"
+    ) as client:
         client._config.required_global_path = None
         client._config.required_global_query = None
         yield client
+
 
 class TestRequiredOptional(object):
 
@@ -131,6 +132,7 @@ class TestRequiredOptional(object):
         from requiredoptional.models import Error
 
         from requiredoptional.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_explict_put_optional_binary_body(self, client):
@@ -138,7 +140,7 @@ class TestRequiredOptional(object):
 
     def test_explict_put_required_binary_body(self, client):
         test_string = "Upload file test case"
-        test_bytes = bytearray(test_string, encoding='utf-8')
+        test_bytes = bytearray(test_string, encoding="utf-8")
         with io.BytesIO(test_bytes) as stream_data:
             client.explicit.put_required_binary_body(stream_data)
 
@@ -152,4 +154,5 @@ class TestRequiredOptional(object):
             from requiredoptional.operations import _explicit_operations_py3
 
         from requiredoptional.operations._explicit_operations import ExplicitOperations as ExplicitOperationsPy2
+
         assert ExplicitOperations == ExplicitOperationsPy2

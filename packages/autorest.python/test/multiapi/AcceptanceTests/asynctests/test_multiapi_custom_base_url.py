@@ -27,26 +27,28 @@ import pytest
 from async_generator import yield_, async_generator
 from multiapicustombaseurl.aio import MultiapiCustomBaseUrlServiceClient
 
+
 @pytest.fixture
 @async_generator
 async def client(credential, authentication_policy, api_version):
 
     async with MultiapiCustomBaseUrlServiceClient(
-		endpoint="http://localhost:3000",
+        endpoint="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         await yield_(client)
 
+
 class TestMultiapiCustomBaseUrl(object):
 
-    @pytest.mark.parametrize('api_version', ["1.0.0"])
+    @pytest.mark.parametrize("api_version", ["1.0.0"])
     @pytest.mark.asyncio
     async def test_custom_base_url_version_one(self, client):
         await client.test(id=1)
 
-    @pytest.mark.parametrize('api_version', ["2.0.0"])
+    @pytest.mark.parametrize("api_version", ["2.0.0"])
     @pytest.mark.asyncio
     async def test_custom_base_url_version_two(self, client):
         await client.test(id=2)

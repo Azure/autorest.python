@@ -33,8 +33,7 @@ class BooleanLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[True]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -63,8 +62,7 @@ class BytesProperty(_model_base.Model):
         self,
         *,
         property: Optional[bytes] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -92,8 +90,7 @@ class CollectionsByteProperty(_model_base.Model):
         self,
         *,
         property: Optional[List[bytes]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -121,8 +118,7 @@ class CollectionsModelProperty(_model_base.Model):
         self,
         *,
         property: Optional[List["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -150,8 +146,7 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.datetime] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -179,8 +174,7 @@ class DurationProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.timedelta] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -196,20 +190,19 @@ class DurationProperty(_model_base.Model):
 class FloatLiteralProperty(_model_base.Model):
     """Model with float literal property.
 
-    :ivar property: Property. Default value is 1.2.
+    :ivar property: Property. Default value is 1.25.
     :vartype property: float
     """
 
     property: Optional[float] = rest_field()
-    """Property. Default value is 1.2."""
+    """Property. Default value is 1.25."""
 
     @overload
     def __init__(
         self,
         *,
         property: Optional[float] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -237,8 +230,63 @@ class IntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[1]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class PlainDateProperty(_model_base.Model):
+    """Model with a plainDate property.
+
+    :ivar property: Property.
+    :vartype property: ~datetime.date
+    """
+
+    property: Optional[datetime.date] = rest_field()
+    """Property."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[datetime.date] = None,  # pylint: disable=redefined-builtin
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class PlainTimeProperty(_model_base.Model):
+    """Model with a plainTime property.
+
+    :ivar property: Property.
+    :vartype property: ~datetime.time
+    """
+
+    property: Optional[datetime.time] = rest_field()
+    """Property."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        property: Optional[datetime.time] = None,  # pylint: disable=redefined-builtin
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -254,7 +302,6 @@ class IntLiteralProperty(_model_base.Model):
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar optional_property: optional string property.
     :vartype optional_property: str
@@ -273,8 +320,7 @@ class RequiredAndOptionalProperty(_model_base.Model):
         *,
         required_property: int,
         optional_property: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -302,8 +348,7 @@ class StringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal["hello"]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -332,8 +377,7 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: Optional[str] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -361,8 +405,7 @@ class UnionFloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[float] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -390,8 +433,7 @@ class UnionIntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[1, 2]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -419,8 +461,7 @@ class UnionStringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal["hello", "world"]] = None,  # pylint: disable=redefined-builtin
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

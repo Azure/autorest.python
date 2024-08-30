@@ -30,20 +30,23 @@ from bodydatetimeversiontolerant.aio import AutoRestDateTimeTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDateTimeTestService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_utc_max_date_time(client):
     max_date = deserialize_datetime("9999-12-31T23:59:59.999Z")
     dt = deserialize_iso(await client.datetime.get_utc_lowercase_max_date_time())
-    assert dt ==  max_date
+    assert dt == max_date
     dt = deserialize_iso(await client.datetime.get_utc_uppercase_max_date_time())
-    assert dt ==  max_date
+    assert dt == max_date
     await client.datetime.put_utc_max_date_time(serialize_iso(max_date))
+
 
 @pytest.mark.asyncio
 async def test_utc_max_date_time_7digits(client):
@@ -54,18 +57,22 @@ async def test_utc_max_date_time_7digits(client):
         # Python doesn't support 7 digits
         await client.datetime.put_utc_max_date_time7_digits(max_date)
 
+
 @pytest.mark.asyncio
 async def test_get_utc_min_date_time(client):
     min_date = deserialize_datetime("0001-01-01T00:00:00Z")
     dt = deserialize_iso(await client.datetime.get_utc_min_date_time())
-    assert dt ==  min_date
+    assert dt == min_date
     await client.datetime.put_utc_min_date_time(serialize_iso(min_date))
+
 
 @pytest.mark.asyncio
 async def test_get_local_negative_offset_min_date_time(client):
     await client.datetime.get_local_negative_offset_min_date_time()
     await client.datetime.put_local_negative_offset_min_date_time(
-        serialize_iso(deserialize_datetime("0001-01-01T00:00:00-14:00")))
+        serialize_iso(deserialize_datetime("0001-01-01T00:00:00-14:00"))
+    )
+
 
 @pytest.mark.asyncio
 async def test_get_local_no_offset_min_date_time(client):
@@ -73,15 +80,18 @@ async def test_get_local_no_offset_min_date_time(client):
     dt = deserialize_iso(await client.datetime.get_local_no_offset_min_date_time())
     assert dt == local_no_offset_min_date_time
 
+
 @pytest.mark.asyncio
 async def test_get_local_negative_offset_lowercase_max_date_time(client):
     with pytest.raises(OverflowError):
         deserialize_iso(await client.datetime.get_local_negative_offset_lowercase_max_date_time())
 
+
 @pytest.mark.asyncio
 async def test_get_local_negative_offset_uppercase_max_date_time(client):
     with pytest.raises(OverflowError):
         deserialize_iso(await client.datetime.get_local_negative_offset_uppercase_max_date_time())
+
 
 @pytest.mark.asyncio
 async def test_local_positive_offset_min_date_time(client):
@@ -90,36 +100,45 @@ async def test_local_positive_offset_min_date_time(client):
 
     with pytest.raises(OverflowError):
         await client.datetime.put_local_positive_offset_min_date_time(
-            serialize_iso(deserialize_datetime("0001-01-01T00:00:00+14:00")))
+            serialize_iso(deserialize_datetime("0001-01-01T00:00:00+14:00"))
+        )
+
 
 @pytest.mark.asyncio
 async def test_local_positive_offset_max_date_time(client):
     await client.datetime.get_local_positive_offset_lowercase_max_date_time()
     await client.datetime.get_local_positive_offset_uppercase_max_date_time()
     await client.datetime.put_local_positive_offset_max_date_time(
-        serialize_iso(deserialize_datetime("9999-12-31T23:59:59.999999+14:00")))
+        serialize_iso(deserialize_datetime("9999-12-31T23:59:59.999999+14:00"))
+    )
+
 
 @pytest.mark.asyncio
 async def test_get_null(client):
     await client.datetime.get_null()
+
 
 @pytest.mark.asyncio
 async def test_get_overflow(client):
     with pytest.raises(OverflowError):
         deserialize_iso(await client.datetime.get_overflow())
 
+
 @pytest.mark.asyncio
 async def test_get_invalid(client):
     with pytest.raises(ValueError):
         deserialize_iso(await client.datetime.get_invalid())
+
 
 @pytest.mark.asyncio
 async def test_get_underflow(client):
     with pytest.raises(ValueError):
         deserialize_iso(await client.datetime.get_underflow())
 
+
 @pytest.mark.asyncio
 async def test_put_local_negative_offset_max_date_time(client):
     with pytest.raises(OverflowError):
         await client.datetime.put_local_negative_offset_max_date_time(
-            serialize_iso(deserialize_datetime("9999-12-31T23:59:59.999999-14:00")))
+            serialize_iso(deserialize_datetime("9999-12-31T23:59:59.999999-14:00"))
+        )

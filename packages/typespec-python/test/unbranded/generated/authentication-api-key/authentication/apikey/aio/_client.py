@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.credentials import ServiceKeyCredential
 from corehttp.rest import AsyncHttpResponse, HttpRequest
@@ -21,7 +22,7 @@ from ._operations import ApiKeyClientOperationsMixin
 class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey authentication.
 
-    :param credential: Credential needed for the client to connect to cloud service. Required.
+    :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -30,7 +31,8 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(
         self, credential: ServiceKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = ApiKeyClientConfiguration(credential=credential, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = ApiKeyClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -42,7 +44,7 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
                 self._config.authentication_policy,
                 self._config.logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(endpoint=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -69,13 +71,17 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ApiKeyClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

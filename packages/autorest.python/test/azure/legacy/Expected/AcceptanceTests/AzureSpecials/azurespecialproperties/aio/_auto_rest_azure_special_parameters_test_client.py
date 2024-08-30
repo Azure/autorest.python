@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, TYPE_CHECKING
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -149,7 +150,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accept
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestAzureSpecialParametersTestClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

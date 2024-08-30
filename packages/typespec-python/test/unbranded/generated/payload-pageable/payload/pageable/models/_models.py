@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class User(_model_base.Model):
     """User model.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: User name. Required.
     :vartype name: str
@@ -30,8 +29,7 @@ class User(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

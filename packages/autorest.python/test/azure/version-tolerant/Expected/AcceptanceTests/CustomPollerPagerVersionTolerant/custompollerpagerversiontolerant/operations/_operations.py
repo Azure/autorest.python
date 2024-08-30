@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Literal, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Iterator, Literal, Optional, Type, TypeVar, Union, cast, overload
 import urllib.parse
 
 from custompollerpagerdefinitions import CustomPager, CustomPoller
@@ -19,6 +19,8 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.paging import ItemPaged
@@ -556,8 +558,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -566,7 +568,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -617,8 +619,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -640,8 +640,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -650,7 +650,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -701,8 +701,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -724,8 +722,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -734,7 +732,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -785,8 +783,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -808,8 +804,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -818,7 +814,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -869,8 +865,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -898,14 +892,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"  # Optional.
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -931,8 +925,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -953,14 +947,14 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"  # Optional.
+                    "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -970,7 +964,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1031,8 +1025,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1055,8 +1047,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1065,7 +1057,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1116,8 +1108,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1147,8 +1137,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1157,7 +1147,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1210,8 +1200,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1237,8 +1225,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1248,7 +1236,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         query_constant: Literal[True] = kwargs.pop("query_constant", _params.pop("queryConstant", True))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1295,8 +1283,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1322,8 +1308,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1332,7 +1318,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1384,8 +1370,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1407,8 +1391,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1418,7 +1402,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1470,8 +1454,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1501,8 +1483,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1511,7 +1493,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1564,8 +1546,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1597,8 +1577,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1607,7 +1587,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1661,8 +1641,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1685,8 +1663,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1695,7 +1673,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1746,8 +1724,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1770,8 +1746,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1780,7 +1756,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1831,8 +1807,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1854,8 +1828,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1864,7 +1838,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1915,8 +1889,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -1938,8 +1910,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -1948,7 +1920,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1999,8 +1971,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2022,8 +1992,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2032,7 +2002,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2083,8 +2053,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2110,8 +2078,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2120,7 +2088,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2169,8 +2137,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2198,8 +2164,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2208,7 +2174,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2257,8 +2223,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2268,8 +2232,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     def _get_multiple_pages_lro_initial(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> JSON:
-        error_map = {
+    ) -> Iterator[bytes]:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2280,7 +2244,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_paging_get_multiple_pages_lro_request(
             maxresults=maxresults,
@@ -2290,7 +2254,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         )
         _request.url = self._client.format_url(_request.url)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -2298,20 +2262,19 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
+            try:
                 response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
-        if response.content:
-            deserialized = response.json()
-        else:
-            deserialized = None
+        deserialized = response.iter_bytes()
 
         if cls:
-            return cls(pipeline_response, cast(JSON, deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(Iterator[bytes], deserialized), {})  # type: ignore
 
-        return cast(JSON, deserialized)  # type: ignore
+        return cast(Iterator[bytes], deserialized)  # type: ignore
 
     @distributed_trace
     def begin_get_multiple_pages_lro(
@@ -2335,8 +2298,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 202
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2346,7 +2309,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2399,8 +2362,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2418,6 +2379,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 params=_params,
                 **kwargs,
             )
+            raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -2460,8 +2422,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2470,7 +2432,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2522,8 +2484,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2546,8 +2506,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2556,7 +2516,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2608,8 +2568,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 
@@ -2634,8 +2592,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 # response body for status code(s): 200
                 response == {
                     "properties": {
-                        "id": 0,  # Optional.
-                        "name": "str"  # Optional.
+                        "id": 0,
+                        "name": "str"
                     }
                 }
         """
@@ -2644,7 +2602,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2695,8 +2653,6 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:
-                if _stream:
-                    response.read()  # Load the body in memory and close the socket
                 map_error(status_code=response.status_code, response=response, error_map=error_map)
                 raise HttpResponseError(response=response, error_format=ARMErrorFormat)
 

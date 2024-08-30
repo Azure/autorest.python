@@ -26,16 +26,20 @@
 from mixedapiversion import MixedApiVersionClient
 import pytest
 
+
 @pytest.fixture
 def valid_subscription():
-    return '1234-5678-9012-3456'
+    return "1234-5678-9012-3456"
+
 
 @pytest.fixture
 def client(valid_subscription, credential, authentication_policy):
-    with MixedApiVersionClient(credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with MixedApiVersionClient(
+        credential, valid_subscription, base_url="http://localhost:3000", authentication_policy=authentication_policy
+    ) as client:
         yield client
+
 
 class TestMixedApiVersion(object):
     def test_mixed_api_version(self, client):
         client.api_version_default.get_method_global_valid()
-        

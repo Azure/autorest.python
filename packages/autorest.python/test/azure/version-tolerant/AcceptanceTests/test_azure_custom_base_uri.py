@@ -30,6 +30,7 @@ from custombaseurlversiontolerant import AutoRestParameterizedHostTestClient
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestParameterizedHostTestClient(host="host:3000") as client:
@@ -40,13 +41,16 @@ def client():
 def test_custom_base_uri_positive(client):
     client.paths.get_empty("local")
 
+
 def test_custom_base_uri_get_empty(client):
     with pytest.raises(ServiceRequestError):
         client.paths.get_empty("bad")
 
+
 def test_custom_base_uri_get_none(client):
     with pytest.raises(ValueError):
         client.paths.get_empty(None)
+
 
 def test_custom_base_uri_bad_host(client):
     client._config.host = "badhost:3000"

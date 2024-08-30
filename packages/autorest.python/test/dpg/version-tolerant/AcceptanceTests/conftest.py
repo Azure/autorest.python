@@ -29,22 +29,28 @@ import subprocess
 import os
 import signal
 from os.path import dirname, realpath
+
 cwd = dirname(realpath(__file__))
 
-#Ideally this would be in a common helper library shared between the tests
+
+# Ideally this would be in a common helper library shared between the tests
 def start_server_process():
-    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver/dist/cli/cli.js run --appendCoverage".format(cwd)
-    if os.name == 'nt': #On windows, subprocess creation works without being in the shell
+    cmd = "node {}/../../../../node_modules/@microsoft.azure/autorest.testserver/dist/cli/cli.js run --appendCoverage".format(
+        cwd
+    )
+    if os.name == "nt":  # On windows, subprocess creation works without being in the shell
         return subprocess.Popen(cmd)
 
-    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid) #On linux, have to set shell=True
+    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)  # On linux, have to set shell=True
 
-#Ideally this would be in a common helper library shared between the tests
+
+# Ideally this would be in a common helper library shared between the tests
 def terminate_server_process(process):
-    if os.name == 'nt':
+    if os.name == "nt":
         process.kill()
     else:
         os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+
 
 @pytest.fixture(scope="session")
 def testserver():

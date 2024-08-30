@@ -30,7 +30,15 @@ from async_generator import yield_, async_generator
 from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
 from xmserrorresponse.aio import XMSErrorResponseExtensions
-from xmserrorresponse.models import NotFoundErrorBase, AnimalNotFound, LinkNotFound, PetActionError, PetSadError, PetHungryOrThirstyError
+from xmserrorresponse.models import (
+    NotFoundErrorBase,
+    AnimalNotFound,
+    LinkNotFound,
+    PetActionError,
+    PetSadError,
+    PetHungryOrThirstyError,
+)
+
 
 @pytest.fixture
 @async_generator
@@ -47,8 +55,7 @@ class TestXmsErrorResponse(object):
         pet = await client.pet.get_pet_by_id("tommy")
         assert pet.name == "Tommy Tomson"
 
-        await client.pet.get_pet_by_id('django')  # no fail, 202
-
+        await client.pet.get_pet_by_id("django")  # no fail, 202
 
     @pytest.mark.asyncio
     async def test_get_by_pet_id_discriminator(self, client):
@@ -108,18 +115,20 @@ class TestXmsErrorResponse(object):
     @pytest.mark.asyncio
     async def test_failsafe_deserialize(self, client):
         from xmserrorresponse.operations._pet_operations import build_do_something_request
+
         request = build_do_something_request(what_action="jump")
         request.url = client._client.format_url(request.url)
         pipeline_response = await client._client._pipeline.run(request)
+
         class MyPetSadError(PetSadError):
             def read(self):
                 return b"ignore me"
 
-        pipeline_response.context['deserialized_data'] = {
+        pipeline_response.context["deserialized_data"] = {
             "reason": "Not OK",
             "errorMessage": "i should be the message",
             "errorType": "my own error type",
-            "actionResponse": "hello"
+            "actionResponse": "hello",
         }
 
         # add pipeline context with deserialized data and pass to failsafe_deserialize

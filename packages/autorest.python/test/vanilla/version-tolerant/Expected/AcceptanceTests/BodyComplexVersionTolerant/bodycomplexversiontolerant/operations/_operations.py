@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -906,7 +906,6 @@ class BasicOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get complex type {id: 2, name: 'abc', color: 'YELLOW'}.
 
         :return: JSON object
@@ -918,14 +917,12 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -952,8 +949,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -971,7 +966,6 @@ class BasicOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
@@ -988,11 +982,9 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
 
@@ -1016,7 +1008,6 @@ class BasicOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
@@ -1031,14 +1022,12 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1078,8 +1067,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1088,7 +1075,6 @@ class BasicOperations:
 
     @distributed_trace
     def get_invalid(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get a basic complex type that is invalid for the local strong type.
 
         :return: JSON object
@@ -1100,14 +1086,12 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1134,8 +1118,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1151,7 +1133,6 @@ class BasicOperations:
 
     @distributed_trace
     def get_empty(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get a basic complex type that is empty.
 
         :return: JSON object
@@ -1163,14 +1144,12 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1197,8 +1176,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1214,7 +1191,6 @@ class BasicOperations:
 
     @distributed_trace
     def get_null(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get a basic complex type whose properties are null.
 
         :return: JSON object
@@ -1226,14 +1202,12 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1260,8 +1234,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1277,7 +1249,6 @@ class BasicOperations:
 
     @distributed_trace
     def get_not_provided(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get a basic complex type while the server doesn't provide a response payload.
 
         :return: JSON object
@@ -1289,14 +1260,12 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",  # Optional. Known values are: "cyan", "Magenta", "YELLOW",
-                      and "blacK".
-                    "id": 0,  # Optional. Basic Id.
-                    "name": "str"  # Optional. Name property with a very long description that
-                      does not fit on a single line and a line break.
+                    "color": "str",
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1323,8 +1292,6 @@ class BasicOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1369,11 +1336,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1400,8 +1367,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1435,8 +1400,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
 
@@ -1473,11 +1438,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1516,8 +1481,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1537,11 +1500,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1568,8 +1531,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1603,8 +1564,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
 
@@ -1642,11 +1603,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,  # Optional.
-                    "field2": 0  # Optional.
+                    "field1": 0,
+                    "field2": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1685,8 +1646,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1706,11 +1665,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0.0,  # Optional.
-                    "field2": 0.0  # Optional.
+                    "field1": 0.0,
+                    "field2": 0.0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1737,8 +1696,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1772,8 +1729,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,  # Optional.
-                    "field2": 0.0  # Optional.
+                    "field1": 0.0,
+                    "field2": 0.0
                 }
         """
 
@@ -1811,11 +1768,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,  # Optional.
-                    "field2": 0.0  # Optional.
+                    "field1": 0.0,
+                    "field2": 0.0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1854,8 +1811,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1864,7 +1819,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def get_double(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get complex types with double properties.
 
         :return: JSON object
@@ -1876,12 +1830,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0.0,  # Optional.
+                    "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0  # Optional.
+                      0.0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1908,8 +1862,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1927,7 +1879,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1945,9 +1896,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,  # Optional.
+                    "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0  # Optional.
+                      0.0
                 }
         """
 
@@ -1972,7 +1923,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
     def put_double(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1988,12 +1938,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,  # Optional.
+                    "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0  # Optional.
+                      0.0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2032,8 +1982,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2053,11 +2001,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field_false": bool,  # Optional.
-                    "field_true": bool  # Optional.
+                    "field_false": bool,
+                    "field_true": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2084,8 +2032,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2119,8 +2065,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field_false": bool,  # Optional.
-                    "field_true": bool  # Optional.
+                    "field_false": bool,
+                    "field_true": bool
                 }
         """
 
@@ -2158,11 +2104,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field_false": bool,  # Optional.
-                    "field_true": bool  # Optional.
+                    "field_false": bool,
+                    "field_true": bool
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2201,8 +2147,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2222,12 +2166,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "empty": "str",  # Optional.
-                    "field": "str",  # Optional.
-                    "null": "str"  # Optional.
+                    "empty": "str",
+                    "field": "str",
+                    "null": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2254,8 +2198,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2289,9 +2231,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "empty": "str",  # Optional.
-                    "field": "str",  # Optional.
-                    "null": "str"  # Optional.
+                    "empty": "str",
+                    "field": "str",
+                    "null": "str"
                 }
         """
 
@@ -2329,12 +2271,12 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "empty": "str",  # Optional.
-                    "field": "str",  # Optional.
-                    "null": "str"  # Optional.
+                    "empty": "str",
+                    "field": "str",
+                    "null": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2373,8 +2315,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2394,11 +2334,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20",  # Optional.
-                    "leap": "2020-02-20"  # Optional.
+                    "field": "2020-02-20",
+                    "leap": "2020-02-20"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2425,8 +2365,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2460,8 +2398,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20",  # Optional.
-                    "leap": "2020-02-20"  # Optional.
+                    "field": "2020-02-20",
+                    "leap": "2020-02-20"
                 }
         """
 
@@ -2499,11 +2437,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20",  # Optional.
-                    "leap": "2020-02-20"  # Optional.
+                    "field": "2020-02-20",
+                    "leap": "2020-02-20"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2542,8 +2480,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2563,11 +2499,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2594,8 +2530,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2630,8 +2564,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
 
@@ -2670,11 +2604,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2713,8 +2647,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2734,11 +2666,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2765,8 +2697,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2801,8 +2731,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
 
@@ -2841,11 +2771,11 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",  # Optional.
-                    "now": "2020-02-20 00:00:00"  # Optional.
+                    "field": "2020-02-20 00:00:00",
+                    "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2884,8 +2814,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2905,10 +2833,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "1 day, 0:00:00"  # Optional.
+                    "field": "1 day, 0:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2935,8 +2863,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2970,7 +2896,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "1 day, 0:00:00"  # Optional.
+                    "field": "1 day, 0:00:00"
                 }
         """
 
@@ -3008,10 +2934,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "1 day, 0:00:00"  # Optional.
+                    "field": "1 day, 0:00:00"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3050,8 +2976,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3071,10 +2995,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": bytes("bytes", encoding="utf-8")  # Optional.
+                    "field": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3101,8 +3025,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3137,7 +3059,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": bytes("bytes", encoding="utf-8")  # Optional.
+                    "field": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -3176,10 +3098,10 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": bytes("bytes", encoding="utf-8")  # Optional.
+                    "field": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3218,8 +3140,6 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3258,11 +3178,11 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response == {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3289,8 +3209,6 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3326,7 +3244,7 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
@@ -3367,11 +3285,11 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3410,8 +3328,6 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3432,11 +3348,11 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response == {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3463,8 +3379,6 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3499,7 +3413,7 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
@@ -3539,11 +3453,11 @@ class ArrayOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3582,8 +3496,6 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3604,11 +3516,11 @@ class ArrayOperations:
                 # response body for status code(s): 200
                 response == {
                     "array": [
-                        "str"  # Optional.
+                        "str"
                     ]
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3635,8 +3547,6 @@ class ArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3682,11 +3592,11 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response == {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3713,8 +3623,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3750,7 +3658,7 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
@@ -3792,11 +3700,11 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3835,8 +3743,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3857,11 +3763,11 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response == {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3888,8 +3794,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -3924,7 +3828,7 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
@@ -3964,11 +3868,11 @@ class DictionaryOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4007,8 +3911,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4029,11 +3931,11 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response == {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4060,8 +3962,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4089,11 +3989,11 @@ class DictionaryOperations:
                 # response body for status code(s): 200
                 response == {
                     "defaultProgram": {
-                        "str": "str"  # Optional. Dictionary of :code:`<string>`.
+                        "str": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4120,8 +4020,6 @@ class DictionaryOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4166,20 +4064,20 @@ class InheritanceOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "breed": "str",  # Optional.
-                    "color": "str",  # Optional.
+                    "breed": "str",
+                    "color": "str",
                     "hates": [
                         {
-                            "food": "str",  # Optional.
-                            "id": 0,  # Optional.
-                            "name": "str"  # Optional.
+                            "food": "str",
+                            "id": 0,
+                            "name": "str"
                         }
                     ],
-                    "id": 0,  # Optional.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4206,8 +4104,6 @@ class InheritanceOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4243,17 +4139,17 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str",  # Optional.
-                    "color": "str",  # Optional.
+                    "breed": "str",
+                    "color": "str",
                     "hates": [
                         {
-                            "food": "str",  # Optional.
-                            "id": 0,  # Optional.
-                            "name": "str"  # Optional.
+                            "food": "str",
+                            "id": 0,
+                            "name": "str"
                         }
                     ],
-                    "id": 0,  # Optional.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
 
@@ -4295,20 +4191,20 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str",  # Optional.
-                    "color": "str",  # Optional.
+                    "breed": "str",
+                    "color": "str",
                     "hates": [
                         {
-                            "food": "str",  # Optional.
-                            "id": 0,  # Optional.
-                            "name": "str"  # Optional.
+                            "food": "str",
+                            "id": 0,
+                            "name": "str"
                         }
                     ],
-                    "id": 0,  # Optional.
-                    "name": "str"  # Optional.
+                    "id": 0,
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4347,8 +4243,6 @@ class InheritanceOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4375,7 +4269,6 @@ class PolymorphismOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get complex types that are polymorphic.
 
         :return: JSON object
@@ -4384,66 +4277,66 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4470,8 +4363,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4489,7 +4380,6 @@ class PolymorphismOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -4542,54 +4432,53 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -4648,7 +4537,6 @@ class PolymorphismOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -4698,60 +4586,59 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4790,8 +4677,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4808,21 +4693,22 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
                     "fish.type": "DotSalmon",
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
-                    "species": "str"  # Optional.
+                    "iswild": bool,
+                    "location": "str",
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == dot_fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4849,8 +4735,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4876,15 +4760,16 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
                     "fish.type": "DotSalmon",
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
-                    "species": "str"  # Optional.
+                    "iswild": bool,
+                    "location": "str",
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4895,21 +4780,21 @@ class PolymorphismOperations:
                     "salmons": [
                         {
                             "fish.type": "DotSalmon",
-                            "iswild": bool,  # Optional.
-                            "location": "str",  # Optional.
-                            "species": "str"  # Optional.
+                            "iswild": bool,
+                            "location": "str",
+                            "species": "str"
                         }
                     ],
                     "sampleFish": dot_fish,
                     "sampleSalmon": {
                         "fish.type": "DotSalmon",
-                        "iswild": bool,  # Optional.
-                        "location": "str",  # Optional.
-                        "species": "str"  # Optional.
+                        "iswild": bool,
+                        "location": "str",
+                        "species": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4936,8 +4821,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -4963,15 +4846,16 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
                     "fish.type": "DotSalmon",
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
-                    "species": "str"  # Optional.
+                    "iswild": bool,
+                    "location": "str",
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4982,21 +4866,21 @@ class PolymorphismOperations:
                     "salmons": [
                         {
                             "fish.type": "DotSalmon",
-                            "iswild": bool,  # Optional.
-                            "location": "str",  # Optional.
-                            "species": "str"  # Optional.
+                            "iswild": bool,
+                            "location": "str",
+                            "species": "str"
                         }
                     ],
                     "sampleFish": dot_fish,
                     "sampleSalmon": {
                         "fish.type": "DotSalmon",
-                        "iswild": bool,  # Optional.
-                        "location": "str",  # Optional.
-                        "species": "str"  # Optional.
+                        "iswild": bool,
+                        "location": "str",
+                        "species": "str"
                     }
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5023,8 +4907,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5049,26 +4931,27 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5095,8 +4978,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5135,14 +5016,14 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -5188,20 +5069,20 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5240,8 +5121,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5272,32 +5151,33 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -5321,20 +5201,21 @@ class PolymorphismOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -5360,38 +5241,39 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5430,8 +5312,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5449,7 +5329,6 @@ class PolymorphismOperations:
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -5497,54 +5376,53 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -5598,7 +5476,6 @@ class PolymorphismOperations:
     def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -5643,60 +5520,59 @@ class PolymorphismOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5735,8 +5611,6 @@ class PolymorphismOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5763,7 +5637,6 @@ class PolymorphicrecursiveOperations:
 
     @distributed_trace
     def get_valid(self, **kwargs: Any) -> JSON:
-        # pylint: disable=line-too-long
         """Get complex types that are polymorphic and have recursive references.
 
         :return: JSON object
@@ -5772,66 +5645,66 @@ class PolymorphicrecursiveOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5858,8 +5731,6 @@ class PolymorphicrecursiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -5877,7 +5748,6 @@ class PolymorphicrecursiveOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -5950,54 +5820,53 @@ class PolymorphicrecursiveOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -6076,7 +5945,6 @@ class PolymorphicrecursiveOperations:
     def put_valid(  # pylint: disable=inconsistent-return-statements
         self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -6146,60 +6014,59 @@ class PolymorphicrecursiveOperations:
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
                     "fishtype": "smart_salmon",
-                    "length": 0.0,  # Required.
-                    "college_degree": "str",  # Optional.
-                    "iswild": bool,  # Optional.
-                    "location": "str",  # Optional.
+                    "length": 0.0,
+                    "college_degree": "str",
+                    "iswild": bool,
+                    "location": "str",
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "cookiecuttershark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "goblin",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "color": "gray",  # Optional. Default value is "gray". Colors possible. Known
-                      values are: "pink", "gray", "brown", "RED", and "red".
-                    "jawsize": 0,  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "color": "gray",
+                    "jawsize": 0,
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",  # Required.
+                    "birthday": "2020-02-20 00:00:00",
                     "fishtype": "sawshark",
-                    "length": 0.0,  # Required.
-                    "age": 0,  # Optional.
-                    "picture": bytes("bytes", encoding="utf-8"),  # Optional.
+                    "length": 0.0,
+                    "age": 0,
+                    "picture": bytes("bytes", encoding="utf-8"),
                     "siblings": [
                         fish
                     ],
-                    "species": "str"  # Optional.
+                    "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6238,8 +6105,6 @@ class PolymorphicrecursiveOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6277,11 +6142,11 @@ class ReadonlypropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",  # Optional.
-                    "size": 0  # Optional.
+                    "id": "str",
+                    "size": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6308,8 +6173,6 @@ class ReadonlypropertyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6343,8 +6206,8 @@ class ReadonlypropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "id": "str",  # Optional.
-                    "size": 0  # Optional.
+                    "id": "str",
+                    "size": 0
                 }
         """
 
@@ -6381,11 +6244,11 @@ class ReadonlypropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "id": "str",  # Optional.
-                    "size": 0  # Optional.
+                    "id": "str",
+                    "size": 0
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6424,8 +6287,6 @@ class ReadonlypropertyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -6460,6 +6321,7 @@ class FlattencomplexOperations:
 
         Example:
             .. code-block:: python
+
                 # The response is polymorphic. The following are possible polymorphic responses based
                   off discriminator "kind":
 
@@ -6467,16 +6329,16 @@ class FlattencomplexOperations:
                 my_base_type = {
                     "kind": "Kind1",
                     "helper": {
-                        "propBH1": "str"  # Optional.
+                        "propBH1": "str"
                     },
-                    "propB1": "str",  # Optional.
-                    "propD1": "str"  # Optional.
+                    "propB1": "str",
+                    "propD1": "str"
                 }
 
                 # response body for status code(s): 200
                 response == my_base_type
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6503,8 +6365,6 @@ class FlattencomplexOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Optional
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -103,7 +104,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutoRestRequiredOptionalTestService":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

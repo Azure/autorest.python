@@ -28,6 +28,7 @@ import json
 from bodybinaryversiontolerant.aio import BinaryWithContentTypeApplicationJson
 from azure.core.exceptions import HttpResponseError
 
+
 @pytest.fixture
 async def client():
     async with BinaryWithContentTypeApplicationJson() as client:
@@ -38,9 +39,11 @@ async def client():
 async def test_upload_file(client):
     await client.upload.file(b'{"more": "cowbell"}')
 
+
 @pytest.mark.asyncio
 async def test_upload_binary(client):
     await client.upload.binary(b"Hello, world!")
+
 
 @pytest.mark.asyncio
 async def test_error(client):

@@ -62,21 +62,12 @@ def run_check(name, call_back, log_info):
 
     args = parser.parse_args()
 
-    pkg_dir = (
-        Path(ROOT_FOLDER)
-        / Path(f"packages/{args.package}")
-        / Path("test")
-        / Path(args.test_folder)
-    )
+    pkg_dir = Path(ROOT_FOLDER) / Path(f"packages/{args.package}") / Path("test") / Path(args.test_folder)
     if args.generator:
         pkg_dir /= Path(args.generator)
     if args.subfolder:
         pkg_dir /= Path(args.subfolder)
-    dirs = [
-        d
-        for d in pkg_dir.iterdir()
-        if d.is_dir() and not d.stem.startswith("_") and d.stem not in IGNORE_FOLDER
-    ]
+    dirs = [d for d in pkg_dir.iterdir() if d.is_dir() and not d.stem.startswith("_") and d.stem not in IGNORE_FOLDER]
     if args.file_name:
         dirs = [d for d in dirs if d.stem.lower() == args.file_name.lower()]
     if len(dirs) > 1:

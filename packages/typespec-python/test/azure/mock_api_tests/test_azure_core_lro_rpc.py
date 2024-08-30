@@ -12,6 +12,9 @@ def client():
     with RpcClient() as client:
         yield client
 
+
 def test_long_running_rpc(client: RpcClient, polling_method):
-    result = client.begin_long_running_rpc(models.GenerationOptions(prompt="text"), polling_interval=0, polling=polling_method).result()
+    result = client.begin_long_running_rpc(
+        models.GenerationOptions(prompt="text"), polling_interval=0, polling=polling_method
+    ).result()
     assert result == models.GenerationResult(data="text data")

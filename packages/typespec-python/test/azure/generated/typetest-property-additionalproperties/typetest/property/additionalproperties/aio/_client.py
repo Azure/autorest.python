@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -16,6 +17,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import AdditionalPropertiesClientConfiguration
 from .operations import (
+    ExtendsDifferentSpreadFloatOperations,
+    ExtendsDifferentSpreadModelArrayOperations,
+    ExtendsDifferentSpreadModelOperations,
+    ExtendsDifferentSpreadStringOperations,
     ExtendsFloatOperations,
     ExtendsModelArrayOperations,
     ExtendsModelOperations,
@@ -30,6 +35,20 @@ from .operations import (
     IsUnknownDerivedOperations,
     IsUnknownDiscriminatedOperations,
     IsUnknownOperations,
+    MultipleSpreadOperations,
+    SpreadDifferentFloatOperations,
+    SpreadDifferentModelArrayOperations,
+    SpreadDifferentModelOperations,
+    SpreadDifferentStringOperations,
+    SpreadFloatOperations,
+    SpreadModelArrayOperations,
+    SpreadModelOperations,
+    SpreadRecordDiscriminatedUnionOperations,
+    SpreadRecordNonDiscriminatedUnion2Operations,
+    SpreadRecordNonDiscriminatedUnion3Operations,
+    SpreadRecordNonDiscriminatedUnionOperations,
+    SpreadRecordUnionOperations,
+    SpreadStringOperations,
 )
 
 
@@ -58,22 +77,80 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
      typetest.property.additionalproperties.aio.operations.ExtendsStringOperations
     :ivar is_string: IsStringOperations operations
     :vartype is_string: typetest.property.additionalproperties.aio.operations.IsStringOperations
+    :ivar spread_string: SpreadStringOperations operations
+    :vartype spread_string:
+     typetest.property.additionalproperties.aio.operations.SpreadStringOperations
     :ivar extends_float: ExtendsFloatOperations operations
     :vartype extends_float:
      typetest.property.additionalproperties.aio.operations.ExtendsFloatOperations
     :ivar is_float: IsFloatOperations operations
     :vartype is_float: typetest.property.additionalproperties.aio.operations.IsFloatOperations
+    :ivar spread_float: SpreadFloatOperations operations
+    :vartype spread_float:
+     typetest.property.additionalproperties.aio.operations.SpreadFloatOperations
     :ivar extends_model: ExtendsModelOperations operations
     :vartype extends_model:
      typetest.property.additionalproperties.aio.operations.ExtendsModelOperations
     :ivar is_model: IsModelOperations operations
     :vartype is_model: typetest.property.additionalproperties.aio.operations.IsModelOperations
+    :ivar spread_model: SpreadModelOperations operations
+    :vartype spread_model:
+     typetest.property.additionalproperties.aio.operations.SpreadModelOperations
     :ivar extends_model_array: ExtendsModelArrayOperations operations
     :vartype extends_model_array:
      typetest.property.additionalproperties.aio.operations.ExtendsModelArrayOperations
     :ivar is_model_array: IsModelArrayOperations operations
     :vartype is_model_array:
      typetest.property.additionalproperties.aio.operations.IsModelArrayOperations
+    :ivar spread_model_array: SpreadModelArrayOperations operations
+    :vartype spread_model_array:
+     typetest.property.additionalproperties.aio.operations.SpreadModelArrayOperations
+    :ivar spread_different_string: SpreadDifferentStringOperations operations
+    :vartype spread_different_string:
+     typetest.property.additionalproperties.aio.operations.SpreadDifferentStringOperations
+    :ivar spread_different_float: SpreadDifferentFloatOperations operations
+    :vartype spread_different_float:
+     typetest.property.additionalproperties.aio.operations.SpreadDifferentFloatOperations
+    :ivar spread_different_model: SpreadDifferentModelOperations operations
+    :vartype spread_different_model:
+     typetest.property.additionalproperties.aio.operations.SpreadDifferentModelOperations
+    :ivar spread_different_model_array: SpreadDifferentModelArrayOperations operations
+    :vartype spread_different_model_array:
+     typetest.property.additionalproperties.aio.operations.SpreadDifferentModelArrayOperations
+    :ivar extends_different_spread_string: ExtendsDifferentSpreadStringOperations operations
+    :vartype extends_different_spread_string:
+     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadStringOperations
+    :ivar extends_different_spread_float: ExtendsDifferentSpreadFloatOperations operations
+    :vartype extends_different_spread_float:
+     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadFloatOperations
+    :ivar extends_different_spread_model: ExtendsDifferentSpreadModelOperations operations
+    :vartype extends_different_spread_model:
+     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelOperations
+    :ivar extends_different_spread_model_array: ExtendsDifferentSpreadModelArrayOperations
+     operations
+    :vartype extends_different_spread_model_array:
+     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelArrayOperations
+    :ivar multiple_spread: MultipleSpreadOperations operations
+    :vartype multiple_spread:
+     typetest.property.additionalproperties.aio.operations.MultipleSpreadOperations
+    :ivar spread_record_union: SpreadRecordUnionOperations operations
+    :vartype spread_record_union:
+     typetest.property.additionalproperties.aio.operations.SpreadRecordUnionOperations
+    :ivar spread_record_discriminated_union: SpreadRecordDiscriminatedUnionOperations operations
+    :vartype spread_record_discriminated_union:
+     typetest.property.additionalproperties.aio.operations.SpreadRecordDiscriminatedUnionOperations
+    :ivar spread_record_non_discriminated_union: SpreadRecordNonDiscriminatedUnionOperations
+     operations
+    :vartype spread_record_non_discriminated_union:
+     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnionOperations
+    :ivar spread_record_non_discriminated_union2: SpreadRecordNonDiscriminatedUnion2Operations
+     operations
+    :vartype spread_record_non_discriminated_union2:
+     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion2Operations
+    :ivar spread_record_non_discriminated_union3: SpreadRecordNonDiscriminatedUnion3Operations
+     operations
+    :vartype spread_record_non_discriminated_union3:
+     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion3Operations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -81,7 +158,8 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = AdditionalPropertiesClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = AdditionalPropertiesClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -99,7 +177,7 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -120,14 +198,60 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         )
         self.extends_string = ExtendsStringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.is_string = IsStringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_string = SpreadStringOperations(self._client, self._config, self._serialize, self._deserialize)
         self.extends_float = ExtendsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
         self.is_float = IsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_float = SpreadFloatOperations(self._client, self._config, self._serialize, self._deserialize)
         self.extends_model = ExtendsModelOperations(self._client, self._config, self._serialize, self._deserialize)
         self.is_model = IsModelOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_model = SpreadModelOperations(self._client, self._config, self._serialize, self._deserialize)
         self.extends_model_array = ExtendsModelArrayOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.is_model_array = IsModelArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_model_array = SpreadModelArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_different_string = SpreadDifferentStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_different_float = SpreadDifferentFloatOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_different_model = SpreadDifferentModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_different_model_array = SpreadDifferentModelArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.extends_different_spread_string = ExtendsDifferentSpreadStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.extends_different_spread_float = ExtendsDifferentSpreadFloatOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.extends_different_spread_model = ExtendsDifferentSpreadModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.extends_different_spread_model_array = ExtendsDifferentSpreadModelArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.multiple_spread = MultipleSpreadOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_record_union = SpreadRecordUnionOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_record_discriminated_union = SpreadRecordDiscriminatedUnionOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_record_non_discriminated_union = SpreadRecordNonDiscriminatedUnionOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_record_non_discriminated_union2 = SpreadRecordNonDiscriminatedUnion2Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_record_non_discriminated_union3 = SpreadRecordNonDiscriminatedUnion3Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -150,13 +274,17 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AdditionalPropertiesClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

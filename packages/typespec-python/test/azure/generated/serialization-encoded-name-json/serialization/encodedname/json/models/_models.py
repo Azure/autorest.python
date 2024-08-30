@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class JsonEncodedNameModel(_model_base.Model):
     """JsonEncodedNameModel.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar default_name: Pass in true. Required.
     :vartype default_name: bool
@@ -30,8 +29,7 @@ class JsonEncodedNameModel(_model_base.Model):
         self,
         *,
         default_name: bool,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

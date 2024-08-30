@@ -40,10 +40,12 @@ from bodydatetimerfc1123 import AutoRestRFC1123DateTimeTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestRFC1123DateTimeTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestDateTimeRfc(object):
 
@@ -78,6 +80,7 @@ class TestDateTimeRfc(object):
         from bodydatetimerfc1123.models import Error
 
         from bodydatetimerfc1123.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -86,5 +89,8 @@ class TestDateTimeRfc(object):
         with pytest.raises(ImportError):
             from bodydatetimerfc1123.operations import _datetimerfc1123_operations_py3
 
-        from bodydatetimerfc1123.operations._datetimerfc1123_operations import Datetimerfc1123Operations as Datetimerfc1123OperationsPy2
+        from bodydatetimerfc1123.operations._datetimerfc1123_operations import (
+            Datetimerfc1123Operations as Datetimerfc1123OperationsPy2,
+        )
+
         assert Datetimerfc1123Operations == Datetimerfc1123OperationsPy2

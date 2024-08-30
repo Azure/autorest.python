@@ -40,10 +40,12 @@ from bodyduration import AutoRestDurationTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDurationTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestDuration(object):
 
@@ -61,6 +63,7 @@ class TestDuration(object):
         from bodyduration.models import Error
 
         from bodyduration.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -70,4 +73,5 @@ class TestDuration(object):
             from bodyduration.operations import _duration_operations_py3
 
         from bodyduration.operations._duration_operations import DurationOperations as DurationOperationsPy2
+
         assert DurationOperations == DurationOperationsPy2

@@ -30,31 +30,38 @@ from bodybooleanversiontolerant.aio import AutoRestBoolTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestBoolTestService() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_model_get_true(client):
-    assert (await client.bool.get_true())
+    assert await client.bool.get_true()
+
 
 @pytest.mark.asyncio
 async def test_model_get_false(client):
     assert not (await client.bool.get_false())
 
+
 @pytest.mark.asyncio
 async def test_model_get_null(client):
     await client.bool.get_null()
+
 
 @pytest.mark.asyncio
 async def test_model_put_false(client):
     await client.bool.put_false()
 
+
 @pytest.mark.asyncio
 async def test_model_put_true(client):
     await client.bool.put_true()
+
 
 @pytest.mark.asyncio
 async def test_model_get_invalid(client):

@@ -30,17 +30,17 @@ class Endpoints(Model):
     """
 
     _validation = {
-        'blob': {'readonly': True},
-        'queue': {'readonly': True},
-        'table': {'readonly': True},
-        'file': {'readonly': True},
+        "blob": {"readonly": True},
+        "queue": {"readonly": True},
+        "table": {"readonly": True},
+        "file": {"readonly": True},
     }
 
     _attribute_map = {
-        'blob': {'key': 'blob', 'type': 'str'},
-        'queue': {'key': 'queue', 'type': 'str'},
-        'table': {'key': 'table', 'type': 'str'},
-        'file': {'key': 'file', 'type': 'str'},
+        "blob": {"key": "blob", "type": "str"},
+        "queue": {"key": "queue", "type": "str"},
+        "table": {"key": "table", "type": "str"},
+        "file": {"key": "file", "type": "str"},
     }
 
     def __init__(self):

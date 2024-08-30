@@ -31,19 +31,21 @@ from azure.core.exceptions import HttpResponseError, ResourceNotFoundError
 
 from xmserrorresponseversiontolerant.aio import XMSErrorResponseExtensions
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with XMSErrorResponseExtensions(endpoint="http://localhost:3000") as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_get_by_pet_id_success(client):
 
     pet = await client.pet.get_pet_by_id("tommy")
-    assert pet['name'] == "Tommy Tomson"
+    assert pet["name"] == "Tommy Tomson"
 
-    await client.pet.get_pet_by_id('django')  # no fail, 202
+    await client.pet.get_pet_by_id("django")  # no fail, 202
 
 
 @pytest.mark.asyncio
@@ -52,14 +54,15 @@ async def test_get_by_pet_id_discriminator(client):
     with pytest.raises(HttpResponseError) as excinfo:
         await client.pet.get_pet_by_id("coyoteUgly")
 
-    assert excinfo.value.response.json()['whatNotFound'] == 'AnimalNotFound'
-    assert excinfo.value.response.json()['reason'] == "the type of animal requested is not available"
+    assert excinfo.value.response.json()["whatNotFound"] == "AnimalNotFound"
+    assert excinfo.value.response.json()["reason"] == "the type of animal requested is not available"
 
     with pytest.raises(HttpResponseError) as excinfo:
         await client.pet.get_pet_by_id("weirdAlYankovic")
 
-    assert excinfo.value.response.json()['whatNotFound'] == 'InvalidResourceLink'
-    assert excinfo.value.response.json()['reason'] == "link to pet not found"
+    assert excinfo.value.response.json()["whatNotFound"] == "InvalidResourceLink"
+    assert excinfo.value.response.json()["reason"] == "link to pet not found"
+
 
 @pytest.mark.asyncio
 async def test_get_by_pet_id_basic_types(client):
@@ -74,26 +77,29 @@ async def test_get_by_pet_id_basic_types(client):
     assert excinfo.value.model is None  # no model attached
     assert json.loads(excinfo.value.response.text()) == 123
 
+
 @pytest.mark.asyncio
 async def test_do_something_success(client):
     result = await client.pet.do_something("stay")
     with pytest.raises(KeyError):
-        result['actionResponse']
+        result["actionResponse"]
+
 
 @pytest.mark.asyncio
 async def test_do_something_error(client):
 
     with pytest.raises(HttpResponseError) as excinfo:
         await client.pet.do_something("jump")
-    assert excinfo.value.response.json()['errorType'] == 'PetSadError'
-    assert excinfo.value.response.json()['reason'] == "need more treats"
+    assert excinfo.value.response.json()["errorType"] == "PetSadError"
+    assert excinfo.value.response.json()["reason"] == "need more treats"
 
     with pytest.raises(ResourceNotFoundError) as excinfo:
         await client.pet.do_something("fetch")
+
 
 @pytest.mark.asyncio
 async def test_error_deserialization_with_param_name_models(client):
     with pytest.raises(HttpResponseError) as excinfo:
         await client.pet.has_models_param()
-    assert excinfo.value.response.json()['errorType'] == 'PetSadError'
+    assert excinfo.value.response.json()["errorType"] == "PetSadError"
     assert excinfo.value.status_code == 500

@@ -10,6 +10,7 @@
 # --------------------------------------------------------------------------
 
 from typing import Any, Optional
+from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies

@@ -27,32 +27,39 @@ import pytest
 from async_generator import yield_, async_generator
 from anything.aio import AnythingClient
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AnythingClient(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_get_string(client):
-    assert await client.get_string() == 'anything'
+    assert await client.get_string() == "anything"
+
 
 @pytest.mark.asyncio
 async def test_put_string(client):
     await client.put_string(input="anything")
 
+
 @pytest.mark.asyncio
 async def test_get_object(client):
     assert await client.get_object() == {"message": "An object was successfully returned"}
 
+
 @pytest.mark.asyncio
 async def test_put_object(client):
-    await client.put_object({'foo': 'bar'})
+    await client.put_object({"foo": "bar"})
+
 
 @pytest.mark.asyncio
 async def test_get_array(client):
-    assert await client.get_array() == ['foo', 'bar']
+    assert await client.get_array() == ["foo", "bar"]
+
 
 @pytest.mark.asyncio
 async def test_put_array(client):
-    await client.put_array(['foo', 'bar'])
+    await client.put_array(["foo", "bar"])

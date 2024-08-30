@@ -16,9 +16,7 @@ class Config:
 
     def imports(self, async_mode: bool) -> FileImport:
         imports_to_load = "async_imports" if async_mode else "sync_imports"
-        return FileImport(
-            json.loads(self.default_version_metadata["config"][imports_to_load])
-        )
+        return FileImport(json.loads(self.default_version_metadata["config"][imports_to_load]))
 
     def credential_call(self, async_mode: bool) -> str:
         if async_mode:

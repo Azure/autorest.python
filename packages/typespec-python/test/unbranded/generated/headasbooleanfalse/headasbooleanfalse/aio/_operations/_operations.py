@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -17,6 +17,8 @@ from corehttp.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
@@ -32,6 +34,7 @@ from ..._operations._operations import (
     build_visibility_patch_model_request,
     build_visibility_post_model_request,
     build_visibility_put_model_request,
+    build_visibility_put_read_only_model_request,
 )
 from .._vendor import VisibilityClientMixinABC
 
@@ -45,6 +48,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
+
     @overload
     async def get_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
@@ -59,39 +63,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -108,24 +79,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -142,24 +95,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     async def get_model(
@@ -172,41 +107,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -233,7 +135,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -244,7 +149,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                await response.read()  # Load the body in memory and close the socket
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -272,24 +180,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -334,26 +224,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -380,7 +252,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -390,8 +265,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -412,24 +285,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -474,26 +329,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -520,7 +357,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -530,8 +370,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -552,24 +390,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -614,26 +434,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -660,7 +462,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -670,8 +475,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -692,24 +495,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -754,26 +539,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -800,7 +567,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -810,8 +580,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -832,24 +600,6 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
 
     @overload
@@ -894,26 +644,8 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "createProp": [
-                        "str"  # Required string[], illustrating a create property. Required.
-                    ],
-                    "deleteProp": bool,  # Required bool, illustrating a delete property.
-                      Required.
-                    "queryProp": 0,  # Required int32, illustrating a query property. Required.
-                    "readProp": "str",  # Required string, illustrating a readonly property.
-                      Required.
-                    "updateProp": [
-                        0  # Required int32[], illustrating a update property. Required.
-                    ]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -940,7 +672,10 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -950,10 +685,125 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                await response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    async def put_read_only_model(
+        self, input: _models.ReadOnlyModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ReadOnlyModel:
+        """put_read_only_model.
+
+        :param input: Required.
+        :type input: ~headasbooleanfalse.models.ReadOnlyModel
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
+        :rtype: ~headasbooleanfalse.models.ReadOnlyModel
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_read_only_model(
+        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ReadOnlyModel:
+        """put_read_only_model.
+
+        :param input: Required.
+        :type input: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
+        :rtype: ~headasbooleanfalse.models.ReadOnlyModel
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put_read_only_model(
+        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.ReadOnlyModel:
+        """put_read_only_model.
+
+        :param input: Required.
+        :type input: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
+        :rtype: ~headasbooleanfalse.models.ReadOnlyModel
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def put_read_only_model(
+        self, input: Union[_models.ReadOnlyModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.ReadOnlyModel:
+        """put_read_only_model.
+
+        :param input: Is one of the following types: ReadOnlyModel, JSON, IO[bytes] Required.
+        :type input: ~headasbooleanfalse.models.ReadOnlyModel or JSON or IO[bytes]
+        :return: ReadOnlyModel. The ReadOnlyModel is compatible with MutableMapping
+        :rtype: ~headasbooleanfalse.models.ReadOnlyModel
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.ReadOnlyModel] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(input, (IOBase, bytes)):
+            _content = input
+        else:
+            _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_visibility_put_read_only_model_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.ReadOnlyModel, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore

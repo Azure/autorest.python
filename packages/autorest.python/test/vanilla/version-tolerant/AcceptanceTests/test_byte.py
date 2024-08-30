@@ -31,6 +31,7 @@ from .serializer import deserialize_base64, serialize_bytearray, deserialize_byt
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATByteService() as client:
@@ -42,11 +43,14 @@ def test_non_ascii(client):
     client.byte.put_non_ascii(serialize_bytearray(tests))
     assert tests == deserialize_bytearray(client.byte.get_non_ascii())
 
+
 def test_get_null(client):
     assert client.byte.get_null() is None
 
+
 def test_get_empty(client):
     assert bytearray() == deserialize_base64(client.byte.get_empty())
+
 
 def test_get_invalid(client):
     assert client.byte.get_invalid() == "::::SWAGGER::::"

@@ -10,6 +10,12 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
+class ExtendedEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+    """Type of ExtendedEnum."""
+
+    ENUM_VALUE2 = "value2"
+
+
 class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Enum that will be used as a property for model EnumProperty. Non-extensible."""
 

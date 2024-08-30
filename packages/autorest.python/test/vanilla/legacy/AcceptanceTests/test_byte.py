@@ -40,23 +40,25 @@ from bodybyte import AutoRestSwaggerBATByteService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATByteService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestByte(object):
 
     def test_non_ascii(self, client):
         tests = bytearray([0x0FF, 0x0FE, 0x0FD, 0x0FC, 0x0FB, 0x0FA, 0x0F9, 0x0F8, 0x0F7, 0x0F6])
         client.byte.put_non_ascii(tests)
-        assert tests ==  client.byte.get_non_ascii()
+        assert tests == client.byte.get_non_ascii()
 
     def test_get_null(self, client):
         assert client.byte.get_null() is None
 
     def test_get_empty(self, client):
-        assert bytearray() ==  client.byte.get_empty()
+        assert bytearray() == client.byte.get_empty()
 
     def test_get_invalid(self, client):
         with pytest.raises(DeserializationError):
@@ -66,6 +68,7 @@ class TestByte(object):
         from bodybyte.models import Error
 
         from bodybyte.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -75,4 +78,5 @@ class TestByte(object):
             from bodybyte.operations import _byte_operations_py3
 
         from bodybyte.operations._byte_operations import ByteOperations as ByteOperationsPy2
+
         assert ByteOperations == ByteOperationsPy2

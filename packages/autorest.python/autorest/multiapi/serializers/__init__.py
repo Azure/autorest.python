@@ -6,13 +6,15 @@
 from pathlib import Path
 from typing import Any, Optional, Union, List
 from jinja2 import PackageLoader, Environment
+from pygen import ReaderAndWriter
+from pygen.utils import build_policies
 
 from .import_serializer import FileImportSerializer
 
 from ...jsonrpc import AutorestAPI
 from ..models import CodeModel, GlobalParameter
-from ... import ReaderAndWriter, ReaderAndWriterAutorest
-from ..._utils import build_policies
+from ... import ReaderAndWriterAutorest
+
 
 __all__ = [
     "MultiAPISerializer",
@@ -27,13 +29,8 @@ _FILE_TO_TEMPLATE = {
 }
 
 
-def _method_signature_helper(
-    parameters: List[GlobalParameter], async_mode: bool
-) -> List[str]:
-    return [
-        p.signature(async_mode)
-        for p in sorted(parameters, key=lambda p: p.required, reverse=True)
-    ]
+def _method_signature_helper(parameters: List[GlobalParameter], async_mode: bool) -> List[str]:
+    return [p.signature(async_mode) for p in sorted(parameters, key=lambda p: p.required, reverse=True)]
 
 
 def _get_file_path(filename: str, async_mode: bool) -> Path:
@@ -62,37 +59,25 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 code_model.global_parameters.parameters
                 + code_model.global_parameters.service_client_specific_global_parameters
             )
-            positional_params = [
-                p for p in all_params if p.method_location == "positional"
-            ]
-            keyword_only_params = [
-                p for p in all_params if p.method_location == "keywordOnly"
-            ]
+            positional_params = [p for p in all_params if p.method_location == "positional"]
+            keyword_only_params = [p for p in all_params if p.method_location == "keywordOnly"]
             return template.render(
                 code_model=code_model,
                 async_mode=async_mode,
-                positional_params=_method_signature_helper(
-                    positional_params, async_mode
-                ),
-                keyword_only_params=_method_signature_helper(
-                    keyword_only_params, async_mode
-                ),
+                positional_params=_method_signature_helper(positional_params, async_mode),
+                keyword_only_params=_method_signature_helper(keyword_only_params, async_mode),
                 **kwargs
             )
 
         # serialize init file
-        self.write_file(
-            _get_file_path("__init__", async_mode), _render_template("init")
-        )
+        self.write_file(_get_file_path("__init__", async_mode), _render_template("init"))
 
         # serialize service client file
         imports = FileImportSerializer(code_model.client.imports(async_mode))
-        config_policies = build_policies(code_model.azure_arm, async_mode)
+        config_policies = build_policies(code_model.azure_arm, async_mode, is_azure_flavor=True)
         self.write_file(
             _get_file_path(code_model.client.filename, async_mode),
-            _render_template(
-                "client", imports=imports, config_policies=config_policies
-            ),
+            _render_template("client", imports=imports, config_policies=config_policies),
         )
 
         # serialize config file
@@ -140,7 +125,7 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
         if not code_model.client.client_side_validation:
             codegen_env = Environment(
-                loader=PackageLoader("autorest.codegen", "templates"),
+                loader=PackageLoader("pygen.codegen", "templates"),
                 keep_trailing_newline=True,
                 line_statement_prefix="##",
                 line_comment_prefix="###",
@@ -156,7 +141,5 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
 
 
 class MultiAPISerializerAutorest(MultiAPISerializer, ReaderAndWriterAutorest):
-    def __init__(
-        self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]
-    ) -> None:
+    def __init__(self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]) -> None:
         super().__init__(autorestapi=autorestapi, output_folder=output_folder)

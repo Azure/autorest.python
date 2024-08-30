@@ -2,11 +2,13 @@ trigger:
   branches:
     include:
       - main
+      - '*gh-readonly-queue*'
 
 pr:
   branches:
     include:
       - main
+      - '*gh-readonly-queue*'
 
 resources:
   repositories:
@@ -42,6 +44,14 @@ jobs:
 
     strategy:
       matrix:
+        Linux_Python38:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu18.04"
+          PythonVersion: "3.8"
+        Windows_Python38:
+          OSName: "Windows"
+          OSVmImage: "MMS2020"
+          PythonVersion: "3.8"      
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
@@ -68,8 +78,7 @@ jobs:
         parameters:
             installAutorest: true
             folderName: "autorest.python"
-            pythonCodeChecks: true
-            pythonFolderName: autorest
+            unitTest: true
             regenerate: true
 
       - script: |
@@ -101,12 +110,6 @@ jobs:
         condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
-      - script: |
-          npm run coverage -- publish --repo=$(Build.Repository.Name) --ref=$(Build.SourceBranch) --githubToken=$(github-token) --azStorageAccount=$(storage-coverage-user) --azStorageAccessKey=$(storage-coverage-pass) --coverageDirectory=$(AUTOREST_TESTSERVER_COVERAGE_DIRECTORY)
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/node_modules/@microsoft.azure/autorest.testserver
-        displayName: "Publish coverage report to storage account"
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - script: |
               git clone https://github.com/Azure/azure-sdk-for-python.git --depth=1 --branch main
@@ -134,6 +137,14 @@ jobs:
 
     strategy:
       matrix:
+        Linux_Python38:
+          OSName: "Linux"
+          OSVmImage: "MMSUbuntu18.04"
+          PythonVersion: "3.8"
+        Windows_Python38:
+          OSName: "Windows"
+          OSVmImage: "MMS2020"
+          PythonVersion: "3.8"
         Linux_Python310:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"

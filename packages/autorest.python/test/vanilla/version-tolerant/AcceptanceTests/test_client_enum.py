@@ -26,10 +26,12 @@
 import pytest
 from clientenumversiontolerant import ClientWithEnum, models
 
+
 @pytest.fixture
 def client():
     with ClientWithEnum(x_ms_enum=models.Enum0.SINGLE) as client:
         yield client
+
 
 def test_head(client):
     client.head()

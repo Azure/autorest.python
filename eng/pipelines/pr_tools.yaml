@@ -1,0 +1,28 @@
+name: PR Tools
+trigger: none
+pr:
+  - providerhub
+  - release/*
+
+extends:
+  template: /eng/pipelines/templates/1es-redirect.yml
+  parameters:
+    variables:
+      - template: /eng/pipelines/templates/variables/globals.yml@self
+    stages:
+      - stage: change_comment
+        jobs:
+          - job: change_comment
+            displayName: Describe changes on PR
+            condition: and(succeeded(), eq(startsWith(variables['System.PullRequest.SourceBranch'], 'publish/'), false))
+            pool:
+              name: $(LINUXPOOL)
+              image: $(LINUXVMIMAGE)
+              os: linux
+            steps:
+              - checkout: self
+
+              - script: npx -p @chronus/github-pr-commenter@0.4.0 chronus-github-pr-commenter verify
+                displayName: Make comment about changes
+                env:
+                  GITHUB_TOKEN: $(azuresdk-github-pat)

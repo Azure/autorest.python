@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -17,6 +17,8 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -41,10 +43,11 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class RpcClientOperationsMixin(RpcClientMixinABC):
+
     async def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
-    ) -> JSON:
-        error_map = {
+    ) -> AsyncIterator[bytes]:
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -56,7 +59,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[JSON] = kwargs.pop("cls", None)
+        cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -72,9 +75,12 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = False
+        _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -82,15 +88,17 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
+            try:
                 await response.read()  # Load the body in memory and close the socket
+            except (StreamConsumedError, StreamClosedError):
+                pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         response_headers = {}
         response_headers["Operation-Location"] = self._deserialize("str", response.headers.get("Operation-Location"))
 
-        deserialized = _deserialize(JSON, response.json())
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -105,7 +113,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -114,19 +122,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"  # Prompt. Required.
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"  # The data. Required.
-                }
         """
 
     @overload
@@ -137,7 +132,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -146,14 +141,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"  # The data. Required.
-                }
         """
 
     @overload
@@ -164,7 +151,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -173,14 +160,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"  # The data. Required.
-                }
         """
 
     @distributed_trace_async
@@ -191,25 +170,13 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         Generate data.
 
-        :param body: Is one of the following types: GenerationOptions, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: GenerationOptions, JSON,
+         IO[bytes] Required.
         :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"  # Prompt. Required.
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"  # The data. Required.
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -223,6 +190,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             raw_result = await self._long_running_rpc_initial(
                 body=body, content_type=content_type, cls=lambda x, y, z: x, headers=_headers, params=_params, **kwargs
             )
+            await raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
         def get_long_running_output(pipeline_response):
@@ -237,8 +205,15 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))
+            polling_method: AsyncPollingMethod = cast(
+                AsyncPollingMethod,
+                AsyncLROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs),
+            )
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:

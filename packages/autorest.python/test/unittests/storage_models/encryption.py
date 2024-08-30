@@ -28,12 +28,12 @@ class Encryption(Model):
     """
 
     _validation = {
-        'key_source': {'required': True, 'constant': True},
+        "key_source": {"required": True, "constant": True},
     }
 
     _attribute_map = {
-        'services': {'key': 'services', 'type': 'EncryptionServices'},
-        'key_source': {'key': 'keySource', 'type': 'str'},
+        "services": {"key": "services", "type": "EncryptionServices"},
+        "key_source": {"key": "keySource", "type": "str"},
     }
 
     key_source = "Microsoft.Storage"

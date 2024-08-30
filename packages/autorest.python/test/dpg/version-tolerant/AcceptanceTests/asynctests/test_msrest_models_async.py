@@ -26,10 +26,12 @@
 import pytest
 from dpgtestmodelsversiontolerant import aio, models
 
+
 @pytest.fixture
 async def client():
     async with aio.DPGClient() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_paging(client):

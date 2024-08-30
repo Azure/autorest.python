@@ -28,6 +28,7 @@ from errorwithsecretsversiontolerant import ErrorWithSecrets
 from errorwithsecretsversiontolerant._operations._operations import build_error_with_secrets_create_secret_request
 from azure.core.exceptions import HttpResponseError
 
+
 @pytest.fixture
 def client():
     with ErrorWithSecrets() as client:
@@ -38,10 +39,11 @@ def test_create_secret(client):
     request = build_error_with_secrets_create_secret_request(
         headers={"authorization": "SharedKey 1c88a67921784300a462b2cb61da2339"},
         params={"key": "1c88a67921784300a462b2cb61da2339"},
-        json={ "key": "1c88a67921784300a462b2cb61da2339" },
+        json={"key": "1c88a67921784300a462b2cb61da2339"},
     )
     response = client.send_request(request)
     response.raise_for_status()
+
 
 def test_raise_error_with_secrets(client):
     with pytest.raises(HttpResponseError) as ex:

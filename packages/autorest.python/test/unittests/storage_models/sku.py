@@ -31,13 +31,13 @@ class Sku(Model):
     """
 
     _validation = {
-        'name': {'required': True},
-        'tier': {'readonly': True},
+        "name": {"required": True},
+        "tier": {"readonly": True},
     }
 
     _attribute_map = {
-        'name': {'key': 'name', 'type': 'SkuName'},
-        'tier': {'key': 'tier', 'type': 'SkuTier'},
+        "name": {"key": "name", "type": "SkuName"},
+        "tier": {"key": "tier", "type": "SkuTier"},
     }
 
     def __init__(self, name):

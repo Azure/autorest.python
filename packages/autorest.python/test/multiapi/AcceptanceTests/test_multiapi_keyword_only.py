@@ -27,29 +27,32 @@ import pytest
 from multiapikeywordonly import MultiapiServiceClient
 from .multiapi_base import NotTested
 
+
 @pytest.fixture
 def default_client(credential, authentication_policy):
     with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         yield default_client
+
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
     with MultiapiServiceClient(
-		endpoint="http://localhost:3000",
+        endpoint="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         yield client
+
 
 @pytest.fixture
 def namespace_models():
     from multiapikeywordonly import models
+
     return models
+
 
 class TestMultiapiClientKeywordOnly(NotTested.TestMultiapiBase):
     pass

@@ -40,15 +40,17 @@ from bodyinteger import AutoRestIntegerTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
         yield client
 
+
 class TestInteger(object):
 
     def test_max_min_32_bit(self, client):
-        client.int_operations.put_max32(2147483647) # sys.maxint
+        client.int_operations.put_max32(2147483647)  # sys.maxint
         client.int_operations.put_min32(-2147483648)
 
     def test_max_min_64_bit(self, client):
@@ -73,7 +75,7 @@ class TestInteger(object):
     def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
         client.int_operations.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  client.int_operations.get_unix_time().utctimetuple()
+        assert unix_date.utctimetuple() == client.int_operations.get_unix_time().utctimetuple()
 
     def test_get_null_and_invalid_unix_time(self, client):
         assert client.int_operations.get_null_unix_time() is None
@@ -85,6 +87,7 @@ class TestInteger(object):
         from bodyinteger.models import Error
 
         from bodyinteger.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -94,4 +97,5 @@ class TestInteger(object):
             from bodyinteger.operations import _int_operations_operations_py3
 
         from bodyinteger.operations._int_operations_operations import IntOperations as IntOperationsPy2
+
         assert IntOperations == IntOperationsPy2

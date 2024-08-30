@@ -43,11 +43,13 @@ from bodystring.models import Colors
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestSwaggerBATService(base_url="http://localhost:3000") as client:
         await yield_(client)
+
 
 class TestString(object):
 
@@ -58,7 +60,7 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_empty(self, client):
-        assert "" ==  (await client.string.get_empty())
+        assert "" == (await client.string.get_empty())
         # changing this behavior because of this pr being merged: https://github.com/Azure/autorest.testserver/pull/145/files
         await client.string.put_empty()
 
@@ -79,7 +81,8 @@ class TestString(object):
                 "\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
                 "\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
                 "\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+                "\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+            ).decode("utf-8")
 
         except AttributeError:
             test_str = (
@@ -96,7 +99,8 @@ class TestString(object):
                 b"\xb8\xb5\xef\xb9\x84\xef\xb8\xbb\xef\xb8\xb1\xef\xb8\xb3"
                 b"\xef\xb8\xb4\xe2\x85\xb0\xe2\x85\xb9\xc9\x91\xee\x9f\x87"
                 b"\xc9\xa1\xe3\x80\x87\xe3\x80\xbe\xe2\xbf\xbb\xe2\xba\x81"
-                b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac").decode('utf-8')
+                b"\xee\xa1\x83\xe4\x9c\xa3\xee\xa1\xa4\xe2\x82\xac"
+            ).decode("utf-8")
 
         assert test_str == (await client.string.get_mbcs())
         await client.string.put_mbcs()
@@ -104,7 +108,7 @@ class TestString(object):
     @pytest.mark.asyncio
     async def test_whitespace(self, client):
         test_str = "    Now is the time for all good men to come to the aid of their country    "
-        assert test_str ==  (await client.string.get_whitespace())
+        assert test_str == (await client.string.get_whitespace())
         await client.string.put_whitespace()
 
     @pytest.mark.asyncio
@@ -113,20 +117,20 @@ class TestString(object):
 
     @pytest.mark.asyncio
     async def test_enum_not_expandable(self, client):
-        assert Colors.RED_COLOR ==  (await client.enum.get_not_expandable())
-        await client.enum.put_not_expandable('red color')
+        assert Colors.RED_COLOR == (await client.enum.get_not_expandable())
+        await client.enum.put_not_expandable("red color")
         await client.enum.put_not_expandable(Colors.RED_COLOR)
         with pytest.raises(HttpResponseError):
-            await client.enum.put_not_expandable('not a colour')
+            await client.enum.put_not_expandable("not a colour")
 
     @pytest.mark.asyncio
     async def test_get_base64_encdoded(self, client):
-        assert (await client.string.get_base64_encoded()) ==  'a string that gets encoded with base64'.encode()
+        assert (await client.string.get_base64_encoded()) == "a string that gets encoded with base64".encode()
 
     @pytest.mark.asyncio
     async def test_base64_url_encoded(self, client):
-        assert (await client.string.get_base64_url_encoded()) ==  'a string that gets encoded with base64url'.encode()
-        await client.string.put_base64_url_encoded('a string that gets encoded with base64url'.encode())
+        assert (await client.string.get_base64_url_encoded()) == "a string that gets encoded with base64url".encode()
+        await client.string.put_base64_url_encoded("a string that gets encoded with base64url".encode())
 
     @pytest.mark.asyncio
     async def test_get_null_base64_url_encoded(self, client):
@@ -137,12 +141,12 @@ class TestString(object):
         await client.enum.put_referenced(Colors.RED_COLOR)
         await client.enum.put_referenced("red color")
 
-        assert (await client.enum.get_referenced()) ==  Colors.RED_COLOR
+        assert (await client.enum.get_referenced()) == Colors.RED_COLOR
 
     @pytest.mark.asyncio
     async def test_enum_referenced_constant(self, client):
         await client.enum.put_referenced_constant()
-        assert (await client.enum.get_referenced_constant()).color_constant ==  Colors.GREEN_COLOR.value
+        assert (await client.enum.get_referenced_constant()).color_constant == Colors.GREEN_COLOR.value
 
     def test_patch_file(self):
         from bodystring.models import PatchAddedModel

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -148,6 +148,7 @@ def build_media_types_put_text_and_json_body_request(  # pylint: disable=name-to
 
 
 class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disable=abstract-class-instantiated
+
     def __init__(self):
         raise_if_not_implemented(
             self.__class__,
@@ -176,7 +177,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
 
@@ -211,10 +212,10 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -261,8 +262,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -297,7 +296,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
 
@@ -338,10 +337,10 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"  # Optional. File source path.
+                    "source": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -388,8 +387,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [202]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -406,7 +403,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -441,8 +438,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -467,7 +462,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -499,8 +494,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -526,7 +519,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -558,8 +551,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -583,7 +574,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -615,8 +606,6 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disa
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

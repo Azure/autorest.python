@@ -40,14 +40,17 @@ import pytest
 
 _LOGGER = logging.getLogger(__name__)
 
+
 @pytest.fixture
 def client():
     with AutoRestSwaggerBATXMLService(base_url="http://localhost:3000") as client:
         yield client
 
+
 def _assert_with_log(func, *args, **kwargs):
     def raise_for_status(response, deserialized, headers):
         response.http_response.internal_response.raise_for_status()
+
     try:
         http_response = func(*args, cls=raise_for_status, **kwargs)
     except Exception as err:
@@ -83,14 +86,14 @@ class TestXml(object):
         assert slide2.title == "Overview"
         assert len(slide2.items) == 3
         assert slide2.items[0] == "Why WonderWidgets are great"
-        assert slide2.items[1] == ''
+        assert slide2.items[1] == ""
         assert slide2.items[2] == "Who buys WonderWidgets"
 
         _assert_with_log(client.xml.put_simple, slideshow)
 
     def test_empty_child_element(self, client):
         banana = client.xml.get_empty_child_element()
-        assert banana.flavor == '' # That's the point of this test, it was an empty node.
+        assert banana.flavor == ""  # That's the point of this test, it was an empty node.
         _assert_with_log(client.xml.put_empty_child_element, banana)
 
     def test_empty_root_list(self, client):
@@ -121,8 +124,8 @@ class TestXml(object):
 
     def test_wrapped_lists(self, client):
         bananas = client.xml.get_wrapped_lists()
-        assert bananas.good_apples == ['Fuji', 'Gala']
-        assert bananas.bad_apples == ['Red Delicious']
+        assert bananas.good_apples == ["Fuji", "Gala"]
+        assert bananas.bad_apples == ["Red Delicious"]
         _assert_with_log(client.xml.put_wrapped_lists, bananas)
 
     def test_complex_types(self, client):
@@ -150,9 +153,9 @@ class TestXml(object):
         assert blob.properties.content_length == 100
         assert blob.properties.content_type == "text/html"
         # Check that an empty field in the XML is empty string
-        assert blob.properties.content_encoding == ''
+        assert blob.properties.content_encoding == ""
         assert blob.properties.content_language == "en-US"
-        assert blob.properties.content_md5 == ''
+        assert blob.properties.content_md5 == ""
         assert blob.properties.cache_control == "no-cache"
         assert blob.properties.blob_type == BlobType.block_blob
         # Check that a field NOT in the XML is None
@@ -171,13 +174,14 @@ class TestXml(object):
     def test_acls(self, client):
         acls = client.xml.get_acls()
         assert len(acls) == 1
-        assert acls[0].id == 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI='
+        assert acls[0].id == "MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTI="
         _assert_with_log(client.xml.put_acls, acls)
 
     def test_models(self):
         from xmlservice.models import Error
 
         from xmlservice.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_xms_text(self, client):
@@ -196,10 +200,10 @@ class TestXml(object):
     def test_get_url(self, client):
         url_object = client.xml.get_uri()
         assert isinstance(url_object, ModelWithUrlProperty)
-        assert url_object.url == 'https://myaccount.blob.core.windows.net/'
+        assert url_object.url == "https://myaccount.blob.core.windows.net/"
 
     def test_put_url(self, client):
-        client.xml.put_uri('https://myaccount.blob.core.windows.net/')
+        client.xml.put_uri("https://myaccount.blob.core.windows.net/")
 
     def test_operation_groups(self):
         from xmlservice.operations import XmlOperations
@@ -208,4 +212,5 @@ class TestXml(object):
             from xmlservice.operations import _xml_operations_py3
 
         from xmlservice.operations._xml_operations import XmlOperations as XmlOperationsPy2
+
         assert XmlOperations == XmlOperationsPy2

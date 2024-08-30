@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -88,7 +89,7 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestParameterizedHostTestClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -38,21 +38,18 @@ from os.path import dirname, pardir, join, realpath
 from msrest.exceptions import ValidationError
 
 from validation.aio import AutoRestValidationTest
-from validation.models import (
-    Product,
-    ConstantProduct,
-    ChildProduct)
+from validation.models import Product, ConstantProduct, ChildProduct
 
 import pytest
+
 
 @pytest.fixture
 @async_generator
 async def client():
-    async with AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000") as client:
+    async with AutoRestValidationTest("abc123", base_url="http://localhost:3000") as client:
         client.api_version = "12-34-5678"
         await yield_(client)
+
 
 @pytest.fixture
 def constant_body():
@@ -60,11 +57,12 @@ def constant_body():
     the commented line.
     See https://github.com/Azure/autorest.modelerfour/issues/83
     """
-    #return Product(child=ChildProduct())
+    # return Product(child=ChildProduct())
     return Product(
         child=ChildProduct(),
         const_child=ConstantProduct(),
     )
+
 
 class TestValidation(object):
 
@@ -82,48 +80,48 @@ class TestValidation(object):
         try:
             await client.validation_of_method_parameters("1", 100)
         except ValidationError as err:
-            assert err.rule ==  "min_length"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "min_length"
+            assert err.target == "resource_group_name"
 
     @pytest.mark.asyncio
     async def test_max_length_validation(self, client):
         try:
             await client.validation_of_method_parameters("1234567890A", 100)
         except ValidationError as err:
-            assert err.rule ==  "max_length"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "max_length"
+            assert err.target == "resource_group_name"
 
     @pytest.mark.asyncio
     async def test_pattern_validation(self, client):
         try:
             await client.validation_of_method_parameters("!@#$", 100)
         except ValidationError as err:
-            assert err.rule ==  "pattern"
-            assert err.target ==  "resource_group_name"
+            assert err.rule == "pattern"
+            assert err.target == "resource_group_name"
 
     @pytest.mark.asyncio
     async def test_multiple_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 105)
         except ValidationError as err:
-            assert err.rule ==  "multiple"
-            assert err.target ==  "id"
+            assert err.rule == "multiple"
+            assert err.target == "id"
 
     @pytest.mark.asyncio
     async def test_minimum_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 0)
         except ValidationError as err:
-            assert err.rule ==  "minimum"
-            assert err.target ==  "id"
+            assert err.rule == "minimum"
+            assert err.target == "id"
 
     @pytest.mark.asyncio
     async def test_maximum_validation(self, client):
         try:
             await client.validation_of_method_parameters("123", 2000)
         except ValidationError as err:
-            assert err.rule ==  "maximum"
-            assert err.target ==  "id"
+            assert err.rule == "maximum"
+            assert err.target == "id"
 
     @pytest.mark.asyncio
     async def test_minimum_ex_validation(self, client, constant_body):
@@ -131,8 +129,8 @@ class TestValidation(object):
             constant_body.capacity = 0
             await client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "minimum_ex"
-            assert "capacity" in  err.target
+            assert err.rule == "minimum_ex"
+            assert "capacity" in err.target
 
     @pytest.mark.asyncio
     async def test_maximum_ex_validation(self, client, constant_body):
@@ -140,27 +138,25 @@ class TestValidation(object):
             constant_body.capacity = 100
             await client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "maximum_ex"
-            assert "capacity" in  err.target
+            assert err.rule == "maximum_ex"
+            assert "capacity" in err.target
 
     @pytest.mark.asyncio
     async def test_max_items_validation(self, client, constant_body):
         try:
-            constant_body.display_names = ["item1","item2","item3","item4","item5","item6","item7"]
+            constant_body.display_names = ["item1", "item2", "item3", "item4", "item5", "item6", "item7"]
             await client.validation_of_body("123", 150, constant_body)
         except ValidationError as err:
-            assert err.rule ==  "max_items"
-            assert "display_names" in  err.target
+            assert err.rule == "max_items"
+            assert "display_names" in err.target
 
     @pytest.mark.xfail(reason="https://github.com/Azure/autorest.modelerfour/issues/90")
     @pytest.mark.asyncio
     async def test_api_version_validation(self):
-        with AutoRestValidationTest(
-            "abc123",
-            base_url="http://localhost:3000") as client:
+        with AutoRestValidationTest("abc123", base_url="http://localhost:3000") as client:
             client.api_version = "abc"
             try:
                 await client.validation_of_method_parameters("123", 150)
             except ValidationError as err:
-                assert err.rule ==  "pattern"
-                assert err.target ==  "self.api_version"
+                assert err.rule == "pattern"
+                assert err.target == "self.api_version"

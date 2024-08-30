@@ -28,20 +28,23 @@ from errorwithsecrets.operations._error_with_secrets_operations import build_cre
 from errorwithsecrets.aio import ErrorWithSecrets
 from azure.core.exceptions import HttpResponseError
 
+
 @pytest.fixture
 async def client():
     async with ErrorWithSecrets() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_create_secret(client):
     request = build_create_secret_request(
         headers={"authorization": "SharedKey 1c88a67921784300a462b2cb61da2339"},
         params={"key": "1c88a67921784300a462b2cb61da2339"},
-        json={ "key": "1c88a67921784300a462b2cb61da2339" },
+        json={"key": "1c88a67921784300a462b2cb61da2339"},
     )
     response = await client._send_request(request)
     response.raise_for_status()
+
 
 @pytest.mark.asyncio
 async def test_raise_error_with_secrets(client):

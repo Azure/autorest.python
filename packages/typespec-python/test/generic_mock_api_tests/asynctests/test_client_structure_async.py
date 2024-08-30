@@ -10,6 +10,7 @@ from client.structure.multiclient.aio import ClientAClient, ClientBClient
 from client.structure.renamedoperation.aio import RenamedOperationClient
 from client.structure.twooperationgroup.aio import TwoOperationGroupClient
 
+
 @pytest.mark.asyncio
 async def test_structure_default():
     client = ServiceClient(endpoint="http://localhost:3000", client=ClientType.DEFAULT)
@@ -23,6 +24,7 @@ async def test_structure_default():
     await client.qux.eight()
     await client.qux.bar.nine()
 
+
 @pytest.mark.asyncio
 async def test_structure_multiclient():
     client_a = ClientAClient(endpoint="http://localhost:3000", client=ClientType.MULTI_CLIENT)
@@ -35,6 +37,7 @@ async def test_structure_multiclient():
     await client_b.renamed_four()
     await client_b.renamed_six()
 
+
 @pytest.mark.asyncio
 async def test_structure_renamed_operation():
     client = RenamedOperationClient(endpoint="http://localhost:3000", client=ClientType.RENAMED_OPERATION)
@@ -45,6 +48,7 @@ async def test_structure_renamed_operation():
     await client.group.renamed_two()
     await client.group.renamed_four()
     await client.group.renamed_six()
+
 
 @pytest.mark.asyncio
 async def test_structure_two_operation_group():

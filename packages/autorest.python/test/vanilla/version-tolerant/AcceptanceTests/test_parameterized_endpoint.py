@@ -26,6 +26,7 @@
 import pytest
 from parameterizedendpointversiontolerant import ParmaterizedEndpointClient
 
+
 @pytest.fixture
 def client():
     with ParmaterizedEndpointClient(endpoint="http://localhost:3000") as client:

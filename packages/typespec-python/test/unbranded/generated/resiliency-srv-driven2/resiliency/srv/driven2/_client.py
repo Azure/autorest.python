@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
@@ -49,8 +50,8 @@ class ResiliencyServiceDrivenClient(
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in either 'v1' or 'v2'. This represents the API version of a
-     service. Default value is "v2". Note that overriding this default value may result in
-     unsupported behavior.
+     service. Known values are "v2" and None. Default value is "v2". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
@@ -100,14 +101,9 @@ class ResiliencyServiceDrivenClient(
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -116,7 +112,7 @@ class ResiliencyServiceDrivenClient(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ResiliencyServiceDrivenClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -29,27 +29,33 @@ from custombaseurlversiontolerant import AutoRestParameterizedHostTestClient
 from custombaseurlmoreoptionsversiontolerant import AutoRestParameterizedCustomHostTestClient
 import pytest
 
+
 @pytest.fixture
 def client():
-    with AutoRestParameterizedHostTestClient("host:3000", retry_total = 0) as client:
+    with AutoRestParameterizedHostTestClient("host:3000", retry_total=0) as client:
         yield client
+
 
 def test_positive():
     client = AutoRestParameterizedHostTestClient("host:3000")
     client.paths.get_empty("local")
 
+
 def test_get_empty_with_bad_string(client):
     with pytest.raises(ServiceRequestError):
         client.paths.get_empty("bad")
+
 
 def test_get_empty_with_none(client):
     with pytest.raises(ValueError):
         client.paths.get_empty(None)
 
+
 def test_get_empty_from_bad_host():
-    with AutoRestParameterizedHostTestClient("badhost:3000", retry_total = 0) as client:
+    with AutoRestParameterizedHostTestClient("badhost:3000", retry_total=0) as client:
         with pytest.raises(ServiceRequestError):
             client.paths.get_empty("local")
+
 
 def test_more_options():
     with AutoRestParameterizedCustomHostTestClient("test12", "host:3000") as client:

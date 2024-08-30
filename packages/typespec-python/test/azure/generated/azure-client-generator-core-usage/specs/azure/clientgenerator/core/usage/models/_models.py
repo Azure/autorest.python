@@ -7,16 +7,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Mapping, overload
+from typing import Any, Mapping, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
+
+if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
+    from .. import models as _models
 
 
 class InputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -30,8 +33,7 @@ class InputModel(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -62,8 +64,7 @@ class OrphanModel(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -79,7 +80,6 @@ class OrphanModel(_model_base.Model):
 class OutputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -93,8 +93,7 @@ class OutputModel(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -105,3 +104,46 @@ class OutputModel(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class ResultModel(_model_base.Model):
+    """ResultModel.
+
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class RoundTripModel(_model_base.Model):
+    """RoundTripModel.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+
+    :ivar result: Required.
+    :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel
+    """
+
+    result: "_models.ResultModel" = rest_field(visibility=["read"])
+    """Required."""

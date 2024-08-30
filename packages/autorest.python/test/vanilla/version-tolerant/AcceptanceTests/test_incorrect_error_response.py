@@ -27,6 +27,7 @@ import pytest
 from azure.core.exceptions import HttpResponseError
 from incorrecterrorresponseversiontolerant import IncorrectReturnedErrorModel
 
+
 @pytest.mark.skip(reason="Not deserializing models yet")
 def test_swallow_deserialization_error_for_error_model():
     client = IncorrectReturnedErrorModel()

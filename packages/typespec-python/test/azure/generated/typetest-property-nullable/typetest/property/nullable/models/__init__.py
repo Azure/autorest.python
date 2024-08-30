@@ -9,6 +9,7 @@
 from ._models import BytesProperty
 from ._models import CollectionsByteProperty
 from ._models import CollectionsModelProperty
+from ._models import CollectionsStringProperty
 from ._models import DatetimeProperty
 from ._models import DurationProperty
 from ._models import InnerModel
@@ -21,6 +22,7 @@ __all__ = [
     "BytesProperty",
     "CollectionsByteProperty",
     "CollectionsModelProperty",
+    "CollectionsStringProperty",
     "DatetimeProperty",
     "DurationProperty",
     "InnerModel",

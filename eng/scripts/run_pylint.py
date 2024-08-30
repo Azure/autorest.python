@@ -12,24 +12,28 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check, AUTOREST_PACKAGE_DIR
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
 
-rfc_file_location = os.path.join(AUTOREST_PACKAGE_DIR, "pylintrc")
+
+def get_rfc_file_location():
+    rfc_file_location = os.path.join(os.getcwd(), "../../scripts/eng/pylintrc")
+    if os.path.exists(rfc_file_location):
+        return rfc_file_location
+    else:
+        return os.path.join(os.getcwd(), "../../../scripts/eng/pylintrc")
 
 
 def _single_dir_pylint(mod):
-    inner_class = next(
-        d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info")
-    )
+    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
     try:
         check_call(
             [
                 sys.executable,
                 "-m",
                 "pylint",
-                "--rcfile={}".format(rfc_file_location),
+                "--rcfile={}".format(get_rfc_file_location()),
                 "--load-plugins=pylint_guidelines_checker",
                 "--output-format=parseable",
                 str(inner_class.absolute()),
@@ -37,9 +41,7 @@ def _single_dir_pylint(mod):
         )
         return True
     except CalledProcessError as e:
-        logging.error(
-            "{} exited with linting error {}".format(inner_class.stem, e.returncode)
-        )
+        logging.error("{} exited with linting error {}".format(inner_class.stem, e.returncode))
         return False
 
 

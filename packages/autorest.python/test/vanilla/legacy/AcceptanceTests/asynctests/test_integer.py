@@ -41,16 +41,18 @@ from bodyinteger.aio import AutoRestIntegerTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestIntegerTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestInteger(object):
     @pytest.mark.asyncio
     async def test_max_min_32_bit(self, client):
-        await client.int_operations.put_max32(2147483647) # sys.maxint
+        await client.int_operations.put_max32(2147483647)  # sys.maxint
         await client.int_operations.put_min32(-2147483648)
 
     @pytest.mark.asyncio
@@ -80,7 +82,7 @@ class TestInteger(object):
     async def test_unix_time_date(self, client):
         unix_date = datetime(year=2016, month=4, day=13)
         await client.int_operations.put_unix_time_date(unix_date)
-        assert unix_date.utctimetuple() ==  (await client.int_operations.get_unix_time()).utctimetuple()
+        assert unix_date.utctimetuple() == (await client.int_operations.get_unix_time()).utctimetuple()
 
     @pytest.mark.asyncio
     async def test_get_null_and_invalid_unix_time(self, client):

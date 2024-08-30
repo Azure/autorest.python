@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Union
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -79,7 +80,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
+            "client": self._serialize.url("self._config.client", self._config.client, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -88,7 +89,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientAClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 
@@ -156,7 +157,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
+            "client": self._serialize.url("self._config.client", self._config.client, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -165,7 +166,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "ClientBClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

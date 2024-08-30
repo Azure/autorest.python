@@ -30,6 +30,7 @@ from nonstringenums.models import IntEnum, FloatEnum
 import pytest
 import json
 
+
 @pytest.fixture
 def client():
     with NonStringEnumsClient() as client:
@@ -65,4 +66,5 @@ class TestNonStringEnums(object):
             from nonstringenums.operations import _float_operations_py3
 
         from nonstringenums.operations._float_operations import FloatOperations as FloatOperationsPy2
+
         assert FloatOperations == FloatOperationsPy2

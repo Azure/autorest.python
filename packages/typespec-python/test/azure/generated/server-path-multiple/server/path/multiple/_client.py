@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -23,9 +24,9 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
 
     :param endpoint: Pass in http://localhost:3000 for endpoint. Required.
     :type endpoint: str
-    :keyword api_version: Pass in v1.0 for API version. Default value is "v1.0". Note that
-     overriding this default value may result in unsupported behavior.
-    :paramtype api_version: str
+    :keyword api_version: Pass in v1.0 for API version. Known values are "v1.0" and None. Default
+     value is "v1.0". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
@@ -77,9 +78,7 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -88,7 +87,7 @@ class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-a
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MultipleClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

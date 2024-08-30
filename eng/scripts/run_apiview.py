@@ -27,14 +27,8 @@ def _single_dir_apiview(mod):
                 ]
             )
         except CalledProcessError as e:
-            if (
-                loop >= 2
-            ):  # retry for maximum 3 times because sometimes the apistubgen has transient failure.
-                logging.error(
-                    "{} exited with apiview generation error {}".format(
-                        mod.stem, e.returncode
-                    )
-                )
+            if loop >= 2:  # retry for maximum 3 times because sometimes the apistubgen has transient failure.
+                logging.error("{} exited with apiview generation error {}".format(mod.stem, e.returncode))
                 return False
             else:
                 loop += 1

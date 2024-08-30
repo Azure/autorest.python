@@ -27,13 +27,17 @@ import pytest
 from lropagingversiontolerant import LroPagingClient
 from azure.core.exceptions import ResourceNotFoundError
 
+
 @pytest.fixture()
 def client():
     with LroPagingClient() as client:
         yield client
 
+
 def test_begin_update_qnas(client):
     with pytest.raises(ResourceNotFoundError):
-        paged_result = client.question_answering_projects.begin_update_qnas("project_name", [{"hello": "world"}]).result()
+        paged_result = client.question_answering_projects.begin_update_qnas(
+            "project_name", [{"hello": "world"}]
+        ).result()
         final_result = list(paged_result)
         assert len(final_result) == 0

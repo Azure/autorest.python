@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -125,16 +125,16 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "aniType": "str",  # Optional.
-                    "name": "str"  # Optional. Gets the Pet by id.
+                    "aniType": "str",
+                    "name": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
             400: HttpResponseError,
-            404: lambda response: ResourceNotFoundError(response=response),
+            404: cast(Type[HttpResponseError], lambda response: ResourceNotFoundError(response=response)),
             501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
@@ -159,8 +159,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)  # type: ignore
             raise HttpResponseError(response=response)
 
@@ -191,10 +189,10 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionResponse": "str"  # Optional. action feedback.
+                    "actionResponse": "str"
                 }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -223,8 +221,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -252,7 +248,7 @@ class PetOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -281,8 +277,6 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

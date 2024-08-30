@@ -33,15 +33,15 @@ class EncryptionServices(Model):
     """
 
     _validation = {
-        'table': {'readonly': True},
-        'queue': {'readonly': True},
+        "table": {"readonly": True},
+        "queue": {"readonly": True},
     }
 
     _attribute_map = {
-        'blob': {'key': 'blob', 'type': 'EncryptionService'},
-        'file': {'key': 'file', 'type': 'EncryptionService'},
-        'table': {'key': 'table', 'type': 'EncryptionService'},
-        'queue': {'key': 'queue', 'type': 'EncryptionService'},
+        "blob": {"key": "blob", "type": "EncryptionService"},
+        "file": {"key": "file", "type": "EncryptionService"},
+        "table": {"key": "table", "type": "EncryptionService"},
+        "queue": {"key": "queue", "type": "EncryptionService"},
     }
 
     def __init__(self, blob=None, file=None):

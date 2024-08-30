@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -80,7 +81,7 @@ class AutoRestSwaggerBATDictionaryService:  # pylint: disable=client-accepts-api
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestSwaggerBATDictionaryService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

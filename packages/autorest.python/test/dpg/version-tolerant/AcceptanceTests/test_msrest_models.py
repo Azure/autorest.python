@@ -26,10 +26,12 @@
 import pytest
 from dpgtestmodelsversiontolerant import DPGClient, models
 
+
 @pytest.fixture
 def client():
     with DPGClient() as client:
         yield client
+
 
 def test_paging(client: DPGClient):
     with pytest.raises(AttributeError):

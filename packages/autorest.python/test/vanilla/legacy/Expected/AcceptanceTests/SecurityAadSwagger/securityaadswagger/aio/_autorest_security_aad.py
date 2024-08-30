@@ -7,7 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Dict, TYPE_CHECKING
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -19,8 +20,6 @@ from .operations import AutorestSecurityAadOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
-
     from azure.core.credentials_async import AsyncTokenCredential
 
 
@@ -88,7 +87,7 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "AutorestSecurityAad":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

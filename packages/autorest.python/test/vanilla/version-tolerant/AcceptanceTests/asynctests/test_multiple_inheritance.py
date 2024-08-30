@@ -29,53 +29,72 @@ from async_generator import yield_, async_generator
 from multipleinheritanceversiontolerant.aio import MultipleInheritanceServiceClient
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with MultipleInheritanceServiceClient() as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
 async def test_get_pet(client):
     assert {"name": "Peanut"} == await client.get_pet()
+
 
 @pytest.mark.asyncio
 async def test_put_pet(client):
     result = await client.put_pet({"name": "Butter"})
     assert result == "Pet was correct!"
 
+
 @pytest.mark.asyncio
 async def test_get_horse(client):
     assert {"name": "Fred", "isAShowHorse": True} == await client.get_horse()
+
 
 @pytest.mark.asyncio
 async def test_put_horse(client):
     result = await client.put_horse({"name": "General", "isAShowHorse": False})
     assert result == "Horse was correct!"
 
+
 @pytest.mark.asyncio
 async def test_get_feline(client):
     assert {"meows": True, "hisses": True} == await client.get_feline()
+
 
 @pytest.mark.asyncio
 async def test_put_feline(client):
     result = await client.put_feline({"meows": False, "hisses": True})
     assert result == "Feline was correct!"
 
+
 @pytest.mark.asyncio
 async def test_get_cat(client):
     assert {"name": "Whiskers", "likesMilk": True, "meows": True, "hisses": True} == await client.get_cat()
+
 
 @pytest.mark.asyncio
 async def test_put_cat(client):
     result = await client.put_cat({"name": "Boots", "likesMilk": False, "meows": True, "hisses": False})
     assert result == "Cat was correct!"
 
+
 @pytest.mark.asyncio
 async def test_get_kitten(client):
-    assert {"name": "Gatito", "likesMilk": True, "meows": True, "hisses": True, "eatsMiceYet": False} == await client.get_kitten()
+    assert {
+        "name": "Gatito",
+        "likesMilk": True,
+        "meows": True,
+        "hisses": True,
+        "eatsMiceYet": False,
+    } == await client.get_kitten()
+
 
 @pytest.mark.asyncio
 async def test_put_kitten(client):
-    result = await client.put_kitten({"name": "Kitty", "likesMilk": False, "meows": True, "hisses": False, "eatsMiceYet": True})
+    result = await client.put_kitten(
+        {"name": "Kitty", "likesMilk": False, "meows": True, "hisses": False, "eatsMiceYet": True}
+    )
     assert result == "Kitten was correct!"

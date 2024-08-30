@@ -24,7 +24,7 @@ def copy(src: Path, dest: Path) -> None:
 
 def main(update_to_latest_typespec: bool, build_artifacts_path: Path) -> None:
     # Install global dependencies
-    call("npm install -g pnpm@8.3.1")
+    call("npm install -g pnpm@9.5.0")
     call("npm install -g autorest")
     call("npm install -g @typespec/compiler")
 

@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -17,6 +17,8 @@ from corehttp.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
@@ -338,23 +340,13 @@ class StringsOnlyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get(self, **kwargs: Any) -> _models.GetResponse9:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse9
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -371,7 +363,10 @@ class StringsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -382,7 +377,10 @@ class StringsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -400,7 +398,6 @@ class StringsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -411,15 +408,6 @@ class StringsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
-                }
         """
 
     @overload
@@ -458,7 +446,6 @@ class StringsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: Literal["a", "b", "c"] = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -469,17 +456,8 @@ class StringsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "a"  # Default value is "a". Required. Is one of the following types:
-                      Literal["a"], Literal["b"], Literal["c"]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -511,7 +489,10 @@ class StringsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -521,8 +502,6 @@ class StringsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -553,17 +532,8 @@ class StringExtensibleOperations:
         :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse8
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -580,7 +550,10 @@ class StringExtensibleOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -591,7 +564,10 @@ class StringExtensibleOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -619,24 +595,15 @@ class StringExtensibleOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
-                }
         """
 
     @overload
     def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Union[str, Literal["b"], Literal["c"]], content_type: str = "application/json", **kwargs: Any
+        self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
+        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
         :paramtype prop: str or str or str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -666,29 +633,20 @@ class StringExtensibleOperations:
         self,
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
-        prop: Union[str, Literal["b"], Literal["c"]] = _Unset,
+        prop: Union[Literal["b"], Literal["c"], str] = _Unset,
         **kwargs: Any
     ) -> None:
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
         :type body: JSON or IO[bytes]
-        :keyword prop: Is one of the following types: str, Literal["b"], Literal["c"] Required.
+        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
         :paramtype prop: str or str or str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str"  # Required. Is one of the following types: str, Literal["b"],
-                      Literal["c"]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -720,7 +678,10 @@ class StringExtensibleOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -730,8 +691,6 @@ class StringExtensibleOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -762,16 +721,8 @@ class StringExtensibleNamedOperations:
         :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse7
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -788,7 +739,10 @@ class StringExtensibleNamedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -799,7 +753,10 @@ class StringExtensibleNamedOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -827,14 +784,6 @@ class StringExtensibleNamedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
-                }
         """
 
     @overload
@@ -889,16 +838,8 @@ class StringExtensibleNamedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": "str"  # Required. Known values are: "b" and "c".
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -930,7 +871,10 @@ class StringExtensibleNamedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -940,8 +884,6 @@ class StringExtensibleNamedOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -972,17 +914,8 @@ class IntsOnlyOperations:
         :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse6
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -999,7 +932,10 @@ class IntsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1010,7 +946,10 @@ class IntsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1038,15 +977,6 @@ class IntsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
-                }
         """
 
     @overload
@@ -1093,17 +1023,8 @@ class IntsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": 1  # Default value is 1. Required. Is one of the following types:
-                      Literal[1], Literal[2], Literal[3]
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1135,7 +1056,10 @@ class IntsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1145,8 +1069,6 @@ class IntsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1177,17 +1099,8 @@ class FloatsOnlyOperations:
         :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse5
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1204,7 +1117,10 @@ class FloatsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1215,7 +1131,10 @@ class FloatsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1243,15 +1162,6 @@ class FloatsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
-                }
         """
 
     @overload
@@ -1298,17 +1208,8 @@ class FloatsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": 1.1  # Default value is 1.1. Required. Is one of the following types:
-                      float, float, float
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1340,7 +1241,10 @@ class FloatsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1350,8 +1254,6 @@ class FloatsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1382,18 +1284,8 @@ class ModelsOnlyOperations:
         :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse4
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": {
-                        "name": "str"  # Required.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1410,7 +1302,10 @@ class ModelsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1421,7 +1316,10 @@ class ModelsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1449,16 +1347,6 @@ class ModelsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "name": "str"  # Required.
-                    }
-                }
         """
 
     @overload
@@ -1505,18 +1393,8 @@ class ModelsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "name": "str"  # Required.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1548,7 +1426,10 @@ class ModelsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1558,8 +1439,6 @@ class ModelsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1585,28 +1464,13 @@ class EnumsOnlyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get(self, **kwargs: Any) -> _models.GetResponse3:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse3
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1623,7 +1487,10 @@ class EnumsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1634,7 +1501,10 @@ class EnumsOnlyOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1652,7 +1522,6 @@ class EnumsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -1663,20 +1532,6 @@ class EnumsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
-                    }
-                }
         """
 
     @overload
@@ -1714,7 +1569,6 @@ class EnumsOnlyOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.EnumsOnlyCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -1724,22 +1578,8 @@ class EnumsOnlyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "lr": "str",  # This should be receive/send the left variant.
-                          Required. Is either a Union[str, "_models.LR"] type or a Union[str,
-                          "_models.UD"] type.
-                        "ud": "str"  # This should be receive/send the up variant. Required.
-                          Is either a Union[str, "_models.UD"] type or a Union[str, "_models.UD"] type.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1771,7 +1611,10 @@ class EnumsOnlyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1781,8 +1624,6 @@ class EnumsOnlyOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1808,27 +1649,13 @@ class StringAndArrayOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get(self, **kwargs: Any) -> _models.GetResponse2:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1845,7 +1672,10 @@ class StringAndArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1856,7 +1686,10 @@ class StringAndArrayOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -1874,7 +1707,6 @@ class StringAndArrayOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -1885,19 +1717,6 @@ class StringAndArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
-                    }
-                }
         """
 
     @overload
@@ -1935,7 +1754,6 @@ class StringAndArrayOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.StringAndArrayCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -1945,21 +1763,8 @@ class StringAndArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "array": "str",  # This should be receive/send the array variant.
-                          Required. Is either a str type or a [str] type.
-                        "string": "str"  # This should be receive/send the string variant.
-                          Required. Is either a str type or a [str] type.
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1991,7 +1796,10 @@ class StringAndArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2001,8 +1809,6 @@ class StringAndArrayOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2028,35 +1834,13 @@ class MixedLiteralsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def get(self, **kwargs: Any) -> _models.GetResponse1:
-        # pylint: disable=line-too-long
         """get.
 
         :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse1
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2073,7 +1857,10 @@ class MixedLiteralsOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2084,7 +1871,10 @@ class MixedLiteralsOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2102,7 +1892,6 @@ class MixedLiteralsOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Required.
@@ -2113,27 +1902,6 @@ class MixedLiteralsOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                    }
-                }
         """
 
     @overload
@@ -2171,7 +1939,6 @@ class MixedLiteralsOperations:
     def send(  # pylint: disable=inconsistent-return-statements
         self, body: Union[JSON, IO[bytes]] = _Unset, *, prop: _models.MixedLiteralsCases = _Unset, **kwargs: Any
     ) -> None:
-        # pylint: disable=line-too-long
         """send.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -2181,29 +1948,8 @@ class MixedLiteralsOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "booleanLiteral": "a",  # Default value is "a". This should be
-                          receive/send the true variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "floatLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 3.3 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "intLiteral": "a",  # Default value is "a". This should be
-                          receive/send the 2 variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                        "stringLiteral": "a"  # Default value is "a". This should be
-                          receive/send the "a" variant. Required. Is one of the following types:
-                          Literal["a"], Literal[2], float, Literal[True]
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2235,7 +1981,10 @@ class MixedLiteralsOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2245,8 +1994,6 @@ class MixedLiteralsOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2277,29 +2024,8 @@ class MixedTypesOperations:
         :return: GetResponse. The GetResponse is compatible with MutableMapping
         :rtype: ~typetest.union.models.GetResponse
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "prop": {
-                        "boolean": {
-                            "name": "str"  # Required.
-                        },
-                        "int": {
-                            "name": "str"  # Required.
-                        },
-                        "literal": {
-                            "name": "str"  # Required.
-                        },
-                        "model": {
-                            "name": "str"  # Required.
-                        }
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2316,7 +2042,10 @@ class MixedTypesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2327,7 +2056,10 @@ class MixedTypesOperations:
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -2355,27 +2087,6 @@ class MixedTypesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "boolean": {
-                            "name": "str"  # Required.
-                        },
-                        "int": {
-                            "name": "str"  # Required.
-                        },
-                        "literal": {
-                            "name": "str"  # Required.
-                        },
-                        "model": {
-                            "name": "str"  # Required.
-                        }
-                    }
-                }
         """
 
     @overload
@@ -2422,29 +2133,8 @@ class MixedTypesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prop": {
-                        "boolean": {
-                            "name": "str"  # Required.
-                        },
-                        "int": {
-                            "name": "str"  # Required.
-                        },
-                        "literal": {
-                            "name": "str"  # Required.
-                        },
-                        "model": {
-                            "name": "str"  # Required.
-                        }
-                    }
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2476,7 +2166,10 @@ class MixedTypesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2486,8 +2179,6 @@ class MixedTypesOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [204]:
-            if _stream:
-                response.read()  # Load the body in memory and close the socket
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

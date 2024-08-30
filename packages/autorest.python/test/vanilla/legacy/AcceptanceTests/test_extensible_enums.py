@@ -38,45 +38,44 @@ from extensibleenumsswagger.models import (
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with PetStoreInc(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestExtensibleEnums(object):
 
     def test_get_by_pet_id(self, client):
         # Now enum return are always string (Autorest.Python 3.0)
 
-        tommy = client.pet.get_by_pet_id('tommy')
-        assert tommy.days_of_week ==  "Monday"
-        assert tommy.int_enum ==  "1"
+        tommy = client.pet.get_by_pet_id("tommy")
+        assert tommy.days_of_week == "Monday"
+        assert tommy.int_enum == "1"
 
-        casper = client.pet.get_by_pet_id('casper')
-        assert casper.days_of_week ==  "Weekend"
-        assert casper.int_enum ==  "2"
+        casper = client.pet.get_by_pet_id("casper")
+        assert casper.days_of_week == "Weekend"
+        assert casper.int_enum == "2"
 
-        scooby = client.pet.get_by_pet_id('scooby')
-        assert scooby.days_of_week ==  "Thursday"
+        scooby = client.pet.get_by_pet_id("scooby")
+        assert scooby.days_of_week == "Thursday"
         # https://github.com/Azure/autorest.csharp/blob/e5f871b7433e0f6ca6a17307fba4a2cfea4942b4/test/vanilla/AcceptanceTests.cs#L429
         # "allowedValues" of "x-ms-enum" is not supported in Python
-        assert scooby.int_enum ==  "2.1" # Might be "2" if one day Python is supposed to support "allowedValues"
+        assert scooby.int_enum == "2.1"  # Might be "2" if one day Python is supposed to support "allowedValues"
 
     def test_add_pet(self, client):
-        retriever = Pet(
-            name="Retriever",
-            int_enum=IntEnum.three,
-            days_of_week=DaysOfWeekExtensibleEnum.friday
-        )
+        retriever = Pet(name="Retriever", int_enum=IntEnum.three, days_of_week=DaysOfWeekExtensibleEnum.friday)
         returned_pet = client.pet.add_pet(retriever)
-        assert returned_pet.days_of_week ==  "Friday"
-        assert returned_pet.int_enum ==  "3"
-        assert returned_pet.name ==  "Retriever"
+        assert returned_pet.days_of_week == "Friday"
+        assert returned_pet.int_enum == "3"
+        assert returned_pet.name == "Retriever"
 
     def test_models(self):
         from extensibleenumsswagger.models import Pet
 
         from extensibleenumsswagger.models._models_py3 import Pet as PetPy3
+
         assert Pet == PetPy3
 
     def test_operation_groups(self):
@@ -86,4 +85,5 @@ class TestExtensibleEnums(object):
             from extensibleenumsswagger.operations import _pet_operations_py3
 
         from extensibleenumsswagger.operations._pet_operations import PetOperations as PetOperationsPy2
+
         assert PetOperations == PetOperationsPy2

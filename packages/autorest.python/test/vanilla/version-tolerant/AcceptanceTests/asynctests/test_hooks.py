@@ -27,13 +27,16 @@ import pytest
 from azure.core.pipeline.policies import CustomHookPolicy
 from bodyarrayversiontolerant.aio import AutoRestSwaggerBATArrayService
 
+
 def is_rest(obj):
     return hasattr(obj, "content")
+
 
 def raw_request_callback(request):
     assert is_rest(request.http_request)
     assert hasattr(request.http_request, "set_multipart_mixed")
     raise ValueError("I entered the callback!")
+
 
 @pytest.mark.asyncio
 async def test_raw_request_hook():
@@ -43,19 +46,23 @@ async def test_raw_request_hook():
             await client.array.get_array_empty()
     assert "I entered the callback!" in str(ex.value)
 
+
 @pytest.mark.asyncio
 async def test_raw_request_hook_send_request():
     from bodyarrayversiontolerant.operations._operations import build_array_get_array_empty_request
+
     raw_request_hook_policy = CustomHookPolicy(raw_request_hook=raw_request_callback)
     async with AutoRestSwaggerBATArrayService(policies=[raw_request_hook_policy]) as client:
         with pytest.raises(ValueError) as ex:
             await client.send_request(build_array_get_array_empty_request())
     assert "I entered the callback!" in str(ex.value)
 
+
 def raw_response_callback(response):
     assert is_rest(response.http_response)
     assert hasattr(response.http_response, "parts")
     raise ValueError("I entered the callback!")
+
 
 @pytest.mark.asyncio
 async def test_raw_response_hook():
@@ -65,9 +72,11 @@ async def test_raw_response_hook():
             await client.array.get_array_empty()
     assert "I entered the callback!" in str(ex.value)
 
+
 @pytest.mark.asyncio
 async def test_raw_response_hook_send_request():
     from bodyarrayversiontolerant.operations._operations import build_array_get_array_empty_request
+
     raw_response_hook_policy = CustomHookPolicy(raw_response_hook=raw_response_callback)
     async with AutoRestSwaggerBATArrayService(policies=[raw_response_hook_policy]) as client:
         with pytest.raises(ValueError) as ex:

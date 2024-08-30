@@ -55,23 +55,33 @@ class StorageAccountCreateParameters(Model):
     """
 
     _validation = {
-        'sku': {'required': True},
-        'kind': {'required': True},
-        'location': {'required': True},
+        "sku": {"required": True},
+        "kind": {"required": True},
+        "location": {"required": True},
     }
 
     _attribute_map = {
-        'sku': {'key': 'sku', 'type': 'Sku'},
-        'kind': {'key': 'kind', 'type': 'Kind'},
-        'location': {'key': 'location', 'type': 'str'},
-        'tags': {'key': 'tags', 'type': '{str}'},
-        'custom_domain': {'key': 'properties.customDomain', 'type': 'CustomDomain'},
-        'encryption': {'key': 'properties.encryption', 'type': 'Encryption'},
-        'access_tier': {'key': 'properties.accessTier', 'type': 'AccessTier'},
-        'enable_https_traffic_only': {'key': 'properties.supportsHttpsTrafficOnly', 'type': 'bool'},
+        "sku": {"key": "sku", "type": "Sku"},
+        "kind": {"key": "kind", "type": "Kind"},
+        "location": {"key": "location", "type": "str"},
+        "tags": {"key": "tags", "type": "{str}"},
+        "custom_domain": {"key": "properties.customDomain", "type": "CustomDomain"},
+        "encryption": {"key": "properties.encryption", "type": "Encryption"},
+        "access_tier": {"key": "properties.accessTier", "type": "AccessTier"},
+        "enable_https_traffic_only": {"key": "properties.supportsHttpsTrafficOnly", "type": "bool"},
     }
 
-    def __init__(self, sku, kind, location, tags=None, custom_domain=None, encryption=None, access_tier=None, enable_https_traffic_only=False):
+    def __init__(
+        self,
+        sku,
+        kind,
+        location,
+        tags=None,
+        custom_domain=None,
+        encryption=None,
+        access_tier=None,
+        enable_https_traffic_only=False,
+    ):
         self.sku = sku
         self.kind = kind
         self.location = location

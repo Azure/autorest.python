@@ -28,10 +28,12 @@ from mediatypesversiontolerant import MediaTypesClient
 import pytest
 import json
 
+
 @pytest.fixture
 def client():
     with MediaTypesClient() as client:
         yield client
+
 
 def test_pdf(client):
     result = client.analyze_body(input=b"PDF", content_type="application/pdf")
@@ -39,31 +41,37 @@ def test_pdf(client):
     with pytest.raises(TypeError):
         client.analyze_body(input=b"PDF")
 
+
 def test_json(client):
     json_input = json.loads('{"source":"foo"}')
     result = client.analyze_body(input=json_input)
     assert result == "Nice job with JSON"
 
+
 def test_content_type_with_encoding(client):
-    result = client.content_type_with_encoding(input="hello", content_type='text/plain; charset=UTF-8')
+    result = client.content_type_with_encoding(input="hello", content_type="text/plain; charset=UTF-8")
     assert result == "Nice job sending content type with encoding"
+
 
 def test_pdf_no_accept_header(client):
     client.analyze_body_no_accept_header(input=b"PDF", content_type="application/pdf")
+
 
 def test_json_no_accept_header(client):
     json_input = json.loads('{"source":"foo"}')
     client.analyze_body_no_accept_header(input=json_input)
 
+
 def test_binary_body_two_content_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     client.binary_body_with_two_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
     client.binary_body_with_two_content_types(content, content_type="application/octet-stream")
 
+
 def test_binary_body_three_content_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     client.binary_body_with_three_content_types(json.dumps(json_input), content_type="application/json")
 
     content = b"hello, world"
@@ -72,8 +80,9 @@ def test_binary_body_three_content_types(client):
     content = "hello, world"
     client.binary_body_with_three_content_types(content, content_type="text/plain")
 
+
 def test_body_three_types(client):
-    json_input = {"hello":"world"}
+    json_input = {"hello": "world"}
     client.body_three_types(json_input)
 
     content = b"hello, world"

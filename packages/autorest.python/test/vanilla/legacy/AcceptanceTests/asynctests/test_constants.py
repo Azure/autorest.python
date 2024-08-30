@@ -26,10 +26,12 @@
 import pytest
 from constants.aio import AutoRestSwaggerConstantService
 
+
 @pytest.fixture
 async def client():
     async with AutoRestSwaggerConstantService(base_url="http://localhost:3000") as client:
         yield client
+
 
 def test_put_client_constants(client):
     client.contants.put_client_constants()
@@ -37,12 +39,11 @@ def test_put_client_constants(client):
     assert client._config.query_constant == 100
     assert client._config.path_constant == "path"
 
+
 @pytest.mark.asyncio
 async def test_put_client_constants_override():
     async with AutoRestSwaggerConstantService(
-        header_constant=False,
-        query_constant=0,
-        path_constant="new_path"
+        header_constant=False, query_constant=0, path_constant="new_path"
     ) as client:
         assert client._config.header_constant == False
         assert client._config.query_constant == 0

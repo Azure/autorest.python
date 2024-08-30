@@ -42,12 +42,15 @@ from azure.core.exceptions import HttpResponseError
 
 import pytest
 
+
 class TestHead(object):
 
     @pytest.mark.asyncio
     async def test_head(self, credential, authentication_policy):
 
-        async with AutoRestHeadTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        async with AutoRestHeadTestService(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
 
             assert await client.http_success.head200()
             assert await client.http_success.head204()
@@ -56,7 +59,9 @@ class TestHead(object):
     @pytest.mark.asyncio
     async def test_head_exception(self, credential, authentication_policy):
 
-        async with AutoRestHeadExceptionTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        async with AutoRestHeadExceptionTestService(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
 
             await client.head_exception.head200()
             await client.head_exception.head204()

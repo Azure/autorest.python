@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -87,7 +88,7 @@ class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-k
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestPagingTestService":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

@@ -26,13 +26,16 @@
 import pytest
 from bodycomplex.aio import AutoRestComplexTestService
 from azure.core.pipeline.policies import CustomHookPolicy
+
 try:
     from urlparse import urlparse  # type: ignore
 except ImportError:
     from urllib.parse import urlparse
 
+
 def get_client(callback):
     return AutoRestComplexTestService(policies=[CustomHookPolicy(raw_request_hook=callback)])
+
 
 @pytest.mark.asyncio
 async def test_header_input():
@@ -41,11 +44,13 @@ async def test_header_input():
         assert pipeline_request.http_request.headers["hello"] == "world!"
         assert pipeline_request.http_request.headers["accept"] == "application/json"
         raise ValueError("Passed!")
+
     client = get_client(callback=get_headers)
     with pytest.raises(ValueError) as ex:
         await client.basic.get_empty(headers={"hello": "world!"})
     assert str(ex.value) == "Passed!"
     await client.close()
+
 
 @pytest.mark.asyncio
 async def test_header_input_override():
@@ -53,16 +58,19 @@ async def test_header_input_override():
         assert len(pipeline_request.http_request.headers) == 1
         assert pipeline_request.http_request.headers["Accept"] == "my/content-type"
         raise ValueError("Passed!")
+
     client = get_client(callback=get_headers)
     with pytest.raises(ValueError) as ex:
         await client.basic.get_empty(headers={"Accept": "my/content-type"})
     assert str(ex.value) == "Passed!"
     await client.close()
 
+
 @pytest.mark.asyncio
 async def test_header_none_input():
     async with AutoRestComplexTestService() as client:
         await client.basic.get_empty(headers=None)
+
 
 @pytest.mark.asyncio
 async def test_header_case_insensitive():
@@ -79,28 +87,33 @@ async def test_header_case_insensitive():
         assert str(ex.value) == "Passed!"
     await client.close()
 
+
 @pytest.mark.asyncio
 async def test_header_kwarg_and_header():
     def get_headers(pipeline_request):
         assert pipeline_request.http_request.headers["content-type"] == "my/json"
         assert pipeline_request.http_request.headers["accept"] == "application/json"
         raise ValueError("Passed!")
+
     client = get_client(callback=get_headers)
     with pytest.raises(ValueError) as ex:
         await client.basic.put_valid({}, headers={"content-type": "shouldn't/be-me"}, content_type="my/json")
     assert str(ex.value) == "Passed!"
     await client.close()
 
+
 @pytest.mark.asyncio
 async def test_query_input():
     def get_query(pipeline_request):
         assert urlparse(pipeline_request.http_request.url).query == "foo=bar"
         raise ValueError("Passed!")
+
     client = get_client(callback=get_query)
     with pytest.raises(ValueError) as ex:
         await client.basic.get_empty(params={"foo": "bar"})
     assert str(ex.value) == "Passed!"
     await client.close()
+
 
 @pytest.mark.asyncio
 async def test_query_input_override():
@@ -116,10 +129,12 @@ async def test_query_input_override():
     assert str(ex.value) == "Passed!"
     await client.close()
 
+
 @pytest.mark.asyncio
 async def test_query_none_input():
     async with AutoRestComplexTestService() as client:
         await client.basic.get_empty(params=None)
+
 
 @pytest.mark.asyncio
 async def test_query_case_insensitive():
@@ -134,6 +149,7 @@ async def test_query_case_insensitive():
             await client.basic.get_empty(params={query_key: "bar"})
         assert str(ex.value) == "Passed!"
     await client.close()
+
 
 @pytest.mark.asyncio
 async def test_query_kwarg_and_header():

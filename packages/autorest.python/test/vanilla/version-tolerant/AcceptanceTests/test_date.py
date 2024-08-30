@@ -29,31 +29,38 @@ from bodydateversiontolerant import AutoRestDateTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestDateTestService() as client:
         yield client
+
 
 def test_model_get_and_put_max_date(client):
     max_date = deserialize_date("9999-12-31T23:59:59.999999Z")
     client.date.put_max_date(str(max_date))
     assert max_date == deserialize_date(client.date.get_max_date())
 
+
 def test_model_get_and_put_min_date(client):
     min_date = deserialize_date("0001-01-01T00:00:00Z")
     client.date.put_min_date(str(min_date))
     assert min_date == deserialize_date(client.date.get_min_date())
 
+
 def test_model_get_null(client):
     assert client.date.get_null() is None
 
+
 def test_model_get_invalid_date(client):
     assert deserialize_date(client.date.get_invalid_date()) == datetime.date(2001, 1, 1)
+
 
 def test_model_get_overflow_date(client):
     with pytest.raises(ValueError) as ex:
         deserialize_date(client.date.get_overflow_date())
     assert "day is out of range for month" in str(ex.value)
+
 
 def test_model_get_underflow_date(client):
     with pytest.raises(ValueError) as ex:

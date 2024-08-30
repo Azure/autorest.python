@@ -25,9 +25,11 @@
 # --------------------------------------------------------------------------
 from dpgtestmodelsversiontolerant import models
 
+
 def test_added_property():
     product = models.Product(received="model")
     assert product.added_in_customization == "bonjour!"
+
 
 def test_added_model():
     added_model = models.AddedModel()

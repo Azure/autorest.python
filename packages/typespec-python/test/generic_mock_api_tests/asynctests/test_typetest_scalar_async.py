@@ -16,45 +16,45 @@ async def client():
         yield client
 
 
-@pytest.mark.parametrize(
-    "og_name,val",
-    [
-        ("string", "test"),
-        ("boolean", True),
-        ("unknown", "test"),
-    ],
-)
 @pytest.mark.asyncio
-async def test_scalar(client: ScalarClient, og_name: str, val: dict):
-    og_group = getattr(client, og_name)
-    assert await og_group.get() == val
-    await og_group.put(val)
+async def test_scalar_string(client: ScalarClient):
+    assert await client.string.get() == "test"
+    await client.string.put("test")
 
 
-@pytest.mark.parametrize(
-    "og_name,val",
-    [
-        ("decimal_type", decimal.Decimal("0.33333")),
-        ("decimal128_type", decimal.Decimal("0.33333")),
-    ],
-)
 @pytest.mark.asyncio
-async def test_type(client: ScalarClient, og_name: str, val):
-    og_group = getattr(client, og_name)
-    assert await og_group.response_body() == val
-    await og_group.request_body(val)
-    await og_group.request_parameter(value=val)
+async def test_scalar_boolean(client: ScalarClient):
+    assert await client.boolean.get() == True
+    await client.boolean.put(True)
 
 
-@pytest.mark.parametrize(
-    "og_name",
-    [
-        "decimal_verify",
-        "decimal128_verify",
-    ],
-)
 @pytest.mark.asyncio
-async def test_verify(client: ScalarClient, og_name: str):
-    og_group = getattr(client, og_name)
-    prepare = await og_group.prepare_verify()
-    await og_group.verify(reduce(lambda x, y: x + y, prepare))
+async def test_scalar_unknown(client: ScalarClient):
+    assert await client.unknown.get() == "test"
+    await client.unknown.put("test")
+
+
+@pytest.mark.asyncio
+async def test_decimal128_type(client: ScalarClient):
+    assert await client.decimal128_type.response_body() == decimal.Decimal("0.33333")
+    await client.decimal128_type.request_body(decimal.Decimal("0.33333"))
+    await client.decimal128_type.request_parameter(value=decimal.Decimal("0.33333"))
+
+
+@pytest.mark.asyncio
+async def test_decimal_type(client: ScalarClient):
+    assert await client.decimal_type.response_body() == decimal.Decimal("0.33333")
+    await client.decimal_type.request_body(decimal.Decimal("0.33333"))
+    await client.decimal_type.request_parameter(value=decimal.Decimal("0.33333"))
+
+
+@pytest.mark.asyncio
+async def test_decimal128_verify(client: ScalarClient):
+    prepare = await client.decimal128_verify.prepare_verify()
+    await client.decimal128_verify.verify(reduce(lambda x, y: x + y, prepare))
+
+
+@pytest.mark.asyncio
+async def test_decimal_verify(client: ScalarClient):
+    prepare = await client.decimal_verify.prepare_verify()
+    await client.decimal_verify.verify(reduce(lambda x, y: x + y, prepare))

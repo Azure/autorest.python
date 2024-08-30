@@ -38,13 +38,12 @@ cwd = dirname(realpath(__file__))
 @pytest.fixture
 @async_generator
 async def client(connection_data_block_size=None):
-    async with AutoRestSwaggerBATFileService(
-        connection_data_block_size=connection_data_block_size
-    ) as client:
+    async with AutoRestSwaggerBATFileService(connection_data_block_size=connection_data_block_size) as client:
         await yield_(client)
 
+
 @pytest.mark.asyncio
-@pytest.mark.parametrize('client', [1000], indirect=True)
+@pytest.mark.parametrize("client", [1000], indirect=True)
 async def test_get_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
@@ -54,18 +53,31 @@ async def test_get_file(client):
             file_length += len(data)
             file_handle.write(data)
 
-        assert file_length !=  0
+        assert file_length != 0
 
         sample_file = realpath(
-            join(cwd, pardir, pardir, pardir, pardir, pardir,
-                    "node_modules", "@microsoft.azure", "autorest.testserver", "routes", "sample.png"))
+            join(
+                cwd,
+                pardir,
+                pardir,
+                pardir,
+                pardir,
+                pardir,
+                "node_modules",
+                "@microsoft.azure",
+                "autorest.testserver",
+                "routes",
+                "sample.png",
+            )
+        )
 
-        with open(sample_file, 'rb') as data:
+        with open(sample_file, "rb") as data:
             sample_data = hash(data.read())
-        assert sample_data ==  hash(file_handle.getvalue())
+        assert sample_data == hash(file_handle.getvalue())
+
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize('client', [4096], indirect=True)
+@pytest.mark.parametrize("client", [4096], indirect=True)
 async def test_get_empty_file(client):
     file_length = 0
     with io.BytesIO() as file_handle:
@@ -75,10 +87,11 @@ async def test_get_empty_file(client):
             file_length += len(data)
             file_handle.write(data)
 
-        assert file_length ==  0
+        assert file_length == 0
+
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize('client', [4096], indirect=True)
+@pytest.mark.parametrize("client", [4096], indirect=True)
 async def test_files_long_running(client):
     file_length = 0
     stream = await client.files.get_file_large()
@@ -86,5 +99,4 @@ async def test_files_long_running(client):
         assert 0 < len(data) <= 4096
         file_length += len(data)
 
-    assert file_length ==  3000 * 1024 * 1024
-
+    assert file_length == 3000 * 1024 * 1024

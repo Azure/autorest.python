@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
 import uuid
 
 from azure.core import MatchConditions
@@ -21,6 +21,8 @@ from azure.core.exceptions import (
     ResourceModifiedError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
@@ -115,14 +117,15 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
         _headers["Repeatability-First-Sent"] = _SERIALIZER.serialize_data(
             datetime.datetime.now(datetime.timezone.utc), "rfc-1123"
         )
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 class TraitsClientOperationsMixin(TraitsClientMixinABC):
+
     @distributed_trace
     def smoke_test(
         self,
@@ -155,17 +158,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: User. The User is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.User
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0,  # The user's id. Required.
-                    "name": "str"  # Optional. The user's name.
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -195,7 +189,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -206,7 +203,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
@@ -235,7 +235,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -243,19 +243,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "userActionValue": "str"  # User action value. Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"  # User action result. Required.
-                }
         """
 
     @overload
@@ -266,7 +253,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -274,14 +261,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"  # User action result. Required.
-                }
         """
 
     @overload
@@ -292,7 +271,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Required.
+        :param body: The body parameter. Required.
         :type body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -300,14 +279,6 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"  # User action result. Required.
-                }
         """
 
     @distributed_trace
@@ -318,26 +289,14 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         :param id: The user's id. Required.
         :type id: int
-        :param body: Is one of the following types: UserActionParam, JSON, IO[bytes] Required.
+        :param body: The body parameter. Is one of the following types: UserActionParam, JSON,
+         IO[bytes] Required.
         :type body: ~specs.azure.core.traits.models.UserActionParam or JSON or IO[bytes]
         :return: UserActionResponse. The UserActionResponse is compatible with MutableMapping
         :rtype: ~specs.azure.core.traits.models.UserActionResponse
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "userActionValue": "str"  # User action value. Required.
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "userActionResult": "str"  # User action result. Required.
-                }
         """
-        error_map = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -366,7 +325,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -377,7 +339,10 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         if response.status_code not in [200]:
             if _stream:
-                response.read()  # Load the body in memory and close the socket
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 

@@ -25,6 +25,7 @@ async def api_key_client(key_credential):
     if client:
         await client.close()
 
+
 @pytest.fixture()
 def token_credential(core_library):
     class FakeCredential:

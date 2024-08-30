@@ -29,16 +29,22 @@ from custompollerpagerdefinitions import CustomPager, CustomPoller
 
 import pytest
 
+
 @pytest.fixture
 def client(credential, authentication_policy):
-    with AutoRestPagingTestService(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestPagingTestService(
+        credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+    ) as client:
         yield client
 
 
 @pytest.fixture
 def custom_url_client(credential, authentication_policy):
-    with AutoRestParameterizedHostTestPagingClient(credential, host="host:3000", authentication_policy=authentication_policy) as client:
+    with AutoRestParameterizedHostTestPagingClient(
+        credential, host="host:3000", authentication_policy=authentication_policy
+    ) as client:
         yield client
+
 
 class TestPaging(object):
     def test_custom_pager(self, client):
@@ -56,4 +62,5 @@ class TestPaging(object):
             from custompollerpager.operations import _paging_operations_py3
 
         from custompollerpager.operations._paging_operations import PagingOperations as PagingOperationsPy2
+
         assert PagingOperations == PagingOperationsPy2

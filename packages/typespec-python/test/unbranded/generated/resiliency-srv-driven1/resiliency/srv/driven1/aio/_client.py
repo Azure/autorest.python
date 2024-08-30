@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable
+from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
@@ -30,8 +31,8 @@ class ResiliencyServiceDrivenClient(
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in 'v1'. This represents the API version of the service. Will grow
-     up in the next deployment to be both 'v1' and 'v2'. Default value is "v1". Note that overriding
-     this default value may result in unsupported behavior.
+     up in the next deployment to be both 'v1' and 'v2'. Known values are "v1" and None. Default
+     value is "v1". Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
@@ -83,14 +84,9 @@ class ResiliencyServiceDrivenClient(
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version",
-                self._config.service_deployment_version,
-                "str",
-                skip_quote=True,
+                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
             ),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -99,7 +95,7 @@ class ResiliencyServiceDrivenClient(
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "ResiliencyServiceDrivenClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

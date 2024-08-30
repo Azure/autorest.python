@@ -36,15 +36,13 @@ class TestAcceptance(object):
         report = client.get_report(qualifier=platform.python_version())
 
         # Add tests that wont be supported due to the nature of Python here
-        not_supported = {
-        }
+        not_supported = {}
 
         # Please add missing features or failing tests here
         missing_features_or_bugs = {}
 
         print("Coverage:")
         self._print_report(report, not_supported, missing_features_or_bugs)
-
 
     def _print_report(self, report, not_supported=None, missing_features_or_bugs=None):
         if not_supported:
@@ -62,6 +60,6 @@ class TestAcceptance(object):
             print("FAILED TO EXECUTE {0}".format(s))
 
         total_tests = len(report)
-        warnings.warn ("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
+        warnings.warn("The test coverage is {0}/{1}.".format(total_tests - len(failed), total_tests))
 
-        #assert 0 == len(failed)
+        # assert 0 == len(failed)

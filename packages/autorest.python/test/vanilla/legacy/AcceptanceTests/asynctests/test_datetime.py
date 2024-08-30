@@ -41,20 +41,22 @@ from bodydatetime.aio import AutoRestDateTimeTestService
 
 import pytest
 
+
 @pytest.fixture
 @async_generator
 async def client():
     async with AutoRestDateTimeTestService(base_url="http://localhost:3000") as client:
         await yield_(client)
 
+
 class TestDatetime:
     @pytest.mark.asyncio
     async def test_utc_max_date_time(self, client):
         max_date = isodate.parse_datetime("9999-12-31T23:59:59.999Z")
         dt = await client.datetime.get_utc_lowercase_max_date_time()
-        assert dt ==  max_date
+        assert dt == max_date
         dt = await client.datetime.get_utc_uppercase_max_date_time()
-        assert dt ==  max_date
+        assert dt == max_date
         await client.datetime.put_utc_max_date_time(max_date)
 
     @pytest.mark.asyncio
@@ -70,14 +72,15 @@ class TestDatetime:
     async def test_get_utc_min_date_time(self, client):
         min_date = isodate.parse_datetime("0001-01-01T00:00:00Z")
         dt = await client.datetime.get_utc_min_date_time()
-        assert dt ==  min_date
+        assert dt == min_date
         await client.datetime.put_utc_min_date_time(min_date)
 
     @pytest.mark.asyncio
     async def test_get_local_negative_offset_min_date_time(self, client):
         await client.datetime.get_local_negative_offset_min_date_time()
         await client.datetime.put_local_negative_offset_min_date_time(
-            isodate.parse_datetime("0001-01-01T00:00:00-14:00"))
+            isodate.parse_datetime("0001-01-01T00:00:00-14:00")
+        )
 
     @pytest.mark.asyncio
     async def test_get_local_no_offset_min_date_time(self, client):
@@ -102,14 +105,16 @@ class TestDatetime:
 
         with pytest.raises(SerializationError):
             await client.datetime.put_local_positive_offset_min_date_time(
-                isodate.parse_datetime("0001-01-01T00:00:00+14:00"))
+                isodate.parse_datetime("0001-01-01T00:00:00+14:00")
+            )
 
     @pytest.mark.asyncio
     async def test_local_positive_offset_max_date_time(self, client):
         await client.datetime.get_local_positive_offset_lowercase_max_date_time()
         await client.datetime.get_local_positive_offset_uppercase_max_date_time()
         await client.datetime.put_local_positive_offset_max_date_time(
-            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00"))
+            isodate.parse_datetime("9999-12-31T23:59:59.999999+14:00")
+        )
 
     @pytest.mark.asyncio
     async def test_get_null(self, client):
@@ -134,4 +139,5 @@ class TestDatetime:
     async def test_put_local_negative_offset_max_date_time(self, client):
         with pytest.raises(SerializationError):
             await client.datetime.put_local_negative_offset_max_date_time(
-                isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00"))
+                isodate.parse_datetime("9999-12-31T23:59:59.999999-14:00")
+            )

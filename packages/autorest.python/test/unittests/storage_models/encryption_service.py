@@ -29,12 +29,12 @@ class EncryptionService(Model):
     """
 
     _validation = {
-        'last_enabled_time': {'readonly': True},
+        "last_enabled_time": {"readonly": True},
     }
 
     _attribute_map = {
-        'enabled': {'key': 'enabled', 'type': 'bool'},
-        'last_enabled_time': {'key': 'lastEnabledTime', 'type': 'iso-8601'},
+        "enabled": {"key": "enabled", "type": "bool"},
+        "last_enabled_time": {"key": "lastEnabledTime", "type": "iso-8601"},
     }
 
     def __init__(self, enabled=None):

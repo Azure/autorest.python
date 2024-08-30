@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class InnerModel(_model_base.Model):
     """Array inner model.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar property: Required string property. Required.
     :vartype property: str
@@ -38,8 +37,7 @@ class InnerModel(_model_base.Model):
         *,
         property: str,  # pylint: disable=redefined-builtin
         children: Optional[List["_models.InnerModel"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

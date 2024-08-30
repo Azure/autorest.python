@@ -1,20 +1,24 @@
 aiohttp;python_full_version>="3.5.2"
-requests==2.31.0
+requests==2.32.2
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-core==1.30.0
+azure-mgmt-core==1.3.2
 # only for azure
--e ./generated/azure-mgmt-spheredpg
--e ./generated/azure-mgmt-spheremsrest
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-usage
--e ./generated/azure-client-generator-core-flatten
+-e ./generated/azure-client-generator-core-flatten-property
 -e ./generated/azure-core-basic
--e ./generated/azurecore-lro-rpclegacy
+-e ./generated/azure-core-scalar
 -e ./generated/azurecore-lro-rpc
 -e ./generated/azure-core-lro-standard
+-e ./generated/azure-core-model
 -e ./generated/azure-core-traits
--e ./generated/special-headers-client-request-id
+-e ./generated/azure-core-page
+-e ./generated/azure-special-headers-client-request-id/
+-e ./generated/azure-example-basic
+-e ./generated/azure-resource-manager-models-common-types-managed-identity
+-e ./generated/azure-resource-manager-models-resources
 
 # common test case
 -e ./generated/authentication-api-key
@@ -23,12 +27,14 @@ azure-core==1.30.0
 -e ./generated/authentication-union
 -e ./generated/client-naming
 -e ./generated/encode-duration
+-e ./generated/encode-numeric
+-e ./generated/parameters-basic
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-spread
--e ./generated/projection-projected-name
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/serialization-encoded-name-json
+-e ./generated/server-endpoint-not-defined
 -e ./generated/server-path-multiple
 -e ./generated/server-path-single
 -e ./generated/server-versions-versioned
@@ -68,3 +74,9 @@ azure-core==1.30.0
 -e ./generated/payload-pageable
 -e ./generated/payload-multipart
 -e ./generated/payload-media-type
+-e ./generated/versioning-added
+-e ./generated/versioning-madeoptional
+-e ./generated/versioning-removed
+-e ./generated/versioning-renamedfrom
+-e ./generated/versioning-returntypechangedfrom
+-e ./generated/versioning-typechangedfrom

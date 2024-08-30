@@ -18,10 +18,14 @@ class ContentNegotiationClientConfiguration:  # pylint: disable=too-many-instanc
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :param endpoint: Service host. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
+        self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "payload-contentnegotiation/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

@@ -7,7 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Dict
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -16,10 +17,6 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._serialization import Deserializer, Serializer
 from ._configuration import MergePatchJsonClientConfiguration
 from .operations import MergePatchJsonClientOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -84,7 +81,7 @@ class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disa
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "MergePatchJsonClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

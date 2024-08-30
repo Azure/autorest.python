@@ -12,6 +12,7 @@ async def client():
     async with PageableClient(endpoint="http://localhost:3000") as client:
         yield client
 
+
 @pytest.mark.asyncio
 async def test_list(client: PageableClient):
     result = [p async for p in client.list(maxpagesize=3)]

@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
 
@@ -86,7 +87,7 @@ class AutoRestValidationTest(
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AutoRestValidationTest":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

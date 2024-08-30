@@ -40,10 +40,12 @@ from bodyboolean import AutoRestBoolTestService
 
 import pytest
 
+
 @pytest.fixture
 def client():
     with AutoRestBoolTestService(base_url="http://localhost:3000") as client:
         yield client
+
 
 class TestBool(object):
 
@@ -70,6 +72,7 @@ class TestBool(object):
         from bodyboolean.models import Error
 
         from bodyboolean.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
@@ -79,4 +82,5 @@ class TestBool(object):
             from bodyboolean.operations import _bool_operations_py3
 
         from bodyboolean.operations._bool_operations import BoolOperations as BoolOperationsPy2
+
         assert BoolOperations == BoolOperationsPy2

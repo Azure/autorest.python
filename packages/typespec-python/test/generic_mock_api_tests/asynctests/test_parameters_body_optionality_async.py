@@ -21,7 +21,7 @@ async def test_required_explicit(client: BodyOptionalityClient):
 
 @pytest.mark.asyncio
 async def test_required_implicit(client: BodyOptionalityClient):
-    await client.required_implicit(BodyModel(name="foo"))
+    await client.required_implicit(name="foo")
 
 
 @pytest.mark.asyncio

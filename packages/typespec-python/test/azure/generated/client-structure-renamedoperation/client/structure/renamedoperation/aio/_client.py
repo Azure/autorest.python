@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any, Awaitable, Union
+from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
@@ -86,7 +87,7 @@ class RenamedOperationClient(
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
+            "client": self._serialize.url("self._config.client", self._config.client, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
@@ -95,7 +96,7 @@ class RenamedOperationClient(
     async def close(self) -> None:
         await self._client.close()
 
-    async def __aenter__(self) -> "RenamedOperationClient":
+    async def __aenter__(self) -> Self:
         await self._client.__aenter__()
         return self
 

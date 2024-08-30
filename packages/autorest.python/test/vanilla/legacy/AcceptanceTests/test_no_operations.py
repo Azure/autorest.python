@@ -27,14 +27,15 @@
 import sys
 import pytest
 
+
 class TestNoOperations:
     def test_models(self):
         from nooperations.models import Error
 
         from nooperations.models._models_py3 import Error as ErrorPy3
+
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
         with pytest.raises(ImportError):
             from nooperations import operations
-

@@ -25,12 +25,8 @@ def test_get(client: TraitsClient, check_client_request_id_header):
         result, header = client.smoke_test(
             id=1,
             foo="123",
-            if_unmodified_since=datetime(
-                year=2022, month=8, day=26, hour=14, minute=38, second=0
-            ),
-            if_modified_since=datetime(
-                year=2021, month=8, day=26, hour=14, minute=38, second=0
-            ),
+            if_unmodified_since=datetime(year=2022, month=8, day=26, hour=14, minute=38, second=0),
+            if_modified_since=datetime(year=2021, month=8, day=26, hour=14, minute=38, second=0),
             cls=lambda x, y, z: (y, z),
             raw_request_hook=functools.partial(
                 check_client_request_id_header, header="x-ms-client-request-id", checked=checked
@@ -47,6 +43,7 @@ def test_get(client: TraitsClient, check_client_request_id_header):
     assert_test_get(etag="invalid", match_condition=MatchConditions.IfModified)
     with pytest.raises(HttpResponseError):
         assert_test_get()
+
 
 def test_repeatable_action(client: TraitsClient, check_repeatability_header):
     result, header = client.repeatable_action(

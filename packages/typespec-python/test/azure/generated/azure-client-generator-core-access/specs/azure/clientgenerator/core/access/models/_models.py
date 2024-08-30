@@ -23,25 +23,23 @@ class AbstractModel(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     RealModel
 
-    All required parameters must be populated in order to send to server.
 
+    :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
+    :vartype kind: str
     :ivar name: Required.
     :vartype name: str
-    :ivar kind: Required. Default value is None.
-    :vartype kind: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
+    kind: str = rest_discriminator(name="kind")
+    """Discriminator property for AbstractModel. Required. Default value is None."""
     name: str = rest_field()
     """Required."""
-    kind: str = rest_discriminator(name="kind")
-    """Required. Default value is None."""
 
 
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -54,7 +52,6 @@ class BaseModel(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -67,7 +64,6 @@ class InnerModel(_model_base.Model):
 class InternalDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -80,7 +76,6 @@ class InternalDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -93,7 +88,6 @@ class NoDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -107,8 +101,7 @@ class NoDecoratorModelInPublic(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -124,12 +117,11 @@ class NoDecoratorModelInPublic(_model_base.Model):
 class OuterModel(BaseModel):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
     :ivar inner: Required.
-    :vartype inner: ~specs.azure.clientgenerator.core.access.models.InnerModel
+    :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
     """
 
     inner: "_models._models.InnerModel" = rest_field()
@@ -139,7 +131,6 @@ class OuterModel(BaseModel):
 class PublicDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation but with public decorator, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -153,8 +144,7 @@ class PublicDecoratorModelInInternal(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -170,7 +160,6 @@ class PublicDecoratorModelInInternal(_model_base.Model):
 class PublicDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -184,8 +173,7 @@ class PublicDecoratorModelInPublic(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):
@@ -201,7 +189,6 @@ class PublicDecoratorModelInPublic(_model_base.Model):
 class RealModel(AbstractModel, discriminator="real"):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -216,7 +203,6 @@ class RealModel(AbstractModel, discriminator="real"):
 class SharedModel(_model_base.Model):
     """Used by both public and internal operation. It should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -230,8 +216,7 @@ class SharedModel(_model_base.Model):
         self,
         *,
         name: str,
-    ):
-        ...
+    ): ...
 
     @overload
     def __init__(self, mapping: Mapping[str, Any]):

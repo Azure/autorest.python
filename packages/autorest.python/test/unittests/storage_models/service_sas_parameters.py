@@ -70,33 +70,53 @@ class ServiceSasParameters(Model):
     """
 
     _validation = {
-        'canonicalized_resource': {'required': True},
-        'resource': {'required': True},
-        'identifier': {'max_length': 64},
+        "canonicalized_resource": {"required": True},
+        "resource": {"required": True},
+        "identifier": {"max_length": 64},
     }
 
     _attribute_map = {
-        'canonicalized_resource': {'key': 'canonicalizedResource', 'type': 'str'},
-        'resource': {'key': 'signedResource', 'type': 'str'},
-        'permissions': {'key': 'signedPermission', 'type': 'str'},
-        'ip_address_or_range': {'key': 'signedIp', 'type': 'str'},
-        'protocols': {'key': 'signedProtocol', 'type': 'HttpProtocol'},
-        'shared_access_start_time': {'key': 'signedStart', 'type': 'iso-8601'},
-        'shared_access_expiry_time': {'key': 'signedExpiry', 'type': 'iso-8601'},
-        'identifier': {'key': 'signedIdentifier', 'type': 'str'},
-        'partition_key_start': {'key': 'startPk', 'type': 'str'},
-        'partition_key_end': {'key': 'endPk', 'type': 'str'},
-        'row_key_start': {'key': 'startRk', 'type': 'str'},
-        'row_key_end': {'key': 'endRk', 'type': 'str'},
-        'key_to_sign': {'key': 'keyToSign', 'type': 'str'},
-        'cache_control': {'key': 'rscc', 'type': 'str'},
-        'content_disposition': {'key': 'rscd', 'type': 'str'},
-        'content_encoding': {'key': 'rsce', 'type': 'str'},
-        'content_language': {'key': 'rscl', 'type': 'str'},
-        'content_type': {'key': 'rsct', 'type': 'str'},
+        "canonicalized_resource": {"key": "canonicalizedResource", "type": "str"},
+        "resource": {"key": "signedResource", "type": "str"},
+        "permissions": {"key": "signedPermission", "type": "str"},
+        "ip_address_or_range": {"key": "signedIp", "type": "str"},
+        "protocols": {"key": "signedProtocol", "type": "HttpProtocol"},
+        "shared_access_start_time": {"key": "signedStart", "type": "iso-8601"},
+        "shared_access_expiry_time": {"key": "signedExpiry", "type": "iso-8601"},
+        "identifier": {"key": "signedIdentifier", "type": "str"},
+        "partition_key_start": {"key": "startPk", "type": "str"},
+        "partition_key_end": {"key": "endPk", "type": "str"},
+        "row_key_start": {"key": "startRk", "type": "str"},
+        "row_key_end": {"key": "endRk", "type": "str"},
+        "key_to_sign": {"key": "keyToSign", "type": "str"},
+        "cache_control": {"key": "rscc", "type": "str"},
+        "content_disposition": {"key": "rscd", "type": "str"},
+        "content_encoding": {"key": "rsce", "type": "str"},
+        "content_language": {"key": "rscl", "type": "str"},
+        "content_type": {"key": "rsct", "type": "str"},
     }
 
-    def __init__(self, canonicalized_resource, resource, permissions=None, ip_address_or_range=None, protocols=None, shared_access_start_time=None, shared_access_expiry_time=None, identifier=None, partition_key_start=None, partition_key_end=None, row_key_start=None, row_key_end=None, key_to_sign=None, cache_control=None, content_disposition=None, content_encoding=None, content_language=None, content_type=None):
+    def __init__(
+        self,
+        canonicalized_resource,
+        resource,
+        permissions=None,
+        ip_address_or_range=None,
+        protocols=None,
+        shared_access_start_time=None,
+        shared_access_expiry_time=None,
+        identifier=None,
+        partition_key_start=None,
+        partition_key_end=None,
+        row_key_start=None,
+        row_key_end=None,
+        key_to_sign=None,
+        cache_control=None,
+        content_disposition=None,
+        content_encoding=None,
+        content_language=None,
+        content_type=None,
+    ):
         self.canonicalized_resource = canonicalized_resource
         self.resource = resource
         self.permissions = permissions

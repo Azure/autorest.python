@@ -7,7 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any, Dict
+from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
@@ -16,10 +17,6 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AnythingClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import AnythingClientOperationsMixin
-
-if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
-    from typing import Dict
 
 
 class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -83,7 +80,7 @@ class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-a
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "AnythingClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

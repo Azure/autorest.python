@@ -35,62 +35,70 @@ from .multiapi_base import NotTested
 @pytest.fixture
 def default_client(credential, authentication_policy):
     from multiapidataplane import MultiapiServiceClient
+
     with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        authentication_policy=authentication_policy
+        base_url="http://localhost:3000", credential=credential, authentication_policy=authentication_policy
     ) as default_client:
         yield default_client
+
 
 @pytest.fixture
 def client(credential, authentication_policy, api_version):
     from multiapidataplane import MultiapiServiceClient
 
     with MultiapiServiceClient(
-		base_url="http://localhost:3000",
+        base_url="http://localhost:3000",
         api_version=api_version,
         credential=credential,
-        authentication_policy=authentication_policy
+        authentication_policy=authentication_policy,
     ) as client:
         yield client
+
 
 @pytest.fixture
 def namespace_models():
     from multiapidataplane import models
+
     return models
 
 
-@pytest.mark.parametrize('api_version', ["2.0.0"])
+@pytest.mark.parametrize("api_version", ["2.0.0"])
 def test_specify_api_version_multiapi_client(client):
     assert client.profile.label == "multiapidataplane.MultiapiServiceClient 2.0.0"
+
 
 def test_configuration_kwargs(default_client):
     # making sure that the package name is correct in the sdk moniker
     assert default_client._config.user_agent_policy._user_agent.startswith("azsdk-python-multiapidataplane/")
 
+
 def test_pipeline_client(default_client):
     # assert the pipeline client is PipelineClient from azure.core, since this is data plane
     assert type(default_client._client) == PipelineClient
 
+
 def test_arm_http_logging_policy_default(default_client):
     assert isinstance(default_client._config.http_logging_policy, HttpLoggingPolicy)
-    assert default_client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+    assert (
+        default_client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST
+    )
+
 
 def test_arm_http_logging_policy_custom(credential):
     from multiapi import MultiapiServiceClient
+
     http_logging_policy = HttpLoggingPolicy(base_url="test")
     http_logging_policy = HttpLoggingPolicy()
-    http_logging_policy.allowed_header_names.update(
-        {"x-ms-added-header"}
-    )
+    http_logging_policy.allowed_header_names.update({"x-ms-added-header"})
     with MultiapiServiceClient(
-		base_url="http://localhost:3000",
-        credential=credential,
-        http_logging_policy=http_logging_policy
+        base_url="http://localhost:3000", credential=credential, http_logging_policy=http_logging_policy
     ) as default_client:
         assert isinstance(default_client._config.http_logging_policy, HttpLoggingPolicy)
-        assert default_client._config.http_logging_policy.allowed_header_names == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+        assert (
+            default_client._config.http_logging_policy.allowed_header_names
+            == HttpLoggingPolicy.DEFAULT_HEADERS_WHITELIST.union({"x-ms-added-header"})
+        )
+
 
 class TestMultiapiClient(NotTested.TestMultiapiBase):
     pass
-

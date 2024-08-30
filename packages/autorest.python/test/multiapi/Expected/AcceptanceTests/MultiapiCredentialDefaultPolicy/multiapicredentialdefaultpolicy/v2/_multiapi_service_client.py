@@ -8,6 +8,7 @@
 
 from copy import deepcopy
 from typing import Any
+from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
@@ -97,7 +98,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: di
     def close(self) -> None:
         self._client.close()
 
-    def __enter__(self) -> "MultiapiServiceClient":
+    def __enter__(self) -> Self:
         self._client.__enter__()
         return self
 

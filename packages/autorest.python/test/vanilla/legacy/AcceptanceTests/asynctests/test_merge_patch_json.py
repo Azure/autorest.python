@@ -27,10 +27,12 @@ from mergepatchjson.aio import MergePatchJsonClient
 
 import pytest
 
+
 @pytest.fixture
 async def client():
     async with MergePatchJsonClient() as client:
         yield client
+
 
 @pytest.mark.asyncio
 async def test_merge_patch_json(client):
