@@ -446,8 +446,8 @@ class Model(object):
     def _flatten_subtype(cls, key, objects):
         if "_subtype_map" not in cls.__dict__:
             return {}
-        result = dict(cls._subtype_map[key])
-        for valuetype in cls._subtype_map[key].values():
+        result = dict(cls._subtype_map.get(key, {}))
+        for valuetype in cls._subtype_map.get(key, {}).values():
             result.update(objects[valuetype]._flatten_subtype(key, objects))
         return result
 

@@ -1,0 +1,57 @@
+{
+  "age": 1,
+  "kind": "salmon",
+  "partner": {
+    "age": 2,
+    "kind": "shark",
+    "sharktype": "saw"
+  },
+  "friends": [
+    {
+      "age": 2,
+      "kind": "salmon",
+      "partner": {
+        "age": 3,
+        "kind": "salmon"
+      },
+      "hate": {
+        "key1": {
+          "age": 4,
+          "kind": "salmon"
+        },
+        "key2": {
+          "age": 2,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      }
+    },
+    {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "goblin"
+    }
+  ],
+  "hate": {
+    "key3": {
+      "age": 3,
+      "kind": "shark",
+      "sharktype": "saw"
+    },
+    "key4": {
+      "age": 2,
+      "kind": "salmon",
+      "friends": [
+        {
+          "age": 1,
+          "kind": "salmon"
+        },
+        {
+          "age": 4,
+          "kind": "shark",
+          "sharktype": "goblin"
+        }
+      ]
+    }
+  }
+}
