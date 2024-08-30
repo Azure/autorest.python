@@ -455,7 +455,6 @@ class Model(object):
     def _classify(cls, response, objects):
         """Check the class _subtype_map for any child classes.
         We want to ignore any inherited _subtype_maps.
-        Remove the polymorphic key from the initial data.
         """
         for subtype_key in cls.__dict__.get("_subtype_map", {}).keys():
             subtype_value = None
