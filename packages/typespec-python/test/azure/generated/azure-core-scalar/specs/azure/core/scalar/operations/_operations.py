@@ -156,7 +156,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -216,7 +219,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -246,19 +252,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -273,14 +266,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -297,14 +282,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @distributed_trace
@@ -318,19 +295,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -359,7 +323,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -415,7 +382,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -459,7 +429,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

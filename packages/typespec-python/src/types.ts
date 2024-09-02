@@ -17,13 +17,15 @@ import {
     SdkServiceOperation,
     UsageFlags,
     SdkModelPropertyType,
+    SdkEndpointType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
-import { camelToSnakeCase, getAddedOn } from "./utils.js";
+import { camelToSnakeCase, emitParamBase, getAddedOn, getImplementation } from "./utils.js";
 import { PythonSdkContext } from "./lib.js";
 
 export const typesMap = new Map<SdkType, Record<string, any>>();
 export const simpleTypesMap = new Map<string | null, Record<string, any>>();
+export const disableGenerationMap = new Set<SdkType>();
 
 export interface CredentialType {
     kind: "Credential";
@@ -33,6 +35,11 @@ export interface CredentialType {
 export interface CredentialTypeUnion {
     kind: "CredentialTypeUnion";
     types: CredentialType[];
+}
+
+interface MultiPartFileType {
+    kind: "multipartfile";
+    type: SdkType;
 }
 
 function isEmptyModel(type: SdkType): boolean {
@@ -60,12 +67,11 @@ export function getSimpleTypeResult(result: Record<string, any>): Record<string,
 
 export function getType<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
-    type: CredentialType | CredentialTypeUnion | Type | SdkType,
-    fromBody = false,
+    type: CredentialType | CredentialTypeUnion | Type | SdkType | MultiPartFileType,
 ): Record<string, any> {
     switch (type.kind) {
         case "model":
-            return emitModel(context, type, fromBody);
+            return emitModel(context, type);
         case "union":
             return emitUnion(context, type);
         case "enum":
@@ -110,9 +116,27 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
             return KnownTypes.any;
         case "nullable":
             return getType(context, type.type);
+        case "multipartfile":
+            return emitMultiPartFile(context, type);
         default:
             throw Error(`Not supported ${type.kind}`);
     }
+}
+
+function emitMultiPartFile<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: MultiPartFileType,
+): Record<string, any> {
+    if (type.type.kind === "array") {
+        return getSimpleTypeResult({
+            type: "list",
+            elementType: getType(context, createMultiPartFileType(type.type.valueType)),
+        });
+    }
+    return getSimpleTypeResult({
+        type: type.kind,
+        description: type.type.description,
+    });
 }
 
 function emitCredential(credential: SdkCredentialType): Record<string, any> {
@@ -174,21 +198,42 @@ function visibilityMapping(visibility?: Visibility[]): string[] | undefined {
     return result;
 }
 
+function createMultiPartFileType(type: SdkType): MultiPartFileType {
+    return { kind: "multipartfile", type };
+}
+
+function addDisableGenerationMap(type: SdkType): void {
+    if (disableGenerationMap.has(type)) return;
+
+    disableGenerationMap.add(type);
+    if (type.kind === "model" && type.baseModel) {
+        addDisableGenerationMap(type.baseModel);
+    } else if (type.kind === "array") {
+        addDisableGenerationMap(type.valueType);
+    }
+}
+
 function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     property: SdkBodyModelPropertyType,
 ): Record<string, any> {
+    const isMultipartFileInput = property.multipartOptions?.isFilePart;
+    const sourceType = isMultipartFileInput ? createMultiPartFileType(property.type) : property.type;
+    if (isMultipartFileInput) {
+        // Python convert all the type of file part to FileType so clear these models' usage so that they won't be generated
+        addDisableGenerationMap(property.type);
+    }
     return {
         clientName: camelToSnakeCase(property.name),
         wireName: property.serializedName,
-        type: getType(context, property.type),
+        type: getType(context, sourceType),
         optional: property.optional,
         description: property.description,
         addedOn: getAddedOn(context, property),
         visibility: visibilityMapping(property.visibility),
         isDiscriminator: property.discriminator,
         flatten: property.flatten,
-        isMultipartFileInput: property.isMultipartFileInput,
+        isMultipartFileInput: isMultipartFileInput,
         getXmlMetadata: getXmlMetadata(property),
     };
 }
@@ -196,7 +241,6 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
 function emitModel<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     type: SdkModelType,
-    fromBody: boolean,
 ): Record<string, any> {
     if (isEmptyModel(type)) {
         return KnownTypes.any;
@@ -214,7 +258,7 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         discriminatedSubtypes: {} as Record<string, Record<string, any>>,
         properties: new Array<Record<string, any>>(),
         snakeCaseName: camelToSnakeCase(type.name),
-        base: type.isGeneratedName && fromBody ? "json" : "dpg",
+        base: "dpg",
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,
@@ -420,6 +464,28 @@ export const KnownTypes = {
     any: { type: "any" },
 };
 
+export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
+    context: PythonSdkContext<TServiceOperation>,
+    type: SdkEndpointType,
+): Record<string, any>[] {
+    const params: Record<string, any>[] = [];
+    for (const param of type.templateArguments) {
+        const paramBase = emitParamBase(context, param);
+        paramBase.clientName = context.arm ? "base_url" : paramBase.clientName;
+        params.push({
+            ...paramBase,
+            optional: Boolean(param.clientDefaultValue),
+            wireName: param.name,
+            location: "endpointPath",
+            implementation: getImplementation(context, param),
+            clientDefaultValue: param.clientDefaultValue,
+            skipUrlEncoding: param.urlEncode === false, // eslint-disable-line deprecation/deprecation
+        });
+        context.__endpointPathParameters!.push(params.at(-1)!);
+    }
+    return params;
+}
+
 function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, any> {
     const xmlMetadata: Record<string, any> = {};
     const xmlDecorators = type.decorators.filter((x) => x.name.startsWith("Typespec.Xml."));
@@ -447,4 +513,3 @@ function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, an
     }
     return xmlMetadata;
 }
-

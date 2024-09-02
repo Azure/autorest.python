@@ -3,26 +3,26 @@ parameters:
     package: "autorest.python"
 
 steps:
-    - script: tox run -e ci
+    - script: npm run test -- --command=ci --folder=${{ parameters.folderName }}
       displayName: Execute ${{ parameters.folderName }} tests - Python $(PythonVersion)
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
 
-    - script: tox run -e lint
-      displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+    - script: npm run test -- --command=lint --folder=${{ parameters.folderName }}
+      displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion) --folder=${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: tox run -e mypy
+    - script: npm run test -- --command=mypy --folder=${{ parameters.folderName }}
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.11'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: tox run -e pyright
+    - script: npm run test -- --command=pyright --folder=${{ parameters.folderName }}
       displayName: Pyright ${{ parameters.folderName }} - Python $(PythonVersion)
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: tox run -e apiview
+    - script: npm run test -- --command=apiview --folder=${{ parameters.folderName }}
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}/test/${{ parameters.folderName }}
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: eq(variables['PythonVersion'], '3.11')

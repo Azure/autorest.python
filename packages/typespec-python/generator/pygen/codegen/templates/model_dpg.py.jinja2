@@ -45,7 +45,8 @@
     __flattened_items = ["{{ model.flattened_items|join('\", \"') }}"]
     {% endif %}
 
-    {% if not model.internal and serializer.init_line(model) %}
+    {% set need_init = (not model.internal) and (serializer.init_line(model) or model.discriminator)%}
+    {% if need_init %}
     @overload
     def __init__(
         self,
@@ -64,7 +65,7 @@
 
     {% endif %}
     {% set initialize_properties = serializer.initialize_properties(model) %}
-    {% if not model.internal and serializer.init_line(model) or initialize_properties %}
+    {% if need_init or initialize_properties %}
     def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
         {% for line in serializer.super_call(model) %}
         {{ line }}

@@ -7,22 +7,15 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 from .._vendor import FileType
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Address(_model_base.Model):
@@ -63,7 +56,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
     id: str = rest_field()
@@ -90,8 +83,8 @@ class BinaryArrayPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ComplexPartsRequest(_model_base.Model):
-    """ComplexPartsRequest.
+class ComplexHttpPartsModelRequest(_model_base.Model):
+    """ComplexHttpPartsModelRequest.
 
     All required parameters must be populated in order to send to server.
 
@@ -100,11 +93,11 @@ class ComplexPartsRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: ~payload.multipart._vendor.FileType
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     :ivar pictures: Required.
-    :vartype pictures: list[bytes]
+    :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
     id: str = rest_field()
@@ -140,20 +133,61 @@ class ComplexPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class JsonArrayPartsRequest(_model_base.Model):
-    """JsonArrayPartsRequest.
+class ComplexPartsRequest(_model_base.Model):
+    """ComplexPartsRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar address: Required.
+    :vartype address: ~payload.multipart.models.Address
+    :ivar profile_image: Required.
+    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :ivar pictures: Required.
+    :vartype pictures: list[~payload.multipart._vendor.FileType]
+    """
+
+    id: str = rest_field()
+    """Required."""
+    address: "_models.Address" = rest_field()
+    """Required."""
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    """Required."""
+    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        address: "_models.Address",
+        profile_image: FileType,
+        pictures: List[FileType],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+    """FileWithHttpPartOptionalContentTypeRequest.
 
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
-    :ivar previous_addresses: Required.
-    :vartype previous_addresses: list[~payload.multipart.models.Address]
+    :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
     """Required."""
 
     @overload
@@ -161,7 +195,66 @@ class JsonArrayPartsRequest(_model_base.Model):
         self,
         *,
         profile_image: FileType,
-        previous_addresses: List["_models.Address"],
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+    """FileWithHttpPartRequiredContentTypeRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: ~payload.multipart._vendor.FileType
+    """
+
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: FileType,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+    """FileWithHttpPartSpecificContentTypeRequest.
+
+    All required parameters must be populated in order to send to server.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: ~payload.multipart._vendor.FileType
+    """
+
+    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: FileType,
     ): ...
 
     @overload
@@ -183,7 +276,7 @@ class JsonPartRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     address: "_models.Address" = rest_field()
@@ -216,9 +309,9 @@ class MultiBinaryPartsRequest(_model_base.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: ~payload.multipart._vendor.FileType
     :ivar picture:
-    :vartype picture: bytes
+    :vartype picture: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
@@ -252,7 +345,7 @@ class MultiPartRequest(_model_base.Model):
     :ivar id: Required.
     :vartype id: str
     :ivar profile_image: Required.
-    :vartype profile_image: bytes
+    :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     id: str = rest_field()

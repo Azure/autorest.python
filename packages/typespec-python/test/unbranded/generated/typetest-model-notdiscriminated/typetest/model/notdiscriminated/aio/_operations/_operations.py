@@ -59,16 +59,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -113,16 +103,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -151,7 +131,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -173,16 +156,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -201,7 +174,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -243,23 +219,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -274,16 +233,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -300,16 +249,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     async def put_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> _models.Siamese:
@@ -320,23 +259,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -365,7 +287,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access

@@ -33,7 +33,8 @@ class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = TraitsClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = TraitsClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -51,7 +52,7 @@ class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accep
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -78,7 +79,11 @@ class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accep
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:

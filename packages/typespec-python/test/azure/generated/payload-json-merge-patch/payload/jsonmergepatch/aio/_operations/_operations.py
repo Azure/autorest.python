@@ -60,63 +60,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -133,36 +76,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -179,36 +92,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -220,63 +103,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -305,7 +131,10 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -347,62 +176,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -419,36 +192,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -465,36 +208,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -508,62 +221,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -592,7 +249,10 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -638,62 +298,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -710,36 +314,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @overload
@@ -756,36 +330,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -800,62 +344,6 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :return: Resource. The Resource is compatible with MutableMapping
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str",
-                    "array": [
-                        {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    ],
-                    "description": "str",
-                    "floatValue": 0.0,
-                    "innerModel": {
-                        "description": "str",
-                        "name": "str"
-                    },
-                    "intArray": [
-                        0
-                    ],
-                    "intValue": 0,
-                    "map": {
-                        "str": {
-                            "description": "str",
-                            "name": "str"
-                        }
-                    }
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -887,7 +375,10 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

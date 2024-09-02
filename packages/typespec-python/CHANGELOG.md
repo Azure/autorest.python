@@ -1,5 +1,49 @@
 # Release
 
+## 0.29.0
+
+### Bug Fixes
+
+- [#2756](https://github.com/Azure/autorest.python/pull/2756) Fix to get right response and exception
+- [#2763](https://github.com/Azure/autorest.python/pull/2763) Fix import for "json" and bump cadl-ranch dependency
+- [#2784](https://github.com/Azure/autorest.python/pull/2784) Fix sample generation for keyword-only parameters
+
+### Bump dependencies
+
+- [#2773](https://github.com/Azure/autorest.python/pull/2773) Use `@typespec/compiler` `0.59.1` to absorb fix for compiler
+
+### Features
+
+- [#2740](https://github.com/Azure/autorest.python/pull/2740) Support advanced multipart for `@multipartBody`
+- [#2750](https://github.com/Azure/autorest.python/pull/2750) optimize performance of dpg model
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
+## 0.28.0
+
+### Bug Fixes
+
+- [#2759](https://github.com/Azure/autorest.python/pull/2759) Fix sample generation for lro and paging operation
+- [#2758](https://github.com/Azure/autorest.python/pull/2758) Revert client signature `endpoint` to `base_url` to avoid breaking for Mgmt SDK
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
+## 0.27.1
+
+### Bug Fixes
+
+- [#2737](https://github.com/Azure/autorest.python/pull/2737) Fix initialize for model which only has discriminator property
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+- [#2729](https://github.com/Azure/autorest.python/pull/2729) Fix import for multipart
+
+### Bump dependencies
+
+- [#2723](https://github.com/Azure/autorest.python/pull/2723) upgrade to tcgc 0.44.2
+
+
 ## 0.27.0
 
 ### Bug Fixes

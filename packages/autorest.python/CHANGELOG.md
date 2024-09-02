@@ -1,5 +1,30 @@
 # Release
 
+## 6.19.0
+
+### Bug Fixes
+
+- [#2766](https://github.com/Azure/autorest.python/pull/2766) Fix crash when paging operation return type has parent type
+
+### Features
+
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
+## 6.18.0
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
+## 6.17.1
+
+### Bug Fixes
+
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+
+
 ## 6.17.0
 
 No changes, version bump only.

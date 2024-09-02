@@ -77,42 +77,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -135,7 +99,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -192,75 +159,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -290,42 +188,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -355,42 +217,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @distributed_trace_async
@@ -418,75 +244,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -519,7 +276,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -576,75 +336,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -674,42 +365,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -739,42 +394,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @distributed_trace_async
@@ -802,75 +421,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
@@ -903,7 +453,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

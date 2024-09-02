@@ -97,12 +97,9 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         return self.is_discriminator and self.is_polymorphic and cast(ConstantType, self.type).value is None
 
     def type_annotation(self, *, is_operation_file: bool = False) -> str:
-        types_type_annotation = self.type.type_annotation(is_operation_file=is_operation_file)
-        if self.is_multipart_file_input:
-            # we only support FileType or list of FileType
-            types_type_annotation = types_type_annotation.replace("bytes", "FileType")
         if self.is_base_discriminator:
             return "str"
+        types_type_annotation = self.type.type_annotation(is_operation_file=is_operation_file)
         if self.optional and self.client_default_value is None:
             return f"Optional[{types_type_annotation}]"
         return types_type_annotation
@@ -115,9 +112,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         *,
         client_default_value_declaration: Optional[str] = None,
     ) -> Any:
-        if self.is_multipart_file_input:
-            file_type_str = '"filetype"' if self.code_model.for_test else "filetype"
-            return f"[{file_type_str}]" if self.type.type == "list" else file_type_str
         if self.client_default_value:
             client_default_value_declaration = self.get_declaration(self.client_default_value)
         # make sure there is no \n otherwise the json template will be invalid
@@ -156,8 +150,6 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
                 "rest_discriminator" if self.is_discriminator else "rest_field",
                 ImportType.LOCAL,
             )
-        if self.is_multipart_file_input:
-            file_import.add_submodule_import(".._vendor", "FileType", ImportType.LOCAL)
         return file_import
 
     @classmethod

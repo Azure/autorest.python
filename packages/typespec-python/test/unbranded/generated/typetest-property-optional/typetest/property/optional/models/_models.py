@@ -243,8 +243,8 @@ class IntLiteralProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class PlaindateProperty(_model_base.Model):
-    """Model with a plaindate property.
+class PlainDateProperty(_model_base.Model):
+    """Model with a plainDate property.
 
     :ivar property: Property.
     :vartype property: ~datetime.date
@@ -272,7 +272,7 @@ class PlaindateProperty(_model_base.Model):
 
 
 class PlainTimeProperty(_model_base.Model):
-    """Model with a plaintime property.
+    """Model with a plainTime property.
 
     :ivar property: Property.
     :vartype property: ~datetime.time

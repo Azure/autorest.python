@@ -43,13 +43,13 @@ export function isAbstract<TServiceOperation extends SdkServiceOperation>(
     return (method.operation.bodyParam?.contentTypes.length ?? 0) > 1 && method.access !== "internal";
 }
 
-export function getDelimeterAndExplode(
+export function getDelimiterAndExplode(
     parameter: SdkQueryParameter | SdkHeaderParameter,
 ): [string | undefined, boolean] {
     if (parameter.type.kind !== "array") return [undefined, false];
     let delimiter: string | undefined = undefined;
-    let explode = false;
-    if (parameter.collectionFormat === "csv") {
+    let explode = parameter.kind === "query" && parameter.explode;
+    if (parameter.collectionFormat === "csv" || parameter.collectionFormat === "simple") {
         delimiter = "comma";
     } else if (parameter.collectionFormat === "ssv") {
         delimiter = "space";
@@ -90,9 +90,8 @@ export function getAddedOn<TServiceOperation extends SdkServiceOperation>(
 export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
     parameter: SdkParameter | SdkHttpParameter,
-    fromBody: boolean = false,
 ): ParamBase {
-    let type = getType(context, parameter.type, fromBody);
+    let type = getType(context, parameter.type);
     if (parameter.isApiVersionParam) {
         if (parameter.clientDefaultValue) {
             type = getSimpleTypeResult({ type: "constant", value: parameter.clientDefaultValue, valueType: type });
@@ -109,14 +108,15 @@ export function emitParamBase<TServiceOperation extends SdkServiceOperation>(
     };
 }
 
-export function isAzureCoreModel(t: SdkType | undefined): boolean {
+export function isAzureCoreErrorResponse(t: SdkType | undefined): boolean {
     if (!t) return false;
     const tspType = t.__raw;
     if (!tspType) return false;
     return (
         tspType.kind === "Model" &&
         tspType.namespace !== undefined &&
-        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace))
+        ["Azure.Core", "Azure.Core.Foundations"].includes(getNamespaceFullName(tspType.namespace)) &&
+        tspType.name === "ErrorResponse"
     );
 }
 
