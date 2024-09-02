@@ -519,7 +519,7 @@ class Model(_MyMutableMapping):
                         dict_to_pass[rf._rest_name] = args[0].get(xml_name)
                         continue
 
-                    # unwrapped element
+                    # unwrapped element could only be text or array
                     if prop_meta.get("unwrapped", False):
                         # unwrapped array could either use prop items meta/prop meta
                         if prop_meta.get("itemsName"):
@@ -532,8 +532,8 @@ class Model(_MyMutableMapping):
                             existed_attr_keys.append(xml_name)
                             dict_to_pass[rf._rest_name] = _create_value(rf, items)
                             continue
-
-                        # unwrapped element could only be text or array
+                        continue
+                    elif prop_meta.get("text", False):
                         if args[0].text is not None:
                             dict_to_pass[rf._rest_name] = _create_value(rf, args[0].text)
                         continue
@@ -1038,11 +1038,11 @@ def _get_element(
                 prop_meta["prefix"] = model_meta.get("prefix")
 
             if prop_meta.get("unwrapped", False):
-                # unwrapped could only set on array or primitive type
-                if isinstance(v, list):
-                    wrapped_element.extend(_get_element(v, exclude_readonly, prop_meta))
-                else:
-                    wrapped_element.text = _get_primitive_type_value(v)
+                # unwrapped could only set on array
+                wrapped_element.extend(_get_element(v, exclude_readonly, prop_meta))
+            if prop_meta.get("text", False):
+                # text could only set on primitive type
+                wrapped_element.text = _get_primitive_type_value(v)
             elif prop_meta.get("attr", False):
                 xml_name = prop_meta.get("name", k)
                 if prop_meta.get("ns"):

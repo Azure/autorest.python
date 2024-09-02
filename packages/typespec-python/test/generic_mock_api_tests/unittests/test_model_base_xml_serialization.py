@@ -126,7 +126,7 @@ class TestXmlDeserialization:
                 name="language", xml={"name": "language", "attr": True}
             )
             content: str = rest_field(
-                name="content", xml={"name": "content", "unwrapped": True}
+                name="content", xml={"name": "content", "text": True}
             )
 
             def __init__(self, *args, **kwargs):
@@ -311,6 +311,36 @@ class TestXmlDeserialization:
         result = _deserialize_xml(AppleBarrel, basic_xml)
         assert [apple.name for apple in result.good_apples] == ["granny", "fuji"]
 
+    def test_list_not_wrapped_items_name_complex_types(self):
+        """Test XML list and wrap, items is ref and there is itemsName."""
+
+        basic_xml = """<?xml version="1.0"?>
+            <AppleBarrel>
+                <Apple name="granny"/>
+                <Apple name="fuji"/>
+            </AppleBarrel>"""
+
+        class Apple(Model):
+            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+
+            _xml = {"name": "Apple"}
+
+        class AppleBarrel(Model):
+            good_apples: List[Apple] = rest_field(
+                name="GoodApples",
+                xml={"name": "GoodApples", "unwrapped": True, "itemsName": "Apple"},
+            )
+
+            def __init__(self, *args, **kwargs):
+                super().__init__(*args, **kwargs)
+
+            _xml = {"name": "AppleBarrel"}
+
+        result = _deserialize_xml(AppleBarrel, basic_xml)
+        assert [apple.name for apple in result.good_apples] == ["granny", "fuji"]
     def test_basic_additional_properties(self):
         """Test additional properties."""
         basic_xml = """<?xml version="1.0"?>
@@ -631,7 +661,7 @@ class TestXmlSerialization:
             language: str = rest_field(
                 name="language", xml={"name": "language", "attr": True}
             )
-            content: str = rest_field(name="content", xml={"unwrapped": True})
+            content: str = rest_field(name="content", xml={"text": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
