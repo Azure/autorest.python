@@ -147,8 +147,6 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
                 retval = add_to_pylint_disable(retval, "protected-access")
         except ValueError:
             pass
-        if len(self.name) > NAME_LENGTH_LIMIT:
-            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     def cls_type_annotation(self, *, async_mode: bool) -> str:

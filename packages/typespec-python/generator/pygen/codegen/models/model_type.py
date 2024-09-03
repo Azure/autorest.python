@@ -241,8 +241,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
         retval: str = ""
         if len(self.properties) > 10:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
-        if len(self.name) > NAME_LENGTH_LIMIT:
-            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     @property
