@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,7 +33,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -392,7 +391,7 @@ def build_collections_byte_get_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_byte_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -420,7 +419,7 @@ def build_collections_byte_put_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_byte_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -448,7 +447,7 @@ def build_collections_model_get_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_model_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -476,7 +475,7 @@ def build_collections_model_put_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_collections_model_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -672,7 +671,7 @@ def build_boolean_literal_get_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_literal_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_boolean_literal_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -700,7 +699,7 @@ def build_boolean_literal_put_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_literal_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_boolean_literal_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -714,7 +713,7 @@ def build_boolean_literal_put_default_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_string_literal_get_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_string_literal_get_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -728,7 +727,7 @@ def build_union_string_literal_get_all_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_string_literal_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_string_literal_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -742,7 +741,7 @@ def build_union_string_literal_get_default_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_string_literal_put_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_string_literal_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -756,7 +755,7 @@ def build_union_string_literal_put_all_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_string_literal_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_string_literal_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -784,7 +783,7 @@ def build_union_int_literal_get_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_int_literal_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_int_literal_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -812,7 +811,7 @@ def build_union_int_literal_put_all_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_int_literal_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_int_literal_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -826,7 +825,7 @@ def build_union_int_literal_put_default_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_float_literal_get_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_float_literal_get_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -840,7 +839,7 @@ def build_union_float_literal_get_all_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_float_literal_get_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_float_literal_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -854,7 +853,7 @@ def build_union_float_literal_get_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_float_literal_put_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_float_literal_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -868,7 +867,7 @@ def build_union_float_literal_put_all_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_float_literal_put_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_float_literal_put_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -882,7 +881,7 @@ def build_union_float_literal_put_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_get_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_required_and_optional_get_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -896,9 +895,7 @@ def build_required_and_optional_get_all_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_get_required_only_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_required_and_optional_get_required_only_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -912,7 +909,7 @@ def build_required_and_optional_get_required_only_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_put_all_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_required_and_optional_put_all_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -926,9 +923,7 @@ def build_required_and_optional_put_all_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_required_and_optional_put_required_only_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_required_and_optional_put_required_only_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

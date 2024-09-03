@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -39,7 +38,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -47,7 +46,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_top_level_tracked_resources_get_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_get_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -77,7 +76,7 @@ def build_top_level_tracked_resources_get_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_create_or_replace_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_create_or_replace_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -110,7 +109,7 @@ def build_top_level_tracked_resources_create_or_replace_request(  # pylint: disa
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_update_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_update_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -143,7 +142,7 @@ def build_top_level_tracked_resources_update_request(  # pylint: disable=name-to
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_delete_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_delete_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -173,7 +172,7 @@ def build_top_level_tracked_resources_delete_request(  # pylint: disable=name-to
     return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_list_by_resource_group_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_list_by_resource_group_request(
     resource_group_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -200,9 +199,7 @@ def build_top_level_tracked_resources_list_by_resource_group_request(  # pylint:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_list_by_subscription_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_top_level_tracked_resources_list_by_subscription_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -226,7 +223,7 @@ def build_top_level_tracked_resources_list_by_subscription_request(  # pylint: d
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_top_level_tracked_resources_action_sync_request(  # pylint: disable=name-too-long
+def build_top_level_tracked_resources_action_sync_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -294,7 +291,7 @@ def build_nested_proxy_resources_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_nested_proxy_resources_create_or_replace_request(  # pylint: disable=name-too-long
+def build_nested_proxy_resources_create_or_replace_request(
     resource_group_name: str,
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
@@ -332,7 +329,7 @@ def build_nested_proxy_resources_create_or_replace_request(  # pylint: disable=n
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_nested_proxy_resources_update_request(  # pylint: disable=name-too-long
+def build_nested_proxy_resources_update_request(
     resource_group_name: str,
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
@@ -370,7 +367,7 @@ def build_nested_proxy_resources_update_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_nested_proxy_resources_delete_request(  # pylint: disable=name-too-long
+def build_nested_proxy_resources_delete_request(
     resource_group_name: str,
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
@@ -405,7 +402,7 @@ def build_nested_proxy_resources_delete_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_nested_proxy_resources_list_by_top_level_tracked_resource_request(  # pylint: disable=name-too-long
+def build_nested_proxy_resources_list_by_top_level_tracked_resource_request(
     resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

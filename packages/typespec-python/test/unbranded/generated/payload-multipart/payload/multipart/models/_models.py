@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14,7 +13,6 @@ from .._model_base import rest_field
 from .._vendor import FileType
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -178,7 +176,7 @@ class ComplexPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):
     """FileWithHttpPartOptionalContentTypeRequest.
 
     All required parameters must be populated in order to send to server.
@@ -208,7 +206,7 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):
     """FileWithHttpPartRequiredContentTypeRequest.
 
     All required parameters must be populated in order to send to server.
@@ -238,7 +236,7 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):
     """FileWithHttpPartSpecificContentTypeRequest.
 
     All required parameters must be populated in order to send to server.

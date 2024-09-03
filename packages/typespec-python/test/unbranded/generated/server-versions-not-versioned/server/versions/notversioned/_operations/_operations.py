@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -35,16 +34,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_not_versioned_without_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_not_versioned_without_api_version_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/server/versions/not-versioned/without-api-version"
 
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_not_versioned_with_query_api_version_request(  # pylint: disable=name-too-long
-    *, api_version: str, **kwargs: Any
-) -> HttpRequest:
+def build_not_versioned_with_query_api_version_request(*, api_version: str, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -56,9 +53,7 @@ def build_not_versioned_with_query_api_version_request(  # pylint: disable=name-
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-def build_not_versioned_with_path_api_version_request(  # pylint: disable=name-too-long
-    api_version: str, **kwargs: Any
-) -> HttpRequest:
+def build_not_versioned_with_path_api_version_request(api_version: str, **kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/server/versions/not-versioned/with-path-api-version/{apiVersion}"
     path_format_arguments = {

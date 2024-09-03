@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,14 +35,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_versioned_without_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_versioned_without_api_version_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/server/versions/versioned/without-api-version"
 
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_versioned_with_query_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_versioned_with_query_api_version_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
@@ -56,7 +55,7 @@ def build_versioned_with_query_api_version_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-def build_versioned_with_path_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_versioned_with_path_api_version_request(**kwargs: Any) -> HttpRequest:
     api_version: str = kwargs.pop("api_version", "2022-12-01-preview")
     # Construct URL
     _url = "/server/versions/versioned/with-path-api-version/{apiVersion}"
@@ -69,7 +68,7 @@ def build_versioned_with_path_api_version_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))

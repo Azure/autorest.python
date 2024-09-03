@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14,7 +13,6 @@ from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -411,7 +409,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperties):  # pylint: disable=name-too-long
+class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperties):
     """The model extends from a type that extends from Record:code:`<unknown>`.
 
 
@@ -448,7 +446,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         super().__init__(*args, **kwargs)
 
 
-class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
+class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):
     """The model extends from Record:code:`<unknown>` with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -488,7 +486,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
 
 class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
     ExtendsUnknownAdditionalPropertiesDiscriminated, discriminator="derived"
-):  # pylint: disable=name-too-long
+):
     """The derived discriminated type.
 
 
@@ -711,7 +709,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         super().__init__(*args, **kwargs)
 
 
-class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
+class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):
     """The model is Record:code:`<unknown>` with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -751,7 +749,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
 
 class IsUnknownAdditionalPropertiesDiscriminatedDerived(
     IsUnknownAdditionalPropertiesDiscriminated, discriminator="derived"
-):  # pylint: disable=name-too-long
+):
     """The derived discriminated type.
 
 

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -33,7 +32,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -69,7 +68,7 @@ def build_extends_unknown_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_unknown_derived_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_unknown_derived_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -83,7 +82,7 @@ def build_extends_unknown_derived_get_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -97,7 +96,7 @@ def build_extends_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -111,7 +110,7 @@ def build_extends_unknown_discriminated_get_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -181,7 +180,7 @@ def build_is_unknown_derived_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_is_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_is_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -195,7 +194,7 @@ def build_is_unknown_discriminated_get_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_is_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_is_unknown_discriminated_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -545,7 +544,7 @@ def build_spread_model_array_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_different_string_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_different_string_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -559,7 +558,7 @@ def build_spread_different_string_get_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_different_string_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_different_string_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -629,7 +628,7 @@ def build_spread_different_model_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_different_model_array_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_different_model_array_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -643,7 +642,7 @@ def build_spread_different_model_array_get_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_different_model_array_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_different_model_array_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -657,7 +656,7 @@ def build_spread_different_model_array_put_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_string_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_string_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -671,7 +670,7 @@ def build_extends_different_spread_string_get_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_string_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_string_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -685,7 +684,7 @@ def build_extends_different_spread_string_put_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_float_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_float_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -699,7 +698,7 @@ def build_extends_different_spread_float_get_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_float_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_float_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -713,7 +712,7 @@ def build_extends_different_spread_float_put_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_model_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_model_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -727,7 +726,7 @@ def build_extends_different_spread_model_get_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_model_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_extends_different_spread_model_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -741,9 +740,7 @@ def build_extends_different_spread_model_put_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_model_array_get_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_extends_different_spread_model_array_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -757,9 +754,7 @@ def build_extends_different_spread_model_array_get_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_extends_different_spread_model_array_put_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_extends_different_spread_model_array_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -829,7 +824,7 @@ def build_spread_record_union_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_discriminated_union_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_record_discriminated_union_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -843,7 +838,7 @@ def build_spread_record_discriminated_union_get_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_discriminated_union_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_record_discriminated_union_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -857,9 +852,7 @@ def build_spread_record_discriminated_union_put_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union_get_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -873,9 +866,7 @@ def build_spread_record_non_discriminated_union_get_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union_put_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -889,9 +880,7 @@ def build_spread_record_non_discriminated_union_put_request(  # pylint: disable=
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union2_get_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union2_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -905,9 +894,7 @@ def build_spread_record_non_discriminated_union2_get_request(  # pylint: disable
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union2_put_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union2_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -921,9 +908,7 @@ def build_spread_record_non_discriminated_union2_put_request(  # pylint: disable
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union3_get_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union3_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -937,9 +922,7 @@ def build_spread_record_non_discriminated_union3_get_request(  # pylint: disable
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_spread_record_non_discriminated_union3_put_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_spread_record_non_discriminated_union3_put_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1214,7 +1197,7 @@ class ExtendsUnknownDerivedOperations:
         body: _models.ExtendsUnknownAdditionalPropertiesDerived,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1402,7 +1385,7 @@ class ExtendsUnknownDiscriminatedOperations:
         body: _models.ExtendsUnknownAdditionalPropertiesDiscriminated,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1770,7 +1753,7 @@ class IsUnknownDerivedOperations:
         body: _models.IsUnknownAdditionalPropertiesDerived,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -1956,7 +1939,7 @@ class IsUnknownDiscriminatedOperations:
         body: _models.IsUnknownAdditionalPropertiesDiscriminated,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -3766,7 +3749,7 @@ class ExtendsModelArrayOperations:
         body: _models.ExtendsModelArrayAdditionalProperties,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -5502,7 +5485,7 @@ class ExtendsDifferentSpreadModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-long
+class ExtendsDifferentSpreadModelArrayOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -6224,7 +6207,7 @@ class SpreadRecordDiscriminatedUnionOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-long
+class SpreadRecordNonDiscriminatedUnionOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -6303,7 +6286,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         body: _models.SpreadRecordForNonDiscriminatedUnion,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -6409,7 +6392,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-long
+class SpreadRecordNonDiscriminatedUnion2Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -6488,7 +6471,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         body: _models.SpreadRecordForNonDiscriminatedUnion2,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 
@@ -6596,7 +6579,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-long
+class SpreadRecordNonDiscriminatedUnion3Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -6675,7 +6658,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         body: _models.SpreadRecordForNonDiscriminatedUnion3,
         *,
         content_type: str = "application/json",
-        **kwargs: Any,
+        **kwargs: Any
     ) -> None:
         """Put operation.
 

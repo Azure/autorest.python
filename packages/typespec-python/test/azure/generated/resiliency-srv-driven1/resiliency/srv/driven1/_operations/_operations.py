@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,16 +35,14 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_resiliency_service_driven_from_none_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_resiliency_service_driven_from_none_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/add-optional-param/from-none"
 
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-def build_resiliency_service_driven_from_one_required_request(  # pylint: disable=name-too-long
-    *, parameter: str, **kwargs: Any
-) -> HttpRequest:
+def build_resiliency_service_driven_from_one_required_request(*, parameter: str, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -57,7 +54,7 @@ def build_resiliency_service_driven_from_one_required_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_resiliency_service_driven_from_one_optional_request(  # pylint: disable=name-too-long
+def build_resiliency_service_driven_from_one_optional_request(
     *, parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -72,9 +69,7 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
-    ResiliencyServiceDrivenClientMixinABC
-):
+class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
 
     @distributed_trace
     def from_none(self, **kwargs: Any) -> bool:

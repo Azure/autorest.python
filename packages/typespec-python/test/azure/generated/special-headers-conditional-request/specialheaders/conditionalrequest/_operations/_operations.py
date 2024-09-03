@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_conditional_request_post_if_match_request(  # pylint: disable=name-too-long
+def build_conditional_request_post_if_match_request(
     *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -57,7 +56,7 @@ def build_conditional_request_post_if_match_request(  # pylint: disable=name-too
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_conditional_request_post_if_none_match_request(  # pylint: disable=name-too-long
+def build_conditional_request_post_if_none_match_request(
     *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
