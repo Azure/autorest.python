@@ -40,7 +40,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
-    _url = "/azure/special-headers/x-ms-client-request-id"
+    _url = "/azure/special-headers/x-ms-client-request-id/"
 
     # Construct headers
 
@@ -74,7 +74,10 @@ class XmsClientRequestIdClientOperationsMixin(XmsClientRequestIdClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

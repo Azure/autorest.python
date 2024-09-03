@@ -7,10 +7,27 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Mapping, overload
+from typing import Any, Dict, List, Mapping, Optional, overload
 
 from .. import _model_base
 from .._model_base import rest_field
+
+
+class ReadOnlyModel(_model_base.Model):
+    """RoundTrip model with readonly optional properties.
+
+    Readonly variables are only populated by the server, and will be ignored when sending a request.
+
+    :ivar optional_nullable_int_list: Optional readonly nullable int list.
+    :vartype optional_nullable_int_list: list[int]
+    :ivar optional_string_record: Optional readonly string dictionary.
+    :vartype optional_string_record: dict[str, str]
+    """
+
+    optional_nullable_int_list: Optional[List[int]] = rest_field(name="optionalNullableIntList", visibility=["read"])
+    """Optional readonly nullable int list."""
+    optional_string_record: Optional[Dict[str, str]] = rest_field(name="optionalStringRecord", visibility=["read"])
+    """Optional readonly string dictionary."""
 
 
 class VisibilityModel(_model_base.Model):
@@ -18,7 +35,6 @@ class VisibilityModel(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar read_prop: Required string, illustrating a readonly property. Required.
     :vartype read_prop: str

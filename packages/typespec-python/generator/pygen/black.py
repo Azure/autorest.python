@@ -6,7 +6,6 @@
 import logging
 from pathlib import Path
 import os
-from typing import Any, Dict
 import black
 from black.report import NothingChanged
 
@@ -19,7 +18,7 @@ _BLACK_MODE = black.Mode()  # pyright: ignore [reportPrivateImportUsage]
 _BLACK_MODE.line_length = 120
 
 
-class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
+class BlackScriptPlugin(Plugin):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         output_folder = self.options.get("output_folder", str(self.output_folder))
@@ -37,15 +36,14 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
                 [
                     Path(f)
                     for f in self.list_file()
-                    if all(
-                        item not in f
-                        for item in (
-                            "__pycache__",
-                            "node_modules",
-                            ".tox",
-                            ".mypy_cache",
-                        )
+                    if Path(f).parts[0]
+                    not in (
+                        "__pycache__",
+                        "node_modules",
+                        "venv",
+                        "env",
                     )
+                    and not Path(f).parts[0].startswith(".")
                     and Path(f).suffix == ".py"
                 ],
             )
@@ -58,7 +56,7 @@ class BlackScriptPlugin(Plugin):  # pylint: disable=abstract-method
             file_content = black.format_file_contents(file_content, fast=True, mode=_BLACK_MODE)
         except NothingChanged:
             pass
-        except:  # pylint: disable=bare-except
+        except:
             _LOGGER.error("Error: failed to format %s", file)
             raise
         else:

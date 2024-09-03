@@ -418,8 +418,19 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
         file_import.merge(self.get_request_builder_import(self.request_builder, async_mode))
         if self.overloads:
             file_import.add_submodule_import("typing", "overload", ImportType.STDLIB)
-        if self.non_default_errors and self.code_model.options["models_mode"] == "dpg":
-            file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+        if self.code_model.options["models_mode"] == "dpg":
+            if self.parameters.has_body:
+                if self.has_form_data_body:
+                    file_import.add_submodule_import(relative_path, "_model_base", ImportType.LOCAL)
+                else:
+                    file_import.add_submodule_import(
+                        f"{relative_path}_model_base",
+                        "SdkJSONEncoder",
+                        ImportType.LOCAL,
+                    )
+                    file_import.add_import("json", ImportType.STDLIB)
+            if (self.default_error_deserialization or any(r.type for r in self.responses)) or self.non_default_errors:
+                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
         return file_import
 
     def get_response_from_status(self, status_code: Optional[Union[str, int]]) -> ResponseType:
@@ -492,18 +503,6 @@ class Operation(OperationBase[Response]):
             )
         if self.has_response_body and not self.has_optional_return_type and not self.code_model.options["models_mode"]:
             file_import.add_submodule_import("typing", "cast", ImportType.STDLIB)
-        relative_path = "..." if async_mode else ".."
-        if self.code_model.options["models_mode"] == "dpg":
-            if self.parameters.has_body:
-                if not self.has_form_data_body:
-                    file_import.add_submodule_import(
-                        f"{relative_path}_model_base",
-                        "SdkJSONEncoder",
-                        ImportType.LOCAL,
-                    )
-                    file_import.add_import("json", ImportType.STDLIB)
-            if self.default_error_deserialization or any(r.type for r in self.responses):
-                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
 
         return file_import
 

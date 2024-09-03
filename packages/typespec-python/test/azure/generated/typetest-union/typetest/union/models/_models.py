@@ -7,27 +7,19 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-import sys
 from typing import Any, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 
 class Cat(_model_base.Model):
     """Cat.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -57,7 +49,6 @@ class Cat(_model_base.Model):
 class Dog(_model_base.Model):
     """Dog.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar bark: Required.
     :vartype bark: str
@@ -87,7 +78,6 @@ class Dog(_model_base.Model):
 class EnumsOnlyCases(_model_base.Model):
     """EnumsOnlyCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar lr: This should be receive/send the left variant. Required. Is one of the following
      types: Literal["left"], Literal["right"], Literal["up"], Literal["down"]
@@ -416,7 +406,6 @@ class GetResponse9(_model_base.Model):
 class MixedLiteralsCases(_model_base.Model):
     """MixedLiteralsCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar string_literal: This should be receive/send the "a" variant. Required. Is one of the
      following types: Literal["a"], Literal[2], float, Literal[True]
@@ -469,7 +458,6 @@ class MixedLiteralsCases(_model_base.Model):
 class MixedTypesCases(_model_base.Model):
     """MixedTypesCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar model: This should be receive/send the Cat variant. Required. Is one of the following
      types: Cat, Literal["a"], int, bool
@@ -527,7 +515,6 @@ class MixedTypesCases(_model_base.Model):
 class StringAndArrayCases(_model_base.Model):
     """StringAndArrayCases.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar string: This should be receive/send the string variant. Required. Is either a str type or
      a [str] type.

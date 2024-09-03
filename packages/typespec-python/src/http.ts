@@ -13,16 +13,17 @@ import {
     SdkServiceMethod,
     SdkServiceResponseHeader,
     UsageFlags,
+    SdkHttpOperationExample,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
     emitParamBase,
     getAddedOn,
-    getDelimeterAndExplode,
+    getDelimiterAndExplode,
     getDescriptionAndSummary,
     getImplementation,
     isAbstract,
-    isAzureCoreModel,
+    isAzureCoreErrorResponse,
 } from "./utils.js";
 import { KnownTypes, getType } from "./types.js";
 import { PythonSdkContext } from "./lib.js";
@@ -30,6 +31,16 @@ import { HttpStatusCodeRange } from "@typespec/http";
 
 function isContentTypeParameter(parameter: SdkHeaderParameter) {
     return parameter.serializedName.toLowerCase() === "content-type";
+}
+
+function arrayToRecord(examples: SdkHttpOperationExample[] | undefined): Record<string, any> {
+    const result: Record<string, any> = {};
+    if (examples) {
+        for (const [index, example] of examples.entries()) {
+            result[index] = { ...example.rawExample, "x-ms-original-file": example.filePath };
+        }
+    }
+    return result;
 }
 
 export function emitBasicHttpMethod(
@@ -57,7 +68,7 @@ function emitInitialLroHttpMethod(
     operationGroupName: string,
 ): Record<string, any> {
     return {
-        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation),
+        ...emitHttpOperation(context, rootClient, operationGroupName, method.operation, method),
         name: `_${camelToSnakeCase(method.name)}_initial`,
         isLroInitialOperation: true,
         wantTracing: false,
@@ -91,8 +102,8 @@ function addPagingInformation(
     operationGroupName: string,
 ) {
     for (const response of method.operation.responses.values()) {
-        if (response.type && !isAzureCoreModel(response.type)) {
-            getType(context, response.type)["pageResultModel"] = true;
+        if (response.type) {
+            getType(context, response.type)["usage"] = UsageFlags.None;
         }
     }
     const itemType = getType(context, method.response.type!);
@@ -149,7 +160,7 @@ function emitHttpOperation(
     rootClient: SdkClientType<SdkHttpOperation>,
     operationGroupName: string,
     operation: SdkHttpOperation,
-    method?: SdkServiceMethod<SdkHttpOperation>,
+    method: SdkServiceMethod<SdkHttpOperation>,
 ): Record<string, any> {
     const responses: Record<string, any>[] = [];
     const exceptions: Record<string, any>[] = [];
@@ -157,7 +168,7 @@ function emitHttpOperation(
         responses.push(emitHttpResponse(context, statusCodes, response, method)!);
     }
     for (const [statusCodes, exception] of operation.exceptions) {
-        exceptions.push(emitHttpResponse(context, statusCodes, exception)!);
+        exceptions.push(emitHttpResponse(context, statusCodes, exception, undefined, true)!);
     }
     const result = {
         url: operation.path,
@@ -175,14 +186,18 @@ function emitHttpOperation(
         wantTracing: true,
         exposeStreamKeyword: true,
         crossLanguageDefinitionId: method?.crossLanguageDefintionId,
+        samples: arrayToRecord(method?.operation.examples),
     };
-    if (
-        result.bodyParameter &&
-        operation.bodyParam?.type.kind === "model" &&
-        (operation.bodyParam?.type.usage & UsageFlags.Spread) > 0
-    ) {
+    if (result.bodyParameter && isSpreadBody(operation.bodyParam)) {
         result.bodyParameter["propertyToParameterName"] = {};
         result.bodyParameter["defaultToUnsetSentinel"] = true;
+        // if body type is not only used for this spread body, but also used in other input/output, we should clone it, then change the type base to json
+        if (
+            (result.bodyParameter.type.usage & UsageFlags.Input) > 0 ||
+            (result.bodyParameter.type.usage & UsageFlags.Output) > 0
+        ) {
+            result.bodyParameter.type = { ...result.bodyParameter.type, name: `${method.name}Request` };
+        }
         result.bodyParameter.type.base = "json";
         for (const property of result.bodyParameter.type.properties) {
             result.bodyParameter["propertyToParameterName"][property["wireName"]] = property["clientName"];
@@ -190,6 +205,10 @@ function emitHttpOperation(
         }
     }
     return result;
+}
+
+function isSpreadBody(bodyParam: SdkBodyParameter | undefined): boolean {
+    return bodyParam?.type.kind === "model" && bodyParam.type !== bodyParam.correspondingMethodParams[0]?.type;
 }
 
 function emitFlattenedParameter(
@@ -225,7 +244,7 @@ function emitHttpPathParameter(context: PythonSdkContext<SdkHttpOperation>, para
         location: parameter.kind,
         implementation: getImplementation(context, parameter),
         clientDefaultValue: parameter.clientDefaultValue,
-        skipUrlEncoding: parameter.urlEncode === false,
+        skipUrlEncoding: parameter.allowReserved,
     };
 }
 function emitHttpHeaderParameter(
@@ -233,7 +252,7 @@ function emitHttpHeaderParameter(
     parameter: SdkHeaderParameter,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter);
-    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    const [delimiter, explode] = getDelimiterAndExplode(parameter);
     let clientDefaultValue = parameter.clientDefaultValue;
     if (isContentTypeParameter(parameter)) {
         // we switch to string type for content-type header
@@ -258,7 +277,7 @@ function emitHttpQueryParameter(
     parameter: SdkQueryParameter,
 ): Record<string, any> {
     const base = emitParamBase(context, parameter);
-    const [delimiter, explode] = getDelimeterAndExplode(parameter);
+    const [delimiter, explode] = getDelimiterAndExplode(parameter);
     return {
         ...base,
         wireName: parameter.serializedName,
@@ -298,7 +317,7 @@ function emitHttpBodyParameter(
 ): Record<string, any> | undefined {
     if (bodyParam === undefined) return undefined;
     return {
-        ...emitParamBase(context, bodyParam, true),
+        ...emitParamBase(context, bodyParam),
         contentTypes: bodyParam.contentTypes,
         location: bodyParam.kind,
         clientName: bodyParam.isGeneratedName ? "body" : camelToSnakeCase(bodyParam.name),
@@ -314,13 +333,20 @@ function emitHttpResponse(
     statusCodes: HttpStatusCodeRange | number | "*",
     response: SdkHttpResponse,
     method?: SdkServiceMethod<SdkHttpOperation>,
+    isException = false,
 ): Record<string, any> | undefined {
     if (!response) return undefined;
     let type = undefined;
-    if (response.type && !isAzureCoreModel(response.type)) {
+    if (isException) {
+        if (response.type && !isAzureCoreErrorResponse(response.type)) {
+            type = getType(context, response.type);
+        }
+    } else if (method && !method.kind.includes("basic")) {
+        if (method.response.type) {
+            type = getType(context, method.response.type);
+        }
+    } else if (response.type) {
         type = getType(context, response.type);
-    } else if (method && method.response.type && !isAzureCoreModel(method.response.type)) {
-        type = getType(context, method.response.type);
     }
     return {
         headers: response.headers.map((x) => emitHttpResponseHeader(context, x)),

@@ -77,3 +77,14 @@ class TestVisibility(VisibilityClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @VisibilityPreparer()
+    @recorded_by_proxy
+    def test_put_read_only_model(self, visibility_endpoint):
+        client = self.create_client(endpoint=visibility_endpoint)
+        response = client.put_read_only_model(
+            input={"optionalNullableIntList": [0], "optionalStringRecord": {"str": "str"}},
+        )
+
+        # please add some check logic here by yourself
+        # ...

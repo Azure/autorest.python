@@ -55,7 +55,7 @@ class BaseType(BaseModel, ABC):  # pylint: disable=too-many-public-methods
         return self.imports(**kwargs)
 
     def imports_for_sample(self) -> FileImport:
-        return self.imports()
+        return FileImport(self.code_model)
 
     @staticmethod
     def serialize_sample_value(value: Any) -> str:

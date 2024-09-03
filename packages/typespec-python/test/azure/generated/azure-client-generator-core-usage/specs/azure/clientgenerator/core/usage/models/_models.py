@@ -20,7 +20,6 @@ if TYPE_CHECKING:
 class InputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -81,7 +80,6 @@ class OrphanModel(_model_base.Model):
 class OutputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -142,7 +140,6 @@ class RoundTripModel(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar result: Required.
     :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel

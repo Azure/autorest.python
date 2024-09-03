@@ -66,7 +66,7 @@ def _sample_output_path(source_file_path: str) -> Path:
     return Path("")
 
 
-class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
+class JinjaSerializer(ReaderAndWriter):
     def __init__(
         self,
         code_model: CodeModel,
@@ -516,7 +516,7 @@ class JinjaSerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                         and operation.api_versions[0] != self.code_model.options["default_api_version"]
                     ):
                         continue
-                    samples = operation.yaml_data["samples"]
+                    samples = operation.yaml_data.get("samples")
                     if not samples or operation.name.startswith("_"):
                         continue
                     for value in samples.values():

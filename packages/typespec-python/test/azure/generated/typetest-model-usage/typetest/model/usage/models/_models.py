@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class InputOutputRecord(_model_base.Model):
     """Record used both as operation parameter and return type.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar required_prop: Required.
     :vartype required_prop: str

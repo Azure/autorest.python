@@ -100,7 +100,10 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -144,19 +147,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -176,14 +166,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -203,14 +185,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @distributed_trace
@@ -228,19 +202,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -269,8 +230,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:

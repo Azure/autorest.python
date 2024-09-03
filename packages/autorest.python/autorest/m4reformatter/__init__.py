@@ -28,6 +28,20 @@ KEY_TYPE = "Key"
 _LOGGER = logging.getLogger(__name__)
 
 
+def get_item_type(yaml_data: Dict[str, Any], item_name: str, enable_exception: bool = True) -> Optional[Dict[str, Any]]:
+    try:
+        return next(p["type"] for p in yaml_data.get("properties", []) if p["wireName"] == item_name)
+    except StopIteration:
+        pass
+    for parent in yaml_data.get("parents", []):
+        result = get_item_type(parent, item_name, False)
+        if result:
+            return result
+    if enable_exception:
+        raise StopIteration(f"Could not find item type {item_name} from type {yaml_data['name']}")
+    return None
+
+
 def is_body(yaml_data: Dict[str, Any]) -> bool:
     """Return true if passed in parameter is a body param"""
     return yaml_data["protocol"]["http"]["in"] == "body"
@@ -544,9 +558,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         if self.version_tolerant:
             # if we're in version tolerant, hide the paging model
             returned_response_object["type"]["internal"] = True
-        operation["itemType"] = next(
-            p["type"] for p in returned_response_object["type"]["properties"] if p["wireName"] == operation["itemName"]
-        )
+        operation["itemType"] = get_item_type(returned_response_object["type"], operation["itemName"])
         if yaml_data["language"]["default"]["paging"].get("nextLinkOperation"):
             operation["nextOperation"] = self.update_operation(
                 group_name=group_name,

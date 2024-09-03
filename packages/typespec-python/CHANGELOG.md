@@ -1,5 +1,80 @@
 # Release
 
+## 0.29.0
+
+### Bug Fixes
+
+- [#2756](https://github.com/Azure/autorest.python/pull/2756) Fix to get right response and exception
+- [#2763](https://github.com/Azure/autorest.python/pull/2763) Fix import for "json" and bump cadl-ranch dependency
+- [#2784](https://github.com/Azure/autorest.python/pull/2784) Fix sample generation for keyword-only parameters
+
+### Bump dependencies
+
+- [#2773](https://github.com/Azure/autorest.python/pull/2773) Use `@typespec/compiler` `0.59.1` to absorb fix for compiler
+
+### Features
+
+- [#2740](https://github.com/Azure/autorest.python/pull/2740) Support advanced multipart for `@multipartBody`
+- [#2750](https://github.com/Azure/autorest.python/pull/2750) optimize performance of dpg model
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
+## 0.28.0
+
+### Bug Fixes
+
+- [#2759](https://github.com/Azure/autorest.python/pull/2759) Fix sample generation for lro and paging operation
+- [#2758](https://github.com/Azure/autorest.python/pull/2758) Revert client signature `endpoint` to `base_url` to avoid breaking for Mgmt SDK
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
+## 0.27.1
+
+### Bug Fixes
+
+- [#2737](https://github.com/Azure/autorest.python/pull/2737) Fix initialize for model which only has discriminator property
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+- [#2729](https://github.com/Azure/autorest.python/pull/2729) Fix import for multipart
+
+### Bump dependencies
+
+- [#2723](https://github.com/Azure/autorest.python/pull/2723) upgrade to tcgc 0.44.2
+
+
+## 0.27.0
+
+### Bug Fixes
+
+- [#2716](https://github.com/Azure/autorest.python/pull/2716) Fix the logic to judge whether model is output or not
+
+### Features
+
+- [#2706](https://github.com/Azure/autorest.python/pull/2706) Generate API for multi content types of internal operation
+
+
+## 0.26.0
+
+### Bug Fixes
+
+- [#2684](https://github.com/Azure/autorest.python/pull/2684) don't throw if stream is already read or consumed when we load in the error body
+- [#2681](https://github.com/Azure/autorest.python/pull/2681) Fix for construct headers and queries when build request
+- [#2695](https://github.com/Azure/autorest.python/pull/2695) always interpret `package-version` as a string
+- [#2690](https://github.com/Azure/autorest.python/pull/2690) Fix import error when method name is reserved word in Pyhton
+
+### Bump dependencies
+
+- [#2704](https://github.com/Azure/autorest.python/pull/2704) Bump typespec 0.58.0
+
+### Features
+
+- [#2680](https://github.com/Azure/autorest.python/pull/2680) Expose kwargs `decompress` for API whose response type is binary
+- [#2692](https://github.com/Azure/autorest.python/pull/2692) Optimize test generation for multiapi package
+- [#2676](https://github.com/Azure/autorest.python/pull/2676) spread object when it is spread in TypeSpec
+
+
 ## 0.25.0
 
 ### Bug Fixes

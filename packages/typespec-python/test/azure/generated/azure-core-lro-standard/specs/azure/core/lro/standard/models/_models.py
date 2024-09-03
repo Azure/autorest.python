@@ -52,7 +52,6 @@ class User(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: The name of user. Required.
     :vartype name: str
