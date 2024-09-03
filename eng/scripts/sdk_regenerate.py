@@ -35,7 +35,7 @@ def update_emitter_package(sdk_root: str, typespec_python_root: str):
 
     # update the emitter-package-lock.json
     try:
-        check_call("tsp-client --generate-lock-file", shell=True)
+        check_call("tsp-client generate-lock-file", shell=True)
     except Exception as e:
         logging.error("failed to update emitter-package-lock.json")
         logging.error(e)
