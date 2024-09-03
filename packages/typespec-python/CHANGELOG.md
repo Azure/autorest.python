@@ -1,5 +1,14 @@
 # Release
 
+## 0.30.0
+
+### Features
+
+- [#2775](https://github.com/Azure/autorest.python/pull/2775) support query `explode` and path `allowReserved`, also change the logic of generating spread body parameter
+- [#2771](https://github.com/Azure/autorest.python/pull/2771) Support encode int as string
+- [#2805](https://github.com/Azure/autorest.python/pull/2805) Add `x-ms-original-file` in generated sample to declare original sample file of typespec
+
+
 ## 0.29.0
 
 ### Bug Fixes
