@@ -42,11 +42,35 @@ def update_emitter_package(sdk_root: str, typespec_python_root: str):
         raise e
 
 
+def get_latest_commit_id() -> str:
+    return (
+        check_output(
+            "git ls-remote https://github.com/Azure/azure-rest-api-specs.git HEAD | awk '{ print $1}'", shell=True
+        )
+        .decode("utf-8")
+        .split("\n")[0]
+        .strip()
+    )
+
+
+def update_commit_id(file: Path, commit_id: str):
+    with open(file, "r") as f:
+        content = f.readlines()
+    for idx in range(len(content)):
+        if "commit:" in content[idx]:
+            content[idx] = f"commit: {commit_id}\n"
+            break
+    with open(file, "w") as f:
+        f.writelines(content)
+
+
 def regenerate_sdk() -> Dict[str, List[str]]:
     result = {"succeed_to_regenerate": [], "fail_to_regenerate": [], "time_to_regenerate": str(datetime.now())}
     # get all tsp-location.yaml
+    commit_id = get_latest_commit_id()
     for item in Path(".").rglob("tsp-location.yaml"):
         package_folder = item.parent
+        update_commit_id(item, commit_id)
         try:
             output = (
                 check_output("tsp-client update", shell=True, cwd=str(package_folder), stderr=subprocess.STDOUT)
