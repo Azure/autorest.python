@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,7 +34,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_parameter_grouping_post_required_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_post_required_request(
     path: str, *, json: int, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -66,7 +65,7 @@ def build_parameter_grouping_post_required_request(  # pylint: disable=name-too-
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, json=json, **kwargs)
 
 
-def build_parameter_grouping_post_optional_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_post_optional_request(
     *, custom_header: Optional[str] = None, query: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -89,7 +88,7 @@ def build_parameter_grouping_post_optional_request(  # pylint: disable=name-too-
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_parameter_grouping_post_reserved_words_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_post_reserved_words_request(
     *, from_parameter: Optional[str] = None, accept_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -106,7 +105,7 @@ def build_parameter_grouping_post_reserved_words_request(  # pylint: disable=nam
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
 
-def build_parameter_grouping_post_multi_param_groups_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_post_multi_param_groups_request(
     *,
     header_one: Optional[str] = None,
     query_one: int = 30,
@@ -138,7 +137,7 @@ def build_parameter_grouping_post_multi_param_groups_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_parameter_grouping_post_shared_parameter_group_object_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_post_shared_parameter_group_object_request(
     *, header_one: Optional[str] = None, query_one: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -161,7 +160,7 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(  # pyli
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_parameter_grouping_group_with_constant_request(  # pylint: disable=name-too-long
+def build_parameter_grouping_group_with_constant_request(
     *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

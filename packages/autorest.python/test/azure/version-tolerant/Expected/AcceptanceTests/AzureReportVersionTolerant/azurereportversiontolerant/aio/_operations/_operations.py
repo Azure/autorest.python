@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -32,9 +31,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
-    AutoRestReportServiceForAzureMixinABC
-):
+class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzureMixinABC):
 
     @distributed_trace_async
     async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -43,7 +42,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_xms_client_request_id_param_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_xms_client_request_id_param_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -57,7 +56,7 @@ def build_xms_client_request_id_param_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_credentials_post_method_global_valid_request(  # pylint: disable=name-too-long
+def build_subscription_in_credentials_post_method_global_valid_request(
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -78,7 +77,7 @@ def build_subscription_in_credentials_post_method_global_valid_request(  # pylin
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_credentials_post_method_global_null_request(  # pylint: disable=name-too-long
+def build_subscription_in_credentials_post_method_global_null_request(
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -99,7 +98,7 @@ def build_subscription_in_credentials_post_method_global_null_request(  # pylint
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_credentials_post_method_global_not_provided_valid_request(  # pylint: disable=name-too-long
+def build_subscription_in_credentials_post_method_global_not_provided_valid_request(
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -127,7 +126,7 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_subscription_in_credentials_post_path_global_valid_request(  # pylint: disable=name-too-long
+def build_subscription_in_credentials_post_path_global_valid_request(
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -148,7 +147,7 @@ def build_subscription_in_credentials_post_path_global_valid_request(  # pylint:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_credentials_post_swagger_global_valid_request(  # pylint: disable=name-too-long
+def build_subscription_in_credentials_post_swagger_global_valid_request(
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -169,9 +168,7 @@ def build_subscription_in_credentials_post_swagger_global_valid_request(  # pyli
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_method_post_method_local_valid_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_subscription_in_method_post_method_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -190,9 +187,7 @@ def build_subscription_in_method_post_method_local_valid_request(  # pylint: dis
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_method_post_method_local_null_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_subscription_in_method_post_method_local_null_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -211,9 +206,7 @@ def build_subscription_in_method_post_method_local_null_request(  # pylint: disa
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_method_post_path_local_valid_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_subscription_in_method_post_path_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -232,9 +225,7 @@ def build_subscription_in_method_post_path_local_valid_request(  # pylint: disab
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_subscription_in_method_post_swagger_local_valid_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_subscription_in_method_post_swagger_local_valid_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -253,9 +244,7 @@ def build_subscription_in_method_post_swagger_local_valid_request(  # pylint: di
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_api_version_default_get_method_global_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_default_get_method_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -274,9 +263,7 @@ def build_api_version_default_get_method_global_valid_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_default_get_method_global_not_provided_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_default_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -295,9 +282,7 @@ def build_api_version_default_get_method_global_not_provided_valid_request(  # p
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_default_get_path_global_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_default_get_path_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -316,9 +301,7 @@ def build_api_version_default_get_path_global_valid_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_default_get_swagger_global_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_default_get_swagger_global_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -337,9 +320,7 @@ def build_api_version_default_get_swagger_global_valid_request(  # pylint: disab
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_local_get_method_local_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_local_get_method_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -358,7 +339,7 @@ def build_api_version_local_get_method_local_valid_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_local_get_method_local_null_request(  # pylint: disable=name-too-long
+def build_api_version_local_get_method_local_null_request(
     *, api_version: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -379,7 +360,7 @@ def build_api_version_local_get_method_local_null_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -398,9 +379,7 @@ def build_api_version_local_get_path_local_valid_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_api_version_local_get_swagger_local_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_api_version_local_get_swagger_local_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -419,9 +398,7 @@ def build_api_version_local_get_swagger_local_valid_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_method_path_valid_request(  # pylint: disable=name-too-long
-    unencoded_path_param: str, **kwargs: Any
-) -> HttpRequest:
+def build_skip_url_encoding_get_method_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -440,9 +417,7 @@ def build_skip_url_encoding_get_method_path_valid_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_path_valid_request(  # pylint: disable=name-too-long
-    unencoded_path_param: str, **kwargs: Any
-) -> HttpRequest:
+def build_skip_url_encoding_get_path_valid_request(unencoded_path_param: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -461,9 +436,7 @@ def build_skip_url_encoding_get_path_valid_request(  # pylint: disable=name-too-
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_swagger_path_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_skip_url_encoding_get_swagger_path_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     unencoded_path_param: Literal["path1/path2/path3"] = kwargs.pop("unencoded_path_param", "path1/path2/path3")
@@ -483,9 +456,7 @@ def build_skip_url_encoding_get_swagger_path_valid_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_method_query_valid_request(  # pylint: disable=name-too-long
-    *, q1: str, **kwargs: Any
-) -> HttpRequest:
+def build_skip_url_encoding_get_method_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -503,9 +474,7 @@ def build_skip_url_encoding_get_method_query_valid_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_method_query_null_request(  # pylint: disable=name-too-long
-    *, q1: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
+def build_skip_url_encoding_get_method_query_null_request(*, q1: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -524,9 +493,7 @@ def build_skip_url_encoding_get_method_query_null_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_path_query_valid_request(  # pylint: disable=name-too-long
-    *, q1: str, **kwargs: Any
-) -> HttpRequest:
+def build_skip_url_encoding_get_path_query_valid_request(*, q1: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -544,9 +511,7 @@ def build_skip_url_encoding_get_path_query_valid_request(  # pylint: disable=nam
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_skip_url_encoding_get_swagger_query_valid_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_skip_url_encoding_get_swagger_query_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -590,9 +555,7 @@ def build_odata_get_with_filter_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_header_custom_named_request_id_request(  # pylint: disable=name-too-long
-    *, foo_client_request_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_header_custom_named_request_id_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -607,7 +570,7 @@ def build_header_custom_named_request_id_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_custom_named_request_id_param_grouping_request(  # pylint: disable=name-too-long
+def build_header_custom_named_request_id_param_grouping_request(
     *, foo_client_request_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -624,9 +587,7 @@ def build_header_custom_named_request_id_param_grouping_request(  # pylint: disa
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_custom_named_request_id_head_request(  # pylint: disable=name-too-long
-    *, foo_client_request_id: str, **kwargs: Any
-) -> HttpRequest:
+def build_header_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

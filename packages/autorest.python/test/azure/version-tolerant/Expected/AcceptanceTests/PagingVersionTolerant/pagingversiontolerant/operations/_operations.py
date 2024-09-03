@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,7 +34,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -43,7 +42,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_paging_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -57,7 +56,7 @@ def build_paging_get_no_item_name_pages_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_empty_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_empty_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -71,7 +70,7 @@ def build_paging_get_empty_next_link_name_pages_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_null_next_link_name_pages_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -99,9 +98,7 @@ def build_paging_get_single_pages_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_single_pages_with_body_params_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_paging_get_single_pages_with_body_params_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -118,7 +115,7 @@ def build_paging_get_single_pages_with_body_params_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_first_response_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -152,9 +149,7 @@ def build_paging_get_multiple_pages_request(
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_with_query_params_request(  # pylint: disable=name-too-long
-    *, required_query_parameter: int, **kwargs: Any
-) -> HttpRequest:
+def build_paging_get_with_query_params_request(*, required_query_parameter: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -174,9 +169,7 @@ def build_paging_get_with_query_params_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_next_operation_with_query_params_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_paging_next_operation_with_query_params_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -214,7 +207,7 @@ def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwa
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_page_with_max_page_size_request(  # pylint: disable=name-too-long
+def build_paging_page_with_max_page_size_request(
     *, maxpagesize: Optional[Literal["5"]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -235,7 +228,7 @@ def build_paging_page_with_max_page_size_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_odata_multiple_pages_request(  # pylint: disable=name-too-long
+def build_paging_get_odata_multiple_pages_request(
     *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -255,7 +248,7 @@ def build_paging_get_odata_multiple_pages_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_with_offset_request(  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_with_offset_request(
     offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -280,7 +273,7 @@ def build_paging_get_multiple_pages_with_offset_request(  # pylint: disable=name
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -294,7 +287,7 @@ def build_paging_get_multiple_pages_retry_first_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -308,7 +301,7 @@ def build_paging_get_multiple_pages_retry_second_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -322,7 +315,7 @@ def build_paging_get_single_pages_failure_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_failure_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -336,7 +329,7 @@ def build_paging_get_multiple_pages_failure_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -350,7 +343,7 @@ def build_paging_get_multiple_pages_failure_uri_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_fragment_next_link_request(  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_fragment_next_link_request(
     tenant: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -399,7 +392,7 @@ def build_paging_next_fragment_request(tenant: str, next_link: str, *, api_versi
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(
     tenant: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -424,7 +417,7 @@ def build_paging_get_multiple_pages_fragment_with_grouping_next_link_request(  #
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_next_fragment_with_grouping_request(  # pylint: disable=name-too-long
+def build_paging_next_fragment_with_grouping_request(
     tenant: str, next_link: str, *, api_version: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -450,7 +443,7 @@ def build_paging_next_fragment_with_grouping_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_multiple_pages_lro_request(  # pylint: disable=name-too-long
+def build_paging_get_multiple_pages_lro_request(
     *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -508,9 +501,7 @@ def build_paging_replace_api_version_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_paging_get_paging_model_with_item_name_with_xms_client_name_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -2142,7 +2133,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_fragment_with_grouping_next_link(  # pylint: disable=name-too-long
+    def get_multiple_pages_fragment_with_grouping_next_link(
         self, tenant: str, *, api_version: str, **kwargs: Any
     ) -> Iterable[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
@@ -2374,7 +2365,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2573,9 +2564,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterable[JSON]:
+    def get_paging_model_with_item_name_with_xms_client_name(self, **kwargs: Any) -> Iterable[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 

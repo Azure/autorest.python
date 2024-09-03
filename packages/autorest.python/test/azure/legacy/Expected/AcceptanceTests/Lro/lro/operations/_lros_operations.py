@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -59,7 +58,7 @@ def build_put200_succeeded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_patch200_succeeded_ignore_headers_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_patch200_succeeded_ignore_headers_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -76,7 +75,7 @@ def build_patch200_succeeded_ignore_headers_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_patch201_retry_with_async_header_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_patch201_retry_with_async_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -93,9 +92,7 @@ def build_patch201_retry_with_async_header_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_patch202_retry_with_async_and_location_header_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_patch202_retry_with_async_and_location_header_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -177,7 +174,7 @@ def build_put202_retry200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -194,7 +191,7 @@ def build_put201_creating_succeeded200_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put200_updating_succeeded204_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put200_updating_succeeded204_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -279,7 +276,7 @@ def build_put_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -330,7 +327,7 @@ def build_put_async_no_retrycanceled_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -415,9 +412,7 @@ def build_put_async_sub_resource_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_accepted200_succeeded_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_delete_provisioning202_accepted200_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -431,9 +426,7 @@ def build_delete_provisioning202_accepted200_succeeded_request(  # pylint: disab
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_deleting_failed200_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_delete_provisioning202_deleting_failed200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -447,9 +440,7 @@ def build_delete_provisioning202_deleting_failed200_request(  # pylint: disable=
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_provisioning202_deletingcanceled200_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_delete_provisioning202_deletingcanceled200_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -519,7 +510,7 @@ def build_delete_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -533,7 +524,7 @@ def build_delete_async_no_header_in_retry_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -547,7 +538,7 @@ def build_delete_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_delete_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -637,7 +628,7 @@ def build_post202_no_retry204_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -651,9 +642,7 @@ def build_post_double_headers_final_location_get_request(**kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_azure_header_get_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_post_double_headers_final_azure_header_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -667,9 +656,7 @@ def build_post_double_headers_final_azure_header_get_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_double_headers_final_azure_header_get_default_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_post_double_headers_final_azure_header_get_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -700,7 +687,7 @@ def build_post_async_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_post_async_no_retry_succeeded_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -893,7 +880,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -921,7 +908,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
+    def _patch200_succeeded_ignore_headers_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1049,7 +1036,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1083,7 +1070,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
+    def _patch201_retry_with_async_header_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1209,7 +1196,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1239,7 +1226,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
+    def _patch202_retry_with_async_and_location_header_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
@@ -1307,7 +1294,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @overload
-    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
+    def begin_patch202_retry_with_async_and_location_header(
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1324,7 +1311,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
+    def begin_patch202_retry_with_async_and_location_header(
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1341,7 +1328,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace
-    def begin_patch202_retry_with_async_and_location_header(  # pylint: disable=name-too-long
+    def begin_patch202_retry_with_async_and_location_header(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """Long running patch request, service returns a 202 to the initial request with async and
@@ -1369,7 +1356,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1520,7 +1507,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1766,7 +1753,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1920,7 +1907,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2074,7 +2061,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2228,7 +2215,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2382,7 +2369,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2536,7 +2523,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2690,7 +2677,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -2855,7 +2842,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -3023,7 +3010,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -3191,7 +3178,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -3359,7 +3346,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -3525,7 +3512,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -3918,7 +3905,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -4027,7 +4014,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -4055,9 +4042,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _delete_provisioning202_accepted200_succeeded_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4106,9 +4091,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_accepted200_succeeded(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_accepted200_succeeded(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Accepted’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Succeeded’.
@@ -4154,9 +4137,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _delete_provisioning202_deleting_failed200_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4205,9 +4186,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_deleting_failed200(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_deleting_failed200(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Failed’.
@@ -4253,9 +4232,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _delete_provisioning202_deletingcanceled200_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -4304,9 +4281,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_delete_provisioning202_deletingcanceled200(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_delete_provisioning202_deletingcanceled200(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running delete request, service returns a 202 to the initial request, with an entity that
         contains ProvisioningState=’Creating’.  Polls return this value until the last poll returns a
         ‘200’ with ProvisioningState=’Canceled’.
@@ -5384,7 +5359,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -5535,7 +5510,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -5568,9 +5543,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _post_double_headers_final_location_get_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5614,9 +5587,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_location_get(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_location_get(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should poll Location to get the final
         object.
@@ -5664,9 +5635,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _post_double_headers_final_azure_header_get_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5710,9 +5679,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_azure_header_get(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object.
@@ -5760,9 +5727,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
-    def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _post_double_headers_final_azure_header_get_default_initial(self, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -5806,9 +5771,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_post_double_headers_final_azure_header_get_default(  # pylint: disable=name-too-long
-        self, **kwargs: Any
-    ) -> LROPoller[_models.Product]:
+    def begin_post_double_headers_final_azure_header_get_default(self, **kwargs: Any) -> LROPoller[_models.Product]:
         """Long running post request, service returns a 202 to the initial request with both Location and
         Azure-Async header. Poll Azure-Async and it's success. Should NOT poll Location to get the
         final object if you support initial Autorest behavior.
@@ -5988,7 +5951,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -6150,7 +6113,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -6311,7 +6274,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -6468,7 +6431,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)

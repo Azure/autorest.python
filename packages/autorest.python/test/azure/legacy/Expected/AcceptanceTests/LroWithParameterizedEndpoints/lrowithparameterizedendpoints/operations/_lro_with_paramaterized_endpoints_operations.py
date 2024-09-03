@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -41,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,9 +54,7 @@ def build_poll_with_parameterized_endpoints_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable=name-too-long
-    **kwargs: Any,
-) -> HttpRequest:
+def build_poll_with_constant_parameterized_endpoints_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     constant_parameter: Literal["iAmConstant"] = kwargs.pop("constant_parameter", "iAmConstant")
@@ -77,13 +74,9 @@ def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
-    LROWithParamaterizedEndpointsMixinABC
-):
+class LROWithParamaterizedEndpointsOperationsMixin(LROWithParamaterizedEndpointsMixinABC):
 
-    def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _poll_with_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -177,7 +170,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                     lro_delay,
                     lro_options={"final-state-via": "location"},
                     path_format_arguments=path_format_arguments,
-                    **kwargs,
+                    **kwargs
                 ),
             )
         elif polling is False:
@@ -193,9 +186,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
             )
         return LROPoller[str](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
-    def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> Iterator[bytes]:
+    def _poll_with_constant_parameterized_endpoints_initial(self, account_name: str, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping[int, Type[HttpResponseError]] = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -250,9 +241,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @distributed_trace
-    def begin_poll_with_constant_parameterized_endpoints(  # pylint: disable=name-too-long
-        self, account_name: str, **kwargs: Any
-    ) -> LROPoller[str]:
+    def begin_poll_with_constant_parameterized_endpoints(self, account_name: str, **kwargs: Any) -> LROPoller[str]:
         """Poll with method and client level parameters in endpoint, with a constant value.
 
         :param account_name: Account Name. Pass in 'local' to pass test. Required.
@@ -276,7 +265,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs,
+                **kwargs
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)

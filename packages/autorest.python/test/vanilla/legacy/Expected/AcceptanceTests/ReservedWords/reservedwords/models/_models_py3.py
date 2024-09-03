@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14,7 +13,7 @@ from .. import _serialization
 
 class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
     _serialization.Model
-):  # pylint: disable=name-too-long
+):
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
     All required parameters must be populated in order to send to server.
@@ -47,9 +46,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
         self.world = world
 
 
-class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(
-    _serialization.Model
-):  # pylint: disable=name-too-long
+class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(_serialization.Model):
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 
     All required parameters must be populated in order to send to server.

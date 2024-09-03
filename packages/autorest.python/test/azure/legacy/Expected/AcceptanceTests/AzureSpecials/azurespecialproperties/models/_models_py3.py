@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -51,7 +50,7 @@ class Error(msrest.serialization.Model):
         self.message = message
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
+class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to server.

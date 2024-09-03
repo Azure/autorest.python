@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -84,7 +83,7 @@ def build_multiapi_service_test_lro_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiapi_service_test_lro_and_paging_request(  # pylint: disable=name-too-long
+def build_multiapi_service_test_lro_and_paging_request(
     *, client_request_id: Optional[str] = None, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -106,9 +105,7 @@ def build_multiapi_service_test_lro_and_paging_request(  # pylint: disable=name-
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_multiapi_service_test_different_calls_request(  # pylint: disable=name-too-long
-    *, greeting_in_english: str, **kwargs: Any
-) -> HttpRequest:
+def build_multiapi_service_test_different_calls_request(*, greeting_in_english: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -128,7 +125,7 @@ def build_multiapi_service_test_different_calls_request(  # pylint: disable=name
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
