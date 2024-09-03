@@ -32,5 +32,6 @@ def main():
     print(response)
 
 
+# x-ms-original-file: 2022-12-01-preview/basic.json
 if __name__ == "__main__":
     main()
