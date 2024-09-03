@@ -45,11 +45,13 @@ function deconstruct(identifier: string | Array<string>, maxUppercasePreserve: n
         .split(/[\W|_]+/)
         .map((each) => (IsFullyUpperCase(each, maxUppercasePreserve) ? each : each.toLowerCase()));
 }
+
 function isEqual(s1: string, s2: string): boolean {
     // when s2 is undefined and s1 is the string 'undefined', it returns 0, making this true.
     // To prevent that, first we need to check if s2 is undefined.
     return s2 !== undefined && !!s1 && !s1.localeCompare(s2, undefined, { sensitivity: "base" });
 }
+
 function removeSequentialDuplicates(identifier: Iterable<string>) {
     const ids = [...identifier].filter((each) => !!each);
     for (let i = 0; i < ids.length; i++) {
@@ -63,6 +65,7 @@ function removeSequentialDuplicates(identifier: Iterable<string>) {
 
     return ids;
 }
+
 function normalize(
     identifier: string | Array<string>,
     removeDuplicates = true,
@@ -77,6 +80,7 @@ function normalize(
         ? removeSequentialDuplicates(identifier)
         : identifier;
 }
+
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
     const words = normalize(name, false, 6);
