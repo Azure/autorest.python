@@ -16,7 +16,6 @@ from typing import (
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
-from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,

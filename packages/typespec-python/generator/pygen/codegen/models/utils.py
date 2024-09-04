@@ -8,8 +8,6 @@ from typing import TypeVar, Dict
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
 
-NAME_LENGTH_LIMIT = 40
-
 
 def add_to_description(description: str, entry: str) -> str:
     if description:

@@ -10,7 +10,7 @@ from .utils import OrderedSet
 from .base import BaseModel
 from .operation import get_operation
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
+from .utils import add_to_pylint_disable
 from .lro_operation import LROOperation
 from .lro_paging_operation import LROPagingOperation
 

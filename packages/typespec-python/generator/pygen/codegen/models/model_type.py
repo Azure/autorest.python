@@ -9,7 +9,6 @@ from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
 from .utils import (
     add_to_pylint_disable,
-    NAME_LENGTH_LIMIT,
 )
 from .base import BaseType
 from .constant_type import ConstantType
