@@ -3,6 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from token import NAME
 from typing import (
     Any,
     Callable,
@@ -16,6 +17,7 @@ from typing import (
 from abc import abstractmethod
 
 from .base_builder import BaseBuilder
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .parameter_list import (
     RequestBuilderParameterList,
     OverloadedRequestBuilderParameterList,
@@ -66,6 +68,8 @@ class RequestBuilderBase(BaseBuilder[ParameterListType, List["RequestBuilder"]])
 
     @property
     def pylint_disable(self) -> str:
+        if len(self.name) > NAME_LENGTH_LIMIT:
+            return add_to_pylint_disable("", "name-too-long")
         return ""
 
     def response_type_annotation(self, **kwargs) -> str:
