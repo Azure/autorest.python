@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -557,7 +558,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_local_positive_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_local_positive_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999+14:00.
 
         :return: datetime or the result of cls(response)
@@ -603,7 +606,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_local_positive_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_local_positive_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999+14:00.
 
         :return: datetime or the result of cls(response)
@@ -700,7 +705,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_local_negative_offset_uppercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_local_negative_offset_uppercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31T23:59:59.999-14:00.
 
         :return: datetime or the result of cls(response)
@@ -746,7 +753,9 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_local_negative_offset_lowercase_max_date_time(self, **kwargs: Any) -> datetime.datetime:
+    async def get_local_negative_offset_lowercase_max_date_time(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> datetime.datetime:
         """Get max datetime value with positive num offset 9999-12-31t23:59:59.999-14:00.
 
         :return: datetime or the result of cls(response)

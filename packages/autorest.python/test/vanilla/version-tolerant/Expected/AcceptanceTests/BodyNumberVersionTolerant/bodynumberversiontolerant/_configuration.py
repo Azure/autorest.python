@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class AutoRestNumberTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
+class AutoRestNumberTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestNumberTestService.
 
     Note that all parameters used to create this instance are saved as instance

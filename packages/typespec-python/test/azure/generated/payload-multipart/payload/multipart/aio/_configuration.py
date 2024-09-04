@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class MultiPartClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class MultiPartClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for MultiPartClient.
 
     Note that all parameters used to create this instance are saved as instance

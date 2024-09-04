@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -661,7 +662,7 @@ def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -675,7 +676,7 @@ def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -689,7 +690,7 @@ def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

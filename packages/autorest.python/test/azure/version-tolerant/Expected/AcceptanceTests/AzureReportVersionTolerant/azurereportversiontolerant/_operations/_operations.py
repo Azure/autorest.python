@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_auto_rest_report_service_for_azure_get_report_request(
+def build_auto_rest_report_service_for_azure_get_report_request(  # pylint: disable=name-too-long
     *, qualifier: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -56,7 +57,9 @@ def build_auto_rest_report_service_for_azure_get_report_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzureMixinABC):
+class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
+    AutoRestReportServiceForAzureMixinABC
+):
 
     @distributed_trace
     def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:

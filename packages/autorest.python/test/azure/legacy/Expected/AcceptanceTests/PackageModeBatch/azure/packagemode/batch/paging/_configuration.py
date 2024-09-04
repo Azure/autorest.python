@@ -14,6 +14,7 @@ from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLo
 from ._version import VERSION
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 

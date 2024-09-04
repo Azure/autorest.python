@@ -15,7 +15,7 @@ from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuth
 from .._version import VERSION
 
 
-class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
+class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance

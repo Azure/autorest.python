@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -39,7 +40,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -624,7 +625,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -637,7 +638,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -649,7 +650,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -705,7 +706,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -718,7 +719,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -730,7 +731,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -786,7 +787,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -799,7 +800,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -811,7 +812,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.

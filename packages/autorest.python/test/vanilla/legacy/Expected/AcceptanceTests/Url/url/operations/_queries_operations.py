@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -112,7 +113,7 @@ def build_get_int_one_million_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_negative_one_million_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -635,7 +636,7 @@ def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = N
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_no_collection_format_empty_request(
+def build_array_string_no_collection_format_empty_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

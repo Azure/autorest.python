@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -11,6 +12,7 @@ from typing import Any, Literal, Optional, TYPE_CHECKING, Union
 from .. import _serialization
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -240,7 +242,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: Default value is "value1".
@@ -282,7 +284,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
+class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".

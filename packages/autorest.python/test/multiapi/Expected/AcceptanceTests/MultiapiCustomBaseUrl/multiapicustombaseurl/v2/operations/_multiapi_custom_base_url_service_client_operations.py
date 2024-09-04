@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -56,7 +57,9 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
+    MultiapiCustomBaseUrlServiceClientMixinABC
+):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version

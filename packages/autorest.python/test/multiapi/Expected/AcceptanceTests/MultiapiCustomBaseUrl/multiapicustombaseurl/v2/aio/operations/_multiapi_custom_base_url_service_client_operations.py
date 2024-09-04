@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,7 +34,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiCustomBaseUrlServiceClientOperationsMixin(MultiapiCustomBaseUrlServiceClientMixinABC):
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
+    MultiapiCustomBaseUrlServiceClientMixinABC
+):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version

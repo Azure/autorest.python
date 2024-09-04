@@ -18,6 +18,7 @@ from ._configuration import OAuth2ClientConfiguration
 from ._operations import OAuth2ClientOperationsMixin
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from corehttp.credentials import AsyncTokenCredential
 
 

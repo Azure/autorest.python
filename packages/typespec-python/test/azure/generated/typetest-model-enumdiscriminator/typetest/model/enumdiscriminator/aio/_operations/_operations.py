@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -43,7 +44,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -213,7 +214,9 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_extensible_model_missing_discriminator(self, **kwargs: Any) -> _models.Dog:
+    async def get_extensible_model_missing_discriminator(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> _models.Dog:
         """Get a model omitting the discriminator.
 
         :return: Dog. The Dog is compatible with MutableMapping

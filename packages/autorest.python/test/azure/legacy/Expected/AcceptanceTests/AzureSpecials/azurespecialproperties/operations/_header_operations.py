@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -51,7 +52,9 @@ def build_custom_named_request_id_request(*, foo_client_request_id: str, **kwarg
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_custom_named_request_id_param_grouping_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_custom_named_request_id_param_grouping_request(  # pylint: disable=name-too-long
+    *, foo_client_request_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -66,7 +69,9 @@ def build_custom_named_request_id_param_grouping_request(*, foo_client_request_i
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_custom_named_request_id_head_request(*, foo_client_request_id: str, **kwargs: Any) -> HttpRequest:
+def build_custom_named_request_id_head_request(  # pylint: disable=name-too-long
+    *, foo_client_request_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

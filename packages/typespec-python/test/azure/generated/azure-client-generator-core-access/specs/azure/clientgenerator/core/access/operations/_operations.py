@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,7 +39,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_public_operation_no_decorator_in_public_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_public_operation_no_decorator_in_public_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -56,7 +59,9 @@ def build_public_operation_no_decorator_in_public_request(*, name: str, **kwargs
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_public_operation_public_decorator_in_public_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_public_operation_public_decorator_in_public_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -74,7 +79,9 @@ def build_public_operation_public_decorator_in_public_request(*, name: str, **kw
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_internal_operation_no_decorator_in_internal_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_internal_operation_no_decorator_in_internal_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -92,7 +99,9 @@ def build_internal_operation_no_decorator_in_internal_request(*, name: str, **kw
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_internal_operation_internal_decorator_in_internal_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_internal_operation_internal_decorator_in_internal_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -110,7 +119,9 @@ def build_internal_operation_internal_decorator_in_internal_request(*, name: str
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_internal_operation_public_decorator_in_internal_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_internal_operation_public_decorator_in_internal_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -128,7 +139,9 @@ def build_internal_operation_public_decorator_in_internal_request(*, name: str, 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_shared_model_in_operation_public_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_shared_model_in_operation_public_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -146,7 +159,9 @@ def build_shared_model_in_operation_public_request(*, name: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_shared_model_in_operation_internal_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_shared_model_in_operation_internal_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -164,7 +179,9 @@ def build_shared_model_in_operation_internal_request(*, name: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_relative_model_in_operation_operation_request(*, name: str, **kwargs: Any) -> HttpRequest:
+def build_relative_model_in_operation_operation_request(  # pylint: disable=name-too-long
+    *, name: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -182,7 +199,9 @@ def build_relative_model_in_operation_operation_request(*, name: str, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_relative_model_in_operation_discriminator_request(*, kind: str, **kwargs: Any) -> HttpRequest:
+def build_relative_model_in_operation_discriminator_request(  # pylint: disable=name-too-long
+    *, kind: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 

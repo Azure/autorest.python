@@ -337,7 +337,7 @@ def _get_model(module_name: str, model_name: str):
 _UNSET = object()
 
 
-class _MyMutableMapping(MutableMapping[str, typing.Any]):
+class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=unsubscriptable-object
     def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
         self._data = data
 
@@ -514,7 +514,7 @@ class Model(_MyMutableMapping):
     def copy(self) -> "Model":
         return Model(self.__dict__)
 
-    def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> Self:
+    def __new__(cls, *args: typing.Any, **kwargs: typing.Any) -> Self:  # pylint: disable=unused-argument
         if f"{cls.__module__}.{cls.__qualname__}" not in cls._calculated:
             # we know the last nine classes in mro are going to be 'Model', '_MyMutableMapping', 'MutableMapping',
             # 'Mapping', 'Collection', 'Sized', 'Iterable', 'Container' and 'object'
@@ -525,8 +525,8 @@ class Model(_MyMutableMapping):
             annotations = {
                 k: v
                 for mro_class in mros
-                if hasattr(mro_class, "__annotations__")
-                for k, v in mro_class.__annotations__.items()
+                if hasattr(mro_class, "__annotations__")  # pylint: disable=no-member
+                for k, v in mro_class.__annotations__.items()  # pylint: disable=no-member
             }
             for attr, rf in attr_to_rest_field.items():
                 rf._module = cls.__module__
@@ -537,18 +537,20 @@ class Model(_MyMutableMapping):
             cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(attr_to_rest_field.items())
             cls._calculated.add(f"{cls.__module__}.{cls.__qualname__}")
 
-        return super().__new__(cls)
+        return super().__new__(cls)  # pylint: disable=no-value-for-parameter
 
     def __init_subclass__(cls, discriminator: typing.Optional[str] = None) -> None:
         for base in cls.__bases__:
-            if hasattr(base, "__mapping__"):
-                base.__mapping__[discriminator or cls.__name__] = cls  # type: ignore
+            if hasattr(base, "__mapping__"):  # pylint: disable=no-member
+                base.__mapping__[discriminator or cls.__name__] = cls  # type: ignore  # pylint: disable=no-member
 
     @classmethod
     def _get_discriminator(cls, exist_discriminators) -> typing.Optional[str]:
         for v in cls.__dict__.values():
-            if isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators:
-                return v._rest_name
+            if (
+                isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators
+            ):  # pylint: disable=protected-access
+                return v._rest_name  # pylint: disable=protected-access
         return None
 
     @classmethod
@@ -656,7 +658,7 @@ def _sorted_annotations(types: typing.List[typing.Any]) -> typing.List[typing.An
     )
 
 
-def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-branches
+def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, R0912
     annotation: typing.Any,
     module: typing.Optional[str],
     rf: typing.Optional["_RestField"] = None,

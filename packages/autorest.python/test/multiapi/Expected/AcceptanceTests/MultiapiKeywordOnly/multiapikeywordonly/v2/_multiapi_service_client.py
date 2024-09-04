@@ -20,6 +20,7 @@ from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 

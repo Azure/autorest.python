@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,7 +36,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model204_no_model_default_error200_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -49,7 +52,9 @@ def build_get200_model204_no_model_default_error200_valid_request(**kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model204_no_model_default_error204_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model204_no_model_default_error204_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -63,7 +68,9 @@ def build_get200_model204_no_model_default_error204_valid_request(**kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model204_no_model_default_error201_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model204_no_model_default_error201_invalid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -77,7 +84,9 @@ def build_get200_model204_no_model_default_error201_invalid_request(**kwargs: An
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model204_no_model_default_error202_none_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model204_no_model_default_error202_none_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -91,7 +100,9 @@ def build_get200_model204_no_model_default_error202_none_request(**kwargs: Any) 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model204_no_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model204_no_model_default_error400_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -105,7 +116,9 @@ def build_get200_model204_no_model_default_error400_valid_request(**kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model201_model_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model201_model_default_error200_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -119,7 +132,9 @@ def build_get200_model201_model_default_error200_valid_request(**kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model201_model_default_error201_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model201_model_default_error201_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -133,7 +148,9 @@ def build_get200_model201_model_default_error201_valid_request(**kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model201_model_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model201_model_default_error400_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -147,7 +164,9 @@ def build_get200_model201_model_default_error400_valid_request(**kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -161,7 +180,9 @@ def build_get200_model_a201_model_c404_model_d_default_error200_valid_request(**
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -175,7 +196,9 @@ def build_get200_model_a201_model_c404_model_d_default_error201_valid_request(**
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -189,7 +212,9 @@ def build_get200_model_a201_model_c404_model_d_default_error404_valid_request(**
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -203,7 +228,9 @@ def build_get200_model_a201_model_c404_model_d_default_error400_valid_request(**
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get202_none204_none_default_error202_none_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_error202_none_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -217,7 +244,9 @@ def build_get202_none204_none_default_error202_none_request(**kwargs: Any) -> Ht
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get202_none204_none_default_error204_none_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_error204_none_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -231,7 +260,9 @@ def build_get202_none204_none_default_error204_none_request(**kwargs: Any) -> Ht
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get202_none204_none_default_error400_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_error400_valid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -245,35 +276,43 @@ def build_get202_none204_none_default_error400_valid_request(**kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get202_none204_none_default_none202_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_none202_invalid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/202/invalid")
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get202_none204_none_default_none204_none_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_none204_none_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/204/none")
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get202_none204_none_default_none400_none_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_none400_none_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/none")
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get202_none204_none_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get202_none204_none_default_none400_invalid_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/202/none/204/none/default/none/response/400/invalid")
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -287,7 +326,7 @@ def build_get_default_model_a200_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -301,7 +340,7 @@ def build_get_default_model_a200_none_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -315,7 +354,7 @@ def build_get_default_model_a400_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -329,7 +368,7 @@ def build_get_default_model_a400_none_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_get_default_none200_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_none200_invalid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/none/response/200/invalid")
 
@@ -343,7 +382,7 @@ def build_get_default_none200_none_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_get_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_default_none400_invalid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = kwargs.pop("template_url", "/http/payloads/default/none/response/400/invalid")
 
@@ -475,7 +514,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    def get200_model204_no_model_default_error200_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: MyException or None or the result of cls(response)
@@ -523,7 +564,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    def get200_model204_no_model_default_error204_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 204 response with no payload.
 
         :return: MyException or None or the result of cls(response)
@@ -571,7 +614,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    def get200_model204_no_model_default_error201_invalid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: MyException or None or the result of cls(response)
@@ -619,7 +664,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[_models.MyException]:
+    def get200_model204_no_model_default_error202_none(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 202 response with no payload:.
 
         :return: MyException or None or the result of cls(response)
@@ -667,7 +714,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    def get200_model204_no_model_default_error400_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: MyException or None or the result of cls(response)
@@ -715,7 +764,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error200_valid(self, **kwargs: Any) -> Union[_models.MyException, _models.B]:
+    def get200_model201_model_default_error200_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Union[_models.MyException, _models.B]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: MyException or B or the result of cls(response)
@@ -765,7 +816,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error201_valid(self, **kwargs: Any) -> Union[_models.MyException, _models.B]:
+    def get200_model201_model_default_error201_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Union[_models.MyException, _models.B]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
 
         :return: MyException or B or the result of cls(response)
@@ -815,7 +868,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model201_model_default_error400_valid(self, **kwargs: Any) -> Union[_models.MyException, _models.B]:
+    def get200_model201_model_default_error400_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Union[_models.MyException, _models.B]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: MyException or B or the result of cls(response)
@@ -865,7 +920,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error200_valid(
+    def get200_model_a201_model_c404_model_d_default_error200_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -921,7 +976,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error201_valid(
+    def get200_model_a201_model_c404_model_d_default_error201_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
@@ -977,7 +1032,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error404_valid(
+    def get200_model_a201_model_c404_model_d_default_error404_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
@@ -1033,7 +1088,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get200_model_a201_model_c404_model_d_default_error400_valid(
+    def get200_model_a201_model_c404_model_d_default_error400_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -1089,7 +1144,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
+    def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 202 response with no payload.
@@ -1133,7 +1188,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements
+    def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
@@ -1177,7 +1232,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements
+    def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -1221,7 +1276,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements
+    def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
@@ -1350,7 +1405,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
+    def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.

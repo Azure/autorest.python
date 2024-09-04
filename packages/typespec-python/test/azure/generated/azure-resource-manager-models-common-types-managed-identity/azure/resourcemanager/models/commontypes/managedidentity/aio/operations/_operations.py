@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,12 +39,12 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ManagedIdentityTrackedResourcesOperations:
+class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -308,7 +309,7 @@ class ManagedIdentityTrackedResourcesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def update_with_user_assigned_and_system_assigned(
+    async def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -338,7 +339,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @overload
-    async def update_with_user_assigned_and_system_assigned(
+    async def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -367,7 +368,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @overload
-    async def update_with_user_assigned_and_system_assigned(
+    async def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -396,7 +397,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @distributed_trace_async
-    async def update_with_user_assigned_and_system_assigned(
+    async def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,

@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,7 +37,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -199,7 +200,7 @@ def build_property_float64_seconds_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_seconds_array_request(**kwargs: Any) -> HttpRequest:
+def build_property_float_seconds_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

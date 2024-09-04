@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -29,7 +30,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -37,7 +38,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_auto_rest_resource_flattening_test_service_put_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -54,7 +57,9 @@ def build_auto_rest_resource_flattening_test_service_put_array_request(**kwargs:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_get_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -68,7 +73,9 @@ def build_auto_rest_resource_flattening_test_service_get_array_request(**kwargs:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -85,7 +92,9 @@ def build_auto_rest_resource_flattening_test_service_put_wrapped_array_request(*
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -99,7 +108,9 @@ def build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(*
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_put_dictionary_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_dictionary_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -116,7 +127,9 @@ def build_auto_rest_resource_flattening_test_service_put_dictionary_request(**kw
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_get_dictionary_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_dictionary_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -130,7 +143,9 @@ def build_auto_rest_resource_flattening_test_service_get_dictionary_request(**kw
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_put_resource_collection_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_resource_collection_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -147,7 +162,9 @@ def build_auto_rest_resource_flattening_test_service_put_resource_collection_req
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_get_resource_collection_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_get_resource_collection_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -161,7 +178,9 @@ def build_auto_rest_resource_flattening_test_service_get_resource_collection_req
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_put_simple_product_request(**kwargs: Any) -> HttpRequest:
+def build_auto_rest_resource_flattening_test_service_put_simple_product_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -178,7 +197,7 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(
+def build_auto_rest_resource_flattening_test_service_post_flattened_simple_product_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -197,7 +216,7 @@ def build_auto_rest_resource_flattening_test_service_post_flattened_simple_produ
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(
+def build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request(  # pylint: disable=name-too-long
     name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -221,7 +240,9 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(AutoRestResourceFlatteningTestServiceMixinABC):
+class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
+    AutoRestResourceFlatteningTestServiceMixinABC
+):
 
     @overload
     def put_array(  # pylint: disable=inconsistent-return-statements

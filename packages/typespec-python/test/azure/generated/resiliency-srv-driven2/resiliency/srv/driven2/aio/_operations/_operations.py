@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -37,7 +38,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ResiliencyServiceDrivenClientOperationsMixin(ResiliencyServiceDrivenClientMixinABC):
+class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
+    ResiliencyServiceDrivenClientMixinABC
+):
 
     @distributed_trace_async
     @api_version_validation(

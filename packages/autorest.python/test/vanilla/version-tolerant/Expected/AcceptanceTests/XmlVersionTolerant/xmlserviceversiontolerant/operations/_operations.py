@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:
+def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -50,7 +51,9 @@ def build_xml_get_complex_type_ref_no_meta_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_xml_put_complex_type_ref_no_meta_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -64,7 +67,7 @@ def build_xml_put_complex_type_ref_no_meta_request(*, content: Any, **kwargs: An
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:
+def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -78,7 +81,9 @@ def build_xml_get_complex_type_ref_with_meta_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_complex_type_ref_with_meta_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_xml_put_complex_type_ref_with_meta_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -189,7 +194,7 @@ def build_xml_put_empty_list_request(*, content: Any, **kwargs: Any) -> HttpRequ
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
+def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -203,7 +208,9 @@ def build_xml_get_empty_wrapped_lists_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_wrapped_lists_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_wrapped_lists_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -245,7 +252,7 @@ def build_xml_put_root_list_request(*, content: Any, **kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
+def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -259,7 +266,9 @@ def build_xml_get_root_list_single_item_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_root_list_single_item_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_xml_put_root_list_single_item_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -301,7 +310,7 @@ def build_xml_put_empty_root_list_request(*, content: Any, **kwargs: Any) -> Htt
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
+def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -315,7 +324,9 @@ def build_xml_get_empty_child_element_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_xml_put_empty_child_element_request(*, content: Any, **kwargs: Any) -> HttpRequest:
+def build_xml_put_empty_child_element_request(  # pylint: disable=name-too-long
+    *, content: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

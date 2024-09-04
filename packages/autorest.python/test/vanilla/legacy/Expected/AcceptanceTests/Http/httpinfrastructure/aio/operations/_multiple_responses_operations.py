@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -86,7 +87,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error200_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error200_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
 
         :return: MyException or None or the result of cls(response)
@@ -134,7 +137,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error204_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error204_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 204 response with no payload.
 
         :return: MyException or None or the result of cls(response)
@@ -182,7 +187,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error201_invalid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error201_invalid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 201 response with valid payload: {'statusCode': '201'}.
 
         :return: MyException or None or the result of cls(response)
@@ -230,7 +237,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error202_none(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error202_none(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 202 response with no payload:.
 
         :return: MyException or None or the result of cls(response)
@@ -278,7 +287,9 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model204_no_model_default_error400_valid(self, **kwargs: Any) -> Optional[_models.MyException]:
+    async def get200_model204_no_model_default_error400_valid(  # pylint: disable=name-too-long
+        self, **kwargs: Any
+    ) -> Optional[_models.MyException]:
         """Send a 400 response with valid error payload: {'status': 400, 'message': 'client error'}.
 
         :return: MyException or None or the result of cls(response)
@@ -326,7 +337,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error200_valid(
+    async def get200_model201_model_default_error200_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -378,7 +389,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error201_valid(
+    async def get200_model201_model_default_error201_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 201 response with valid payload: {'statusCode': '201', 'textStatusCode': 'Created'}.
@@ -430,7 +441,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model201_model_default_error400_valid(
+    async def get200_model201_model_default_error400_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.B]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -482,7 +493,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error200_valid(
+    async def get200_model_a201_model_c404_model_d_default_error200_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'statusCode': '200'}.
@@ -538,7 +549,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error201_valid(
+    async def get200_model_a201_model_c404_model_d_default_error201_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpCode': '201'}.
@@ -594,7 +605,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error404_valid(
+    async def get200_model_a201_model_c404_model_d_default_error404_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 200 response with valid payload: {'httpStatusCode': '404'}.
@@ -650,7 +661,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get200_model_a201_model_c404_model_d_default_error400_valid(
+    async def get200_model_a201_model_c404_model_d_default_error400_valid(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Union[_models.MyException, _models.C, _models.D]:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -706,7 +717,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements
+    async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 202 response with no payload.
@@ -750,7 +761,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements
+    async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 204 response with no payload.
@@ -794,7 +805,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements
+    async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
@@ -838,7 +849,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements
+    async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 202 response with an unexpected payload {'property': 'value'}.
@@ -967,7 +978,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
+    async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, **kwargs: Any
     ) -> None:
         """Send a 400 response with an unexpected payload {'property': 'value'}.

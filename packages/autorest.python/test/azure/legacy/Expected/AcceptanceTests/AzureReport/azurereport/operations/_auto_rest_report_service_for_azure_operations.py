@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -55,7 +56,9 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceForAzureOperationsMixin(AutoRestReportServiceForAzureMixinABC):
+class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
+    AutoRestReportServiceForAzureMixinABC
+):
 
     @distributed_trace
     def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:

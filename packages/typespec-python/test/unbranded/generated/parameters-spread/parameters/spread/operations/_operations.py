@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -30,7 +31,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -39,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
+def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -53,7 +54,9 @@ def build_model_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_spread_composite_request_only_with_body_request(**kwargs: Any) -> HttpRequest:
+def build_model_spread_composite_request_only_with_body_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -67,7 +70,7 @@ def build_model_spread_composite_request_only_with_body_request(**kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_spread_composite_request_without_body_request(
+def build_model_spread_composite_request_without_body_request(  # pylint: disable=name-too-long
     name: str, *, test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -86,7 +89,9 @@ def build_model_spread_composite_request_without_body_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_spread_composite_request_request(name: str, *, test_header: str, **kwargs: Any) -> HttpRequest:
+def build_model_spread_composite_request_request(  # pylint: disable=name-too-long
+    name: str, *, test_header: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -106,7 +111,9 @@ def build_model_spread_composite_request_request(name: str, *, test_header: str,
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_spread_composite_request_mix_request(name: str, *, test_header: str, **kwargs: Any) -> HttpRequest:
+def build_model_spread_composite_request_mix_request(  # pylint: disable=name-too-long
+    name: str, *, test_header: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -126,7 +133,7 @@ def build_model_spread_composite_request_mix_request(name: str, *, test_header: 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
+def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -140,7 +147,7 @@ def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_parameter_with_inner_model_request(
+def build_alias_spread_parameter_with_inner_model_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -162,7 +169,9 @@ def build_alias_spread_parameter_with_inner_model_request(
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_as_request_parameter_request(id: str, *, x_ms_test_header: str, **kwargs: Any) -> HttpRequest:
+def build_alias_spread_as_request_parameter_request(  # pylint: disable=name-too-long
+    id: str, *, x_ms_test_header: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -182,7 +191,7 @@ def build_alias_spread_as_request_parameter_request(id: str, *, x_ms_test_header
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_with_multiple_parameters_request(
+def build_alias_spread_with_multiple_parameters_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -204,7 +213,7 @@ def build_alias_spread_with_multiple_parameters_request(
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_parameter_with_inner_alias_request(
+def build_alias_spread_parameter_with_inner_alias_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -519,7 +528,7 @@ class ModelOperations:
         *,
         test_header: str,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_composite_request.
 
@@ -967,7 +976,7 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         name: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_parameter_with_inner_model.
 
@@ -1103,7 +1112,7 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         name: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_as_request_parameter.
 
@@ -1203,7 +1212,7 @@ class AliasOperations:
         content_type: str = "application/json",
         optional_int: Optional[int] = None,
         optional_string_list: Optional[List[str]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -1257,7 +1266,7 @@ class AliasOperations:
         required_int_list: List[int] = _Unset,
         optional_int: Optional[int] = None,
         optional_string_list: Optional[List[str]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -1368,7 +1377,7 @@ class AliasOperations:
         name: str,
         age: int,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread an alias with contains another alias property as body.
 
@@ -1416,7 +1425,7 @@ class AliasOperations:
         x_ms_test_header: str,
         name: str = _Unset,
         age: int = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread an alias with contains another alias property as body.
 

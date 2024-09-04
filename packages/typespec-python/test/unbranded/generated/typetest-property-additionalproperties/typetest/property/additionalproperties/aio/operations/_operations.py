@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -97,7 +98,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -4651,7 +4652,7 @@ class ExtendsDifferentSpreadModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadModelArrayOperations:
+class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -5373,7 +5374,7 @@ class SpreadRecordDiscriminatedUnionOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnionOperations:
+class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -5558,7 +5559,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion2Operations:
+class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -5745,7 +5746,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion3Operations:
+class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.

@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_queries_array_string_multi_null_request(
+def build_queries_array_string_multi_null_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -57,7 +58,7 @@ def build_queries_array_string_multi_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_multi_empty_request(
+def build_queries_array_string_multi_empty_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -80,7 +81,7 @@ def build_queries_array_string_multi_empty_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_queries_array_string_multi_valid_request(
+def build_queries_array_string_multi_valid_request(  # pylint: disable=name-too-long
     *, array_query: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

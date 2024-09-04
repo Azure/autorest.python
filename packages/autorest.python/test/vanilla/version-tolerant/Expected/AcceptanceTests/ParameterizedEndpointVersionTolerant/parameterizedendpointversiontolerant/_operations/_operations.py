@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -41,7 +42,7 @@ def build_parmaterized_endpoint_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):
+class ParmaterizedEndpointClientOperationsMixin(ParmaterizedEndpointClientMixinABC):  # pylint: disable=name-too-long
 
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -33,7 +34,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -41,7 +42,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_enum_discriminator_get_extensible_model_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_extensible_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +58,9 @@ def build_enum_discriminator_get_extensible_model_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_put_extensible_model_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_put_extensible_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -69,7 +74,9 @@ def build_enum_discriminator_put_extensible_model_request(**kwargs: Any) -> Http
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_get_extensible_model_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_extensible_model_missing_discriminator_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -83,7 +90,9 @@ def build_enum_discriminator_get_extensible_model_missing_discriminator_request(
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_get_extensible_model_wrong_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_extensible_model_wrong_discriminator_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -97,7 +106,7 @@ def build_enum_discriminator_get_extensible_model_wrong_discriminator_request(**
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_get_fixed_model_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_fixed_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -111,7 +120,7 @@ def build_enum_discriminator_get_fixed_model_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_put_fixed_model_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_put_fixed_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -125,7 +134,9 @@ def build_enum_discriminator_put_fixed_model_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_get_fixed_model_missing_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_fixed_model_missing_discriminator_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -139,7 +150,9 @@ def build_enum_discriminator_get_fixed_model_missing_discriminator_request(**kwa
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_discriminator_get_fixed_model_wrong_discriminator_request(**kwargs: Any) -> HttpRequest:
+def build_enum_discriminator_get_fixed_model_wrong_discriminator_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -315,7 +328,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def get_extensible_model_missing_discriminator(self, **kwargs: Any) -> _models.Dog:
+    def get_extensible_model_missing_discriminator(self, **kwargs: Any) -> _models.Dog:  # pylint: disable=name-too-long
         """Get a model omitting the discriminator.
 
         :return: Dog. The Dog is compatible with MutableMapping

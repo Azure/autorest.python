@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class ExtensibleClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ExtensibleClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for ExtensibleClient.
 
     Note that all parameters used to create this instance are saved as instance

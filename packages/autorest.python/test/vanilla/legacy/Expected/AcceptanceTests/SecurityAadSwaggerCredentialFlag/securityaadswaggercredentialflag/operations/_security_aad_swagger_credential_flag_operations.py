@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -41,7 +42,9 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class SecurityAadSwaggerCredentialFlagOperationsMixin(SecurityAadSwaggerCredentialFlagMixinABC):
+class SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
+    SecurityAadSwaggerCredentialFlagMixinABC
+):
 
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

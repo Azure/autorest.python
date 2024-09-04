@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,13 +37,15 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_two_models_as_page_item_list_first_item_request(**kwargs: Any) -> HttpRequest:
+def build_two_models_as_page_item_list_first_item_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -61,7 +64,9 @@ def build_two_models_as_page_item_list_first_item_request(**kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_two_models_as_page_item_list_second_item_request(**kwargs: Any) -> HttpRequest:
+def build_two_models_as_page_item_list_second_item_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -125,7 +130,7 @@ def build_page_list_with_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_page_list_with_custom_page_model_request(**kwargs: Any) -> HttpRequest:
+def build_page_list_with_custom_page_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -419,7 +424,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -443,7 +448,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -467,7 +472,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -490,7 +495,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 

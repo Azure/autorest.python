@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -40,12 +41,14 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleInheritanceServiceClientOperationsMixin(MultipleInheritanceServiceClientMixinABC):
+class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
+    MultipleInheritanceServiceClientMixinABC
+):
 
     @distributed_trace_async
     async def get_horse(self, **kwargs: Any) -> JSON:

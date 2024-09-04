@@ -14,6 +14,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from corehttp.credentials import AsyncTokenCredential
 
 

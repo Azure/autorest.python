@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -28,7 +29,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -36,7 +37,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_import_operations_operation_one_request(*, parameter1: str, **kwargs: Any) -> HttpRequest:
+def build_import_operations_operation_one_request(  # pylint: disable=name-too-long
+    *, parameter1: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -54,7 +57,9 @@ def build_import_operations_operation_one_request(*, parameter1: str, **kwargs: 
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_reserved_words_operation_with_content_param_request(*, content: IO[bytes], **kwargs: Any) -> HttpRequest:
+def build_reserved_words_operation_with_content_param_request(  # pylint: disable=name-too-long
+    *, content: IO[bytes], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -71,7 +76,9 @@ def build_reserved_words_operation_with_content_param_request(*, content: IO[byt
     return HttpRequest(method="PUT", url=_url, headers=_headers, content=content, **kwargs)
 
 
-def build_reserved_words_operation_with_json_param_request(*, json: Any, **kwargs: Any) -> HttpRequest:
+def build_reserved_words_operation_with_json_param_request(  # pylint: disable=name-too-long
+    *, json: Any, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -88,7 +95,7 @@ def build_reserved_words_operation_with_json_param_request(*, json: Any, **kwarg
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_reserved_words_operation_with_url_request(
+def build_reserved_words_operation_with_url_request(  # pylint: disable=name-too-long
     url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -117,7 +124,9 @@ def build_reserved_words_operation_with_url_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_reserved_words_reserved_enum_request(*, enum_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_reserved_words_reserved_enum_request(  # pylint: disable=name-too-long
+    *, enum_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

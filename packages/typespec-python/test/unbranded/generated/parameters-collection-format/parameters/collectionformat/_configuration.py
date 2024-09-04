@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class CollectionFormatClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class CollectionFormatClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for CollectionFormatClient.
 
     Note that all parameters used to create this instance are saved as instance

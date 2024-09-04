@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,7 +35,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -42,7 +43,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_managed_identity_tracked_resources_get_request(
+def build_managed_identity_tracked_resources_get_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -72,7 +73,7 @@ def build_managed_identity_tracked_resources_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_managed_identity_tracked_resources_create_with_system_assigned_request(
+def build_managed_identity_tracked_resources_create_with_system_assigned_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -105,7 +106,7 @@ def build_managed_identity_tracked_resources_create_with_system_assigned_request
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_managed_identity_tracked_resources_update_with_user_assigned_and_system_assigned_request(
+def build_managed_identity_tracked_resources_update_with_user_assigned_and_system_assigned_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -138,7 +139,7 @@ def build_managed_identity_tracked_resources_update_with_user_assigned_and_syste
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class ManagedIdentityTrackedResourcesOperations:
+class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -403,7 +404,7 @@ class ManagedIdentityTrackedResourcesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def update_with_user_assigned_and_system_assigned(
+    def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -433,7 +434,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @overload
-    def update_with_user_assigned_and_system_assigned(
+    def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -462,7 +463,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @overload
-    def update_with_user_assigned_and_system_assigned(
+    def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,
@@ -491,7 +492,7 @@ class ManagedIdentityTrackedResourcesOperations:
         """
 
     @distributed_trace
-    def update_with_user_assigned_and_system_assigned(
+    def update_with_user_assigned_and_system_assigned(  # pylint: disable=name-too-long
         self,
         resource_group_name: str,
         managed_identity_tracked_resource_name: str,

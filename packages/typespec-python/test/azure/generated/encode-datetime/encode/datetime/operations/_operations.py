@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -36,7 +37,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -170,7 +171,7 @@ def build_property_unix_timestamp_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_unix_timestamp_array_request(**kwargs: Any) -> HttpRequest:
+def build_property_unix_timestamp_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -235,7 +236,9 @@ def build_header_unix_timestamp_request(*, value: datetime.datetime, **kwargs: A
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_unix_timestamp_array_request(*, value: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
+def build_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
+    *, value: List[datetime.datetime], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -268,7 +271,7 @@ def build_response_header_rfc7231_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_response_header_unix_timestamp_request(**kwargs: Any) -> HttpRequest:
+def build_response_header_unix_timestamp_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/encode/datetime/responseheader/unix-timestamp"
 

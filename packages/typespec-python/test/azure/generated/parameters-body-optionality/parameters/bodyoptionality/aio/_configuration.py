@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class BodyOptionalityClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class BodyOptionalityClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for BodyOptionalityClient.
 
     Note that all parameters used to create this instance are saved as instance

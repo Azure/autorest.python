@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,7 +35,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -42,7 +43,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_json_merge_patch_create_resource_request(**kwargs: Any) -> HttpRequest:
+def build_json_merge_patch_create_resource_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -59,7 +60,7 @@ def build_json_merge_patch_create_resource_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_json_merge_patch_update_resource_request(**kwargs: Any) -> HttpRequest:
+def build_json_merge_patch_update_resource_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
@@ -76,7 +77,9 @@ def build_json_merge_patch_update_resource_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_json_merge_patch_update_optional_resource_request(**kwargs: Any) -> HttpRequest:
+def build_json_merge_patch_update_optional_resource_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
@@ -331,7 +334,7 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         body: Optional[_models.ResourcePatch] = None,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.Resource:
         """Test content-type: application/merge-patch+json with optional body.
 

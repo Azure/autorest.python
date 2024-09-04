@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -119,7 +120,7 @@ def build_get_global_query_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_global_and_local_query_null_request(
+def build_get_global_and_local_query_null_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,
@@ -161,7 +162,7 @@ def build_get_global_and_local_query_null_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_get_local_path_item_query_null_request(
+def build_get_local_path_item_query_null_request(  # pylint: disable=name-too-long
     path_item_string_path: str,
     local_string_path: str,
     global_string_path: str,

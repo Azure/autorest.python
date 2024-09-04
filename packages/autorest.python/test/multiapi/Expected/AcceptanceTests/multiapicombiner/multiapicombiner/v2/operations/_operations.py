@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -60,7 +61,7 @@ def build_multiapi_service_test_one_request(*, id: int, message: Optional[str] =
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_multiapi_service_test_different_calls_request(
+def build_multiapi_service_test_different_calls_request(  # pylint: disable=name-too-long
     *, greeting_in_english: str, greeting_in_chinese: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -84,7 +85,7 @@ def build_multiapi_service_test_different_calls_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:
+def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -106,7 +107,7 @@ def build_operation_group_one_test_two_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_group_one_test_three_request(**kwargs: Any) -> HttpRequest:
+def build_operation_group_one_test_three_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -125,7 +126,9 @@ def build_operation_group_one_test_three_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_operation_group_two_test_four_request(*, parameter_one: bool, **kwargs: Any) -> HttpRequest:
+def build_operation_group_two_test_four_request(  # pylint: disable=name-too-long
+    *, parameter_one: bool, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 

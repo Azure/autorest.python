@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -63,7 +64,7 @@ def build_int_operations_get_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_overflow_int32_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -77,7 +78,7 @@ def build_int_operations_get_overflow_int32_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_underflow_int32_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -91,7 +92,7 @@ def build_int_operations_get_underflow_int32_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_overflow_int64_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -105,7 +106,7 @@ def build_int_operations_get_overflow_int64_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_underflow_int64_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -187,7 +188,7 @@ def build_int_operations_put_min64_request(*, json: int, **kwargs: Any) -> HttpR
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_int_operations_get_unix_time_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_unix_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -201,7 +202,9 @@ def build_int_operations_get_unix_time_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_put_unix_time_date_request(*, json: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_int_operations_put_unix_time_date_request(  # pylint: disable=name-too-long
+    *, json: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -218,7 +221,7 @@ def build_int_operations_put_unix_time_date_request(*, json: datetime.datetime, 
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_int_operations_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_invalid_unix_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -232,7 +235,7 @@ def build_int_operations_get_invalid_unix_time_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int_operations_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:
+def build_int_operations_get_null_unix_time_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")

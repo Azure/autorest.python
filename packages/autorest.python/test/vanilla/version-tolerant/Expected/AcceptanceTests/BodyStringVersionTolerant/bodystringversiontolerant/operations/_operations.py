@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,7 +31,7 @@ else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -198,7 +199,7 @@ def build_string_get_base64_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -212,7 +213,9 @@ def build_string_get_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_base64_url_encoded_request(*, json: bytes, **kwargs: Any) -> HttpRequest:
+def build_string_put_base64_url_encoded_request(  # pylint: disable=name-too-long
+    *, json: bytes, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -229,7 +232,7 @@ def build_string_put_base64_url_encoded_request(*, json: bytes, **kwargs: Any) -
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_string_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:
+def build_string_get_null_base64_url_encoded_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -305,7 +308,7 @@ def build_enum_put_referenced_request(*, json: str, **kwargs: Any) -> HttpReques
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
+def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -319,7 +322,7 @@ def build_enum_get_referenced_constant_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enum_put_referenced_constant_request(**kwargs: Any) -> HttpRequest:
+def build_enum_put_referenced_constant_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))

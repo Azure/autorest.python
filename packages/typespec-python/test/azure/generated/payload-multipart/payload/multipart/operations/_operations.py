@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -29,7 +30,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -65,7 +66,7 @@ def build_form_data_json_part_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -74,7 +75,7 @@ def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -83,7 +84,9 @@ def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_check_file_name_and_content_type_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_check_file_name_and_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -101,7 +104,9 @@ def build_form_data_anonymous_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_with_http_part_specific_content_type_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_file_with_http_part_specific_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -110,7 +115,9 @@ def build_form_data_file_with_http_part_specific_content_type_request(**kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_with_http_part_required_content_type_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_file_with_http_part_required_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -119,7 +126,9 @@ def build_form_data_file_with_http_part_required_content_type_request(**kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_with_http_part_optional_content_type_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_file_with_http_part_optional_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -128,7 +137,7 @@ def build_form_data_file_with_http_part_optional_content_type_request(**kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_complex_with_http_part_request(**kwargs: Any) -> HttpRequest:
+def build_form_data_complex_with_http_part_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -717,7 +726,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -730,7 +739,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -743,7 +752,7 @@ class FormDataOperations:
         """
 
     @distributed_trace
-    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -799,7 +808,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -812,7 +821,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -825,7 +834,7 @@ class FormDataOperations:
         """
 
     @distributed_trace
-    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -881,7 +890,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -894,7 +903,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -907,7 +916,7 @@ class FormDataOperations:
         """
 
     @distributed_trace
-    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements
+    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
         self, body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.

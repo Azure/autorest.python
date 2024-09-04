@@ -19,6 +19,7 @@ from ._configuration import UnionClientConfiguration
 from ._operations import UnionClientOperationsMixin
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from corehttp.credentials import AsyncTokenCredential
 
 

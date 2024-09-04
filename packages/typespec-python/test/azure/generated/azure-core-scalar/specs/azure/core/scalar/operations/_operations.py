@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,7 +34,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]
+JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -85,7 +86,9 @@ def build_azure_location_scalar_post_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_header_request(*, region: str, **kwargs: Any) -> HttpRequest:
+def build_azure_location_scalar_header_request(  # pylint: disable=name-too-long
+    *, region: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -97,7 +100,9 @@ def build_azure_location_scalar_header_request(*, region: str, **kwargs: Any) ->
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_query_request(*, region: str, **kwargs: Any) -> HttpRequest:
+def build_azure_location_scalar_query_request(  # pylint: disable=name-too-long
+    *, region: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL

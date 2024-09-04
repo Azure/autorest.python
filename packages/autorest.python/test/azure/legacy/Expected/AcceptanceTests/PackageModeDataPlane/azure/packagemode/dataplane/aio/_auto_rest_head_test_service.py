@@ -20,6 +20,7 @@ from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
+    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 

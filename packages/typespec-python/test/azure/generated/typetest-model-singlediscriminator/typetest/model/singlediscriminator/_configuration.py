@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class SingleDiscriminatorClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class SingleDiscriminatorClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for SingleDiscriminatorClient.
 
     Note that all parameters used to create this instance are saved as instance

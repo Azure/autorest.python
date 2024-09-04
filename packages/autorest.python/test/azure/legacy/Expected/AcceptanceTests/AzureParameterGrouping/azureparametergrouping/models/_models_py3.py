@@ -1,4 +1,5 @@
 # coding=utf-8
+# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -95,7 +96,9 @@ class Grouper(msrest.serialization.Model):
         self.grouped_parameter = grouped_parameter
 
 
-class ParameterGroupingPostMultiParamGroupsSecondParamGroup(msrest.serialization.Model):
+class ParameterGroupingPostMultiParamGroupsSecondParamGroup(
+    msrest.serialization.Model
+):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar header_two:
@@ -194,7 +197,7 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         self.body = body
 
 
-class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):
+class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     :ivar from_property: 'from' is a reserved word. Pass in 'bob' to pass.

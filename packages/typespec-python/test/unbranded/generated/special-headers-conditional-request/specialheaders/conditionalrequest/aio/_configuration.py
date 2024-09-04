@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class ConditionalRequestClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ConditionalRequestClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
     """Configuration for ConditionalRequestClient.
 
     Note that all parameters used to create this instance are saved as instance
