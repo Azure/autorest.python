@@ -145,9 +145,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
         """Whether the base url is parameterized or not"""
         return not any(p for p in self.parameters if p.is_host)
 
-    @property
-    def pylint_disable(self) -> str:
-        retval = ""
+    def pylint_disable(self, async_mode: bool) -> str:
+        retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval
@@ -345,8 +344,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 class Config(_ClientConfigBase[ConfigGlobalParameterList]):
     """Model representing our Config type."""
 
-    @property
-    def pylint_disable(self) -> str:
+    def pylint_disable(self, async_mode: bool) -> str:
         retval = add_to_pylint_disable("", "too-many-instance-attributes")
         return retval
 

@@ -66,7 +66,7 @@
     {% endif %}
     {% set initialize_properties = serializer.initialize_properties(model) %}
     {% if need_init or initialize_properties %}
-    def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if not initialize_properties else '' }}
+    def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if (not initialize_properties ) else '' }}
         {% for line in serializer.super_call(model) %}
         {{ line }}
         {% endfor %}

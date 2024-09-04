@@ -136,10 +136,9 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             return self.responses[0].type_annotation(**kwargs)
         return "None"
 
-    @property
-    def pylint_disable(self) -> str:
+    def pylint_disable(self, async_mode: bool) -> str:
         retval: str = ""
-        if not self.is_overload and self.response_type_annotation(async_mode=False) == "None":
+        if not async_mode and not self.is_overload and self.response_type_annotation(async_mode=False) == "None":
             # doesn't matter if it's async or not
             retval = add_to_pylint_disable(retval, "inconsistent-return-statements")
         try:

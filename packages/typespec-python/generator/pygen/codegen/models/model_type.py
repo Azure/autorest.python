@@ -236,7 +236,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
         except StopIteration:
             return None
 
-    @property
     def pylint_disable(self) -> str:
         retval: str = ""
         if len(self.properties) > 10:

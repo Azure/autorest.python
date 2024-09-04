@@ -66,10 +66,10 @@ class _ModelSerializer(BaseSerializer, ABC):
     @staticmethod
     def initialize_standard_property(prop: Property):
         if not (prop.optional or prop.client_default_value is not None):
-            return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable}"
+            return f"{prop.client_name}: {prop.type_annotation()},{prop.pylint_disable()}"
         return (
             f"{prop.client_name}: {prop.type_annotation()} = "
-            f"{prop.client_default_value_declaration},{prop.pylint_disable}"
+            f"{prop.client_default_value_declaration},{prop.pylint_disable()}"
         )
 
     @staticmethod
@@ -128,7 +128,7 @@ class MsrestModelSerializer(_ModelSerializer):
         )
         if model.parents:
             basename = ", ".join([m.name for m in model.parents])
-        return f"class {model.name}({basename}):{model.pylint_disable}"
+        return f"class {model.name}({basename}):{model.pylint_disable()}"
 
     @staticmethod
     def get_properties_to_initialize(model: ModelType) -> List[Property]:
@@ -213,7 +213,7 @@ class DpgModelSerializer(_ModelSerializer):
             basename = ", ".join([m.name for m in model.parents])
         if model.discriminator_value:
             basename += f", discriminator='{model.discriminator_value}'"
-        return f"class {model.name}({basename}):{model.pylint_disable}"
+        return f"class {model.name}({basename}):{model.pylint_disable()}"
 
     @staticmethod
     def get_properties_to_declare(model: ModelType) -> List[Property]:
