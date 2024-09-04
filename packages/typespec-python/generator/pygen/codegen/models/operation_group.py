@@ -10,7 +10,7 @@ from .utils import OrderedSet
 from .base import BaseModel
 from .operation import get_operation
 from .imports import FileImport, ImportType, TypingSection
-from .utils import add_to_pylint_disable
+from .utils import add_to_pylint_disable, NAME_LENGTH_LIMIT
 from .lro_operation import LROOperation
 from .lro_paging_operation import LROPagingOperation
 
@@ -83,6 +83,8 @@ class OperationGroup(BaseModel):
             retval = add_to_pylint_disable(retval, "abstract-class-instantiated")
         if len(self.operations) > 20:
             retval = add_to_pylint_disable(retval, "too-many-public-methods")
+        if len(self.class_name) > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval

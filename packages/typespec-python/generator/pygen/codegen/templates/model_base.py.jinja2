@@ -566,7 +566,7 @@ class Model(_MyMutableMapping):
 
     @classmethod
     def _deserialize(cls, data, exist_discriminators):
-        if not hasattr(cls, "__mapping__"):  # pylint: disable=no-member
+        if not hasattr(cls, "__mapping__"):
             return cls(data)
         discriminator = cls._get_discriminator(exist_discriminators)
         exist_discriminators.append(discriminator)

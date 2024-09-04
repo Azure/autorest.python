@@ -147,7 +147,7 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     @property
     def pylint_disable(self) -> str:
-        retval = add_to_pylint_disable("", "client-accepts-api-version-keyword")
+        retval = ""
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval
