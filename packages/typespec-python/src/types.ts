@@ -220,11 +220,11 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
     if (isMultipartFileInput) {
         sourceType = createMultiPartFileType(property.type);
     } else if (property.type.kind === "model") {
-            const body = property.type.properties.find((x) => x.kind === "body");
-            if (body) {
-                // for `temperature: HttpPart<{@body body: float64, @header contentType: "text/plain"}>`, the real type is float64
-                sourceType = body.type;
-            }
+        const body = property.type.properties.find((x) => x.kind === "body");
+        if (body) {
+            // for `temperature: HttpPart<{@body body: float64, @header contentType: "text/plain"}>`, the real type is float64
+            sourceType = body.type;
+        }
     }
     if (isMultipartFileInput) {
         // Python convert all the type of file part to FileType so clear these models' usage so that they won't be generated

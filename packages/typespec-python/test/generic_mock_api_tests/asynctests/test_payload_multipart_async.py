@@ -147,8 +147,7 @@ async def test_complex_with_http_part(client: MultiPartClient):
         )
     )
 
+
 @pytest.mark.asyncio
 async def test_http_parts_non_string_float(client: MultiPartClient):
-    await client.form_data.http_parts.non_string.float(
-        models.FloatRequest(temperature=0.5)
-    )
+    await client.form_data.http_parts.non_string.float(models.FloatRequest(temperature=0.5))
