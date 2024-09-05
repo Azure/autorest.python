@@ -82,16 +82,12 @@ def test_model_with_text(client: XmlClient):
 
 
 def test_model_with_dictionary(client: XmlClient):
-    model = ModelWithDictionary(
-        metadata={"Color": "blue", "Count": "123", "Enabled": "false"}
-    )
+    model = ModelWithDictionary(metadata={"Color": "blue", "Count": "123", "Enabled": "false"})
     assert client.model_with_dictionary_value.get() == model
     client.model_with_dictionary_value.put(model)
 
 
 def test_model_with_encoded_names(client: XmlClient):
-    model = ModelWithEncodedNames(
-        model_data=SimpleModel(name="foo", age=123), colors=["red", "green", "blue"]
-    )
+    model = ModelWithEncodedNames(model_data=SimpleModel(name="foo", age=123), colors=["red", "green", "blue"])
     assert client.model_with_encoded_names_value.get() == model
     client.model_with_encoded_names_value.put(model)

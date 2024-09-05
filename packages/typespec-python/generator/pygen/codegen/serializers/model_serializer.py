@@ -23,7 +23,8 @@ def _documentation_string(prop: Property, description_keyword: str, docstring_ty
 
 class _ModelSerializer(BaseSerializer, ABC):
     @abstractmethod
-    def imports(self) -> FileImport: ...
+    def imports(self) -> FileImport:
+        ...
 
     def serialize(self) -> str:
         # Generate the models
@@ -36,7 +37,8 @@ class _ModelSerializer(BaseSerializer, ABC):
         )
 
     @abstractmethod
-    def declare_model(self, model: ModelType) -> str: ...
+    def declare_model(self, model: ModelType) -> str:
+        ...
 
     @staticmethod
     def escape_dot(s: str):
@@ -252,7 +254,7 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
         if prop.xml_metadata:
-            args.append(f'xml={prop.xml_metadata}')
+            args.append(f"xml={prop.xml_metadata}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
