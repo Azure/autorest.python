@@ -8,7 +8,7 @@ from typing import Any, Dict, TYPE_CHECKING, TypeVar, Generic, Union, List, Opti
 from .base import BaseModel
 from .parameter_list import ClientGlobalParameterList, ConfigGlobalParameterList
 from .imports import FileImport, ImportType, TypingSection, MsrestImportType
-from .utils import add_to_pylint_disable
+from .utils import NAME_LENGTH_LIMIT, add_to_pylint_disable
 from .operation_group import OperationGroup
 from .request_builder import (
     RequestBuilder,
@@ -147,6 +147,8 @@ class Client(_ClientConfigBase[ClientGlobalParameterList]):
 
     def pylint_disable(self, async_mode: bool) -> str:
         retval = ""
+        if not any(p for p in self.parameters.parameters if p.is_api_version):
+            retval = add_to_pylint_disable(retval, "client-accepts-api-version-keyword")
         if len(self.operation_groups) > 6:
             retval = add_to_pylint_disable(retval, "too-many-instance-attributes")
         return retval
@@ -346,6 +348,8 @@ class Config(_ClientConfigBase[ConfigGlobalParameterList]):
 
     def pylint_disable(self, async_mode: bool) -> str:
         retval = add_to_pylint_disable("", "too-many-instance-attributes")
+        if len(self.name) > NAME_LENGTH_LIMIT:
+            retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
 
     @property
