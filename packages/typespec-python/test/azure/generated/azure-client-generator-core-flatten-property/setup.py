@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azure-clientgenerator-core-flattenproperty"
-PACKAGE_PPRINT_NAME = "Azure Clientgenerator Core Flattenproperty"
+PACKAGE_NAME = "specs-azure-clientgenerator-core-flattenproperty"
+PACKAGE_PPRINT_NAME = "Specs Azure Clientgenerator Core Flattenproperty"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -54,14 +54,15 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "azure",
-            "azure.clientgenerator",
-            "azure.clientgenerator.core",
+            "specs",
+            "specs.azure",
+            "specs.azure.clientgenerator",
+            "specs.azure.clientgenerator.core",
         ]
     ),
     include_package_data=True,
     package_data={
-        "azure.clientgenerator.core.flattenproperty": ["py.typed"],
+        "specs.azure.clientgenerator.core.flattenproperty": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

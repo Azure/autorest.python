@@ -18,7 +18,7 @@ class TestNumericPropertyOperationsAsync(NumericClientTestBaseAsync):
     async def test_safeint_as_string(self, numeric_endpoint):
         client = self.create_async_client(endpoint=numeric_endpoint)
         response = await client.property.safeint_as_string(
-            body={"value": 0},
+            value={"value": 0},
         )
 
         # please add some check logic here by yourself
@@ -29,7 +29,18 @@ class TestNumericPropertyOperationsAsync(NumericClientTestBaseAsync):
     async def test_uint32_as_string_optional(self, numeric_endpoint):
         client = self.create_async_client(endpoint=numeric_endpoint)
         response = await client.property.uint32_as_string_optional(
-            body={"value": 0},
+            value={"value": 0},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @NumericPreparer()
+    @recorded_by_proxy_async
+    async def test_uint8_as_string(self, numeric_endpoint):
+        client = self.create_async_client(endpoint=numeric_endpoint)
+        response = await client.property.uint8_as_string(
+            value={"value": 0},
         )
 
         # please add some check logic here by yourself

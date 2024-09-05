@@ -14,6 +14,8 @@ from ._models import NestedProxyResourceProperties
 from ._models import NotificationDetails
 from ._models import ProxyResource
 from ._models import Resource
+from ._models import SingletonTrackedResource
+from ._models import SingletonTrackedResourceProperties
 from ._models import SystemData
 from ._models import TopLevelTrackedResource
 from ._models import TopLevelTrackedResourceProperties
@@ -34,6 +36,8 @@ __all__ = [
     "NotificationDetails",
     "ProxyResource",
     "Resource",
+    "SingletonTrackedResource",
+    "SingletonTrackedResourceProperties",
     "SystemData",
     "TopLevelTrackedResource",
     "TopLevelTrackedResourceProperties",
