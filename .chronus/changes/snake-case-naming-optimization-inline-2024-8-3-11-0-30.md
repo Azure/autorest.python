@@ -1,7 +1,7 @@
 ---
-changeKind: internal
+changeKind: feature
 packages:
   - "@azure-tools/typespec-python"
 ---
 
-Enable lint check in CI
+Optimize snake-case naming rule
