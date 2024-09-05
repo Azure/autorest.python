@@ -626,10 +626,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
             if p.hide_in_operation_signature:
                 kwargs.append(f'{p.client_name} = kwargs.pop("{p.client_name}", None)')
         cls_annotation = builder.cls_type_annotation(async_mode=self.async_mode)
-        pylint_disable = ""
-        if any(x.startswith("_") for x in cls_annotation.split(".")):
-            pylint_disable = "  # pylint: disable=protected-access"
-        kwargs.append(f"cls: {cls_annotation} = kwargs.pop({pylint_disable}\n    'cls', None\n)")
+        kwargs.append(f"cls: {cls_annotation} = kwargs.pop(\n    'cls', None\n)")
         return kwargs
 
     def response_docstring(self, builder: OperationType) -> List[str]:
