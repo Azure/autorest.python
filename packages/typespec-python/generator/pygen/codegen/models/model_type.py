@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from collections import OrderedDict
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast, Union
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
 import sys
 from .utils import (
     add_to_pylint_disable,
