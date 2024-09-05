@@ -431,8 +431,8 @@ class Model(object):
         :returns: A dict JSON compatible object
         :rtype: dict
         """
-        serializer = Serializer(self._infer_class_models())  # type: ignore
-        return serializer._serialize(  # pylint: disable=protected-access
+        serializer = Serializer(self._infer_class_models())
+        return serializer._serialize(  # type: ignore # pylint: disable=protected-access
             self, key_transformer=key_transformer, keep_readonly=keep_readonly, **kwargs
         )
 
@@ -688,7 +688,7 @@ class Serializer(object):  # pylint: disable=too-many-public-methods
                         if xml_desc.get("attr", False):
                             if xml_ns:
                                 ET.register_namespace(xml_prefix, xml_ns)
-                                xml_name = "{}{}".format(xml_ns, xml_name)
+                                xml_name = "{{{}}}{}".format(xml_ns, xml_name)
                             serialized.set(xml_name, new_attr)  # type: ignore
                             continue
                         if xml_desc.get("text", False):
@@ -1364,7 +1364,7 @@ def _extract_name_from_internal_type(internal_type):
     xml_name = internal_type_xml_map.get("name", internal_type.__name__)
     xml_ns = internal_type_xml_map.get("ns", None)
     if xml_ns:
-        xml_name = "{}{}".format(xml_ns, xml_name)
+        xml_name = "{{{}}}{}".format(xml_ns, xml_name)
     return xml_name
 
 
@@ -1388,7 +1388,7 @@ def xml_key_extractor(attr, attr_desc, data):  # pylint: disable=unused-argument
     # Integrate namespace if necessary
     xml_ns = xml_desc.get("ns", internal_type_xml_map.get("ns", None))
     if xml_ns:
-        xml_name = "{}{}".format(xml_ns, xml_name)
+        xml_name = "{{{}}}{}".format(xml_ns, xml_name)
 
     # If it's an attribute, that's simple
     if xml_desc.get("attr", False):
@@ -1862,7 +1862,8 @@ class Deserializer(object):
             if isinstance(attr, str):
                 if attr.lower() in ["true", "1"]:
                     return True
-                return False
+                if attr.lower() in ["false", "0"]:
+                    return False
             raise TypeError("Invalid boolean value: {}".format(attr))
 
         if data_type == "str":
