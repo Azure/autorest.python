@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 from enum import Enum
 from collections import OrderedDict
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, cast, Union
 import sys
 from .utils import (
     add_to_pylint_disable,
@@ -112,6 +112,10 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
     @property
     def is_xml(self) -> bool:
         return self.yaml_data.get("isXml", False)
+    
+    @property
+    def xml_metadata(self) -> Optional[Dict[str, Union[str, bool]]]:
+        return self.yaml_data.get("xmlMetadata")
 
     @property
     def msrest_deserialization_key(self) -> str:

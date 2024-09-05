@@ -2,32 +2,18 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
-import sys
 import xml.etree.ElementTree as ET
 
-import pytest
-
 from typing import (
-    Any,
-    Iterable,
     List,
     Literal,
     Dict,
-    Mapping,
-    Sequence,
-    Set,
-    Tuple,
-    Optional,
-    overload,
-    Union,
 )
 
 from specialwords._model_base import (
     _get_element,
-    SdkJSONEncoder,
     Model,
     rest_field,
-    _is_model,
     rest_discriminator,
     _deserialize_xml,
 )
@@ -76,7 +62,7 @@ class TestXmlDeserialization:
             )
             not_set: str = rest_field(name="not_set", xml={"name": "NotSet"})
             country: str = rest_field(
-                name="country", xml={"name": "country", "attr": True}
+                name="country", xml={"name": "country", "attribute": True}
             )
 
             def __init__(self, *args, **kwargs):
@@ -104,7 +90,7 @@ class TestXmlDeserialization:
 
         class XmlModel(Model):
             language: str = rest_field(
-                name="language", xml={"name": "language", "attr": True}
+                name="language", xml={"name": "language", "attribute": True}
             )
 
             def __init__(self, *args, **kwargs):
@@ -123,7 +109,7 @@ class TestXmlDeserialization:
 
         class XmlModel(Model):
             language: str = rest_field(
-                name="language", xml={"name": "language", "attr": True}
+                name="language", xml={"name": "language", "attribute": True}
             )
             content: str = rest_field(
                 name="content", xml={"name": "content", "text": True}
@@ -260,7 +246,7 @@ class TestXmlDeserialization:
             </AppleBarrel>"""
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -290,7 +276,7 @@ class TestXmlDeserialization:
             </AppleBarrel>"""
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -321,7 +307,7 @@ class TestXmlDeserialization:
             </AppleBarrel>"""
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -341,6 +327,7 @@ class TestXmlDeserialization:
 
         result = _deserialize_xml(AppleBarrel, basic_xml)
         assert [apple.name for apple in result.good_apples] == ["granny", "fuji"]
+
     def test_basic_additional_properties(self):
         """Test additional properties."""
         basic_xml = """<?xml version="1.0"?>
@@ -428,7 +415,7 @@ class TestXmlDeserialization:
             type: str = rest_field(
                 name="type",
                 xml={
-                    "attr": True,
+                    "attribute": True,
                     "prefix": "i",
                     "ns": "http://www.w3.org/2001/XMLSchema-instance",
                 },
@@ -504,7 +491,7 @@ class TestXmlDeserialization:
             type: Literal[None] = rest_discriminator(
                 name="type",
                 xml={
-                    "attr": True,
+                    "attribute": True,
                     "prefix": "xsi",
                     "ns": "http://www.w3.org/2001/XMLSchema-instance",
                 },
@@ -520,7 +507,7 @@ class TestXmlDeserialization:
             type: Literal["CorrelationFilter"] = rest_discriminator(
                 name="type",
                 xml={
-                    "attr": True,
+                    "attribute": True,
                     "prefix": "xsi",
                     "ns": "http://www.w3.org/2001/XMLSchema-instance",
                 },
@@ -535,7 +522,7 @@ class TestXmlDeserialization:
             type: Literal["SqlFilter"] = rest_discriminator(
                 name="type",
                 xml={
-                    "attr": True,
+                    "attribute": True,
                     "prefix": "xsi",
                     "ns": "http://www.w3.org/2001/XMLSchema-instance",
                 },
@@ -571,7 +558,7 @@ class TestXmlSerialization:
 
         class XmlModel(Model):
             age: int = rest_field(xml={"name": "Age"})
-            country: str = rest_field(xml={"name": "country", "attr": True})
+            country: str = rest_field(xml={"name": "country", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -591,7 +578,7 @@ class TestXmlSerialization:
         )
 
         class XmlModel(Model):
-            language: str = rest_field(xml={"name": "language", "attr": True})
+            language: str = rest_field(xml={"name": "language", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -659,7 +646,7 @@ class TestXmlSerialization:
 
         class XmlModel(Model):
             language: str = rest_field(
-                name="language", xml={"name": "language", "attr": True}
+                name="language", xml={"name": "language", "attribute": True}
             )
             content: str = rest_field(name="content", xml={"text": True})
 
@@ -853,7 +840,7 @@ class TestXmlSerialization:
         )
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -886,7 +873,7 @@ class TestXmlSerialization:
         )
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -916,7 +903,7 @@ class TestXmlSerialization:
         )
 
         class Apple(Model):
-            name: str = rest_field(name="name", xml={"name": "name", "attr": True})
+            name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
 
             def __init__(self, *args, **kwargs):
                 super().__init__(*args, **kwargs)
@@ -1000,7 +987,7 @@ class TestXmlSerialization:
             type: str = rest_field(
                 name="type",
                 xml={
-                    "attr": True,
+                    "attribute": True,
                     "prefix": "i",
                     "ns": "http://www.w3.org/2001/XMLSchema-instance",
                 },

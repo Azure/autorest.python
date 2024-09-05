@@ -18,13 +18,21 @@ from ._configuration import XmlClientConfiguration
 from ._serialization import Deserializer, Serializer
 from .operations import (
     ModelWithArrayOfModelValueOperations,
+    ModelWithAttributesValueOperations,
+    ModelWithDictionaryValueOperations,
+    ModelWithEmptyArrayValueOperations,
+    ModelWithEncodedNamesValueOperations,
     ModelWithOptionalFieldValueOperations,
+    ModelWithRenamedArraysValueOperations,
+    ModelWithRenamedFieldsValueOperations,
     ModelWithSimpleArraysValueOperations,
+    ModelWithTextValueOperations,
+    ModelWithUnwrappedArrayValueOperations,
     SimpleModelValueOperations,
 )
 
 
-class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
+class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Sends and receives bodies in XML format.
 
     :ivar simple_model_value: SimpleModelValueOperations operations
@@ -38,6 +46,27 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar model_with_optional_field_value: ModelWithOptionalFieldValueOperations operations
     :vartype model_with_optional_field_value:
      payload.xml.operations.ModelWithOptionalFieldValueOperations
+    :ivar model_with_attributes_value: ModelWithAttributesValueOperations operations
+    :vartype model_with_attributes_value: payload.xml.operations.ModelWithAttributesValueOperations
+    :ivar model_with_unwrapped_array_value: ModelWithUnwrappedArrayValueOperations operations
+    :vartype model_with_unwrapped_array_value:
+     payload.xml.operations.ModelWithUnwrappedArrayValueOperations
+    :ivar model_with_renamed_arrays_value: ModelWithRenamedArraysValueOperations operations
+    :vartype model_with_renamed_arrays_value:
+     payload.xml.operations.ModelWithRenamedArraysValueOperations
+    :ivar model_with_renamed_fields_value: ModelWithRenamedFieldsValueOperations operations
+    :vartype model_with_renamed_fields_value:
+     payload.xml.operations.ModelWithRenamedFieldsValueOperations
+    :ivar model_with_empty_array_value: ModelWithEmptyArrayValueOperations operations
+    :vartype model_with_empty_array_value:
+     payload.xml.operations.ModelWithEmptyArrayValueOperations
+    :ivar model_with_text_value: ModelWithTextValueOperations operations
+    :vartype model_with_text_value: payload.xml.operations.ModelWithTextValueOperations
+    :ivar model_with_dictionary_value: ModelWithDictionaryValueOperations operations
+    :vartype model_with_dictionary_value: payload.xml.operations.ModelWithDictionaryValueOperations
+    :ivar model_with_encoded_names_value: ModelWithEncodedNamesValueOperations operations
+    :vartype model_with_encoded_names_value:
+     payload.xml.operations.ModelWithEncodedNamesValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -45,7 +74,8 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = XmlClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = XmlClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -63,7 +93,7 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -78,6 +108,30 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.model_with_optional_field_value = ModelWithOptionalFieldValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_attributes_value = ModelWithAttributesValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_unwrapped_array_value = ModelWithUnwrappedArrayValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_arrays_value = ModelWithRenamedArraysValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_fields_value = ModelWithRenamedFieldsValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_empty_array_value = ModelWithEmptyArrayValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_text_value = ModelWithTextValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_dictionary_value = ModelWithDictionaryValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_encoded_names_value = ModelWithEncodedNamesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -100,7 +154,11 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:

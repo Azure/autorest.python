@@ -25,7 +25,6 @@ from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.serialization import _Null
-import xml.etree.ElementTree as ET
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -287,6 +286,12 @@ def _deserialize_decimal(attr):
     return decimal.Decimal(str(attr))
 
 
+def _deserialize_int_as_str(attr):
+    if isinstance(attr, int):
+        return attr
+    return int(attr)
+
+
 _DESERIALIZE_MAPPING = {
     datetime: _deserialize_datetime,
     date: _deserialize_date,
@@ -308,6 +313,8 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 
 
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
+    if annotation is int and rf and rf._format == "str":
+        return _deserialize_int_as_str
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
     return _DESERIALIZE_MAPPING.get(annotation)
@@ -379,16 +386,13 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
             return default
 
     @typing.overload
-    def pop(self, key: str) -> typing.Any:
-        ...
+    def pop(self, key: str) -> typing.Any: ...
 
     @typing.overload
-    def pop(self, key: str, default: _T) -> _T:
-        ...
+    def pop(self, key: str, default: _T) -> _T: ...
 
     @typing.overload
-    def pop(self, key: str, default: typing.Any) -> typing.Any:
-        ...
+    def pop(self, key: str, default: typing.Any) -> typing.Any: ...
 
     def pop(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         if default is _UNSET:
@@ -405,12 +409,10 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
         self._data.update(*args, **kwargs)
 
     @typing.overload
-    def setdefault(self, key: str, default: None = None) -> None:
-        ...
+    def setdefault(self, key: str, default: None = None) -> None: ...
 
     @typing.overload
-    def setdefault(self, key: str, default: typing.Any) -> typing.Any:
-        ...
+    def setdefault(self, key: str, default: typing.Any) -> typing.Any: ...
 
     def setdefault(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         if default is _UNSET:
@@ -514,12 +516,12 @@ class Model(_MyMutableMapping):
                         xml_name = "{" + xml_ns + "}" + xml_name
 
                     # attribute
-                    if prop_meta.get("attr", False) and args[0].get(xml_name) is not None:
+                    if prop_meta.get("attribute", False) and args[0].get(xml_name) is not None:
                         existed_attr_keys.append(xml_name)
-                        dict_to_pass[rf._rest_name] = args[0].get(xml_name)
+                        dict_to_pass[rf._rest_name] = _deserialize(rf._type, args[0].get(xml_name))
                         continue
 
-                    # unwrapped element could only be text or array
+                    # unwrapped element is array
                     if prop_meta.get("unwrapped", False):
                         # unwrapped array could either use prop items meta/prop meta
                         if prop_meta.get("itemsName"):
@@ -530,20 +532,22 @@ class Model(_MyMutableMapping):
                         items = args[0].findall(xml_name)
                         if len(items) > 0:
                             existed_attr_keys.append(xml_name)
-                            dict_to_pass[rf._rest_name] = _create_value(rf, items)
+                            dict_to_pass[rf._rest_name] = _deserialize(rf._type, items)
                             continue
                         continue
+                    # text element is primitive type
                     elif prop_meta.get("text", False):
                         if args[0].text is not None:
-                            dict_to_pass[rf._rest_name] = _create_value(rf, args[0].text)
+                            dict_to_pass[rf._rest_name] = _deserialize(rf._type, args[0].text)
                         continue
 
                     # wrapped element could be normal property or array, it should only have one element
                     item = args[0].find(xml_name)
                     if item is not None:
                         existed_attr_keys.append(xml_name)
-                        dict_to_pass[rf._rest_name] = _create_value(rf, item)
+                        dict_to_pass[rf._rest_name] = _deserialize(rf._type, item)
 
+                # rest thing is additional properties
                 for e in args[0]:
                     if e.tag not in existed_attr_keys:
                         dict_to_pass[e.tag] = _convert_element(e)
@@ -810,7 +814,6 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
     try:
         if annotation._name in ["List", "Set", "Tuple", "Sequence"]:  # pyright: ignore
             if len(annotation.__args__) > 1:  # pyright: ignore
-
                 entry_deserializers = [
                     _get_deserialize_callable_from_annotation(dt, module, rf)
                     for dt in annotation.__args__  # pyright: ignore
@@ -828,14 +831,6 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
         deserializer,
         obj,
     ):
-        if deserializer is str and isinstance(obj, ET.Element):
-            return obj.text or ""
-        if deserializer is int and isinstance(obj, ET.Element):
-            return int(obj.text) if obj.text else None
-        if deserializer is float and isinstance(obj, ET.Element):
-            return float(obj.text) if obj.text else None
-        if deserializer is bool and isinstance(obj, ET.Element):
-            return obj.text == "true" if obj.text else None
         if obj is None:
             return obj
         try:
@@ -857,8 +852,19 @@ def _deserialize_with_callable(
     try:
         if value is None or isinstance(value, _Null):
             return None
+        if isinstance(value, ET.Element):
+            if deserializer is str:
+                return value.text or ""
+            if deserializer is int:
+                return int(value.text) if value.text else None
+            if deserializer is float:
+                return float(value.text) if value.text else None
+            if deserializer is bool:
+                return value.text == "true" if value.text else None
         if deserializer is None:
             return value
+        if deserializer in [int, float, bool]:
+            return deserializer(value)
         if isinstance(deserializer, CaseInsensitiveEnumMeta):
             try:
                 return deserializer(value)
@@ -1013,9 +1019,7 @@ def _get_element(
             )
 
         if exclude_readonly:
-            readonly_props = [
-                p._rest_name for p in o._attr_to_rest_field.values() if _is_readonly(p)
-            ]
+            readonly_props = [p._rest_name for p in o._attr_to_rest_field.values() if _is_readonly(p)]
 
         for k, v in o.items():
             # do not serialize readonly properties
@@ -1024,7 +1028,7 @@ def _get_element(
 
             prop_rest_field = _get_rest_field(o._attr_to_rest_field, k)
             if prop_rest_field:
-                prop_meta = getattr(prop_rest_field, "_xml")
+                prop_meta = getattr(prop_rest_field, "_xml").copy()
                 # use the wire name as xml name if no specific name is set
                 if prop_meta.get("name") is None:
                     prop_meta["name"] = k
@@ -1040,10 +1044,10 @@ def _get_element(
             if prop_meta.get("unwrapped", False):
                 # unwrapped could only set on array
                 wrapped_element.extend(_get_element(v, exclude_readonly, prop_meta))
-            if prop_meta.get("text", False):
+            elif prop_meta.get("text", False):
                 # text could only set on primitive type
                 wrapped_element.text = _get_primitive_type_value(v)
-            elif prop_meta.get("attr", False):
+            elif prop_meta.get("attribute", False):
                 xml_name = prop_meta.get("name", k)
                 if prop_meta.get("ns"):
                     ET.register_namespace(prop_meta.get("prefix"), prop_meta.get("ns"))
@@ -1052,9 +1056,7 @@ def _get_element(
                 wrapped_element.set(xml_name, _get_primitive_type_value(v))
             else:
                 # other wrapped prop element
-                wrapped_element.append(
-                    _get_wrapped_element(v, exclude_readonly, prop_meta)
-                )
+                wrapped_element.append(_get_wrapped_element(v, exclude_readonly, prop_meta))
         return wrapped_element
     if isinstance(o, list):
         return [_get_element(x, exclude_readonly, parent_meta) for x in o]
@@ -1094,9 +1096,7 @@ def _get_wrapped_element(
     exclude_readonly: bool,
     meta: typing.Optional[typing.Dict[str, typing.Any]],
 ) -> ET.Element:
-    wrapped_element = _create_xml_element(
-        meta.get("name"), meta.get("prefix"), meta.get("ns")
-    )
+    wrapped_element = _create_xml_element(meta.get("name"), meta.get("prefix"), meta.get("ns"))
     if isinstance(v, list) or isinstance(v, dict):
         wrapped_element.extend(_get_element(v, exclude_readonly, meta))
     elif _is_model(v):

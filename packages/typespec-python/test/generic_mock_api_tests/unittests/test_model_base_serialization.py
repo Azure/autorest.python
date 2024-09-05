@@ -3939,13 +3939,30 @@ def test_decimal_serialization():
     )
 
 
+def test_int_as_str_deserialization():
+    class IntAsStrModel(Model):
+        int_as_str_value: int = rest_field(name="intAsStrValue", format="str")
+
+    model = IntAsStrModel({"intAsStrValue": "123"})
+    assert model["intAsStrValue"] == "123"
+    assert model.int_as_str_value == 123
+
+    class BaseModel(Model):
+        my_prop: IntAsStrModel = rest_field(name="myProp")
+
+    model = BaseModel({"myProp": {"intAsStrValue": "123"}})
+    assert isinstance(model.my_prop, IntAsStrModel)
+    assert model.my_prop["intAsStrValue"] == model["myProp"]["intAsStrValue"] == "123"
+    assert model.my_prop.int_as_str_value == 123
+
+
 def test_deserialize():
     expected = {"name": "name", "role": "role"}
     result = _deserialize(JSON, expected)
     assert result == expected
 
 
-def test_enum_deserealization():
+def test_enum_deserialization():
     class MyEnum(Enum):
         A = "a"
         B = "b"
