@@ -10,6 +10,7 @@ interface Arguments {
     validFolders: string[];
     folder?: string;
     command?: string;
+    name?: string;
 }
 
 const validCommands = ["ci", "lint", "mypy", "pyright", "apiview"];
@@ -32,15 +33,24 @@ const argv = yargs(hideBin(process.argv))
         describe: "Specify the command to run",
         choices: validCommands,
         type: "string",
+    })
+    .option("name", {
+        alias: "n",
+        describe: "Specify the name of the test",
+        type: "string",
     }).argv as Arguments;
 
 const foldersToProcess = argv.folder ? [argv.folder] : argv.validFolders;
 
 const commandToRun = argv.command || "all";
 
-function getCommand(command: string, folder: string) {
+function getCommand(command: string, folder: string, name?: string): string {
     if (!validCommands.includes(command)) throw new Error(`Unknown command '${command}'.`);
-    return `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ${command}`;
+    const retval = `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ${command}`;
+    if (name) {
+        return `${retval} -- -f ${name}`;
+    }
+    return retval;
 }
 
 function sectionExistsInToxIni(command: string, folder: string): boolean {
@@ -50,12 +60,12 @@ function sectionExistsInToxIni(command: string, folder: string): boolean {
     return toxIniContent.includes(sectionHeader);
 }
 
-function myExecSync(command: string, folder: string): void {
+function myExecSync(command: string, folder: string, name?: string): void {
     if (!sectionExistsInToxIni(command, folder)) {
         console.log(`No section for ${command} in tox.ini for folder ${folder}. Skipping...`);
         return;
     }
-    execSync(getCommand(command, folder), { stdio: "inherit" });
+    execSync(getCommand(command, folder, name), { stdio: "inherit" });
 }
 
 foldersToProcess.forEach((folder) => {
@@ -63,11 +73,11 @@ foldersToProcess.forEach((folder) => {
         if (commandToRun === "all") {
             for (const key of validCommands) {
                 console.log(`Running ${key} for folder ${folder}...`);
-                myExecSync(key, folder);
+                myExecSync(key, folder, argv.name);
             }
-        } else if (getCommand(commandToRun, folder)) {
+        } else if (getCommand(commandToRun, folder, argv.name)) {
             console.log(`Running ${commandToRun} for folder ${folder}...`);
-            myExecSync(commandToRun, folder);
+            myExecSync(commandToRun, folder, argv.name);
         } else {
             console.error(`Error: Unknown command '${commandToRun}'.`);
             process.exit(1);
