@@ -34,7 +34,7 @@ from .operations import (
 )
 
 
-class ArrayClient:  # pylint: disable=too-many-instance-attributes
+class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various types of arrays.
 
     :ivar int32_value: Int32ValueOperations operations

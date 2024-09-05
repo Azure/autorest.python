@@ -19,7 +19,7 @@ from ._configuration import DurationClientConfiguration
 from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
-class DurationClient:
+class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on duration.
 
     :ivar query: QueryOperations operations

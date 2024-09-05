@@ -24,7 +24,7 @@ from .operations import (
 )
 
 
-class AccessClient:
+class AccessClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for internal decorator.
 
     :ivar public_operation: PublicOperationOperations operations

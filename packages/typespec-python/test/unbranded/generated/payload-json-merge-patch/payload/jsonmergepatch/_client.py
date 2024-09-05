@@ -18,7 +18,7 @@ from ._operations import JsonMergePatchClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):
+class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for merge-patch+json content-type.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

@@ -19,7 +19,7 @@ from ._configuration import ModelClientConfiguration
 from .operations import AzureCoreEmbeddingVectorOperations
 
 
-class ModelClient:
+class ModelClient:  # pylint: disable=client-accepts-api-version-keyword
     """ModelClient.
 
     :ivar azure_core_embedding_vector: AzureCoreEmbeddingVectorOperations operations

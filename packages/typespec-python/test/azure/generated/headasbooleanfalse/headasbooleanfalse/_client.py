@@ -19,7 +19,7 @@ from ._operations import VisibilityClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class VisibilityClient(VisibilityClientOperationsMixin):
+class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates models with visibility properties.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

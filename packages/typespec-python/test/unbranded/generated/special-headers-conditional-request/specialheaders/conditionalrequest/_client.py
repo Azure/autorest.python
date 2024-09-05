@@ -18,7 +18,9 @@ from ._operations import ConditionalRequestClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ConditionalRequestClient(ConditionalRequestClientOperationsMixin):
+class ConditionalRequestClient(
+    ConditionalRequestClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates conditional request headers.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

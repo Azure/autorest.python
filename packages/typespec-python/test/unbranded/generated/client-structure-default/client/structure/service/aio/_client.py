@@ -19,7 +19,7 @@ from ._configuration import ServiceClientConfiguration
 from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
 
 
-class ServiceClient(ServiceClientOperationsMixin):
+class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can use @client and @operationGroup decorators to customize client side code
     structure, such as:
 

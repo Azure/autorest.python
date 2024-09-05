@@ -22,7 +22,7 @@ if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential
 
 
-class UnionClient(UnionClientOperationsMixin):
+class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Is either a

@@ -100,7 +100,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         method_added_on="v2",
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Added operation.
 
@@ -206,7 +206,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_required(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
@@ -266,7 +266,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_optional(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:

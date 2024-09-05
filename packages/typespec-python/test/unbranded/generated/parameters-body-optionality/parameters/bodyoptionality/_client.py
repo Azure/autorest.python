@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import BodyOptionalityClientOperationsMixin, OptionalExplicitOperations
 
 
-class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):
+class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
     :ivar optional_explicit: OptionalExplicitOperations operations

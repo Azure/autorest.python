@@ -18,7 +18,7 @@ from ._operations import PageableClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class PageableClient(PageableClientOperationsMixin):
+class PageableClient(PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing pageable.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

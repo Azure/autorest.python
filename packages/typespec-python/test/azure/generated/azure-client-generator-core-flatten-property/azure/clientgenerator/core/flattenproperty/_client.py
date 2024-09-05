@@ -19,7 +19,7 @@ from ._operations import FlattenPropertyClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class FlattenPropertyClient(FlattenPropertyClientOperationsMixin):
+class FlattenPropertyClient(FlattenPropertyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates the model flatten cases.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

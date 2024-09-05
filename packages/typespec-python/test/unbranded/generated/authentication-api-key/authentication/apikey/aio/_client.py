@@ -19,7 +19,7 @@ from ._configuration import ApiKeyClientConfiguration
 from ._operations import ApiKeyClientOperationsMixin
 
 
-class ApiKeyClient(ApiKeyClientOperationsMixin):
+class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey authentication.
 
     :param credential: Credential used to authenticate requests to the service. Required.

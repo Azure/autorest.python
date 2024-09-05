@@ -20,7 +20,7 @@ from ._operations import RemovedClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class RemovedClient(RemovedClientOperationsMixin):
+class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@removed`` decorator.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.

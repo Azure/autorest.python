@@ -30,7 +30,7 @@ from .operations import (
 )
 
 
-class DictionaryClient:  # pylint: disable=too-many-instance-attributes
+class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various of dictionaries.
 
     :ivar int32_value: Int32ValueOperations operations

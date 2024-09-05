@@ -20,7 +20,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import AddedClientOperationsMixin, InterfaceV2Operations
 
 
-class AddedClient(AddedClientOperationsMixin):
+class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@added`` decorator.
 
     :ivar interface_v2: InterfaceV2Operations operations

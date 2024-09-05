@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import AliasOperations, ModelOperations
 
 
-class SpreadClient:
+class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for the spread operator.
 
     :ivar model: ModelOperations operations

@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import DifferentBodyOperations, SameBodyOperations
 
 
-class ContentNegotiationClient:
+class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
     :ivar same_body: SameBodyOperations operations

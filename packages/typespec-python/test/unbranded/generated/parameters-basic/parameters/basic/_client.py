@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import ExplicitBodyOperations, ImplicitBodyOperations
 
 
-class BasicClient:
+class BasicClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for basic parameters cases.
 
     :ivar explicit_body: ExplicitBodyOperations operations

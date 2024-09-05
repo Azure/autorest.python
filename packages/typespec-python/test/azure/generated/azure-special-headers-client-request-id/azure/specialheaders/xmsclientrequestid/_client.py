@@ -19,7 +19,9 @@ from ._operations import XmsClientRequestIdClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class XmsClientRequestIdClient(XmsClientRequestIdClientOperationsMixin):
+class XmsClientRequestIdClient(
+    XmsClientRequestIdClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Azure client request id header configurations.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

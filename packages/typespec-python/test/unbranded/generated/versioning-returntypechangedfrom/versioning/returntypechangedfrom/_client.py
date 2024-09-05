@@ -19,7 +19,9 @@ from ._operations import ReturnTypeChangedFromClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ReturnTypeChangedFromClient(ReturnTypeChangedFromClientOperationsMixin):
+class ReturnTypeChangedFromClient(
+    ReturnTypeChangedFromClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@returnTypeChangedFrom`` decorator.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.

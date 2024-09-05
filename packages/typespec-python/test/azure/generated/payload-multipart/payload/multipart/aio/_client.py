@@ -19,7 +19,7 @@ from ._configuration import MultiPartClientConfiguration
 from .operations import FormDataOperations
 
 
-class MultiPartClient:
+class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for multipart.
 
     :ivar form_data: FormDataOperations operations

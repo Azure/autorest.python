@@ -19,7 +19,9 @@ from ._operations import SingleDiscriminatorClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class SingleDiscriminatorClient(SingleDiscriminatorClientOperationsMixin):
+class SingleDiscriminatorClient(
+    SingleDiscriminatorClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance with single discriminator.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

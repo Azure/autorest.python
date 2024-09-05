@@ -65,8 +65,9 @@
 
     {% endif %}
     {% set initialize_properties = serializer.initialize_properties(model) %}
+    {% set pylint_disable = serializer.properties_to_pass_to_super(model) == "*args, **kwargs" and not initialize_properties and not model.flattened_property %}
     {% if need_init or initialize_properties %}
-    def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if (not initialize_properties ) else '' }}
+    def __init__(self, *args: Any, **kwargs: Any) -> None:{{ '# pylint: disable=useless-super-delegation' if pylint_disable else '' }}
         {% for line in serializer.super_call(model) %}
         {{ line }}
         {% endfor %}

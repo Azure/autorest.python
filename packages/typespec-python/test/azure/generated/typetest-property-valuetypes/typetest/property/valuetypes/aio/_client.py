@@ -49,7 +49,7 @@ from .operations import (
 )
 
 
-class ValueTypesClient:  # pylint: disable=too-many-instance-attributes
+class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various property types for models.
 
     :ivar boolean: BooleanOperations operations

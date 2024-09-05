@@ -18,7 +18,9 @@ from ._operations import EnumDiscriminatorClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class EnumDiscriminatorClient(EnumDiscriminatorClientOperationsMixin):
+class EnumDiscriminatorClient(
+    EnumDiscriminatorClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance with enum discriminator.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

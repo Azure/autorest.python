@@ -19,7 +19,7 @@ from ._configuration import JsonClientConfiguration
 from .operations import PropertyOperations
 
 
-class JsonClient:
+class JsonClient:  # pylint: disable=client-accepts-api-version-keyword
     """Projection.
 
     :ivar property: PropertyOperations operations

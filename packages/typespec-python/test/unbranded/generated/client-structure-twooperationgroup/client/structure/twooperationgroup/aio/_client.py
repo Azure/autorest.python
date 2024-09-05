@@ -19,7 +19,7 @@ from ._configuration import TwoOperationGroupClientConfiguration
 from .operations import Group1Operations, Group2Operations
 
 
-class TwoOperationGroupClient:
+class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-keyword
     """TwoOperationGroupClient.
 
     :ivar group1: Group1Operations operations

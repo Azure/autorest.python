@@ -27,7 +27,7 @@ from .operations import (
 )
 
 
-class NullableClient:  # pylint: disable=too-many-instance-attributes
+class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates models with nullable properties.
 
     :ivar string: StringOperations operations

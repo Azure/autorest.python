@@ -18,7 +18,7 @@ from ._configuration import FixedClientConfiguration
 from .operations import StringOperations
 
 
-class FixedClient:
+class FixedClient:  # pylint: disable=client-accepts-api-version-keyword
     """FixedClient.
 
     :ivar string: StringOperations operations

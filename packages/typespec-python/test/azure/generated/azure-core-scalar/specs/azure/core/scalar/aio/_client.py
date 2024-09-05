@@ -19,7 +19,7 @@ from ._configuration import ScalarClientConfiguration
 from .operations import AzureLocationScalarOperations
 
 
-class ScalarClient:
+class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
     """ScalarClient.
 
     :ivar azure_location_scalar: AzureLocationScalarOperations operations

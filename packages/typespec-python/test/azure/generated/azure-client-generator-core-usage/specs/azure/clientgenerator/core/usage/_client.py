@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import ModelInOperationOperations
 
 
-class UsageClient:
+class UsageClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for internal decorator.
 
     :ivar model_in_operation: ModelInOperationOperations operations

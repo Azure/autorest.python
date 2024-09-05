@@ -20,7 +20,7 @@ from ._configuration import RenamedFromClientConfiguration
 from .operations import NewInterfaceOperations, RenamedFromClientOperationsMixin
 
 
-class RenamedFromClient(RenamedFromClientOperationsMixin):
+class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@renamedFrom`` decorator.
 
     :ivar new_interface: NewInterfaceOperations operations

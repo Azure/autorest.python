@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import StringOperations
 
 
-class ExtensibleClient:
+class ExtensibleClient:  # pylint: disable=client-accepts-api-version-keyword
     """ExtensibleClient.
 
     :ivar string: StringOperations operations

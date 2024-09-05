@@ -18,7 +18,7 @@ from ._configuration import NumericClientConfiguration
 from .operations import PropertyOperations
 
 
-class NumericClient:
+class NumericClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on integer.
 
     :ivar property: PropertyOperations operations

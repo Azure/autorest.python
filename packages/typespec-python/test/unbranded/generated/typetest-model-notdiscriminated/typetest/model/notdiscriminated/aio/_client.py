@@ -18,7 +18,9 @@ from ._configuration import NotDiscriminatedClientConfiguration
 from ._operations import NotDiscriminatedClientOperationsMixin
 
 
-class NotDiscriminatedClient(NotDiscriminatedClientOperationsMixin):
+class NotDiscriminatedClient(
+    NotDiscriminatedClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-discriminated inheritance model.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

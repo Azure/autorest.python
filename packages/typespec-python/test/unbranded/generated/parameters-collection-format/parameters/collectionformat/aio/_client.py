@@ -18,7 +18,7 @@ from ._configuration import CollectionFormatClientConfiguration
 from .operations import HeaderOperations, QueryOperations
 
 
-class CollectionFormatClient:
+class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for collectionFormat.
 
     :ivar query: QueryOperations operations

@@ -20,7 +20,7 @@ from ._configuration import CustomClientConfiguration
 from ._operations import CustomClientOperationsMixin
 
 
-class CustomClient(CustomClientOperationsMixin):
+class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
 
     :param credential: Credential used to authenticate requests to the service. Required.

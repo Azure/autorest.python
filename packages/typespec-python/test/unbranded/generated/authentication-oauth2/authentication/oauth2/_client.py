@@ -21,7 +21,7 @@ if TYPE_CHECKING:
     from corehttp.credentials import TokenCredential
 
 
-class OAuth2Client(OAuth2ClientOperationsMixin):
+class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Required.

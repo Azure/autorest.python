@@ -19,7 +19,7 @@ from ._configuration import RecursiveClientConfiguration
 from ._operations import RecursiveClientOperationsMixin
 
 
-class RecursiveClient(RecursiveClientOperationsMixin):
+class RecursiveClient(RecursiveClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance recursion.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
