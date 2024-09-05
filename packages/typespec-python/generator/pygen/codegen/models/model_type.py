@@ -114,10 +114,6 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
         return self.yaml_data.get("isXml", False)
 
     @property
-    def xml_metadata(self) -> Optional[Dict[str, Union[str, bool]]]:
-        return self.yaml_data.get("xmlMetadata")
-
-    @property
     def msrest_deserialization_key(self) -> str:
         return self.name
 
