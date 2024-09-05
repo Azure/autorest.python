@@ -489,7 +489,9 @@ export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
 
 function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, any> {
     const xmlMetadata: Record<string, any> = {};
-    const xmlDecorators = type.decorators.filter((x) => x.name.startsWith("TypeSpec.Xml.") || x.name.startsWith("TypeSpec.@encodedName"));
+    const xmlDecorators = type.decorators.filter(
+        (x) => x.name.startsWith("TypeSpec.Xml.") || x.name.startsWith("TypeSpec.@encodedName"),
+    );
     for (const decorator of xmlDecorators) {
         switch (decorator.name) {
             case "TypeSpec.@encodedName":
@@ -507,7 +509,7 @@ function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, an
             case "TypeSpec.Xml.@ns":
                 if (decorator.arguments["ns"].kind === "enumvalue") {
                     xmlMetadata["namespace"] = (decorator.arguments["ns"] as SdkEnumValueType).value;
-                    xmlMetadata["prefix"] = (decorator.arguments["ns"] as SdkEnumValueType).name;;
+                    xmlMetadata["prefix"] = (decorator.arguments["ns"] as SdkEnumValueType).name;
                 } else {
                     xmlMetadata["namespace"] = decorator.arguments["ns"];
                     xmlMetadata["prefix"] = decorator.arguments["prefix"];
