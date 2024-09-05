@@ -221,8 +221,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):
 
     @property
     @abstractmethod
-    def _need_self_param(self) -> bool:
-        ...
+    def _need_self_param(self) -> bool: ...
 
     @property
     @abstractmethod
@@ -324,8 +323,7 @@ class _BuilderBaseSerializer(Generic[BuilderType]):
 
     @property
     @abstractmethod
-    def _json_response_template_name(self) -> str:
-        ...
+    def _json_response_template_name(self) -> str: ...
 
     def _json_input_example_template(self, builder: BuilderType) -> List[str]:
         template: List[str] = []
@@ -411,7 +409,9 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):
         return "response.json()"
 
     @staticmethod
-    def declare_non_inputtable_headers_queries(builder: RequestBuilderType) -> List[str]:
+    def declare_non_inputtable_headers_queries(
+        builder: RequestBuilderType,
+    ) -> List[str]:
         def _get_value(param):
             declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
@@ -1167,8 +1167,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
         return "await " if self.async_mode else ""
 
 
-class OperationSerializer(_OperationSerializer[Operation]):
-    ...
+class OperationSerializer(_OperationSerializer[Operation]): ...
 
 
 ############################## PAGING OPERATIONS ##############################
@@ -1333,8 +1332,7 @@ class _PagingOperationSerializer(_OperationSerializer[PagingOperationType]):
         return retval
 
 
-class PagingOperationSerializer(_PagingOperationSerializer[PagingOperation]):
-    ...
+class PagingOperationSerializer(_PagingOperationSerializer[PagingOperation]): ...
 
 
 ############################## LRO OPERATIONS ##############################
@@ -1453,8 +1451,7 @@ class _LROOperationSerializer(_OperationSerializer[LROOperationType]):
         return retval
 
 
-class LROOperationSerializer(_LROOperationSerializer[LROOperation]):
-    ...
+class LROOperationSerializer(_LROOperationSerializer[LROOperation]): ...
 
 
 ############################## LRO PAGING OPERATIONS ##############################
@@ -1493,7 +1490,12 @@ def get_operation_serializer(
     builder: Operation,
     code_model,
     async_mode: bool,
-) -> Union[OperationSerializer, PagingOperationSerializer, LROOperationSerializer, LROPagingOperationSerializer,]:
+) -> Union[
+    OperationSerializer,
+    PagingOperationSerializer,
+    LROOperationSerializer,
+    LROPagingOperationSerializer,
+]:
     retcls: Union[
         Type[OperationSerializer],
         Type[PagingOperationSerializer],

@@ -58,12 +58,10 @@ class BasicResource(Model):
         platform_update_domain_count: int,
         platform_fault_domain_count: int,
         virtual_machines: List[Any],
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -74,12 +72,10 @@ class Pet(Model):
     species: str = rest_field()  # my species
 
     @overload
-    def __init__(self, *, name: str, species: str):
-        ...
+    def __init__(self, *, name: str, species: str): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -173,12 +169,10 @@ def test_original_and_attr_name_same():
         hello: str = rest_field()
 
         @overload
-        def __init__(self, *, hello: str):
-            ...
+        def __init__(self, *, hello: str): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -203,12 +197,10 @@ class OptionalModel(Model):
         optional_time: Optional[datetime.time] = None,
         optional_dict: Optional[Dict[str, Optional[Pet]]] = None,
         optional_myself: Optional["OptionalModel"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -317,12 +309,10 @@ def test_property_is_a_type():
         species: Literal["Salmon", "Halibut"] = rest_field()
 
         @overload
-        def __init__(self, *, name: str, species: Literal["Salmon", "Halibut"]):
-            ...
+        def __init__(self, *, name: str, species: Literal["Salmon", "Halibut"]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -331,12 +321,10 @@ def test_property_is_a_type():
         fish: Fish = rest_field()
 
         @overload
-        def __init__(self, *, fish: Fish):
-            ...
+        def __init__(self, *, fish: Fish): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -352,12 +340,10 @@ def test_datetime_deserialization():
         datetime_value: datetime.datetime = rest_field(name="datetimeValue")
 
         @overload
-        def __init__(self, *, datetime_value: datetime.datetime):
-            ...
+        def __init__(self, *, datetime_value: datetime.datetime): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -383,12 +369,10 @@ def test_date_deserialization():
         date_value: datetime.date = rest_field(name="dateValue")
 
         @overload
-        def __init__(self, *, date_value: datetime.date):
-            ...
+        def __init__(self, *, date_value: datetime.date): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -413,12 +397,10 @@ def test_time_deserialization():
         time_value: datetime.time = rest_field(name="timeValue")
 
         @overload
-        def __init__(self, *, time_value: datetime.time):
-            ...
+        def __init__(self, *, time_value: datetime.time): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -443,12 +425,10 @@ class SimpleRecursiveModel(Model):
     me: "SimpleRecursiveModel" = rest_field()
 
     @overload
-    def __init__(self, *, name: str, me: "SimpleRecursiveModel"):
-        ...
+    def __init__(self, *, name: str, me: "SimpleRecursiveModel"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -471,12 +451,10 @@ def test_dictionary_deserialization():
         prop: Dict[str, datetime.datetime] = rest_field()
 
         @overload
-        def __init__(self, *, prop: datetime.datetime):
-            ...
+        def __init__(self, *, prop: datetime.datetime): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -494,12 +472,10 @@ def test_attr_and_rest_case():
         our_attr: str = rest_field(name="ourAttr")
 
         @overload
-        def __init__(self, *, our_attr: str):
-            ...
+        def __init__(self, *, our_attr: str): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -519,12 +495,10 @@ def test_dictionary_deserialization_model():
         prop: Dict[str, Pet] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Dict[str, Pet]):
-            ...
+        def __init__(self, *, prop: Dict[str, Pet]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -568,12 +542,10 @@ def test_list_deserialization():
         prop: List[datetime.datetime] = rest_field()
 
         @overload
-        def __init__(self, *, prop: List[datetime.datetime]):
-            ...
+        def __init__(self, *, prop: List[datetime.datetime]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -591,12 +563,10 @@ def test_list_deserialization_model():
         prop: List[Pet] = rest_field()
 
         @overload
-        def __init__(self, *, prop: List[Pet]):
-            ...
+        def __init__(self, *, prop: List[Pet]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -628,12 +598,10 @@ def test_set_deserialization():
         prop: Set[datetime.datetime] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Set[datetime.datetime]):
-            ...
+        def __init__(self, *, prop: Set[datetime.datetime]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -651,12 +619,10 @@ def test_tuple_deserialization():
         prop: Tuple[str, datetime.datetime] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Tuple[str, datetime.datetime]):
-            ...
+        def __init__(self, *, prop: Tuple[str, datetime.datetime]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -675,12 +641,10 @@ def test_list_of_tuple_deserialization_model():
         pet: Pet = rest_field()
 
         @overload
-        def __init__(self, *, name: str, pet: Pet):
-            ...
+        def __init__(self, *, name: str, pet: Pet): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -689,12 +653,10 @@ def test_list_of_tuple_deserialization_model():
         prop: List[Tuple[Pet, Owner]] = rest_field()
 
         @overload
-        def __init__(self, *, prop: List[Tuple[Pet, Owner]]):
-            ...
+        def __init__(self, *, prop: List[Tuple[Pet, Owner]]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -737,12 +699,10 @@ class RecursiveModel(Model):
         dict_of_me: Optional[Dict[str, "RecursiveModel"]] = None,
         dict_of_list_of_me: Optional[Dict[str, List["RecursiveModel"]]] = None,
         list_of_dict_of_me: Optional[List[Dict[str, "RecursiveModel"]]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -915,12 +875,10 @@ def test_literals():
             *,
             species: Literal["Mongose", "Eagle", "Penguin"],
             age: Literal[1, 2, 3],
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -948,12 +906,10 @@ def test_deserialization_callback_override():
         prop: Sequence[float] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Sequence[float]):
-            ...
+        def __init__(self, *, prop: Sequence[float]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -966,12 +922,10 @@ def test_deserialization_callback_override():
         prop: Sequence[int] = rest_field(type=_callback)
 
         @overload
-        def __init__(self, *, prop: Any):
-            ...
+        def __init__(self, *, prop: Any): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -988,12 +942,10 @@ def test_deserialization_callback_override_parent():
         prop: Sequence[float] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Sequence[float]):
-            ...
+        def __init__(self, *, prop: Sequence[float]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1005,12 +957,10 @@ def test_deserialization_callback_override_parent():
         prop: Sequence[float] = rest_field(type=_callback)
 
         @overload
-        def __init__(self, *, prop: Sequence[float]):
-            ...
+        def __init__(self, *, prop: Sequence[float]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1032,12 +982,10 @@ def test_inheritance_basic():
         prop: str = rest_field()
 
         @overload
-        def __init__(self, *, parent_prop: List[int], prop: str):
-            ...
+        def __init__(self, *, parent_prop: List[int], prop: str): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1055,12 +1003,10 @@ class ParentA(Model):
     prop: float = rest_field()
 
     @overload
-    def __init__(self, *, prop: Any):
-        ...
+    def __init__(self, *, prop: Any): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1071,12 +1017,10 @@ class ParentB(ParentA):
     bcd_prop: Optional[List["ParentB"]] = rest_field(name="bcdProp")
 
     @overload
-    def __init__(self, *, prop: Any, bcd_prop: Optional[List["ParentB"]] = None):
-        ...
+    def __init__(self, *, prop: Any, bcd_prop: Optional[List["ParentB"]] = None): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1087,12 +1031,10 @@ class ParentC(ParentB):
     cd_prop: ParentA = rest_field(name="cdProp")
 
     @overload
-    def __init__(self, *, prop: Any, bcd_prop: List[ParentB], cd_prop: ParentA, **kwargs):
-        ...
+    def __init__(self, *, prop: Any, bcd_prop: List[ParentB], cd_prop: ParentA, **kwargs): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1109,12 +1051,10 @@ class ChildD(ParentC):
         bcd_prop: List[ParentB],
         cd_prop: ParentA,
         d_prop: Tuple[ParentA, ParentB, ParentC, Optional["ChildD"]],
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1129,12 +1069,10 @@ def test_model_dict_comparisons():
             self,
             *,
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1147,12 +1085,10 @@ def test_model_dict_comparisons():
             self,
             *,
             inner: Inner,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1175,12 +1111,10 @@ def test_model_dict_comparisons_list():
             self,
             *,
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1193,12 +1127,10 @@ def test_model_dict_comparisons_list():
             self,
             *,
             inner: List[Inner],
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1227,12 +1159,10 @@ def test_model_dict_comparisons_dict():
             self,
             *,
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1245,12 +1175,10 @@ def test_model_dict_comparisons_dict():
             self,
             *,
             inner: Dict[str, Inner],
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1354,12 +1282,10 @@ def test_multiple_inheritance_basic():
             self,
             *,
             parent_one_prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1372,12 +1298,10 @@ def test_multiple_inheritance_basic():
             self,
             *,
             parent_two_prop: int,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1389,12 +1313,10 @@ def test_multiple_inheritance_basic():
             *,
             parent_one_prop: str,
             parent_two_prop: int,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1413,12 +1335,10 @@ def test_multiple_inheritance_mro():
         prop: str = rest_field()
 
         @overload
-        def __init__(self, *, prop: str) -> None:
-            ...
+        def __init__(self, *, prop: str) -> None: ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1427,12 +1347,10 @@ def test_multiple_inheritance_mro():
         prop: int = rest_field(type=lambda x: int(x))
 
         @overload
-        def __init__(self, *, prop: str) -> None:
-            ...
+        def __init__(self, *, prop: str) -> None: ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -1457,12 +1375,10 @@ class Feline(Model):
         meows: bool,
         hisses: bool,
         siblings: Optional[List["Feline"]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1478,12 +1394,10 @@ class Owner(Model):
         *,
         first_name: str,
         last_name: str,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1494,12 +1408,10 @@ class PetModel(Model):
     owner: Owner = rest_field()
 
     @overload
-    def __init__(self, *, name: str, owner: Owner):
-        ...
+    def __init__(self, *, name: str, owner: Owner): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1518,12 +1430,10 @@ class Cat(PetModel, Feline):
         hisses: bool,
         likes_milk: bool,
         siblings: Optional[List[Feline]],
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1533,12 +1443,10 @@ class CuteThing(Model):
     how_cute_am_i: float = rest_field(name="howCuteAmI")
 
     @overload
-    def __init__(self, *, how_cute_am_i: float):
-        ...
+    def __init__(self, *, how_cute_am_i: float): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1559,12 +1467,10 @@ class Kitten(Cat, CuteThing):
         siblings: Optional[List[Feline]],
         how_cute_am_i: float,
         eats_mice_yet: bool,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1669,12 +1575,10 @@ class A(Model):
     b: "B" = rest_field()
 
     @overload
-    def __init__(self, b: "B"):
-        ...
+    def __init__(self, b: "B"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1684,12 +1588,10 @@ class B(Model):
     c: "C" = rest_field()
 
     @overload
-    def __init__(self, *, c: "C"):
-        ...
+    def __init__(self, *, c: "C"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1699,12 +1601,10 @@ class C(Model):
     d: str = rest_field()
 
     @overload
-    def __init__(self, *, d: str):
-        ...
+    def __init__(self, *, d: str): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1763,12 +1663,10 @@ class BaseModel(Model):
     inner_model: "InnerModel" = rest_field(name="innerModel")
 
     @overload
-    def __init__(self, *, inner_model: "InnerModel"):
-        ...
+    def __init__(self, *, inner_model: "InnerModel"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1778,12 +1676,10 @@ class InnerModel(Model):
     datetime_field: datetime.datetime = rest_field(name="datetimeField")
 
     @overload
-    def __init__(self, *, datetime_field: datetime.datetime):
-        ...
+    def __init__(self, *, datetime_field: datetime.datetime): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1809,12 +1705,10 @@ class X(Model):
     y: "Y" = rest_field()
 
     @overload
-    def __init__(self, *, y: "Y"):
-        ...
+    def __init__(self, *, y: "Y"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1824,12 +1718,10 @@ class Y(Model):
     z: "Z" = rest_field()
 
     @overload
-    def __init__(self, *, z: "Z"):
-        ...
+    def __init__(self, *, z: "Z"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1839,12 +1731,10 @@ class Z(Model):
     zval: datetime.datetime = rest_field()
 
     @overload
-    def __init__(self, *, zval: datetime.datetime):
-        ...
+    def __init__(self, *, zval: datetime.datetime): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1878,12 +1768,10 @@ class InnerModelWithReadonly(Model):
     readonly_property: str = rest_field(name="readonlyProperty", visibility=["read"])
 
     @overload
-    def __init__(self, *, normal_property: str):
-        ...
+    def __init__(self, *, normal_property: str): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1895,12 +1783,10 @@ class ModelWithReadonly(Model):
     inner_model: InnerModelWithReadonly = rest_field(name="innerModel")
 
     @overload
-    def __init__(self, *, normal_property: str):
-        ...
+    def __init__(self, *, normal_property: str): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -1977,12 +1863,10 @@ def test_incorrect_initialization():
             *,
             id: int,
             field: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2019,12 +1903,10 @@ def test_copy_of_input():
         data: List[int] = rest_field()
 
         @overload
-        def __init__(self, *, data: List[int]):
-            ...
+        def __init__(self, *, data: List[int]): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2042,12 +1924,10 @@ def test_inner_model_custom_serializer():
         prop: str = rest_field(type=lambda x: x[::-1])
 
         @overload
-        def __init__(self, *, prop: str):
-            ...
+        def __init__(self, *, prop: str): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2056,12 +1936,10 @@ def test_inner_model_custom_serializer():
         innie: InnerModel = rest_field()
 
         @overload
-        def __init__(self, *, innie: InnerModel):
-            ...
+        def __init__(self, *, innie: InnerModel): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2086,12 +1964,10 @@ def test_default_value():
             prop_optional_str: Optional[str] = "propOptionalStr",
             prop_default_int: int = 1,
             prop_optional_int: Optional[int] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2154,12 +2030,10 @@ def test_pass_models_in_dict():
             self,
             *,
             str_property: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2172,12 +2046,10 @@ def test_pass_models_in_dict():
             self,
             *,
             inner_property: Inner,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2211,12 +2083,10 @@ def test_mutability_list():
             self,
             *,
             str_property: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2231,12 +2101,10 @@ def test_mutability_list():
             *,
             inner_property: List[Inner],
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2249,12 +2117,10 @@ def test_mutability_list():
             self,
             *,
             middle_property: Model,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2320,12 +2186,10 @@ def test_mutability_dict():
             self,
             *,
             str_property: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2340,12 +2204,10 @@ def test_mutability_dict():
             *,
             inner_property: Dict[str, Inner],
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2358,12 +2220,10 @@ def test_mutability_dict():
             self,
             *,
             middle_property: Model,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2470,12 +2330,10 @@ def test_pop_model():
             self,
             *,
             str_property: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2490,12 +2348,10 @@ def test_pop_model():
             *,
             inner_property: Dict[str, Inner],
             prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2508,12 +2364,10 @@ def test_pop_model():
             self,
             *,
             middle_property: Model,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2552,12 +2406,10 @@ def test_contains():
             self,
             *,
             a_prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2570,12 +2422,10 @@ def test_contains():
             self,
             *,
             b_prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -2590,12 +2440,10 @@ def test_contains():
             a_prop: str,
             b_prop: str,
             c_prop: str,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3018,12 +2866,10 @@ def test_complex_basic():
             id: Optional[int] = None,
             name: Optional[str] = None,
             color: Optional[Literal["cyan", "Magenta", "YELLOW", "blacK"]] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3055,12 +2901,10 @@ def test_complex_boolean_wrapper():
             *,
             field_true: Optional[bool] = None,
             field_false: Optional[bool] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3093,12 +2937,10 @@ def test_complex_byte_wrapper():
             base64url: Optional[bytes] = None,
             list_base64: Optional[List[bytes]] = None,
             map_base64url: Optional[Dict[str, bytes]] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3168,12 +3010,10 @@ def test_complex_byte_array_wrapper():
             base64url: Optional[bytearray] = None,
             list_base64: Optional[List[bytearray]] = None,
             map_base64url: Optional[Dict[str, bytearray]] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3245,12 +3085,10 @@ def test_complex_datetime_wrapper():
             unix: Optional[datetime.datetime] = None,
             list_rfc3339: Optional[List[datetime.datetime]] = None,
             dict_rfc7231: Optional[Dict[str, datetime.datetime]] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3306,12 +3144,10 @@ def test_complex_date_wrapper():
             *,
             field: Optional[datetime.date] = None,
             leap: Optional[datetime.date] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3346,12 +3182,10 @@ class DictionaryWrapper(Model):
         self,
         *,
         default_program: Optional[Dict[str, str]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3407,12 +3241,10 @@ class ArrayWrapper(Model):
         self,
         *,
         array: Optional[List[str]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3470,12 +3302,10 @@ class PetComplex(Model):
         *,
         id: Optional[int] = None,
         name: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3491,12 +3321,10 @@ class DogComplex(PetComplex):
         id: Optional[int] = None,
         name: Optional[str] = None,
         food: Optional[str] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3515,12 +3343,10 @@ class CatComplex(PetComplex):
         food: Optional[str] = None,
         color: Optional[str] = None,
         hates: Optional[List[DogComplex]] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any], /):
-        ...
+    def __init__(self, mapping: Mapping[str, Any], /): ...
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -3585,12 +3411,10 @@ def test_required_prop_not_passed():
             self,
             *,
             required_property: int,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3694,12 +3518,10 @@ class UnionBaseModel(Model):
     name: str = rest_field()
 
     @overload
-    def __init__(self, *, name: str):
-        ...
+    def __init__(self, *, name: str): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3709,12 +3531,10 @@ class UnionModel1(UnionBaseModel):
     prop1: int = rest_field()
 
     @overload
-    def __init__(self, *, name: str, prop1: int):
-        ...
+    def __init__(self, *, name: str, prop1: int): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3724,12 +3544,10 @@ class UnionModel2(UnionBaseModel):
     prop2: int = rest_field()
 
     @overload
-    def __init__(self, *, name: str, prop2: int):
-        ...
+    def __init__(self, *, name: str, prop2: int): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3742,12 +3560,10 @@ class ModelWithNamedUnionProperty(Model):
     named_union: "MyNamedUnion" = rest_field(name="namedUnion")
 
     @overload
-    def __init__(self, *, named_union: "MyNamedUnion"):
-        ...
+    def __init__(self, *, named_union: "MyNamedUnion"): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3757,12 +3573,10 @@ class ModelWithSimpleUnionProperty(Model):
     simple_union: Union[int, List[int]] = rest_field(name="simpleUnion")
 
     @overload
-    def __init__(self, *, simple_union: Union[int, List[int]]):
-        ...
+    def __init__(self, *, simple_union: Union[int, List[int]]): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3798,12 +3612,10 @@ def test_as_dict():
             food: Optional[str] = None,
             color: Optional[str] = None,
             hates: Optional[List[DogComplex]] = None,
-        ):
-            ...
+        ): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)
@@ -3833,12 +3645,10 @@ class Fish(Model):
         self,
         *,
         age: int,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3855,12 +3665,10 @@ class Shark(Fish, discriminator="shark"):
         self,
         *,
         age: int,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3876,12 +3684,10 @@ class GoblinShark(Shark, discriminator="goblin"):
         self,
         *,
         age: int,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3902,12 +3708,10 @@ class Salmon(Fish, discriminator="salmon"):
         friends: Optional[List["Fish"]] = None,
         hate: Optional[Dict[str, "Fish"]] = None,
         partner: Optional["Fish"] = None,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -3922,12 +3726,10 @@ class SawShark(Shark, discriminator="saw"):
         self,
         *,
         age: int,
-    ):
-        ...
+    ): ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        ...
+    def __init__(self, mapping: Mapping[str, Any]): ...
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -4101,12 +3903,10 @@ def test_decimal_deserialization():
         decimal_value: decimal.Decimal = rest_field(name="decimalValue")
 
         @overload
-        def __init__(self, *, decimal_value: decimal.Decimal):
-            ...
+        def __init__(self, *, decimal_value: decimal.Decimal): ...
 
         @overload
-        def __init__(self, mapping: Mapping[str, Any], /):
-            ...
+        def __init__(self, mapping: Mapping[str, Any], /): ...
 
         def __init__(self, *args, **kwargs):
             super().__init__(*args, **kwargs)

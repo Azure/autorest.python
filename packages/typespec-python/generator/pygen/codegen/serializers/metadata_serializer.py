@@ -69,9 +69,7 @@ def _json_serialize_imports(
                         key=lambda e: (
                             _to_string(e)  # type: ignore
                             if isinstance(e, (list, tuple))
-                            else e
-                            if isinstance(e, str)
-                            else ""
+                            else e if isinstance(e, str) else ""
                         )
                     )
                 json_package_name_dictionary[package_name] = name_import_ordered_list

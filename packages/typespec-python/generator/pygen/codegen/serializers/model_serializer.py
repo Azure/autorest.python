@@ -23,8 +23,7 @@ def _documentation_string(prop: Property, description_keyword: str, docstring_ty
 
 class _ModelSerializer(BaseSerializer, ABC):
     @abstractmethod
-    def imports(self) -> FileImport:
-        ...
+    def imports(self) -> FileImport: ...
 
     def serialize(self) -> str:
         # Generate the models
@@ -37,8 +36,7 @@ class _ModelSerializer(BaseSerializer, ABC):
         )
 
     @abstractmethod
-    def declare_model(self, model: ModelType) -> str:
-        ...
+    def declare_model(self, model: ModelType) -> str: ...
 
     @staticmethod
     def escape_dot(s: str):
