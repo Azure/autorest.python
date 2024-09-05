@@ -52,6 +52,15 @@
             ]
         },
         {
+          "type": "node",
+          "request": "launch",
+          "name": "Debug Current Test File",
+          "autoAttachChildProcesses": true,
+          "skipFiles": ["<node_internals>/**"],
+          "program": "${workspaceFolder}/packages/typespec-python/node_modules/vitest/vitest.mjs",
+          "args": ["run", "${relativeFile}"],
+          "smartStep": true
+        },
           "name": "npm: regenerate",
           "request": "launch",
           "type": "node",

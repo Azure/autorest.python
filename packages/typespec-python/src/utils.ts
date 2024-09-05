@@ -13,15 +13,80 @@ import { getSimpleTypeResult, getType } from "./types.js";
 import { getNamespaceFullName } from "@typespec/compiler";
 import { PythonSdkContext } from "./lib.js";
 
+function IsFullyUpperCase(identifier: string, maxUppercasePreserve: number) {
+    const len = identifier.length;
+    if (len > 1) {
+        if (len <= maxUppercasePreserve && identifier === identifier.toUpperCase()) {
+            return true;
+        }
+
+        if (len <= maxUppercasePreserve + 1 && identifier.endsWith("s")) {
+            const i = identifier.substring(0, len - 1);
+            if (i.toUpperCase() === i) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+function deconstruct(identifier: string | Array<string>, maxUppercasePreserve: number): Array<string> {
+    if (Array.isArray(identifier)) {
+        return [...identifier.flatMap((each) => deconstruct(each, maxUppercasePreserve))];
+    }
+
+    return `${identifier}`
+        .replace(/([a-z]+)([A-Z])/g, "$1 $2") // Add a space in between camelCase words(e.g. fooBar => foo Bar)
+        .replace(/(\d+)/g, " $1 ") // Adds a space after numbers(e.g. foo123 => foo123 bar)
+        .replace(/\b([A-Z]+)([A-Z])s([^a-z])(.*)/g, "$1$2« $3$4") // Add a space after a plural uppper cased word(e.g. MBsFoo => MBs Foo)
+        .replace(/\b([A-Z]+)([A-Z])([a-z]+)/g, "$1 $2$3") // Add a space between an upper case word(2 char+) and the last captial case.(e.g. SQLConnection -> SQL Connection)
+        .replace(/«/g, "s")
+        .trim()
+        .split(/[\W|_]+/)
+        .map((each) => (IsFullyUpperCase(each, maxUppercasePreserve) ? each : each.toLowerCase()));
+}
+
+function isEqual(s1: string, s2: string): boolean {
+    // when s2 is undefined and s1 is the string 'undefined', it returns 0, making this true.
+    // To prevent that, first we need to check if s2 is undefined.
+    return s2 !== undefined && !!s1 && !s1.localeCompare(s2, undefined, { sensitivity: "base" });
+}
+
+function removeSequentialDuplicates(identifier: Iterable<string>) {
+    const ids = [...identifier].filter((each) => !!each);
+    for (let i = 0; i < ids.length; i++) {
+        while (isEqual(ids[i], ids[i - 1])) {
+            ids.splice(i, 1);
+        }
+        while (isEqual(ids[i], ids[i - 2]) && isEqual(ids[i + 1], ids[i - 1])) {
+            ids.splice(i, 2);
+        }
+    }
+
+    return ids;
+}
+
+function normalize(
+    identifier: string | Array<string>,
+    removeDuplicates = true,
+    maxUppercasePreserve = 0,
+): Array<string> {
+    if (!identifier || identifier.length === 0) {
+        return [""];
+    }
+    return typeof identifier === "string"
+        ? normalize(deconstruct(identifier, maxUppercasePreserve), removeDuplicates, maxUppercasePreserve)
+        : removeDuplicates
+        ? removeSequentialDuplicates(identifier)
+        : identifier;
+}
+
 export function camelToSnakeCase(name: string): string {
     if (!name) return name;
-    const camelToSnakeCaseRe = (str: string) =>
-        str
-            .replace(/[^a-zA-Z0-9]/g, "_")
-            .replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)
-            .replace(/_+/g, "_");
-
-    return camelToSnakeCaseRe(name[0].toLowerCase() + name.slice(1));
+    const words = normalize(name, false, 6);
+    const result = words.join("_").toLowerCase();
+    const result_final = result.replace(/([^\d])_(\d+)/g, "$1$2");
+    return result_final;
 }
 
 export function removeUnderscoresFromNamespace(name?: string): string {
