@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import Group1Operations, Group2Operations
 
 
-class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-keyword
+class TwoOperationGroupClient:
     """TwoOperationGroupClient.
 
     :ivar group1: Group1Operations operations

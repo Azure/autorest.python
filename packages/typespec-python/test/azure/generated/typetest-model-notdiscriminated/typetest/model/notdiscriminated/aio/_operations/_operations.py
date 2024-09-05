@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,8 +37,8 @@ from .._vendor import NotDiscriminatedClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -47,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
+    async def post_valid(
         self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
@@ -63,9 +62,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Required.
@@ -79,9 +76,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Required.
@@ -95,9 +90,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @distributed_trace_async
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.

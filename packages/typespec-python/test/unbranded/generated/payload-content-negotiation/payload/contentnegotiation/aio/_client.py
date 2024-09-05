@@ -18,7 +18,7 @@ from ._configuration import ContentNegotiationClientConfiguration
 from .operations import DifferentBodyOperations, SameBodyOperations
 
 
-class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword
+class ContentNegotiationClient:
     """Test describing optionality of the request body.
 
     :ivar same_body: SameBodyOperations operations

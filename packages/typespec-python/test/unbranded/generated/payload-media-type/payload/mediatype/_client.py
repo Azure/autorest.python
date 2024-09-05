@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import StringBodyOperations
 
 
-class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
+class MediaTypeClient:
     """Test the payload with different media types and different types of the payload itself.
 
     :ivar string_body: StringBodyOperations operations

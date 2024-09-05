@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -31,8 +30,8 @@ from .._vendor import BodyOptionalityClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 _Unset: Any = object()
@@ -115,7 +114,7 @@ class OptionalExplicitOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def set(  # pylint: disable=inconsistent-return-statements
+    def set(
         self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """set.
@@ -131,9 +130,7 @@ class OptionalExplicitOperations:
         """
 
     @overload
-    def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def set(self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """set.
 
         :param body: Default value is None.
@@ -147,9 +144,7 @@ class OptionalExplicitOperations:
         """
 
     @overload
-    def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def set(self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """set.
 
         :param body: Default value is None.
@@ -223,7 +218,7 @@ class OptionalExplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def omit(  # pylint: disable=inconsistent-return-statements
+    def omit(
         self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """omit.
@@ -239,9 +234,7 @@ class OptionalExplicitOperations:
         """
 
     @overload
-    def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def omit(self, body: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """omit.
 
         :param body: Default value is None.
@@ -255,9 +248,7 @@ class OptionalExplicitOperations:
         """
 
     @overload
-    def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def omit(self, body: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """omit.
 
         :param body: Default value is None.
@@ -334,7 +325,7 @@ class OptionalExplicitOperations:
 class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
+    def required_explicit(
         self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_explicit.
@@ -350,9 +341,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def required_explicit(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_explicit.
 
         :param body: Required.
@@ -366,9 +355,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @overload
-    def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def required_explicit(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_explicit.
 
         :param body: Required.
@@ -439,9 +426,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def required_implicit(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_implicit.
 
         :param body: Required.
@@ -455,9 +440,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def required_implicit(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_implicit.
 
         :keyword name: Required.
@@ -471,9 +454,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @overload
-    def required_implicit(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def required_implicit(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_implicit.
 
         :param body: Required.

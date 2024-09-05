@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -29,8 +29,8 @@ from .._vendor import FileType, prepare_multipart_form_data
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -164,9 +164,7 @@ class FormDataOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def basic(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -177,7 +175,7 @@ class FormDataOperations:
         """
 
     @overload
-    def basic(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -243,9 +241,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def complex(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexPartsRequest, **kwargs: Any
-    ) -> None:
+    def complex(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -256,7 +252,7 @@ class FormDataOperations:
         """
 
     @overload
-    def complex(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def complex(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -322,9 +318,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def json_part(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.JsonPartRequest, **kwargs: Any
-    ) -> None:
+    def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -335,7 +329,7 @@ class FormDataOperations:
         """
 
     @overload
-    def json_part(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def json_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -401,9 +395,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BinaryArrayPartsRequest, **kwargs: Any
-    ) -> None:
+    def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -414,7 +406,7 @@ class FormDataOperations:
         """
 
     @overload
-    def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -480,9 +472,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiBinaryPartsRequest, **kwargs: Any
-    ) -> None:
+    def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -493,7 +483,7 @@ class FormDataOperations:
         """
 
     @overload
-    def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -559,9 +549,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -572,9 +560,7 @@ class FormDataOperations:
         """
 
     @overload
-    def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -640,7 +626,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -651,9 +637,7 @@ class FormDataOperations:
         """
 
     @overload
-    def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, *, profile_image: FileType, **kwargs: Any
-    ) -> None:
+    def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :keyword profile_image: Required.
@@ -726,7 +710,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_specific_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -739,7 +723,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_specific_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -808,7 +792,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_required_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -821,7 +805,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_required_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -890,7 +874,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_optional_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -903,7 +887,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    def file_with_http_part_optional_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -972,9 +956,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def complex_with_http_part(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any
-    ) -> None:
+    def complex_with_http_part(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -985,9 +967,7 @@ class FormDataOperations:
         """
 
     @overload
-    def complex_with_http_part(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def complex_with_http_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.

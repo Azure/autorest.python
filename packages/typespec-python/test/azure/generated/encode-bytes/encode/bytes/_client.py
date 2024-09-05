@@ -25,7 +25,7 @@ from .operations import (
 )
 
 
-class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
+class BytesClient:
     """Test for encode decorator on bytes.
 
     :ivar query: QueryOperations operations

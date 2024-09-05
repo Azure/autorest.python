@@ -19,7 +19,7 @@ from ._operations import ClientAClientOperationsMixin, ClientBClientOperationsMi
 from ._serialization import Deserializer, Serializer
 
 
-class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientAClient(ClientAClientOperationsMixin):
     """ClientAClient.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
@@ -90,7 +90,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
         self._client.__exit__(*exc_details)
 
 
-class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientBClient(ClientBClientOperationsMixin):
     """ClientBClient.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.

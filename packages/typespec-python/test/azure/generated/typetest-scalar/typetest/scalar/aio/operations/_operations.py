@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -49,7 +49,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -128,7 +128,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(self, body: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: str, **kwargs: Any) -> None:
         """put string value.
 
         :param body: _. Required.
@@ -253,7 +253,7 @@ class BooleanOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(self, body: bool, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: bool, **kwargs: Any) -> None:
         """put boolean value.
 
         :param body: _. Required.
@@ -378,7 +378,7 @@ class UnknownOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(self, body: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: Any, **kwargs: Any) -> None:
         """put unknown value.
 
         :param body: _. Required.
@@ -503,9 +503,7 @@ class DecimalTypeOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_body(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """request_body.
 
         :param body: Required.
@@ -556,9 +554,7 @@ class DecimalTypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, value: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_parameter(self, *, value: decimal.Decimal, **kwargs: Any) -> None:
         """request_parameter.
 
         :keyword value: Required.
@@ -679,9 +675,7 @@ class Decimal128TypeOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_body(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """request_body.
 
         :param body: Required.
@@ -732,9 +726,7 @@ class Decimal128TypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, value: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_parameter(self, *, value: decimal.Decimal, **kwargs: Any) -> None:
         """request_parameter.
 
         :keyword value: Required.
@@ -855,9 +847,7 @@ class DecimalVerifyOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def verify(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def verify(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """verify.
 
         :param body: Required.
@@ -982,9 +972,7 @@ class Decimal128VerifyOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def verify(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def verify(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """verify.
 
         :param body: Required.

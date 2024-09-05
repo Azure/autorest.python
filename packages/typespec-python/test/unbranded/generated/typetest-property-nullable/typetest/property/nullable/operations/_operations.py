@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -32,8 +32,8 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -561,7 +561,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -577,9 +577,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -593,7 +591,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -666,7 +664,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -682,9 +680,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -698,9 +694,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -899,7 +893,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -915,9 +909,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -931,7 +923,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1004,7 +996,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1020,9 +1012,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1036,9 +1026,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1237,7 +1225,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1253,9 +1241,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1269,7 +1255,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1342,7 +1328,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1358,9 +1344,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1374,9 +1358,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1575,7 +1557,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1591,9 +1573,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1607,7 +1587,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1680,7 +1660,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1696,9 +1676,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1712,9 +1690,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1913,7 +1889,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -1933,9 +1909,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1949,7 +1923,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2022,7 +1996,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -2042,9 +2016,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2058,9 +2030,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2261,7 +2231,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2281,9 +2251,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2297,7 +2265,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2370,7 +2338,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2390,9 +2358,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2406,9 +2372,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2609,7 +2573,7 @@ class CollectionsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2629,9 +2593,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2645,7 +2607,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2719,7 +2681,7 @@ class CollectionsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2739,9 +2701,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2755,9 +2715,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.

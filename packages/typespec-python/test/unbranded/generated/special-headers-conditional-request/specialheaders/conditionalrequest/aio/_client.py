@@ -18,9 +18,7 @@ from ._configuration import ConditionalRequestClientConfiguration
 from ._operations import ConditionalRequestClientOperationsMixin
 
 
-class ConditionalRequestClient(
-    ConditionalRequestClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class ConditionalRequestClient(ConditionalRequestClientOperationsMixin):
     """Illustrates conditional request headers.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

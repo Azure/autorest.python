@@ -18,7 +18,7 @@ from ._configuration import SpecialWordsClientConfiguration
 from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
 
 
-class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
+class SpecialWordsClient:
     """Scenarios to verify that reserved words can be used in service and generators will handle it
     appropriately.
 

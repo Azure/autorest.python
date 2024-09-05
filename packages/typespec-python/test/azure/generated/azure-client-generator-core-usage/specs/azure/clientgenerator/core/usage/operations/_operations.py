@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,8 +32,8 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -111,7 +110,7 @@ class ModelInOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def input_to_input_output(  # pylint: disable=inconsistent-return-statements
+    def input_to_input_output(
         self, body: _models.InputModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
@@ -133,9 +132,7 @@ class ModelInOperationOperations:
         """
 
     @overload
-    def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def input_to_input_output(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Expected body parameter:
 
         .. code-block:: json
@@ -155,9 +152,7 @@ class ModelInOperationOperations:
         """
 
     @overload
-    def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def input_to_input_output(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Expected body parameter:
 
         .. code-block:: json

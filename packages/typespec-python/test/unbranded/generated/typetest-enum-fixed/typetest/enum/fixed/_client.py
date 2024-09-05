@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import StringOperations
 
 
-class FixedClient:  # pylint: disable=client-accepts-api-version-keyword
+class FixedClient:
     """FixedClient.
 
     :ivar string: StringOperations operations

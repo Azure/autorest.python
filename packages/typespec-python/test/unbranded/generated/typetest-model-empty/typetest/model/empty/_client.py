@@ -18,7 +18,7 @@ from ._operations import EmptyClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class EmptyClient(EmptyClientOperationsMixin):
     """Illustrates usage of empty model used in operation's parameters and responses.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

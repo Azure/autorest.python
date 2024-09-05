@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -31,8 +30,8 @@ from ...operations._operations import build_explicit_body_simple_request, build_
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 _Unset: Any = object()
@@ -56,9 +55,7 @@ class ExplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -72,9 +69,7 @@ class ExplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -88,9 +83,7 @@ class ExplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -104,9 +97,7 @@ class ExplicitBodyOperations:
         """
 
     @distributed_trace_async
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def simple(self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any) -> None:
         """simple.
 
         :param body: Is one of the following types: User, JSON, IO[bytes] Required.
@@ -180,9 +171,7 @@ class ImplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -196,9 +185,7 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :keyword name: Required.
@@ -212,9 +199,7 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -228,9 +213,7 @@ class ImplicitBodyOperations:
         """
 
     @distributed_trace_async
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
-    ) -> None:
+    async def simple(self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any) -> None:
         """simple.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.

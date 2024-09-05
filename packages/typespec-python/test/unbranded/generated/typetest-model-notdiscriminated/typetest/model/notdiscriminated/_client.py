@@ -18,9 +18,7 @@ from ._operations import NotDiscriminatedClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class NotDiscriminatedClient(
-    NotDiscriminatedClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class NotDiscriminatedClient(NotDiscriminatedClientOperationsMixin):
     """Illustrates not-discriminated inheritance model.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

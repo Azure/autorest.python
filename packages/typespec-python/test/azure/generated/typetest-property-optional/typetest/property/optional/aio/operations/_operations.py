@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -98,8 +98,8 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -234,7 +234,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -250,9 +250,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -266,9 +264,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -282,9 +278,7 @@ class StringOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -340,7 +334,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -356,9 +350,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -372,9 +364,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -388,9 +378,7 @@ class StringOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -576,7 +564,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -592,9 +580,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -608,9 +594,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -624,9 +608,7 @@ class BytesOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -682,7 +664,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -698,9 +680,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -714,9 +694,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -730,9 +708,7 @@ class BytesOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -918,7 +894,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -934,9 +910,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -950,9 +924,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -966,9 +938,7 @@ class DatetimeOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1024,7 +994,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1040,9 +1010,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1056,9 +1024,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1072,9 +1038,7 @@ class DatetimeOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1260,7 +1224,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1276,9 +1240,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1292,9 +1254,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1308,9 +1268,7 @@ class DurationOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1366,7 +1324,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1382,9 +1340,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1398,9 +1354,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1414,9 +1368,7 @@ class DurationOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1602,7 +1554,7 @@ class PlainDateOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1618,9 +1570,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1634,9 +1584,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1650,9 +1598,7 @@ class PlainDateOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
@@ -1708,7 +1654,7 @@ class PlainDateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1724,9 +1670,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1740,9 +1684,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1756,9 +1698,7 @@ class PlainDateOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
@@ -1944,7 +1884,7 @@ class PlainTimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1960,9 +1900,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1976,9 +1914,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1992,9 +1928,7 @@ class PlainTimeOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -2050,7 +1984,7 @@ class PlainTimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2066,9 +2000,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2082,9 +2014,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2098,9 +2028,7 @@ class PlainTimeOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -2286,7 +2214,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2302,9 +2230,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2318,9 +2244,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2334,9 +2258,7 @@ class CollectionsByteOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2392,7 +2314,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2408,9 +2330,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2424,9 +2344,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2440,9 +2358,7 @@ class CollectionsByteOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2630,7 +2546,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2646,9 +2562,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2662,9 +2576,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2678,9 +2590,7 @@ class CollectionsModelOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2736,7 +2646,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2752,9 +2662,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2768,9 +2676,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2784,9 +2690,7 @@ class CollectionsModelOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2972,7 +2876,7 @@ class StringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2988,9 +2892,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3004,9 +2906,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3020,9 +2920,7 @@ class StringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -3078,7 +2976,7 @@ class StringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3094,9 +2992,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3110,9 +3006,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3126,9 +3020,7 @@ class StringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -3314,7 +3206,7 @@ class IntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3330,9 +3222,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3346,9 +3236,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3362,9 +3250,7 @@ class IntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3420,7 +3306,7 @@ class IntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3436,9 +3322,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3452,9 +3336,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3468,9 +3350,7 @@ class IntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3656,7 +3536,7 @@ class FloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3672,9 +3552,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3688,9 +3566,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3704,9 +3580,7 @@ class FloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -3762,7 +3636,7 @@ class FloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3778,9 +3652,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3794,9 +3666,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3810,9 +3680,7 @@ class FloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -3998,7 +3866,7 @@ class BooleanLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4014,9 +3882,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4030,9 +3896,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4046,9 +3910,7 @@ class BooleanLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4104,7 +3966,7 @@ class BooleanLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4120,9 +3982,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4136,9 +3996,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4152,9 +4010,7 @@ class BooleanLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4342,7 +4198,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4358,9 +4214,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4374,9 +4228,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4390,9 +4242,7 @@ class UnionStringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4449,7 +4299,7 @@ class UnionStringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4465,9 +4315,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4481,9 +4329,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4497,7 +4343,7 @@ class UnionStringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4686,7 +4532,7 @@ class UnionIntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4702,9 +4548,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4718,9 +4562,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4734,9 +4576,7 @@ class UnionIntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -4792,7 +4632,7 @@ class UnionIntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4808,9 +4648,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4824,9 +4662,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4840,9 +4676,7 @@ class UnionIntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -5030,7 +4864,7 @@ class UnionFloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5046,9 +4880,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5062,9 +4894,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5078,9 +4908,7 @@ class UnionFloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5137,7 +4965,7 @@ class UnionFloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -5153,9 +4981,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5169,9 +4995,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5185,9 +5009,7 @@ class UnionFloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5376,7 +5198,7 @@ class RequiredAndOptionalOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5392,9 +5214,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5408,9 +5228,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5424,9 +5242,7 @@ class RequiredAndOptionalOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
@@ -5483,7 +5299,7 @@ class RequiredAndOptionalOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -5499,9 +5315,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_required_only(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with only required properties.
 
         :param body: Required.
@@ -5515,7 +5329,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -5531,7 +5345,7 @@ class RequiredAndOptionalOperations:
         """
 
     @distributed_trace_async
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with only required properties.

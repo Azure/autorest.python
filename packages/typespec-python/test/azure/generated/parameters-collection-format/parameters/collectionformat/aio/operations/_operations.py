@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,7 +32,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -56,9 +55,7 @@ class QueryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def multi(  # pylint: disable=inconsistent-return-statements
-        self, *, colors: List[str], **kwargs: Any
-    ) -> None:
+    async def multi(self, *, colors: List[str], **kwargs: Any) -> None:
         """multi.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -105,7 +102,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def ssv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def ssv(self, *, colors: List[str], **kwargs: Any) -> None:
         """ssv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -152,7 +149,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def tsv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def tsv(self, *, colors: List[str], **kwargs: Any) -> None:
         """tsv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -199,9 +196,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def pipes(  # pylint: disable=inconsistent-return-statements
-        self, *, colors: List[str], **kwargs: Any
-    ) -> None:
+    async def pipes(self, *, colors: List[str], **kwargs: Any) -> None:
         """pipes.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -248,7 +243,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -313,7 +308,7 @@ class HeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.

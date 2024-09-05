@@ -19,7 +19,7 @@ from ._operations import NotVersionedClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NotVersionedClient(NotVersionedClientOperationsMixin):
     """Illustrates not-versioned server.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.

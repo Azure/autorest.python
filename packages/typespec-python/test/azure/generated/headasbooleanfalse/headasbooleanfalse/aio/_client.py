@@ -19,7 +19,7 @@ from ._configuration import VisibilityClientConfiguration
 from ._operations import VisibilityClientOperationsMixin
 
 
-class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class VisibilityClient(VisibilityClientOperationsMixin):
     """Illustrates models with visibility properties.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

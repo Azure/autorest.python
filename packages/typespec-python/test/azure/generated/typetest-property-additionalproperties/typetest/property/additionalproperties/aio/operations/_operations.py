@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -98,8 +98,8 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -179,7 +179,7 @@ class ExtendsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -195,9 +195,7 @@ class ExtendsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -211,9 +209,7 @@ class ExtendsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -227,7 +223,7 @@ class ExtendsUnknownOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -363,7 +359,7 @@ class ExtendsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDerived,
         *,
@@ -384,9 +380,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -400,9 +394,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -416,7 +408,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -553,7 +545,7 @@ class ExtendsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -574,9 +566,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -590,9 +580,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -606,7 +594,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -742,7 +730,7 @@ class IsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -758,9 +746,7 @@ class IsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -774,9 +760,7 @@ class IsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -790,9 +774,7 @@ class IsUnknownOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsUnknownAdditionalProperties, JSON,
@@ -925,7 +907,7 @@ class IsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDerived,
         *,
@@ -945,9 +927,7 @@ class IsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -961,9 +941,7 @@ class IsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -977,7 +955,7 @@ class IsUnknownDerivedOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.IsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1113,7 +1091,7 @@ class IsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -1134,9 +1112,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1150,9 +1126,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1166,7 +1140,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.IsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1302,7 +1276,7 @@ class ExtendsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1318,9 +1292,7 @@ class ExtendsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1334,9 +1306,7 @@ class ExtendsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1350,9 +1320,7 @@ class ExtendsStringOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsStringAdditionalProperties, JSON,
@@ -1485,7 +1453,7 @@ class IsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1501,9 +1469,7 @@ class IsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1517,9 +1483,7 @@ class IsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1533,9 +1497,7 @@ class IsStringOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsStringAdditionalProperties, JSON, IO[bytes]
@@ -1667,7 +1629,7 @@ class SpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1683,9 +1645,7 @@ class SpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1699,9 +1659,7 @@ class SpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1715,9 +1673,7 @@ class SpreadStringOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadStringRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadStringRecord, JSON, IO[bytes] Required.
@@ -1849,7 +1805,7 @@ class ExtendsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1865,9 +1821,7 @@ class ExtendsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1881,9 +1835,7 @@ class ExtendsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1897,9 +1849,7 @@ class ExtendsFloatOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsFloatAdditionalProperties, JSON,
@@ -2032,7 +1982,7 @@ class IsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2048,9 +1998,7 @@ class IsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2064,9 +2012,7 @@ class IsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2080,9 +2026,7 @@ class IsFloatOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsFloatAdditionalProperties, JSON, IO[bytes]
@@ -2214,7 +2158,7 @@ class SpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2230,9 +2174,7 @@ class SpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2246,9 +2188,7 @@ class SpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2262,9 +2202,7 @@ class SpreadFloatOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadFloatRecord, JSON, IO[bytes] Required.
@@ -2396,7 +2334,7 @@ class ExtendsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2412,9 +2350,7 @@ class ExtendsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2428,9 +2364,7 @@ class ExtendsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2444,9 +2378,7 @@ class ExtendsModelOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsModelAdditionalProperties, JSON,
@@ -2579,7 +2511,7 @@ class IsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2595,9 +2527,7 @@ class IsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2611,9 +2541,7 @@ class IsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2627,9 +2555,7 @@ class IsModelOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsModelAdditionalProperties, JSON, IO[bytes]
@@ -2761,7 +2687,7 @@ class SpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2777,9 +2703,7 @@ class SpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2793,9 +2717,7 @@ class SpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2809,9 +2731,7 @@ class SpreadModelOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadModelRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadModelRecord, JSON, IO[bytes] Required.
@@ -2943,7 +2863,7 @@ class ExtendsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsModelArrayAdditionalProperties,
         *,
@@ -2964,9 +2884,7 @@ class ExtendsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2980,9 +2898,7 @@ class ExtendsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2996,7 +2912,7 @@ class ExtendsModelArrayOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3132,7 +3048,7 @@ class IsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsModelArrayAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3148,9 +3064,7 @@ class IsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3164,9 +3078,7 @@ class IsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3180,9 +3092,7 @@ class IsModelArrayOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsModelArrayAdditionalProperties, JSON,
@@ -3314,7 +3224,7 @@ class SpreadModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3330,9 +3240,7 @@ class SpreadModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3346,9 +3254,7 @@ class SpreadModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3362,9 +3268,7 @@ class SpreadModelArrayOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadModelArrayRecord, JSON, IO[bytes]
@@ -3497,7 +3401,7 @@ class SpreadDifferentStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3513,9 +3417,7 @@ class SpreadDifferentStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3529,9 +3431,7 @@ class SpreadDifferentStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3545,9 +3445,7 @@ class SpreadDifferentStringOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadStringRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadStringRecord, JSON, IO[bytes]
@@ -3680,7 +3578,7 @@ class SpreadDifferentFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3696,9 +3594,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3712,9 +3608,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3728,9 +3622,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadFloatRecord, JSON, IO[bytes]
@@ -3863,7 +3755,7 @@ class SpreadDifferentModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3879,9 +3771,7 @@ class SpreadDifferentModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3895,9 +3785,7 @@ class SpreadDifferentModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3911,9 +3799,7 @@ class SpreadDifferentModelOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelRecord, JSON, IO[bytes]
@@ -4046,7 +3932,7 @@ class SpreadDifferentModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4062,9 +3948,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4078,9 +3962,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4094,9 +3976,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelArrayRecord, JSON,
@@ -4229,7 +4109,7 @@ class ExtendsDifferentSpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadStringDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4245,9 +4125,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4261,9 +4139,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4277,9 +4153,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadStringDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadStringDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadStringDerived, JSON, IO[bytes]
@@ -4412,7 +4286,7 @@ class ExtendsDifferentSpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadFloatDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4428,9 +4302,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4444,9 +4316,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4460,9 +4330,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadFloatDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadFloatDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadFloatDerived, JSON, IO[bytes]
@@ -4595,7 +4463,7 @@ class ExtendsDifferentSpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4611,9 +4479,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4627,9 +4493,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4643,9 +4507,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelDerived, JSON, IO[bytes]
@@ -4778,7 +4640,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelArrayDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4794,9 +4656,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4810,9 +4670,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4826,9 +4684,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelArrayDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelArrayDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelArrayDerived, JSON,
@@ -4960,7 +4816,7 @@ class MultipleSpreadOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.MultipleSpreadRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4976,9 +4832,7 @@ class MultipleSpreadOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4992,9 +4846,7 @@ class MultipleSpreadOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5008,9 +4860,7 @@ class MultipleSpreadOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultipleSpreadRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.MultipleSpreadRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: MultipleSpreadRecord, JSON, IO[bytes]
@@ -5142,7 +4992,7 @@ class SpreadRecordUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadRecordForUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5158,9 +5008,7 @@ class SpreadRecordUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5174,9 +5022,7 @@ class SpreadRecordUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5190,9 +5036,7 @@ class SpreadRecordUnionOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadRecordForUnion, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadRecordForUnion, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadRecordForUnion, JSON, IO[bytes]
@@ -5325,7 +5169,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadRecordForDiscriminatedUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5341,9 +5185,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5357,9 +5199,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5373,9 +5213,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadRecordForDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadRecordForDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadRecordForDiscriminatedUnion, JSON,
@@ -5508,7 +5346,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion,
         *,
@@ -5528,9 +5366,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5544,9 +5380,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5560,7 +5394,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5695,7 +5529,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion2,
         *,
@@ -5716,9 +5550,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5732,9 +5564,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5748,7 +5578,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion2, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5884,7 +5714,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion3,
         *,
@@ -5905,9 +5735,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5921,9 +5749,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5937,7 +5763,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion3, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.

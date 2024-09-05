@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -37,7 +36,7 @@ from .._vendor import ServiceClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -82,7 +81,7 @@ class QuxOperations:
         self.bar = QuxBarOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @distributed_trace_async
-    async def eight(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def eight(self, **kwargs: Any) -> None:
         """eight.
 
         :return: None
@@ -145,7 +144,7 @@ class FooOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def three(self, **kwargs: Any) -> None:
         """three.
 
         :return: None
@@ -190,7 +189,7 @@ class FooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def four(self, **kwargs: Any) -> None:
         """four.
 
         :return: None
@@ -253,7 +252,7 @@ class BarOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def five(self, **kwargs: Any) -> None:
         """five.
 
         :return: None
@@ -298,7 +297,7 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def six(self, **kwargs: Any) -> None:
         """six.
 
         :return: None
@@ -346,7 +345,7 @@ class BarOperations:
 class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
     @distributed_trace_async
-    async def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def one(self, **kwargs: Any) -> None:
         """one.
 
         :return: None
@@ -391,7 +390,7 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def two(self, **kwargs: Any) -> None:
         """two.
 
         :return: None
@@ -454,7 +453,7 @@ class BazFooOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def seven(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def seven(self, **kwargs: Any) -> None:
         """seven.
 
         :return: None
@@ -517,7 +516,7 @@ class QuxBarOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def nine(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def nine(self, **kwargs: Any) -> None:
         """nine.
 
         :return: None

@@ -19,7 +19,7 @@ from ._operations import RecursiveClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class RecursiveClient(RecursiveClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RecursiveClient(RecursiveClientOperationsMixin):
     """Illustrates inheritance recursion.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

@@ -20,7 +20,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import NewInterfaceOperations, RenamedFromClientOperationsMixin
 
 
-class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RenamedFromClient(RenamedFromClientOperationsMixin):
     """Test for the ``@renamedFrom`` decorator.
 
     :ivar new_interface: NewInterfaceOperations operations

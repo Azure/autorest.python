@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -31,8 +31,8 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -254,9 +254,7 @@ class ModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :param body: Required.
@@ -270,9 +268,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :keyword name: Required.
@@ -286,9 +282,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :param body: Required.
@@ -367,7 +361,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_only_with_body(
         self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -383,7 +377,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_only_with_body(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -399,7 +393,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_only_with_body(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -525,7 +519,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request(
         self,
         name: str,
         body: _models.BodyParameter,
@@ -551,7 +545,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request(
         self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request.
@@ -571,7 +565,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request(
         self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request.
@@ -655,7 +649,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_mix(
         self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -675,7 +669,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_mix(
         self, name: str, *, test_header: str, prop: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -695,7 +689,7 @@ class ModelOperations:
         """
 
     @overload
-    def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    def spread_composite_request_mix(
         self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -804,9 +798,7 @@ class AliasOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :param body: Required.
@@ -820,9 +812,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :keyword name: Required.
@@ -836,9 +826,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def spread_as_request_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :param body: Required.
@@ -917,7 +905,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_model(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -937,7 +925,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_model(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -957,7 +945,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_model(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -1054,7 +1042,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    def spread_as_request_parameter(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -1074,7 +1062,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    def spread_as_request_parameter(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -1094,7 +1082,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    def spread_as_request_parameter(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -1191,7 +1179,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    def spread_with_multiple_parameters(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1211,7 +1199,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    def spread_with_multiple_parameters(
         self,
         id: str,
         *,
@@ -1246,7 +1234,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    def spread_with_multiple_parameters(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1359,7 +1347,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_alias(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread an alias with contains another alias property as body.
@@ -1379,7 +1367,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_alias(
         self,
         id: str,
         *,
@@ -1408,7 +1396,7 @@ class AliasOperations:
         """
 
     @overload
-    def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    def spread_parameter_with_inner_alias(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread an alias with contains another alias property as body.

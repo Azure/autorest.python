@@ -20,9 +20,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import GroupOperations, RenamedOperationClientOperationsMixin
 
 
-class RenamedOperationClient(
-    RenamedOperationClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class RenamedOperationClient(RenamedOperationClientOperationsMixin):
     """RenamedOperationClient.
 
     :ivar group: GroupOperations operations

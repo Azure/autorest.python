@@ -18,7 +18,7 @@ from ._configuration import SpreadClientConfiguration
 from .operations import AliasOperations, ModelOperations
 
 
-class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword
+class SpreadClient:
     """Test for the spread operator.
 
     :ivar model: ModelOperations operations

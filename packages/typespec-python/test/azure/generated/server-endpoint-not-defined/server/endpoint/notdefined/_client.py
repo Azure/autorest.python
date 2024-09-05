@@ -19,7 +19,7 @@ from ._operations import NotDefinedClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NotDefinedClient(NotDefinedClientOperationsMixin):
     """Illustrates server doesn't define endpoint. Client should automatically add an endpoint to let
     user pass in.
 

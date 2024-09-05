@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -34,8 +33,8 @@ from .._vendor import EmptyClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -91,9 +90,7 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -107,9 +104,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -123,9 +118,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.

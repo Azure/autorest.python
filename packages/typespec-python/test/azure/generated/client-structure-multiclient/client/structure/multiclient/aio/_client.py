@@ -20,7 +20,7 @@ from ._configuration import ClientAClientConfiguration, ClientBClientConfigurati
 from ._operations import ClientAClientOperationsMixin, ClientBClientOperationsMixin
 
 
-class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientAClient(ClientAClientOperationsMixin):
     """ClientAClient.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
@@ -99,7 +99,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
         await self._client.__aexit__(*exc_details)
 
 
-class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientBClient(ClientBClientOperationsMixin):
     """ClientBClient.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.

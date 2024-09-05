@@ -20,11 +20,10 @@ from ._configuration import ResourcesClientConfiguration
 from .operations import NestedProxyResourcesOperations, TopLevelTrackedResourcesOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
+class ResourcesClient:
     """Arm Resource Provider management API.
 
     :ivar top_level_tracked_resources: TopLevelTrackedResourcesOperations operations

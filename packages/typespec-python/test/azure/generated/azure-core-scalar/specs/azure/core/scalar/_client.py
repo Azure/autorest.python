@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import AzureLocationScalarOperations
 
 
-class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
+class ScalarClient:
     """ScalarClient.
 
     :ivar azure_location_scalar: AzureLocationScalarOperations operations

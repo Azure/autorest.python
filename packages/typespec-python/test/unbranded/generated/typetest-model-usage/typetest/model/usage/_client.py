@@ -18,7 +18,7 @@ from ._operations import UsageClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class UsageClient(UsageClientOperationsMixin):
     """Illustrates usage of Record in different places(Operation parameters, return type or both).
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

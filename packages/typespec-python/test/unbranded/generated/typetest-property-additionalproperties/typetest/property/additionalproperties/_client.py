@@ -51,7 +51,7 @@ from .operations import (
 )
 
 
-class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class AdditionalPropertiesClient:  # pylint: disable=too-many-instance-attributes
     """Tests for additional properties of models.
 
     :ivar extends_unknown: ExtendsUnknownOperations operations

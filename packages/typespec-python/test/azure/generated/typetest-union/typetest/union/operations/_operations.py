@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,8 +33,8 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -397,9 +397,7 @@ class StringsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -413,9 +411,7 @@ class StringsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
@@ -430,9 +426,7 @@ class StringsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -586,9 +580,7 @@ class StringExtensibleOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -602,7 +594,7 @@ class StringExtensibleOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -618,9 +610,7 @@ class StringExtensibleOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -777,9 +767,7 @@ class StringExtensibleNamedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -793,7 +781,7 @@ class StringExtensibleNamedOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self,
         *,
         prop: Union[str, _models.StringExtensibleNamedUnion],
@@ -813,9 +801,7 @@ class StringExtensibleNamedOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -972,9 +958,7 @@ class IntsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -988,9 +972,7 @@ class IntsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
@@ -1004,9 +986,7 @@ class IntsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1159,9 +1139,7 @@ class FloatsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1175,9 +1153,7 @@ class FloatsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: float, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: float, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: float, float, float Required.
@@ -1191,9 +1167,7 @@ class FloatsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1346,9 +1320,7 @@ class ModelsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1362,7 +1334,7 @@ class ModelsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self, *, prop: Union[_models.Cat, _models.Dog], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -1378,9 +1350,7 @@ class ModelsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1533,9 +1503,7 @@ class EnumsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1549,9 +1517,7 @@ class EnumsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1565,9 +1531,7 @@ class EnumsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1720,9 +1684,7 @@ class StringAndArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1736,9 +1698,7 @@ class StringAndArrayOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1752,9 +1712,7 @@ class StringAndArrayOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1907,9 +1865,7 @@ class MixedLiteralsOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1923,9 +1879,7 @@ class MixedLiteralsOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1939,9 +1893,7 @@ class MixedLiteralsOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -2094,9 +2046,7 @@ class MixedTypesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -2110,9 +2060,7 @@ class MixedTypesOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -2126,9 +2074,7 @@ class MixedTypesOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.

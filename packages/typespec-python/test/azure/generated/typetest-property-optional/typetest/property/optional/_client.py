@@ -36,7 +36,7 @@ from .operations import (
 )
 
 
-class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class OptionalClient:  # pylint: disable=too-many-instance-attributes
     """Illustrates models with optional properties.
 
     :ivar string: StringOperations operations

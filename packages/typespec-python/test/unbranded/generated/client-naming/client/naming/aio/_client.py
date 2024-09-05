@@ -18,7 +18,7 @@ from ._configuration import NamingClientConfiguration
 from .operations import ClientModelOperations, NamingClientOperationsMixin, UnionEnumOperations
 
 
-class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NamingClient(NamingClientOperationsMixin):
     """Describe changing names of types in a client with ``@clientName``.
 
     :ivar client_model: ClientModelOperations operations

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -37,8 +36,8 @@ from .._vendor import EmptyClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -46,7 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
+    async def put_empty(
         self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_empty.
@@ -62,9 +61,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_empty(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -78,9 +75,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_empty(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -93,9 +88,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.EmptyInput, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_empty(self, input: Union[_models.EmptyInput, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Is one of the following types: EmptyInput, JSON, IO[bytes] Required.

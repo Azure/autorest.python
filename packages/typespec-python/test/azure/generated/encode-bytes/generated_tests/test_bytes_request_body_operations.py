@@ -62,9 +62,9 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64_url(self, bytes_endpoint):
+    def test_base64url(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
-        response = client.request_body.base64_url(
+        response = client.request_body.base64url(
             value=bytes("bytes", encoding="utf-8"),
             content_type="str",
         )

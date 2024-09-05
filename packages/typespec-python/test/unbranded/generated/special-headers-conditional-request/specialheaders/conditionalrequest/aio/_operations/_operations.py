@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -31,14 +30,14 @@ from .._vendor import ConditionalRequestClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
-    async def post_if_match(  # pylint: disable=inconsistent-return-statements
+    async def post_if_match(
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
@@ -96,7 +95,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def post_if_none_match(  # pylint: disable=inconsistent-return-statements
+    async def post_if_none_match(
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -33,8 +32,8 @@ from ...operations._operations import build_property_get_request, build_property
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -57,7 +56,7 @@ class PropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
+    async def send(
         self, body: _models.JsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -73,9 +72,7 @@ class PropertyOperations:
         """
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -89,9 +86,7 @@ class PropertyOperations:
         """
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -105,9 +100,7 @@ class PropertyOperations:
         """
 
     @distributed_trace_async
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def send(self, body: Union[_models.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """send.
 
         :param body: Is one of the following types: JsonEncodedNameModel, JSON, IO[bytes] Required.

@@ -29,7 +29,7 @@ from .operations import (
 )
 
 
-class UnionClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class UnionClient:  # pylint: disable=too-many-instance-attributes
     """Describe scenarios for various combinations of unions.
 
     :ivar strings_only: StringsOnlyOperations operations

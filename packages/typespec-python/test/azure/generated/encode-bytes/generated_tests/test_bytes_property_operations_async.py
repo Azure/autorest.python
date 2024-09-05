@@ -37,9 +37,9 @@ class TestBytesPropertyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64_url(self, bytes_endpoint):
+    async def test_base64url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = await client.property.base64_url(
+        response = await client.property.base64url(
             body={"value": bytes("bytes", encoding="utf-8")},
         )
 
@@ -48,9 +48,9 @@ class TestBytesPropertyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64_url_array(self, bytes_endpoint):
+    async def test_base64url_array(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = await client.property.base64_url_array(
+        response = await client.property.base64url_array(
             body={"value": [bytes("bytes", encoding="utf-8")]},
         )
 

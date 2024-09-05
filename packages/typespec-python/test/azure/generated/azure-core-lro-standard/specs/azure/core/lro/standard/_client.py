@@ -19,7 +19,7 @@ from ._operations import StandardClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class StandardClient(StandardClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class StandardClient(StandardClientOperationsMixin):
     """Illustrates bodies templated with Azure Core with long-running operation.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

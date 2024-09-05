@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -63,7 +63,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -142,9 +142,7 @@ class Int32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -158,9 +156,7 @@ class Int32ValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -174,9 +170,7 @@ class Int32ValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
@@ -306,9 +300,7 @@ class Int64ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -322,9 +314,7 @@ class Int64ValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -338,9 +328,7 @@ class Int64ValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
@@ -470,9 +458,7 @@ class BooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -486,9 +472,7 @@ class BooleanValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -502,9 +486,7 @@ class BooleanValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[bool], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[bool], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [bool] type or a IO[bytes] type. Required.
@@ -634,9 +616,7 @@ class StringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -650,9 +630,7 @@ class StringValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -666,9 +644,7 @@ class StringValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[str], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [str] type or a IO[bytes] type. Required.
@@ -798,9 +774,7 @@ class Float32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[float], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -814,9 +788,7 @@ class Float32ValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -830,9 +802,7 @@ class Float32ValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[float], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
@@ -962,7 +932,7 @@ class DatetimeValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
@@ -978,9 +948,7 @@ class DatetimeValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -994,9 +962,7 @@ class DatetimeValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
@@ -1126,7 +1092,7 @@ class DurationValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
@@ -1142,9 +1108,7 @@ class DurationValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1158,9 +1122,7 @@ class DurationValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
@@ -1290,9 +1252,7 @@ class UnknownValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1306,9 +1266,7 @@ class UnknownValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1322,9 +1280,7 @@ class UnknownValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[Any], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[Any], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [Any] type or a IO[bytes] type. Required.
@@ -1454,7 +1410,7 @@ class ModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
@@ -1470,9 +1426,7 @@ class ModelValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1486,9 +1440,7 @@ class ModelValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
@@ -1618,9 +1570,7 @@ class NullableFloatValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[float], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1634,9 +1584,7 @@ class NullableFloatValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1650,9 +1598,7 @@ class NullableFloatValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[float], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [float] type or a IO[bytes] type. Required.
@@ -1782,9 +1728,7 @@ class NullableInt32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1798,9 +1742,7 @@ class NullableInt32ValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1814,9 +1756,7 @@ class NullableInt32ValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [int] type or a IO[bytes] type. Required.
@@ -1946,9 +1886,7 @@ class NullableBooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1962,9 +1900,7 @@ class NullableBooleanValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1978,9 +1914,7 @@ class NullableBooleanValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[bool], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[bool], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [bool] type or a IO[bytes] type. Required.
@@ -2110,9 +2044,7 @@ class NullableStringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2126,9 +2058,7 @@ class NullableStringValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2142,9 +2072,7 @@ class NullableStringValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[str], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [str] type or a IO[bytes] type. Required.
@@ -2274,7 +2202,7 @@ class NullableModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
@@ -2290,9 +2218,7 @@ class NullableModelValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2306,9 +2232,7 @@ class NullableModelValueOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -38,8 +37,8 @@ from .._vendor import UsageClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -47,9 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -63,9 +60,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -79,9 +74,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -95,9 +88,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @distributed_trace_async
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def input(self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """input.
 
         :param input: Is one of the following types: InputRecord, JSON, IO[bytes] Required.

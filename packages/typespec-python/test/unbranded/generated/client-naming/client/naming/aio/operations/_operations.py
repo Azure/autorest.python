@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -43,8 +42,8 @@ from .._vendor import NamingClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -67,9 +66,7 @@ class ClientModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -83,9 +80,7 @@ class ClientModelOperations:
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -99,9 +94,7 @@ class ClientModelOperations:
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -114,9 +107,7 @@ class ClientModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def client(self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """client.
 
         :param body: Is one of the following types: ClientModel, JSON, IO[bytes] Required.
@@ -172,7 +163,7 @@ class ClientModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
+    async def language(
         self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
@@ -188,9 +179,7 @@ class ClientModelOperations:
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -204,9 +193,7 @@ class ClientModelOperations:
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -219,9 +206,7 @@ class ClientModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def language(self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """language.
 
         :param body: Is one of the following types: PythonModel, JSON, IO[bytes] Required.
@@ -294,9 +279,7 @@ class UnionEnumOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def union_enum_name(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def union_enum_name(self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any) -> None:
         """union_enum_name.
 
         :param body: "value1" Required.
@@ -346,9 +329,7 @@ class UnionEnumOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def union_enum_member_name(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def union_enum_member_name(self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any) -> None:
         """union_enum_member_name.
 
         :param body: Known values are: "value1" and "value2". Required.
@@ -401,7 +382,7 @@ class UnionEnumOperations:
 
 class NamingClientOperationsMixin(NamingClientMixinABC):
 
-    async def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def client_name(self, **kwargs: Any) -> None:
         """client_name.
 
         :return: None
@@ -444,9 +425,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, client_name: str, **kwargs: Any
-    ) -> None:
+    async def parameter(self, *, client_name: str, **kwargs: Any) -> None:
         """parameter.
 
         :keyword client_name: Required.
@@ -493,7 +472,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
+    async def client(
         self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """client.
@@ -509,9 +488,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -525,9 +502,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -540,9 +515,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def client(self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """client.
 
         :param body: Is one of the following types: ClientNameModel, JSON, IO[bytes] Required.
@@ -598,7 +571,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
+    async def language(
         self, body: _models.LanguageClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
@@ -614,9 +587,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -630,9 +601,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -645,9 +614,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def language(self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """language.
 
         :param body: Is one of the following types: LanguageClientNameModel, JSON, IO[bytes] Required.
@@ -703,7 +670,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: _models.ClientNameAndJsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -719,7 +686,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -735,7 +702,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -750,7 +717,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: Union[_models.ClientNameAndJsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -808,9 +775,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def request(  # pylint: disable=inconsistent-return-statements
-        self, *, client_name: str, **kwargs: Any
-    ) -> None:
+    async def request(self, *, client_name: str, **kwargs: Any) -> None:
         """request.
 
         :keyword client_name: Required.
@@ -856,7 +821,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def response(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def response(self, **kwargs: Any) -> None:
         """response.
 
         :return: None

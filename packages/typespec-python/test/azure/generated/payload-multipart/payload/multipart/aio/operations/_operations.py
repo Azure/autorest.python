@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -40,8 +39,8 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -65,9 +64,7 @@ class FormDataOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def basic(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    async def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -78,7 +75,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def basic(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -89,9 +86,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def basic(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
-    ) -> None:
+    async def basic(self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Is either a MultiPartRequest type or a JSON type. Required.
@@ -144,9 +139,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def complex(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexPartsRequest, **kwargs: Any
-    ) -> None:
+    async def complex(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -157,7 +150,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def complex(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def complex(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -168,9 +161,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def complex(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ComplexPartsRequest, JSON], **kwargs: Any
-    ) -> None:
+    async def complex(self, body: Union[_models.ComplexPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Is either a ComplexPartsRequest type or a JSON type. Required.
@@ -223,9 +214,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def json_part(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.JsonPartRequest, **kwargs: Any
-    ) -> None:
+    async def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -236,7 +225,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def json_part(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def json_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -247,9 +236,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def json_part(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonPartRequest, JSON], **kwargs: Any
-    ) -> None:
+    async def json_part(self, body: Union[_models.JsonPartRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Is either a JsonPartRequest type or a JSON type. Required.
@@ -302,9 +289,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BinaryArrayPartsRequest, **kwargs: Any
-    ) -> None:
+    async def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -315,9 +300,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    async def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -328,9 +311,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BinaryArrayPartsRequest, JSON], **kwargs: Any
-    ) -> None:
+    async def binary_array_parts(self, body: Union[_models.BinaryArrayPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Is either a BinaryArrayPartsRequest type or a JSON type. Required.
@@ -383,9 +364,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiBinaryPartsRequest, **kwargs: Any
-    ) -> None:
+    async def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -396,9 +375,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    async def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -409,9 +386,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultiBinaryPartsRequest, JSON], **kwargs: Any
-    ) -> None:
+    async def multi_binary_parts(self, body: Union[_models.MultiBinaryPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Is either a MultiBinaryPartsRequest type or a JSON type. Required.
@@ -464,9 +439,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    async def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -477,9 +450,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    async def check_file_name_and_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -490,7 +461,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
+    async def check_file_name_and_content_type(
         self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -545,9 +516,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    async def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -558,9 +527,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, *, profile_image: FileType, **kwargs: Any
-    ) -> None:
+    async def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :keyword profile_image: Required.
@@ -571,9 +538,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any
-    ) -> None:
+    async def anonymous_model(self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Is one of the following types: JSON Required.
@@ -633,7 +598,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_specific_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -646,7 +611,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_specific_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -659,7 +624,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def file_with_http_part_specific_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_specific_content_type(  # pylint: disable=name-too-long
         self, body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -715,7 +680,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_required_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -728,7 +693,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_required_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -741,7 +706,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def file_with_http_part_required_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_required_content_type(  # pylint: disable=name-too-long
         self, body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
@@ -797,7 +762,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_optional_content_type(  # pylint: disable=name-too-long
         self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -810,7 +775,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_optional_content_type(  # pylint: disable=name-too-long
         self, body: JSON, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -823,7 +788,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def file_with_http_part_optional_content_type(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def file_with_http_part_optional_content_type(  # pylint: disable=name-too-long
         self, body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
@@ -879,9 +844,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def complex_with_http_part(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any
-    ) -> None:
+    async def complex_with_http_part(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -892,9 +855,7 @@ class FormDataOperations:
         """
 
     @overload
-    async def complex_with_http_part(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    async def complex_with_http_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -905,7 +866,7 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def complex_with_http_part(  # pylint: disable=inconsistent-return-statements
+    async def complex_with_http_part(
         self, body: Union[_models.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.

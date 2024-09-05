@@ -19,11 +19,10 @@ from ._operations import UnionClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from corehttp.credentials import TokenCredential
 
 
-class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class UnionClient(UnionClientOperationsMixin):
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Is either a

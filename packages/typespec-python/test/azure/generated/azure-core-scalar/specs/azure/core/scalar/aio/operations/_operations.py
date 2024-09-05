@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -39,8 +38,8 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -119,7 +118,7 @@ class AzureLocationScalarOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(self, body: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: str, **kwargs: Any) -> None:
         """put azureLocation value.
 
         :param body: _. Required.
@@ -288,7 +287,7 @@ class AzureLocationScalarOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def header(self, *, region: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def header(self, *, region: str, **kwargs: Any) -> None:
         """azureLocation value header.
 
         :keyword region: _. Required.
@@ -335,7 +334,7 @@ class AzureLocationScalarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def query(self, *, region: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def query(self, *, region: str, **kwargs: Any) -> None:
         """azureLocation value query.
 
         :keyword region: _. Required.

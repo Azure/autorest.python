@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -42,8 +41,8 @@ from .._vendor import SingleDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -107,9 +106,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -123,9 +120,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -139,9 +134,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -155,9 +148,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @distributed_trace_async
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_model.
 
         :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.
@@ -269,7 +260,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+    async def put_recursive_model(
         self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
@@ -285,9 +276,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_recursive_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -301,7 +290,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+    async def put_recursive_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
@@ -317,9 +306,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @distributed_trace_async
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_recursive_model(self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.

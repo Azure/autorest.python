@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -26,14 +25,14 @@ from .._vendor import UnionClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class UnionClientOperationsMixin(UnionClientMixinABC):
 
-    async def valid_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def valid_key(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.
 
         :return: None
@@ -76,7 +75,7 @@ class UnionClientOperationsMixin(UnionClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def valid_token(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def valid_token(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.
 
         :return: None

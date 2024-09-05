@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -91,8 +91,8 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -170,7 +170,7 @@ class BooleanOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.BooleanProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -186,9 +186,7 @@ class BooleanOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -202,9 +200,7 @@ class BooleanOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -217,9 +213,7 @@ class BooleanOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.BooleanProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: BooleanProperty, JSON, IO[bytes] Required.
@@ -348,9 +342,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -364,9 +356,7 @@ class StringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -380,9 +370,7 @@ class StringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -395,9 +383,7 @@ class StringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -526,9 +512,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -542,9 +526,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -558,9 +540,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -573,9 +553,7 @@ class BytesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -704,9 +682,7 @@ class IntOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.IntProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.IntProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -720,9 +696,7 @@ class IntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -736,9 +710,7 @@ class IntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -751,9 +723,7 @@ class IntOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IntProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IntProperty, JSON, IO[bytes] Required.
@@ -882,9 +852,7 @@ class FloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FloatProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.FloatProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -898,9 +866,7 @@ class FloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -914,9 +880,7 @@ class FloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -929,9 +893,7 @@ class FloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.FloatProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: FloatProperty, JSON, IO[bytes] Required.
@@ -1060,7 +1022,7 @@ class DecimalOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DecimalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1076,9 +1038,7 @@ class DecimalOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1092,9 +1052,7 @@ class DecimalOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1107,9 +1065,7 @@ class DecimalOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DecimalProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DecimalProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DecimalProperty, JSON, IO[bytes] Required.
@@ -1238,7 +1194,7 @@ class Decimal128Operations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.Decimal128Property, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1254,9 +1210,7 @@ class Decimal128Operations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1270,9 +1224,7 @@ class Decimal128Operations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1285,9 +1237,7 @@ class Decimal128Operations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Decimal128Property, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.Decimal128Property, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: Decimal128Property, JSON, IO[bytes] Required.
@@ -1416,7 +1366,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1432,9 +1382,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1448,9 +1396,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1463,9 +1409,7 @@ class DatetimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1594,7 +1538,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1610,9 +1554,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1626,9 +1568,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1641,9 +1581,7 @@ class DurationOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1772,9 +1710,7 @@ class EnumOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.EnumProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.EnumProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1788,9 +1724,7 @@ class EnumOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1804,9 +1738,7 @@ class EnumOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1819,9 +1751,7 @@ class EnumOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.EnumProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.EnumProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: EnumProperty, JSON, IO[bytes] Required.
@@ -1950,7 +1880,7 @@ class ExtensibleEnumOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtensibleEnumProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1966,9 +1896,7 @@ class ExtensibleEnumOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1982,9 +1910,7 @@ class ExtensibleEnumOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1997,9 +1923,7 @@ class ExtensibleEnumOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtensibleEnumProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtensibleEnumProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtensibleEnumProperty, JSON, IO[bytes]
@@ -2129,9 +2053,7 @@ class ModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ModelProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.ModelProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2145,9 +2067,7 @@ class ModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2161,9 +2081,7 @@ class ModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2176,9 +2094,7 @@ class ModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ModelProperty, JSON, IO[bytes] Required.
@@ -2308,7 +2224,7 @@ class CollectionsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.CollectionsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2324,9 +2240,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2340,9 +2254,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2355,9 +2267,7 @@ class CollectionsStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsStringProperty, JSON, IO[bytes]
@@ -2487,7 +2397,7 @@ class CollectionsIntOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.CollectionsIntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2503,9 +2413,7 @@ class CollectionsIntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2519,9 +2427,7 @@ class CollectionsIntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2534,9 +2440,7 @@ class CollectionsIntOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsIntProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.CollectionsIntProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsIntProperty, JSON, IO[bytes]
@@ -2667,7 +2571,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2683,9 +2587,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2699,9 +2601,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2714,9 +2614,7 @@ class CollectionsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: CollectionsModelProperty, JSON, IO[bytes]
@@ -2847,7 +2745,7 @@ class DictionaryStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DictionaryStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2863,9 +2761,7 @@ class DictionaryStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2879,9 +2775,7 @@ class DictionaryStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2894,9 +2788,7 @@ class DictionaryStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DictionaryStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DictionaryStringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DictionaryStringProperty, JSON, IO[bytes]
@@ -3026,9 +2918,7 @@ class NeverOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.NeverProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: _models.NeverProperty, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3042,9 +2932,7 @@ class NeverOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3058,9 +2946,7 @@ class NeverOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3073,9 +2959,7 @@ class NeverOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NeverProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.NeverProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: NeverProperty, JSON, IO[bytes] Required.
@@ -3204,7 +3088,7 @@ class UnknownStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnknownStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3220,9 +3104,7 @@ class UnknownStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3236,9 +3118,7 @@ class UnknownStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3251,9 +3131,7 @@ class UnknownStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnknownStringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnknownStringProperty, JSON, IO[bytes]
@@ -3383,7 +3261,7 @@ class UnknownIntOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnknownIntProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3399,9 +3277,7 @@ class UnknownIntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3415,9 +3291,7 @@ class UnknownIntOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3430,9 +3304,7 @@ class UnknownIntOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownIntProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnknownIntProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnknownIntProperty, JSON, IO[bytes] Required.
@@ -3561,7 +3433,7 @@ class UnknownDictOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnknownDictProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3577,9 +3449,7 @@ class UnknownDictOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3593,9 +3463,7 @@ class UnknownDictOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3608,9 +3476,7 @@ class UnknownDictOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownDictProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnknownDictProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnknownDictProperty, JSON, IO[bytes]
@@ -3740,7 +3606,7 @@ class UnknownArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnknownArrayProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3756,9 +3622,7 @@ class UnknownArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3772,9 +3636,7 @@ class UnknownArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3787,9 +3649,7 @@ class UnknownArrayOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnknownArrayProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnknownArrayProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnknownArrayProperty, JSON, IO[bytes]
@@ -3919,7 +3779,7 @@ class StringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3935,9 +3795,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3951,9 +3809,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3966,9 +3822,7 @@ class StringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: StringLiteralProperty, JSON, IO[bytes]
@@ -4098,7 +3952,7 @@ class IntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4114,9 +3968,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4130,9 +3982,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4145,9 +3995,7 @@ class IntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -4276,7 +4124,7 @@ class FloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4292,9 +4140,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4308,9 +4154,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4323,9 +4167,7 @@ class FloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: FloatLiteralProperty, JSON, IO[bytes]
@@ -4455,7 +4297,7 @@ class BooleanLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4471,9 +4313,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4487,9 +4327,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4502,9 +4340,7 @@ class BooleanLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes]
@@ -4635,7 +4471,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4651,9 +4487,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4667,9 +4501,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4682,9 +4514,7 @@ class UnionStringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4815,7 +4645,7 @@ class UnionIntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4831,9 +4661,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4847,9 +4675,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4862,9 +4688,7 @@ class UnionIntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes]
@@ -4995,7 +4819,7 @@ class UnionFloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5011,9 +4835,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5027,9 +4849,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5042,9 +4862,7 @@ class UnionFloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5174,7 +4992,7 @@ class UnionEnumValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.UnionEnumValueProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5190,9 +5008,7 @@ class UnionEnumValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5206,9 +5022,7 @@ class UnionEnumValueOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5221,9 +5035,7 @@ class UnionEnumValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionEnumValueProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.UnionEnumValueProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: UnionEnumValueProperty, JSON, IO[bytes]

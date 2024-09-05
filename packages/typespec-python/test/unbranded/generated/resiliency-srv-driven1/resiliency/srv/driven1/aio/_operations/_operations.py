@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -30,7 +29,7 @@ from .._vendor import ResiliencyServiceDrivenClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -88,9 +87,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
             return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
-    async def from_one_required(  # pylint: disable=inconsistent-return-statements
-        self, *, parameter: str, **kwargs: Any
-    ) -> None:
+    async def from_one_required(self, *, parameter: str, **kwargs: Any) -> None:
         """Test that currently accepts one required parameter, will be updated in next spec to accept a
         new optional parameter as well.
 
@@ -141,9 +138,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def from_one_optional(  # pylint: disable=inconsistent-return-statements
-        self, *, parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def from_one_optional(self, *, parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test that currently accepts one optional parameter, will be updated in next spec to accept a
         new optional parameter as well.
 

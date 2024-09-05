@@ -27,7 +27,7 @@ from .operations import (
 )
 
 
-class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class ScalarClient:  # pylint: disable=too-many-instance-attributes
     """ScalarClient.
 
     :ivar string: StringOperations operations

@@ -19,9 +19,7 @@ from ._configuration import SingleDiscriminatorClientConfiguration
 from ._operations import SingleDiscriminatorClientOperationsMixin
 
 
-class SingleDiscriminatorClient(
-    SingleDiscriminatorClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class SingleDiscriminatorClient(SingleDiscriminatorClientOperationsMixin):
     """Illustrates inheritance with single discriminator.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

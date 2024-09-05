@@ -18,7 +18,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import PropertyOperations
 
 
-class JsonClient:  # pylint: disable=client-accepts-api-version-keyword
+class JsonClient:
     """Projection.
 
     :ivar property: PropertyOperations operations

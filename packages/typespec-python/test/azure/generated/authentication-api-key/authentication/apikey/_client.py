@@ -20,7 +20,7 @@ from ._operations import ApiKeyClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ApiKeyClient(ApiKeyClientOperationsMixin):
     """Illustrates clients generated with ApiKey authentication.
 
     :param credential: Credential used to authenticate requests to the service. Required.

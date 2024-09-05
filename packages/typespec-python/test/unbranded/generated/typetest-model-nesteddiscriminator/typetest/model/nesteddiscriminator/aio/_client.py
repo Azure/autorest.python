@@ -18,9 +18,7 @@ from ._configuration import NestedDiscriminatorClientConfiguration
 from ._operations import NestedDiscriminatorClientOperationsMixin
 
 
-class NestedDiscriminatorClient(
-    NestedDiscriminatorClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class NestedDiscriminatorClient(NestedDiscriminatorClientOperationsMixin):
     """Illustrates multiple level inheritance with multiple discriminators.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

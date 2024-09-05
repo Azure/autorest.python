@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -43,8 +42,8 @@ from .._vendor import EnumDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+    from typing import MutableMapping  # type: ignore
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -108,7 +107,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
+    async def put_extensible_model(
         self, input: _models.Dog, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
@@ -124,9 +123,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_extensible_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
@@ -140,7 +137,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
+    async def put_extensible_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
@@ -156,9 +153,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @distributed_trace_async
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_extensible_model(self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
@@ -384,7 +379,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
+    async def put_fixed_model(
         self, input: _models.Snake, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
@@ -400,9 +395,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -416,9 +409,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -432,9 +423,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @distributed_trace_async
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.

@@ -18,7 +18,7 @@ from ._configuration import DatetimeClientConfiguration
 from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
-class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
+class DatetimeClient:
     """Test for encode decorator on datetime.
 
     :ivar query: QueryOperations operations

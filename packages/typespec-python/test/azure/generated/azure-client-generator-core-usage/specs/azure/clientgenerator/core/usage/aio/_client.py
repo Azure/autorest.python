@@ -19,7 +19,7 @@ from ._configuration import UsageClientConfiguration
 from .operations import ModelInOperationOperations
 
 
-class UsageClient:  # pylint: disable=client-accepts-api-version-keyword
+class UsageClient:
     """Test for internal decorator.
 
     :ivar model_in_operation: ModelInOperationOperations operations
