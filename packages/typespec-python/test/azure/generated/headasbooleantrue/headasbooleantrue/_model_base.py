@@ -25,6 +25,7 @@ from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
 from azure.core.serialization import _Null
+import xml.etree.ElementTree as ET
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

@@ -25,6 +25,7 @@ from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.serialization import _Null
+import xml.etree.ElementTree as ET
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
