@@ -112,7 +112,7 @@ class ModelType(BaseType):  # pylint: disable=too-many-instance-attributes, too-
     @property
     def is_xml(self) -> bool:
         return self.yaml_data.get("isXml", False)
-    
+
     @property
     def xml_metadata(self) -> Optional[Dict[str, Union[str, bool]]]:
         return self.yaml_data.get("xmlMetadata")

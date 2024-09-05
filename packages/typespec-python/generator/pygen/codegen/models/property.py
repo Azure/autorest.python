@@ -95,7 +95,7 @@ class Property(BaseModel):  # pylint: disable=too-many-instance-attributes
         if self.is_enum_discriminator:
             return self.is_polymorphic and self.client_default_value is None
         return self.is_discriminator and self.is_polymorphic and cast(ConstantType, self.type).value is None
-    
+
     @property
     def xml_metadata(self) -> Optional[Dict[str, Union[str, bool]]]:
         return self.yaml_data.get("xmlMetadata")
