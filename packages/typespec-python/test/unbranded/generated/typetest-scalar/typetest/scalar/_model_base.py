@@ -19,9 +19,9 @@ import enum
 import email.utils
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
+import xml.etree.ElementTree as ET
 from typing_extensions import Self
 import isodate
-import xml.etree.ElementTree as ET
 from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
