@@ -504,7 +504,7 @@ class Model(_MyMutableMapping):
             for rest_field in self._attr_to_rest_field.values()
             if rest_field._default is not _UNSET
         }
-        if args:
+        if args:  # pylint: disable=too-many-nested-blocks
             if isinstance(args[0], ET.Element):
                 existed_attr_keys = []
                 model_meta = getattr(self, "_xml", {})
@@ -534,10 +534,10 @@ class Model(_MyMutableMapping):
                         if len(items) > 0:
                             existed_attr_keys.append(xml_name)
                             dict_to_pass[rf._rest_name] = _deserialize(rf._type, items)
-                            continue
                         continue
+
                     # text element is primitive type
-                    elif prop_meta.get("text", False):
+                    if prop_meta.get("text", False):
                         if args[0].text is not None:
                             dict_to_pass[rf._rest_name] = _deserialize(rf._type, args[0].text)
                         continue
@@ -722,7 +722,7 @@ def _deserialize_sequence(
     if obj is None:
         return obj
     if isinstance(obj, ET.Element):
-        obj = [child for child in obj]
+        obj = list(obj)
     return type(obj)(_deserialize(deserializer, entry, module) for entry in obj)
 
 
@@ -847,7 +847,7 @@ def _get_deserialize_callable_from_annotation(  # pylint: disable=R0911, R0915, 
 def _deserialize_with_callable(
     deserializer: typing.Optional[typing.Callable[[typing.Any], typing.Any]],
     value: typing.Any,
-):
+):  # pylint: disable=too-many-return-statements
     try:
         if value is None or isinstance(value, _Null):
             return None
@@ -1099,7 +1099,7 @@ def _get_wrapped_element(
     wrapped_element = _create_xml_element(
         meta.get("name") if meta else None, meta.get("prefix") if meta else None, meta.get("ns") if meta else None
     )
-    if isinstance(v, list) or isinstance(v, dict):
+    if isinstance(v, (dict, list)):
         wrapped_element.extend(_get_element(v, exclude_readonly, meta))
     elif _is_model(v):
         _get_element(v, exclude_readonly, meta, wrapped_element)
@@ -1111,12 +1111,11 @@ def _get_wrapped_element(
 def _get_primitive_type_value(v) -> str:
     if v is True:
         return "true"
-    elif v is False:
+    if v is False:
         return "false"
-    elif isinstance(v, _Null):
+    if isinstance(v, _Null):
         return ""
-    else:
-        return str(v)
+    return str(v)
 
 
 def _create_xml_element(tag, prefix=None, ns=None):
@@ -1124,8 +1123,7 @@ def _create_xml_element(tag, prefix=None, ns=None):
         ET.register_namespace(prefix, ns)
     if ns:
         return ET.Element("{" + ns + "}" + tag)
-    else:
-        return ET.Element(tag)
+    return ET.Element(tag)
 
 
 def _deserialize_xml(
@@ -1138,7 +1136,7 @@ def _deserialize_xml(
 
 def _convert_element(e: ET.Element):
     # dict case
-    if len(e.attrib) > 0 or len(set([child.tag for child in e])) > 1:
+    if len(e.attrib) > 0 or len({child.tag for child in e}) > 1:
         dict_result: typing.Dict[str, typing.Any] = {}
         for child in e:
             if dict_result.get(child.tag) is not None:
@@ -1151,11 +1149,10 @@ def _convert_element(e: ET.Element):
         dict_result.update(e.attrib)
         return dict_result
     # array case
-    elif len(e) > 0:
+    if len(e) > 0:
         array_result: typing.List[typing.Any] = []
         for child in e:
             array_result.append(_convert_element(child))
         return array_result
     # primitive case
-    else:
-        return e.text
+    return e.text
