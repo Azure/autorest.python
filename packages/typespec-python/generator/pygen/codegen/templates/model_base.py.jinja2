@@ -318,7 +318,7 @@ def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] =
         return _deserialize_int_as_str
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    return _DESERIALIZE_MAPPING.get(annotation)
+    return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
 
 
 def _get_type_alias_type(module_name: str, alias_name: str):
@@ -530,7 +530,7 @@ class Model(_MyMutableMapping):
                             xml_ns = prop_meta.get("itemNs")
                             if xml_ns:
                                 xml_name = "{" + xml_ns + "}" + xml_name
-                        items = args[0].findall(xml_name)
+                        items = args[0].findall(xml_name)  # pyright: ignore
                         if len(items) > 0:
                             existed_attr_keys.append(xml_name)
                             dict_to_pass[rf._rest_name] = _deserialize(rf._type, items)
@@ -631,7 +631,7 @@ class Model(_MyMutableMapping):
             if data.get(xml_name) is not None:
                 discriminator_value = data.get(xml_name)
             else:
-                discriminator_value = data.find(xml_name).text
+                discriminator_value = data.find(xml_name).text  # pyright: ignore
         else:
             discriminator_value = data.get(discriminator._rest_name)
         mapped_cls = cls.__mapping__.get(discriminator_value, cls)  # pyright: ignore # pylint: disable=no-member
@@ -1019,6 +1019,7 @@ def _get_element(
                 model_meta.get("ns"),
             )
 
+        readonly_props = []
         if exclude_readonly:
             readonly_props = [p._rest_name for p in o._attr_to_rest_field.values() if _is_readonly(p)]
 
@@ -1051,8 +1052,8 @@ def _get_element(
             elif prop_meta.get("attribute", False):
                 xml_name = prop_meta.get("name", k)
                 if prop_meta.get("ns"):
-                    ET.register_namespace(prop_meta.get("prefix"), prop_meta.get("ns"))
-                    xml_name = "{" + prop_meta.get("ns") + "}" + xml_name
+                    ET.register_namespace(prop_meta.get("prefix"), prop_meta.get("ns"))  # pyright: ignore
+                    xml_name = "{" + prop_meta.get("ns") + "}" + xml_name  # pyright: ignore
                 # attribute should be primitive type
                 wrapped_element.set(xml_name, _get_primitive_type_value(v))
             else:
