@@ -966,7 +966,7 @@ def rest_field(
     default: typing.Any = _UNSET,
     format: typing.Optional[str] = None,
     is_multipart_file_input: bool = False,
-    xml: typing.Dict[str, typing.Any] = None,
+    xml: typing.Optional[typing.Dict[str, typing.Any]] = None,
 ) -> typing.Any:
     return _RestField(
         name=name,
