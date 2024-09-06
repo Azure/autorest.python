@@ -509,7 +509,7 @@ class Model(_MyMutableMapping):
                 existed_attr_keys = []
                 model_meta = getattr(self, "_xml", {})
 
-                for _, rf in self._attr_to_rest_field.items():
+                for rf in self._attr_to_rest_field.values():
                     prop_meta = getattr(rf, "_xml", {})
                     xml_name = prop_meta.get("name", rf._rest_name)
                     xml_ns = prop_meta.get("ns", model_meta.get("ns", None))
