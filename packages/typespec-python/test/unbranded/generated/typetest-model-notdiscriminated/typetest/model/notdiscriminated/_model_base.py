@@ -904,7 +904,7 @@ class _RestField:
         default: typing.Any = _UNSET,
         format: typing.Optional[str] = None,
         is_multipart_file_input: bool = False,
-        xml: typing.Optional[typing.Dict[str, typing.Any]] = {},  # pylint: dangerous-default-value
+        xml: typing.Optional[typing.Dict[str, typing.Any]] = {},  # pylint: disable=dangerous-default-value
     ):
         self._type = type
         self._rest_name_input = name
@@ -966,7 +966,7 @@ def rest_field(
     default: typing.Any = _UNSET,
     format: typing.Optional[str] = None,
     is_multipart_file_input: bool = False,
-    xml: typing.Dict[str, typing.Any] = {},  # pylint: dangerous-default-value
+    xml: typing.Dict[str, typing.Any] = {},  # pylint: disable=dangerous-default-value
 ) -> typing.Any:
     return _RestField(
         name=name,
@@ -984,7 +984,7 @@ def rest_discriminator(
     name: typing.Optional[str] = None,
     type: typing.Optional[typing.Callable] = None,  # pylint: disable=redefined-builtin
     visibility: typing.Optional[typing.List[str]] = None,
-    xml: typing.Optional[typing.Dict[str, typing.Any]] = {},  # pylint: dangerous-default-value
+    xml: typing.Optional[typing.Dict[str, typing.Any]] = {},  # pylint: disable=dangerous-default-value
 ) -> typing.Any:
     return _RestField(name=name, type=type, is_discriminator=True, visibility=visibility, xml=xml)
 
