@@ -4,7 +4,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-# pylint: disable=protected-access, arguments-differ, signature-differs, broad-except
+# pylint: disable=protected-access, arguments-differ, signature-differs, broad-except, too-many-lines
 
 import copy
 import calendar
@@ -21,11 +21,11 @@ from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 from typing_extensions import Self
 import isodate
+import xml.etree.ElementTree as ET
 from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
 from azure.core.serialization import _Null
-import xml.etree.ElementTree as ET
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -124,7 +124,7 @@ def _serialize_datetime(o, format: typing.Optional[str] = None):
 
 def _is_readonly(p):
     try:
-        return p._visibility == ["read"]  # pylint: disable=protected-access
+        return p._visibility == ["read"]
     except AttributeError:
         return False
 
@@ -606,10 +606,8 @@ class Model(_MyMutableMapping):
     @classmethod
     def _get_discriminator(cls, exist_discriminators) -> typing.Optional["_RestField"]:
         for v in cls.__dict__.values():
-            if (
-                isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators
-            ):  # pylint: disable=protected-access
-                return v  # pylint: disable=protected-access
+            if isinstance(v, _RestField) and v._is_discriminator and v._rest_name not in exist_discriminators:
+                return v
         return None
 
     @classmethod
@@ -635,7 +633,7 @@ class Model(_MyMutableMapping):
         else:
             discriminator_value = data.get(discriminator._rest_name)
         mapped_cls = cls.__mapping__.get(discriminator_value, cls)  # pyright: ignore # pylint: disable=no-member
-        return mapped_cls._deserialize(data, exist_discriminators)  # pylint: disable=protected-access
+        return mapped_cls._deserialize(data, exist_discriminators)
 
     def as_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
         """Return a dict that can be JSONify using json.dump.
@@ -1131,11 +1129,11 @@ def _create_xml_element(tag, prefix=None, ns=None):
 
 
 def _deserialize_xml(
-    model: Model,
+    deserializer: typing.Any,
     value: str,
 ) -> typing.Any:
     element = ET.fromstring(value)
-    return _deserialize(model, element)
+    return _deserialize(deserializer, element)
 
 
 def _convert_element(e: ET.Element):
