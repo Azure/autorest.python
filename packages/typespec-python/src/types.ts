@@ -258,6 +258,13 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
+    if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.Error") {
+        return {
+            type: "sdkcore",
+            name: "HttpResponseError",
+            submodule: "exceptions",
+        };
+    }
     const parents: Record<string, any>[] = [];
     const newValue = {
         type: type.kind,
