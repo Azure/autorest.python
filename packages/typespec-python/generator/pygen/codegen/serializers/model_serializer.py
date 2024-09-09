@@ -251,6 +251,9 @@ class DpgModelSerializer(_ModelSerializer):
         elif hasattr(prop.type, "encode") and prop.type.encode:  # type: ignore
             args.append(f'format="{prop.type.encode}"')  # type: ignore
 
+        if prop.xml_metadata:
+            args.append(f"xml={prop.xml_metadata}")
+
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
         type_ignore = prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
         return (

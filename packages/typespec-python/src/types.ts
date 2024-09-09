@@ -15,6 +15,8 @@ import {
     SdkDurationType,
     SdkCredentialType,
     SdkServiceOperation,
+    UsageFlags,
+    SdkModelPropertyType,
     SdkEndpointType,
 } from "@azure-tools/typespec-client-generator-core";
 import { dump } from "js-yaml";
@@ -213,6 +215,7 @@ function addDisableGenerationMap(type: SdkType): void {
 
 function emitProperty<TServiceOperation extends SdkServiceOperation>(
     context: PythonSdkContext<TServiceOperation>,
+    model: SdkModelType,
     property: SdkBodyModelPropertyType,
 ): Record<string, any> {
     const isMultipartFileInput = property.multipartOptions?.isFilePart;
@@ -241,6 +244,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
         isDiscriminator: property.discriminator,
         flatten: property.flatten,
         isMultipartFileInput: isMultipartFileInput,
+        xmlMetadata: model.usage & UsageFlags.Xml ? getXmlMetadata(property) : undefined,
     };
 }
 
@@ -268,13 +272,15 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         internal: type.access === "internal",
         crossLanguageDefinitionId: type.crossLanguageDefinitionId,
         usage: type.usage,
+        isXml: type.usage & UsageFlags.Xml ? true : false,
+        xmlMetadata: type.usage & UsageFlags.Xml ? getXmlMetadata(type) : undefined,
     };
 
     typesMap.set(type, newValue);
     newValue.parents = type.baseModel ? [getType(context, type.baseModel)] : newValue.parents;
     for (const property of type.properties.values()) {
         if (property.kind === "property") {
-            newValue.properties.push(emitProperty(context, property));
+            newValue.properties.push(emitProperty(context, type, property));
             // type for base discriminator returned by TCGC changes from constant to string while
             // autorest treat all discriminator as constant type, so we need to change to constant type here
             if (type.discriminatedSubtypes && property.discriminator) {
@@ -488,4 +494,56 @@ export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
         context.__endpointPathParameters!.push(params.at(-1)!);
     }
     return params;
+}
+
+function getXmlMetadata(type: SdkType | SdkModelPropertyType): Record<string, any> {
+    const xmlMetadata: Record<string, any> = {};
+    const xmlDecorators = type.decorators.filter(
+        (x) => x.name.startsWith("TypeSpec.Xml.") || x.name.startsWith("TypeSpec.@encodedName"),
+    );
+    for (const decorator of xmlDecorators) {
+        switch (decorator.name) {
+            case "TypeSpec.@encodedName":
+                if (decorator.arguments["mimeType"] === "application/xml") {
+                    xmlMetadata["name"] = decorator.arguments["name"];
+                    break;
+                }
+                continue;
+            case "TypeSpec.Xml.@attribute":
+                xmlMetadata["attribute"] = true;
+                break;
+            case "TypeSpec.Xml.@name":
+                xmlMetadata["name"] = decorator.arguments["name"];
+                break;
+            case "TypeSpec.Xml.@ns":
+                if (decorator.arguments["ns"].kind === "enumvalue") {
+                    xmlMetadata["namespace"] = (decorator.arguments["ns"] as SdkEnumValueType).value;
+                    xmlMetadata["prefix"] = (decorator.arguments["ns"] as SdkEnumValueType).name;
+                } else {
+                    xmlMetadata["namespace"] = decorator.arguments["ns"];
+                    xmlMetadata["prefix"] = decorator.arguments["prefix"];
+                }
+                break;
+            case "TypeSpec.Xml.@unwrapped":
+                if (type.kind === "property" && type.type.kind === "array") {
+                    xmlMetadata["unwrapped"] = true;
+                } else {
+                    xmlMetadata["text"] = true;
+                }
+                break;
+        }
+    }
+    // add item metadata for array
+    if (type.kind === "property" && type.type.kind === "array" && type.type.valueType.kind !== "model") {
+        const itemMetadata = getXmlMetadata(type.type.valueType);
+        // if array item is a primitive type, we need to use itemsName to change the name
+        if (Object.keys(itemMetadata).length > 0) {
+            xmlMetadata["itemsName"] = itemMetadata["name"];
+            xmlMetadata["itemsNs"] = itemMetadata["namespace"];
+            xmlMetadata["itemsPrefix"] = itemMetadata["prefix"];
+        } else if (!xmlMetadata["unwrapped"]) {
+            xmlMetadata["itemsName"] = type.type.valueType.kind;
+        }
+    }
+    return xmlMetadata;
 }
