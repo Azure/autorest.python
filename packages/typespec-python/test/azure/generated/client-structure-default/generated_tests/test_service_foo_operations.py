@@ -14,7 +14,7 @@ from testpreparer import ServiceClientTestBase, ServicePreparer
 class TestServiceFooOperations(ServiceClientTestBase):
     @ServicePreparer()
     @recorded_by_proxy
-    def test_three(self, service_endpoint):
+    def test_foo_three(self, service_endpoint):
         client = self.create_client(endpoint=service_endpoint)
         response = client.foo.three()
 
@@ -23,7 +23,7 @@ class TestServiceFooOperations(ServiceClientTestBase):
 
     @ServicePreparer()
     @recorded_by_proxy
-    def test_four(self, service_endpoint):
+    def test_foo_four(self, service_endpoint):
         client = self.create_client(endpoint=service_endpoint)
         response = client.foo.four()
 

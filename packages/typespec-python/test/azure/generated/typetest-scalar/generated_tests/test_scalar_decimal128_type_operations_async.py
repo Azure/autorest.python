@@ -15,7 +15,7 @@ from testpreparer_async import ScalarClientTestBaseAsync
 class TestScalarDecimal128TypeOperationsAsync(ScalarClientTestBaseAsync):
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_response_body(self, scalar_endpoint):
+    async def test_decimal128_type_response_body(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_type.response_body()
 
@@ -24,7 +24,7 @@ class TestScalarDecimal128TypeOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_request_body(self, scalar_endpoint):
+    async def test_decimal128_type_request_body(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_type.request_body(
             body=0.0,
@@ -36,7 +36,7 @@ class TestScalarDecimal128TypeOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_request_parameter(self, scalar_endpoint):
+    async def test_decimal128_type_request_parameter(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_type.request_parameter(
             value=0.0,

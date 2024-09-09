@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalPlainTimeOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_plain_time_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_time.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalPlainTimeOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_plain_time_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_time.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalPlainTimeOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_plain_time_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_time.put_all(
             body={"property": "12:30:00"},
@@ -43,7 +43,7 @@ class TestOptionalPlainTimeOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_plain_time_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_time.put_default(
             body={"property": "12:30:00"},

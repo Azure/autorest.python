@@ -67,3 +67,32 @@ class Uint32AsStringProperty(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, **kwargs)
+
+
+class Uint8AsStringProperty(_model_base.Model):
+    """Uint8AsStringProperty.
+
+
+    :ivar value: Required.
+    :vartype value: int
+    """
+
+    value: int = rest_field(format="str")
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: int,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)

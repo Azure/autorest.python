@@ -14,7 +14,7 @@ from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
 class TestValueTypesBooleanOperations(ValueTypesClientTestBase):
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
+    def test_boolean_get(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.boolean.get()
 
@@ -23,7 +23,7 @@ class TestValueTypesBooleanOperations(ValueTypesClientTestBase):
 
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
+    def test_boolean_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.boolean.put(
             body={"property": bool},

@@ -14,7 +14,7 @@ from testpreparer import ContentNegotiationClientTestBase, ContentNegotiationPre
 class TestContentNegotiationDifferentBodyOperations(ContentNegotiationClientTestBase):
     @ContentNegotiationPreparer()
     @recorded_by_proxy
-    def test_get_avatar_as_png(self, contentnegotiation_endpoint):
+    def test_different_body_get_avatar_as_png(self, contentnegotiation_endpoint):
         client = self.create_client(endpoint=contentnegotiation_endpoint)
         response = client.different_body.get_avatar_as_png(
             accept="image/png",
@@ -25,7 +25,7 @@ class TestContentNegotiationDifferentBodyOperations(ContentNegotiationClientTest
 
     @ContentNegotiationPreparer()
     @recorded_by_proxy
-    def test_get_avatar_as_json(self, contentnegotiation_endpoint):
+    def test_different_body_get_avatar_as_json(self, contentnegotiation_endpoint):
         client = self.create_client(endpoint=contentnegotiation_endpoint)
         response = client.different_body.get_avatar_as_json(
             accept="application/json",

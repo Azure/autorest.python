@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalCollectionsByteOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_collections_byte_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_byte.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalCollectionsByteOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_default(self, optional_endpoint):
+    async def test_collections_byte_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_byte.get_default()
 
@@ -33,7 +33,7 @@ class TestOptionalCollectionsByteOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_collections_byte_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_byte.put_all(
             body={"property": [bytes("bytes", encoding="utf-8")]},
@@ -44,7 +44,7 @@ class TestOptionalCollectionsByteOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_default(self, optional_endpoint):
+    async def test_collections_byte_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_byte.put_default(
             body={"property": [bytes("bytes", encoding="utf-8")]},

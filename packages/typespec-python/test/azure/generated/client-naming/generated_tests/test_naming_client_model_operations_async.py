@@ -15,7 +15,7 @@ from testpreparer_async import NamingClientTestBaseAsync
 class TestNamingClientModelOperationsAsync(NamingClientTestBaseAsync):
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_client(self, naming_endpoint):
+    async def test_client_model_client(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
         response = await client.client_model.client(
             body={"defaultName": bool},
@@ -26,7 +26,7 @@ class TestNamingClientModelOperationsAsync(NamingClientTestBaseAsync):
 
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_language(self, naming_endpoint):
+    async def test_client_model_language(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
         response = await client.client_model.language(
             body={"defaultName": bool},

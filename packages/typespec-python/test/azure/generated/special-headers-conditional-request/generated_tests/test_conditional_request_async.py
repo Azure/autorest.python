@@ -30,3 +30,21 @@ class TestConditionalRequestAsync(ConditionalRequestClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @ConditionalRequestPreparer()
+    @recorded_by_proxy_async
+    async def test_head_if_modified_since(self, conditionalrequest_endpoint):
+        client = self.create_async_client(endpoint=conditionalrequest_endpoint)
+        response = await client.head_if_modified_since()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @ConditionalRequestPreparer()
+    @recorded_by_proxy_async
+    async def test_post_if_unmodified_since(self, conditionalrequest_endpoint):
+        client = self.create_async_client(endpoint=conditionalrequest_endpoint)
+        response = await client.post_if_unmodified_since()
+
+        # please add some check logic here by yourself
+        # ...

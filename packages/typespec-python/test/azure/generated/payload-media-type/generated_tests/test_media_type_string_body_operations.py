@@ -14,7 +14,7 @@ from testpreparer import MediaTypeClientTestBase, MediaTypePreparer
 class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
     @MediaTypePreparer()
     @recorded_by_proxy
-    def test_send_as_text(self, mediatype_endpoint):
+    def test_string_body_send_as_text(self, mediatype_endpoint):
         client = self.create_client(endpoint=mediatype_endpoint)
         response = client.string_body.send_as_text(
             text="str",
@@ -26,7 +26,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
 
     @MediaTypePreparer()
     @recorded_by_proxy
-    def test_get_as_text(self, mediatype_endpoint):
+    def test_string_body_get_as_text(self, mediatype_endpoint):
         client = self.create_client(endpoint=mediatype_endpoint)
         response = client.string_body.get_as_text()
 
@@ -35,7 +35,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
 
     @MediaTypePreparer()
     @recorded_by_proxy
-    def test_send_as_json(self, mediatype_endpoint):
+    def test_string_body_send_as_json(self, mediatype_endpoint):
         client = self.create_client(endpoint=mediatype_endpoint)
         response = client.string_body.send_as_json(
             text="str",
@@ -47,7 +47,7 @@ class TestMediaTypeStringBodyOperations(MediaTypeClientTestBase):
 
     @MediaTypePreparer()
     @recorded_by_proxy
-    def test_get_as_json(self, mediatype_endpoint):
+    def test_string_body_get_as_json(self, mediatype_endpoint):
         client = self.create_client(endpoint=mediatype_endpoint)
         response = client.string_body.get_as_json()
 

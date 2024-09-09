@@ -31,6 +31,7 @@ from ..._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_property_safeint_as_string_request,
     build_property_uint32_as_string_optional_request,
+    build_property_uint8_as_string_request,
 )
 
 if sys.version_info >= (3, 9):
@@ -61,12 +62,12 @@ class PropertyOperations:
 
     @overload
     async def safeint_as_string(
-        self, body: _models.SafeintAsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+        self, value: _models.SafeintAsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SafeintAsStringProperty:
         """safeint_as_string.
 
-        :param body: Required.
-        :type body: ~encode.numeric.models.SafeintAsStringProperty
+        :param value: Required.
+        :type value: ~encode.numeric.models.SafeintAsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -77,12 +78,12 @@ class PropertyOperations:
 
     @overload
     async def safeint_as_string(
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SafeintAsStringProperty:
         """safeint_as_string.
 
-        :param body: Required.
-        :type body: JSON
+        :param value: Required.
+        :type value: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -93,12 +94,12 @@ class PropertyOperations:
 
     @overload
     async def safeint_as_string(
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+        self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.SafeintAsStringProperty:
         """safeint_as_string.
 
-        :param body: Required.
-        :type body: IO[bytes]
+        :param value: Required.
+        :type value: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -109,12 +110,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def safeint_as_string(
-        self, body: Union[_models.SafeintAsStringProperty, JSON, IO[bytes]], **kwargs: Any
+        self, value: Union[_models.SafeintAsStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.SafeintAsStringProperty:
         """safeint_as_string.
 
-        :param body: Is one of the following types: SafeintAsStringProperty, JSON, IO[bytes] Required.
-        :type body: ~encode.numeric.models.SafeintAsStringProperty or JSON or IO[bytes]
+        :param value: Is one of the following types: SafeintAsStringProperty, JSON, IO[bytes] Required.
+        :type value: ~encode.numeric.models.SafeintAsStringProperty or JSON or IO[bytes]
         :return: SafeintAsStringProperty. The SafeintAsStringProperty is compatible with MutableMapping
         :rtype: ~encode.numeric.models.SafeintAsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -135,10 +136,10 @@ class PropertyOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IOBase, bytes)):
-            _content = body
+        if isinstance(value, (IOBase, bytes)):
+            _content = value
         else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_safeint_as_string_request(
             content_type=content_type,
@@ -179,12 +180,12 @@ class PropertyOperations:
 
     @overload
     async def uint32_as_string_optional(
-        self, body: _models.Uint32AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+        self, value: _models.Uint32AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
-        :param body: Required.
-        :type body: ~encode.numeric.models.Uint32AsStringProperty
+        :param value: Required.
+        :type value: ~encode.numeric.models.Uint32AsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -195,12 +196,12 @@ class PropertyOperations:
 
     @overload
     async def uint32_as_string_optional(
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
-        :param body: Required.
-        :type body: JSON
+        :param value: Required.
+        :type value: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -211,12 +212,12 @@ class PropertyOperations:
 
     @overload
     async def uint32_as_string_optional(
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+        self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
-        :param body: Required.
-        :type body: IO[bytes]
+        :param value: Required.
+        :type value: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -227,12 +228,12 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def uint32_as_string_optional(
-        self, body: Union[_models.Uint32AsStringProperty, JSON, IO[bytes]], **kwargs: Any
+        self, value: Union[_models.Uint32AsStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
-        :param body: Is one of the following types: Uint32AsStringProperty, JSON, IO[bytes] Required.
-        :type body: ~encode.numeric.models.Uint32AsStringProperty or JSON or IO[bytes]
+        :param value: Is one of the following types: Uint32AsStringProperty, JSON, IO[bytes] Required.
+        :type value: ~encode.numeric.models.Uint32AsStringProperty or JSON or IO[bytes]
         :return: Uint32AsStringProperty. The Uint32AsStringProperty is compatible with MutableMapping
         :rtype: ~encode.numeric.models.Uint32AsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -253,10 +254,10 @@ class PropertyOperations:
 
         content_type = content_type or "application/json"
         _content = None
-        if isinstance(body, (IOBase, bytes)):
-            _content = body
+        if isinstance(value, (IOBase, bytes)):
+            _content = value
         else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_property_uint32_as_string_optional_request(
             content_type=content_type,
@@ -289,6 +290,124 @@ class PropertyOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.Uint32AsStringProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def uint8_as_string(
+        self, value: _models.Uint8AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Uint8AsStringProperty:
+        """uint8_as_string.
+
+        :param value: Required.
+        :type value: ~encode.numeric.models.Uint8AsStringProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
+        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def uint8_as_string(
+        self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Uint8AsStringProperty:
+        """uint8_as_string.
+
+        :param value: Required.
+        :type value: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
+        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def uint8_as_string(
+        self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Uint8AsStringProperty:
+        """uint8_as_string.
+
+        :param value: Required.
+        :type value: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
+        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def uint8_as_string(
+        self, value: Union[_models.Uint8AsStringProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Uint8AsStringProperty:
+        """uint8_as_string.
+
+        :param value: Is one of the following types: Uint8AsStringProperty, JSON, IO[bytes] Required.
+        :type value: ~encode.numeric.models.Uint8AsStringProperty or JSON or IO[bytes]
+        :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
+        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Uint8AsStringProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(value, (IOBase, bytes)):
+            _content = value
+        else:
+            _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_uint8_as_string_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Uint8AsStringProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

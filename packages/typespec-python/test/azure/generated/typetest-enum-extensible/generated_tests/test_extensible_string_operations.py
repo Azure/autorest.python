@@ -14,7 +14,7 @@ from testpreparer import ExtensibleClientTestBase, ExtensiblePreparer
 class TestExtensibleStringOperations(ExtensibleClientTestBase):
     @ExtensiblePreparer()
     @recorded_by_proxy
-    def test_get_known_value(self, extensible_endpoint):
+    def test_string_get_known_value(self, extensible_endpoint):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.get_known_value()
 
@@ -23,7 +23,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
 
     @ExtensiblePreparer()
     @recorded_by_proxy
-    def test_get_unknown_value(self, extensible_endpoint):
+    def test_string_get_unknown_value(self, extensible_endpoint):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.get_unknown_value()
 
@@ -32,7 +32,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
 
     @ExtensiblePreparer()
     @recorded_by_proxy
-    def test_put_known_value(self, extensible_endpoint):
+    def test_string_put_known_value(self, extensible_endpoint):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.put_known_value(
             body="str",
@@ -44,7 +44,7 @@ class TestExtensibleStringOperations(ExtensibleClientTestBase):
 
     @ExtensiblePreparer()
     @recorded_by_proxy
-    def test_put_unknown_value(self, extensible_endpoint):
+    def test_string_put_unknown_value(self, extensible_endpoint):
         client = self.create_client(endpoint=extensible_endpoint)
         response = client.string.put_unknown_value(
             body="str",

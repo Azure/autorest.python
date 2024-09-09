@@ -20,7 +20,7 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_get(self, resource_group):
+    def test_nested_proxy_resources_get(self, resource_group):
         response = self.client.nested_proxy_resources.get(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -32,7 +32,7 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_create_or_replace(self, resource_group):
+    def test_nested_proxy_resources_begin_create_or_replace(self, resource_group):
         response = self.client.nested_proxy_resources.begin_create_or_replace(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -58,7 +58,7 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_update(self, resource_group):
+    def test_nested_proxy_resources_begin_update(self, resource_group):
         response = self.client.nested_proxy_resources.begin_update(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -84,7 +84,7 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_delete(self, resource_group):
+    def test_nested_proxy_resources_begin_delete(self, resource_group):
         response = self.client.nested_proxy_resources.begin_delete(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -96,7 +96,7 @@ class TestResourcesNestedProxyResourcesOperations(AzureMgmtRecordedTestCase):
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_list_by_top_level_tracked_resource(self, resource_group):
+    def test_nested_proxy_resources_list_by_top_level_tracked_resource(self, resource_group):
         response = self.client.nested_proxy_resources.list_by_top_level_tracked_resource(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",

@@ -14,7 +14,7 @@ from testpreparer import ModelClientTestBase, ModelPreparer
 class TestModelAzureCoreEmbeddingVectorOperations(ModelClientTestBase):
     @ModelPreparer()
     @recorded_by_proxy
-    def test_get(self, model_endpoint):
+    def test_azure_core_embedding_vector_get(self, model_endpoint):
         client = self.create_client(endpoint=model_endpoint)
         response = client.azure_core_embedding_vector.get()
 
@@ -23,7 +23,7 @@ class TestModelAzureCoreEmbeddingVectorOperations(ModelClientTestBase):
 
     @ModelPreparer()
     @recorded_by_proxy
-    def test_put(self, model_endpoint):
+    def test_azure_core_embedding_vector_put(self, model_endpoint):
         client = self.create_client(endpoint=model_endpoint)
         response = client.azure_core_embedding_vector.put(
             body=[0],
@@ -34,7 +34,7 @@ class TestModelAzureCoreEmbeddingVectorOperations(ModelClientTestBase):
 
     @ModelPreparer()
     @recorded_by_proxy
-    def test_post(self, model_endpoint):
+    def test_azure_core_embedding_vector_post(self, model_endpoint):
         client = self.create_client(endpoint=model_endpoint)
         response = client.azure_core_embedding_vector.post(
             body={"embedding": [0]},

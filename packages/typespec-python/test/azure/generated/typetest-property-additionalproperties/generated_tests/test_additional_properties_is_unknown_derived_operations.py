@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesIsUnknownDerivedOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_is_unknown_derived_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.is_unknown_derived.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesIsUnknownDerivedOperations(AdditionalPropertiesCli
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_is_unknown_derived_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.is_unknown_derived.put(
             body={"index": 0, "name": "str", "age": 0.0},

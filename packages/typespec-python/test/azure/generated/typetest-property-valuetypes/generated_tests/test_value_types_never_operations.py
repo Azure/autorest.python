@@ -14,7 +14,7 @@ from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
 class TestValueTypesNeverOperations(ValueTypesClientTestBase):
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
+    def test_never_get(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.never.get()
 
@@ -23,7 +23,7 @@ class TestValueTypesNeverOperations(ValueTypesClientTestBase):
 
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
+    def test_never_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.never.put(
             body={},

@@ -15,7 +15,7 @@ from testpreparer_async import ContentNegotiationClientTestBaseAsync
 class TestContentNegotiationDifferentBodyOperationsAsync(ContentNegotiationClientTestBaseAsync):
     @ContentNegotiationPreparer()
     @recorded_by_proxy_async
-    async def test_get_avatar_as_png(self, contentnegotiation_endpoint):
+    async def test_different_body_get_avatar_as_png(self, contentnegotiation_endpoint):
         client = self.create_async_client(endpoint=contentnegotiation_endpoint)
         response = await client.different_body.get_avatar_as_png(
             accept="image/png",
@@ -26,7 +26,7 @@ class TestContentNegotiationDifferentBodyOperationsAsync(ContentNegotiationClien
 
     @ContentNegotiationPreparer()
     @recorded_by_proxy_async
-    async def test_get_avatar_as_json(self, contentnegotiation_endpoint):
+    async def test_different_body_get_avatar_as_json(self, contentnegotiation_endpoint):
         client = self.create_async_client(endpoint=contentnegotiation_endpoint)
         response = await client.different_body.get_avatar_as_json(
             accept="application/json",

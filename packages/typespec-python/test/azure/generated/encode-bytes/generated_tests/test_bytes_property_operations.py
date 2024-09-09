@@ -14,7 +14,7 @@ from testpreparer import BytesClientTestBase, BytesPreparer
 class TestBytesPropertyOperations(BytesClientTestBase):
     @BytesPreparer()
     @recorded_by_proxy
-    def test_default(self, bytes_endpoint):
+    def test_property_default(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.property.default(
             body={"value": bytes("bytes", encoding="utf-8")},
@@ -25,7 +25,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64(self, bytes_endpoint):
+    def test_property_base64(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.property.base64(
             body={"value": bytes("bytes", encoding="utf-8")},
@@ -36,7 +36,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64_url(self, bytes_endpoint):
+    def test_property_base64_url(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.property.base64_url(
             body={"value": bytes("bytes", encoding="utf-8")},
@@ -47,7 +47,7 @@ class TestBytesPropertyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64_url_array(self, bytes_endpoint):
+    def test_property_base64_url_array(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.property.base64_url_array(
             body={"value": [bytes("bytes", encoding="utf-8")]},

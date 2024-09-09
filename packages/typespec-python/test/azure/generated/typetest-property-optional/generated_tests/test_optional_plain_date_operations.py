@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalPlainDateOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_plain_date_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_date.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalPlainDateOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_plain_date_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_date.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalPlainDateOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_plain_date_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_date.put_all(
             body={"property": "2020-02-20"},
@@ -43,7 +43,7 @@ class TestOptionalPlainDateOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_plain_date_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.plain_date.put_default(
             body={"property": "2020-02-20"},

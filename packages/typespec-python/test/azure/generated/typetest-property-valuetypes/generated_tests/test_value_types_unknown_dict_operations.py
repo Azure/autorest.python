@@ -14,7 +14,7 @@ from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
 class TestValueTypesUnknownDictOperations(ValueTypesClientTestBase):
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
+    def test_unknown_dict_get(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.unknown_dict.get()
 
@@ -23,7 +23,7 @@ class TestValueTypesUnknownDictOperations(ValueTypesClientTestBase):
 
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
+    def test_unknown_dict_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.unknown_dict.put(
             body={"property": {}},

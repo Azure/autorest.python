@@ -15,7 +15,7 @@ from testpreparer_async import SpecialWordsClientTestBaseAsync
 class TestSpecialWordsModelPropertiesOperationsAsync(SpecialWordsClientTestBaseAsync):
     @SpecialWordsPreparer()
     @recorded_by_proxy_async
-    async def test_same_as_model(self, specialwords_endpoint):
+    async def test_model_properties_same_as_model(self, specialwords_endpoint):
         client = self.create_async_client(endpoint=specialwords_endpoint)
         response = await client.model_properties.same_as_model(
             body={"SameAsModel": "str"},

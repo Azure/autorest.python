@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarDecimalTypeOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_response_body(self, scalar_endpoint):
+    def test_decimal_type_response_body(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal_type.response_body()
 
@@ -23,7 +23,7 @@ class TestScalarDecimalTypeOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_request_body(self, scalar_endpoint):
+    def test_decimal_type_request_body(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal_type.request_body(
             body=0.0,
@@ -35,7 +35,7 @@ class TestScalarDecimalTypeOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_request_parameter(self, scalar_endpoint):
+    def test_decimal_type_request_parameter(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal_type.request_parameter(
             value=0.0,

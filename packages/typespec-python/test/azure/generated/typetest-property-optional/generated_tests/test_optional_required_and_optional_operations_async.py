@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalRequiredAndOptionalOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_required_and_optional_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.required_and_optional.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalRequiredAndOptionalOperationsAsync(OptionalClientTestBaseAsync
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_required_only(self, optional_endpoint):
+    async def test_required_and_optional_get_required_only(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.required_and_optional.get_required_only()
 
@@ -33,7 +33,7 @@ class TestOptionalRequiredAndOptionalOperationsAsync(OptionalClientTestBaseAsync
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_required_and_optional_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.required_and_optional.put_all(
             body={"requiredProperty": 0, "optionalProperty": "str"},
@@ -44,7 +44,7 @@ class TestOptionalRequiredAndOptionalOperationsAsync(OptionalClientTestBaseAsync
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_required_only(self, optional_endpoint):
+    async def test_required_and_optional_put_required_only(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.required_and_optional.put_required_only(
             body={"requiredProperty": 0, "optionalProperty": "str"},
