@@ -1,5 +1,19 @@
 # Release
 
+## 0.31.0
+
+### Bug Fixes
+
+- [#2814](https://github.com/Azure/autorest.python/pull/2814) Fix pylint errors in serialization.py
+- [#2823](https://github.com/Azure/autorest.python/pull/2823) Include link to core models for `HttpResponseError` when it's included as a property in a model
+
+### Features
+
+- [#2815](https://github.com/Azure/autorest.python/pull/2815) Add support for `HttpPart<{@body body: XXX}>` of multipart
+- [#2810](https://github.com/Azure/autorest.python/pull/2810) Optimize snake-case naming rule
+- [#2806](https://github.com/Azure/autorest.python/pull/2806) dpg model support xml
+
+
 ## 0.30.0
 
 ### Features
