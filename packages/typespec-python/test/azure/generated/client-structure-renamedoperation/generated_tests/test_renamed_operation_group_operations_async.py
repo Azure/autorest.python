@@ -15,7 +15,7 @@ from testpreparer_async import RenamedOperationClientTestBaseAsync
 class TestRenamedOperationGroupOperationsAsync(RenamedOperationClientTestBaseAsync):
     @RenamedOperationPreparer()
     @recorded_by_proxy_async
-    async def test_renamed_two(self, renamedoperation_endpoint):
+    async def test_group_renamed_two(self, renamedoperation_endpoint):
         client = self.create_async_client(endpoint=renamedoperation_endpoint)
         response = await client.group.renamed_two()
 
@@ -24,7 +24,7 @@ class TestRenamedOperationGroupOperationsAsync(RenamedOperationClientTestBaseAsy
 
     @RenamedOperationPreparer()
     @recorded_by_proxy_async
-    async def test_renamed_four(self, renamedoperation_endpoint):
+    async def test_group_renamed_four(self, renamedoperation_endpoint):
         client = self.create_async_client(endpoint=renamedoperation_endpoint)
         response = await client.group.renamed_four()
 
@@ -33,7 +33,7 @@ class TestRenamedOperationGroupOperationsAsync(RenamedOperationClientTestBaseAsy
 
     @RenamedOperationPreparer()
     @recorded_by_proxy_async
-    async def test_renamed_six(self, renamedoperation_endpoint):
+    async def test_group_renamed_six(self, renamedoperation_endpoint):
         client = self.create_async_client(endpoint=renamedoperation_endpoint)
         response = await client.group.renamed_six()
 

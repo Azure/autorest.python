@@ -38,6 +38,7 @@ from .parameter_list import ParameterList
 from .model_type import ModelType
 from .base import BaseType
 from .request_builder import OverloadedRequestBuilder, RequestBuilder
+from ...utils import xml_serializable, json_serializable
 
 if TYPE_CHECKING:
     from .code_model import CodeModel
@@ -416,14 +417,24 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             if self.parameters.has_body:
                 if self.has_form_data_body:
                     file_import.add_submodule_import(relative_path, "_model_base", ImportType.LOCAL)
-                else:
+                elif xml_serializable(self.parameters.body_parameter.default_content_type):
+                    file_import.add_submodule_import(
+                        f"{relative_path}_model_base",
+                        "_get_element",
+                        ImportType.LOCAL,
+                    )
+                elif json_serializable(self.parameters.body_parameter.default_content_type):
                     file_import.add_submodule_import(
                         f"{relative_path}_model_base",
                         "SdkJSONEncoder",
                         ImportType.LOCAL,
                     )
                     file_import.add_import("json", ImportType.STDLIB)
-            if (self.default_error_deserialization or any(r.type for r in self.responses)) or self.non_default_errors:
+            if any(xml_serializable(str(r.default_content_type)) for r in self.responses):
+                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize_xml", ImportType.LOCAL)
+            elif any(r.type for r in self.responses):
+                file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
+            if self.default_error_deserialization or self.non_default_errors:
                 file_import.add_submodule_import(f"{relative_path}_model_base", "_deserialize", ImportType.LOCAL)
         return file_import
 

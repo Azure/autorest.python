@@ -15,7 +15,7 @@ from testpreparer_async import ScalarClientTestBaseAsync
 class TestScalarStringOperationsAsync(ScalarClientTestBaseAsync):
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, scalar_endpoint):
+    async def test_string_get(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.string.get()
 
@@ -24,7 +24,7 @@ class TestScalarStringOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, scalar_endpoint):
+    async def test_string_put(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.string.put(
             body="str",

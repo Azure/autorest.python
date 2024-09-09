@@ -14,7 +14,7 @@ from testpreparer import UnionClientTestBase, UnionPreparer
 class TestUnionMixedTypesOperations(UnionClientTestBase):
     @UnionPreparer()
     @recorded_by_proxy
-    def test_get(self, union_endpoint):
+    def test_mixed_types_get(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.mixed_types.get()
 
@@ -23,7 +23,7 @@ class TestUnionMixedTypesOperations(UnionClientTestBase):
 
     @UnionPreparer()
     @recorded_by_proxy
-    def test_send(self, union_endpoint):
+    def test_mixed_types_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.mixed_types.send(
             body={

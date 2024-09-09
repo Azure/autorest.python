@@ -15,7 +15,7 @@ from testpreparer_async import UnionClientTestBaseAsync
 class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, union_endpoint):
+    async def test_mixed_types_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.mixed_types.get()
 
@@ -24,7 +24,7 @@ class TestUnionMixedTypesOperationsAsync(UnionClientTestBaseAsync):
 
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_send(self, union_endpoint):
+    async def test_mixed_types_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.mixed_types.send(
             body={

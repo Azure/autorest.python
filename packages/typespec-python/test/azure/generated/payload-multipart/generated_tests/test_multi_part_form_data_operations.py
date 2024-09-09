@@ -14,7 +14,7 @@ from testpreparer import MultiPartClientTestBase, MultiPartPreparer
 class TestMultiPartFormDataOperations(MultiPartClientTestBase):
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_basic(self, multipart_endpoint):
+    def test_form_data_basic(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.basic(
             body={"id": "str", "profileImage": "filetype"},
@@ -25,7 +25,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_complex(self, multipart_endpoint):
+    def test_form_data_complex(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.complex(
             body={"address": {"city": "str"}, "id": "str", "pictures": ["filetype"], "profileImage": "filetype"},
@@ -36,7 +36,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_json_part(self, multipart_endpoint):
+    def test_form_data_json_part(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.json_part(
             body={"address": {"city": "str"}, "profileImage": "filetype"},
@@ -47,7 +47,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_binary_array_parts(self, multipart_endpoint):
+    def test_form_data_binary_array_parts(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.binary_array_parts(
             body={"id": "str", "pictures": ["filetype"]},
@@ -58,7 +58,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_multi_binary_parts(self, multipart_endpoint):
+    def test_form_data_multi_binary_parts(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.multi_binary_parts(
             body={"profileImage": "filetype", "picture": "filetype"},
@@ -69,7 +69,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_check_file_name_and_content_type(self, multipart_endpoint):
+    def test_form_data_check_file_name_and_content_type(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.check_file_name_and_content_type(
             body={"id": "str", "profileImage": "filetype"},
@@ -80,7 +80,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_anonymous_model(self, multipart_endpoint):
+    def test_form_data_anonymous_model(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.anonymous_model(
             body={"profileImage": "filetype"},
@@ -92,7 +92,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_file_with_http_part_specific_content_type(self, multipart_endpoint):
+    def test_form_data_file_with_http_part_specific_content_type(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.file_with_http_part_specific_content_type(
             body={"profileImage": "filetype"},
@@ -103,7 +103,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_file_with_http_part_required_content_type(self, multipart_endpoint):
+    def test_form_data_file_with_http_part_required_content_type(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.file_with_http_part_required_content_type(
             body={"profileImage": "filetype"},
@@ -114,7 +114,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_file_with_http_part_optional_content_type(self, multipart_endpoint):
+    def test_form_data_file_with_http_part_optional_content_type(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.file_with_http_part_optional_content_type(
             body={"profileImage": "filetype"},
@@ -125,7 +125,7 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
-    def test_complex_with_http_part(self, multipart_endpoint):
+    def test_form_data_complex_with_http_part(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.complex_with_http_part(
             body={

@@ -15,7 +15,7 @@ from testpreparer_async import NullableClientTestBaseAsync
 class TestNullableCollectionsByteOperationsAsync(NullableClientTestBaseAsync):
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_non_null(self, nullable_endpoint):
+    async def test_collections_byte_get_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_byte.get_non_null()
 
@@ -24,7 +24,7 @@ class TestNullableCollectionsByteOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_null(self, nullable_endpoint):
+    async def test_collections_byte_get_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_byte.get_null()
 
@@ -33,7 +33,7 @@ class TestNullableCollectionsByteOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_non_null(self, nullable_endpoint):
+    async def test_collections_byte_patch_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_byte.patch_non_null(
             body={"nullableProperty": [bytes("bytes", encoding="utf-8")], "requiredProperty": "str"},
@@ -44,7 +44,7 @@ class TestNullableCollectionsByteOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_null(self, nullable_endpoint):
+    async def test_collections_byte_patch_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_byte.patch_null(
             body={"nullableProperty": [bytes("bytes", encoding="utf-8")], "requiredProperty": "str"},

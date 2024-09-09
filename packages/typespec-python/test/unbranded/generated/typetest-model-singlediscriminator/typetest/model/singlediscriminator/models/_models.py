@@ -132,7 +132,7 @@ class Eagle(Bird, discriminator="eagle"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="eagle", **kwargs)
 
 
@@ -163,7 +163,7 @@ class Goose(Bird, discriminator="goose"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="goose", **kwargs)
 
 
@@ -194,7 +194,7 @@ class SeaGull(Bird, discriminator="seagull"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="seagull", **kwargs)
 
 
@@ -225,7 +225,7 @@ class Sparrow(Bird, discriminator="sparrow"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="sparrow", **kwargs)
 
 
@@ -256,5 +256,5 @@ class TRex(Dinosaur, discriminator="t-rex"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="t-rex", **kwargs)

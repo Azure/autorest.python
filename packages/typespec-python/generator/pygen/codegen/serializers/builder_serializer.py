@@ -35,7 +35,7 @@ from ..models import (
 from .parameter_serializer import ParameterSerializer, PopKwargType
 from ..models.parameter_list import ParameterType
 from . import utils
-from ...utils import JSON_REGEXP
+from ...utils import xml_serializable, json_serializable
 
 T = TypeVar("T")
 OrderedSet = Dict[T, None]
@@ -59,10 +59,6 @@ OperationType = TypeVar(
 
 def _all_same(data: List[List[str]]) -> bool:
     return len(data) > 1 and all(sorted(data[0]) == sorted(data[i]) for i in range(1, len(data)))
-
-
-def _json_serializable(content_type: str) -> bool:
-    return bool(JSON_REGEXP.match(content_type.split(";")[0].strip().lower()))
 
 
 def _need_type_ignore(builder: OperationType) -> bool:
@@ -395,7 +391,9 @@ class RequestBuilderSerializer(_BuilderBaseSerializer[RequestBuilderType]):
         return "response.json()"
 
     @staticmethod
-    def declare_non_inputtable_headers_queries(builder: RequestBuilderType) -> List[str]:
+    def declare_non_inputtable_headers_queries(
+        builder: RequestBuilderType,
+    ) -> List[str]:
         def _get_value(param):
             declaration = param.get_declaration() if param.constant else None
             if param.location in [ParameterLocation.HEADER, ParameterLocation.QUERY]:
@@ -684,7 +682,7 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
                 f"'{body_param.type.serialization_type}'{is_xml_cmd}{serialization_ctxt_cmd})"
             )
         elif self.code_model.options["models_mode"] == "dpg":
-            if _json_serializable(body_param.default_content_type):
+            if json_serializable(body_param.default_content_type):
                 if hasattr(body_param.type, "encode") and body_param.type.encode:  # type: ignore
                     create_body_call = (
                         f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
@@ -696,6 +694,8 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
                         f"_{body_kwarg_name} = json.dumps({body_param.client_name}, "
                         "cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore"
                     )
+            elif xml_serializable(body_param.default_content_type):
+                create_body_call = f"_{body_kwarg_name} = _get_element({body_param.client_name})"
             else:
                 create_body_call = f"_{body_kwarg_name} = {body_param.client_name}"
         else:
@@ -957,8 +957,11 @@ class _OperationSerializer(_BuilderBaseSerializer[OperationType]):
                         and response.default_content_type == "application/json"
                         else ""
                     )
-                    response_attr = "json" if _json_serializable(str(response.default_content_type)) else "text"
-                    deserialize_code.append("deserialized = _deserialize(")
+                    response_attr = "json" if json_serializable(str(response.default_content_type)) else "text"
+                    deserialize_func = "_deserialize"
+                    if xml_serializable(str(response.default_content_type)):
+                        deserialize_func = "_deserialize_xml"
+                    deserialize_code.append(f"deserialized = {deserialize_func}(")
                     deserialize_code.append(
                         f"    {response.type.type_annotation(is_operation_file=True)},{pylint_disable}"
                     )

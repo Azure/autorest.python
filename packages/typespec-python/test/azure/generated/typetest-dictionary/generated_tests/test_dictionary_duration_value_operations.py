@@ -14,7 +14,7 @@ from testpreparer import DictionaryClientTestBase, DictionaryPreparer
 class TestDictionaryDurationValueOperations(DictionaryClientTestBase):
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_get(self, dictionary_endpoint):
+    def test_duration_value_get(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.duration_value.get()
 
@@ -23,7 +23,7 @@ class TestDictionaryDurationValueOperations(DictionaryClientTestBase):
 
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_put(self, dictionary_endpoint):
+    def test_duration_value_put(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.duration_value.put(
             body={"str": "1 day, 0:00:00"},

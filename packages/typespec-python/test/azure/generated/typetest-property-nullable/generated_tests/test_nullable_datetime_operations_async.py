@@ -15,7 +15,7 @@ from testpreparer_async import NullableClientTestBaseAsync
 class TestNullableDatetimeOperationsAsync(NullableClientTestBaseAsync):
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_non_null(self, nullable_endpoint):
+    async def test_datetime_get_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.datetime.get_non_null()
 
@@ -24,7 +24,7 @@ class TestNullableDatetimeOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_null(self, nullable_endpoint):
+    async def test_datetime_get_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.datetime.get_null()
 
@@ -33,7 +33,7 @@ class TestNullableDatetimeOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_non_null(self, nullable_endpoint):
+    async def test_datetime_patch_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.datetime.patch_non_null(
             body={"nullableProperty": "2020-02-20 00:00:00", "requiredProperty": "str"},
@@ -44,7 +44,7 @@ class TestNullableDatetimeOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_null(self, nullable_endpoint):
+    async def test_datetime_patch_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.datetime.patch_null(
             body={"nullableProperty": "2020-02-20 00:00:00", "requiredProperty": "str"},

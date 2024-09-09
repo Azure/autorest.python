@@ -45,6 +45,11 @@
     __flattened_items = ["{{ model.flattened_items|join('\", \"') }}"]
     {% endif %}
 
+    {% if model.xml_metadata %}
+    _xml = {{model.xml_metadata}}
+    {% endif %}
+
+
     {% set need_init = (not model.internal) and (serializer.init_line(model) or model.discriminator)%}
     {% if need_init %}
     @overload

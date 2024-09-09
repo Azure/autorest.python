@@ -14,7 +14,7 @@ from testpreparer import BodyOptionalityClientTestBase, BodyOptionalityPreparer
 class TestBodyOptionalityOptionalExplicitOperations(BodyOptionalityClientTestBase):
     @BodyOptionalityPreparer()
     @recorded_by_proxy
-    def test_set(self, bodyoptionality_endpoint):
+    def test_optional_explicit_set(self, bodyoptionality_endpoint):
         client = self.create_client(endpoint=bodyoptionality_endpoint)
         response = client.optional_explicit.set()
 
@@ -23,7 +23,7 @@ class TestBodyOptionalityOptionalExplicitOperations(BodyOptionalityClientTestBas
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy
-    def test_omit(self, bodyoptionality_endpoint):
+    def test_optional_explicit_omit(self, bodyoptionality_endpoint):
         client = self.create_client(endpoint=bodyoptionality_endpoint)
         response = client.optional_explicit.omit()
 

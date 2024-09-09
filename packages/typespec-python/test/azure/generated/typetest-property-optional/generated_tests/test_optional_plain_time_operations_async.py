@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalPlainTimeOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_plain_time_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.plain_time.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalPlainTimeOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_default(self, optional_endpoint):
+    async def test_plain_time_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.plain_time.get_default()
 
@@ -33,7 +33,7 @@ class TestOptionalPlainTimeOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_plain_time_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.plain_time.put_all(
             body={"property": "12:30:00"},
@@ -44,7 +44,7 @@ class TestOptionalPlainTimeOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_default(self, optional_endpoint):
+    async def test_plain_time_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.plain_time.put_default(
             body={"property": "12:30:00"},

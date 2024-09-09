@@ -14,7 +14,7 @@ from testpreparer import UnionClientTestBase, UnionPreparer
 class TestUnionMixedLiteralsOperations(UnionClientTestBase):
     @UnionPreparer()
     @recorded_by_proxy
-    def test_get(self, union_endpoint):
+    def test_mixed_literals_get(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.mixed_literals.get()
 
@@ -23,7 +23,7 @@ class TestUnionMixedLiteralsOperations(UnionClientTestBase):
 
     @UnionPreparer()
     @recorded_by_proxy
-    def test_send(self, union_endpoint):
+    def test_mixed_literals_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.mixed_literals.send(
             body={"prop": {"booleanLiteral": "a", "floatLiteral": "a", "intLiteral": "a", "stringLiteral": "a"}},

@@ -15,7 +15,7 @@ from testpreparer_async import UnionClientTestBaseAsync
 class TestUnionStringExtensibleOperationsAsync(UnionClientTestBaseAsync):
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, union_endpoint):
+    async def test_string_extensible_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.string_extensible.get()
 
@@ -24,7 +24,7 @@ class TestUnionStringExtensibleOperationsAsync(UnionClientTestBaseAsync):
 
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_send(self, union_endpoint):
+    async def test_string_extensible_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.string_extensible.send(
             body={"prop": "b"},

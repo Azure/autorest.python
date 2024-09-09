@@ -14,7 +14,7 @@ from testpreparer import TwoOperationGroupClientTestBase, TwoOperationGroupPrepa
 class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
     @TwoOperationGroupPreparer()
     @recorded_by_proxy
-    def test_two(self, twooperationgroup_endpoint):
+    def test_group2_two(self, twooperationgroup_endpoint):
         client = self.create_client(endpoint=twooperationgroup_endpoint)
         response = client.group2.two()
 
@@ -23,7 +23,7 @@ class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy
-    def test_five(self, twooperationgroup_endpoint):
+    def test_group2_five(self, twooperationgroup_endpoint):
         client = self.create_client(endpoint=twooperationgroup_endpoint)
         response = client.group2.five()
 
@@ -32,7 +32,7 @@ class TestTwoOperationGroupGroup2Operations(TwoOperationGroupClientTestBase):
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy
-    def test_six(self, twooperationgroup_endpoint):
+    def test_group2_six(self, twooperationgroup_endpoint):
         client = self.create_client(endpoint=twooperationgroup_endpoint)
         response = client.group2.six()
 

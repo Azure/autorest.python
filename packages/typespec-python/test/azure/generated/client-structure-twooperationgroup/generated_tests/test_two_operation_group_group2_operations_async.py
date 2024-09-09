@@ -15,7 +15,7 @@ from testpreparer_async import TwoOperationGroupClientTestBaseAsync
 class TestTwoOperationGroupGroup2OperationsAsync(TwoOperationGroupClientTestBaseAsync):
     @TwoOperationGroupPreparer()
     @recorded_by_proxy_async
-    async def test_two(self, twooperationgroup_endpoint):
+    async def test_group2_two(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
         response = await client.group2.two()
 
@@ -24,7 +24,7 @@ class TestTwoOperationGroupGroup2OperationsAsync(TwoOperationGroupClientTestBase
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy_async
-    async def test_five(self, twooperationgroup_endpoint):
+    async def test_group2_five(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
         response = await client.group2.five()
 
@@ -33,7 +33,7 @@ class TestTwoOperationGroupGroup2OperationsAsync(TwoOperationGroupClientTestBase
 
     @TwoOperationGroupPreparer()
     @recorded_by_proxy_async
-    async def test_six(self, twooperationgroup_endpoint):
+    async def test_group2_six(self, twooperationgroup_endpoint):
         client = self.create_async_client(endpoint=twooperationgroup_endpoint)
         response = await client.group2.six()
 

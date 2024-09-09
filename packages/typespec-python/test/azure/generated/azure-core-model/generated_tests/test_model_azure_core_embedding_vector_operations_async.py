@@ -15,7 +15,7 @@ from testpreparer_async import ModelClientTestBaseAsync
 class TestModelAzureCoreEmbeddingVectorOperationsAsync(ModelClientTestBaseAsync):
     @ModelPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, model_endpoint):
+    async def test_azure_core_embedding_vector_get(self, model_endpoint):
         client = self.create_async_client(endpoint=model_endpoint)
         response = await client.azure_core_embedding_vector.get()
 
@@ -24,7 +24,7 @@ class TestModelAzureCoreEmbeddingVectorOperationsAsync(ModelClientTestBaseAsync)
 
     @ModelPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, model_endpoint):
+    async def test_azure_core_embedding_vector_put(self, model_endpoint):
         client = self.create_async_client(endpoint=model_endpoint)
         response = await client.azure_core_embedding_vector.put(
             body=[0],
@@ -35,7 +35,7 @@ class TestModelAzureCoreEmbeddingVectorOperationsAsync(ModelClientTestBaseAsync)
 
     @ModelPreparer()
     @recorded_by_proxy_async
-    async def test_post(self, model_endpoint):
+    async def test_azure_core_embedding_vector_post(self, model_endpoint):
         client = self.create_async_client(endpoint=model_endpoint)
         response = await client.azure_core_embedding_vector.post(
             body={"embedding": [0]},

@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalCollectionsModelOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_collections_model_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_model.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalCollectionsModelOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_default(self, optional_endpoint):
+    async def test_collections_model_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_model.get_default()
 
@@ -33,7 +33,7 @@ class TestOptionalCollectionsModelOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_collections_model_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_model.put_all(
             body={"property": [{"property": "str"}]},
@@ -44,7 +44,7 @@ class TestOptionalCollectionsModelOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_default(self, optional_endpoint):
+    async def test_collections_model_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.collections_model.put_default(
             body={"property": [{"property": "str"}]},

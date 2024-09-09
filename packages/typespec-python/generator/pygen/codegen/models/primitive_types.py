@@ -611,6 +611,7 @@ class SdkCoreType(PrimitiveType):
     def __init__(self, yaml_data: Dict[str, Any], code_model: "CodeModel") -> None:
         super().__init__(yaml_data=yaml_data, code_model=code_model)
         self.name = yaml_data.get("name", "")
+        self.submodule = yaml_data.get("submodule", "")
 
     def docstring_type(self, **kwargs: Any) -> str:
         return f"~{self.code_model.core_library}.{self.type_annotation(**kwargs)}"
@@ -620,7 +621,7 @@ class SdkCoreType(PrimitiveType):
 
     def imports(self, **kwargs: Any) -> FileImport:
         file_import = super().imports(**kwargs)
-        file_import.add_submodule_import("", self.name, ImportType.SDKCORE)
+        file_import.add_submodule_import(self.submodule, self.name, ImportType.SDKCORE)
         return file_import
 
     @property

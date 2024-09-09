@@ -14,7 +14,7 @@ from testpreparer import NamingClientTestBase, NamingPreparer
 class TestNamingClientModelOperations(NamingClientTestBase):
     @NamingPreparer()
     @recorded_by_proxy
-    def test_client(self, naming_endpoint):
+    def test_client_model_client(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
         response = client.client_model.client(
             body={"defaultName": bool},
@@ -25,7 +25,7 @@ class TestNamingClientModelOperations(NamingClientTestBase):
 
     @NamingPreparer()
     @recorded_by_proxy
-    def test_language(self, naming_endpoint):
+    def test_client_model_language(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
         response = client.client_model.language(
             body={"defaultName": bool},

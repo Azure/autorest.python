@@ -14,7 +14,7 @@ from testpreparer import UnionClientTestBase, UnionPreparer
 class TestUnionStringAndArrayOperations(UnionClientTestBase):
     @UnionPreparer()
     @recorded_by_proxy
-    def test_get(self, union_endpoint):
+    def test_string_and_array_get(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.string_and_array.get()
 
@@ -23,7 +23,7 @@ class TestUnionStringAndArrayOperations(UnionClientTestBase):
 
     @UnionPreparer()
     @recorded_by_proxy
-    def test_send(self, union_endpoint):
+    def test_string_and_array_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.string_and_array.send(
             body={"prop": {"array": "str", "string": "str"}},

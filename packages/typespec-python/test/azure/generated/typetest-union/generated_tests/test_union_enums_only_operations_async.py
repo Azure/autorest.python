@@ -15,7 +15,7 @@ from testpreparer_async import UnionClientTestBaseAsync
 class TestUnionEnumsOnlyOperationsAsync(UnionClientTestBaseAsync):
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, union_endpoint):
+    async def test_enums_only_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.enums_only.get()
 
@@ -24,7 +24,7 @@ class TestUnionEnumsOnlyOperationsAsync(UnionClientTestBaseAsync):
 
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_send(self, union_endpoint):
+    async def test_enums_only_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.enums_only.send(
             body={"prop": {"lr": "left", "ud": "up"}},

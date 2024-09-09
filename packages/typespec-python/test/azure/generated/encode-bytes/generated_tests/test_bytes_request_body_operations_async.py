@@ -15,7 +15,7 @@ from testpreparer_async import BytesClientTestBaseAsync
 class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_default(self, bytes_endpoint):
+    async def test_request_body_default(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.request_body.default(
             value=bytes("bytes", encoding="utf-8"),
@@ -27,7 +27,7 @@ class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_octet_stream(self, bytes_endpoint):
+    async def test_request_body_octet_stream(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.request_body.octet_stream(
             value=bytes("bytes", encoding="utf-8"),
@@ -39,7 +39,7 @@ class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_custom_content_type(self, bytes_endpoint):
+    async def test_request_body_custom_content_type(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.request_body.custom_content_type(
             value=bytes("bytes", encoding="utf-8"),
@@ -51,7 +51,7 @@ class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64(self, bytes_endpoint):
+    async def test_request_body_base64(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.request_body.base64(
             value=bytes("bytes", encoding="utf-8"),
@@ -63,9 +63,9 @@ class TestBytesRequestBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64url(self, bytes_endpoint):
+    async def test_request_body_base64_url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = await client.request_body.base64url(
+        response = await client.request_body.base64_url(
             value=bytes("bytes", encoding="utf-8"),
             content_type="str",
         )

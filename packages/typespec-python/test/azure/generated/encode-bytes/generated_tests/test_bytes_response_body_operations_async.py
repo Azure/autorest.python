@@ -15,7 +15,7 @@ from testpreparer_async import BytesClientTestBaseAsync
 class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_default(self, bytes_endpoint):
+    async def test_response_body_default(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.response_body.default()
 
@@ -24,7 +24,7 @@ class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_octet_stream(self, bytes_endpoint):
+    async def test_response_body_octet_stream(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.response_body.octet_stream()
 
@@ -33,7 +33,7 @@ class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_custom_content_type(self, bytes_endpoint):
+    async def test_response_body_custom_content_type(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.response_body.custom_content_type()
 
@@ -42,7 +42,7 @@ class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64(self, bytes_endpoint):
+    async def test_response_body_base64(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
         response = await client.response_body.base64()
 
@@ -51,9 +51,9 @@ class TestBytesResponseBodyOperationsAsync(BytesClientTestBaseAsync):
 
     @BytesPreparer()
     @recorded_by_proxy_async
-    async def test_base64url(self, bytes_endpoint):
+    async def test_response_body_base64_url(self, bytes_endpoint):
         client = self.create_async_client(endpoint=bytes_endpoint)
-        response = await client.response_body.base64url()
+        response = await client.response_body.base64_url()
 
         # please add some check logic here by yourself
         # ...

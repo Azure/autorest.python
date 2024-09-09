@@ -15,7 +15,7 @@ from testpreparer_async import CollectionFormatClientTestBaseAsync
 class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsync):
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_multi(self, collectionformat_endpoint):
+    async def test_query_multi(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.query.multi(
             colors=["str"],
@@ -26,7 +26,7 @@ class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsy
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_ssv(self, collectionformat_endpoint):
+    async def test_query_ssv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.query.ssv(
             colors=["str"],
@@ -37,7 +37,7 @@ class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsy
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_tsv(self, collectionformat_endpoint):
+    async def test_query_tsv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.query.tsv(
             colors=["str"],
@@ -48,7 +48,7 @@ class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsy
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_pipes(self, collectionformat_endpoint):
+    async def test_query_pipes(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.query.pipes(
             colors=["str"],
@@ -59,7 +59,7 @@ class TestCollectionFormatQueryOperationsAsync(CollectionFormatClientTestBaseAsy
 
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_csv(self, collectionformat_endpoint):
+    async def test_query_csv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.query.csv(
             colors=["str"],

@@ -15,7 +15,7 @@ from testpreparer_async import ExtensibleClientTestBaseAsync
 class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
     @ExtensiblePreparer()
     @recorded_by_proxy_async
-    async def test_get_known_value(self, extensible_endpoint):
+    async def test_string_get_known_value(self, extensible_endpoint):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.get_known_value()
 
@@ -24,7 +24,7 @@ class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
 
     @ExtensiblePreparer()
     @recorded_by_proxy_async
-    async def test_get_unknown_value(self, extensible_endpoint):
+    async def test_string_get_unknown_value(self, extensible_endpoint):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.get_unknown_value()
 
@@ -33,7 +33,7 @@ class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
 
     @ExtensiblePreparer()
     @recorded_by_proxy_async
-    async def test_put_known_value(self, extensible_endpoint):
+    async def test_string_put_known_value(self, extensible_endpoint):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.put_known_value(
             body="str",
@@ -45,7 +45,7 @@ class TestExtensibleStringOperationsAsync(ExtensibleClientTestBaseAsync):
 
     @ExtensiblePreparer()
     @recorded_by_proxy_async
-    async def test_put_unknown_value(self, extensible_endpoint):
+    async def test_string_put_unknown_value(self, extensible_endpoint):
         client = self.create_async_client(endpoint=extensible_endpoint)
         response = await client.string.put_unknown_value(
             body="str",

@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarAzureLocationScalarOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_get(self, scalar_endpoint):
+    def test_azure_location_scalar_get(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.azure_location_scalar.get()
 
@@ -23,7 +23,7 @@ class TestScalarAzureLocationScalarOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_put(self, scalar_endpoint):
+    def test_azure_location_scalar_put(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.azure_location_scalar.put(
             body="str",
@@ -35,7 +35,7 @@ class TestScalarAzureLocationScalarOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_post(self, scalar_endpoint):
+    def test_azure_location_scalar_post(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.azure_location_scalar.post(
             body={"location": "str"},
@@ -46,7 +46,7 @@ class TestScalarAzureLocationScalarOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_header(self, scalar_endpoint):
+    def test_azure_location_scalar_header(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.azure_location_scalar.header(
             region="str",
@@ -57,7 +57,7 @@ class TestScalarAzureLocationScalarOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_query(self, scalar_endpoint):
+    def test_azure_location_scalar_query(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.azure_location_scalar.query(
             region="str",

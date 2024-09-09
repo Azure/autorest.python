@@ -14,7 +14,7 @@ from testpreparer import RenamedOperationClientTestBase, RenamedOperationPrepare
 class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
     @RenamedOperationPreparer()
     @recorded_by_proxy
-    def test_renamed_two(self, renamedoperation_endpoint):
+    def test_group_renamed_two(self, renamedoperation_endpoint):
         client = self.create_client(endpoint=renamedoperation_endpoint)
         response = client.group.renamed_two()
 
@@ -23,7 +23,7 @@ class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
-    def test_renamed_four(self, renamedoperation_endpoint):
+    def test_group_renamed_four(self, renamedoperation_endpoint):
         client = self.create_client(endpoint=renamedoperation_endpoint)
         response = client.group.renamed_four()
 
@@ -32,7 +32,7 @@ class TestRenamedOperationGroupOperations(RenamedOperationClientTestBase):
 
     @RenamedOperationPreparer()
     @recorded_by_proxy
-    def test_renamed_six(self, renamedoperation_endpoint):
+    def test_group_renamed_six(self, renamedoperation_endpoint):
         client = self.create_client(endpoint=renamedoperation_endpoint)
         response = client.group.renamed_six()
 

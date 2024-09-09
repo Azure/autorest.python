@@ -14,7 +14,7 @@ from testpreparer import JsonClientTestBase, JsonPreparer
 class TestJsonPropertyOperations(JsonClientTestBase):
     @JsonPreparer()
     @recorded_by_proxy
-    def test_send(self, json_endpoint):
+    def test_property_send(self, json_endpoint):
         client = self.create_client(endpoint=json_endpoint)
         response = client.property.send(
             body={"wireName": bool},
@@ -25,7 +25,7 @@ class TestJsonPropertyOperations(JsonClientTestBase):
 
     @JsonPreparer()
     @recorded_by_proxy
-    def test_get(self, json_endpoint):
+    def test_property_get(self, json_endpoint):
         client = self.create_client(endpoint=json_endpoint)
         response = client.property.get()
 

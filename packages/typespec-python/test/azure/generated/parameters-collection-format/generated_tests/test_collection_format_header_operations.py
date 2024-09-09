@@ -14,7 +14,7 @@ from testpreparer import CollectionFormatClientTestBase, CollectionFormatPrepare
 class TestCollectionFormatHeaderOperations(CollectionFormatClientTestBase):
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_csv(self, collectionformat_endpoint):
+    def test_header_csv(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.header.csv(
             colors=["str"],
