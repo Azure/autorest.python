@@ -14,7 +14,7 @@ from testpreparer import XmlClientTestBase, XmlPreparer
 class TestXmlModelWithEmptyArrayValueOperations(XmlClientTestBase):
     @XmlPreparer()
     @recorded_by_proxy
-    def test_get(self, xml_endpoint):
+    def test_model_with_empty_array_value_get(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_empty_array_value.get()
 
@@ -23,7 +23,7 @@ class TestXmlModelWithEmptyArrayValueOperations(XmlClientTestBase):
 
     @XmlPreparer()
     @recorded_by_proxy
-    def test_put(self, xml_endpoint):
+    def test_model_with_empty_array_value_put(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_empty_array_value.put(
             input={"items": [{"age": 0, "name": "str"}]},

@@ -14,7 +14,7 @@ from testpreparer import XmlClientTestBase, XmlPreparer
 class TestXmlModelWithOptionalFieldValueOperations(XmlClientTestBase):
     @XmlPreparer()
     @recorded_by_proxy
-    def test_get(self, xml_endpoint):
+    def test_model_with_optional_field_value_get(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_optional_field_value.get()
 
@@ -23,7 +23,7 @@ class TestXmlModelWithOptionalFieldValueOperations(XmlClientTestBase):
 
     @XmlPreparer()
     @recorded_by_proxy
-    def test_put(self, xml_endpoint):
+    def test_model_with_optional_field_value_put(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_optional_field_value.put(
             input={"item": "str", "value": 0},

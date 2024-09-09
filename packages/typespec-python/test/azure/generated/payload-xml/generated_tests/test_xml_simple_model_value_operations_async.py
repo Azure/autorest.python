@@ -15,7 +15,7 @@ from testpreparer_async import XmlClientTestBaseAsync
 class TestXmlSimpleModelValueOperationsAsync(XmlClientTestBaseAsync):
     @XmlPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, xml_endpoint):
+    async def test_simple_model_value_get(self, xml_endpoint):
         client = self.create_async_client(endpoint=xml_endpoint)
         response = await client.simple_model_value.get()
 
@@ -24,7 +24,7 @@ class TestXmlSimpleModelValueOperationsAsync(XmlClientTestBaseAsync):
 
     @XmlPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, xml_endpoint):
+    async def test_simple_model_value_put(self, xml_endpoint):
         client = self.create_async_client(endpoint=xml_endpoint)
         response = await client.simple_model_value.put(
             input={"age": 0, "name": "str"},

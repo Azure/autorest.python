@@ -14,7 +14,7 @@ from testpreparer import XmlClientTestBase, XmlPreparer
 class TestXmlSimpleModelValueOperations(XmlClientTestBase):
     @XmlPreparer()
     @recorded_by_proxy
-    def test_get(self, xml_endpoint):
+    def test_simple_model_value_get(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.simple_model_value.get()
 
@@ -23,7 +23,7 @@ class TestXmlSimpleModelValueOperations(XmlClientTestBase):
 
     @XmlPreparer()
     @recorded_by_proxy
-    def test_put(self, xml_endpoint):
+    def test_simple_model_value_put(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.simple_model_value.put(
             input={"age": 0, "name": "str"},

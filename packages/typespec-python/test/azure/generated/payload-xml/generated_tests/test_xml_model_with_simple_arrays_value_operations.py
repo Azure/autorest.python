@@ -14,7 +14,7 @@ from testpreparer import XmlClientTestBase, XmlPreparer
 class TestXmlModelWithSimpleArraysValueOperations(XmlClientTestBase):
     @XmlPreparer()
     @recorded_by_proxy
-    def test_get(self, xml_endpoint):
+    def test_model_with_simple_arrays_value_get(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_simple_arrays_value.get()
 
@@ -23,7 +23,7 @@ class TestXmlModelWithSimpleArraysValueOperations(XmlClientTestBase):
 
     @XmlPreparer()
     @recorded_by_proxy
-    def test_put(self, xml_endpoint):
+    def test_model_with_simple_arrays_value_put(self, xml_endpoint):
         client = self.create_client(endpoint=xml_endpoint)
         response = client.model_with_simple_arrays_value.put(
             input={"colors": ["str"], "counts": [0]},

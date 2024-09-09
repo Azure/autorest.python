@@ -15,7 +15,7 @@ from testpreparer_async import XmlClientTestBaseAsync
 class TestXmlModelWithSimpleArraysValueOperationsAsync(XmlClientTestBaseAsync):
     @XmlPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, xml_endpoint):
+    async def test_model_with_simple_arrays_value_get(self, xml_endpoint):
         client = self.create_async_client(endpoint=xml_endpoint)
         response = await client.model_with_simple_arrays_value.get()
 
@@ -24,7 +24,7 @@ class TestXmlModelWithSimpleArraysValueOperationsAsync(XmlClientTestBaseAsync):
 
     @XmlPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, xml_endpoint):
+    async def test_model_with_simple_arrays_value_put(self, xml_endpoint):
         client = self.create_async_client(endpoint=xml_endpoint)
         response = await client.model_with_simple_arrays_value.put(
             input={"colors": ["str"], "counts": [0]},
