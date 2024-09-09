@@ -103,7 +103,20 @@ class _ModelSerializer(BaseSerializer, ABC):
                     properties_to_pass_to_super.append(f"{prop.client_name}={prop.client_name}")
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
-
+    
+    def initialize_properties(self, model: ModelType) -> List[str]:
+        ...
+    
+    def pylint_disable(self, model: ModelType) -> str:
+        if model.flattened_property or self.initialize_properties(model):
+            return ""
+        if model.parents and any(
+            prop.optional or prop.client_default_value is not None
+            for parent in model.parents
+            for prop in parent.properties
+        ):
+            return ""
+        return "  # pylint: disable=useless-super-delegation"
 
 class MsrestModelSerializer(_ModelSerializer):
     def imports(self) -> FileImport:
