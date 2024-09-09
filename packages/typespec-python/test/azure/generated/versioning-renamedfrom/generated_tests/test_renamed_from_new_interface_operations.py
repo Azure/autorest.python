@@ -14,7 +14,7 @@ from testpreparer import RenamedFromClientTestBase, RenamedFromPreparer
 class TestRenamedFromNewInterfaceOperations(RenamedFromClientTestBase):
     @RenamedFromPreparer()
     @recorded_by_proxy
-    def test_new_op_in_new_interface(self, renamedfrom_endpoint):
+    def test_new_interface_new_op_in_new_interface(self, renamedfrom_endpoint):
         client = self.create_client(endpoint=renamedfrom_endpoint)
         response = client.new_interface.new_op_in_new_interface(
             body={"enumProp": "str", "newProp": "str", "unionProp": "str"},

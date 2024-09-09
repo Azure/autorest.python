@@ -81,6 +81,12 @@ class TestCase:
         self.is_async = is_async
 
     @property
+    def name(self) -> str:
+        if self.operation_groups[-1].is_mixin:
+            return self.operation.name
+        return "_".join([og.property_name for og in self.operation_groups] + [self.operation.name])
+
+    @property
     def operation_group_prefix(self) -> str:
         if self.operation_groups[-1].is_mixin:
             return ""

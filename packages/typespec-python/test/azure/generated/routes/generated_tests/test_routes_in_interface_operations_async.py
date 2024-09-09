@@ -15,7 +15,7 @@ from testpreparer_async import RoutesClientTestBaseAsync
 class TestRoutesInInterfaceOperationsAsync(RoutesClientTestBaseAsync):
     @RoutesPreparer()
     @recorded_by_proxy_async
-    async def test_fixed(self, routes_endpoint):
+    async def test_in_interface_fixed(self, routes_endpoint):
         client = self.create_async_client(endpoint=routes_endpoint)
         response = await client.in_interface.fixed()
 

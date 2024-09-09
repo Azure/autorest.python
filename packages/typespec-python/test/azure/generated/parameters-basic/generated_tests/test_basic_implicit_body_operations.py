@@ -14,7 +14,7 @@ from testpreparer import BasicClientTestBase, BasicPreparer
 class TestBasicImplicitBodyOperations(BasicClientTestBase):
     @BasicPreparer()
     @recorded_by_proxy
-    def test_simple(self, basic_endpoint):
+    def test_implicit_body_simple(self, basic_endpoint):
         client = self.create_client(endpoint=basic_endpoint)
         response = client.implicit_body.simple(
             body={"name": "str"},

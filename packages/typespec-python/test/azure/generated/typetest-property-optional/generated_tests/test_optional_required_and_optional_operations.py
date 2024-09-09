@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_required_and_optional_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.required_and_optional.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_required_only(self, optional_endpoint):
+    def test_required_and_optional_get_required_only(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.required_and_optional.get_required_only()
 
@@ -32,7 +32,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_required_and_optional_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.required_and_optional.put_all(
             body={"requiredProperty": 0, "optionalProperty": "str"},
@@ -43,7 +43,7 @@ class TestOptionalRequiredAndOptionalOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_required_only(self, optional_endpoint):
+    def test_required_and_optional_put_required_only(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.required_and_optional.put_required_only(
             body={"requiredProperty": 0, "optionalProperty": "str"},

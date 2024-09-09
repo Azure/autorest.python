@@ -14,7 +14,7 @@ from testpreparer import UnionClientTestBase, UnionPreparer
 class TestUnionFloatsOnlyOperations(UnionClientTestBase):
     @UnionPreparer()
     @recorded_by_proxy
-    def test_get(self, union_endpoint):
+    def test_floats_only_get(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.floats_only.get()
 
@@ -23,7 +23,7 @@ class TestUnionFloatsOnlyOperations(UnionClientTestBase):
 
     @UnionPreparer()
     @recorded_by_proxy
-    def test_send(self, union_endpoint):
+    def test_floats_only_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.floats_only.send(
             body={"prop": 1.1},

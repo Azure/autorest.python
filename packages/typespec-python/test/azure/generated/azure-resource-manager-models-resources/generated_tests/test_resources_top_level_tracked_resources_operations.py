@@ -20,7 +20,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_get(self, resource_group):
+    def test_top_level_tracked_resources_get(self, resource_group):
         response = self.client.top_level_tracked_resources.get(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -31,7 +31,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_create_or_replace(self, resource_group):
+    def test_top_level_tracked_resources_begin_create_or_replace(self, resource_group):
         response = self.client.top_level_tracked_resources.begin_create_or_replace(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -58,7 +58,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_update(self, resource_group):
+    def test_top_level_tracked_resources_begin_update(self, resource_group):
         response = self.client.top_level_tracked_resources.begin_update(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -85,7 +85,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_delete(self, resource_group):
+    def test_top_level_tracked_resources_begin_delete(self, resource_group):
         response = self.client.top_level_tracked_resources.begin_delete(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",
@@ -96,7 +96,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_list_by_resource_group(self, resource_group):
+    def test_top_level_tracked_resources_list_by_resource_group(self, resource_group):
         response = self.client.top_level_tracked_resources.list_by_resource_group(
             resource_group_name=resource_group.name,
         )
@@ -106,7 +106,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_list_by_subscription(self, resource_group):
+    def test_top_level_tracked_resources_list_by_subscription(self, resource_group):
         response = self.client.top_level_tracked_resources.list_by_subscription()
         result = [r for r in response]
         # please add some check logic here by yourself
@@ -114,7 +114,7 @@ class TestResourcesTopLevelTrackedResourcesOperations(AzureMgmtRecordedTestCase)
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_action_sync(self, resource_group):
+    def test_top_level_tracked_resources_action_sync(self, resource_group):
         response = self.client.top_level_tracked_resources.action_sync(
             resource_group_name=resource_group.name,
             top_level_tracked_resource_name="str",

@@ -14,7 +14,7 @@ from testpreparer import BytesClientTestBase, BytesPreparer
 class TestBytesRequestBodyOperations(BytesClientTestBase):
     @BytesPreparer()
     @recorded_by_proxy
-    def test_default(self, bytes_endpoint):
+    def test_request_body_default(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.request_body.default(
             value=bytes("bytes", encoding="utf-8"),
@@ -26,7 +26,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_octet_stream(self, bytes_endpoint):
+    def test_request_body_octet_stream(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.request_body.octet_stream(
             value=bytes("bytes", encoding="utf-8"),
@@ -38,7 +38,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_custom_content_type(self, bytes_endpoint):
+    def test_request_body_custom_content_type(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.request_body.custom_content_type(
             value=bytes("bytes", encoding="utf-8"),
@@ -50,7 +50,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64(self, bytes_endpoint):
+    def test_request_body_base64(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.request_body.base64(
             value=bytes("bytes", encoding="utf-8"),
@@ -62,7 +62,7 @@ class TestBytesRequestBodyOperations(BytesClientTestBase):
 
     @BytesPreparer()
     @recorded_by_proxy
-    def test_base64_url(self, bytes_endpoint):
+    def test_request_body_base64_url(self, bytes_endpoint):
         client = self.create_client(endpoint=bytes_endpoint)
         response = client.request_body.base64_url(
             value=bytes("bytes", encoding="utf-8"),

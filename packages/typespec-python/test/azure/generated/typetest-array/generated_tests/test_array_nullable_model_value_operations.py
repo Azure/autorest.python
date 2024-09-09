@@ -14,7 +14,7 @@ from testpreparer import ArrayClientTestBase, ArrayPreparer
 class TestArrayNullableModelValueOperations(ArrayClientTestBase):
     @ArrayPreparer()
     @recorded_by_proxy
-    def test_get(self, array_endpoint):
+    def test_nullable_model_value_get(self, array_endpoint):
         client = self.create_client(endpoint=array_endpoint)
         response = client.nullable_model_value.get()
 
@@ -23,7 +23,7 @@ class TestArrayNullableModelValueOperations(ArrayClientTestBase):
 
     @ArrayPreparer()
     @recorded_by_proxy
-    def test_put(self, array_endpoint):
+    def test_nullable_model_value_put(self, array_endpoint):
         client = self.create_client(endpoint=array_endpoint)
         response = client.nullable_model_value.put(
             body=[{"property": "str", "children": [...]}],

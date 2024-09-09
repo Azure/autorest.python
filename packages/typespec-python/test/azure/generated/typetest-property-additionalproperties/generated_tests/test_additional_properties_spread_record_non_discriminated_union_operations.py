@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesSpreadRecordNonDiscriminatedUnionOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_spread_record_non_discriminated_union_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_record_non_discriminated_union.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesSpreadRecordNonDiscriminatedUnionOperations(Additi
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_spread_record_non_discriminated_union_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_record_non_discriminated_union.put(
             body={"name": "str"},

@@ -14,7 +14,7 @@ from testpreparer import NullableClientTestBase, NullablePreparer
 class TestNullableCollectionsByteOperations(NullableClientTestBase):
     @NullablePreparer()
     @recorded_by_proxy
-    def test_get_non_null(self, nullable_endpoint):
+    def test_collections_byte_get_non_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.collections_byte.get_non_null()
 
@@ -23,7 +23,7 @@ class TestNullableCollectionsByteOperations(NullableClientTestBase):
 
     @NullablePreparer()
     @recorded_by_proxy
-    def test_get_null(self, nullable_endpoint):
+    def test_collections_byte_get_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.collections_byte.get_null()
 
@@ -32,7 +32,7 @@ class TestNullableCollectionsByteOperations(NullableClientTestBase):
 
     @NullablePreparer()
     @recorded_by_proxy
-    def test_patch_non_null(self, nullable_endpoint):
+    def test_collections_byte_patch_non_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.collections_byte.patch_non_null(
             body={"nullableProperty": [bytes("bytes", encoding="utf-8")], "requiredProperty": "str"},
@@ -43,7 +43,7 @@ class TestNullableCollectionsByteOperations(NullableClientTestBase):
 
     @NullablePreparer()
     @recorded_by_proxy
-    def test_patch_null(self, nullable_endpoint):
+    def test_collections_byte_patch_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.collections_byte.patch_null(
             body={"nullableProperty": [bytes("bytes", encoding="utf-8")], "requiredProperty": "str"},

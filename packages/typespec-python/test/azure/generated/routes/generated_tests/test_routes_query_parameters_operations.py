@@ -14,7 +14,7 @@ from testpreparer import RoutesClientTestBase, RoutesPreparer
 class TestRoutesQueryParametersOperations(RoutesClientTestBase):
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_template_only(self, routes_endpoint):
+    def test_query_parameters_template_only(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.template_only(
             param="str",
@@ -25,7 +25,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_explicit(self, routes_endpoint):
+    def test_query_parameters_explicit(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.explicit(
             param="str",
@@ -36,7 +36,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_annotation_only(self, routes_endpoint):
+    def test_query_parameters_annotation_only(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.annotation_only(
             param="str",
@@ -47,7 +47,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_primitive(self, routes_endpoint):
+    def test_query_parameters_query_expansion_standard_primitive(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.standard.primitive(
             param="str",
@@ -58,7 +58,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_array(self, routes_endpoint):
+    def test_query_parameters_query_expansion_standard_array(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.standard.array(
             param=["str"],
@@ -69,7 +69,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_record(self, routes_endpoint):
+    def test_query_parameters_query_expansion_standard_record(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.standard.record(
             param={"str": 0},
@@ -80,7 +80,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_primitive(self, routes_endpoint):
+    def test_query_parameters_query_expansion_explode_primitive(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.explode.primitive(
             param="str",
@@ -91,7 +91,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_array(self, routes_endpoint):
+    def test_query_parameters_query_expansion_explode_array(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.explode.array(
             param=["str"],
@@ -102,7 +102,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_record(self, routes_endpoint):
+    def test_query_parameters_query_expansion_explode_record(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_expansion.explode.record(
             param={"str": 0},
@@ -113,7 +113,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_primitive(self, routes_endpoint):
+    def test_query_parameters_query_continuation_standard_primitive(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.standard.primitive(
             param="str",
@@ -124,7 +124,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_array(self, routes_endpoint):
+    def test_query_parameters_query_continuation_standard_array(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.standard.array(
             param=["str"],
@@ -135,7 +135,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_record(self, routes_endpoint):
+    def test_query_parameters_query_continuation_standard_record(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.standard.record(
             param={"str": 0},
@@ -146,7 +146,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_primitive(self, routes_endpoint):
+    def test_query_parameters_query_continuation_explode_primitive(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.explode.primitive(
             param="str",
@@ -157,7 +157,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_array(self, routes_endpoint):
+    def test_query_parameters_query_continuation_explode_array(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.explode.array(
             param=["str"],
@@ -168,7 +168,7 @@ class TestRoutesQueryParametersOperations(RoutesClientTestBase):
 
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_record(self, routes_endpoint):
+    def test_query_parameters_query_continuation_explode_record(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.query_parameters.query_continuation.explode.record(
             param={"str": 0},

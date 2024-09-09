@@ -15,7 +15,7 @@ from testpreparer_async import NamingClientTestBaseAsync
 class TestNamingUnionEnumOperationsAsync(NamingClientTestBaseAsync):
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_union_enum_name(self, naming_endpoint):
+    async def test_union_enum_union_enum_name(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
         response = await client.union_enum.union_enum_name(
             body="str",
@@ -27,7 +27,7 @@ class TestNamingUnionEnumOperationsAsync(NamingClientTestBaseAsync):
 
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_union_enum_member_name(self, naming_endpoint):
+    async def test_union_enum_union_enum_member_name(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
         response = await client.union_enum.union_enum_member_name(
             body="str",

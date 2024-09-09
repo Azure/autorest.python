@@ -20,7 +20,7 @@ class TestResourcesSingletonTrackedResourcesOperations(AzureMgmtRecordedTestCase
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_get_by_resource_group(self, resource_group):
+    def test_singleton_tracked_resources_get_by_resource_group(self, resource_group):
         response = self.client.singleton_tracked_resources.get_by_resource_group(
             resource_group_name=resource_group.name,
         )
@@ -30,7 +30,7 @@ class TestResourcesSingletonTrackedResourcesOperations(AzureMgmtRecordedTestCase
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_begin_create_or_update(self, resource_group):
+    def test_singleton_tracked_resources_begin_create_or_update(self, resource_group):
         response = self.client.singleton_tracked_resources.begin_create_or_update(
             resource_group_name=resource_group.name,
             resource={
@@ -56,7 +56,7 @@ class TestResourcesSingletonTrackedResourcesOperations(AzureMgmtRecordedTestCase
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_update(self, resource_group):
+    def test_singleton_tracked_resources_update(self, resource_group):
         response = self.client.singleton_tracked_resources.update(
             resource_group_name=resource_group.name,
             properties={
@@ -82,7 +82,7 @@ class TestResourcesSingletonTrackedResourcesOperations(AzureMgmtRecordedTestCase
 
     @RandomNameResourceGroupPreparer(location=AZURE_LOCATION)
     @recorded_by_proxy
-    def test_list_by_resource_group(self, resource_group):
+    def test_singleton_tracked_resources_list_by_resource_group(self, resource_group):
         response = self.client.singleton_tracked_resources.list_by_resource_group(
             resource_group_name=resource_group.name,
         )

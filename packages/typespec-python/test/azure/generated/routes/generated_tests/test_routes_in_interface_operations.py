@@ -14,7 +14,7 @@ from testpreparer import RoutesClientTestBase, RoutesPreparer
 class TestRoutesInInterfaceOperations(RoutesClientTestBase):
     @RoutesPreparer()
     @recorded_by_proxy
-    def test_fixed(self, routes_endpoint):
+    def test_in_interface_fixed(self, routes_endpoint):
         client = self.create_client(endpoint=routes_endpoint)
         response = client.in_interface.fixed()
 

@@ -14,7 +14,7 @@ from testpreparer import DurationClientTestBase, DurationPreparer
 class TestDurationHeaderOperations(DurationClientTestBase):
     @DurationPreparer()
     @recorded_by_proxy
-    def test_default(self, duration_endpoint):
+    def test_header_default(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.default(
             duration="1 day, 0:00:00",
@@ -25,7 +25,7 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
-    def test_iso8601(self, duration_endpoint):
+    def test_header_iso8601(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.iso8601(
             duration="1 day, 0:00:00",
@@ -36,7 +36,7 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
-    def test_iso8601_array(self, duration_endpoint):
+    def test_header_iso8601_array(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.iso8601_array(
             duration=["1 day, 0:00:00"],
@@ -47,7 +47,7 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
-    def test_int32_seconds(self, duration_endpoint):
+    def test_header_int32_seconds(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.int32_seconds(
             duration=0,
@@ -58,7 +58,7 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
-    def test_float_seconds(self, duration_endpoint):
+    def test_header_float_seconds(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.float_seconds(
             duration=0.0,
@@ -69,7 +69,7 @@ class TestDurationHeaderOperations(DurationClientTestBase):
 
     @DurationPreparer()
     @recorded_by_proxy
-    def test_float64_seconds(self, duration_endpoint):
+    def test_header_float64_seconds(self, duration_endpoint):
         client = self.create_client(endpoint=duration_endpoint)
         response = client.header.float64_seconds(
             duration=0.0,

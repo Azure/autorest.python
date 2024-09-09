@@ -15,7 +15,7 @@ from testpreparer_async import ServiceClientTestBaseAsync
 class TestServiceQuxOperationsAsync(ServiceClientTestBaseAsync):
     @ServicePreparer()
     @recorded_by_proxy_async
-    async def test_eight(self, service_endpoint):
+    async def test_qux_eight(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
         response = await client.qux.eight()
 
@@ -24,7 +24,7 @@ class TestServiceQuxOperationsAsync(ServiceClientTestBaseAsync):
 
     @ServicePreparer()
     @recorded_by_proxy_async
-    async def test_nine(self, service_endpoint):
+    async def test_qux_bar_nine(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
         response = await client.qux.bar.nine()
 

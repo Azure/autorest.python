@@ -15,7 +15,7 @@ from testpreparer_async import ArrayClientTestBaseAsync
 class TestArrayUnknownValueOperationsAsync(ArrayClientTestBaseAsync):
     @ArrayPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, array_endpoint):
+    async def test_unknown_value_get(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
         response = await client.unknown_value.get()
 
@@ -24,7 +24,7 @@ class TestArrayUnknownValueOperationsAsync(ArrayClientTestBaseAsync):
 
     @ArrayPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, array_endpoint):
+    async def test_unknown_value_put(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
         response = await client.unknown_value.put(
             body=[{}],

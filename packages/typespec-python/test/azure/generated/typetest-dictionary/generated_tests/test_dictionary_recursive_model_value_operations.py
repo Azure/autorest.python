@@ -14,7 +14,7 @@ from testpreparer import DictionaryClientTestBase, DictionaryPreparer
 class TestDictionaryRecursiveModelValueOperations(DictionaryClientTestBase):
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_get(self, dictionary_endpoint):
+    def test_recursive_model_value_get(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.recursive_model_value.get()
 
@@ -23,7 +23,7 @@ class TestDictionaryRecursiveModelValueOperations(DictionaryClientTestBase):
 
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_put(self, dictionary_endpoint):
+    def test_recursive_model_value_put(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.recursive_model_value.put(
             body={"str": {"property": "str", "children": {"str": ...}}},

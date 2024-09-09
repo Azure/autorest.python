@@ -14,7 +14,7 @@ from testpreparer import DictionaryClientTestBase, DictionaryPreparer
 class TestDictionaryDatetimeValueOperations(DictionaryClientTestBase):
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_get(self, dictionary_endpoint):
+    def test_datetime_value_get(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.datetime_value.get()
 
@@ -23,7 +23,7 @@ class TestDictionaryDatetimeValueOperations(DictionaryClientTestBase):
 
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_put(self, dictionary_endpoint):
+    def test_datetime_value_put(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.datetime_value.put(
             body={"str": "2020-02-20 00:00:00"},

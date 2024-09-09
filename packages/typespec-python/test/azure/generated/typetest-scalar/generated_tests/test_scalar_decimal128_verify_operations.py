@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarDecimal128VerifyOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_prepare_verify(self, scalar_endpoint):
+    def test_decimal128_verify_prepare_verify(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal128_verify.prepare_verify()
 
@@ -23,7 +23,7 @@ class TestScalarDecimal128VerifyOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_verify(self, scalar_endpoint):
+    def test_decimal128_verify_verify(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.decimal128_verify.verify(
             body=0.0,

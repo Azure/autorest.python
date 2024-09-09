@@ -14,7 +14,7 @@ from testpreparer import AccessClientTestBase, AccessPreparer
 class TestAccessSharedModelInOperationOperations(AccessClientTestBase):
     @AccessPreparer()
     @recorded_by_proxy
-    def test_public(self, access_endpoint):
+    def test_shared_model_in_operation_public(self, access_endpoint):
         client = self.create_client(endpoint=access_endpoint)
         response = client.shared_model_in_operation.public(
             name="str",

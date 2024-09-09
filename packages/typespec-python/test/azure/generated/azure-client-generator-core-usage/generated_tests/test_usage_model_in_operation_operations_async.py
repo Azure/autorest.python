@@ -15,7 +15,7 @@ from testpreparer_async import UsageClientTestBaseAsync
 class TestUsageModelInOperationOperationsAsync(UsageClientTestBaseAsync):
     @UsagePreparer()
     @recorded_by_proxy_async
-    async def test_input_to_input_output(self, usage_endpoint):
+    async def test_model_in_operation_input_to_input_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
         response = await client.model_in_operation.input_to_input_output(
             body={"name": "str"},
@@ -26,7 +26,7 @@ class TestUsageModelInOperationOperationsAsync(UsageClientTestBaseAsync):
 
     @UsagePreparer()
     @recorded_by_proxy_async
-    async def test_output_to_input_output(self, usage_endpoint):
+    async def test_model_in_operation_output_to_input_output(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
         response = await client.model_in_operation.output_to_input_output()
 
@@ -35,7 +35,7 @@ class TestUsageModelInOperationOperationsAsync(UsageClientTestBaseAsync):
 
     @UsagePreparer()
     @recorded_by_proxy_async
-    async def test_model_in_read_only_property(self, usage_endpoint):
+    async def test_model_in_operation_model_in_read_only_property(self, usage_endpoint):
         client = self.create_async_client(endpoint=usage_endpoint)
         response = await client.model_in_operation.model_in_read_only_property(
             body={"result": {"name": "str"}},

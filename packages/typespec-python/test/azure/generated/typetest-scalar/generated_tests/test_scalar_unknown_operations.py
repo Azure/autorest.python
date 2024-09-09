@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarUnknownOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_get(self, scalar_endpoint):
+    def test_unknown_get(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.unknown.get()
 
@@ -23,7 +23,7 @@ class TestScalarUnknownOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_put(self, scalar_endpoint):
+    def test_unknown_put(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.unknown.put(
             body={},
