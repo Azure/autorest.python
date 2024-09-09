@@ -15,7 +15,7 @@ from testpreparer_async import DictionaryClientTestBaseAsync
 class TestDictionaryDurationValueOperationsAsync(DictionaryClientTestBaseAsync):
     @DictionaryPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, dictionary_endpoint):
+    async def test_duration_value_get(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
         response = await client.duration_value.get()
 
@@ -24,7 +24,7 @@ class TestDictionaryDurationValueOperationsAsync(DictionaryClientTestBaseAsync):
 
     @DictionaryPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, dictionary_endpoint):
+    async def test_duration_value_put(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
         response = await client.duration_value.put(
             body={"str": "1 day, 0:00:00"},

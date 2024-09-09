@@ -15,7 +15,7 @@ from testpreparer_async import CollectionFormatClientTestBaseAsync
 class TestCollectionFormatHeaderOperationsAsync(CollectionFormatClientTestBaseAsync):
     @CollectionFormatPreparer()
     @recorded_by_proxy_async
-    async def test_csv(self, collectionformat_endpoint):
+    async def test_header_csv(self, collectionformat_endpoint):
         client = self.create_async_client(endpoint=collectionformat_endpoint)
         response = await client.header.csv(
             colors=["str"],

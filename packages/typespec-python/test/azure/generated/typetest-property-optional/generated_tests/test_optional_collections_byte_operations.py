@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_collections_byte_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.collections_byte.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_collections_byte_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.collections_byte.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_collections_byte_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.collections_byte.put_all(
             body={"property": [bytes("bytes", encoding="utf-8")]},
@@ -43,7 +43,7 @@ class TestOptionalCollectionsByteOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_collections_byte_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.collections_byte.put_default(
             body={"property": [bytes("bytes", encoding="utf-8")]},

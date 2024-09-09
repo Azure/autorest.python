@@ -14,7 +14,7 @@ from testpreparer import ServiceClientTestBase, ServicePreparer
 class TestServiceBazOperations(ServiceClientTestBase):
     @ServicePreparer()
     @recorded_by_proxy
-    def test_seven(self, service_endpoint):
+    def test_baz_foo_seven(self, service_endpoint):
         client = self.create_client(endpoint=service_endpoint)
         response = client.baz.foo.seven()
 

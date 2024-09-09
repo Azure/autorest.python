@@ -15,7 +15,7 @@ from testpreparer_async import UnionClientTestBaseAsync
 class TestUnionFloatsOnlyOperationsAsync(UnionClientTestBaseAsync):
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, union_endpoint):
+    async def test_floats_only_get(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.floats_only.get()
 
@@ -24,7 +24,7 @@ class TestUnionFloatsOnlyOperationsAsync(UnionClientTestBaseAsync):
 
     @UnionPreparer()
     @recorded_by_proxy_async
-    async def test_send(self, union_endpoint):
+    async def test_floats_only_send(self, union_endpoint):
         client = self.create_async_client(endpoint=union_endpoint)
         response = await client.floats_only.send(
             body={"prop": 1.1},

@@ -14,7 +14,7 @@ from testpreparer import DictionaryClientTestBase, DictionaryPreparer
 class TestDictionaryUnknownValueOperations(DictionaryClientTestBase):
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_get(self, dictionary_endpoint):
+    def test_unknown_value_get(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.unknown_value.get()
 
@@ -23,7 +23,7 @@ class TestDictionaryUnknownValueOperations(DictionaryClientTestBase):
 
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_put(self, dictionary_endpoint):
+    def test_unknown_value_put(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.unknown_value.put(
             body={"str": {}},

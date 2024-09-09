@@ -15,7 +15,7 @@ from testpreparer_async import ScalarClientTestBaseAsync
 class TestScalarDecimal128VerifyOperationsAsync(ScalarClientTestBaseAsync):
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_prepare_verify(self, scalar_endpoint):
+    async def test_decimal128_verify_prepare_verify(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_verify.prepare_verify()
 
@@ -24,7 +24,7 @@ class TestScalarDecimal128VerifyOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_verify(self, scalar_endpoint):
+    async def test_decimal128_verify_verify(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.decimal128_verify.verify(
             body=0.0,

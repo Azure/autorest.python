@@ -15,7 +15,7 @@ from testpreparer_async import JsonClientTestBaseAsync
 class TestJsonPropertyOperationsAsync(JsonClientTestBaseAsync):
     @JsonPreparer()
     @recorded_by_proxy_async
-    async def test_send(self, json_endpoint):
+    async def test_property_send(self, json_endpoint):
         client = self.create_async_client(endpoint=json_endpoint)
         response = await client.property.send(
             body={"wireName": bool},
@@ -26,7 +26,7 @@ class TestJsonPropertyOperationsAsync(JsonClientTestBaseAsync):
 
     @JsonPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, json_endpoint):
+    async def test_property_get(self, json_endpoint):
         client = self.create_async_client(endpoint=json_endpoint)
         response = await client.property.get()
 

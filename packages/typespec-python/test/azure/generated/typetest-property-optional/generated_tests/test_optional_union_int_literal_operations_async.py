@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalUnionIntLiteralOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_union_int_literal_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_int_literal.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalUnionIntLiteralOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_default(self, optional_endpoint):
+    async def test_union_int_literal_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_int_literal.get_default()
 
@@ -33,7 +33,7 @@ class TestOptionalUnionIntLiteralOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_union_int_literal_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_int_literal.put_all(
             body={"property": 1},
@@ -44,7 +44,7 @@ class TestOptionalUnionIntLiteralOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_default(self, optional_endpoint):
+    async def test_union_int_literal_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.union_int_literal.put_default(
             body={"property": 1},

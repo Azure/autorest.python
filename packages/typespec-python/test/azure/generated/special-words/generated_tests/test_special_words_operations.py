@@ -14,7 +14,7 @@ from testpreparer import SpecialWordsClientTestBase, SpecialWordsPreparer
 class TestSpecialWordsOperations(SpecialWordsClientTestBase):
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_and_method(self, specialwords_endpoint):
+    def test_operations_and_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.and_method()
 
@@ -23,7 +23,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_as_method(self, specialwords_endpoint):
+    def test_operations_as_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.as_method()
 
@@ -32,7 +32,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_assert_method(self, specialwords_endpoint):
+    def test_operations_assert_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.assert_method()
 
@@ -41,7 +41,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_async_method(self, specialwords_endpoint):
+    def test_operations_async_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.async_method()
 
@@ -50,7 +50,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_await_method(self, specialwords_endpoint):
+    def test_operations_await_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.await_method()
 
@@ -59,7 +59,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_break_method(self, specialwords_endpoint):
+    def test_operations_break_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.break_method()
 
@@ -68,7 +68,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_class_method(self, specialwords_endpoint):
+    def test_operations_class_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.class_method()
 
@@ -77,7 +77,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_constructor(self, specialwords_endpoint):
+    def test_operations_constructor(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.constructor()
 
@@ -86,7 +86,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_continue_method(self, specialwords_endpoint):
+    def test_operations_continue_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.continue_method()
 
@@ -95,7 +95,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_def_method(self, specialwords_endpoint):
+    def test_operations_def_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.def_method()
 
@@ -104,7 +104,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_del_method(self, specialwords_endpoint):
+    def test_operations_del_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.del_method()
 
@@ -113,7 +113,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_elif_method(self, specialwords_endpoint):
+    def test_operations_elif_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.elif_method()
 
@@ -122,7 +122,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_else_method(self, specialwords_endpoint):
+    def test_operations_else_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.else_method()
 
@@ -131,7 +131,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_except_method(self, specialwords_endpoint):
+    def test_operations_except_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.except_method()
 
@@ -140,7 +140,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_exec_method(self, specialwords_endpoint):
+    def test_operations_exec_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.exec_method()
 
@@ -149,7 +149,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_finally_method(self, specialwords_endpoint):
+    def test_operations_finally_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.finally_method()
 
@@ -158,7 +158,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_for_method(self, specialwords_endpoint):
+    def test_operations_for_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.for_method()
 
@@ -167,7 +167,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_from_method(self, specialwords_endpoint):
+    def test_operations_from_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.from_method()
 
@@ -176,7 +176,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_global_method(self, specialwords_endpoint):
+    def test_operations_global_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.global_method()
 
@@ -185,7 +185,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_if_method(self, specialwords_endpoint):
+    def test_operations_if_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.if_method()
 
@@ -194,7 +194,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_import_method(self, specialwords_endpoint):
+    def test_operations_import_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.import_method()
 
@@ -203,7 +203,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_in_method(self, specialwords_endpoint):
+    def test_operations_in_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.in_method()
 
@@ -212,7 +212,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_is_method(self, specialwords_endpoint):
+    def test_operations_is_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.is_method()
 
@@ -221,7 +221,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_lambda_method(self, specialwords_endpoint):
+    def test_operations_lambda_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.lambda_method()
 
@@ -230,7 +230,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_not_method(self, specialwords_endpoint):
+    def test_operations_not_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.not_method()
 
@@ -239,7 +239,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_or_method(self, specialwords_endpoint):
+    def test_operations_or_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.or_method()
 
@@ -248,7 +248,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_pass_method(self, specialwords_endpoint):
+    def test_operations_pass_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.pass_method()
 
@@ -257,7 +257,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_raise_method(self, specialwords_endpoint):
+    def test_operations_raise_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.raise_method()
 
@@ -266,7 +266,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_return_method(self, specialwords_endpoint):
+    def test_operations_return_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.return_method()
 
@@ -275,7 +275,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_try_method(self, specialwords_endpoint):
+    def test_operations_try_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.try_method()
 
@@ -284,7 +284,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_while_method(self, specialwords_endpoint):
+    def test_operations_while_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.while_method()
 
@@ -293,7 +293,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_method(self, specialwords_endpoint):
+    def test_operations_with_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.with_method()
 
@@ -302,7 +302,7 @@ class TestSpecialWordsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_yield_method(self, specialwords_endpoint):
+    def test_operations_yield_method(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.operations.yield_method()
 

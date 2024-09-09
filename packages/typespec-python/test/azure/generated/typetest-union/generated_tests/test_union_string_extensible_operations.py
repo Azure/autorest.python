@@ -14,7 +14,7 @@ from testpreparer import UnionClientTestBase, UnionPreparer
 class TestUnionStringExtensibleOperations(UnionClientTestBase):
     @UnionPreparer()
     @recorded_by_proxy
-    def test_get(self, union_endpoint):
+    def test_string_extensible_get(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.string_extensible.get()
 
@@ -23,7 +23,7 @@ class TestUnionStringExtensibleOperations(UnionClientTestBase):
 
     @UnionPreparer()
     @recorded_by_proxy
-    def test_send(self, union_endpoint):
+    def test_string_extensible_send(self, union_endpoint):
         client = self.create_client(endpoint=union_endpoint)
         response = client.string_extensible.send(
             body={"prop": "b"},

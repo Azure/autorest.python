@@ -15,7 +15,7 @@ from testpreparer_async import OptionalClientTestBaseAsync
 class TestOptionalStringOperationsAsync(OptionalClientTestBaseAsync):
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_all(self, optional_endpoint):
+    async def test_string_get_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.string.get_all()
 
@@ -24,7 +24,7 @@ class TestOptionalStringOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_get_default(self, optional_endpoint):
+    async def test_string_get_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.string.get_default()
 
@@ -33,7 +33,7 @@ class TestOptionalStringOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_all(self, optional_endpoint):
+    async def test_string_put_all(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.string.put_all(
             body={"property": "str"},
@@ -44,7 +44,7 @@ class TestOptionalStringOperationsAsync(OptionalClientTestBaseAsync):
 
     @OptionalPreparer()
     @recorded_by_proxy_async
-    async def test_put_default(self, optional_endpoint):
+    async def test_string_put_default(self, optional_endpoint):
         client = self.create_async_client(endpoint=optional_endpoint)
         response = await client.string.put_default(
             body={"property": "str"},

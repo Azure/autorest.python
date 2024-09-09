@@ -14,7 +14,7 @@ from testpreparer import ArrayClientTestBase, ArrayPreparer
 class TestArrayDurationValueOperations(ArrayClientTestBase):
     @ArrayPreparer()
     @recorded_by_proxy
-    def test_get(self, array_endpoint):
+    def test_duration_value_get(self, array_endpoint):
         client = self.create_client(endpoint=array_endpoint)
         response = client.duration_value.get()
 
@@ -23,7 +23,7 @@ class TestArrayDurationValueOperations(ArrayClientTestBase):
 
     @ArrayPreparer()
     @recorded_by_proxy
-    def test_put(self, array_endpoint):
+    def test_duration_value_put(self, array_endpoint):
         client = self.create_client(endpoint=array_endpoint)
         response = client.duration_value.put(
             body=["1 day, 0:00:00"],

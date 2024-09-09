@@ -15,7 +15,7 @@ from testpreparer_async import NullableClientTestBaseAsync
 class TestNullableCollectionsModelOperationsAsync(NullableClientTestBaseAsync):
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_non_null(self, nullable_endpoint):
+    async def test_collections_model_get_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_model.get_non_null()
 
@@ -24,7 +24,7 @@ class TestNullableCollectionsModelOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_get_null(self, nullable_endpoint):
+    async def test_collections_model_get_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_model.get_null()
 
@@ -33,7 +33,7 @@ class TestNullableCollectionsModelOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_non_null(self, nullable_endpoint):
+    async def test_collections_model_patch_non_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_model.patch_non_null(
             body={"nullableProperty": [{"property": "str"}], "requiredProperty": "str"},
@@ -44,7 +44,7 @@ class TestNullableCollectionsModelOperationsAsync(NullableClientTestBaseAsync):
 
     @NullablePreparer()
     @recorded_by_proxy_async
-    async def test_patch_null(self, nullable_endpoint):
+    async def test_collections_model_patch_null(self, nullable_endpoint):
         client = self.create_async_client(endpoint=nullable_endpoint)
         response = await client.collections_model.patch_null(
             body={"nullableProperty": [{"property": "str"}], "requiredProperty": "str"},

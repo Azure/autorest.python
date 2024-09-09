@@ -15,7 +15,7 @@ from testpreparer_async import ArrayClientTestBaseAsync
 class TestArrayNullableBooleanValueOperationsAsync(ArrayClientTestBaseAsync):
     @ArrayPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, array_endpoint):
+    async def test_nullable_boolean_value_get(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
         response = await client.nullable_boolean_value.get()
 
@@ -24,7 +24,7 @@ class TestArrayNullableBooleanValueOperationsAsync(ArrayClientTestBaseAsync):
 
     @ArrayPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, array_endpoint):
+    async def test_nullable_boolean_value_put(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
         response = await client.nullable_boolean_value.put(
             body=[bool],

@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalBooleanLiteralOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_boolean_literal_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.boolean_literal.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalBooleanLiteralOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_boolean_literal_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.boolean_literal.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalBooleanLiteralOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_boolean_literal_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.boolean_literal.put_all(
             body={"property": True},
@@ -43,7 +43,7 @@ class TestOptionalBooleanLiteralOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_boolean_literal_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.boolean_literal.put_default(
             body={"property": True},

@@ -52,7 +52,7 @@ def test_check_file_name_and_content_type(client: MultiPartClient):
 
 
 def test_complex(client: MultiPartClient):
-    client.form_data.complex(
+    client.form_data.file_array_and_basic(
         models.ComplexPartsRequest(
             id="123",
             address=models.Address(city="X"),
@@ -89,7 +89,7 @@ def test_multi_binary_parts(client: MultiPartClient):
 
 
 def test_file_with_http_part_specific_content_type(client: MultiPartClient):
-    client.form_data.file_with_http_part_specific_content_type(
+    client.form_data.http_parts.content_type.image_jpeg_content_type(
         models.FileWithHttpPartSpecificContentTypeRequest(
             profile_image=("hello.jpg", open(str(JPG), "rb"), "image/jpg"),
         )
@@ -97,7 +97,7 @@ def test_file_with_http_part_specific_content_type(client: MultiPartClient):
 
 
 def test_file_with_http_part_required_content_type(client: MultiPartClient):
-    client.form_data.file_with_http_part_required_content_type(
+    client.form_data.http_parts.content_type.required_content_type(
         models.FileWithHttpPartRequiredContentTypeRequest(
             profile_image=open(str(JPG), "rb"),
         )
@@ -106,12 +106,12 @@ def test_file_with_http_part_required_content_type(client: MultiPartClient):
 
 def test_file_with_http_part_optional_content_type(client: MultiPartClient):
     # call twice: one with content type, one without
-    client.form_data.file_with_http_part_optional_content_type(
+    client.form_data.http_parts.content_type.optional_content_type(
         models.FileWithHttpPartOptionalContentTypeRequest(
             profile_image=("hello.jpg", open(str(JPG), "rb").read()),
         )
     )
-    client.form_data.file_with_http_part_optional_content_type(
+    client.form_data.http_parts.content_type.optional_content_type(
         models.FileWithHttpPartOptionalContentTypeRequest(
             profile_image=("hello.jpg", open(str(JPG), "rb").read(), "application/octet-stream"),
         )
@@ -119,7 +119,7 @@ def test_file_with_http_part_optional_content_type(client: MultiPartClient):
 
 
 def test_complex_with_http_part(client: MultiPartClient):
-    client.form_data.complex_with_http_part(
+    client.form_data.http_parts.json_array_and_file_array(
         models.ComplexHttpPartsModelRequest(
             id="123",
             previous_addresses=[
@@ -134,3 +134,7 @@ def test_complex_with_http_part(client: MultiPartClient):
             profile_image=open(str(JPG), "rb"),
         )
     )
+
+
+def test_http_parts_non_string_float(client: MultiPartClient):
+    client.form_data.http_parts.non_string.float(models.FloatRequest(temperature=0.5))

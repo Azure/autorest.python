@@ -14,7 +14,7 @@ from testpreparer import ServiceClientTestBase, ServicePreparer
 class TestServiceQuxOperations(ServiceClientTestBase):
     @ServicePreparer()
     @recorded_by_proxy
-    def test_eight(self, service_endpoint):
+    def test_qux_eight(self, service_endpoint):
         client = self.create_client(endpoint=service_endpoint)
         response = client.qux.eight()
 
@@ -23,7 +23,7 @@ class TestServiceQuxOperations(ServiceClientTestBase):
 
     @ServicePreparer()
     @recorded_by_proxy
-    def test_nine(self, service_endpoint):
+    def test_qux_bar_nine(self, service_endpoint):
         client = self.create_client(endpoint=service_endpoint)
         response = client.qux.bar.nine()
 
