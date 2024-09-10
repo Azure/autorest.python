@@ -65,3 +65,4 @@ corehttp==1.0.0b3
 -e ./generated/versioning-renamedfrom
 -e ./generated/versioning-returntypechangedfrom
 -e ./generated/versioning-typechangedfrom
+-e ./generated/routes
