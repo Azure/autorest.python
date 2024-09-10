@@ -56,7 +56,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -163,7 +163,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -216,7 +216,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -323,7 +323,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -376,7 +376,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -431,7 +431,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -486,7 +486,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :rtype: ~typetest.model.singlediscriminator.models.Dinosaur
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
