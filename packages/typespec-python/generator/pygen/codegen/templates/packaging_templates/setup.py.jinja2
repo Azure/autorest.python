@@ -97,9 +97,6 @@ setup(
         "corehttp[requests]",
         {% endif %}
         "typing-extensions>=4.6.0",
-        {% if code_model.options["models_mode"] == "dpg" %}
-        "defusedxml>=0.7.1",
-        {% endif %}
     ],
     {% if package_mode %}
     python_requires=">=3.8",
