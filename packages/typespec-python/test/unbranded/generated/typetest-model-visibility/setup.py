@@ -63,6 +63,7 @@ setup(
         "isodate>=0.6.1",
         "corehttp[requests]",
         "typing-extensions>=4.6.0",
+        "defusedxml>=0.7.1",
     ],
     python_requires=">=3.8",
 )
