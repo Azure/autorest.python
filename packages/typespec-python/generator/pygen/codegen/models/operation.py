@@ -344,11 +344,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE)
-        file_import.add_submodule_import(
-            "typing",
-            "Type",
-            ImportType.STDLIB,
-        )
+        if self.non_default_errors:
+            file_import.add_submodule_import(
+                "typing",
+                "Type",
+                ImportType.STDLIB,
+            )
         file_import.add_mutable_mapping_import()
         if self.non_default_error_status_codes:
             file_import.add_submodule_import(

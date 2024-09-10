@@ -93,14 +93,17 @@ class _ModelSerializer(BaseSerializer, ABC):
             init_properties_declaration.append(self.initialize_standard_property(param))
 
         return init_properties_declaration
-
-    @staticmethod
-    def properties_to_pass_to_super(model: ModelType) -> str:
-        properties_to_pass_to_super = []
+    
+    def properties_to_pass_to_super_list(self, model: ModelType) -> List[Property]:
+        retval: List[Property] = []
         for parent in model.parents:
             for prop in model.properties:
                 if prop in parent.properties and not prop.is_discriminator and not prop.constant and not prop.readonly:
-                    properties_to_pass_to_super.append(f"{prop.client_name}={prop.client_name}")
+                    retval.append(prop)
+        return retval
+
+    def properties_to_pass_to_super(self, model: ModelType) -> str:
+        properties_to_pass_to_super = [f"{prop.client_name}={prop.client_name}" for prop in self.properties_to_pass_to_super_list(model)]
         properties_to_pass_to_super.append("**kwargs")
         return ", ".join(properties_to_pass_to_super)
     
@@ -115,7 +118,7 @@ class _ModelSerializer(BaseSerializer, ABC):
         if model.parents and any(
             prop.optional or prop.client_default_value is not None
             for parent in model.parents
-            for prop in parent.properties
+            for prop in self.properties_to_pass_to_super_list(parent)
         ):
             return ""
         return "  # pylint: disable=useless-super-delegation"
