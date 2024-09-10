@@ -9,8 +9,10 @@
         "azure.resourcemanager.models.resources.models.NestedProxyResource": "Azure.ResourceManager.Models.Resources.NestedProxyResource",
         "azure.resourcemanager.models.resources.models.NestedProxyResourceProperties": "Azure.ResourceManager.Models.Resources.NestedProxyResourceProperties",
         "azure.resourcemanager.models.resources.models.NotificationDetails": "Azure.ResourceManager.Models.Resources.NotificationDetails",
-        "azure.resourcemanager.models.resources.models.SystemData": "Azure.ResourceManager.CommonTypes.SystemData",
         "azure.resourcemanager.models.resources.models.TrackedResource": "Azure.ResourceManager.CommonTypes.TrackedResource",
+        "azure.resourcemanager.models.resources.models.SingletonTrackedResource": "Azure.ResourceManager.Models.Resources.SingletonTrackedResource",
+        "azure.resourcemanager.models.resources.models.SingletonTrackedResourceProperties": "Azure.ResourceManager.Models.Resources.SingletonTrackedResourceProperties",
+        "azure.resourcemanager.models.resources.models.SystemData": "Azure.ResourceManager.CommonTypes.SystemData",
         "azure.resourcemanager.models.resources.models.TopLevelTrackedResource": "Azure.ResourceManager.Models.Resources.TopLevelTrackedResource",
         "azure.resourcemanager.models.resources.models.TopLevelTrackedResourceProperties": "Azure.ResourceManager.Models.Resources.TopLevelTrackedResourceProperties",
         "azure.resourcemanager.models.resources.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
@@ -26,6 +28,10 @@
         "azure.resourcemanager.models.resources.ResourcesClient.nested_proxy_resources.begin_create_or_replace": "Azure.ResourceManager.Models.Resources.NestedProxyResources.createOrReplace",
         "azure.resourcemanager.models.resources.ResourcesClient.nested_proxy_resources.begin_update": "Azure.ResourceManager.Models.Resources.NestedProxyResources.update",
         "azure.resourcemanager.models.resources.ResourcesClient.nested_proxy_resources.begin_delete": "Azure.ResourceManager.Models.Resources.NestedProxyResources.delete",
-        "azure.resourcemanager.models.resources.ResourcesClient.nested_proxy_resources.list_by_top_level_tracked_resource": "Azure.ResourceManager.Models.Resources.NestedProxyResources.listByTopLevelTrackedResource"
+        "azure.resourcemanager.models.resources.ResourcesClient.nested_proxy_resources.list_by_top_level_tracked_resource": "Azure.ResourceManager.Models.Resources.NestedProxyResources.listByTopLevelTrackedResource",
+        "azure.resourcemanager.models.resources.ResourcesClient.singleton_tracked_resources.get_by_resource_group": "Azure.ResourceManager.Models.Resources.SingletonTrackedResources.getByResourceGroup",
+        "azure.resourcemanager.models.resources.ResourcesClient.singleton_tracked_resources.begin_create_or_update": "Azure.ResourceManager.Models.Resources.SingletonTrackedResources.createOrUpdate",
+        "azure.resourcemanager.models.resources.ResourcesClient.singleton_tracked_resources.update": "Azure.ResourceManager.Models.Resources.SingletonTrackedResources.update",
+        "azure.resourcemanager.models.resources.ResourcesClient.singleton_tracked_resources.list_by_resource_group": "Azure.ResourceManager.Models.Resources.SingletonTrackedResources.listByResourceGroup"
     }
 }

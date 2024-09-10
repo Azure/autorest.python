@@ -22,7 +22,7 @@ class ChildFlattenModel(_model_base.Model):
     :ivar summary: Required.
     :vartype summary: str
     :ivar properties: Required.
-    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildModel
+    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
     summary: str = rest_field()
@@ -110,7 +110,7 @@ class FlattenModel(_model_base.Model):
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
-    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildModel
+    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
     name: str = rest_field()
@@ -164,7 +164,7 @@ class NestedFlattenModel(_model_base.Model):
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
-    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel
+    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel
     """
 
     name: str = rest_field()

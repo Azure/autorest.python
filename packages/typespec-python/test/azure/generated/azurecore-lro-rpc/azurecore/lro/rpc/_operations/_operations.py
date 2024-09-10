@@ -71,7 +71,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
     def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

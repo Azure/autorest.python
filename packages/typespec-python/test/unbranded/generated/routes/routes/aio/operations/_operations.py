@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -73,7 +73,7 @@ from .._vendor import RoutesClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -111,7 +111,7 @@ class PathParametersOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    async def template_only(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def template_only(self, param: str, **kwargs: Any) -> None:
         """template_only.
 
         :param param: Required.
@@ -120,7 +120,7 @@ class PathParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -157,7 +157,7 @@ class PathParametersOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def explicit(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def explicit(self, param: str, **kwargs: Any) -> None:
         """explicit.
 
         :param param: Required.
@@ -166,7 +166,7 @@ class PathParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -203,9 +203,7 @@ class PathParametersOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def annotation_only(  # pylint: disable=inconsistent-return-statements
-        self, param: str, **kwargs: Any
-    ) -> None:
+    async def annotation_only(self, param: str, **kwargs: Any) -> None:
         """annotation_only.
 
         :param param: Required.
@@ -214,7 +212,7 @@ class PathParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -276,9 +274,7 @@ class QueryParametersOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    async def template_only(  # pylint: disable=inconsistent-return-statements
-        self, *, param: str, **kwargs: Any
-    ) -> None:
+    async def template_only(self, *, param: str, **kwargs: Any) -> None:
         """template_only.
 
         :keyword param: Required.
@@ -287,7 +283,7 @@ class QueryParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -324,7 +320,7 @@ class QueryParametersOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def explicit(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def explicit(self, *, param: str, **kwargs: Any) -> None:
         """explicit.
 
         :keyword param: Required.
@@ -333,7 +329,7 @@ class QueryParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -370,9 +366,7 @@ class QueryParametersOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def annotation_only(  # pylint: disable=inconsistent-return-statements
-        self, *, param: str, **kwargs: Any
-    ) -> None:
+    async def annotation_only(self, *, param: str, **kwargs: Any) -> None:
         """annotation_only.
 
         :keyword param: Required.
@@ -381,7 +375,7 @@ class QueryParametersOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -436,14 +430,14 @@ class InInterfaceOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def fixed(self, **kwargs: Any) -> None:
         """fixed.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -482,14 +476,14 @@ class InInterfaceOperations:
 
 class RoutesClientOperationsMixin(RoutesClientMixinABC):
 
-    async def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def fixed(self, **kwargs: Any) -> None:
         """fixed.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -543,7 +537,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def template(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def template(self, param: str, **kwargs: Any) -> None:
         """template.
 
         :param param: Required.
@@ -552,7 +546,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -589,7 +583,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def annotation(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def annotation(self, param: str, **kwargs: Any) -> None:
         """annotation.
 
         :param param: Required.
@@ -598,7 +592,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -803,7 +797,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -812,7 +806,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -849,7 +843,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -858,7 +852,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -895,9 +889,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -906,7 +898,7 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -961,7 +953,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -970,7 +962,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1007,7 +999,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1016,7 +1008,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1053,9 +1045,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1064,7 +1054,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1119,7 +1109,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1128,7 +1118,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1165,7 +1155,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1174,7 +1164,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1211,9 +1201,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1222,7 +1210,7 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1277,7 +1265,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1286,7 +1274,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1323,7 +1311,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1332,7 +1320,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1369,9 +1357,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1380,7 +1366,7 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1435,7 +1421,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1444,7 +1430,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1481,7 +1467,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1490,7 +1476,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1527,9 +1513,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1538,7 +1522,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1593,7 +1577,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1602,7 +1586,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1639,7 +1623,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1648,7 +1632,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1685,9 +1669,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1696,7 +1678,7 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1751,7 +1733,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1760,7 +1742,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1797,7 +1779,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1806,7 +1788,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1843,9 +1825,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -1854,7 +1834,7 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1909,7 +1889,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :param param: Required.
@@ -1918,7 +1898,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1955,7 +1935,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -1964,7 +1944,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2001,9 +1981,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -2012,7 +1990,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2067,7 +2045,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, *, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :keyword param: Required.
@@ -2076,7 +2054,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2113,7 +2091,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, *, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, *, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :keyword param: Required.
@@ -2122,7 +2100,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2159,9 +2137,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, *, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, *, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :keyword param: Required.
@@ -2170,7 +2146,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2225,7 +2201,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, *, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :keyword param: Required.
@@ -2234,7 +2210,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2271,7 +2247,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, *, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, *, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :keyword param: Required.
@@ -2280,7 +2256,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2317,9 +2293,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, *, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, *, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :keyword param: Required.
@@ -2328,7 +2302,7 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2383,7 +2357,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, *, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :keyword param: Required.
@@ -2392,7 +2366,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2429,7 +2403,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, *, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, *, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :keyword param: Required.
@@ -2438,7 +2412,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2475,9 +2449,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, *, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, *, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :keyword param: Required.
@@ -2486,7 +2458,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2541,7 +2513,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def primitive(self, *, param: str, **kwargs: Any) -> None:
         """primitive.
 
         :keyword param: Required.
@@ -2550,7 +2522,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2587,7 +2559,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, *, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def array(self, *, param: List[str], **kwargs: Any) -> None:
         """array.
 
         :keyword param: Required.
@@ -2596,7 +2568,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2633,9 +2605,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(  # pylint: disable=inconsistent-return-statements
-        self, *, param: Dict[str, int], **kwargs: Any
-    ) -> None:
+    async def record(self, *, param: Dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :keyword param: Required.
@@ -2644,7 +2614,7 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

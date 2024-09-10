@@ -79,3 +79,14 @@ class TestBasicAsync(BasicClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @BasicPreparer()
+    @recorded_by_proxy_async
+    async def test_export_all_users(self, basic_endpoint):
+        client = self.create_async_client(endpoint=basic_endpoint)
+        response = await client.export_all_users(
+            format="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...

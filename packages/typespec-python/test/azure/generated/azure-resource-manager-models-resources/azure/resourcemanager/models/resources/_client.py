@@ -17,7 +17,11 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import ResourcesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import NestedProxyResourcesOperations, TopLevelTrackedResourcesOperations
+from .operations import (
+    NestedProxyResourcesOperations,
+    SingletonTrackedResourcesOperations,
+    TopLevelTrackedResourcesOperations,
+)
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
@@ -32,6 +36,9 @@ class ResourcesClient:
     :ivar nested_proxy_resources: NestedProxyResourcesOperations operations
     :vartype nested_proxy_resources:
      azure.resourcemanager.models.resources.operations.NestedProxyResourcesOperations
+    :ivar singleton_tracked_resources: SingletonTrackedResourcesOperations operations
+    :vartype singleton_tracked_resources:
+     azure.resourcemanager.models.resources.operations.SingletonTrackedResourcesOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -84,6 +91,9 @@ class ResourcesClient:
             self._client, self._config, self._serialize, self._deserialize
         )
         self.nested_proxy_resources = NestedProxyResourcesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.singleton_tracked_resources = SingletonTrackedResourcesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

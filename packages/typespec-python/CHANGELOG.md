@@ -1,5 +1,14 @@
 # Release
 
+## 0.31.1
+
+### Bug Fixes
+
+- [#2830](https://github.com/Azure/autorest.python/pull/2830) Add pylint disable for "line-too-long" and "too-many-locals"
+- [#2831](https://github.com/Azure/autorest.python/pull/2831) Add pylint disable for "unsubscriptable-object"
+- [#2829](https://github.com/Azure/autorest.python/pull/2829) Fix bandit error in serialization
+
+
 ## 0.31.0
 
 ### Bug Fixes
