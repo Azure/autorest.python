@@ -263,7 +263,7 @@ class DpgModelSerializer(_ModelSerializer):
         generated_code = f'{prop.client_name}: {prop.type_annotation()} = {field}({", ".join(args)})'
         pylint_disable = (
             " # pylint: disable=line-too-long"
-            if len(generated_code) <= 120 and (len(generated_code) + len(type_ignore)) > 120
+            if len(generated_code) <= 120 < (len(generated_code) + len(type_ignore))
             else ""
         )
         return f"{generated_code}{type_ignore}{pylint_disable}"
