@@ -903,10 +903,10 @@ def test_deserialization_callback_override():
         return [str(entry) for entry in obj]
 
     class MyModel(Model):
-        prop: Sequence[int] = rest_field()
+        prop: Sequence[float] = rest_field()
 
         @overload
-        def __init__(self, *, prop: Sequence[int]): ...
+        def __init__(self, *, prop: Sequence[float]): ...
 
         @overload
         def __init__(self, mapping: Mapping[str, Any], /): ...
@@ -1000,7 +1000,7 @@ def test_inheritance_basic():
 
 
 class ParentA(Model):
-    prop: int = rest_field()
+    prop: float = rest_field()
 
     @overload
     def __init__(self, *, prop: Any): ...
@@ -1307,7 +1307,6 @@ def test_multiple_inheritance_basic():
             super().__init__(*args, **kwargs)
 
     class Child(ParentOne, ParentTwo):
-
         @overload
         def __init__(
             self,
@@ -3939,13 +3938,30 @@ def test_decimal_serialization():
     )
 
 
+def test_int_as_str_deserialization():
+    class IntAsStrModel(Model):
+        int_as_str_value: int = rest_field(name="intAsStrValue", format="str")
+
+    model = IntAsStrModel({"intAsStrValue": "123"})
+    assert model["intAsStrValue"] == "123"
+    assert model.int_as_str_value == 123
+
+    class BaseModel(Model):
+        my_prop: IntAsStrModel = rest_field(name="myProp")
+
+    model = BaseModel({"myProp": {"intAsStrValue": "123"}})
+    assert isinstance(model.my_prop, IntAsStrModel)
+    assert model.my_prop["intAsStrValue"] == model["myProp"]["intAsStrValue"] == "123"
+    assert model.my_prop.int_as_str_value == 123
+
+
 def test_deserialize():
     expected = {"name": "name", "role": "role"}
     result = _deserialize(JSON, expected)
     assert result == expected
 
 
-def test_enum_deserealization():
+def test_enum_deserialization():
     class MyEnum(Enum):
         A = "a"
         B = "b"

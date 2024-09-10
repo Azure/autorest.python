@@ -41,7 +41,7 @@ def _single_dir_pylint(mod):
         )
         return True
     except CalledProcessError as e:
-        logging.error("{} exited with linting error {}".format(inner_class.stem, e.returncode))
+        logging.error("{} exited with linting error {}".format(str(inner_class.absolute()), e.returncode))
         return False
 
 

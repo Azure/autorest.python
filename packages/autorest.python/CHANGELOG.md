@@ -1,5 +1,12 @@
 # Release
 
+## 6.21.0
+
+### Bug Fixes
+
+- [#2814](https://github.com/Azure/autorest.python/pull/2814) Fix pylint errors in serialization.py
+
+
 ## 6.20.0
 
 No changes, version bump only.
