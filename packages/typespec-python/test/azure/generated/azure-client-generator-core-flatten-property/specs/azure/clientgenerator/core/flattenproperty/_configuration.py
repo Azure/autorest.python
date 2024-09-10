@@ -26,7 +26,7 @@ class FlattenPropertyClientConfiguration:  # pylint: disable=too-many-instance-a
     def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
         self.endpoint = endpoint
-        kwargs.setdefault("sdk_moniker", "clientgenerator-core-flattenproperty/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-flattenproperty/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
