@@ -110,6 +110,8 @@ class _ModelSerializer(BaseSerializer, ABC):
     def pylint_disable(self, model: ModelType) -> str:
         if model.flattened_property or self.initialize_properties(model):
             return ""
+        if any(p for p in model.properties if p.is_discriminator and model.discriminator_value):
+            return ""
         if model.parents and any(
             prop.optional or prop.client_default_value is not None
             for parent in model.parents
