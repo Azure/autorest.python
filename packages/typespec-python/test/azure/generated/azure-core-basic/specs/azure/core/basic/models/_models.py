@@ -9,12 +9,43 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
+from azure.core.exceptions import HttpResponseError
+
 from .. import _model_base
 from .._model_base import rest_field
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
+
+
+class HealthInsightsErrorResponse(_model_base.Model):
+    """A response containing error details.
+
+
+    :ivar error: The error object. Required.
+    :vartype error: ~azure.core.HttpResponseError
+    """
+
+    error: HttpResponseError = rest_field()
+    """The error object. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        error: HttpResponseError,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
 
 
 class User(_model_base.Model):
@@ -48,6 +79,35 @@ class User(_model_base.Model):
         *,
         name: str,
         orders: Optional[List["_models.UserOrder"]] = None,
+    ): ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]):
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+        super().__init__(*args, **kwargs)
+
+
+class UserList(_model_base.Model):
+    """UserList.
+
+
+    :ivar users: Required.
+    :vartype users: list[~specs.azure.core.basic.models.User]
+    """
+
+    users: List["_models.User"] = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        users: List["_models.User"],
     ): ...
 
     @overload

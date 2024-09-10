@@ -78,3 +78,14 @@ class TestBasic(BasicClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @BasicPreparer()
+    @recorded_by_proxy
+    def test_export_all_users(self, basic_endpoint):
+        client = self.create_client(endpoint=basic_endpoint)
+        response = client.export_all_users(
+            format="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...
