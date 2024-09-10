@@ -61,35 +61,6 @@ class User(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserList(_model_base.Model):
-    """UserList.
-
-
-    :ivar users: Required.
-    :vartype users: list[~specs.azure.core.basic.models.User]
-    """
-
-    users: List["_models.User"] = rest_field()
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        users: List["_models.User"],
-    ): ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]):
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
-        super().__init__(*args, **kwargs)
-
-
 class UserOrder(_model_base.Model):
     """UserOrder for testing list with expand.
 

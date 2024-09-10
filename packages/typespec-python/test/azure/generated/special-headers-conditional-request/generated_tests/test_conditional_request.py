@@ -29,21 +29,3 @@ class TestConditionalRequest(ConditionalRequestClientTestBase):
 
         # please add some check logic here by yourself
         # ...
-
-    @ConditionalRequestPreparer()
-    @recorded_by_proxy
-    def test_head_if_modified_since(self, conditionalrequest_endpoint):
-        client = self.create_client(endpoint=conditionalrequest_endpoint)
-        response = client.head_if_modified_since()
-
-        # please add some check logic here by yourself
-        # ...
-
-    @ConditionalRequestPreparer()
-    @recorded_by_proxy
-    def test_post_if_unmodified_since(self, conditionalrequest_endpoint):
-        client = self.create_client(endpoint=conditionalrequest_endpoint)
-        response = client.post_if_unmodified_since()
-
-        # please add some check logic here by yourself
-        # ...

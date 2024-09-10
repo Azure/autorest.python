@@ -20,7 +20,6 @@ import email.utils
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import xml.etree.ElementTree as ET
-import defusedxml.ElementTree as SafeET
 from typing_extensions import Self
 import isodate
 from corehttp.exceptions import DeserializationError
@@ -1131,7 +1130,7 @@ def _deserialize_xml(
     deserializer: typing.Any,
     value: str,
 ) -> typing.Any:
-    element = SafeET.fromstring(value)
+    element = ET.fromstring(value)  # nosec
     return _deserialize(deserializer, element)
 
 

@@ -1,6 +1,6 @@
 
 
-# Specs Azure Clientgenerator Core Flattenproperty client library for Python
+# Azure Clientgenerator Core Flattenproperty client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -8,14 +8,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-clientgenerator-core-flattenproperty
+python -m pip install azure-clientgenerator-core-flattenproperty
 ```
 
 #### Prequisites
 
 - Python 3.8 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Clientgenerator Core Flattenproperty instance.
+- An existing Azure Clientgenerator Core Flattenproperty instance.
 
 ## Contributing
 

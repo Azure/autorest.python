@@ -13,7 +13,6 @@ from ._models import ComplexPartsRequest
 from ._models import FileWithHttpPartOptionalContentTypeRequest
 from ._models import FileWithHttpPartRequiredContentTypeRequest
 from ._models import FileWithHttpPartSpecificContentTypeRequest
-from ._models import FloatRequest
 from ._models import JsonPartRequest
 from ._models import MultiBinaryPartsRequest
 from ._models import MultiPartRequest
@@ -29,7 +28,6 @@ __all__ = [
     "FileWithHttpPartOptionalContentTypeRequest",
     "FileWithHttpPartRequiredContentTypeRequest",
     "FileWithHttpPartSpecificContentTypeRequest",
-    "FloatRequest",
     "JsonPartRequest",
     "MultiBinaryPartsRequest",
     "MultiPartRequest",
