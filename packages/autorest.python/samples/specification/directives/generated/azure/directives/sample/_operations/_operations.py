@@ -79,7 +79,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
     def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -298,7 +298,7 @@ class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

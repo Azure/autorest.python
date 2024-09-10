@@ -66,7 +66,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -145,7 +145,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -220,7 +220,7 @@ class OperationGroupOneOperations:
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -327,7 +327,7 @@ class OperationGroupOneOperations:
         :rtype: ~multiapicombiner.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -449,7 +449,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -508,7 +508,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

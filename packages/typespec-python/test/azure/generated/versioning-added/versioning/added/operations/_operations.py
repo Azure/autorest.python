@@ -173,7 +173,7 @@ class InterfaceV2Operations:
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -304,7 +304,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :rtype: ~versioning.added.models.ModelV1
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -420,7 +420,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -130,7 +130,7 @@ class PagingOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -211,7 +211,7 @@ class PagingOperations:
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -69,7 +69,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                     "received": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -202,7 +202,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
                     "received": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -281,7 +281,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -330,7 +330,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         return AsyncItemPaged(get_next, extract_data)
 
     async def _lro_initial(self, mode: str, **kwargs: Any) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -43,7 +43,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -91,7 +91,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

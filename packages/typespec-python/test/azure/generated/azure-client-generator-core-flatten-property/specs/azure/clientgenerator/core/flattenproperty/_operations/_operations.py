@@ -142,7 +142,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         :rtype: ~specs.azure.clientgenerator.core.flattenproperty.models.FlattenModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -261,7 +261,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         :rtype: ~specs.azure.clientgenerator.core.flattenproperty.models.NestedFlattenModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

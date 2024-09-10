@@ -47,7 +47,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
     async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -159,7 +159,7 @@ class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-
     async def _poll_with_constant_parameterized_endpoints_initial(  # pylint: disable=name-too-long
         self, account_name: str, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -68,7 +68,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -111,7 +111,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -266,7 +266,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -342,7 +342,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -458,7 +458,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
