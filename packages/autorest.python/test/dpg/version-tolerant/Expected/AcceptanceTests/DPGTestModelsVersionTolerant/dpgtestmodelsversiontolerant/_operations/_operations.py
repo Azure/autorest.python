@@ -137,7 +137,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -233,7 +233,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         :rtype: ~dpgtestmodelsversiontolerant.models.Product
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -301,7 +301,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
 
         cls: ClsType[_models._models.ProductResult] = kwargs.pop("cls", None)  # pylint: disable=protected-access
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -352,7 +352,7 @@ class DPGClientOperationsMixin(DPGClientMixinABC):
         return ItemPaged(get_next, extract_data)
 
     def _lro_initial(self, mode: str, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
