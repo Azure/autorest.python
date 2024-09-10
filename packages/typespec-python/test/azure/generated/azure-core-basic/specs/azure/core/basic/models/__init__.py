@@ -6,7 +6,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._models import HealthInsightsErrorResponse
 from ._models import User
 from ._models import UserList
 from ._models import UserOrder
@@ -15,7 +14,6 @@ from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "HealthInsightsErrorResponse",
     "User",
     "UserList",
     "UserOrder",
