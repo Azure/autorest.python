@@ -53,7 +53,7 @@
     {% set need_init = (not model.internal) and (serializer.init_line(model) or model.discriminator)%}
     {% if need_init %}
     @overload
-    def __init__(
+    def __init__({{ model.init_pylint_disable }}
         self,
         {% for param_signature in serializer.init_line(model) %}
         {{ param_signature }}

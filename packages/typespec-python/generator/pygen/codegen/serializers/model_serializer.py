@@ -255,11 +255,18 @@ class DpgModelSerializer(_ModelSerializer):
             args.append(f"xml={prop.xml_metadata}")
 
         field = "rest_discriminator" if prop.is_discriminator else "rest_field"
-        type_ignore = prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
-        return (
-            f"{prop.client_name}: {prop.type_annotation()} ="
-            f' {field}({", ".join(args)}){"  # type: ignore" if type_ignore else ""}'
+        type_ignore = (
+            "  # type: ignore"
+            if prop.is_discriminator and isinstance(prop.type, (ConstantType, EnumValue)) and prop.type.value
+            else ""
         )
+        generated_code = f'{prop.client_name}: {prop.type_annotation()} = {field}({", ".join(args)})'
+        pylint_disable = (
+            " # pylint: disable=line-too-long"
+            if len(generated_code) <= 120 < (len(generated_code) + len(type_ignore))
+            else ""
+        )
+        return f"{generated_code}{type_ignore}{pylint_disable}"
 
     def initialize_properties(self, model: ModelType) -> List[str]:
         init_args = []

@@ -1,5 +1,19 @@
 # Release
 
+## 6.21.1
+
+### Bug Fixes
+
+- [#2831](https://github.com/Azure/autorest.python/pull/2831) Add pylint disable for "unsubscriptable-object"
+
+
+## 6.21.0
+
+### Bug Fixes
+
+- [#2814](https://github.com/Azure/autorest.python/pull/2814) Fix pylint errors in serialization.py
+
+
 ## 6.20.0
 
 No changes, version bump only.

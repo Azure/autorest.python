@@ -102,7 +102,7 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -219,7 +219,7 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -341,7 +341,7 @@ class JsonMergePatchClientOperationsMixin(JsonMergePatchClientMixinABC):
         :rtype: ~payload.jsonmergepatch.models.Resource
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
