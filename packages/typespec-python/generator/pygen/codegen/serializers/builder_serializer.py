@@ -7,6 +7,7 @@
 from abc import abstractmethod
 from collections import defaultdict
 from typing import Generic, List, Type, TypeVar, Dict, Union, Optional, cast
+import logging
 
 from ..models import (
     Operation,
@@ -284,8 +285,8 @@ class _BuilderBaseSerializer(Generic[BuilderType]):
         return description_list
 
     @staticmethod
-    def line_too_long(docs: List[str]) -> bool:
-        return any(len(line) > 120 for line in docs)
+    def line_too_long(docs: List[str], indentation: int = 0) -> bool:
+        return any(len(line) > (120 - indentation) for line in docs)
 
     def example_template(self, builder: BuilderType) -> List[str]:
         template = []
