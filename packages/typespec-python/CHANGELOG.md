@@ -1,5 +1,17 @@
 # Release
 
+## 0.32.0
+
+### Bug Fixes
+
+- [#2835](https://github.com/Azure/autorest.python/pull/2835) Fix lint issue "line-too-long" for docstring in operation
+- [#2837](https://github.com/Azure/autorest.python/pull/2837) Fix "line-too-long" for property of model
+
+### Bump dependencies
+
+- [#2834](https://github.com/Azure/autorest.python/pull/2834) Bump typespec 0.60.0
+
+
 ## 0.31.1
 
 ### Bug Fixes
