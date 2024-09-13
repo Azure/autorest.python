@@ -18,7 +18,7 @@ from devtools_testutils import (
 load_dotenv()
 
 
-# aovid record sensitive identity information in recordings
+# For security, please avoid record sensitive identity information in recordings
 @pytest.fixture(scope="session", autouse=True)
 def add_sanitizers(test_proxy):
     json_subscription_id = os.environ.get("JSON_SUBSCRIPTION_ID", "00000000-0000-0000-0000-000000000000")
