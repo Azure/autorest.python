@@ -1686,16 +1686,12 @@ class Deserializer(object):
                 readonly = [
                     k
                     for k, v in response._validation.items()  # pylint: disable=protected-access, pyright: ignore[reportFunctionMemberAccess]
-                    if v.get(
-                        "readonly"
-                    )
+                    if v.get("readonly")
                 ]
                 const = [
                     k
                     for k, v in response._validation.items()  # pylint: disable=protected-access, pyright: ignore[reportFunctionMemberAccess]
-                    if v.get(
-                        "constant"
-                    )
+                    if v.get("constant")
                 ]
                 kwargs = {k: v for k, v in attrs.items() if k not in subtype and k not in readonly + const}
                 response_obj = response(**kwargs)
