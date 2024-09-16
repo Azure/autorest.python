@@ -1684,17 +1684,23 @@ class Deserializer(object):
             subtype = getattr(response, "_subtype_map", {})
             try:
                 readonly = [
-                    k for k, v in response._validation.items() if v.get("readonly")  # pylint: disable=protected-access
+                    k
+                    for k, v in response._validation.items()  # pylint: disable=protected-access, pyright: ignore[reportFunctionMemberAccess]
+                    if v.get("readonly")
                 ]
                 const = [
-                    k for k, v in response._validation.items() if v.get("constant")  # pylint: disable=protected-access
+                    k
+                    for k, v in response._validation.items()  # pylint: disable=protected-access, pyright: ignore[reportFunctionMemberAccess]
+                    if v.get("constant")
                 ]
                 kwargs = {k: v for k, v in attrs.items() if k not in subtype and k not in readonly + const}
                 response_obj = response(**kwargs)
                 for attr in readonly:
                     setattr(response_obj, attr, attrs.get(attr))
                 if additional_properties:
-                    response_obj.additional_properties = additional_properties
+                    response_obj.additional_properties = (  # pyright: ignore[reportAttributeAccessIssue]
+                        additional_properties
+                    )
                 return response_obj
             except TypeError as err:
                 msg = "Unable to deserialize {} into model {}. ".format(kwargs, response)  # type: ignore
