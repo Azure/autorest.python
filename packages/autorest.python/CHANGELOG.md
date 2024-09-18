@@ -1,5 +1,12 @@
 # Release
 
+## 6.22.0
+
+### Bug Fixes
+
+- [#2835](https://github.com/Azure/autorest.python/pull/2835) Fix lint issue "line-too-long" for docstring in operation
+
+
 ## 6.21.1
 
 ### Bug Fixes
