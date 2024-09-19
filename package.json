@@ -32,17 +32,17 @@
   "devDependencies": {
     "@actions/github": "6.0.0",
     "@azure-tools/cadl-ranch": "~0.14.5",
-    "@chronus/chronus": "^0.10.2",
-    "@chronus/github": "^0.3.2",
+    "@chronus/chronus": "^0.12.1",
+    "@chronus/github": "^0.4.3",
     "@typespec/prettier-plugin-typespec": "~0.60.0",
-    "autorest": "3.6.3",
+    "autorest": "~3.7.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-unicorn": "^46.0.1",
-    "prettier": "^2.8.8",
-    "syncpack": "^9.8.6",
-    "typescript": "~5.1.6"
+    "eslint": "^9.10.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-unicorn": "^55.0.0",
+    "prettier": "~3.3.3",
+    "syncpack": "^13.0.0",
+    "typescript": "~5.6.2"
   },
   "syncpack": {
     "dependencyTypes": [
