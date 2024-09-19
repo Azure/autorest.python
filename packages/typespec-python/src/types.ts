@@ -258,17 +258,17 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
     if (typesMap.has(type)) {
         return typesMap.get(type)!;
     }
-    if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.ErrorResponse") {
-        return {
-            type: "sdkcore",
-            name: "HttpResponseError",
-            submodule: "exceptions",
-        };
-    }
     if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.Error") {
         return {
             type: "sdkcore",
             name: "ODataV4Format",
+            submodule: "exceptions",
+        };
+    }
+    if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.ErrorResponse") {
+        return {
+            type: "sdkcore",
+            name: "HttpResponseError",
             submodule: "exceptions",
         };
     }
