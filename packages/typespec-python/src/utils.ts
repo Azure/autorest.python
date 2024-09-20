@@ -77,8 +77,8 @@ function normalize(
     return typeof identifier === "string"
         ? normalize(deconstruct(identifier, maxUppercasePreserve), removeDuplicates, maxUppercasePreserve)
         : removeDuplicates
-        ? removeSequentialDuplicates(identifier)
-        : identifier;
+          ? removeSequentialDuplicates(identifier)
+          : identifier;
 }
 
 export function camelToSnakeCase(name: string): string {
