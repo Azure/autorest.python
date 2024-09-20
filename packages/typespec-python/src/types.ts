@@ -496,7 +496,7 @@ export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
             location: "endpointPath",
             implementation: getImplementation(context, param),
             clientDefaultValue: param.clientDefaultValue,
-            skipUrlEncoding: param.urlEncode === false, // eslint-disable-line deprecation/deprecation
+            skipUrlEncoding: param.urlEncode === false, // @typescript-eslint/no-deprecated
         });
         context.__endpointPathParameters!.push(params.at(-1)!);
     }
