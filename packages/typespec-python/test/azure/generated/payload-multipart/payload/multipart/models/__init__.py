@@ -14,7 +14,6 @@ from ._models import FileWithHttpPartOptionalContentTypeRequest
 from ._models import FileWithHttpPartRequiredContentTypeRequest
 from ._models import FileWithHttpPartSpecificContentTypeRequest
 from ._models import FloatRequest
-from ._models import FloatRequestTemperature
 from ._models import JsonPartRequest
 from ._models import MultiBinaryPartsRequest
 from ._models import MultiPartRequest
@@ -31,7 +30,6 @@ __all__ = [
     "FileWithHttpPartRequiredContentTypeRequest",
     "FileWithHttpPartSpecificContentTypeRequest",
     "FloatRequest",
-    "FloatRequestTemperature",
     "JsonPartRequest",
     "MultiBinaryPartsRequest",
     "MultiPartRequest",
