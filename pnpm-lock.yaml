@@ -95,11 +95,11 @@ importers:
         version: 4.17.0
     devDependencies:
       '@azure-tools/cadl-ranch-expect':
-        specifier: ~0.15.3
-        version: 0.15.3(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
+        specifier: ~0.15.4
+        version: 0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
       '@azure-tools/cadl-ranch-specs':
-        specifier: ~0.37.1
-        version: 0.37.1(@azure-tools/cadl-ranch-expect@0.15.3(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0)))(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))))(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))(@typespec/xml@0.59.0(@typespec/compiler@0.60.0))
+        specifier: ~0.37.2
+        version: 0.37.2(@azure-tools/cadl-ranch-expect@0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0)))(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))))(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))(@typespec/xml@0.59.0(@typespec/compiler@0.60.0))
       '@azure-tools/typespec-autorest':
         specifier: ~0.46.0
         version: 0.46.0(plb3d5lbqspuyf3om5a7m6ynjy)
@@ -200,20 +200,34 @@ packages:
       '@typespec/rest': ~0.59.0
       '@typespec/versioning': ~0.59.0
 
-  '@azure-tools/cadl-ranch-specs@0.37.1':
-    resolution: {integrity: sha512-XR8UxsbTQTSYbgyObcytRP0PLNWrU6cA8dTwQYh+VA/92HrSQYaJ8cQZZ/EyIFjFuSEVGQ74Rx6hpGvfKUrh2w==}
+  '@azure-tools/cadl-ranch-expect@0.15.4':
+    resolution: {integrity: sha512-dluMUSFgANVyNhFT/uMst+lpxeh0DUcw0IiLmy8ZCgps+xJ5UEGCV0XIDzACbZb4JUJXgDxlLpsCUWXdL/ARlg==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@azure-tools/cadl-ranch-expect': ~0.15.3
-      '@azure-tools/typespec-azure-core': ~0.45.0
-      '@typespec/compiler': ~0.59.0
-      '@typespec/http': ~0.59.0
-      '@typespec/rest': ~0.59.0
-      '@typespec/versioning': ~0.59.0
-      '@typespec/xml': ~0.59.0
+      '@typespec/compiler': ~0.60.0
+      '@typespec/http': ~0.60.0
+      '@typespec/rest': ~0.60.0
+      '@typespec/versioning': ~0.60.0
+
+  '@azure-tools/cadl-ranch-specs@0.37.2':
+    resolution: {integrity: sha512-C8WBSIHR4IMVZ/s8iDlD8LRSYDcid7pgsslim+ddZeJ8Yp/D7FayIIxXxR4t9SsP9SG0l7lJ6eS29MPMY0DlJw==}
+    engines: {node: '>=16.0.0'}
+    peerDependencies:
+      '@azure-tools/cadl-ranch-expect': ~0.15.4
+      '@azure-tools/typespec-azure-core': ~0.46.0
+      '@typespec/compiler': ~0.60.0
+      '@typespec/http': ~0.60.0
+      '@typespec/rest': ~0.60.0
+      '@typespec/versioning': ~0.60.0
+      '@typespec/xml': ~0.60.0
 
   '@azure-tools/cadl-ranch@0.14.5':
     resolution: {integrity: sha512-vF98b9ru49YvzcFnuSW6A/gpDOSZcTd/0S42XnmTyTVuF+fp3XOatXTvoUlKnQ25du8hZTm7JFzcZeOova7Xbw==}
+    engines: {node: '>=16.0.0'}
+    hasBin: true
+
+  '@azure-tools/cadl-ranch@0.14.6':
+    resolution: {integrity: sha512-FSI0REbSzLEqkvoes/SoAHw4TTYKNkigghwVqPWF6kTlOJW1bwYzVnRDZJFS4A3jSUxXkCpVSM2MD00nwI1IKw==}
     engines: {node: '>=16.0.0'}
     hasBin: true
 
@@ -2189,11 +2203,6 @@ packages:
     resolution: {integrity: sha512-XxwI8EOhVQgWp6iDL+3b0r86f4d6AX6zSU55HfB4ydCEuXLXc5FcYeOu+nnGftS4TEju/11rt4KJPTMgbfmv4A==}
     engines: {node: '>=10.13.0'}
 
-  glob@10.3.12:
-    resolution: {integrity: sha512-TCNv8vJ+xz4QiqTpfOJA7HvYv+tNIRHKfUWw/q+v2jdgN4ebz+KY9tGx5J4rHP0o84mNP+ApH66HRX8us3Khqg==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    hasBin: true
-
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
     hasBin: true
@@ -2527,10 +2536,6 @@ packages:
   istanbul-reports@3.1.6:
     resolution: {integrity: sha512-TLgnMkKg3iTDsQ9PbPTdpfAK2DzjF9mqUG7RMgcQl8oFjad8ob4laGxv5XV5U9MAfx8D6tSJiUyuAwzLicaxlg==}
     engines: {node: '>=8'}
-
-  jackspeak@2.3.6:
-    resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
-    engines: {node: '>=14'}
 
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
@@ -3058,10 +3063,6 @@ packages:
 
   path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
-
-  path-scurry@1.10.2:
-    resolution: {integrity: sha512-7xTavNy5RQXnsjANvVvMkEjvloOinkAjv/Z6Ildz9v2RinZ4SBKTWFOVRbaF8p0vpHnyjV/UwNDdKuUv6M5qcA==}
-    engines: {node: '>=16 || 14 >=14.17'}
 
   path-scurry@1.11.1:
     resolution: {integrity: sha512-Xa4Nw17FS9ApQFJ9umLiJS4orGjm7ZzwUrwamcGQuHSzDyth9boKDaycYdDcZDuqYATXw4HFXgaqWTctW/v1HA==}
@@ -4025,25 +4026,18 @@ snapshots:
       '@typespec/rest': 0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))
       '@typespec/versioning': 0.60.0(@typespec/compiler@0.59.1)
 
-  '@azure-tools/cadl-ranch-expect@0.15.3(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))':
-    dependencies:
-      '@typespec/compiler': 0.59.1
-      '@typespec/http': 0.59.0(@typespec/compiler@0.59.1)
-      '@typespec/rest': 0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))
-      '@typespec/versioning': 0.60.0(@typespec/compiler@0.60.0)
-
-  '@azure-tools/cadl-ranch-expect@0.15.3(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))':
+  '@azure-tools/cadl-ranch-expect@0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))':
     dependencies:
       '@typespec/compiler': 0.60.0
       '@typespec/http': 0.60.0(@typespec/compiler@0.60.0)
       '@typespec/rest': 0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))
       '@typespec/versioning': 0.60.0(@typespec/compiler@0.60.0)
 
-  '@azure-tools/cadl-ranch-specs@0.37.1(@azure-tools/cadl-ranch-expect@0.15.3(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0)))(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))))(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))(@typespec/xml@0.59.0(@typespec/compiler@0.60.0))':
+  '@azure-tools/cadl-ranch-specs@0.37.2(@azure-tools/cadl-ranch-expect@0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0)))(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))))(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))(@typespec/xml@0.59.0(@typespec/compiler@0.60.0))':
     dependencies:
-      '@azure-tools/cadl-ranch': 0.14.5(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
+      '@azure-tools/cadl-ranch': 0.14.6(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
       '@azure-tools/cadl-ranch-api': 0.4.6
-      '@azure-tools/cadl-ranch-expect': 0.15.3(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
+      '@azure-tools/cadl-ranch-expect': 0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
       '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))
       '@typespec/compiler': 0.60.0
       '@typespec/http': 0.60.0(@typespec/compiler@0.60.0)
@@ -4085,16 +4079,16 @@ snapshots:
       - '@typespec/versioning'
       - supports-color
 
-  '@azure-tools/cadl-ranch@0.14.5(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))':
+  '@azure-tools/cadl-ranch@0.14.6(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))':
     dependencies:
       '@azure-tools/cadl-ranch-api': 0.4.6
       '@azure-tools/cadl-ranch-coverage-sdk': 0.8.4
-      '@azure-tools/cadl-ranch-expect': 0.15.3(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))(@typespec/rest@0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
+      '@azure-tools/cadl-ranch-expect': 0.15.4(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))(@typespec/rest@0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0)))(@typespec/versioning@0.60.0(@typespec/compiler@0.60.0))
       '@azure/identity': 4.4.1
       '@types/js-yaml': 4.0.9
-      '@typespec/compiler': 0.59.1
-      '@typespec/http': 0.59.0(@typespec/compiler@0.59.1)
-      '@typespec/rest': 0.59.0(@typespec/compiler@0.59.1)(@typespec/http@0.59.0(@typespec/compiler@0.59.1))
+      '@typespec/compiler': 0.60.0
+      '@typespec/http': 0.60.0(@typespec/compiler@0.60.0)
+      '@typespec/rest': 0.60.0(@typespec/compiler@0.60.0)(@typespec/http@0.60.0(@typespec/compiler@0.60.0))
       ajv: 8.17.1
       body-parser: 1.20.2
       deep-equal: 2.2.3
@@ -4106,7 +4100,7 @@ snapshots:
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       node-fetch: 3.3.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-support: 0.5.21
       winston: 3.14.1
       xml2js: 0.6.2
@@ -4344,7 +4338,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/helper-validator-identifier@7.24.7': {}
 
@@ -4353,7 +4347,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/runtime@7.24.8':
     dependencies:
@@ -4693,7 +4687,7 @@ snapshots:
   '@npmcli/package-json@5.2.0':
     dependencies:
       '@npmcli/git': 5.0.6
-      glob: 10.3.12
+      glob: 10.4.5
       hosted-git-info: 7.0.1
       json-parse-even-better-errors: 3.0.1
       normalize-package-data: 6.0.0
@@ -5551,7 +5545,7 @@ snapshots:
     dependencies:
       '@npmcli/fs': 3.1.0
       fs-minipass: 3.0.3
-      glob: 10.3.12
+      glob: 10.4.5
       lru-cache: 10.2.0
       minipass: 7.1.2
       minipass-collect: 2.0.1
@@ -6429,14 +6423,6 @@ snapshots:
     dependencies:
       is-glob: 4.0.3
 
-  glob@10.3.12:
-    dependencies:
-      foreground-child: 3.1.1
-      jackspeak: 2.3.6
-      minimatch: 9.0.4
-      minipass: 7.1.2
-      path-scurry: 1.10.2
-
   glob@10.4.5:
     dependencies:
       foreground-child: 3.1.1
@@ -6744,12 +6730,6 @@ snapshots:
     dependencies:
       html-escaper: 2.0.2
       istanbul-lib-report: 3.0.1
-
-  jackspeak@2.3.6:
-    dependencies:
-      '@isaacs/cliui': 8.0.2
-    optionalDependencies:
-      '@pkgjs/parseargs': 0.11.0
 
   jackspeak@3.4.3:
     dependencies:
@@ -7091,7 +7071,7 @@ snapshots:
     dependencies:
       env-paths: 2.2.1
       exponential-backoff: 3.1.1
-      glob: 10.3.12
+      glob: 10.4.5
       graceful-fs: 4.2.11
       make-fetch-happen: 13.0.0
       nopt: 7.2.0
@@ -7339,11 +7319,6 @@ snapshots:
 
   path-parse@1.0.7: {}
 
-  path-scurry@1.10.2:
-    dependencies:
-      lru-cache: 10.2.0
-      minipass: 7.1.2
-
   path-scurry@1.11.1:
     dependencies:
       lru-cache: 10.2.0
@@ -7377,7 +7352,7 @@ snapshots:
   postcss@8.4.44:
     dependencies:
       nanoid: 3.3.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
       source-map-js: 1.2.0
 
   prelude-ls@1.2.1: {}
@@ -8058,7 +8033,7 @@ snapshots:
     dependencies:
       browserslist: 4.23.1
       escalade: 3.1.2
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   uri-js@4.4.1:
     dependencies:
