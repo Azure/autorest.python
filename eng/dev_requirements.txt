@@ -2,7 +2,7 @@ azure-pylint-guidelines-checker==0.0.8
 colorama==0.4.6
 debugpy==1.8.5
 pytest==8.3.3
-tox==4.18.1
+tox==4.20.0
 coverage==7.6.1
 black==24.8.0
 setuptools==73.0.1
