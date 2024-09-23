@@ -298,10 +298,6 @@ class FloatRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FloatRequestTemperature(_model_base.Model):
-    """FloatRequestTemperature."""
-
-
 class JsonPartRequest(_model_base.Model):
     """JsonPartRequest.
 
