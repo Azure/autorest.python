@@ -1,23 +1,23 @@
-import { existsSync, removeSync, copySync } from "fs-extra";
-import { join } from "path";
+import fsExtra from "fs-extra";
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
 
 const force: boolean = process.argv[2] === "--force";
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 
 function copyAndCreateDir(sourceDir: string, destDir: string) {
     // Delete the destination directory if it exists
-    if (existsSync(destDir)) {
-        if (force) removeSync(destDir);
+    if (fsExtra.existsSync(destDir)) {
+        if (force) fsExtra.removeSync(destDir);
         else process.exit(0);
     }
 
     // Copy the source directory to the destination directory
-    copySync(sourceDir, destDir);
+    fsExtra.copySync(sourceDir, destDir);
 }
 
 const typespecModulePath: string = join(__dirname, "..", "node_modules", "@typespec", "http-client-python");
-
-// Copy the generator directory
-copyAndCreateDir(join(typespecModulePath, "generator"), join(__dirname, "..", "generator"));
 
 // Copy the scripts directory
 copyAndCreateDir(join(typespecModulePath, "eng", "scripts", "ci"), join(__dirname, "..", "eng", "scripts", "ci"));
