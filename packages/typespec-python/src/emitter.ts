@@ -1,7 +1,7 @@
 import { EmitContext } from "@typespec/compiler";
 import { PythonEmitterOptions } from "./lib.js";
-import { $onEmit as httpClientPythonOnEmit } from "../node_modules/@typespec/http-client-python/emitter/src/emitter.js";
+import { $onEmit as httpClientPythonOnEmit } from "@typespec/http-client-python";
 
 export async function $onEmit(context: EmitContext<PythonEmitterOptions>) {
-    httpClientPythonOnEmit(context, "@azure-tools/typespec-python");
+    httpClientPythonOnEmit(context);
 }
