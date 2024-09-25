@@ -14,6 +14,7 @@ import {
     SdkServiceResponseHeader,
     UsageFlags,
     SdkHttpOperationExample,
+    SdkHttpErrorResponse,
 } from "@azure-tools/typespec-client-generator-core";
 import {
     camelToSnakeCase,
@@ -331,7 +332,7 @@ function emitHttpBodyParameter(
 function emitHttpResponse(
     context: PythonSdkContext<SdkHttpOperation>,
     statusCodes: HttpStatusCodeRange | number | "*",
-    response: SdkHttpResponse,
+    response: SdkHttpResponse | SdkHttpErrorResponse,
     method?: SdkServiceMethod<SdkHttpOperation>,
     isException = false,
 ): Record<string, any> | undefined {
