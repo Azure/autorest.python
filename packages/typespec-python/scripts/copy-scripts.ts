@@ -5,7 +5,6 @@ import { fileURLToPath } from "url";
 const force: boolean = process.argv[2] === "--force";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-
 function copyAndCreateDir(sourceDir: string, destDir: string) {
     // Delete the destination directory if it exists
     if (fsExtra.existsSync(destDir)) {

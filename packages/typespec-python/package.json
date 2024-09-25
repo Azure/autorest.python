@@ -32,9 +32,9 @@
     "watch": "tsc -p . --watch",
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
-    "format": "npx prettier **/*.ts --write && tsx ./node_modules/@typespec/http-client-python/eng/scripts/ci/format.ts",
-    "regenerate": "tsx ./node_modules/@typespec/http-client-python/eng/scripts/ci/regenerate.ts --pluginDir=. --emitterName='@azure-tools/typespec-python'",
-    "test": "npx vitest run ./test && tsx ./node_modules/@typespec/http-client-python/eng/scripts/ci/run-tests.ts"
+    "format": "npx prettier **/*.ts --write",
+    "regenerate": "tsx ./eng/scripts/ci/regenerate.ts --emitterName='@azure-tools/typespec-python'",
+    "test": "npx vitest run ./test && tsx ./eng/scripts/ci/run-tests.ts"
   },
   "files": [
     "dist/**",

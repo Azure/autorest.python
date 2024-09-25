@@ -1195,7 +1195,7 @@ packages:
     hasBin: true
 
   '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz':
-    resolution: {integrity: sha512-1j/nUzjQpRnVRzX8JcnQlI1T88Bq8Nl7LM6fxVPSCm1TQfxX1retpq4PjPAh3LPhrTEJIqOJrSE0vhyjhu4qEQ==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz}
+    resolution: {integrity: sha512-iP6trwgg0GHJlvr5ETP1jxTvcwPeagw6vHX4da1HZl5Rd3Gl3LLO0+O/bbgAKAtw49zkoTAK2RgfBj0OqVU4eQ==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz}
     version: 0.27.1
     engines: {node: '>=18.0.0'}
     peerDependencies:
