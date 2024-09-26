@@ -1,5 +1,21 @@
 # Release
 
+## 0.33.0
+
+### Bump dependencies
+
+- [#2845](https://github.com/Azure/autorest.python/pull/2845) bump dependencies
+- [#2847](https://github.com/Azure/autorest.python/pull/2847) bump to tcgc 0.46.1
+
+
+## 0.32.1
+
+### Bug Fixes
+
+- [#2842](https://github.com/Azure/autorest.python/pull/2842) Map `Foundations.Error` -> `core.OdataV4Format`
+- [#2839](https://github.com/Azure/autorest.python/pull/2839) Fix wrong word in generated test
+
+
 ## 0.32.0
 
 ### Bug Fixes

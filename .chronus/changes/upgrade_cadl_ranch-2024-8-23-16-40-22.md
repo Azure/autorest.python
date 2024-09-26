@@ -1,7 +1,7 @@
 ---
-changeKind: fix
+changeKind: dependencies
 packages:
   - "@azure-tools/typespec-python"
 ---
 
-Fix wrong word in generated test
+bump cadl-ranch

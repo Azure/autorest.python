@@ -85,7 +85,7 @@ function emitMethodParameter<TServiceOperation extends SdkServiceOperation>(
 ): Record<string, any>[] {
     if (parameter.kind === "endpoint") {
         if (parameter.type.kind === "union") {
-            for (const endpointVal of parameter.type.values) {
+            for (const endpointVal of parameter.type.variantTypes) {
                 return emitEndpointType(context, endpointVal as SdkEndpointType);
             }
         } else {
@@ -193,7 +193,7 @@ function emitClient<TServiceOperation extends SdkServiceOperation>(
     const operationGroups = emitOperationGroups(context, client, client, "");
     let url: string | undefined;
     if (endpointParameter?.type.kind === "union") {
-        url = (endpointParameter.type.values[0] as SdkEndpointType).serverUrl;
+        url = (endpointParameter.type.variantTypes[0] as SdkEndpointType).serverUrl;
     } else {
         url = endpointParameter?.type.serverUrl;
     }

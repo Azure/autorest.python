@@ -112,7 +112,7 @@ export function getType<TServiceOperation extends SdkServiceOperation>(
         case "string":
         case "url":
             return emitBuiltInType(type);
-        case "any":
+        case "unknown":
             return KnownTypes.any;
         case "nullable":
             return getType(context, type.type);
@@ -227,6 +227,7 @@ function emitProperty<TServiceOperation extends SdkServiceOperation>(
         if (body) {
             // for `temperature: HttpPart<{@body body: float64, @header contentType: "text/plain"}>`, the real type is float64
             sourceType = body.type;
+            addDisableGenerationMap(property.type);
         }
     }
     if (isMultipartFileInput) {
@@ -259,6 +260,13 @@ function emitModel<TServiceOperation extends SdkServiceOperation>(
         return typesMap.get(type)!;
     }
     if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.Error") {
+        return {
+            type: "sdkcore",
+            name: "ODataV4Format",
+            submodule: "exceptions",
+        };
+    }
+    if (type.crossLanguageDefinitionId === "Azure.Core.Foundations.ErrorResponse") {
         return {
             type: "sdkcore",
             name: "HttpResponseError",
@@ -454,7 +462,7 @@ function emitUnion<TServiceOperation extends SdkServiceOperation>(
         description: type.isGeneratedName ? "" : `Type of ${type.name}`,
         internal: true,
         type: "combined",
-        types: type.values.map((x) => getType(context, x)),
+        types: type.variantTypes.map((x) => getType(context, x)),
         xmlMetadata: {},
     });
 }
@@ -496,7 +504,7 @@ export function emitEndpointType<TServiceOperation extends SdkServiceOperation>(
             location: "endpointPath",
             implementation: getImplementation(context, param),
             clientDefaultValue: param.clientDefaultValue,
-            skipUrlEncoding: param.urlEncode === false, // eslint-disable-line deprecation/deprecation
+            skipUrlEncoding: param.urlEncode === false, // @typescript-eslint/no-deprecated
         });
         context.__endpointPathParameters!.push(params.at(-1)!);
     }
