@@ -137,17 +137,11 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             return self.responses[0].type_annotation(**kwargs)
         return "None"
 
-    @property
-    def pylint_disable(self) -> str:
+    def pylint_disable(self, async_mode: bool) -> str:
         retval: str = ""
-        if self.response_type_annotation(async_mode=False) == "None":
+        if not async_mode and not self.is_overload and self.response_type_annotation(async_mode=False) == "None":
             # doesn't matter if it's async or not
             retval = add_to_pylint_disable(retval, "inconsistent-return-statements")
-        try:
-            if any(is_internal(r.type) for r in self.responses) or is_internal(self.parameters.body_parameter.type):
-                retval = add_to_pylint_disable(retval, "protected-access")
-        except ValueError:
-            pass
         if len(self.name) > NAME_LENGTH_LIMIT:
             retval = add_to_pylint_disable(retval, "name-too-long")
         return retval
@@ -350,11 +344,12 @@ class OperationBase(  # pylint: disable=too-many-public-methods,too-many-instanc
             file_import.add_submodule_import("exceptions", error, ImportType.SDKCORE)
         if self.code_model.options["azure_arm"]:
             file_import.add_submodule_import("azure.mgmt.core.exceptions", "ARMErrorFormat", ImportType.SDKCORE)
-        file_import.add_submodule_import(
-            "typing",
-            "Type",
-            ImportType.STDLIB,
-        )
+        if self.non_default_errors:
+            file_import.add_submodule_import(
+                "typing",
+                "Type",
+                ImportType.STDLIB,
+            )
         file_import.add_mutable_mapping_import()
         if self.non_default_error_status_codes:
             file_import.add_submodule_import(

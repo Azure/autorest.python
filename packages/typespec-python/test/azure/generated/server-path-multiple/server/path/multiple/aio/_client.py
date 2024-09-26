@@ -19,7 +19,7 @@ from ._configuration import MultipleClientConfiguration
 from ._operations import MultipleClientOperationsMixin
 
 
-class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MultipleClient(MultipleClientOperationsMixin):
     """MultipleClient.
 
     :param endpoint: Pass in http://localhost:3000 for endpoint. Required.

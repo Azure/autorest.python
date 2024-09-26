@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +12,6 @@ from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -134,7 +132,7 @@ class Eagle(Bird, discriminator="eagle"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="eagle", **kwargs)
 
 
@@ -165,7 +163,7 @@ class Goose(Bird, discriminator="goose"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="goose", **kwargs)
 
 
@@ -196,7 +194,7 @@ class SeaGull(Bird, discriminator="seagull"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="seagull", **kwargs)
 
 
@@ -227,7 +225,7 @@ class Sparrow(Bird, discriminator="sparrow"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="sparrow", **kwargs)
 
 
@@ -258,5 +256,5 @@ class TRex(Dinosaur, discriminator="t-rex"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="t-rex", **kwargs)

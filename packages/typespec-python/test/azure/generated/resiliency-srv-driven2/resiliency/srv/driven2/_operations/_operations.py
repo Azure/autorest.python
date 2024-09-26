@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -29,7 +28,7 @@ from .._vendor import ResiliencyServiceDrivenClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -101,7 +100,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         method_added_on="v2",
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Added operation.
 
@@ -109,7 +108,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -162,7 +161,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -207,7 +206,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_required(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
@@ -222,7 +221,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -267,7 +266,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_optional(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
@@ -282,7 +281,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

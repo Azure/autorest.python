@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -28,21 +27,21 @@ from .._vendor import ApiKeyClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
 
-    async def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def valid(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -78,14 +77,14 @@ class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def invalid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def invalid(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

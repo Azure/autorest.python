@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp import MatchConditions
 from corehttp.exceptions import (
@@ -34,14 +33,14 @@ from .._vendor import ConditionalRequestClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
 
-    async def post_if_match(  # pylint: disable=inconsistent-return-statements
+    async def post_if_match(
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
@@ -55,7 +54,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -99,7 +98,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def post_if_none_match(  # pylint: disable=inconsistent-return-statements
+    async def post_if_none_match(
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
@@ -113,7 +112,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -171,7 +170,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -209,7 +208,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
-    async def post_if_unmodified_since(  # pylint: disable=inconsistent-return-statements
+    async def post_if_unmodified_since(
         self, *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Unmodified-Since in header is defined.
@@ -223,7 +222,7 @@ class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

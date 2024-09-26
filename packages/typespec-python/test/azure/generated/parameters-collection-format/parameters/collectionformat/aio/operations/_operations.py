@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +32,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -56,9 +55,7 @@ class QueryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def multi(  # pylint: disable=inconsistent-return-statements
-        self, *, colors: List[str], **kwargs: Any
-    ) -> None:
+    async def multi(self, *, colors: List[str], **kwargs: Any) -> None:
         """multi.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -67,7 +64,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -105,7 +102,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def ssv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def ssv(self, *, colors: List[str], **kwargs: Any) -> None:
         """ssv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -114,7 +111,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -152,7 +149,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def tsv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def tsv(self, *, colors: List[str], **kwargs: Any) -> None:
         """tsv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -161,7 +158,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -199,9 +196,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def pipes(  # pylint: disable=inconsistent-return-statements
-        self, *, colors: List[str], **kwargs: Any
-    ) -> None:
+    async def pipes(self, *, colors: List[str], **kwargs: Any) -> None:
         """pipes.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -210,7 +205,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -248,7 +243,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -257,7 +252,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -313,7 +308,7 @@ class HeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -322,7 +317,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

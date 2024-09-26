@@ -19,7 +19,7 @@ from ._operations import MultipleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MultipleClient(MultipleClientOperationsMixin):
     """MultipleClient.
 
     :param endpoint: Pass in http://localhost:3000 for endpoint. Required.

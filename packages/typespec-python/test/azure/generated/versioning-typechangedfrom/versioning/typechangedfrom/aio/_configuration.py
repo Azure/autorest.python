@@ -14,7 +14,7 @@ from .. import models as _models
 from .._version import VERSION
 
 
-class TypeChangedFromClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class TypeChangedFromClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for TypeChangedFromClient.
 
     Note that all parameters used to create this instance are saved as instance

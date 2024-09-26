@@ -19,7 +19,7 @@ from ._configuration import TraitsClientConfiguration
 from ._operations import TraitsClientOperationsMixin
 
 
-class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class TraitsClient(TraitsClientOperationsMixin):
     """Illustrates Azure Core operation customizations by traits.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

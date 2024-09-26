@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 import json
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, Union
+from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -67,7 +66,7 @@ class StringOperations:
         :rtype: str or ~typetest.enum.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -123,7 +122,7 @@ class StringOperations:
         :rtype: str or ~typetest.enum.extensible.models.DaysOfWeekExtensibleEnum
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -172,9 +171,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_known_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def put_known_value(self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any) -> None:
         """put_known_value.
 
         :param body: Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
@@ -184,7 +181,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -226,9 +223,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_unknown_value(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def put_unknown_value(self, body: Union[str, _models.DaysOfWeekExtensibleEnum], **kwargs: Any) -> None:
         """put_unknown_value.
 
         :param body: Known values are: "Monday", "Tuesday", "Wednesday", "Thursday", "Friday",
@@ -238,7 +233,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

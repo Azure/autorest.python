@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import PageClientOperationsMixin, TwoModelsAsPageItemOperations
 
 
-class PageClient(PageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class PageClient(PageClientOperationsMixin):
     """Illustrates bodies templated with Azure Core with paging support.
 
     :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations

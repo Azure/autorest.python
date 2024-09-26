@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 #
 # Copyright (c) Unbranded Corporation. All rights reserved.

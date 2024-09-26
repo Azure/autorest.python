@@ -76,7 +76,6 @@ class OperationGroup(BaseModel):
             file_import.add_submodule_import(relative_path, "models", ImportType.LOCAL, alias="_models")
         return file_import
 
-    @property
     def pylint_disable(self) -> str:
         retval: str = ""
         if self.has_abstract_operations:

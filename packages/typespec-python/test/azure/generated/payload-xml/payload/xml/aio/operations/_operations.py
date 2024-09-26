@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -56,7 +56,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -86,7 +86,7 @@ class SimpleModelValueOperations:
         :rtype: ~payload.xml.models.SimpleModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -138,9 +138,7 @@ class SimpleModelValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.SimpleModel, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.SimpleModel, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -149,7 +147,7 @@ class SimpleModelValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -216,7 +214,7 @@ class ModelWithSimpleArraysValueOperations:
         :rtype: ~payload.xml.models.ModelWithSimpleArrays
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -268,9 +266,7 @@ class ModelWithSimpleArraysValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithSimpleArrays, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithSimpleArrays, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -279,7 +275,7 @@ class ModelWithSimpleArraysValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -346,7 +342,7 @@ class ModelWithArrayOfModelValueOperations:
         :rtype: ~payload.xml.models.ModelWithArrayOfModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -398,9 +394,7 @@ class ModelWithArrayOfModelValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithArrayOfModel, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithArrayOfModel, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -409,7 +403,7 @@ class ModelWithArrayOfModelValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -476,7 +470,7 @@ class ModelWithOptionalFieldValueOperations:
         :rtype: ~payload.xml.models.ModelWithOptionalField
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -528,9 +522,7 @@ class ModelWithOptionalFieldValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithOptionalField, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithOptionalField, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -539,7 +531,7 @@ class ModelWithOptionalFieldValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -606,7 +598,7 @@ class ModelWithAttributesValueOperations:
         :rtype: ~payload.xml.models.ModelWithAttributes
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -658,9 +650,7 @@ class ModelWithAttributesValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithAttributes, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithAttributes, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -669,7 +659,7 @@ class ModelWithAttributesValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -736,7 +726,7 @@ class ModelWithUnwrappedArrayValueOperations:
         :rtype: ~payload.xml.models.ModelWithUnwrappedArray
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -788,9 +778,7 @@ class ModelWithUnwrappedArrayValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithUnwrappedArray, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithUnwrappedArray, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -799,7 +787,7 @@ class ModelWithUnwrappedArrayValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -866,7 +854,7 @@ class ModelWithRenamedArraysValueOperations:
         :rtype: ~payload.xml.models.ModelWithRenamedArrays
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -918,9 +906,7 @@ class ModelWithRenamedArraysValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithRenamedArrays, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithRenamedArrays, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -929,7 +915,7 @@ class ModelWithRenamedArraysValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -996,7 +982,7 @@ class ModelWithRenamedFieldsValueOperations:
         :rtype: ~payload.xml.models.ModelWithRenamedFields
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1048,9 +1034,7 @@ class ModelWithRenamedFieldsValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithRenamedFields, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithRenamedFields, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -1059,7 +1043,7 @@ class ModelWithRenamedFieldsValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1126,7 +1110,7 @@ class ModelWithEmptyArrayValueOperations:
         :rtype: ~payload.xml.models.ModelWithEmptyArray
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1178,9 +1162,7 @@ class ModelWithEmptyArrayValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithEmptyArray, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithEmptyArray, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -1189,7 +1171,7 @@ class ModelWithEmptyArrayValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1256,7 +1238,7 @@ class ModelWithTextValueOperations:
         :rtype: ~payload.xml.models.ModelWithText
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1308,9 +1290,7 @@ class ModelWithTextValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithText, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithText, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -1319,7 +1299,7 @@ class ModelWithTextValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1386,7 +1366,7 @@ class ModelWithDictionaryValueOperations:
         :rtype: ~payload.xml.models.ModelWithDictionary
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1438,9 +1418,7 @@ class ModelWithDictionaryValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithDictionary, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithDictionary, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -1449,7 +1427,7 @@ class ModelWithDictionaryValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1516,7 +1494,7 @@ class ModelWithEncodedNamesValueOperations:
         :rtype: ~payload.xml.models.ModelWithEncodedNames
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1568,9 +1546,7 @@ class ModelWithEncodedNamesValueOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.ModelWithEncodedNames, **kwargs: Any
-    ) -> None:
+    async def put(self, input: _models.ModelWithEncodedNames, **kwargs: Any) -> None:
         """put.
 
         :param input: Required.
@@ -1579,7 +1555,7 @@ class ModelWithEncodedNamesValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

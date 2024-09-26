@@ -19,7 +19,7 @@ from ._configuration import VersionedClientConfiguration
 from ._operations import VersionedClientOperationsMixin
 
 
-class VersionedClient(VersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class VersionedClient(VersionedClientOperationsMixin):
     """Illustrates versioned server.
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
