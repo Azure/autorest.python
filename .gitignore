@@ -127,5 +127,5 @@ node_modules/
 test/services/*/_generated
 **/autorest.python/generator
 **/autorest.python/eng/scripts
-**/autorest.python/generator
+**/typespec-python/generator
 **/typespec-python/eng/scripts
