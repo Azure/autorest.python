@@ -20,7 +20,6 @@ from ._configuration import AutorestSecurityKeyConfiguration
 from .operations import AutorestSecurityKeyOperationsMixin
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 

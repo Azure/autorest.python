@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -45,7 +44,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -68,7 +67,7 @@ class ContantsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -81,7 +80,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -116,7 +115,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_no_required_two_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -129,7 +128,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -164,7 +163,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=name-too-long
         self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -177,7 +176,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -212,7 +211,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_no_required_one_value_default(  # pylint: disable=name-too-long
         self, *, input: Literal["value1"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -225,7 +224,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -260,7 +259,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_required_two_value_no_default(  # pylint: disable=name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -273,7 +272,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -308,7 +307,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_required_two_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -321,7 +320,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -356,7 +355,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_required_one_value_no_default(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -367,7 +366,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -403,7 +402,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_no_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_no_model_as_string_required_one_value_default(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -414,7 +413,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -450,7 +449,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_no_required_two_value_no_default(  # pylint: disable=name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -463,7 +462,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -498,7 +497,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_no_required_two_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -511,7 +510,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -546,7 +545,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_no_required_one_value_no_default(  # pylint: disable=name-too-long
         self, *, input: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -559,7 +558,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -594,7 +593,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_no_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_no_required_one_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -607,7 +606,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -642,7 +641,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_required_two_value_no_default(  # pylint: disable=name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -655,7 +654,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -690,7 +689,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_two_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_required_two_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -703,7 +702,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -738,7 +737,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_required_one_value_no_default(  # pylint: disable=name-too-long
         self, *, input: str, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -751,7 +750,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -786,7 +785,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_model_as_string_required_one_value_default(  # pylint: disable=inconsistent-return-statements,name-too-long
+    async def put_model_as_string_required_one_value_default(  # pylint: disable=name-too-long
         self, *, input: str = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
@@ -799,7 +798,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -834,7 +833,7 @@ class ContantsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_client_constants(self, **kwargs: Any) -> None:
         """Pass constants from the client to this function. Will pass in constant path, query, and header
         parameters.
 
@@ -842,7 +841,7 @@ class ContantsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

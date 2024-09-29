@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from .._vendor import MultiapiServiceClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -61,7 +60,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -106,7 +105,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
+    async def test_different_calls(
         self, *, greeting_in_english: str, greeting_in_chinese: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Has added parameters across the API versions.
@@ -119,7 +118,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -225,7 +224,7 @@ class OperationGroupOneOperations:
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -281,14 +280,14 @@ class OperationGroupOneOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def test_three(self, **kwargs: Any) -> None:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -346,9 +345,7 @@ class OperationGroupTwoOperations:
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace_async
-    async def test_four(  # pylint: disable=inconsistent-return-statements
-        self, *, parameter_one: bool, **kwargs: Any
-    ) -> None:
+    async def test_four(self, *, parameter_one: bool, **kwargs: Any) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :keyword parameter_one: A boolean parameter. Required.
@@ -357,7 +354,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

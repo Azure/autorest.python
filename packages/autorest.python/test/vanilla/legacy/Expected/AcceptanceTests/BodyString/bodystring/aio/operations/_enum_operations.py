@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar, Union
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,7 +34,7 @@ from ...operations._enum_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -67,7 +66,7 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -106,9 +105,7 @@ class EnumOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
-        self, string_body: Union[str, _models.Colors], **kwargs: Any
-    ) -> None:
+    async def put_not_expandable(self, string_body: Union[str, _models.Colors], **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Known values are: "red color", "green-color", and
@@ -118,7 +115,7 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -165,7 +162,7 @@ class EnumOperations:
         :rtype: str or ~bodystring.models.Colors
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -204,9 +201,7 @@ class EnumOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[str, _models.Colors], **kwargs: Any
-    ) -> None:
+    async def put_referenced(self, enum_string_body: Union[str, _models.Colors], **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
@@ -216,7 +211,7 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -263,7 +258,7 @@ class EnumOperations:
         :rtype: ~bodystring.models.RefColorConstant
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -302,9 +297,7 @@ class EnumOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, field1: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_referenced_constant(self, field1: Optional[str] = None, **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param field1: Sample string. Default value is None.
@@ -313,7 +306,7 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

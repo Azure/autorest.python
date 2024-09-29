@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +32,7 @@ from ...operations._http_server_failure_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -58,14 +57,14 @@ class HttpServerFailureOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -100,14 +99,14 @@ class HttpServerFailureOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get501(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get501(self, **kwargs: Any) -> None:
         """Return 501 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -142,9 +141,7 @@ class HttpServerFailureOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post505(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -154,7 +151,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -197,9 +194,7 @@ class HttpServerFailureOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete505(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -209,7 +204,7 @@ class HttpServerFailureOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

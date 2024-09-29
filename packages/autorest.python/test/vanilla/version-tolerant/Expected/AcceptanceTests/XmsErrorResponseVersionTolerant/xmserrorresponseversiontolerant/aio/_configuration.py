@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class XMSErrorResponseExtensionsConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class XMSErrorResponseExtensionsConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for XMSErrorResponseExtensions.
 
     Note that all parameters used to create this instance are saved as instance
