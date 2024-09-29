@@ -20,6 +20,10 @@ const typespecModulePath: string = join(__dirname, "..", "node_modules", "@types
 
 // Copy the scripts directory
 copyAndCreateDir(join(typespecModulePath, "eng", "scripts", "ci"), join(__dirname, "..", "eng", "scripts", "ci"));
+copyAndCreateDir(join(typespecModulePath, "eng", "scripts", "setup"), join(__dirname, "..", "eng", "scripts", "setup"));
+
+// Copy the generator directory
+copyAndCreateDir(join(typespecModulePath, "generator"), join(__dirname, "..", "generator"));
 
 // Copy venv over
 copyAndCreateDir(join(typespecModulePath, "venv"), join(__dirname, "..", "venv"));
