@@ -19,7 +19,7 @@ from ._operations import TraitsClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class TraitsClient(TraitsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class TraitsClient(TraitsClientOperationsMixin):
     """Illustrates Azure Core operation customizations by traits.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

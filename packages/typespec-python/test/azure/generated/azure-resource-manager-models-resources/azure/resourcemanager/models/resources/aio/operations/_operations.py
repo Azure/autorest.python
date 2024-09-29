@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,21 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import (
-    Any,
-    AsyncIterable,
-    AsyncIterator,
-    Callable,
-    Dict,
-    IO,
-    List,
-    Optional,
-    Type,
-    TypeVar,
-    Union,
-    cast,
-    overload,
-)
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -70,7 +56,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -108,7 +94,7 @@ class TopLevelTrackedResourcesOperations:
         :rtype: ~azure.resourcemanager.models.resources.models.TopLevelTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -168,7 +154,7 @@ class TopLevelTrackedResourcesOperations:
         resource: Union[_models.TopLevelTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -405,7 +391,7 @@ class TopLevelTrackedResourcesOperations:
         properties: Union[_models.TopLevelTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -636,7 +622,7 @@ class TopLevelTrackedResourcesOperations:
     async def _delete_initial(
         self, resource_group_name: str, top_level_tracked_resource_name: str, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -768,7 +754,7 @@ class TopLevelTrackedResourcesOperations:
 
         cls: ClsType[List[_models.TopLevelTrackedResource]] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -854,7 +840,7 @@ class TopLevelTrackedResourcesOperations:
 
         cls: ClsType[List[_models.TopLevelTrackedResource]] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -926,7 +912,7 @@ class TopLevelTrackedResourcesOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @overload
-    async def action_sync(  # pylint: disable=inconsistent-return-statements
+    async def action_sync(
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
@@ -953,7 +939,7 @@ class TopLevelTrackedResourcesOperations:
         """
 
     @overload
-    async def action_sync(  # pylint: disable=inconsistent-return-statements
+    async def action_sync(
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
@@ -980,7 +966,7 @@ class TopLevelTrackedResourcesOperations:
         """
 
     @overload
-    async def action_sync(  # pylint: disable=inconsistent-return-statements
+    async def action_sync(
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
@@ -1007,7 +993,7 @@ class TopLevelTrackedResourcesOperations:
         """
 
     @distributed_trace_async
-    async def action_sync(  # pylint: disable=inconsistent-return-statements
+    async def action_sync(
         self,
         resource_group_name: str,
         top_level_tracked_resource_name: str,
@@ -1029,7 +1015,7 @@ class TopLevelTrackedResourcesOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1119,7 +1105,7 @@ class NestedProxyResourcesOperations:
         :rtype: ~azure.resourcemanager.models.resources.models.NestedProxyResource
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1181,7 +1167,7 @@ class NestedProxyResourcesOperations:
         resource: Union[_models.NestedProxyResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1433,7 +1419,7 @@ class NestedProxyResourcesOperations:
         properties: Union[_models.NestedProxyResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1682,7 +1668,7 @@ class NestedProxyResourcesOperations:
         nexted_proxy_resource_name: str,
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1824,7 +1810,7 @@ class NestedProxyResourcesOperations:
 
         cls: ClsType[List[_models.NestedProxyResource]] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1927,7 +1913,7 @@ class SingletonTrackedResourcesOperations:
         :rtype: ~azure.resourcemanager.models.resources.models.SingletonTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1985,7 +1971,7 @@ class SingletonTrackedResourcesOperations:
         resource: Union[_models.SingletonTrackedResource, JSON, IO[bytes]],
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2277,7 +2263,7 @@ class SingletonTrackedResourcesOperations:
         :rtype: ~azure.resourcemanager.models.resources.models.SingletonTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2359,7 +2345,7 @@ class SingletonTrackedResourcesOperations:
 
         cls: ClsType[List[_models.SingletonTrackedResource]] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

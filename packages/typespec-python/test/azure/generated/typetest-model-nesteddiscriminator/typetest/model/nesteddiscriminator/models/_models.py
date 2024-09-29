@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +12,6 @@ from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -92,7 +90,7 @@ class Shark(Fish, discriminator="shark"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="shark", **kwargs)
 
 
@@ -126,7 +124,7 @@ class GoblinShark(Shark, discriminator="goblin"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, sharktype="goblin", **kwargs)
 
 
@@ -170,7 +168,7 @@ class Salmon(Fish, discriminator="salmon"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, kind="salmon", **kwargs)
 
 
@@ -204,5 +202,5 @@ class SawShark(Shark, discriminator="saw"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, sharktype="saw", **kwargs)

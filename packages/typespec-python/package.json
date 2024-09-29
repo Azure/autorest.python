@@ -33,7 +33,7 @@
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write",
-    "regenerate": "tsx ./eng/scripts/ci/regenerate.ts --emitterName='@azure-tools/typespec-python' --generatedFolder=.",
+    "regenerate": "tsx ./eng/scripts/ci/regenerate.ts --emitterName=@azure-tools/typespec-python --generatedFolder=.",
     "test": "tsx ./eng/scripts/ci/run-ci.ts --testFolder=test"
   },
   "files": [

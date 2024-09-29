@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -36,7 +35,7 @@ from .._vendor import ServiceClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -80,14 +79,14 @@ class QuxOperations:
 
         self.bar = QuxBarOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    async def eight(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def eight(self, **kwargs: Any) -> None:
         """eight.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -142,14 +141,14 @@ class FooOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def three(self, **kwargs: Any) -> None:
         """three.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -186,14 +185,14 @@ class FooOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def four(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def four(self, **kwargs: Any) -> None:
         """four.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -248,14 +247,14 @@ class BarOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def five(self, **kwargs: Any) -> None:
         """five.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -292,14 +291,14 @@ class BarOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def six(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def six(self, **kwargs: Any) -> None:
         """six.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -339,14 +338,14 @@ class BarOperations:
 
 class ServiceClientOperationsMixin(ServiceClientMixinABC):
 
-    async def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def one(self, **kwargs: Any) -> None:
         """one.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -383,14 +382,14 @@ class ServiceClientOperationsMixin(ServiceClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def two(self, **kwargs: Any) -> None:
         """two.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -445,14 +444,14 @@ class BazFooOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def seven(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def seven(self, **kwargs: Any) -> None:
         """seven.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -507,14 +506,14 @@ class QuxBarOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def nine(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def nine(self, **kwargs: Any) -> None:
         """nine.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

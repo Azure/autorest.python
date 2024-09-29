@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,7 +33,7 @@ from .._vendor import EmptyClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -91,9 +90,7 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -107,9 +104,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -123,9 +118,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -150,7 +143,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -204,7 +197,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: ~typetest.model.empty.models.EmptyOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -312,7 +305,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

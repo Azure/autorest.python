@@ -19,7 +19,7 @@ from ._operations import AzureExampleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AzureExampleClient(AzureExampleClientOperationsMixin):
     """AzureExampleClient.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
