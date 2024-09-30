@@ -1,5 +1,5 @@
 import { existsSync, removeSync, copySync } from "fs-extra";
-import { join } from "path";
+import { join, win32, posix } from "path";
 
 const force: boolean = process.argv[2] === "--force";
 
@@ -11,7 +11,11 @@ function copyAndCreateDir(sourceDir: string, destDir: string) {
     }
 
     // Copy the source directory to the destination directory
-    copySync(sourceDir, destDir);
+    copySync(sourceDir, destDir, {
+        filter: (src: string) => {
+            return !src.replaceAll(win32.sep, posix.sep).includes("/test/");
+        },
+    });
 }
 
 const typespecModulePath: string = join(__dirname, "..", "node_modules", "@typespec", "http-client-python");

@@ -70,8 +70,8 @@ importers:
         specifier: ^3.3.50
         version: 3.3.50
       '@typespec/http-client-python':
-        specifier: file:/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz
-        version: file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz(lznrsrfibbti5ihwmhvtgw45iq)
+        specifier: 0.1.0
+        version: 0.1.0(pyotw23g6sqohai3gravpdadwa)
       chalk:
         specifier: 5.3.0
         version: 5.3.0
@@ -81,9 +81,6 @@ importers:
 
   packages/typespec-python:
     dependencies:
-      '@azure-tools/typespec-azure-resource-manager':
-        specifier: '>=0.46.0 <1.0.0'
-        version: 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
       '@typespec/openapi3':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))(openapi-types@12.1.3)
@@ -94,7 +91,7 @@ importers:
         specifier: ~4.1.0
         version: 4.1.0
       semver:
-        specifier: ~7.6.3
+        specifier: ~7.6.2
         version: 7.6.3
       tsx:
         specifier: 4.17.0
@@ -108,24 +105,27 @@ importers:
         version: 0.37.2(@azure-tools/cadl-ranch-expect@0.15.4(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1)))(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))(@typespec/xml@0.59.0(@typespec/compiler@0.60.1))
       '@azure-tools/typespec-autorest':
         specifier: ~0.46.0
-        version: 0.46.0(h5isl4bvab3xrjrvfwpz2v6xbu)
+        version: 0.46.0(7nwtlg3hlaxiezooecsts3tzhq)
       '@azure-tools/typespec-azure-core':
         specifier: ~0.46.0
         version: 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
-      '@azure-tools/typespec-azure-rulesets':
-        specifier: 0.46.0
-        version: 0.46.0(3xs2pxs6oxq4yso3t5syd3uzym)
-      '@azure-tools/typespec-client-generator-core':
-        specifier: 0.46.1
+      '@azure-tools/typespec-azure-resource-manager':
+        specifier: ~0.46.0
         version: 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
+      '@azure-tools/typespec-azure-rulesets':
+        specifier: ~0.46.0
+        version: 0.46.0(p4rq2ntirg3feadnic3sej3izu)
+      '@azure-tools/typespec-client-generator-core':
+        specifier: ~0.46.2
+        version: 0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
       '@types/fs-extra':
         specifier: 11.0.4
         version: 11.0.4
       '@types/js-yaml':
-        specifier: ~4.0.9
+        specifier: ~4.0.5
         version: 4.0.9
       '@types/node':
-        specifier: ~22.5.5
+        specifier: ~22.5.4
         version: 22.5.5
       '@types/semver':
         specifier: 7.5.8
@@ -134,14 +134,14 @@ importers:
         specifier: ~17.0.33
         version: 17.0.33
       '@typespec/compiler':
-        specifier: ~0.60.1
+        specifier: ~0.60.0
         version: 0.60.1
       '@typespec/http':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)
       '@typespec/http-client-python':
-        specifier: file:/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz
-        version: file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz(lznrsrfibbti5ihwmhvtgw45iq)
+        specifier: ~0.1.0
+        version: 0.1.0(pyotw23g6sqohai3gravpdadwa)
       '@typespec/openapi':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
@@ -149,7 +149,7 @@ importers:
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
       '@typespec/versioning':
-        specifier: ~0.60.1
+        specifier: ~0.60.0
         version: 0.60.1(@typespec/compiler@0.60.1)
       c8:
         specifier: ^10.1.2
@@ -164,11 +164,14 @@ importers:
         specifier: ~5.6.2
         version: 5.6.2
       typescript-eslint:
-        specifier: ^8.7.0
+        specifier: ^8.5.0
         version: 8.7.0(eslint@9.11.1)(typescript@5.6.2)
       vitest:
-        specifier: ^2.1.1
+        specifier: ^2.1.0
         version: 2.1.1(@types/node@22.5.5)
+      yargs:
+        specifier: ~17.7.2
+        version: 17.7.2
 
 packages:
 
@@ -260,8 +263,8 @@ packages:
       '@azure-tools/typespec-client-generator-core': ~0.46.0
       '@typespec/compiler': ~0.60.0
 
-  '@azure-tools/typespec-client-generator-core@0.46.1':
-    resolution: {integrity: sha512-mXA+ia5vS0yxPnxRW/vjKBJP5U4e4T5Gcr+GRjuS4+1gGolmklV2prJsXdR4iFLSVFfcH1zBFXQ2OPqsI5GMJw==}
+  '@azure-tools/typespec-client-generator-core@0.46.2':
+    resolution: {integrity: sha512-/HKeehCNDeylouOHMe7IwpcDcGJHRAuEy3a5FBnSY51m4EpMq4VMQzW9tka/8brFO2m5LLj7tyhOL/xnzi2fLg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ~0.46.0
@@ -1123,9 +1126,6 @@ packages:
   '@types/node@22.5.5':
     resolution: {integrity: sha512-Xjs4y5UPO/CLdzpgR6GirZJx36yScjh73+2NlLlkFRSoQN8B0DpfXPdZGnvVmLRLOsqDpOfTNv7D9trgGhmOIA==}
 
-  '@types/node@22.7.0':
-    resolution: {integrity: sha512-MOdOibwBs6KW1vfqz2uKMlxq5xAfAZ98SZjO8e3XnAbFnTJtAspqhWk7hrdSAs9/Y14ZWMiy7/MxMUzAOadYEw==}
-
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
@@ -1203,9 +1203,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz':
-    resolution: {integrity: sha512-iP6trwgg0GHJlvr5ETP1jxTvcwPeagw6vHX4da1HZl5Rd3Gl3LLO0+O/bbgAKAtw49zkoTAK2RgfBj0OqVU4eQ==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz}
-    version: 0.27.1
+  '@typespec/http-client-python@0.1.0':
+    resolution: {integrity: sha512-wOYAj/SCsmLpdaC3jKhjSlOWIgbjkHx/Vezj0L5mBh5HYq5RleqCoKyHEQu6UIObGoOJ6TaIzMgkSAmVj6k6BA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.46.0 <1.0.0'
@@ -3734,7 +3733,7 @@ snapshots:
     dependencies:
       '@azure/identity': 4.4.1
       '@azure/storage-blob': 12.25.0
-      '@types/node': 22.7.0
+      '@types/node': 22.5.5
     transitivePeerDependencies:
       - supports-color
 
@@ -3791,11 +3790,11 @@ snapshots:
       - '@typespec/versioning'
       - supports-color
 
-  '@azure-tools/typespec-autorest@0.46.0(h5isl4bvab3xrjrvfwpz2v6xbu)':
+  '@azure-tools/typespec-autorest@0.46.0(7nwtlg3hlaxiezooecsts3tzhq)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
       '@azure-tools/typespec-azure-resource-manager': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
-      '@azure-tools/typespec-client-generator-core': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
+      '@azure-tools/typespec-client-generator-core': 0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
       '@typespec/compiler': 0.60.1
       '@typespec/http': 0.60.0(@typespec/compiler@0.60.1)
       '@typespec/openapi': 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
@@ -3819,14 +3818,14 @@ snapshots:
       change-case: 5.4.4
       pluralize: 8.0.0
 
-  '@azure-tools/typespec-azure-rulesets@0.46.0(3xs2pxs6oxq4yso3t5syd3uzym)':
+  '@azure-tools/typespec-azure-rulesets@0.46.0(p4rq2ntirg3feadnic3sej3izu)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
       '@azure-tools/typespec-azure-resource-manager': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
-      '@azure-tools/typespec-client-generator-core': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
+      '@azure-tools/typespec-client-generator-core': 0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
       '@typespec/compiler': 0.60.1
 
-  '@azure-tools/typespec-client-generator-core@0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))':
+  '@azure-tools/typespec-client-generator-core@0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
       '@typespec/compiler': 0.60.1
@@ -3965,7 +3964,7 @@ snapshots:
   '@babel/code-frame@7.24.7':
     dependencies:
       '@babel/highlight': 7.24.7
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/helper-validator-identifier@7.24.7': {}
 
@@ -3974,7 +3973,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.24.7
       chalk: 2.4.2
       js-tokens: 4.0.0
-      picocolors: 1.0.1
+      picocolors: 1.1.0
 
   '@babel/runtime@7.25.6':
     dependencies:
@@ -4719,10 +4718,6 @@ snapshots:
     dependencies:
       undici-types: 6.19.8
 
-  '@types/node@22.7.0':
-    dependencies:
-      undici-types: 6.19.8
-
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/semver@7.5.8': {}
@@ -4833,13 +4828,13 @@ snapshots:
       yaml: 2.4.5
       yargs: 17.7.2
 
-  '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz(lznrsrfibbti5ihwmhvtgw45iq)':
+  '@typespec/http-client-python@0.1.0(pyotw23g6sqohai3gravpdadwa)':
     dependencies:
-      '@azure-tools/typespec-autorest': 0.46.0(h5isl4bvab3xrjrvfwpz2v6xbu)
+      '@azure-tools/typespec-autorest': 0.46.0(7nwtlg3hlaxiezooecsts3tzhq)
       '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
       '@azure-tools/typespec-azure-resource-manager': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
-      '@azure-tools/typespec-azure-rulesets': 0.46.0(3xs2pxs6oxq4yso3t5syd3uzym)
-      '@azure-tools/typespec-client-generator-core': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
+      '@azure-tools/typespec-azure-rulesets': 0.46.0(p4rq2ntirg3feadnic3sej3izu)
+      '@azure-tools/typespec-client-generator-core': 0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
       '@typespec/compiler': 0.60.1
       '@typespec/http': 0.60.0(@typespec/compiler@0.60.1)
       '@typespec/openapi': 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))

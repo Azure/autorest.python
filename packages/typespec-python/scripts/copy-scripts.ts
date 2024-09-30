@@ -1,5 +1,5 @@
 import fsExtra from "fs-extra";
-import { dirname, join } from "path";
+import { dirname, join, posix, win32 } from "path";
 import { fileURLToPath } from "url";
 
 const force: boolean = process.argv[2] === "--force";
@@ -13,10 +13,14 @@ function copyAndCreateDir(sourceDir: string, destDir: string) {
     }
 
     // Copy the source directory to the destination directory
-    fsExtra.copySync(sourceDir, destDir);
+    fsExtra.copySync(sourceDir, destDir, {
+        filter: (src: string) => {
+            return !src.replaceAll(win32.sep, posix.sep).includes("/test/");
+        },
+    });
 }
 
 const typespecModulePath: string = join(__dirname, "..", "node_modules", "@typespec", "http-client-python");
 
-// Copy venv over
-copyAndCreateDir(join(typespecModulePath, "venv"), join(__dirname, "..", "venv"));
+// Copy the generator directory
+copyAndCreateDir(join(typespecModulePath, "generator"), join(__dirname, "..", "generator"));

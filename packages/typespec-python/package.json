@@ -33,7 +33,7 @@
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
-    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
+    "install": "tsx ./scripts/copy-scripts.ts --force && tsx ./scripts/run-python3.ts ./scripts/install.py",
     "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "regenerate": "tsx ./scripts/eng/regenerate.ts",
     "test": "npx vitest run ./test && tsx ./scripts/eng/run-tests.ts"
@@ -87,6 +87,7 @@
     "@azure-tools/typespec-azure-rulesets": "~0.46.0",
     "yargs": "~17.7.2",
     "chalk": "5.3.0",
-    "@typespec/http-client-python": "~0.1.0"
+    "@typespec/http-client-python": "~0.1.0",
+    "@types/fs-extra": "11.0.4"
   }
 }
