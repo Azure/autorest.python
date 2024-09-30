@@ -51,7 +51,7 @@
     "@azure-tools/typespec-azure-rulesets": ">=0.46.0 <3.0.0",
     "@typespec/compiler": ">=0.60.0 <1.0.0",
     "@typespec/http": ">=0.60.0 <1.0.0",
-    "@typespec/http-client-python": ">=0.1.0 <1.0.0",
+    "@typespec/http-client-python": ">=0.2.0 <1.0.0",
     "@typespec/rest": ">=0.60.0 <1.0.0",
     "@typespec/versioning": ">=0.60.0 <1.0.0",
     "@typespec/openapi": ">=0.60.0 <1.0.0"
@@ -87,7 +87,7 @@
     "@azure-tools/typespec-azure-rulesets": "~0.46.0",
     "yargs": "~17.7.2",
     "chalk": "5.3.0",
-    "@typespec/http-client-python": "~0.1.0",
+    "@typespec/http-client-python": "~0.2.0",
     "@types/fs-extra": "11.0.4"
   }
 }
