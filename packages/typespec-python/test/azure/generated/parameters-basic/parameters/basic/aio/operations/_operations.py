@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,7 +30,7 @@ from ...operations._operations import build_explicit_body_simple_request, build_
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -56,9 +55,7 @@ class ExplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -72,9 +69,7 @@ class ExplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -88,9 +83,7 @@ class ExplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -104,9 +97,7 @@ class ExplicitBodyOperations:
         """
 
     @distributed_trace_async
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def simple(self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any) -> None:
         """simple.
 
         :param body: Is one of the following types: User, JSON, IO[bytes] Required.
@@ -115,7 +106,7 @@ class ExplicitBodyOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -180,9 +171,7 @@ class ImplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -196,9 +185,7 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :keyword name: Required.
@@ -212,9 +199,7 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -228,9 +213,7 @@ class ImplicitBodyOperations:
         """
 
     @distributed_trace_async
-    async def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
-    ) -> None:
+    async def simple(self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any) -> None:
         """simple.
 
         :param body: Is either a JSON type or a IO[bytes] type. Required.
@@ -241,7 +224,7 @@ class ImplicitBodyOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

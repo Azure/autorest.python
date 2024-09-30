@@ -11,13 +11,12 @@ from typing import TYPE_CHECKING
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core import AsyncPipelineClient
 
     from .._serialization import Deserializer, Serializer
 
 
-class AutoRestResourceFlatteningTestServiceMixinABC(ABC):  # pylint: disable=name-too-long
+class AutoRestResourceFlatteningTestServiceMixinABC(ABC):
     """DO NOT use this class. It is for internal typing use only."""
 
     _client: "AsyncPipelineClient"

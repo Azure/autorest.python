@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -57,7 +57,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -80,9 +80,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def param_existing_key(  # pylint: disable=inconsistent-return-statements
-        self, *, user_agent_parameter: str, **kwargs: Any
-    ) -> None:
+    async def param_existing_key(self, *, user_agent_parameter: str, **kwargs: Any) -> None:
         """Send a post request with header value "User-Agent": "overwrite".
 
         :keyword user_agent_parameter: Send a post request with header value "User-Agent": "overwrite".
@@ -92,7 +90,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -127,14 +125,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_existing_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def response_existing_key(self, **kwargs: Any) -> None:
         """Get a response with header value "User-Agent": "overwrite".
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -171,14 +169,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def param_protected_key(self, **kwargs: Any) -> None:
         """Send a post request with header value "Content-Type": "text/html".
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -214,14 +212,14 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_protected_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def response_protected_key(self, **kwargs: Any) -> None:
         """Get a response with header value "Content-Type": "text/html".
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -258,9 +256,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_integer(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: int, **kwargs: Any
-    ) -> None:
+    async def param_integer(self, *, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
         "negative", "value": -2.
 
@@ -273,7 +269,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -309,9 +305,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_integer(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_integer(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 1 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -321,7 +315,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -359,9 +353,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_long(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: int, **kwargs: Any
-    ) -> None:
+    async def param_long(self, *, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
         "negative", "value": -2.
 
@@ -374,7 +366,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -410,9 +402,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_long(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_long(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 105 or -2.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -422,7 +412,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -460,9 +450,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_float(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: float, **kwargs: Any
-    ) -> None:
+    async def param_float(self, *, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
         "negative", "value": -3.0.
 
@@ -475,7 +463,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -511,9 +499,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_float(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_float(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 0.07 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -523,7 +509,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -561,9 +547,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_double(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: float, **kwargs: Any
-    ) -> None:
+    async def param_double(self, *, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
         "negative", "value": -3.0.
 
@@ -576,7 +560,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -612,9 +596,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_double(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_double(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": 7e120 or -3.0.
 
         :keyword scenario: Send a post request with header values "scenario": "positive" or "negative".
@@ -624,7 +606,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -662,9 +644,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_bool(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: bool, **kwargs: Any
-    ) -> None:
+    async def param_bool(self, *, scenario: str, value: bool, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
         "false", "value": false.
 
@@ -677,7 +657,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -713,9 +693,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_bool(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_bool(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header value "value": true or false.
 
         :keyword scenario: Send a post request with header values "scenario": "true" or "false".
@@ -725,7 +703,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -763,9 +741,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_string(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def param_string(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
@@ -779,7 +755,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -815,9 +791,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_string(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_string(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "The quick brown fox jumps over the lazy dog" or null or "".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -827,7 +801,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -865,9 +839,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_date(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: datetime.date, **kwargs: Any
-    ) -> None:
+    async def param_date(self, *, scenario: str, value: datetime.date, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
         "scenario": "min", "value": "0001-01-01".
 
@@ -880,7 +852,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -916,9 +888,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_date(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_date(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "2010-01-01" or "0001-01-01".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -928,7 +898,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -966,9 +936,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_datetime(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def param_datetime(self, *, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
@@ -982,7 +950,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1018,9 +986,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_datetime(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "2010-01-01T12:34:56Z" or "0001-01-01T00:00:00Z".
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "min".
@@ -1030,7 +996,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1068,7 +1034,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
+    async def param_datetime_rfc1123(
         self, *, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
@@ -1084,7 +1050,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1120,9 +1086,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_datetime_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_datetime_rfc1123(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
         GMT".
 
@@ -1133,7 +1097,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1171,9 +1135,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_duration(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: datetime.timedelta, **kwargs: Any
-    ) -> None:
+    async def param_duration(self, *, scenario: str, value: datetime.timedelta, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
@@ -1184,7 +1146,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1220,9 +1182,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_duration(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_duration(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "P123DT22H14M12.011S".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
@@ -1231,7 +1191,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1269,9 +1229,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: bytes, **kwargs: Any
-    ) -> None:
+    async def param_byte(self, *, scenario: str, value: bytes, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
@@ -1282,7 +1240,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1318,9 +1276,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_byte(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_byte(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "啊齄丂狛狜隣郎隣兀﨩".
 
         :keyword scenario: Send a post request with header values "scenario": "valid". Required.
@@ -1329,7 +1285,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1367,9 +1323,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def param_enum(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, value: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def param_enum(self, *, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
         "null", "value": null.
 
@@ -1383,7 +1337,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1419,9 +1373,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response_enum(  # pylint: disable=inconsistent-return-statements
-        self, *, scenario: str, **kwargs: Any
-    ) -> None:
+    async def response_enum(self, *, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "GREY" or null.
 
         :keyword scenario: Send a post request with header values "scenario": "valid" or "null" or
@@ -1431,7 +1383,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1469,7 +1421,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def custom_request_id(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def custom_request_id(self, **kwargs: Any) -> None:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
         request.
 
@@ -1477,7 +1429,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

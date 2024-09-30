@@ -14,7 +14,7 @@ from .. import models as _models
 from .._version import VERSION
 
 
-class TwoOperationGroupClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class TwoOperationGroupClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for TwoOperationGroupClient.
 
     Note that all parameters used to create this instance are saved as instance

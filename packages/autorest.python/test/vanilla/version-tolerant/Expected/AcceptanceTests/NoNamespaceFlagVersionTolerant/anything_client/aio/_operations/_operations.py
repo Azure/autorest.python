@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,7 +34,7 @@ from .._vendor import AnythingClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -51,7 +50,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -92,7 +91,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_object(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_object(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
         else to get an object error.
 
@@ -102,7 +101,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -148,7 +147,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -189,7 +188,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_string(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_string(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
         get an object error.
 
@@ -199,7 +198,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -245,7 +244,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: any
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -286,7 +285,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         return cast(Any, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_array(self, input: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_array(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
         to get an object error.
 
@@ -296,7 +295,7 @@ class AnythingClientOperationsMixin(AnythingClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

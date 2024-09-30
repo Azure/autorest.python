@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +32,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -346,7 +346,7 @@ class StringsOnlyOperations:
         :rtype: ~typetest.union.models.GetResponse9
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -395,9 +395,7 @@ class StringsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -411,9 +409,7 @@ class StringsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
@@ -428,9 +424,7 @@ class StringsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -457,7 +451,7 @@ class StringsOnlyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -533,7 +527,7 @@ class StringExtensibleOperations:
         :rtype: ~typetest.union.models.GetResponse8
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -582,9 +576,7 @@ class StringExtensibleOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -598,7 +590,7 @@ class StringExtensibleOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -614,9 +606,7 @@ class StringExtensibleOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -646,7 +636,7 @@ class StringExtensibleOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -722,7 +712,7 @@ class StringExtensibleNamedOperations:
         :rtype: ~typetest.union.models.GetResponse7
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -771,9 +761,7 @@ class StringExtensibleNamedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -787,7 +775,7 @@ class StringExtensibleNamedOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self,
         *,
         prop: Union[str, _models.StringExtensibleNamedUnion],
@@ -807,9 +795,7 @@ class StringExtensibleNamedOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -839,7 +825,7 @@ class StringExtensibleNamedOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -915,7 +901,7 @@ class IntsOnlyOperations:
         :rtype: ~typetest.union.models.GetResponse6
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -964,9 +950,7 @@ class IntsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -980,9 +964,7 @@ class IntsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
@@ -996,9 +978,7 @@ class IntsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1024,7 +1004,7 @@ class IntsOnlyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1100,7 +1080,7 @@ class FloatsOnlyOperations:
         :rtype: ~typetest.union.models.GetResponse5
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1149,9 +1129,7 @@ class FloatsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1165,9 +1143,7 @@ class FloatsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: float, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: float, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Is one of the following types: float, float, float Required.
@@ -1181,9 +1157,7 @@ class FloatsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1209,7 +1183,7 @@ class FloatsOnlyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1285,7 +1259,7 @@ class ModelsOnlyOperations:
         :rtype: ~typetest.union.models.GetResponse4
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1334,9 +1308,7 @@ class ModelsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1350,7 +1322,7 @@ class ModelsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
+    def send(
         self, *, prop: Union[_models.Cat, _models.Dog], content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -1366,9 +1338,7 @@ class ModelsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1394,7 +1364,7 @@ class ModelsOnlyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1470,7 +1440,7 @@ class EnumsOnlyOperations:
         :rtype: ~typetest.union.models.GetResponse3
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1519,9 +1489,7 @@ class EnumsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1535,9 +1503,7 @@ class EnumsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1551,9 +1517,7 @@ class EnumsOnlyOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1579,7 +1543,7 @@ class EnumsOnlyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1655,7 +1619,7 @@ class StringAndArrayOperations:
         :rtype: ~typetest.union.models.GetResponse2
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1704,9 +1668,7 @@ class StringAndArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1720,9 +1682,7 @@ class StringAndArrayOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1736,9 +1696,7 @@ class StringAndArrayOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1764,7 +1722,7 @@ class StringAndArrayOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1840,7 +1798,7 @@ class MixedLiteralsOperations:
         :rtype: ~typetest.union.models.GetResponse1
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1889,9 +1847,7 @@ class MixedLiteralsOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1905,9 +1861,7 @@ class MixedLiteralsOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -1921,9 +1875,7 @@ class MixedLiteralsOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -1949,7 +1901,7 @@ class MixedLiteralsOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2025,7 +1977,7 @@ class MixedTypesOperations:
         :rtype: ~typetest.union.models.GetResponse
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2074,9 +2026,7 @@ class MixedTypesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -2090,9 +2040,7 @@ class MixedTypesOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :keyword prop: Required.
@@ -2106,9 +2054,7 @@ class MixedTypesOperations:
         """
 
     @overload
-    def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -2134,7 +2080,7 @@ class MixedTypesOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

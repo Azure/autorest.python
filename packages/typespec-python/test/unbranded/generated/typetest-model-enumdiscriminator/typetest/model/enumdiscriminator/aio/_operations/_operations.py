@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -42,7 +41,7 @@ from .._vendor import EnumDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -57,7 +56,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -106,7 +105,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
+    async def put_extensible_model(
         self, input: _models.Dog, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
@@ -122,9 +121,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_extensible_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
@@ -138,7 +135,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
+    async def put_extensible_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
@@ -153,9 +150,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_extensible_model(self, input: Union[_models.Dog, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Is one of the following types: Dog, JSON, IO[bytes] Required.
@@ -164,7 +159,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -219,7 +214,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -274,7 +269,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -329,7 +324,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -378,7 +373,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
+    async def put_fixed_model(
         self, input: _models.Snake, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with fixed enum discriminator type.
@@ -394,9 +389,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -410,9 +403,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -425,9 +416,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_fixed_model(self, input: Union[_models.Snake, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Is one of the following types: Snake, JSON, IO[bytes] Required.
@@ -436,7 +425,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -489,7 +478,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -544,7 +533,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -42,7 +41,7 @@ from .._vendor import VisibilityClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -110,7 +109,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -222,7 +221,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -270,7 +269,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         return 200 <= response.status_code <= 299
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
+    async def put_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
@@ -286,9 +285,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -302,9 +299,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -318,9 +313,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
@@ -329,7 +322,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -376,7 +369,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
+    async def patch_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
@@ -392,9 +385,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def patch_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """patch_model.
 
         :param input: Required.
@@ -408,9 +399,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def patch_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """patch_model.
 
         :param input: Required.
@@ -424,9 +413,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """patch_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
@@ -435,7 +422,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -482,7 +469,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
+    async def post_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
@@ -498,9 +485,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_model.
 
         :param input: Required.
@@ -514,9 +499,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_model.
 
         :param input: Required.
@@ -530,9 +513,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """post_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
@@ -541,7 +522,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -588,7 +569,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
+    async def delete_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
@@ -604,9 +585,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def delete_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """delete_model.
 
         :param input: Required.
@@ -620,9 +599,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def delete_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """delete_model.
 
         :param input: Required.
@@ -636,9 +613,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def delete_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """delete_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
@@ -647,7 +622,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -753,7 +728,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: ~typetest.model.visibility.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

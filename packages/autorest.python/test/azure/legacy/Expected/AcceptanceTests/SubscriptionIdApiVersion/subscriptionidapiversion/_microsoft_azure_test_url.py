@@ -21,11 +21,10 @@ from ._serialization import Deserializer, Serializer
 from .operations import GroupOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class MicrosoftAzureTestUrl:  # pylint: disable=client-accepts-api-version-keyword
+class MicrosoftAzureTestUrl:
     """Some cool documentation.
 
     :ivar group: GroupOperations operations

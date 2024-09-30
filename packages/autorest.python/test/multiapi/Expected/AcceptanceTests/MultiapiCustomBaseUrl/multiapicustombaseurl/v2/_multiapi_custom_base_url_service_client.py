@@ -20,13 +20,10 @@ from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class MultiapiCustomBaseUrlServiceClient(
-    MultiapiCustomBaseUrlServiceClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

@@ -19,7 +19,7 @@ from ._configuration import BasicClientConfiguration
 from ._operations import BasicClientOperationsMixin
 
 
-class BasicClient(BasicClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class BasicClient(BasicClientOperationsMixin):
     """Illustrates bodies templated with Azure Core.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

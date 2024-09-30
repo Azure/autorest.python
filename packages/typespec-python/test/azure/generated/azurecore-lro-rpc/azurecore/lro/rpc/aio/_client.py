@@ -19,7 +19,7 @@ from ._configuration import RpcClientConfiguration
 from ._operations import RpcClientOperationsMixin
 
 
-class RpcClient(RpcClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RpcClient(RpcClientOperationsMixin):
     """Illustrates bodies templated with Azure Core with long-running RPC operation.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

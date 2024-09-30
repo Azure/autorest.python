@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -97,7 +97,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -128,7 +128,7 @@ class ExtendsUnknownOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -177,7 +177,7 @@ class ExtendsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -193,9 +193,7 @@ class ExtendsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -209,9 +207,7 @@ class ExtendsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -224,7 +220,7 @@ class ExtendsUnknownOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -237,7 +233,7 @@ class ExtendsUnknownOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -310,7 +306,7 @@ class ExtendsUnknownDerivedOperations:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -359,7 +355,7 @@ class ExtendsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDerived,
         *,
@@ -380,9 +376,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -396,9 +390,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -411,7 +403,7 @@ class ExtendsUnknownDerivedOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -425,7 +417,7 @@ class ExtendsUnknownDerivedOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -498,7 +490,7 @@ class ExtendsUnknownDiscriminatedOperations:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -547,7 +539,7 @@ class ExtendsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -568,9 +560,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -584,9 +574,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -599,7 +587,7 @@ class ExtendsUnknownDiscriminatedOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -613,7 +601,7 @@ class ExtendsUnknownDiscriminatedOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -685,7 +673,7 @@ class IsUnknownOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -734,7 +722,7 @@ class IsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -750,9 +738,7 @@ class IsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -766,9 +752,7 @@ class IsUnknownOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -781,9 +765,7 @@ class IsUnknownOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsUnknownAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsUnknownAdditionalProperties, JSON,
@@ -794,7 +776,7 @@ class IsUnknownOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -866,7 +848,7 @@ class IsUnknownDerivedOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -915,7 +897,7 @@ class IsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDerived,
         *,
@@ -935,9 +917,7 @@ class IsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -951,9 +931,7 @@ class IsUnknownDerivedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -966,7 +944,7 @@ class IsUnknownDerivedOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.IsUnknownAdditionalPropertiesDerived, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -979,7 +957,7 @@ class IsUnknownDerivedOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1052,7 +1030,7 @@ class IsUnknownDiscriminatedOperations:
          ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1101,7 +1079,7 @@ class IsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -1122,9 +1100,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1138,9 +1114,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1153,7 +1127,7 @@ class IsUnknownDiscriminatedOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.IsUnknownAdditionalPropertiesDiscriminated, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1167,7 +1141,7 @@ class IsUnknownDiscriminatedOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1239,7 +1213,7 @@ class ExtendsStringOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1288,7 +1262,7 @@ class ExtendsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1304,9 +1278,7 @@ class ExtendsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1320,9 +1292,7 @@ class ExtendsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1335,9 +1305,7 @@ class ExtendsStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsStringAdditionalProperties, JSON,
@@ -1348,7 +1316,7 @@ class ExtendsStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1420,7 +1388,7 @@ class IsStringOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1469,7 +1437,7 @@ class IsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1485,9 +1453,7 @@ class IsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1501,9 +1467,7 @@ class IsStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1516,9 +1480,7 @@ class IsStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsStringAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsStringAdditionalProperties, JSON, IO[bytes]
@@ -1529,7 +1491,7 @@ class IsStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1600,7 +1562,7 @@ class SpreadStringOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadStringRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1649,7 +1611,7 @@ class SpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1665,9 +1627,7 @@ class SpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1681,9 +1641,7 @@ class SpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1696,9 +1654,7 @@ class SpreadStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadStringRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadStringRecord, JSON, IO[bytes] Required.
@@ -1708,7 +1664,7 @@ class SpreadStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1780,7 +1736,7 @@ class ExtendsFloatOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1829,7 +1785,7 @@ class ExtendsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1845,9 +1801,7 @@ class ExtendsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1861,9 +1815,7 @@ class ExtendsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1876,9 +1828,7 @@ class ExtendsFloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsFloatAdditionalProperties, JSON,
@@ -1889,7 +1839,7 @@ class ExtendsFloatOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1961,7 +1911,7 @@ class IsFloatOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2010,7 +1960,7 @@ class IsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2026,9 +1976,7 @@ class IsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2042,9 +1990,7 @@ class IsFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2057,9 +2003,7 @@ class IsFloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsFloatAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsFloatAdditionalProperties, JSON, IO[bytes]
@@ -2070,7 +2014,7 @@ class IsFloatOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2141,7 +2085,7 @@ class SpreadFloatOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadFloatRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2190,7 +2134,7 @@ class SpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2206,9 +2150,7 @@ class SpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2222,9 +2164,7 @@ class SpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2237,9 +2177,7 @@ class SpreadFloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadFloatRecord, JSON, IO[bytes] Required.
@@ -2249,7 +2187,7 @@ class SpreadFloatOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2321,7 +2259,7 @@ class ExtendsModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2370,7 +2308,7 @@ class ExtendsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.ExtendsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2386,9 +2324,7 @@ class ExtendsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2402,9 +2338,7 @@ class ExtendsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2417,9 +2351,7 @@ class ExtendsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.ExtendsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: ExtendsModelAdditionalProperties, JSON,
@@ -2430,7 +2362,7 @@ class ExtendsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2502,7 +2434,7 @@ class IsModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2551,7 +2483,7 @@ class IsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2567,9 +2499,7 @@ class IsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2583,9 +2513,7 @@ class IsModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2598,9 +2526,7 @@ class IsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsModelAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsModelAdditionalProperties, JSON, IO[bytes]
@@ -2611,7 +2537,7 @@ class IsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2682,7 +2608,7 @@ class SpreadModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadModelRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2731,7 +2657,7 @@ class SpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2747,9 +2673,7 @@ class SpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2763,9 +2687,7 @@ class SpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2778,9 +2700,7 @@ class SpreadModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadModelRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadModelRecord, JSON, IO[bytes] Required.
@@ -2790,7 +2710,7 @@ class SpreadModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2862,7 +2782,7 @@ class ExtendsModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2911,7 +2831,7 @@ class ExtendsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.ExtendsModelArrayAdditionalProperties,
         *,
@@ -2932,9 +2852,7 @@ class ExtendsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2948,9 +2866,7 @@ class ExtendsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2963,7 +2879,7 @@ class ExtendsModelArrayOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.ExtendsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2977,7 +2893,7 @@ class ExtendsModelArrayOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3049,7 +2965,7 @@ class IsModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3098,7 +3014,7 @@ class IsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.IsModelArrayAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3114,9 +3030,7 @@ class IsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3130,9 +3044,7 @@ class IsModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3145,9 +3057,7 @@ class IsModelArrayOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.IsModelArrayAdditionalProperties, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: IsModelArrayAdditionalProperties, JSON,
@@ -3158,7 +3068,7 @@ class IsModelArrayOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3229,7 +3139,7 @@ class SpreadModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadModelArrayRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3278,7 +3188,7 @@ class SpreadModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3294,9 +3204,7 @@ class SpreadModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3310,9 +3218,7 @@ class SpreadModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3325,9 +3231,7 @@ class SpreadModelArrayOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadModelArrayRecord, JSON, IO[bytes]
@@ -3338,7 +3242,7 @@ class SpreadModelArrayOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3410,7 +3314,7 @@ class SpreadDifferentStringOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadStringRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3459,7 +3363,7 @@ class SpreadDifferentStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3475,9 +3379,7 @@ class SpreadDifferentStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3491,9 +3393,7 @@ class SpreadDifferentStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3506,9 +3406,7 @@ class SpreadDifferentStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadStringRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadStringRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadStringRecord, JSON, IO[bytes]
@@ -3519,7 +3417,7 @@ class SpreadDifferentStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3591,7 +3489,7 @@ class SpreadDifferentFloatOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadFloatRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3640,7 +3538,7 @@ class SpreadDifferentFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3656,9 +3554,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3672,9 +3568,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3687,9 +3581,7 @@ class SpreadDifferentFloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadFloatRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadFloatRecord, JSON, IO[bytes]
@@ -3700,7 +3592,7 @@ class SpreadDifferentFloatOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3772,7 +3664,7 @@ class SpreadDifferentModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3821,7 +3713,7 @@ class SpreadDifferentModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3837,9 +3729,7 @@ class SpreadDifferentModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3853,9 +3743,7 @@ class SpreadDifferentModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3868,9 +3756,7 @@ class SpreadDifferentModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelRecord, JSON, IO[bytes]
@@ -3881,7 +3767,7 @@ class SpreadDifferentModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3953,7 +3839,7 @@ class SpreadDifferentModelArrayOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4002,7 +3888,7 @@ class SpreadDifferentModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4018,9 +3904,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4034,9 +3918,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4049,9 +3931,7 @@ class SpreadDifferentModelArrayOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelArrayRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelArrayRecord, JSON,
@@ -4062,7 +3942,7 @@ class SpreadDifferentModelArrayOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4134,7 +4014,7 @@ class ExtendsDifferentSpreadStringOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadStringDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4183,7 +4063,7 @@ class ExtendsDifferentSpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadStringDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4199,9 +4079,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4215,9 +4093,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4230,9 +4106,7 @@ class ExtendsDifferentSpreadStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadStringDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadStringDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadStringDerived, JSON, IO[bytes]
@@ -4243,7 +4117,7 @@ class ExtendsDifferentSpreadStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4315,7 +4189,7 @@ class ExtendsDifferentSpreadFloatOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadFloatDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4364,7 +4238,7 @@ class ExtendsDifferentSpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadFloatDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4380,9 +4254,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4396,9 +4268,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4411,9 +4281,7 @@ class ExtendsDifferentSpreadFloatOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadFloatDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadFloatDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadFloatDerived, JSON, IO[bytes]
@@ -4424,7 +4292,7 @@ class ExtendsDifferentSpreadFloatOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4496,7 +4364,7 @@ class ExtendsDifferentSpreadModelOperations:
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4545,7 +4413,7 @@ class ExtendsDifferentSpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4561,9 +4429,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4577,9 +4443,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4592,9 +4456,7 @@ class ExtendsDifferentSpreadModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelDerived, JSON, IO[bytes]
@@ -4605,7 +4467,7 @@ class ExtendsDifferentSpreadModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4677,7 +4539,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayDerived
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4726,7 +4588,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.DifferentSpreadModelArrayDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4742,9 +4604,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4758,9 +4618,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4773,9 +4631,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DifferentSpreadModelArrayDerived, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.DifferentSpreadModelArrayDerived, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: DifferentSpreadModelArrayDerived, JSON,
@@ -4786,7 +4642,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4857,7 +4713,7 @@ class MultipleSpreadOperations:
         :rtype: ~typetest.property.additionalproperties.models.MultipleSpreadRecord
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4906,7 +4762,7 @@ class MultipleSpreadOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.MultipleSpreadRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4922,9 +4778,7 @@ class MultipleSpreadOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4938,9 +4792,7 @@ class MultipleSpreadOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4953,9 +4805,7 @@ class MultipleSpreadOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultipleSpreadRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.MultipleSpreadRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: MultipleSpreadRecord, JSON, IO[bytes]
@@ -4966,7 +4816,7 @@ class MultipleSpreadOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5037,7 +4887,7 @@ class SpreadRecordUnionOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForUnion
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5086,7 +4936,7 @@ class SpreadRecordUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadRecordForUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5102,9 +4952,7 @@ class SpreadRecordUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5118,9 +4966,7 @@ class SpreadRecordUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5133,9 +4979,7 @@ class SpreadRecordUnionOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadRecordForUnion, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadRecordForUnion, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadRecordForUnion, JSON, IO[bytes]
@@ -5146,7 +4990,7 @@ class SpreadRecordUnionOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5218,7 +5062,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForDiscriminatedUnion
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5267,7 +5111,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: _models.SpreadRecordForDiscriminatedUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5283,9 +5127,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5299,9 +5141,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5314,9 +5154,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SpreadRecordForDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[_models.SpreadRecordForDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Is one of the following types: SpreadRecordForDiscriminatedUnion, JSON,
@@ -5327,7 +5165,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5399,7 +5237,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5448,7 +5286,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion,
         *,
@@ -5468,9 +5306,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5484,9 +5320,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5499,7 +5333,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5512,7 +5346,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5584,7 +5418,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion2
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5633,7 +5467,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion2,
         *,
@@ -5654,9 +5488,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5670,9 +5502,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5685,7 +5515,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion2, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5699,7 +5529,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5771,7 +5601,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion3
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5820,7 +5650,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion3,
         *,
@@ -5841,9 +5671,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5857,9 +5685,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5872,7 +5698,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(  # pylint: disable=inconsistent-return-statements
+    async def put(
         self, body: Union[_models.SpreadRecordForNonDiscriminatedUnion3, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5886,7 +5712,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

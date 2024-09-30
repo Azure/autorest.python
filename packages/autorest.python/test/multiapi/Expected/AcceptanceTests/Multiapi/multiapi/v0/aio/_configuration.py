@@ -12,13 +12,12 @@ from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 VERSION = "unknown"
 
 
-class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for MultiapiServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

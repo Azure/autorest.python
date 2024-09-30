@@ -20,7 +20,6 @@ from ._serialization import Deserializer, Serializer
 from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 

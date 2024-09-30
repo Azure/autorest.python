@@ -19,7 +19,7 @@ from ._configuration import AzureExampleClientConfiguration
 from ._operations import AzureExampleClientOperationsMixin
 
 
-class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AzureExampleClient(AzureExampleClientOperationsMixin):
     """AzureExampleClient.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
