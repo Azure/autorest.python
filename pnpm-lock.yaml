@@ -70,8 +70,8 @@ importers:
         specifier: ^3.3.50
         version: 3.3.50
       '@typespec/http-client-python':
-        specifier: 0.1.0
-        version: 0.1.0(pyotw23g6sqohai3gravpdadwa)
+        specifier: 0.2.0
+        version: 0.2.0(pyotw23g6sqohai3gravpdadwa)
       chalk:
         specifier: 5.3.0
         version: 5.3.0
@@ -1202,21 +1202,6 @@ packages:
     resolution: {integrity: sha512-I6Vcpvd7mBP7SI5vCBh9rZGXAtVy95BKhAd33Enw32psswiSzRpA7zdyZhOMekTOGVXNS/+E5l2PGGCzQddB4w==}
     engines: {node: '>=18.0.0'}
     hasBin: true
-
-  '@typespec/http-client-python@0.1.0':
-    resolution: {integrity: sha512-wOYAj/SCsmLpdaC3jKhjSlOWIgbjkHx/Vezj0L5mBh5HYq5RleqCoKyHEQu6UIObGoOJ6TaIzMgkSAmVj6k6BA==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@azure-tools/typespec-autorest': '>=0.46.0 <1.0.0'
-      '@azure-tools/typespec-azure-core': '>=0.46.0 <1.0.0'
-      '@azure-tools/typespec-azure-resource-manager': '>=0.46.0 <1.0.0'
-      '@azure-tools/typespec-azure-rulesets': '>=0.46.0 <3.0.0'
-      '@azure-tools/typespec-client-generator-core': '>=0.46.1 <1.0.0'
-      '@typespec/compiler': '>=0.60.0 <1.0.0'
-      '@typespec/http': '>=0.60.0 <1.0.0'
-      '@typespec/openapi': '>=0.60.0 <1.0.0'
-      '@typespec/rest': '>=0.60.0 <1.0.0'
-      '@typespec/versioning': '>=0.60.0 <1.0.0'
 
   '@typespec/http-client-python@0.2.0':
     resolution: {integrity: sha512-LIxMmYX3uP6OjoOC8fFFFEjuFaRieELnztYC2b/BK8uY2RxpgaH3pm1LyZTgrOUdWtjHM86RhtuqsRuhWMewEg==}
@@ -4842,21 +4827,6 @@ snapshots:
       vscode-languageserver-textdocument: 1.0.12
       yaml: 2.4.5
       yargs: 17.7.2
-
-  '@typespec/http-client-python@0.1.0(pyotw23g6sqohai3gravpdadwa)':
-    dependencies:
-      '@azure-tools/typespec-autorest': 0.46.0(7nwtlg3hlaxiezooecsts3tzhq)
-      '@azure-tools/typespec-azure-core': 0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))
-      '@azure-tools/typespec-azure-resource-manager': 0.46.1(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
-      '@azure-tools/typespec-azure-rulesets': 0.46.0(p4rq2ntirg3feadnic3sej3izu)
-      '@azure-tools/typespec-client-generator-core': 0.46.2(@azure-tools/typespec-azure-core@0.46.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))))(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/rest@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))
-      '@typespec/compiler': 0.60.1
-      '@typespec/http': 0.60.0(@typespec/compiler@0.60.1)
-      '@typespec/openapi': 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
-      '@typespec/rest': 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
-      '@typespec/versioning': 0.60.1(@typespec/compiler@0.60.1)
-      js-yaml: 4.1.0
-      semver: 7.6.3
 
   '@typespec/http-client-python@0.2.0(pyotw23g6sqohai3gravpdadwa)':
     dependencies:
