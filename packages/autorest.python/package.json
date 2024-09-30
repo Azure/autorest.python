@@ -8,9 +8,9 @@
     "build": "tsx ./scripts/copy-generator.ts --force",
     "install": "tsx ./scripts/copy-generator.ts && node ./scripts/run-python3.js ./scripts/install.py",
     "debug": "node ./scripts/run-python3.js ./scripts/start.py --debug",
-    "test": "tsx ./eng/scripts/ci/run-tests.ts --validFolders azure/legacy azure/version-tolerant vanilla/legacy vanilla/version-tolerant dpg/version-tolerant",
-    "lint": "tsx ./eng/scripts/ci/lint.ts --folderName autorest",
-    "format": "tsx ./eng/scripts/ci/format.ts --pythonPath ./node_modules/@typespec/http-client-python/venv"
+    "test": "tsx ./scripts/eng/run-tests.ts --validFolders azure/legacy azure/version-tolerant vanilla/legacy vanilla/version-tolerant dpg/version-tolerant",
+    "lint": "tsx ./scripts/eng/lint.ts --folderName autorest --skipEslint true",
+    "format": "tsx ./scripts/eng/format.ts"
   },
   "main": "index.js",
   "repository": {
@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.50",
-    "@typespec/http-client-python": "file:/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz",
+    "@typespec/http-client-python": "0.1.0",
     "chalk": "5.3.0",
     "typescript": "~5.1.6"
   },

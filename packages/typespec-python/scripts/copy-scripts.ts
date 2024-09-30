@@ -18,8 +18,5 @@ function copyAndCreateDir(sourceDir: string, destDir: string) {
 
 const typespecModulePath: string = join(__dirname, "..", "node_modules", "@typespec", "http-client-python");
 
-// Copy the scripts directory
-copyAndCreateDir(join(typespecModulePath, "eng", "scripts", "ci"), join(__dirname, "..", "eng", "scripts", "ci"));
-
 // Copy venv over
 copyAndCreateDir(join(typespecModulePath, "venv"), join(__dirname, "..", "venv"));

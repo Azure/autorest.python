@@ -126,6 +126,4 @@ node_modules/
 # Generated test folders
 test/services/*/_generated
 **/autorest.python/generator
-**/autorest.python/eng/scripts/ci
-
-**/typespec-python/eng/scripts/ci
+**/autorest.python/scripts/eng

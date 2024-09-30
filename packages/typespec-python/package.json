@@ -28,41 +28,43 @@
   },
   "scripts": {
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
-    "build": "tsc -p . && tsx ./scripts/copy-scripts.ts --force",
+    "build": "tsc -p .",
     "watch": "tsc -p . --watch",
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
-    "format": "npx prettier **/*.ts --write",
-    "regenerate": "tsx ./eng/scripts/ci/regenerate.ts --emitterName='@azure-tools/typespec-python' --generatedFolder=.",
-    "test": "tsx ./eng/scripts/ci/run-ci.ts --testFolder=test"
+    "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
+    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
+    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
+    "regenerate": "tsx ./scripts/eng/regenerate.ts",
+    "test": "npx vitest run ./test && tsx ./scripts/eng/run-tests.ts"
   },
   "files": [
     "dist/**",
-    "!dist/test/**"
+    "!dist/test/**",
+    "scripts/**"
   ],
   "peerDependencies": {
-    "@azure-tools/typespec-autorest": ">=0.46.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.46.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.46.0 <1.0.0",
-    "@azure-tools/typespec-azure-rulesets": ">=0.46.0 <3.0.0",
+    "@azure-tools/typespec-autorest": ">=0.46.0 <1.0.0",
     "@azure-tools/typespec-client-generator-core": ">=0.46.2 <1.0.0",
+    "@azure-tools/typespec-azure-rulesets": ">=0.46.0 <3.0.0",
     "@typespec/compiler": ">=0.60.0 <1.0.0",
     "@typespec/http": ">=0.60.0 <1.0.0",
-    "@typespec/http-client-python": "/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz",
-    "@typespec/openapi": ">=0.60.0 <1.0.0",
+    "@typespec/http-client-python": ">=0.1.0 <1.0.0",
     "@typespec/rest": ">=0.60.0 <1.0.0",
-    "@typespec/versioning": ">=0.60.0 <1.0.0"
+    "@typespec/versioning": ">=0.60.0 <1.0.0",
+    "@typespec/openapi": ">=0.60.0 <1.0.0"
   },
   "dependencies": {
-    "@typespec/openapi3": "~0.60.0",
     "js-yaml": "~4.1.0",
-    "semver": "~7.6.3",
+    "@typespec/openapi3": "~0.60.0",
+    "semver": "~7.6.2",
     "tsx": "4.17.0",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
-    "@azure-tools/cadl-ranch-expect": "0.15.4",
-    "@azure-tools/cadl-ranch-specs": "0.37.2",
+    "@azure-tools/typespec-azure-resource-manager": "~0.46.0",
     "@azure-tools/typespec-autorest": "~0.46.0",
     "@azure-tools/cadl-ranch-expect": "~0.15.4",
     "@azure-tools/cadl-ranch-specs": "~0.37.2",
@@ -77,29 +79,14 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.5.0",
     "@azure-tools/typespec-azure-core": "~0.46.0",
-    "@azure-tools/typespec-client-generator-core": "0.46.2",
+    "@azure-tools/typespec-client-generator-core": "~0.46.2",
     "@typespec/compiler": "~0.60.0",
     "@typespec/http": "~0.60.0",
     "@typespec/rest": "~0.60.0",
     "@typespec/versioning": "~0.60.0",
-    "@azure-tools/typespec-azure-rulesets": "0.46.0",
-    "@azure-tools/typespec-client-generator-core": "0.46.1",
-    "@types/js-yaml": "~4.0.9",
-    "@types/node": "~22.5.5",
-    "@types/semver": "7.5.8",
-    "@typespec/compiler": "~0.60.1",
-    "@typespec/http": "~0.60.0",
-    "@typespec/http-client-python": "file:/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.27.1.tgz",
-    "@typespec/openapi": "~0.60.0",
-    "@typespec/rest": "~0.60.0",
-    "@typespec/versioning": "~0.60.1",
-    "c8": "^10.1.2",
+    "@azure-tools/typespec-azure-rulesets": "~0.46.0",
+    "yargs": "~17.7.2",
     "chalk": "5.3.0",
-    "rimraf": "~6.0.1",
-    "tsx": "4.17.0",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.7.0",
-    "vitest": "^2.1.1",
-    "@types/fs-extra": "11.0.4"
+    "@typespec/http-client-python": "~0.1.0"
   }
 }
