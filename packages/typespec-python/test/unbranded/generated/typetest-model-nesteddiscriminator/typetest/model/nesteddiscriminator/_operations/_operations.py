@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +32,7 @@ from .._vendor import NestedDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -143,7 +142,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -192,9 +191,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -208,9 +205,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         """
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -224,9 +219,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         """
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -250,7 +243,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -303,7 +296,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -352,7 +345,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+    def put_recursive_model(
         self, input: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
@@ -368,9 +361,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         """
 
     @overload
-    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_recursive_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -384,9 +375,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         """
 
     @overload
-    def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_recursive_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -410,7 +399,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -463,7 +452,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -518,7 +507,7 @@ class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC
         :rtype: ~typetest.model.nesteddiscriminator.models.Fish
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

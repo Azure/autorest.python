@@ -21,11 +21,10 @@ from ._configuration import PagingClientConfiguration
 from .operations import PagingOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class PagingClient:  # pylint: disable=client-accepts-api-version-keyword
+class PagingClient:
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

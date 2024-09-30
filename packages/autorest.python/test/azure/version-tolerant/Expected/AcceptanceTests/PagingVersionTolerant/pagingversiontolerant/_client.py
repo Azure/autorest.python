@@ -19,7 +19,7 @@ from ._serialization import Deserializer, Serializer
 from .operations import PagingOperations
 
 
-class AutoRestPagingTestService:  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestPagingTestService:
     """Long-running Operation for AutoRest.
 
     :ivar paging: PagingOperations operations

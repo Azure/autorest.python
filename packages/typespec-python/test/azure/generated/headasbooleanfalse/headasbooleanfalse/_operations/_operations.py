@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,7 +33,7 @@ from .._vendor import VisibilityClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -209,7 +208,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: ~headasbooleanfalse.models.VisibilityModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -268,7 +267,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def head_model(  # pylint: disable=inconsistent-return-statements
+    def head_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """head_model.
@@ -284,9 +283,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def head_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def head_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """head_model.
 
         :param input: Required.
@@ -300,9 +297,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def head_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def head_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """head_model.
 
         :param input: Required.
@@ -327,7 +322,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -374,7 +369,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
+    def put_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_model.
@@ -390,9 +385,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -406,9 +399,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -433,7 +424,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -480,7 +471,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
+    def patch_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """patch_model.
@@ -496,9 +487,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def patch_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """patch_model.
 
         :param input: Required.
@@ -512,9 +501,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def patch_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def patch_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """patch_model.
 
         :param input: Required.
@@ -539,7 +526,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -586,7 +573,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
+    def post_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_model.
@@ -602,9 +589,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def post_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_model.
 
         :param input: Required.
@@ -618,9 +603,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def post_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def post_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_model.
 
         :param input: Required.
@@ -645,7 +628,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -692,7 +675,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
+    def delete_model(
         self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """delete_model.
@@ -708,9 +691,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def delete_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """delete_model.
 
         :param input: Required.
@@ -724,9 +705,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    def delete_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def delete_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """delete_model.
 
         :param input: Required.
@@ -751,7 +730,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -857,7 +836,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :rtype: ~headasbooleanfalse.models.ReadOnlyModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

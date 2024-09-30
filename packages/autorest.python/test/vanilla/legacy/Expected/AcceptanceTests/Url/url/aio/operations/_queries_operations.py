@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, List, Literal, Optional, Type, TypeVar, Union
+from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -65,7 +65,7 @@ from ...operations._queries_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -90,14 +90,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_boolean_true(self, **kwargs: Any) -> None:
         """Get true Boolean value on path.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -134,14 +134,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_false(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_boolean_false(self, **kwargs: Any) -> None:
         """Get false Boolean value on path.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -178,9 +178,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_null(  # pylint: disable=inconsistent-return-statements
-        self, bool_query: Optional[bool] = None, **kwargs: Any
-    ) -> None:
+    async def get_boolean_null(self, bool_query: Optional[bool] = None, **kwargs: Any) -> None:
         """Get null Boolean value on query (query string should be absent).
 
         :param bool_query: null boolean value. Default value is None.
@@ -189,7 +187,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -225,14 +223,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_int_one_million(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_int_one_million(self, **kwargs: Any) -> None:
         """Get '1000000' integer value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -269,16 +267,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_int_negative_one_million(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get_int_negative_one_million(self, **kwargs: Any) -> None:
         """Get '-1000000' integer value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -315,9 +311,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_int_null(  # pylint: disable=inconsistent-return-statements
-        self, int_query: Optional[int] = None, **kwargs: Any
-    ) -> None:
+    async def get_int_null(self, int_query: Optional[int] = None, **kwargs: Any) -> None:
         """Get null integer value (no query parameter).
 
         :param int_query: null integer value. Default value is None.
@@ -326,7 +320,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -362,14 +356,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_ten_billion(self, **kwargs: Any) -> None:
         """Get '10000000000' 64 bit integer value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -406,14 +400,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_negative_ten_billion(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_negative_ten_billion(self, **kwargs: Any) -> None:
         """Get '-10000000000' 64 bit integer value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -450,9 +444,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_long_null(  # pylint: disable=inconsistent-return-statements
-        self, long_query: Optional[int] = None, **kwargs: Any
-    ) -> None:
+    async def get_long_null(self, long_query: Optional[int] = None, **kwargs: Any) -> None:
         """Get 'null 64 bit integer value (no query param in uri).
 
         :param long_query: null 64 bit integer value. Default value is None.
@@ -461,7 +453,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -497,14 +489,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def float_scientific_positive(self, **kwargs: Any) -> None:
         """Get '1.034E+20' numeric value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -541,14 +533,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_scientific_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def float_scientific_negative(self, **kwargs: Any) -> None:
         """Get '-1.034E-20' numeric value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -585,9 +577,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_null(  # pylint: disable=inconsistent-return-statements
-        self, float_query: Optional[float] = None, **kwargs: Any
-    ) -> None:
+    async def float_null(self, float_query: Optional[float] = None, **kwargs: Any) -> None:
         """Get null numeric value (no query parameter).
 
         :param float_query: null numeric value. Default value is None.
@@ -596,7 +586,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -632,14 +622,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_positive(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def double_decimal_positive(self, **kwargs: Any) -> None:
         """Get '9999999.999' numeric value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -676,14 +666,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def double_decimal_negative(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def double_decimal_negative(self, **kwargs: Any) -> None:
         """Get '-9999999.999' numeric value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -720,9 +710,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def double_null(  # pylint: disable=inconsistent-return-statements
-        self, double_query: Optional[float] = None, **kwargs: Any
-    ) -> None:
+    async def double_null(self, double_query: Optional[float] = None, **kwargs: Any) -> None:
         """Get null numeric value (no query parameter).
 
         :param double_query: null numeric value. Default value is None.
@@ -731,7 +719,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -767,14 +755,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def string_unicode(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def string_unicode(self, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multi-byte string value.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -813,14 +801,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def string_url_encoded(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def string_url_encoded(self, **kwargs: Any) -> None:
         """Get 'begin!*'();:@ &=+$,/?#[]end.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -859,14 +847,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def string_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def string_empty(self, **kwargs: Any) -> None:
         """Get ''.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -903,9 +891,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def string_null(  # pylint: disable=inconsistent-return-statements
-        self, string_query: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def string_null(self, string_query: Optional[str] = None, **kwargs: Any) -> None:
         """Get null (no query parameter in url).
 
         :param string_query: null string value. Default value is None.
@@ -914,7 +900,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -950,9 +936,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def enum_valid(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
-    ) -> None:
+    async def enum_valid(self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any) -> None:
         """Get using uri with query parameter 'green color'.
 
         :param enum_query: 'green color' enum value. Known values are: "red color", "green color", and
@@ -962,7 +946,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -998,9 +982,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def enum_null(  # pylint: disable=inconsistent-return-statements
-        self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any
-    ) -> None:
+    async def enum_null(self, enum_query: Optional[Union[str, _models.UriColor]] = None, **kwargs: Any) -> None:
         """Get null (no query parameter in url).
 
         :param enum_query: null string value. Known values are: "red color", "green color", and "blue
@@ -1010,7 +992,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1046,9 +1028,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def byte_multi_byte(  # pylint: disable=inconsistent-return-statements
-        self, byte_query: Optional[bytes] = None, **kwargs: Any
-    ) -> None:
+    async def byte_multi_byte(self, byte_query: Optional[bytes] = None, **kwargs: Any) -> None:
         """Get '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array.
 
         :param byte_query: '啊齄丂狛狜隣郎隣兀﨩' multibyte value as utf-8 encoded byte array. Default value is
@@ -1058,7 +1038,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1094,14 +1074,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def byte_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def byte_empty(self, **kwargs: Any) -> None:
         """Get '' as byte array.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1138,9 +1118,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def byte_null(  # pylint: disable=inconsistent-return-statements
-        self, byte_query: Optional[bytes] = None, **kwargs: Any
-    ) -> None:
+    async def byte_null(self, byte_query: Optional[bytes] = None, **kwargs: Any) -> None:
         """Get null as byte array (no query parameters in uri).
 
         :param byte_query: null as byte array (no query parameters in uri). Default value is None.
@@ -1149,7 +1127,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1185,14 +1163,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def date_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def date_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01' as date.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1229,9 +1207,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def date_null(  # pylint: disable=inconsistent-return-statements
-        self, date_query: Optional[datetime.date] = None, **kwargs: Any
-    ) -> None:
+    async def date_null(self, date_query: Optional[datetime.date] = None, **kwargs: Any) -> None:
         """Get null as date - this should result in no query parameters in uri.
 
         :param date_query: null as date (no query parameters in uri). Default value is None.
@@ -1240,7 +1216,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1276,14 +1252,14 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def date_time_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def date_time_valid(self, **kwargs: Any) -> None:
         """Get '2012-01-01T01:01:01Z' as date-time.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1322,9 +1298,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def date_time_null(  # pylint: disable=inconsistent-return-statements
-        self, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any
-    ) -> None:
+    async def date_time_null(self, date_time_query: Optional[datetime.datetime] = None, **kwargs: Any) -> None:
         """Get null as date-time, should result in no query parameters in uri.
 
         :param date_time_query: null as date-time (no query parameters). Default value is None.
@@ -1333,7 +1307,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1369,9 +1343,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_csv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -1382,7 +1354,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1418,9 +1390,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_csv_null(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format. Default value is None.
@@ -1429,7 +1399,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1465,9 +1435,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_csv_empty(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array format. Default value is
@@ -1477,7 +1445,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1513,7 +1481,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
+    async def array_string_no_collection_format_empty(
         self, array_query: Optional[List[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
@@ -1526,7 +1494,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1562,9 +1530,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_ssv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
 
@@ -1575,7 +1541,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1611,9 +1577,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_tsv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
 
@@ -1624,7 +1588,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1660,9 +1624,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def array_string_pipes_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 
@@ -1673,7 +1635,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

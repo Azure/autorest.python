@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -55,7 +55,7 @@ from ...operations._http_client_failure_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -80,14 +80,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -122,14 +122,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -164,14 +164,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def options400(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def options400(self, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -206,9 +206,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put400(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -218,7 +216,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -261,9 +259,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch400(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -273,7 +269,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -316,9 +312,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post400(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -328,7 +322,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -371,9 +365,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete400(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -383,7 +375,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -426,14 +418,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head401(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head401(self, **kwargs: Any) -> None:
         """Return 401 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,14 +460,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get402(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get402(self, **kwargs: Any) -> None:
         """Return 402 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -510,14 +502,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def options403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def options403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -552,14 +544,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get403(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get403(self, **kwargs: Any) -> None:
         """Return 403 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -594,9 +586,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put404(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -606,7 +596,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -649,9 +639,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch405(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -661,7 +649,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -704,9 +692,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post406(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -716,7 +702,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -759,9 +745,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete407(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -771,7 +755,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -814,9 +798,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put409(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -826,7 +808,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -869,14 +851,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head410(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head410(self, **kwargs: Any) -> None:
         """Return 410 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -911,14 +893,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get411(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get411(self, **kwargs: Any) -> None:
         """Return 411 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -953,14 +935,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def options412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def options412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -995,14 +977,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get412(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get412(self, **kwargs: Any) -> None:
         """Return 412 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1037,9 +1019,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put413(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -1049,7 +1029,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1092,9 +1072,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch414(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -1104,7 +1082,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1147,9 +1125,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post415(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -1159,7 +1135,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1202,14 +1178,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get416(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get416(self, **kwargs: Any) -> None:
         """Return 416 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1244,9 +1220,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete417(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -1256,7 +1230,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1299,14 +1273,14 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head429(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head429(self, **kwargs: Any) -> None:
         """Return 429 status code - should be represented in the client as an error.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

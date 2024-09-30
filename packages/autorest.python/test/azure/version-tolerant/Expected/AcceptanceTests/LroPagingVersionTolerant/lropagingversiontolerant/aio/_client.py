@@ -19,7 +19,7 @@ from ._configuration import LroPagingClientConfiguration
 from .operations import QuestionAnsweringProjectsOperations
 
 
-class LroPagingClient:  # pylint: disable=client-accepts-api-version-keyword
+class LroPagingClient:
     """The language service API is a suite of natural language processing (NLP) skills built with
     best-in-class Microsoft machine learning algorithms.
 

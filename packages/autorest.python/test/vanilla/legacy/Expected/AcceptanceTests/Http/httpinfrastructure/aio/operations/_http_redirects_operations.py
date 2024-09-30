@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -45,7 +44,7 @@ from ...operations._http_redirects_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -70,14 +69,14 @@ class HttpRedirectsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head300(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head300(self, **kwargs: Any) -> None:
         """Return 300 status code and redirect to /http/success/200.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -123,7 +122,7 @@ class HttpRedirectsOperations:
         :rtype: list[str] or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -167,14 +166,14 @@ class HttpRedirectsOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def head301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -213,14 +212,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def get301(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get301(self, **kwargs: Any) -> None:
         """Return 301 status code and redirect to /http/success/200.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -259,9 +258,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def put301(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put301(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
@@ -272,7 +269,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -318,14 +315,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def head302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -364,14 +361,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def get302(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get302(self, **kwargs: Any) -> None:
         """Return 302 status code and redirect to /http/success/200.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -410,9 +407,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def patch302(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch302(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
@@ -423,7 +418,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -469,9 +464,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def post303(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post303(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
@@ -482,7 +475,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -529,14 +522,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def head307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head307(self, **kwargs: Any) -> None:
         """Redirect with 307, resulting in a 200 success.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -575,14 +568,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def get307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get307(self, **kwargs: Any) -> None:
         """Redirect get with 307, resulting in a 200 success.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -621,14 +614,14 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def options307(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def options307(self, **kwargs: Any) -> None:
         """options redirected with 307, resulting in a 200 after redirect.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -667,9 +660,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def put307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put307(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -679,7 +670,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -726,9 +717,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def patch307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch307(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -738,7 +727,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -785,9 +774,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def post307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post307(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -797,7 +784,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -844,9 +831,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def delete307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete307(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -856,7 +841,7 @@ class HttpRedirectsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

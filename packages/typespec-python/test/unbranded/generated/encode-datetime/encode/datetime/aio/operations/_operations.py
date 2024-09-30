@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -53,7 +53,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -76,9 +76,7 @@ class QueryOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
@@ -87,7 +85,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -124,9 +122,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc3339(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
@@ -135,7 +131,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -172,9 +168,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc7231(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
@@ -183,7 +177,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -220,9 +214,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def unix_timestamp(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :keyword value: Required.
@@ -231,7 +223,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -268,9 +260,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[datetime.datetime], **kwargs: Any
-    ) -> None:
+    async def unix_timestamp_array(self, *, value: List[datetime.datetime], **kwargs: Any) -> None:
         """unix_timestamp_array.
 
         :keyword value: Required.
@@ -279,7 +269,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -393,7 +383,7 @@ class PropertyOperations:
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -510,7 +500,7 @@ class PropertyOperations:
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -627,7 +617,7 @@ class PropertyOperations:
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -749,7 +739,7 @@ class PropertyOperations:
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -871,7 +861,7 @@ class PropertyOperations:
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -947,9 +937,7 @@ class HeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
@@ -958,7 +946,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -995,9 +983,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc3339(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
@@ -1006,7 +992,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1043,9 +1029,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc7231(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
@@ -1054,7 +1038,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1091,9 +1075,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def unix_timestamp(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :keyword value: Required.
@@ -1102,7 +1084,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1139,9 +1121,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[datetime.datetime], **kwargs: Any
-    ) -> None:
+    async def unix_timestamp_array(self, *, value: List[datetime.datetime], **kwargs: Any) -> None:
         """unix_timestamp_array.
 
         :keyword value: Required.
@@ -1150,7 +1130,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1205,14 +1185,14 @@ class ResponseHeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def default(self, **kwargs: Any) -> None:
         """default.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1251,14 +1231,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def rfc3339(self, **kwargs: Any) -> None:
         """rfc3339.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1297,14 +1277,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def rfc7231(self, **kwargs: Any) -> None:
         """rfc7231.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1343,14 +1323,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def unix_timestamp(self, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

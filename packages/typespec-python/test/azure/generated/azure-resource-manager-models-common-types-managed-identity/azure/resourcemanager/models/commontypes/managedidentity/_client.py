@@ -20,11 +20,10 @@ from ._serialization import Deserializer, Serializer
 from .operations import ManagedIdentityTrackedResourcesOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class ManagedIdentityClient:  # pylint: disable=client-accepts-api-version-keyword
+class ManagedIdentityClient:
     """Arm Managed Identity Provider management API.
 
     :ivar managed_identity_tracked_resources: ManagedIdentityTrackedResourcesOperations operations

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -36,7 +35,7 @@ from ...operations._basic_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -68,7 +67,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -107,7 +106,7 @@ class BasicOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: _models.Basic, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -123,7 +122,7 @@ class BasicOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -139,9 +138,7 @@ class BasicOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Basic, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[_models.Basic, IO[bytes]], **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a Basic type
@@ -151,7 +148,7 @@ class BasicOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -207,7 +204,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -253,7 +250,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -299,7 +296,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -345,7 +342,7 @@ class BasicOperations:
         :rtype: ~bodycomplex.models.Basic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
