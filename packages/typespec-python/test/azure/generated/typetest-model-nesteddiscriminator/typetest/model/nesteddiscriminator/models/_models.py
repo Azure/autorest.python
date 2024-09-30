@@ -90,7 +90,7 @@ class Shark(Fish, discriminator="shark"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="shark", **kwargs)
 
 
@@ -124,7 +124,7 @@ class GoblinShark(Shark, discriminator="goblin"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, sharktype="goblin", **kwargs)
 
 
@@ -168,7 +168,7 @@ class Salmon(Fish, discriminator="salmon"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, kind="salmon", **kwargs)
 
 
@@ -202,5 +202,5 @@ class SawShark(Shark, discriminator="saw"):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         super().__init__(*args, sharktype="saw", **kwargs)

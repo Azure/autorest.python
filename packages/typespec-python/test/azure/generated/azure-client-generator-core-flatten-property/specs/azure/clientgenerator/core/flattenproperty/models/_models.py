@@ -47,7 +47,7 @@ class ChildFlattenModel(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
         super().__init__(*args, **kwargs)
         for k, v in _flattened_input.items():
@@ -135,7 +135,7 @@ class FlattenModel(_model_base.Model):
         :type mapping: Mapping[str, Any]
         """
 
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:  # pylint: disable=useless-super-delegation
         _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
         super().__init__(*args, **kwargs)
         for k, v in _flattened_input.items():
