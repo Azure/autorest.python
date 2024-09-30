@@ -1,5 +1,17 @@
 # Release
 
+## 0.34.0
+
+### Bump dependencies
+
+- [#2851](https://github.com/Azure/autorest.python/pull/2851) bump cadl-ranch
+- [#2854](https://github.com/Azure/autorest.python/pull/2854) bump tcgc 0.46.2
+
+### Features
+
+- [#2856](https://github.com/Azure/autorest.python/pull/2856) Depend completely on `@typespec/http-client-python`
+
+
 ## 0.33.0
 
 ### Bump dependencies
