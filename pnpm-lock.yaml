@@ -81,6 +81,9 @@ importers:
 
   packages/typespec-python:
     dependencies:
+      '@typespec/http-client-python':
+        specifier: 0.2.0
+        version: 0.2.0(pyotw23g6sqohai3gravpdadwa)
       '@typespec/openapi3':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))(@typespec/openapi@0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1)))(@typespec/versioning@0.60.1(@typespec/compiler@0.60.1))(openapi-types@12.1.3)
@@ -139,9 +142,6 @@ importers:
       '@typespec/http':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)
-      '@typespec/http-client-python':
-        specifier: ~0.2.0
-        version: 0.2.0(pyotw23g6sqohai3gravpdadwa)
       '@typespec/openapi':
         specifier: ~0.60.0
         version: 0.60.0(@typespec/compiler@0.60.1)(@typespec/http@0.60.0(@typespec/compiler@0.60.1))
