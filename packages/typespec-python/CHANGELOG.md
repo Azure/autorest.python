@@ -1,5 +1,12 @@
 # Release
 
+## 0.35.0
+
+### Bug Fixes
+
+- [#2861](https://github.com/Azure/autorest.python/pull/2861) Fix install issue
+
+
 ## 0.34.0
 
 ### Bump dependencies

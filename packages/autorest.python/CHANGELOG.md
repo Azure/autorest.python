@@ -1,5 +1,9 @@
 # Release
 
+## 6.25.0
+
+No changes, version bump only.
+
 ## 6.24.0
 
 ### Features
