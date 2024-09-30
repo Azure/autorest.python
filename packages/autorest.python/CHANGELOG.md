@@ -1,5 +1,12 @@
 # Release
 
+## 6.24.0
+
+### Features
+
+- [#2856](https://github.com/Azure/autorest.python/pull/2856) Depend completely on `@typespec/http-client-python`
+
+
 ## 6.23.0
 
 No changes, version bump only.
