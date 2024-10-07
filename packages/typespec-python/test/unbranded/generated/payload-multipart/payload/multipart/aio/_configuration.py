@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class MultiPartClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class MultiPartClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for MultiPartClient.
 
     Note that all parameters used to create this instance are saved as instance

@@ -13,7 +13,7 @@ from azure.core.pipeline import policies
 from ._version import VERSION
 
 
-class TemplatedClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class TemplatedClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for TemplatedClient.
 
     Note that all parameters used to create this instance are saved as instance

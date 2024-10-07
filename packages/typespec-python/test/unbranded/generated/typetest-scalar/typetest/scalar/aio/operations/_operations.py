@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 import decimal
 import json
 import sys
-from typing import Any, Callable, Dict, List, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -48,7 +48,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -77,7 +77,7 @@ class StringOperations:
         :rtype: str
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -125,7 +125,7 @@ class StringOperations:
 
         return deserialized  # type: ignore
 
-    async def put(self, body: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: str, **kwargs: Any) -> None:
         """put string value.
 
         :param body: _. Required.
@@ -134,7 +134,7 @@ class StringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -200,7 +200,7 @@ class BooleanOperations:
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -248,7 +248,7 @@ class BooleanOperations:
 
         return deserialized  # type: ignore
 
-    async def put(self, body: bool, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: bool, **kwargs: Any) -> None:
         """put boolean value.
 
         :param body: _. Required.
@@ -257,7 +257,7 @@ class BooleanOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -323,7 +323,7 @@ class UnknownOperations:
         :rtype: any
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -371,7 +371,7 @@ class UnknownOperations:
 
         return deserialized  # type: ignore
 
-    async def put(self, body: Any, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: Any, **kwargs: Any) -> None:
         """put unknown value.
 
         :param body: _. Required.
@@ -380,7 +380,7 @@ class UnknownOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -446,7 +446,7 @@ class DecimalTypeOperations:
         :rtype: ~decimal.Decimal
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -494,9 +494,7 @@ class DecimalTypeOperations:
 
         return deserialized  # type: ignore
 
-    async def request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_body(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """request_body.
 
         :param body: Required.
@@ -505,7 +503,7 @@ class DecimalTypeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -546,9 +544,7 @@ class DecimalTypeOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, value: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_parameter(self, *, value: decimal.Decimal, **kwargs: Any) -> None:
         """request_parameter.
 
         :keyword value: Required.
@@ -557,7 +553,7 @@ class DecimalTypeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -619,7 +615,7 @@ class Decimal128TypeOperations:
         :rtype: ~decimal.Decimal
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -667,9 +663,7 @@ class Decimal128TypeOperations:
 
         return deserialized  # type: ignore
 
-    async def request_body(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_body(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """request_body.
 
         :param body: Required.
@@ -678,7 +672,7 @@ class Decimal128TypeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -719,9 +713,7 @@ class Decimal128TypeOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def request_parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, value: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def request_parameter(self, *, value: decimal.Decimal, **kwargs: Any) -> None:
         """request_parameter.
 
         :keyword value: Required.
@@ -730,7 +722,7 @@ class Decimal128TypeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -792,7 +784,7 @@ class DecimalVerifyOperations:
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -840,9 +832,7 @@ class DecimalVerifyOperations:
 
         return deserialized  # type: ignore
 
-    async def verify(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def verify(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """verify.
 
         :param body: Required.
@@ -851,7 +841,7 @@ class DecimalVerifyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -917,7 +907,7 @@ class Decimal128VerifyOperations:
         :rtype: list[~decimal.Decimal]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -965,9 +955,7 @@ class Decimal128VerifyOperations:
 
         return deserialized  # type: ignore
 
-    async def verify(  # pylint: disable=inconsistent-return-statements
-        self, body: decimal.Decimal, **kwargs: Any
-    ) -> None:
+    async def verify(self, body: decimal.Decimal, **kwargs: Any) -> None:
         """verify.
 
         :param body: Required.
@@ -976,7 +964,7 @@ class Decimal128VerifyOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -46,6 +46,9 @@ class TestAcceptance(object):
             "ConstantsInBody": 1,  # https://github.com/Azure/autorest.modelerfour/issues/83
             "ResponsesScenarioF400DefaultModel": 1,
             "ResponsesScenarioF400DefaultNone": 1,
+            "HttpClientFailure400Options": 1,  # not supported case introduced by https://github.com/Azure/autorest.testserver/pull/424
+            "HttpClientFailure403Options": 1,  # not supported case introduced by https://github.com/Azure/autorest.testserver/pull/424
+            "HttpClientFailure412Options": 1,  # not supported case introduced by https://github.com/Azure/autorest.testserver/pull/424
         }
 
         print("Coverage:")

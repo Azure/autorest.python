@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -61,7 +61,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -91,7 +91,7 @@ class StringOperations:
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -146,7 +146,7 @@ class StringOperations:
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -195,7 +195,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -211,7 +211,7 @@ class StringOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -227,7 +227,7 @@ class StringOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -242,9 +242,7 @@ class StringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_non_null(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -253,7 +251,7 @@ class StringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -300,7 +298,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -316,7 +314,7 @@ class StringOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -332,7 +330,7 @@ class StringOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -347,9 +345,7 @@ class StringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -358,7 +354,7 @@ class StringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -429,7 +425,7 @@ class BytesOperations:
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -484,7 +480,7 @@ class BytesOperations:
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -533,7 +529,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -549,7 +545,7 @@ class BytesOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -565,7 +561,7 @@ class BytesOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -580,9 +576,7 @@ class BytesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_non_null(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -591,7 +585,7 @@ class BytesOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -638,7 +632,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -654,7 +648,7 @@ class BytesOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -670,7 +664,7 @@ class BytesOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -685,9 +679,7 @@ class BytesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -696,7 +688,7 @@ class BytesOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -767,7 +759,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -822,7 +814,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -871,7 +863,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -887,7 +879,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -903,7 +895,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -918,9 +910,7 @@ class DatetimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_non_null(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -929,7 +919,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -976,7 +966,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -992,7 +982,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1008,7 +998,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1023,9 +1013,7 @@ class DatetimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1034,7 +1022,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1105,7 +1093,7 @@ class DurationOperations:
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1160,7 +1148,7 @@ class DurationOperations:
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1209,7 +1197,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1225,7 +1213,7 @@ class DurationOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1241,7 +1229,7 @@ class DurationOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1256,9 +1244,7 @@ class DurationOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_non_null(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1267,7 +1253,7 @@ class DurationOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1314,7 +1300,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1330,7 +1316,7 @@ class DurationOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1346,7 +1332,7 @@ class DurationOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1361,9 +1347,7 @@ class DurationOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1372,7 +1356,7 @@ class DurationOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1443,7 +1427,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1498,7 +1482,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1547,7 +1531,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -1567,7 +1551,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1583,7 +1567,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1598,7 +1582,7 @@ class CollectionsByteOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1609,7 +1593,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1656,7 +1640,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -1676,7 +1660,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1692,7 +1676,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1707,9 +1691,7 @@ class CollectionsByteOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -1718,7 +1700,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1790,7 +1772,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1846,7 +1828,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1895,7 +1877,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -1915,7 +1897,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1931,7 +1913,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1946,7 +1928,7 @@ class CollectionsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1957,7 +1939,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2004,7 +1986,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2024,7 +2006,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2040,7 +2022,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2055,9 +2037,7 @@ class CollectionsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2066,7 +2046,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2138,7 +2118,7 @@ class CollectionsStringOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2194,7 +2174,7 @@ class CollectionsStringOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2243,7 +2223,7 @@ class CollectionsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2263,7 +2243,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2279,7 +2259,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2294,7 +2274,7 @@ class CollectionsStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_non_null(
         self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2306,7 +2286,7 @@ class CollectionsStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2353,7 +2333,7 @@ class CollectionsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2373,7 +2353,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2389,7 +2369,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
+    async def patch_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2404,9 +2384,7 @@ class CollectionsStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def patch_null(self, body: Union[_models.CollectionsStringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsStringProperty, JSON, IO[bytes]
@@ -2416,7 +2394,7 @@ class CollectionsStringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

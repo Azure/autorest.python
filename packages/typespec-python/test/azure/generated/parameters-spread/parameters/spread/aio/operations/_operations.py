@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -42,7 +42,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -67,7 +67,7 @@ class ModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -83,9 +83,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :keyword name: Required.
@@ -99,7 +97,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -115,7 +113,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -128,7 +126,7 @@ class ModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -180,7 +178,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_only_with_body(
         self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -196,7 +194,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_only_with_body(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -212,7 +210,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_only_with_body(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -228,7 +226,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_only_with_body(
         self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
@@ -239,7 +237,7 @@ class ModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -286,9 +284,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def spread_composite_request_without_body(  # pylint: disable=inconsistent-return-statements
-        self, name: str, *, test_header: str, **kwargs: Any
-    ) -> None:
+    async def spread_composite_request_without_body(self, name: str, *, test_header: str, **kwargs: Any) -> None:
         """spread_composite_request_without_body.
 
         :param name: Required.
@@ -299,7 +295,7 @@ class ModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -338,7 +334,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request(
         self,
         name: str,
         body: _models.BodyParameter,
@@ -364,7 +360,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request(
         self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request.
@@ -384,7 +380,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request(
         self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request.
@@ -404,7 +400,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def spread_composite_request(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request(
         self, name: str, body: Union[_models.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
     ) -> None:
         """spread_composite_request.
@@ -419,7 +415,7 @@ class ModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,7 +464,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_mix(
         self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -488,7 +484,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_mix(
         self, name: str, *, test_header: str, prop: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -508,7 +504,7 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_mix(
         self, name: str, body: IO[bytes], *, test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -528,7 +524,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def spread_composite_request_mix(  # pylint: disable=inconsistent-return-statements
+    async def spread_composite_request_mix(
         self, name: str, body: Union[JSON, IO[bytes]] = _Unset, *, test_header: str, prop: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -545,7 +541,7 @@ class ModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -617,7 +613,7 @@ class AliasOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -633,9 +629,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
         :keyword name: Required.
@@ -649,7 +643,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -665,7 +659,7 @@ class AliasOperations:
         """
 
     @distributed_trace_async
-    async def spread_as_request_body(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_body(
         self, body: Union[JSON, IO[bytes]] = _Unset, *, name: str = _Unset, **kwargs: Any
     ) -> None:
         """spread_as_request_body.
@@ -678,7 +672,7 @@ class AliasOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -730,7 +724,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_model(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -750,7 +744,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_model(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -770,7 +764,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_model(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -790,7 +784,7 @@ class AliasOperations:
         """
 
     @distributed_trace_async
-    async def spread_parameter_with_inner_model(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_model(
         self,
         id: str,
         body: Union[JSON, IO[bytes]] = _Unset,
@@ -813,7 +807,7 @@ class AliasOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -867,7 +861,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_parameter(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -887,7 +881,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_parameter(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -907,7 +901,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_parameter(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -927,7 +921,7 @@ class AliasOperations:
         """
 
     @distributed_trace_async
-    async def spread_as_request_parameter(  # pylint: disable=inconsistent-return-statements
+    async def spread_as_request_parameter(
         self,
         id: str,
         body: Union[JSON, IO[bytes]] = _Unset,
@@ -950,7 +944,7 @@ class AliasOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1004,7 +998,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    async def spread_with_multiple_parameters(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1024,7 +1018,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    async def spread_with_multiple_parameters(
         self,
         id: str,
         *,
@@ -1059,7 +1053,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    async def spread_with_multiple_parameters(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1079,7 +1073,7 @@ class AliasOperations:
         """
 
     @distributed_trace_async
-    async def spread_with_multiple_parameters(  # pylint: disable=inconsistent-return-statements
+    async def spread_with_multiple_parameters(
         self,
         id: str,
         body: Union[JSON, IO[bytes]] = _Unset,
@@ -1111,7 +1105,7 @@ class AliasOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1172,7 +1166,7 @@ class AliasOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_alias(
         self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread an alias with contains another alias property as body.
@@ -1192,7 +1186,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_alias(
         self,
         id: str,
         *,
@@ -1221,7 +1215,7 @@ class AliasOperations:
         """
 
     @overload
-    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_alias(
         self, id: str, body: IO[bytes], *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread an alias with contains another alias property as body.
@@ -1241,7 +1235,7 @@ class AliasOperations:
         """
 
     @distributed_trace_async
-    async def spread_parameter_with_inner_alias(  # pylint: disable=inconsistent-return-statements
+    async def spread_parameter_with_inner_alias(
         self,
         id: str,
         body: Union[JSON, IO[bytes]] = _Unset,
@@ -1267,7 +1261,7 @@ class AliasOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

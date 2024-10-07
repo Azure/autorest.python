@@ -20,11 +20,10 @@ from ._configuration import StorageManagementClientConfiguration
 from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class StorageManagementClient:  # pylint: disable=client-accepts-api-version-keyword
+class StorageManagementClient:
     """StorageManagementClient.
 
     :ivar storage_accounts: StorageAccountsOperations operations

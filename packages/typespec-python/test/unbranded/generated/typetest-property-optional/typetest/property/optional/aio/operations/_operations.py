@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -97,7 +97,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -127,7 +127,7 @@ class StringOperations:
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -182,7 +182,7 @@ class StringOperations:
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -231,7 +231,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -247,9 +247,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -263,9 +261,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -278,9 +274,7 @@ class StringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -289,7 +283,7 @@ class StringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -336,7 +330,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -352,9 +346,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -368,9 +360,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -383,9 +373,7 @@ class StringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -394,7 +382,7 @@ class StringOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -465,7 +453,7 @@ class BytesOperations:
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -520,7 +508,7 @@ class BytesOperations:
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -569,7 +557,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -585,9 +573,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -601,9 +587,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -616,9 +600,7 @@ class BytesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -627,7 +609,7 @@ class BytesOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -674,7 +656,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -690,9 +672,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -706,9 +686,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -721,9 +699,7 @@ class BytesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -732,7 +708,7 @@ class BytesOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -803,7 +779,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -858,7 +834,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -907,7 +883,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -923,9 +899,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -939,9 +913,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -954,9 +926,7 @@ class DatetimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -965,7 +935,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1012,7 +982,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1028,9 +998,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1044,9 +1012,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1059,9 +1025,7 @@ class DatetimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1070,7 +1034,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1141,7 +1105,7 @@ class DurationOperations:
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1196,7 +1160,7 @@ class DurationOperations:
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1245,7 +1209,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1261,9 +1225,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1277,9 +1239,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1292,9 +1252,7 @@ class DurationOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1303,7 +1261,7 @@ class DurationOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1350,7 +1308,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1366,9 +1324,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1382,9 +1338,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1397,9 +1351,7 @@ class DurationOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1408,7 +1360,7 @@ class DurationOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1479,7 +1431,7 @@ class PlainDateOperations:
         :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1534,7 +1486,7 @@ class PlainDateOperations:
         :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1583,7 +1535,7 @@ class PlainDateOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1599,9 +1551,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1615,9 +1565,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1630,9 +1578,7 @@ class PlainDateOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
@@ -1641,7 +1587,7 @@ class PlainDateOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1688,7 +1634,7 @@ class PlainDateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1704,9 +1650,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1720,9 +1664,7 @@ class PlainDateOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1735,9 +1677,7 @@ class PlainDateOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
@@ -1746,7 +1686,7 @@ class PlainDateOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1817,7 +1757,7 @@ class PlainTimeOperations:
         :rtype: ~typetest.property.optional.models.PlainTimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1872,7 +1812,7 @@ class PlainTimeOperations:
         :rtype: ~typetest.property.optional.models.PlainTimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1921,7 +1861,7 @@ class PlainTimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1937,9 +1877,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1953,9 +1891,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1968,9 +1904,7 @@ class PlainTimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -1979,7 +1913,7 @@ class PlainTimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2026,7 +1960,7 @@ class PlainTimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2042,9 +1976,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2058,9 +1990,7 @@ class PlainTimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2073,9 +2003,7 @@ class PlainTimeOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -2084,7 +2012,7 @@ class PlainTimeOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2155,7 +2083,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2210,7 +2138,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2259,7 +2187,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2275,9 +2203,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2291,9 +2217,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2306,9 +2230,7 @@ class CollectionsByteOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2317,7 +2239,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2364,7 +2286,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2380,9 +2302,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2396,9 +2316,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2411,9 +2329,7 @@ class CollectionsByteOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2422,7 +2338,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2494,7 +2410,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2550,7 +2466,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2599,7 +2515,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2615,9 +2531,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2631,9 +2545,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2646,9 +2558,7 @@ class CollectionsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2657,7 +2567,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2704,7 +2614,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2720,9 +2630,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2736,9 +2644,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2751,9 +2657,7 @@ class CollectionsModelOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2762,7 +2666,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2833,7 +2737,7 @@ class StringLiteralOperations:
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2888,7 +2792,7 @@ class StringLiteralOperations:
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2937,7 +2841,7 @@ class StringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2953,9 +2857,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2969,9 +2871,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2984,9 +2884,7 @@ class StringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -2995,7 +2893,7 @@ class StringLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3042,7 +2940,7 @@ class StringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3058,9 +2956,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3074,9 +2970,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3089,9 +2983,7 @@ class StringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -3100,7 +2992,7 @@ class StringLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3171,7 +3063,7 @@ class IntLiteralOperations:
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3226,7 +3118,7 @@ class IntLiteralOperations:
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3275,7 +3167,7 @@ class IntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3291,9 +3183,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3307,9 +3197,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3322,9 +3210,7 @@ class IntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3333,7 +3219,7 @@ class IntLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3380,7 +3266,7 @@ class IntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3396,9 +3282,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3412,9 +3296,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3427,9 +3309,7 @@ class IntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3438,7 +3318,7 @@ class IntLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3509,7 +3389,7 @@ class FloatLiteralOperations:
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3564,7 +3444,7 @@ class FloatLiteralOperations:
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3613,7 +3493,7 @@ class FloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3629,9 +3509,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3645,9 +3523,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3660,9 +3536,7 @@ class FloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -3671,7 +3545,7 @@ class FloatLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3718,7 +3592,7 @@ class FloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3734,9 +3608,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3750,9 +3622,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3765,9 +3635,7 @@ class FloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -3776,7 +3644,7 @@ class FloatLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3847,7 +3715,7 @@ class BooleanLiteralOperations:
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3902,7 +3770,7 @@ class BooleanLiteralOperations:
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3951,7 +3819,7 @@ class BooleanLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3967,9 +3835,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3983,9 +3849,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3998,9 +3862,7 @@ class BooleanLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4009,7 +3871,7 @@ class BooleanLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4056,7 +3918,7 @@ class BooleanLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4072,9 +3934,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4088,9 +3948,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4103,9 +3961,7 @@ class BooleanLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4114,7 +3970,7 @@ class BooleanLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4186,7 +4042,7 @@ class UnionStringLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4242,7 +4098,7 @@ class UnionStringLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4291,7 +4147,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4307,9 +4163,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4323,9 +4177,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4338,9 +4190,7 @@ class UnionStringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4350,7 +4200,7 @@ class UnionStringLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4397,7 +4247,7 @@ class UnionStringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4413,9 +4263,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4429,9 +4277,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4444,7 +4290,7 @@ class UnionStringLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4456,7 +4302,7 @@ class UnionStringLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4527,7 +4373,7 @@ class UnionIntLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4582,7 +4428,7 @@ class UnionIntLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4631,7 +4477,7 @@ class UnionIntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4647,9 +4493,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4663,9 +4507,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4678,9 +4520,7 @@ class UnionIntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -4689,7 +4529,7 @@ class UnionIntLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4736,7 +4576,7 @@ class UnionIntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4752,9 +4592,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4768,9 +4606,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4783,9 +4619,7 @@ class UnionIntLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -4794,7 +4628,7 @@ class UnionIntLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4866,7 +4700,7 @@ class UnionFloatLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4922,7 +4756,7 @@ class UnionFloatLiteralOperations:
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4971,7 +4805,7 @@ class UnionFloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4987,9 +4821,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5003,9 +4835,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5018,9 +4848,7 @@ class UnionFloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5030,7 +4858,7 @@ class UnionFloatLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5077,7 +4905,7 @@ class UnionFloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -5093,9 +4921,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5109,9 +4935,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5124,9 +4948,7 @@ class UnionFloatLiteralOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5136,7 +4958,7 @@ class UnionFloatLiteralOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5208,7 +5030,7 @@ class RequiredAndOptionalOperations:
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5264,7 +5086,7 @@ class RequiredAndOptionalOperations:
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5313,7 +5135,7 @@ class RequiredAndOptionalOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5329,9 +5151,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5345,9 +5165,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5360,9 +5178,7 @@ class RequiredAndOptionalOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
@@ -5372,7 +5188,7 @@ class RequiredAndOptionalOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5419,7 +5235,7 @@ class RequiredAndOptionalOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -5435,9 +5251,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_required_only(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with only required properties.
 
         :param body: Required.
@@ -5451,7 +5265,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -5466,7 +5280,7 @@ class RequiredAndOptionalOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -5478,7 +5292,7 @@ class RequiredAndOptionalOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

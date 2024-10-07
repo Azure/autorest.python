@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -48,7 +48,7 @@ from ...operations._http_success_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -73,14 +73,14 @@ class HttpSuccessOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head200(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head200(self, **kwargs: Any) -> None:
         """Return 200 status code if successful.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -122,7 +122,7 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -168,7 +168,7 @@ class HttpSuccessOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -207,9 +207,7 @@ class HttpSuccessOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put200(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -219,7 +217,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -262,9 +260,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch200(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -274,7 +270,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -317,9 +313,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post200(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -329,7 +323,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -372,9 +366,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete200(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -384,7 +376,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -427,9 +419,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put201(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -439,7 +429,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -482,9 +472,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post201(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -494,7 +482,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -537,9 +525,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put202(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -549,7 +535,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -592,9 +578,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch202(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -604,7 +588,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -647,9 +631,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post202(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -659,7 +641,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -702,9 +684,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete202(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -714,7 +694,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -757,14 +737,14 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head204(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head204(self, **kwargs: Any) -> None:
         """Return 204 status code if successful.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -799,9 +779,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put204(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -811,7 +789,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -854,9 +832,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch204(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -866,7 +842,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -909,9 +885,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post204(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -921,7 +895,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -964,9 +938,7 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete204(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -976,7 +948,7 @@ class HttpSuccessOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1019,14 +991,14 @@ class HttpSuccessOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head404(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head404(self, **kwargs: Any) -> None:
         """Return 404 status code.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

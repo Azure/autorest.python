@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -29,7 +29,7 @@ from .._vendor import FileType, prepare_multipart_form_data
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 _Unset: Any = object()
 T = TypeVar("T")
@@ -177,9 +177,7 @@ class FormDataOperations:
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
-    def basic(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -190,7 +188,7 @@ class FormDataOperations:
         """
 
     @overload
-    def basic(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -212,7 +210,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -256,9 +254,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_array_and_basic(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexPartsRequest, **kwargs: Any
-    ) -> None:
+    def file_array_and_basic(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -269,7 +265,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_array_and_basic(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def file_array_and_basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -291,7 +287,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -335,9 +331,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def json_part(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.JsonPartRequest, **kwargs: Any
-    ) -> None:
+    def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -348,7 +342,7 @@ class FormDataOperations:
         """
 
     @overload
-    def json_part(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def json_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -370,7 +364,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -414,9 +408,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.BinaryArrayPartsRequest, **kwargs: Any
-    ) -> None:
+    def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -427,7 +419,7 @@ class FormDataOperations:
         """
 
     @overload
-    def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -449,7 +441,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -493,9 +485,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiBinaryPartsRequest, **kwargs: Any
-    ) -> None:
+    def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -506,7 +496,7 @@ class FormDataOperations:
         """
 
     @overload
-    def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -528,7 +518,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -572,9 +562,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultiPartRequest, **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -585,9 +573,7 @@ class FormDataOperations:
         """
 
     @overload
-    def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -609,7 +595,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -653,7 +639,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -664,9 +650,7 @@ class FormDataOperations:
         """
 
     @overload
-    def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, *, profile_image: FileType, **kwargs: Any
-    ) -> None:
+    def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :keyword profile_image: Required.
@@ -690,7 +674,7 @@ class FormDataOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -764,9 +748,7 @@ class FormDataHttpPartsOperations:
         )
 
     @overload
-    def json_array_and_file_array(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any
-    ) -> None:
+    def json_array_and_file_array(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -777,9 +759,7 @@ class FormDataHttpPartsOperations:
         """
 
     @overload
-    def json_array_and_file_array(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def json_array_and_file_array(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -801,7 +781,7 @@ class FormDataHttpPartsOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -863,9 +843,7 @@ class FormDataHttpPartsContentTypeOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def image_jpeg_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
-    ) -> None:
+    def image_jpeg_content_type(self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -876,9 +854,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def image_jpeg_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def image_jpeg_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -901,7 +877,7 @@ class FormDataHttpPartsContentTypeOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -945,9 +921,7 @@ class FormDataHttpPartsContentTypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def required_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
-    ) -> None:
+    def required_content_type(self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -958,9 +932,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def required_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def required_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -983,7 +955,7 @@ class FormDataHttpPartsContentTypeOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1027,9 +999,7 @@ class FormDataHttpPartsContentTypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def optional_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
-    ) -> None:
+    def optional_content_type(self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
         :param body: Required.
@@ -1040,9 +1010,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def optional_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, **kwargs: Any
-    ) -> None:
+    def optional_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
         :param body: Required.
@@ -1065,7 +1033,7 @@ class FormDataHttpPartsContentTypeOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1127,9 +1095,7 @@ class FormDataHttpPartsNonStringOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def float(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.FloatRequest, **kwargs: Any
-    ) -> None:
+    def float(self, body: _models.FloatRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -1140,7 +1106,7 @@ class FormDataHttpPartsNonStringOperations:
         """
 
     @overload
-    def float(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def float(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -1162,7 +1128,7 @@ class FormDataHttpPartsNonStringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

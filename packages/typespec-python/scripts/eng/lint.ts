@@ -2,6 +2,8 @@
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
 import { runCommand, executeCommand } from "./utils.js";
+import fs from "fs";
+import path from "path";
 
 interface Arguments {
     folderName: string;
@@ -40,9 +42,23 @@ const argv = yargs(hideBin(process.argv))
 export function pylint() {
     runCommand(`pylint ${argv.folderName}/ --rcfile ./scripts/eng/pylintrc`, "pylint");
 }
+function checkPythonFile(directory: string): boolean {
+    const files = fs.readdirSync(directory);
+    for (let i = 0; i < files.length; i++) {
+        if (path.extname(files[i]) === ".py") {
+            return true;
+        }
+    }
+    return false;
+}
 
 export function mypy() {
-    runCommand(`mypy ${argv.folderName}/ --config-file ./scripts/eng/mypy.ini`, "mypy");
+    if (checkPythonFile(argv.folderName)) {
+        runCommand(`mypy ${argv.folderName}/ --config-file ./scripts/eng/mypy.ini`, "mypy");
+    } else {
+        console.log("No python file found in the directory");
+        console.log("mypy passed");
+    }
 }
 
 export function pyright() {

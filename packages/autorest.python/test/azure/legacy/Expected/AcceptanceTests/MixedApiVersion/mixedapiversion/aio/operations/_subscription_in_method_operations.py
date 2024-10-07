@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +31,7 @@ from ...operations._subscription_in_method_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -57,9 +56,7 @@ class SubscriptionInMethodOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def post_method_local_valid(  # pylint: disable=inconsistent-return-statements
-        self, subscription_id: str, **kwargs: Any
-    ) -> None:
+    async def post_method_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -70,7 +67,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -106,9 +103,7 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_method_local_null(  # pylint: disable=inconsistent-return-statements
-        self, subscription_id: str, **kwargs: Any
-    ) -> None:
+    async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
         client-side validation should prevent you from making this call.
 
@@ -119,7 +114,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -155,9 +150,7 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_path_local_valid(  # pylint: disable=inconsistent-return-statements
-        self, subscription_id: str, **kwargs: Any
-    ) -> None:
+    async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -168,7 +161,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -204,9 +197,7 @@ class SubscriptionInMethodOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_swagger_local_valid(  # pylint: disable=inconsistent-return-statements
-        self, subscription_id: str, **kwargs: Any
-    ) -> None:
+    async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
         """POST method with subscriptionId modeled in the method.  pass in subscription id =
         '1234-5678-9012-3456' to succeed.
 
@@ -217,7 +208,7 @@ class SubscriptionInMethodOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

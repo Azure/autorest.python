@@ -16,7 +16,7 @@ from .. import models as _models
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(object):
 
-    async def test(  # pylint: disable=inconsistent-return-statements
+    async def test(
         self,
         id: int,
         **kwargs: Any

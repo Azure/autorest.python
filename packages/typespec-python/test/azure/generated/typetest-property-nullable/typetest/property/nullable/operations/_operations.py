@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +33,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -459,7 +459,7 @@ class StringOperations:
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -515,7 +515,7 @@ class StringOperations:
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -564,7 +564,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -580,9 +580,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -596,7 +594,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -623,7 +621,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -670,7 +668,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -686,9 +684,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -702,9 +698,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -729,7 +723,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -801,7 +795,7 @@ class BytesOperations:
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -857,7 +851,7 @@ class BytesOperations:
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -906,7 +900,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -922,9 +916,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -938,7 +930,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -965,7 +957,7 @@ class BytesOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1012,7 +1004,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1028,9 +1020,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1044,9 +1034,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1071,7 +1059,7 @@ class BytesOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1143,7 +1131,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1199,7 +1187,7 @@ class DatetimeOperations:
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1248,7 +1236,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1264,9 +1252,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1280,7 +1266,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1307,7 +1293,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1354,7 +1340,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1370,9 +1356,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1386,9 +1370,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1413,7 +1395,7 @@ class DatetimeOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1485,7 +1467,7 @@ class DurationOperations:
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1541,7 +1523,7 @@ class DurationOperations:
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1590,7 +1572,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1606,9 +1588,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1622,7 +1602,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1649,7 +1629,7 @@ class DurationOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1696,7 +1676,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1712,9 +1692,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1728,9 +1706,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1755,7 +1731,7 @@ class DurationOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1827,7 +1803,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1883,7 +1859,7 @@ class CollectionsByteOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1932,7 +1908,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -1952,9 +1928,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1968,7 +1942,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1995,7 +1969,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2042,7 +2016,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -2062,9 +2036,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2078,9 +2050,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2105,7 +2075,7 @@ class CollectionsByteOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2178,7 +2148,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2235,7 +2205,7 @@ class CollectionsModelOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2284,7 +2254,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2304,9 +2274,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2320,7 +2288,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2347,7 +2315,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2394,7 +2362,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2414,9 +2382,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2430,9 +2396,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2457,7 +2421,7 @@ class CollectionsModelOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2530,7 +2494,7 @@ class CollectionsStringOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2587,7 +2551,7 @@ class CollectionsStringOperations:
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2636,7 +2600,7 @@ class CollectionsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2656,9 +2620,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2672,7 +2634,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2700,7 +2662,7 @@ class CollectionsStringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2747,7 +2709,7 @@ class CollectionsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2767,9 +2729,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2783,9 +2743,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2811,7 +2769,7 @@ class CollectionsStringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

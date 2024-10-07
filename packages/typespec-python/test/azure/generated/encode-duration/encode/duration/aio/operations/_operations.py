@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -53,7 +53,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -77,9 +77,7 @@ class QueryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, input: datetime.timedelta, **kwargs: Any
-    ) -> None:
+    async def default(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
         """default.
 
         :keyword input: Required.
@@ -88,7 +86,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -126,9 +124,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def iso8601(  # pylint: disable=inconsistent-return-statements
-        self, *, input: datetime.timedelta, **kwargs: Any
-    ) -> None:
+    async def iso8601(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
         """iso8601.
 
         :keyword input: Required.
@@ -137,7 +133,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -175,9 +171,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, input: int, **kwargs: Any
-    ) -> None:
+    async def int32_seconds(self, *, input: int, **kwargs: Any) -> None:
         """int32_seconds.
 
         :keyword input: Required.
@@ -186,7 +180,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -224,9 +218,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, input: float, **kwargs: Any
-    ) -> None:
+    async def float_seconds(self, *, input: float, **kwargs: Any) -> None:
         """float_seconds.
 
         :keyword input: Required.
@@ -235,7 +227,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -273,9 +265,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float64_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, input: float, **kwargs: Any
-    ) -> None:
+    async def float64_seconds(self, *, input: float, **kwargs: Any) -> None:
         """float64_seconds.
 
         :keyword input: Required.
@@ -284,7 +274,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -322,9 +312,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_seconds_array(  # pylint: disable=inconsistent-return-statements
-        self, *, input: List[int], **kwargs: Any
-    ) -> None:
+    async def int32_seconds_array(self, *, input: List[int], **kwargs: Any) -> None:
         """int32_seconds_array.
 
         :keyword input: Required.
@@ -333,7 +321,7 @@ class QueryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -448,7 +436,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.DefaultDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -566,7 +554,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.ISO8601DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -689,7 +677,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.Int32SecondsDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -812,7 +800,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.FloatSecondsDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -935,7 +923,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.Float64SecondsDurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1058,7 +1046,7 @@ class PropertyOperations:
         :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1135,9 +1123,7 @@ class HeaderOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: datetime.timedelta, **kwargs: Any
-    ) -> None:
+    async def default(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
         """default.
 
         :keyword duration: Required.
@@ -1146,7 +1132,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1184,9 +1170,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def iso8601(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: datetime.timedelta, **kwargs: Any
-    ) -> None:
+    async def iso8601(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
         """iso8601.
 
         :keyword duration: Required.
@@ -1195,7 +1179,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1233,9 +1217,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def iso8601_array(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: List[datetime.timedelta], **kwargs: Any
-    ) -> None:
+    async def iso8601_array(self, *, duration: List[datetime.timedelta], **kwargs: Any) -> None:
         """iso8601_array.
 
         :keyword duration: Required.
@@ -1244,7 +1226,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1282,9 +1264,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: int, **kwargs: Any
-    ) -> None:
+    async def int32_seconds(self, *, duration: int, **kwargs: Any) -> None:
         """int32_seconds.
 
         :keyword duration: Required.
@@ -1293,7 +1273,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1331,9 +1311,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: float, **kwargs: Any
-    ) -> None:
+    async def float_seconds(self, *, duration: float, **kwargs: Any) -> None:
         """float_seconds.
 
         :keyword duration: Required.
@@ -1342,7 +1320,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1380,9 +1358,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float64_seconds(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: float, **kwargs: Any
-    ) -> None:
+    async def float64_seconds(self, *, duration: float, **kwargs: Any) -> None:
         """float64_seconds.
 
         :keyword duration: Required.
@@ -1391,7 +1367,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {  # pylint: disable=unsubscriptable-object
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
