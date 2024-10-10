@@ -1,5 +1,12 @@
 # Release
 
+## 0.35.1
+
+### Bug Fixes
+
+- [#2864](https://github.com/Azure/autorest.python/pull/2864) Await call to http-client-python onEmit
+
+
 ## 0.35.0
 
 ### Bug Fixes
