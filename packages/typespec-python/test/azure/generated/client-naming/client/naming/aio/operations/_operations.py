@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -27,8 +26,8 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder
 from ...operations._operations import (
-    build_model_client_request,
-    build_model_language_request,
+    build_client_model_client_request,
+    build_client_model_language_request,
     build_naming_client_name_request,
     build_naming_client_request,
     build_naming_compatible_with_encoded_name_request,
@@ -44,20 +43,20 @@ from .._vendor import NamingClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ModelOperations:
+class ClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.aio.NamingClient`'s
-        :attr:`model` attribute.
+        :attr:`client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,9 +67,7 @@ class ModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -81,20 +78,10 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -108,9 +95,7 @@ class ModelOperations:
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -124,9 +109,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def client(self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """client.
 
         :param body: Is one of the following types: ClientModel, JSON, IO[bytes] Required.
@@ -134,16 +117,8 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -164,13 +139,16 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_request(
+        _request = build_client_model_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -187,7 +165,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
+    async def language(
         self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
@@ -200,20 +178,10 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -227,9 +195,7 @@ class ModelOperations:
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -243,9 +209,7 @@ class ModelOperations:
         """
 
     @distributed_trace_async
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def language(self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """language.
 
         :param body: Is one of the following types: PythonModel, JSON, IO[bytes] Required.
@@ -253,16 +217,8 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -283,13 +239,16 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_language_request(
+        _request = build_client_model_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -324,9 +283,7 @@ class UnionEnumOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def union_enum_name(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def union_enum_name(self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any) -> None:
         """union_enum_name.
 
         :param body: "value1" Required.
@@ -335,7 +292,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -357,7 +314,10 @@ class UnionEnumOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -374,9 +334,7 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def union_enum_member_name(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any
-    ) -> None:
+    async def union_enum_member_name(self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any) -> None:
         """union_enum_member_name.
 
         :param body: Known values are: "value1" and "value2". Required.
@@ -385,7 +343,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -407,7 +365,10 @@ class UnionEnumOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -427,14 +388,14 @@ class UnionEnumOperations:
 class NamingClientOperationsMixin(NamingClientMixinABC):
 
     @distributed_trace_async
-    async def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def client_name(self, **kwargs: Any) -> None:
         """client_name.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -451,7 +412,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -468,9 +432,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def parameter(  # pylint: disable=inconsistent-return-statements
-        self, *, client_name: str, **kwargs: Any
-    ) -> None:
+    async def parameter(self, *, client_name: str, **kwargs: Any) -> None:
         """parameter.
 
         :keyword client_name: Required.
@@ -479,7 +441,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -497,7 +459,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -514,7 +479,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
+    async def client(
         self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """client.
@@ -527,20 +492,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -554,9 +509,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -570,9 +523,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @distributed_trace_async
-    async def client(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def client(self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """client.
 
         :param body: Is one of the following types: ClientNameModel, JSON, IO[bytes] Required.
@@ -580,16 +531,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -616,7 +559,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -633,7 +579,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
+    async def language(
         self, body: _models.LanguageClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
@@ -646,20 +592,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -673,9 +609,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -689,9 +623,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @distributed_trace_async
-    async def language(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def language(self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """language.
 
         :param body: Is one of the following types: LanguageClientNameModel, JSON, IO[bytes] Required.
@@ -699,16 +631,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -735,7 +659,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -752,7 +679,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: _models.ClientNameAndJsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -765,18 +692,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -792,7 +711,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -808,7 +727,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @distributed_trace_async
-    async def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    async def compatible_with_encoded_name(
         self, body: Union[_models.ClientNameAndJsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -819,16 +738,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -855,7 +766,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -872,9 +786,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def request(  # pylint: disable=inconsistent-return-statements
-        self, *, client_name: str, **kwargs: Any
-    ) -> None:
+    async def request(self, *, client_name: str, **kwargs: Any) -> None:
         """request.
 
         :keyword client_name: Required.
@@ -883,7 +795,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -901,7 +813,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -918,14 +833,14 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def response(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def response(self, **kwargs: Any) -> None:
         """response.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -942,7 +857,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

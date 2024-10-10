@@ -15,7 +15,7 @@ from testpreparer_async import MediaTypeClientTestBaseAsync
 class TestMediaTypeStringBodyOperationsAsync(MediaTypeClientTestBaseAsync):
     @MediaTypePreparer()
     @recorded_by_proxy_async
-    async def test_send_as_text(self, mediatype_endpoint):
+    async def test_string_body_send_as_text(self, mediatype_endpoint):
         client = self.create_async_client(endpoint=mediatype_endpoint)
         response = await client.string_body.send_as_text(
             text="str",
@@ -27,7 +27,7 @@ class TestMediaTypeStringBodyOperationsAsync(MediaTypeClientTestBaseAsync):
 
     @MediaTypePreparer()
     @recorded_by_proxy_async
-    async def test_get_as_text(self, mediatype_endpoint):
+    async def test_string_body_get_as_text(self, mediatype_endpoint):
         client = self.create_async_client(endpoint=mediatype_endpoint)
         response = await client.string_body.get_as_text()
 
@@ -36,7 +36,7 @@ class TestMediaTypeStringBodyOperationsAsync(MediaTypeClientTestBaseAsync):
 
     @MediaTypePreparer()
     @recorded_by_proxy_async
-    async def test_send_as_json(self, mediatype_endpoint):
+    async def test_string_body_send_as_json(self, mediatype_endpoint):
         client = self.create_async_client(endpoint=mediatype_endpoint)
         response = await client.string_body.send_as_json(
             text="str",
@@ -48,7 +48,7 @@ class TestMediaTypeStringBodyOperationsAsync(MediaTypeClientTestBaseAsync):
 
     @MediaTypePreparer()
     @recorded_by_proxy_async
-    async def test_get_as_json(self, mediatype_endpoint):
+    async def test_string_body_get_as_json(self, mediatype_endpoint):
         client = self.create_async_client(endpoint=mediatype_endpoint)
         response = await client.string_body.get_as_json()
 

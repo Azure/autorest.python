@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +12,6 @@ from .. import _model_base
 from .._model_base import rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -47,7 +45,6 @@ class Element(_model_base.Model):
 class Extension(Element):
     """extension.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar extension:
     :vartype extension: list[~typetest.model.recursive.models.Extension]

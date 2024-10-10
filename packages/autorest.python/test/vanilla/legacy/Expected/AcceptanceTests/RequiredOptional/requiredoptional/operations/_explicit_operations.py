@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
@@ -30,7 +30,7 @@ from .. import models as _models
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -485,7 +485,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -536,7 +536,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -588,7 +588,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -639,7 +639,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -694,7 +694,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -746,7 +746,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -802,7 +802,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -849,7 +849,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -897,7 +897,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -948,7 +948,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1003,7 +1003,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1055,7 +1055,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1111,7 +1111,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1158,7 +1158,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1194,7 +1194,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_required_class_parameter(
         self, body_parameter: _models.Product, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -1211,7 +1211,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_required_class_parameter(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -1240,7 +1240,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1287,7 +1287,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_optional_class_parameter(
         self, body_parameter: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1303,7 +1303,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_optional_class_parameter(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1330,7 +1330,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1392,7 +1392,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1444,7 +1444,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1488,7 +1488,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_required_array_parameter(
         self, body_parameter: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
@@ -1505,7 +1505,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_required_array_parameter(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
@@ -1534,7 +1534,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1581,7 +1581,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_optional_array_parameter(
         self, body_parameter: Optional[List[str]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -1597,7 +1597,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+    def post_optional_array_parameter(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -1624,7 +1624,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1686,7 +1686,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1738,7 +1738,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1794,7 +1794,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1841,7 +1841,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

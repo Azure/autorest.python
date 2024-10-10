@@ -15,7 +15,7 @@ from testpreparer_async import BodyOptionalityClientTestBaseAsync
 class TestBodyOptionalityOptionalExplicitOperationsAsync(BodyOptionalityClientTestBaseAsync):
     @BodyOptionalityPreparer()
     @recorded_by_proxy_async
-    async def test_set(self, bodyoptionality_endpoint):
+    async def test_optional_explicit_set(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
         response = await client.optional_explicit.set()
 
@@ -24,7 +24,7 @@ class TestBodyOptionalityOptionalExplicitOperationsAsync(BodyOptionalityClientTe
 
     @BodyOptionalityPreparer()
     @recorded_by_proxy_async
-    async def test_omit(self, bodyoptionality_endpoint):
+    async def test_optional_explicit_omit(self, bodyoptionality_endpoint):
         client = self.create_async_client(endpoint=bodyoptionality_endpoint)
         response = await client.optional_explicit.omit()
 

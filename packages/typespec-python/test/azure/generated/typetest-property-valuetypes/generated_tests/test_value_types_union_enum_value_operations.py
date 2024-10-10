@@ -14,7 +14,7 @@ from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
 class TestValueTypesUnionEnumValueOperations(ValueTypesClientTestBase):
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
+    def test_union_enum_value_get(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.union_enum_value.get()
 
@@ -23,7 +23,7 @@ class TestValueTypesUnionEnumValueOperations(ValueTypesClientTestBase):
 
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
+    def test_union_enum_value_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.union_enum_value.put(
             body={"property": "str"},

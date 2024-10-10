@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +31,7 @@ from ...operations._operations import build_property_get_request, build_property
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -56,7 +55,7 @@ class PropertyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
+    async def send(
         self, body: _models.JsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
@@ -69,20 +68,10 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -96,9 +85,7 @@ class PropertyOperations:
         """
 
     @overload
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
         :param body: Required.
@@ -111,9 +98,7 @@ class PropertyOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def send(self, body: Union[_models.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """send.
 
         :param body: Is one of the following types: JsonEncodedNameModel, JSON, IO[bytes] Required.
@@ -121,16 +106,8 @@ class PropertyOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -157,7 +134,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -179,16 +159,8 @@ class PropertyOperations:
         :return: JsonEncodedNameModel. The JsonEncodedNameModel is compatible with MutableMapping
         :rtype: ~serialization.encodedname.json.models.JsonEncodedNameModel
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "wireName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -205,7 +177,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access

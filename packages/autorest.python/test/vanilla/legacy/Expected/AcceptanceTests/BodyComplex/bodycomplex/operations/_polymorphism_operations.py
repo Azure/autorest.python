@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
@@ -30,7 +29,7 @@ from .. import models as _models
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -202,7 +201,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -241,9 +240,7 @@ class PolymorphismOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -289,9 +286,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -380,7 +375,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -434,7 +429,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -482,7 +477,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -530,7 +525,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.DotFishMarket
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -577,7 +572,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -616,7 +611,7 @@ class PolymorphismOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put_complicated(  # pylint: disable=inconsistent-return-statements
+    def put_complicated(
         self, complex_body: _models.Salmon, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -633,7 +628,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    def put_complicated(  # pylint: disable=inconsistent-return-statements
+    def put_complicated(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -662,7 +657,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -752,7 +747,7 @@ class PolymorphismOperations:
         :rtype: ~bodycomplex.models.Salmon
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -803,7 +798,7 @@ class PolymorphismOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+    def put_valid_missing_required(
         self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -846,7 +841,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+    def put_valid_missing_required(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -927,7 +922,7 @@ class PolymorphismOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,7 +34,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -458,16 +458,8 @@ class Int32ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -484,7 +476,10 @@ class Int32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -513,9 +508,7 @@ class Int32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -526,20 +519,10 @@ class Int32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -564,7 +547,7 @@ class Int32ValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -591,7 +574,10 @@ class Int32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -632,16 +618,8 @@ class Int64ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -658,7 +636,10 @@ class Int64ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -687,9 +668,7 @@ class Int64ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -700,20 +679,10 @@ class Int64ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -738,7 +707,7 @@ class Int64ValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -765,7 +734,10 @@ class Int64ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -806,16 +778,8 @@ class BooleanValueOperations:
         :return: list of bool
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    bool
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -832,7 +796,10 @@ class BooleanValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -861,9 +828,7 @@ class BooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -874,20 +839,10 @@ class BooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    bool
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -912,7 +867,7 @@ class BooleanValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -939,7 +894,10 @@ class BooleanValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -980,16 +938,8 @@ class StringValueOperations:
         :return: list of str
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    "str"
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1006,7 +956,10 @@ class StringValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1035,9 +988,7 @@ class StringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1048,20 +999,10 @@ class StringValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    "str"
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1086,7 +1027,7 @@ class StringValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1113,7 +1054,10 @@ class StringValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1154,16 +1098,8 @@ class Float32ValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0.0
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1180,7 +1116,10 @@ class Float32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1209,9 +1148,7 @@ class Float32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[float], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1222,20 +1159,10 @@ class Float32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0.0
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1260,7 +1187,7 @@ class Float32ValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1287,7 +1214,10 @@ class Float32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1328,16 +1258,8 @@ class DatetimeValueOperations:
         :return: list of datetime
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    "2020-02-20 00:00:00"
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1354,7 +1276,10 @@ class DatetimeValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1383,9 +1308,7 @@ class DatetimeValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1396,20 +1319,10 @@ class DatetimeValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    "2020-02-20 00:00:00"
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1434,7 +1347,7 @@ class DatetimeValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1461,7 +1374,10 @@ class DatetimeValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1502,16 +1418,8 @@ class DurationValueOperations:
         :return: list of timedelta
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    "1 day, 0:00:00"
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1528,7 +1436,10 @@ class DurationValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1557,9 +1468,7 @@ class DurationValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1570,20 +1479,10 @@ class DurationValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    "1 day, 0:00:00"
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1608,7 +1507,7 @@ class DurationValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1635,7 +1534,10 @@ class DurationValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1676,16 +1578,8 @@ class UnknownValueOperations:
         :return: list of any
         :rtype: list[any]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {}
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1702,7 +1596,10 @@ class UnknownValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1731,9 +1628,7 @@ class UnknownValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1744,20 +1639,10 @@ class UnknownValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    {}
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1782,7 +1667,7 @@ class UnknownValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1809,7 +1694,10 @@ class UnknownValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1850,21 +1738,8 @@ class ModelValueOperations:
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "property": "str",
-                        "children": [
-                            ...
-                        ]
-                    }
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1881,7 +1756,10 @@ class ModelValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1910,9 +1788,7 @@ class ModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1923,25 +1799,10 @@ class ModelValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    {
-                        "property": "str",
-                        "children": [
-                            ...
-                        ]
-                    }
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1966,7 +1827,7 @@ class ModelValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1993,7 +1854,10 @@ class ModelValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2034,16 +1898,8 @@ class NullableFloatValueOperations:
         :return: list of float
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0.0
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2060,7 +1916,10 @@ class NullableFloatValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2089,9 +1948,7 @@ class NullableFloatValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[float], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2102,20 +1959,10 @@ class NullableFloatValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0.0
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2140,7 +1987,7 @@ class NullableFloatValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2167,7 +2014,10 @@ class NullableFloatValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2208,16 +2058,8 @@ class NullableInt32ValueOperations:
         :return: list of int
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    0
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2234,7 +2076,10 @@ class NullableInt32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2263,9 +2108,7 @@ class NullableInt32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2276,20 +2119,10 @@ class NullableInt32ValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2314,7 +2147,7 @@ class NullableInt32ValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2341,7 +2174,10 @@ class NullableInt32ValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2382,16 +2218,8 @@ class NullableBooleanValueOperations:
         :return: list of bool
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    bool
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2408,7 +2236,10 @@ class NullableBooleanValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2437,9 +2268,7 @@ class NullableBooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2450,20 +2279,10 @@ class NullableBooleanValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    bool
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2488,7 +2307,7 @@ class NullableBooleanValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2515,7 +2334,10 @@ class NullableBooleanValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2556,16 +2378,8 @@ class NullableStringValueOperations:
         :return: list of str
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    "str"
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2582,7 +2396,10 @@ class NullableStringValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2611,9 +2428,7 @@ class NullableStringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2624,20 +2439,10 @@ class NullableStringValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    "str"
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2662,7 +2467,7 @@ class NullableStringValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2689,7 +2494,10 @@ class NullableStringValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2730,21 +2538,8 @@ class NullableModelValueOperations:
         :return: list of InnerModel
         :rtype: list[~typetest.array.models.InnerModel]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == [
-                    {
-                        "property": "str",
-                        "children": [
-                            ...
-                        ]
-                    }
-                ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2761,7 +2556,10 @@ class NullableModelValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2790,9 +2588,7 @@ class NullableModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2803,25 +2599,10 @@ class NullableModelValueOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    {
-                        "property": "str",
-                        "children": [
-                            ...
-                        ]
-                    }
-                ]
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2846,7 +2627,7 @@ class NullableModelValueOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2873,7 +2654,10 @@ class NullableModelValueOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

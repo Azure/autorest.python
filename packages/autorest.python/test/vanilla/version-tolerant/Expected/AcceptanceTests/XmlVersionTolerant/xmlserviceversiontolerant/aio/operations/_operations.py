@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Literal, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Literal, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -64,7 +64,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -96,7 +96,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndNoMeta
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -134,9 +134,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_no_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: _models.RootWithRefAndNoMeta, **kwargs: Any
-    ) -> None:
+    async def put_complex_type_ref_no_meta(self, model: _models.RootWithRefAndNoMeta, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with no XML node.
 
         :param model: Required.
@@ -145,7 +143,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -191,7 +189,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.RootWithRefAndMeta
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -229,9 +227,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_complex_type_ref_with_meta(  # pylint: disable=inconsistent-return-statements
-        self, model: _models.RootWithRefAndMeta, **kwargs: Any
-    ) -> None:
+    async def put_complex_type_ref_with_meta(self, model: _models.RootWithRefAndMeta, **kwargs: Any) -> None:
         """Puts a complex type that has a ref to a complex type with XML node.
 
         :param model: Required.
@@ -240,7 +236,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -286,7 +282,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -325,9 +321,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_simple(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: _models.Slideshow, **kwargs: Any
-    ) -> None:
+    async def put_simple(self, slideshow: _models.Slideshow, **kwargs: Any) -> None:
         """Put a simple XML document.
 
         :param slideshow: Required.
@@ -336,7 +330,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -383,7 +377,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -421,9 +415,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, wrapped_lists: _models.AppleBarrel, **kwargs: Any
-    ) -> None:
+    async def put_wrapped_lists(self, wrapped_lists: _models.AppleBarrel, **kwargs: Any) -> None:
         """Put an XML document with multiple wrapped lists.
 
         :param wrapped_lists: Required.
@@ -432,7 +424,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -472,14 +464,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_headers(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_headers(self, **kwargs: Any) -> None:
         """Get strongly-typed response headers.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -523,7 +515,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Slideshow
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -561,9 +553,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_list(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: _models.Slideshow, **kwargs: Any
-    ) -> None:
+    async def put_empty_list(self, slideshow: _models.Slideshow, **kwargs: Any) -> None:
         """Puts an empty list.
 
         :param slideshow: Required.
@@ -572,7 +562,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -618,7 +608,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.AppleBarrel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -656,9 +646,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_wrapped_lists(  # pylint: disable=inconsistent-return-statements
-        self, apple_barrel: _models.AppleBarrel, **kwargs: Any
-    ) -> None:
+    async def put_empty_wrapped_lists(self, apple_barrel: _models.AppleBarrel, **kwargs: Any) -> None:
         """Puts some empty wrapped lists.
 
         :param apple_barrel: Required.
@@ -667,7 +655,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -713,7 +701,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -751,9 +739,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
-    ) -> None:
+    async def put_root_list(self, bananas: List[_models.Banana], **kwargs: Any) -> None:
         """Puts a list as the root element.
 
         :param bananas: Required.
@@ -762,7 +748,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -809,7 +795,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -847,9 +833,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
-    ) -> None:
+    async def put_root_list_single_item(self, bananas: List[_models.Banana], **kwargs: Any) -> None:
         """Puts a list with a single item.
 
         :param bananas: Required.
@@ -858,7 +842,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -905,7 +889,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -943,9 +927,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
-    ) -> None:
+    async def put_empty_root_list(self, bananas: List[_models.Banana], **kwargs: Any) -> None:
         """Puts an empty list as the root element.
 
         :param bananas: Required.
@@ -954,7 +936,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1001,7 +983,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.Banana
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1039,9 +1021,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty_child_element(  # pylint: disable=inconsistent-return-statements
-        self, banana: _models.Banana, **kwargs: Any
-    ) -> None:
+    async def put_empty_child_element(self, banana: _models.Banana, **kwargs: Any) -> None:
         """Puts a value with an empty child element.
 
         :param banana: Required.
@@ -1050,7 +1030,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1096,7 +1076,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.ListContainersResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1143,7 +1123,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.StorageServiceProperties
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1185,9 +1165,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_service_properties(  # pylint: disable=inconsistent-return-statements
-        self, properties: _models.StorageServiceProperties, **kwargs: Any
-    ) -> None:
+    async def put_service_properties(self, properties: _models.StorageServiceProperties, **kwargs: Any) -> None:
         """Puts storage service properties.
 
         :param properties: Required.
@@ -1196,7 +1174,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1246,7 +1224,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.SignedIdentifier
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1288,9 +1266,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_acls(  # pylint: disable=inconsistent-return-statements
-        self, properties: List[_models.SignedIdentifier], **kwargs: Any
-    ) -> None:
+    async def put_acls(self, properties: List[_models.SignedIdentifier], **kwargs: Any) -> None:
         """Puts storage ACLs for a container.
 
         :param properties: Required.
@@ -1299,7 +1275,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1352,7 +1328,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.ListBlobsResponse
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1394,7 +1370,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @overload
-    async def json_input(  # pylint: disable=inconsistent-return-statements
+    async def json_input(
         self, properties: _models.JSONInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
@@ -1411,9 +1387,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def json_input(self, properties: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -1428,9 +1402,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def json_input(  # pylint: disable=inconsistent-return-statements
-        self, properties: Union[_models.JSONInput, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def json_input(self, properties: Union[_models.JSONInput, IO[bytes]], **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
         number 42.
 
@@ -1440,7 +1412,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1493,7 +1465,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.JSONOutput
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1539,7 +1511,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.ObjectWithXMsTextProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1584,7 +1556,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.ModelWithByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1623,9 +1595,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_binary(  # pylint: disable=inconsistent-return-statements
-        self, slideshow: _models.ModelWithByteProperty, **kwargs: Any
-    ) -> None:
+    async def put_binary(self, slideshow: _models.ModelWithByteProperty, **kwargs: Any) -> None:
         """Put an XML document with binary property.
 
         :param slideshow: Required.
@@ -1634,7 +1604,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1681,7 +1651,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~xmlserviceversiontolerant.models.ModelWithUrlProperty
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1720,9 +1690,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_uri(  # pylint: disable=inconsistent-return-statements
-        self, model: _models.ModelWithUrlProperty, **kwargs: Any
-    ) -> None:
+    async def put_uri(self, model: _models.ModelWithUrlProperty, **kwargs: Any) -> None:
         """Put an XML document with uri property.
 
         :param model: Required.
@@ -1731,7 +1699,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

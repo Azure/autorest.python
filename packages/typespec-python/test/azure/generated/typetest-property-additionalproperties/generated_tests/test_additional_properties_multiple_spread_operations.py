@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesMultipleSpreadOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_multiple_spread_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.multiple_spread.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesMultipleSpreadOperations(AdditionalPropertiesClien
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_multiple_spread_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.multiple_spread.put(
             body={"flag": bool},

@@ -15,7 +15,7 @@ from testpreparer_async import AdditionalPropertiesClientTestBaseAsync
 class TestAdditionalPropertiesExtendsModelOperationsAsync(AdditionalPropertiesClientTestBaseAsync):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, additionalproperties_endpoint):
+    async def test_extends_model_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_model.get()
 
@@ -24,7 +24,7 @@ class TestAdditionalPropertiesExtendsModelOperationsAsync(AdditionalPropertiesCl
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, additionalproperties_endpoint):
+    async def test_extends_model_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_model.put(
             body={"knownProp": {"state": "str"}},

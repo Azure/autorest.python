@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterator, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +33,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -1409,7 +1409,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put200_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1645,7 +1645,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _patch200_succeeded_ignore_headers_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1891,7 +1891,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _patch201_retry_with_async_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2113,9 +2113,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
             return deserialized
 
         if polling is True:
-            polling_method: PollingMethod = cast(
-                PollingMethod, ARMPolling(lro_delay, lro_options={"final-state-via": "azure-async-operation"}, **kwargs)
-            )
+            polling_method: PollingMethod = cast(PollingMethod, ARMPolling(lro_delay, **kwargs))
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -2132,7 +2130,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _patch202_retry_with_async_and_location_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2375,7 +2373,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put201_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2609,7 +2607,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _post202_list_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2726,7 +2724,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put200_succeeded_no_state_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2962,7 +2960,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put202_retry200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3199,7 +3197,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3438,7 +3436,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put200_updating_succeeded204_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3677,7 +3675,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put201_creating_failed200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3916,7 +3914,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put200_acceptedcanceled200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4155,7 +4153,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_no_header_in_retry_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4397,7 +4395,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4650,7 +4648,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_no_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4901,7 +4899,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_retry_failed_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5154,7 +5152,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_no_retrycanceled_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5405,7 +5403,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_no_header_in_retry_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5652,7 +5650,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _put_non_resource_initial(self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5832,7 +5830,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_non_resource_initial(
         self, sku: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6014,7 +6012,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_sub_resource_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6217,7 +6215,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_sub_resource_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6420,7 +6418,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6538,7 +6536,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _delete_provisioning202_deleting_failed200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6656,7 +6654,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _delete_provisioning202_deletingcanceled200_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6772,7 +6770,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete204_succeeded_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6855,7 +6853,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete202_retry200_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6968,7 +6966,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete202_no_retry204_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7081,7 +7079,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_no_header_in_retry_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7169,7 +7167,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_no_header_in_retry_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7257,7 +7255,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_retry_succeeded_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7348,7 +7346,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_no_retry_succeeded_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7439,7 +7437,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_retry_failed_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7530,7 +7528,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_retrycanceled_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7621,7 +7619,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _post200_with_payload_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7722,7 +7720,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post202_retry200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7908,7 +7906,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post202_no_retry204_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8152,7 +8150,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_double_headers_final_location_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8267,7 +8265,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_double_headers_final_azure_header_get_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8382,7 +8380,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_double_headers_final_azure_header_get_default_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8495,7 +8493,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8742,7 +8740,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_no_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -8989,7 +8987,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_retry_failed_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9181,7 +9179,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_retrycanceled_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9391,7 +9389,7 @@ class LRORetrysOperations:
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9630,7 +9628,7 @@ class LRORetrysOperations:
     def _put_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9883,7 +9881,7 @@ class LRORetrysOperations:
     def _delete_provisioning202_accepted200_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -9999,7 +9997,7 @@ class LRORetrysOperations:
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete202_retry200_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10089,7 +10087,7 @@ class LRORetrysOperations:
     def _delete_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10184,7 +10182,7 @@ class LRORetrysOperations:
     def _post202_retry200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10370,7 +10368,7 @@ class LRORetrysOperations:
     def _post_async_relative_retry_succeeded_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10580,7 +10578,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_non_retry400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -10813,7 +10811,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_non_retry201_creating400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11049,7 +11047,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_non_retry201_creating400_invalid_json_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11285,7 +11283,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_relative_retry400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11533,7 +11531,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_non_retry400_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11620,7 +11618,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete202_non_retry400_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11707,7 +11705,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete_async_relative_retry400_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11800,7 +11798,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post_non_retry400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -11983,7 +11981,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post202_non_retry400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -12166,7 +12164,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_relative_retry400_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -12355,7 +12353,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_error201_no_provisioning_state_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -12588,7 +12586,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_relative_retry_no_status_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -12841,7 +12839,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_relative_retry_no_status_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13092,7 +13090,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete204_succeeded_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13177,7 +13175,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _delete_async_relative_retry_no_status_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13272,7 +13270,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post202_no_location_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13458,7 +13456,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_relative_retry_no_payload_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13650,7 +13648,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put200_invalid_json_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -13886,7 +13884,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14139,7 +14137,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _put_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14390,7 +14388,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         return LROPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _delete202_retry_invalid_header_initial(self, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14480,7 +14478,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _delete_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14575,7 +14573,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _delete_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14670,7 +14668,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post202_retry_invalid_header_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -14856,7 +14854,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_relative_retry_invalid_header_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -15048,7 +15046,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     def _post_async_relative_retry_invalid_json_polling_initial(  # pylint: disable=name-too-long
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -15258,7 +15256,7 @@ class LROsCustomHeaderOperations:
     def _put_async_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -15514,7 +15512,7 @@ class LROsCustomHeaderOperations:
     def _put201_creating_succeeded200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -15756,7 +15754,7 @@ class LROsCustomHeaderOperations:
     def _post202_retry200_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -15945,7 +15943,7 @@ class LROsCustomHeaderOperations:
     def _post_async_retry_succeeded_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

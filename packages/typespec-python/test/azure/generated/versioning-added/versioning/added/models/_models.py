@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,14 +12,12 @@ from .. import _model_base
 from .._model_base import rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import _types, models as _models
 
 
 class ModelV1(_model_base.Model):
     """ModelV1.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: str
@@ -60,7 +57,6 @@ class ModelV1(_model_base.Model):
 class ModelV2(_model_base.Model):
     """ModelV2.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar prop: Required.
     :vartype prop: str

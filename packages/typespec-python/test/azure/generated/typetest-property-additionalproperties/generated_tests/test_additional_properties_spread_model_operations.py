@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesSpreadModelOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_spread_model_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_model.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesSpreadModelOperations(AdditionalPropertiesClientTe
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_spread_model_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.spread_model.put(
             body={"knownProp": {"state": "str"}},

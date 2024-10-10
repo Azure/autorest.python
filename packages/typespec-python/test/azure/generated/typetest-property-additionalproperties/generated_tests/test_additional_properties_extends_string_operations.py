@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesExtendsStringOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_extends_string_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_string.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesExtendsStringOperations(AdditionalPropertiesClient
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_extends_string_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_string.put(
             body={"name": "str"},

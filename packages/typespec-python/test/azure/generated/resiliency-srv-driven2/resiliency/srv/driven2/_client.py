@@ -19,9 +19,7 @@ from ._operations import ResiliencyServiceDrivenClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ResiliencyServiceDrivenClient(
-    ResiliencyServiceDrivenClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 
@@ -51,8 +49,8 @@ class ResiliencyServiceDrivenClient(
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in either 'v1' or 'v2'. This represents the API version of a
-     service. Default value is "v2". Note that overriding this default value may result in
-     unsupported behavior.
+     service. Known values are "v2" and None. Default value is "v2". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

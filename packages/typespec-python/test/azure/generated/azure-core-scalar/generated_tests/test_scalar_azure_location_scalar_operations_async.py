@@ -15,7 +15,7 @@ from testpreparer_async import ScalarClientTestBaseAsync
 class TestScalarAzureLocationScalarOperationsAsync(ScalarClientTestBaseAsync):
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, scalar_endpoint):
+    async def test_azure_location_scalar_get(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.azure_location_scalar.get()
 
@@ -24,7 +24,7 @@ class TestScalarAzureLocationScalarOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, scalar_endpoint):
+    async def test_azure_location_scalar_put(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.azure_location_scalar.put(
             body="str",
@@ -36,7 +36,7 @@ class TestScalarAzureLocationScalarOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_post(self, scalar_endpoint):
+    async def test_azure_location_scalar_post(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.azure_location_scalar.post(
             body={"location": "str"},
@@ -47,7 +47,7 @@ class TestScalarAzureLocationScalarOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_header(self, scalar_endpoint):
+    async def test_azure_location_scalar_header(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.azure_location_scalar.header(
             region="str",
@@ -58,7 +58,7 @@ class TestScalarAzureLocationScalarOperationsAsync(ScalarClientTestBaseAsync):
 
     @ScalarPreparer()
     @recorded_by_proxy_async
-    async def test_query(self, scalar_endpoint):
+    async def test_azure_location_scalar_query(self, scalar_endpoint):
         client = self.create_async_client(endpoint=scalar_endpoint)
         response = await client.azure_location_scalar.query(
             region="str",

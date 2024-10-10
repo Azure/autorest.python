@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -10,7 +10,7 @@ import datetime
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -53,7 +53,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -76,9 +76,7 @@ class QueryOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
@@ -87,7 +85,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -105,7 +103,10 @@ class QueryOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -121,9 +122,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc3339(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
@@ -132,7 +131,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -150,7 +149,10 @@ class QueryOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -166,9 +168,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc7231(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
@@ -177,7 +177,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -195,7 +195,10 @@ class QueryOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -211,9 +214,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def unix_timestamp(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :keyword value: Required.
@@ -222,7 +223,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -240,7 +241,10 @@ class QueryOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -256,9 +260,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[datetime.datetime], **kwargs: Any
-    ) -> None:
+    async def unix_timestamp_array(self, *, value: List[datetime.datetime], **kwargs: Any) -> None:
         """unix_timestamp_array.
 
         :keyword value: Required.
@@ -267,7 +269,7 @@ class QueryOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -285,7 +287,10 @@ class QueryOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -333,19 +338,6 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -362,14 +354,6 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -386,14 +370,6 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     async def default(
@@ -406,21 +382,8 @@ class PropertyOperations:
         :return: DefaultDatetimeProperty. The DefaultDatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.DefaultDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -447,7 +410,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -489,19 +455,6 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -518,14 +471,6 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -542,14 +487,6 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     async def rfc3339(
@@ -562,21 +499,8 @@ class PropertyOperations:
         :return: Rfc3339DatetimeProperty. The Rfc3339DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc3339DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -603,7 +527,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -645,19 +572,6 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -674,14 +588,6 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -698,14 +604,6 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     async def rfc7231(
@@ -718,21 +616,8 @@ class PropertyOperations:
         :return: Rfc7231DatetimeProperty. The Rfc7231DatetimeProperty is compatible with MutableMapping
         :rtype: ~encode.datetime.models.Rfc7231DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -759,7 +644,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -802,19 +690,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -832,14 +707,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
@@ -857,14 +724,6 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
 
     async def unix_timestamp(
@@ -879,21 +738,8 @@ class PropertyOperations:
          MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": "2020-02-20 00:00:00"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -920,7 +766,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -963,23 +812,6 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
         """
 
     @overload
@@ -997,16 +829,6 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
         """
 
     @overload
@@ -1024,16 +846,6 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
         """
 
     async def unix_timestamp_array(
@@ -1048,25 +860,8 @@ class PropertyOperations:
          compatible with MutableMapping
         :rtype: ~encode.datetime.models.UnixTimestampArrayDatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "value": [
-                        "2020-02-20 00:00:00"
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1093,7 +888,10 @@ class PropertyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1139,9 +937,7 @@ class HeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
@@ -1150,7 +946,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1168,7 +964,10 @@ class HeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1184,9 +983,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc3339(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
@@ -1195,7 +992,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1213,7 +1010,10 @@ class HeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1229,9 +1029,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc7231(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
@@ -1240,7 +1038,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1258,7 +1056,10 @@ class HeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1274,9 +1075,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp(  # pylint: disable=inconsistent-return-statements
-        self, *, value: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def unix_timestamp(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :keyword value: Required.
@@ -1285,7 +1084,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1303,7 +1102,10 @@ class HeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1319,9 +1121,7 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[datetime.datetime], **kwargs: Any
-    ) -> None:
+    async def unix_timestamp_array(self, *, value: List[datetime.datetime], **kwargs: Any) -> None:
         """unix_timestamp_array.
 
         :keyword value: Required.
@@ -1330,7 +1130,7 @@ class HeaderOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1348,7 +1148,10 @@ class HeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1382,14 +1185,14 @@ class ResponseHeaderOperations:
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def default(self, **kwargs: Any) -> None:
         """default.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1406,7 +1209,10 @@ class ResponseHeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1425,14 +1231,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def rfc3339(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def rfc3339(self, **kwargs: Any) -> None:
         """rfc3339.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1449,7 +1255,10 @@ class ResponseHeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1468,14 +1277,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def rfc7231(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def rfc7231(self, **kwargs: Any) -> None:
         """rfc7231.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1492,7 +1301,10 @@ class ResponseHeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1511,14 +1323,14 @@ class ResponseHeaderOperations:
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
-    async def unix_timestamp(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def unix_timestamp(self, **kwargs: Any) -> None:
         """unix_timestamp.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1535,7 +1347,10 @@ class ResponseHeaderOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access

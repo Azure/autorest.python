@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -28,7 +27,7 @@ from ...operations._upload_operations import build_binary_request, build_file_re
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -53,9 +52,7 @@ class UploadOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def file(  # pylint: disable=inconsistent-return-statements
-        self, file_param: IO[bytes], **kwargs: Any
-    ) -> None:
+    async def file(self, file_param: IO[bytes], **kwargs: Any) -> None:
         """Uploading json file.
 
         :param file_param: JSON file with payload { "more": "cowbell" }. Required.
@@ -64,7 +61,7 @@ class UploadOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -103,9 +100,7 @@ class UploadOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def binary(  # pylint: disable=inconsistent-return-statements
-        self, file_param: IO[bytes], **kwargs: Any
-    ) -> None:
+    async def binary(self, file_param: IO[bytes], **kwargs: Any) -> None:
         """Uploading binary file.
 
         :param file_param: Non-empty binary file. Required.
@@ -114,7 +109,7 @@ class UploadOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

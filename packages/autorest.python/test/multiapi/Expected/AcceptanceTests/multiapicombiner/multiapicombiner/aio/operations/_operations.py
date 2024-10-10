@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, AsyncIterable, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -41,18 +40,18 @@ from .._vendor import MultiapiServiceClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 from azure.core.exceptions import StreamClosedError
 from azure.core.exceptions import StreamConsumedError
 from azure.core.polling import AsyncLROPoller, AsyncNoPolling, AsyncPollingMethod
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 from ..._validation import api_version_validation
 
 from ...operations._operations import build_operation_group_one_test_three_request
@@ -97,7 +96,7 @@ class OperationGroupOneOperations:
         :rtype: ~multiapicombiner.v3.models.ModelThree
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -157,14 +156,14 @@ class OperationGroupOneOperations:
        method_valid_on=['2.0.0'],
     )
     @distributed_trace_async
-    async def test_three(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def test_three(self, **kwargs: Any) -> None:
         """TestThree should be in OperationGroupOneOperations. Takes in ModelTwo.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -217,7 +216,7 @@ class OperationGroupOneOperations:
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -303,9 +302,7 @@ class OperationGroupTwoOperations:
         }
     )
     @distributed_trace_async
-    async def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    async def test_four(self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
@@ -315,7 +312,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -371,14 +368,14 @@ class OperationGroupTwoOperations:
        method_valid_on=['3.0.0'],
     )
     @distributed_trace_async
-    async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def test_five(self, **kwargs: Any) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -426,7 +423,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -481,7 +478,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -612,6 +609,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         client_request_id: Optional[str] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+        # pylint: disable=line-too-long
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
@@ -630,7 +628,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -742,7 +740,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         }
     )
     @distributed_trace_async
-    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
+    async def test_different_calls(
         self,
         *,
         greeting_in_english: str,
@@ -762,7 +760,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -819,7 +817,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: ~multiapicombiner.v2.models.ModelTwo
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -880,7 +878,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -14,7 +14,7 @@ from testpreparer import NamingClientTestBase, NamingPreparer
 class TestNamingUnionEnumOperations(NamingClientTestBase):
     @NamingPreparer()
     @recorded_by_proxy
-    def test_union_enum_name(self, naming_endpoint):
+    def test_union_enum_union_enum_name(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
         response = client.union_enum.union_enum_name(
             body="str",
@@ -26,7 +26,7 @@ class TestNamingUnionEnumOperations(NamingClientTestBase):
 
     @NamingPreparer()
     @recorded_by_proxy
-    def test_union_enum_member_name(self, naming_endpoint):
+    def test_union_enum_union_enum_member_name(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
         response = client.union_enum.union_enum_member_name(
             body="str",

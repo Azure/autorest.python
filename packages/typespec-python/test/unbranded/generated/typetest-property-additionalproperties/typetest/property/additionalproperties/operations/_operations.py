@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +32,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -977,16 +977,8 @@ class ExtendsUnknownOperations:
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1003,7 +995,10 @@ class ExtendsUnknownOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1032,7 +1027,7 @@ class ExtendsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.ExtendsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1045,20 +1040,10 @@ class ExtendsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1072,9 +1057,7 @@ class ExtendsUnknownOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1099,16 +1082,8 @@ class ExtendsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1135,7 +1110,10 @@ class ExtendsUnknownOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1177,18 +1155,8 @@ class ExtendsUnknownDerivedOperations:
         :rtype:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1205,7 +1173,10 @@ class ExtendsUnknownDerivedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1234,7 +1205,7 @@ class ExtendsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDerived,
         *,
@@ -1252,22 +1223,10 @@ class ExtendsUnknownDerivedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1281,9 +1240,7 @@ class ExtendsUnknownDerivedOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1309,18 +1266,8 @@ class ExtendsUnknownDerivedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1347,7 +1294,10 @@ class ExtendsUnknownDerivedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1389,25 +1339,8 @@ class ExtendsUnknownDiscriminatedOperations:
         :rtype:
          ~typetest.property.additionalproperties.models.ExtendsUnknownAdditionalPropertiesDiscriminated
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                extends_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == extends_unknown_additional_properties_discriminated
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1424,7 +1357,10 @@ class ExtendsUnknownDiscriminatedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1453,7 +1389,7 @@ class ExtendsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.ExtendsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -1471,29 +1407,10 @@ class ExtendsUnknownDiscriminatedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                extends_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                body = extends_unknown_additional_properties_discriminated
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1507,9 +1424,7 @@ class ExtendsUnknownDiscriminatedOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1535,25 +1450,8 @@ class ExtendsUnknownDiscriminatedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                extends_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                body = extends_unknown_additional_properties_discriminated
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1580,7 +1478,10 @@ class ExtendsUnknownDiscriminatedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1621,16 +1522,8 @@ class IsUnknownOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1647,7 +1540,10 @@ class IsUnknownOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1676,7 +1572,7 @@ class IsUnknownOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.IsUnknownAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -1689,20 +1585,10 @@ class IsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1716,9 +1602,7 @@ class IsUnknownOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1743,16 +1627,8 @@ class IsUnknownOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1779,7 +1655,10 @@ class IsUnknownOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1820,18 +1699,8 @@ class IsUnknownDerivedOperations:
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1848,7 +1717,10 @@ class IsUnknownDerivedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1877,7 +1749,7 @@ class IsUnknownDerivedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDerived,
         *,
@@ -1894,22 +1766,10 @@ class IsUnknownDerivedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1923,9 +1783,7 @@ class IsUnknownDerivedOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -1950,18 +1808,8 @@ class IsUnknownDerivedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "index": 0,
-                    "name": "str",
-                    "age": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1988,7 +1836,10 @@ class IsUnknownDerivedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2030,25 +1881,8 @@ class IsUnknownDiscriminatedOperations:
         :rtype:
          ~typetest.property.additionalproperties.models.IsUnknownAdditionalPropertiesDiscriminated
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                is_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # response body for status code(s): 200
-                response == is_unknown_additional_properties_discriminated
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2065,7 +1899,10 @@ class IsUnknownDiscriminatedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2094,7 +1931,7 @@ class IsUnknownDiscriminatedOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.IsUnknownAdditionalPropertiesDiscriminated,
         *,
@@ -2112,29 +1949,10 @@ class IsUnknownDiscriminatedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                is_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                body = is_unknown_additional_properties_discriminated
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2148,9 +1966,7 @@ class IsUnknownDiscriminatedOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2176,25 +1992,8 @@ class IsUnknownDiscriminatedOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "derived":
-                is_unknown_additional_properties_discriminated = {
-                    "index": 0,
-                    "kind": "derived",
-                    "name": "str",
-                    "age": 0.0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                body = is_unknown_additional_properties_discriminated
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2221,7 +2020,10 @@ class IsUnknownDiscriminatedOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2262,16 +2064,8 @@ class ExtendsStringOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsStringAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2288,7 +2082,10 @@ class ExtendsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2317,7 +2114,7 @@ class ExtendsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.ExtendsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2330,20 +2127,10 @@ class ExtendsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2357,9 +2144,7 @@ class ExtendsStringOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2384,16 +2169,8 @@ class ExtendsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2420,7 +2197,10 @@ class ExtendsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2461,16 +2241,8 @@ class IsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsStringAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2487,7 +2259,10 @@ class IsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2516,7 +2291,7 @@ class IsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.IsStringAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2529,20 +2304,10 @@ class IsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2556,9 +2321,7 @@ class IsStringOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2583,16 +2346,8 @@ class IsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2619,7 +2374,10 @@ class IsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2659,16 +2417,8 @@ class SpreadStringOperations:
         :return: SpreadStringRecord. The SpreadStringRecord is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadStringRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2685,7 +2435,10 @@ class SpreadStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2714,9 +2467,7 @@ class SpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.SpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: _models.SpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2727,20 +2478,10 @@ class SpreadStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2754,9 +2495,7 @@ class SpreadStringOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2780,16 +2519,8 @@ class SpreadStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2816,7 +2547,10 @@ class SpreadStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2857,16 +2591,8 @@ class ExtendsFloatOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsFloatAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2883,7 +2609,10 @@ class ExtendsFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2912,7 +2641,7 @@ class ExtendsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.ExtendsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -2925,20 +2654,10 @@ class ExtendsFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2952,9 +2671,7 @@ class ExtendsFloatOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -2979,16 +2696,8 @@ class ExtendsFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3015,7 +2724,10 @@ class ExtendsFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3056,16 +2768,8 @@ class IsFloatOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsFloatAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3082,7 +2786,10 @@ class IsFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3111,7 +2818,7 @@ class IsFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.IsFloatAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3124,20 +2831,10 @@ class IsFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3151,9 +2848,7 @@ class IsFloatOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3178,16 +2873,8 @@ class IsFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3214,7 +2901,10 @@ class IsFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3254,16 +2944,8 @@ class SpreadFloatOperations:
         :return: SpreadFloatRecord. The SpreadFloatRecord is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadFloatRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3280,7 +2962,10 @@ class SpreadFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3309,9 +2994,7 @@ class SpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.SpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: _models.SpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3322,20 +3005,10 @@ class SpreadFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3349,9 +3022,7 @@ class SpreadFloatOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3375,16 +3046,8 @@ class SpreadFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3411,7 +3074,10 @@ class SpreadFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3452,18 +3118,8 @@ class ExtendsModelOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3480,7 +3136,10 @@ class ExtendsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3509,7 +3168,7 @@ class ExtendsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.ExtendsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3522,22 +3181,10 @@ class ExtendsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3551,9 +3198,7 @@ class ExtendsModelOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3578,18 +3223,8 @@ class ExtendsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3616,7 +3251,10 @@ class ExtendsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3657,18 +3295,8 @@ class IsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3685,7 +3313,10 @@ class IsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3714,7 +3345,7 @@ class IsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.IsModelAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -3727,22 +3358,10 @@ class IsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3756,9 +3375,7 @@ class IsModelOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3783,18 +3400,8 @@ class IsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3821,7 +3428,10 @@ class IsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3861,18 +3471,8 @@ class SpreadModelOperations:
         :return: SpreadModelRecord. The SpreadModelRecord is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadModelRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3889,7 +3489,10 @@ class SpreadModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3918,9 +3521,7 @@ class SpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.SpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: _models.SpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3931,22 +3532,10 @@ class SpreadModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3960,9 +3549,7 @@ class SpreadModelOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -3986,18 +3573,8 @@ class SpreadModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": {
-                        "state": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4024,7 +3601,10 @@ class SpreadModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4065,20 +3645,8 @@ class ExtendsModelArrayOperations:
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.ExtendsModelArrayAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4095,7 +3663,10 @@ class ExtendsModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4124,7 +3695,7 @@ class ExtendsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.ExtendsModelArrayAdditionalProperties,
         *,
@@ -4142,24 +3713,10 @@ class ExtendsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4173,9 +3730,7 @@ class ExtendsModelArrayOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4201,20 +3756,8 @@ class ExtendsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4241,7 +3784,10 @@ class ExtendsModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4282,20 +3828,8 @@ class IsModelArrayOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.IsModelArrayAdditionalProperties
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4312,7 +3846,10 @@ class IsModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4341,7 +3878,7 @@ class IsModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.IsModelArrayAdditionalProperties, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4354,24 +3891,10 @@ class IsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4385,9 +3908,7 @@ class IsModelArrayOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4412,20 +3933,8 @@ class IsModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4452,7 +3961,10 @@ class IsModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4492,20 +4004,8 @@ class SpreadModelArrayOperations:
         :return: SpreadModelArrayRecord. The SpreadModelArrayRecord is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadModelArrayRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4522,7 +4022,10 @@ class SpreadModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4551,7 +4054,7 @@ class SpreadModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.SpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4564,24 +4067,10 @@ class SpreadModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4595,9 +4084,7 @@ class SpreadModelArrayOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4622,20 +4109,8 @@ class SpreadModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": [
-                        {
-                            "state": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4662,7 +4137,10 @@ class SpreadModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4703,16 +4181,8 @@ class SpreadDifferentStringOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadStringRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4729,7 +4199,10 @@ class SpreadDifferentStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4758,7 +4231,7 @@ class SpreadDifferentStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadStringRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4771,20 +4244,10 @@ class SpreadDifferentStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4798,9 +4261,7 @@ class SpreadDifferentStringOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4825,16 +4286,8 @@ class SpreadDifferentStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4861,7 +4314,10 @@ class SpreadDifferentStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4902,16 +4358,8 @@ class SpreadDifferentFloatOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadFloatRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4928,7 +4376,10 @@ class SpreadDifferentFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4957,7 +4408,7 @@ class SpreadDifferentFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadFloatRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -4970,20 +4421,10 @@ class SpreadDifferentFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -4997,9 +4438,7 @@ class SpreadDifferentFloatOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5024,16 +4463,8 @@ class SpreadDifferentFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5060,7 +4491,10 @@ class SpreadDifferentFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5101,16 +4535,8 @@ class SpreadDifferentModelOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5127,7 +4553,10 @@ class SpreadDifferentModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5156,7 +4585,7 @@ class SpreadDifferentModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadModelRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5169,20 +4598,10 @@ class SpreadDifferentModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5196,9 +4615,7 @@ class SpreadDifferentModelOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5223,16 +4640,8 @@ class SpreadDifferentModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5259,7 +4668,10 @@ class SpreadDifferentModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5300,16 +4712,8 @@ class SpreadDifferentModelArrayOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5326,7 +4730,10 @@ class SpreadDifferentModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5355,7 +4762,7 @@ class SpreadDifferentModelArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadModelArrayRecord, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5368,20 +4775,10 @@ class SpreadDifferentModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5395,9 +4792,7 @@ class SpreadDifferentModelArrayOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5422,16 +4817,8 @@ class SpreadDifferentModelArrayOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5458,7 +4845,10 @@ class SpreadDifferentModelArrayOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5499,17 +4889,8 @@ class ExtendsDifferentSpreadStringOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadStringDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "derivedProp": "str",
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5526,7 +4907,10 @@ class ExtendsDifferentSpreadStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5555,7 +4939,7 @@ class ExtendsDifferentSpreadStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadStringDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5568,21 +4952,10 @@ class ExtendsDifferentSpreadStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": "str",
-                    "id": 0.0
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5596,9 +4969,7 @@ class ExtendsDifferentSpreadStringOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5623,17 +4994,8 @@ class ExtendsDifferentSpreadStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": "str",
-                    "id": 0.0
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5660,7 +5022,10 @@ class ExtendsDifferentSpreadStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5701,17 +5066,8 @@ class ExtendsDifferentSpreadFloatOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadFloatDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "derivedProp": 0.0,
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5728,7 +5084,10 @@ class ExtendsDifferentSpreadFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5757,7 +5116,7 @@ class ExtendsDifferentSpreadFloatOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadFloatDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5770,21 +5129,10 @@ class ExtendsDifferentSpreadFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": 0.0,
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5798,9 +5146,7 @@ class ExtendsDifferentSpreadFloatOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -5825,17 +5171,8 @@ class ExtendsDifferentSpreadFloatOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": 0.0,
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5862,7 +5199,10 @@ class ExtendsDifferentSpreadFloatOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5903,19 +5243,8 @@ class ExtendsDifferentSpreadModelOperations:
          MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "derivedProp": {
-                        "state": "str"
-                    },
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5932,7 +5261,10 @@ class ExtendsDifferentSpreadModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5961,7 +5293,7 @@ class ExtendsDifferentSpreadModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadModelDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -5974,23 +5306,10 @@ class ExtendsDifferentSpreadModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": {
-                        "state": "str"
-                    },
-                    "knownProp": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6004,9 +5323,7 @@ class ExtendsDifferentSpreadModelOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6031,19 +5348,8 @@ class ExtendsDifferentSpreadModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": {
-                        "state": "str"
-                    },
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6070,7 +5376,10 @@ class ExtendsDifferentSpreadModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6111,21 +5420,8 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.DifferentSpreadModelArrayDerived
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "derivedProp": [
-                        {
-                            "state": "str"
-                        }
-                    ],
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6142,7 +5438,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6171,7 +5470,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.DifferentSpreadModelArrayDerived, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -6184,25 +5483,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": [
-                        {
-                            "state": "str"
-                        }
-                    ],
-                    "knownProp": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6216,9 +5500,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6243,21 +5525,8 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "derivedProp": [
-                        {
-                            "state": "str"
-                        }
-                    ],
-                    "knownProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6284,7 +5553,10 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6324,16 +5596,8 @@ class MultipleSpreadOperations:
         :return: MultipleSpreadRecord. The MultipleSpreadRecord is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.MultipleSpreadRecord
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "flag": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6350,7 +5614,10 @@ class MultipleSpreadOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6379,9 +5646,7 @@ class MultipleSpreadOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.MultipleSpreadRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: _models.MultipleSpreadRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6392,20 +5657,10 @@ class MultipleSpreadOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "flag": bool
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6419,9 +5674,7 @@ class MultipleSpreadOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6446,16 +5699,8 @@ class MultipleSpreadOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "flag": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6482,7 +5727,10 @@ class MultipleSpreadOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6522,16 +5770,8 @@ class SpreadRecordUnionOperations:
         :return: SpreadRecordForUnion. The SpreadRecordForUnion is compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForUnion
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "flag": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6548,7 +5788,10 @@ class SpreadRecordUnionOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6577,9 +5820,7 @@ class SpreadRecordUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.SpreadRecordForUnion, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: _models.SpreadRecordForUnion, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6590,20 +5831,10 @@ class SpreadRecordUnionOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "flag": bool
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6617,9 +5848,7 @@ class SpreadRecordUnionOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6644,16 +5873,8 @@ class SpreadRecordUnionOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "flag": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6680,7 +5901,10 @@ class SpreadRecordUnionOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6721,16 +5945,8 @@ class SpreadRecordDiscriminatedUnionOperations:
          with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForDiscriminatedUnion
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6747,7 +5963,10 @@ class SpreadRecordDiscriminatedUnionOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6776,7 +5995,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self, body: _models.SpreadRecordForDiscriminatedUnion, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put operation.
@@ -6789,20 +6008,10 @@ class SpreadRecordDiscriminatedUnionOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6816,9 +6025,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -6843,16 +6050,8 @@ class SpreadRecordDiscriminatedUnionOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6879,7 +6078,10 @@ class SpreadRecordDiscriminatedUnionOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6920,16 +6122,8 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6946,7 +6140,10 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6975,7 +6172,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion,
         *,
@@ -6992,20 +6189,10 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7019,9 +6206,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7046,16 +6231,8 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7082,7 +6259,10 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -7123,16 +6303,8 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion2
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7149,7 +6321,10 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -7178,7 +6353,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion2,
         *,
@@ -7196,20 +6371,10 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7223,9 +6388,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7251,16 +6414,8 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7287,7 +6442,10 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -7328,16 +6486,8 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
          compatible with MutableMapping
         :rtype: ~typetest.property.additionalproperties.models.SpreadRecordForNonDiscriminatedUnion3
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7354,7 +6504,10 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -7383,7 +6536,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         return deserialized  # type: ignore
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
+    def put(
         self,
         body: _models.SpreadRecordForNonDiscriminatedUnion3,
         *,
@@ -7401,20 +6554,10 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7428,9 +6571,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         """
 
     @overload
-    def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put operation.
 
         :param body: body. Required.
@@ -7456,16 +6597,8 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7492,7 +6625,10 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access

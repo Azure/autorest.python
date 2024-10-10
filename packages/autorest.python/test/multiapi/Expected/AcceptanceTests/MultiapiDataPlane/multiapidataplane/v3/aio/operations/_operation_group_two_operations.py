@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -25,12 +24,11 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ...operations._operation_group_two_operations import build_test_five_request, build_test_four_request
-from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -56,7 +54,7 @@ class OperationGroupTwoOperations:
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @overload
-    async def test_four(  # pylint: disable=inconsistent-return-statements
+    async def test_four(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
@@ -72,7 +70,7 @@ class OperationGroupTwoOperations:
         """
 
     @overload
-    async def test_four(  # pylint: disable=inconsistent-return-statements
+    async def test_four(
         self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """TestFour should be in OperationGroupTwoOperations.
@@ -89,9 +87,7 @@ class OperationGroupTwoOperations:
         """
 
     @distributed_trace_async
-    async def test_four(  # pylint: disable=inconsistent-return-statements
-        self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
-    ) -> None:
+    async def test_four(self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any) -> None:
         """TestFour should be in OperationGroupTwoOperations.
 
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
@@ -101,7 +97,7 @@ class OperationGroupTwoOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -153,14 +149,14 @@ class OperationGroupTwoOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def test_five(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def test_five(self, **kwargs: Any) -> None:
         """TestFive should be in OperationGroupTwoOperations.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

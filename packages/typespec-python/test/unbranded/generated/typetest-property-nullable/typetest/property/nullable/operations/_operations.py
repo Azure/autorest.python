@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +32,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -456,17 +456,8 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -483,7 +474,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -517,17 +511,8 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.StringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -544,7 +529,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -573,7 +561,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -586,21 +574,10 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -614,7 +591,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -639,17 +616,8 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -676,7 +644,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -693,7 +664,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.StringProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -706,21 +677,10 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -734,9 +694,7 @@ class StringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -759,17 +717,8 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "str",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -796,7 +745,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -836,17 +788,8 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -863,7 +806,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -897,17 +843,8 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.BytesProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -924,7 +861,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -953,7 +893,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -966,21 +906,10 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -994,7 +923,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1019,17 +948,8 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1056,7 +976,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1073,7 +996,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.BytesProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1086,21 +1009,10 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1114,9 +1026,7 @@ class BytesOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1139,17 +1049,8 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": bytes("bytes", encoding="utf-8"),
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1176,7 +1077,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1216,17 +1120,8 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1243,7 +1138,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1277,17 +1175,8 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DatetimeProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1304,7 +1193,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1333,7 +1225,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1346,21 +1238,10 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1374,7 +1255,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1399,17 +1280,8 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1436,7 +1308,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1453,7 +1328,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1466,21 +1341,10 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1494,9 +1358,7 @@ class DatetimeOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1519,17 +1381,8 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "2020-02-20 00:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1556,7 +1409,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1596,17 +1452,8 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1623,7 +1470,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1657,17 +1507,8 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1684,7 +1525,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1713,7 +1557,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1726,21 +1570,10 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1754,7 +1587,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1779,17 +1612,8 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1816,7 +1640,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1833,7 +1660,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self, body: _models.DurationProperty, *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1846,21 +1673,10 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1874,9 +1690,7 @@ class DurationOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1899,17 +1713,8 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": "1 day, 0:00:00",
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1936,7 +1741,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1976,19 +1784,8 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2005,7 +1802,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2039,19 +1839,8 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsByteProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2068,7 +1857,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2097,7 +1889,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -2114,23 +1906,10 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2144,7 +1923,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2169,19 +1948,8 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2208,7 +1976,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2225,7 +1996,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsByteProperty,
         *,
@@ -2242,23 +2013,10 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2272,9 +2030,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2297,19 +2053,8 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        bytes("bytes", encoding="utf-8")
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2336,7 +2081,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2377,21 +2125,8 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2408,7 +2143,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2443,21 +2181,8 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsModelProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2474,7 +2199,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2503,7 +2231,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2520,25 +2248,10 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2552,7 +2265,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2577,21 +2290,8 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2618,7 +2318,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2635,7 +2338,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsModelProperty,
         *,
@@ -2652,25 +2355,10 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2684,9 +2372,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2709,21 +2395,8 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        {
-                            "property": "str"
-                        }
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2750,7 +2423,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2791,19 +2467,8 @@ class CollectionsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2820,7 +2485,10 @@ class CollectionsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2855,19 +2523,8 @@ class CollectionsStringOperations:
          MutableMapping
         :rtype: ~typetest.property.nullable.models.CollectionsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2884,7 +2541,10 @@ class CollectionsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2913,7 +2573,7 @@ class CollectionsStringOperations:
         return deserialized  # type: ignore
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -2930,23 +2590,10 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_non_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2960,7 +2607,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_non_null(  # pylint: disable=inconsistent-return-statements
+    def patch_non_null(
         self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2986,19 +2633,8 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3025,7 +2661,10 @@ class CollectionsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3042,7 +2681,7 @@ class CollectionsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
+    def patch_null(
         self,
         body: _models.CollectionsStringProperty,
         *,
@@ -3059,23 +2698,10 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3089,9 +2715,7 @@ class CollectionsStringOperations:
         """
 
     @overload
-    def patch_null(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> None:
+    def patch_null(self, body: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3115,19 +2739,8 @@ class CollectionsStringOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "nullableProperty": [
-                        "str"
-                    ],
-                    "requiredProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3154,7 +2767,10 @@ class CollectionsStringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access

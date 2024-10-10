@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 import datetime
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -29,7 +29,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -1026,7 +1026,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1082,7 +1082,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1123,9 +1123,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, array_body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value empty {}.
 
         :param array_body: Required.
@@ -1147,9 +1145,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value empty {}.
 
         :param array_body: Required.
@@ -1174,7 +1170,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1235,7 +1231,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1291,7 +1287,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1347,7 +1343,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1403,7 +1399,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1459,7 +1455,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1500,7 +1496,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, bool], deserialized)  # type: ignore
 
     @overload
-    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
+    def put_boolean_tfft(
         self, array_body: Dict[str, bool], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
@@ -1524,9 +1520,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_boolean_tfft(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_boolean_tfft(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value empty {"0": true, "1": false, "2": false, "3": true }.
 
         :param array_body: Required.
@@ -1551,7 +1545,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1612,7 +1606,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1668,7 +1662,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bool
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1724,7 +1718,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1765,7 +1759,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
-    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+    def put_integer_valid(
         self, array_body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -1789,7 +1783,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_integer_valid(  # pylint: disable=inconsistent-return-statements
+    def put_integer_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -1816,7 +1810,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1877,7 +1871,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1933,7 +1927,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1989,7 +1983,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2030,7 +2024,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, int], deserialized)  # type: ignore
 
     @overload
-    def put_long_valid(  # pylint: disable=inconsistent-return-statements
+    def put_long_valid(
         self, array_body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
@@ -2054,9 +2048,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_long_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_long_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value empty {"0": 1, "1": -1, "2": 3, "3": 300}.
 
         :param array_body: Required.
@@ -2081,7 +2073,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2142,7 +2134,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2198,7 +2190,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2254,7 +2246,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2295,7 +2287,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, float], deserialized)  # type: ignore
 
     @overload
-    def put_float_valid(  # pylint: disable=inconsistent-return-statements
+    def put_float_valid(
         self, array_body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -2319,9 +2311,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_float_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_float_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body: Required.
@@ -2346,7 +2336,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2407,7 +2397,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2463,7 +2453,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2519,7 +2509,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2560,7 +2550,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, float], deserialized)  # type: ignore
 
     @overload
-    def put_double_valid(  # pylint: disable=inconsistent-return-statements
+    def put_double_valid(
         self, array_body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
@@ -2584,9 +2574,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_double_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_double_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value {"0": 0, "1": -0.01, "2": 1.2e20}.
 
         :param array_body: Required.
@@ -2611,7 +2599,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2672,7 +2660,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2728,7 +2716,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2784,7 +2772,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2825,7 +2813,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, str], deserialized)  # type: ignore
 
     @overload
-    def put_string_valid(  # pylint: disable=inconsistent-return-statements
+    def put_string_valid(
         self, array_body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
@@ -2849,9 +2837,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_string_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_string_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value {"0": "foo1", "1": "foo2", "2": "foo3"}.
 
         :param array_body: Required.
@@ -2876,7 +2862,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2937,7 +2923,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2993,7 +2979,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3049,7 +3035,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3090,7 +3076,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, datetime.date], deserialized)  # type: ignore
 
     @overload
-    def put_date_valid(  # pylint: disable=inconsistent-return-statements
+    def put_date_valid(
         self, array_body: Dict[str, datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
@@ -3114,9 +3100,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_date_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_date_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body: Required.
@@ -3141,7 +3125,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3202,7 +3186,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3258,7 +3242,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3315,7 +3299,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3356,7 +3340,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @overload
-    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+    def put_date_time_valid(
         self, array_body: Dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
@@ -3381,7 +3365,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
+    def put_date_time_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
@@ -3410,7 +3394,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3471,7 +3455,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3527,7 +3511,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3584,7 +3568,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3625,7 +3609,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, datetime.datetime], deserialized)  # type: ignore
 
     @overload
-    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+    def put_date_time_rfc1123_valid(
         self, array_body: Dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
@@ -3650,7 +3634,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_date_time_rfc1123_valid(  # pylint: disable=inconsistent-return-statements
+    def put_date_time_rfc1123_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
@@ -3679,7 +3663,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3740,7 +3724,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": "1 day, 0:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3781,7 +3765,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, datetime.timedelta], deserialized)  # type: ignore
 
     @overload
-    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+    def put_duration_valid(
         self, array_body: Dict[str, datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -3805,7 +3789,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_duration_valid(  # pylint: disable=inconsistent-return-statements
+    def put_duration_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
@@ -3832,7 +3816,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3894,7 +3878,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3935,7 +3919,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, bytes], deserialized)  # type: ignore
 
     @overload
-    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
+    def put_byte_valid(
         self, array_body: Dict[str, bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
@@ -3960,9 +3944,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_byte_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_byte_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
         with each elementencoded in base 64.
 
@@ -3989,7 +3971,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4051,7 +4033,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4108,7 +4090,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     "str": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4167,7 +4149,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4226,7 +4208,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4286,7 +4268,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4346,7 +4328,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4406,7 +4388,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4447,7 +4429,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @overload
-    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+    def put_complex_valid(
         self, array_body: Dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
@@ -4475,7 +4457,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_complex_valid(  # pylint: disable=inconsistent-return-statements
+    def put_complex_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
@@ -4504,7 +4486,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4567,7 +4549,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4625,7 +4607,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4683,7 +4665,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4741,7 +4723,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4800,7 +4782,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4841,7 +4823,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, List[str]], deserialized)  # type: ignore
 
     @overload
-    def put_array_valid(  # pylint: disable=inconsistent-return-statements
+    def put_array_valid(
         self, array_body: Dict[str, List[str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
@@ -4868,9 +4850,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_array_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_array_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
         "9"]}.
 
@@ -4897,7 +4877,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4960,7 +4940,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5018,7 +4998,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5077,7 +5057,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5136,7 +5116,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5196,7 +5176,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5237,7 +5217,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         return cast(Dict[str, Dict[str, str]], deserialized)  # type: ignore
 
     @overload
-    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+    def put_dictionary_valid(
         self, array_body: Dict[str, Dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -5265,7 +5245,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    def put_dictionary_valid(  # pylint: disable=inconsistent-return-statements
+    def put_dictionary_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
@@ -5296,7 +5276,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

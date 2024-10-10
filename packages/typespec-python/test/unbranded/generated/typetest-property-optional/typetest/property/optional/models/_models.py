@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -14,7 +13,6 @@ from .. import _model_base
 from .._model_base import rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -243,8 +241,8 @@ class IntLiteralProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class PlaindateProperty(_model_base.Model):
-    """Model with a plaindate property.
+class PlainDateProperty(_model_base.Model):
+    """Model with a plainDate property.
 
     :ivar property: Property.
     :vartype property: ~datetime.date
@@ -272,7 +270,7 @@ class PlaindateProperty(_model_base.Model):
 
 
 class PlainTimeProperty(_model_base.Model):
-    """Model with a plaintime property.
+    """Model with a plainTime property.
 
     :ivar property: Property.
     :vartype property: ~datetime.time
@@ -302,7 +300,6 @@ class PlainTimeProperty(_model_base.Model):
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar optional_property: optional string property.
     :vartype optional_property: str

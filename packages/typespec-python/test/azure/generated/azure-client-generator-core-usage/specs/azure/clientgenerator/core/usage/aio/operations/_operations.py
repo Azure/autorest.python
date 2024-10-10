@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -61,7 +60,7 @@ class ModelInOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def input_to_input_output(  # pylint: disable=inconsistent-return-statements
+    async def input_to_input_output(
         self, body: _models.InputModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
@@ -80,20 +79,10 @@ class ModelInOperationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input_to_input_output(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Expected body parameter:
 
         .. code-block:: json
@@ -113,7 +102,7 @@ class ModelInOperationOperations:
         """
 
     @overload
-    async def input_to_input_output(  # pylint: disable=inconsistent-return-statements
+    async def input_to_input_output(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
@@ -135,9 +124,7 @@ class ModelInOperationOperations:
         """
 
     @distributed_trace_async
-    async def input_to_input_output(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def input_to_input_output(self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Expected body parameter:
 
         .. code-block:: json
@@ -151,16 +138,8 @@ class ModelInOperationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -187,7 +166,10 @@ class ModelInOperationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -216,16 +198,8 @@ class ModelInOperationOperations:
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -242,7 +216,10 @@ class ModelInOperationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -288,7 +265,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -299,23 +278,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "result": {
-                        "name": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @overload
@@ -336,7 +298,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -347,16 +311,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @overload
@@ -377,7 +331,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Required.
@@ -388,16 +344,6 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
 
     @distributed_trace_async
@@ -418,7 +364,9 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "result": {
+               "name": <any string>
+             }
            }.
 
         :param body: Is one of the following types: RoundTripModel, JSON, IO[bytes] Required.
@@ -426,25 +374,8 @@ class ModelInOperationOperations:
         :return: RoundTripModel. The RoundTripModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "result": {
-                        "name": "str"
-                    }
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "result": {
-                        "name": "str"
-                    }
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -471,7 +402,10 @@ class ModelInOperationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

@@ -14,7 +14,7 @@ from testpreparer import CollectionFormatClientTestBase, CollectionFormatPrepare
 class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_multi(self, collectionformat_endpoint):
+    def test_query_multi(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.multi(
             colors=["str"],
@@ -25,7 +25,7 @@ class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
 
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_ssv(self, collectionformat_endpoint):
+    def test_query_ssv(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.ssv(
             colors=["str"],
@@ -36,7 +36,7 @@ class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
 
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_tsv(self, collectionformat_endpoint):
+    def test_query_tsv(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.tsv(
             colors=["str"],
@@ -47,7 +47,7 @@ class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
 
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_pipes(self, collectionformat_endpoint):
+    def test_query_pipes(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.pipes(
             colors=["str"],
@@ -58,7 +58,7 @@ class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
 
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_csv(self, collectionformat_endpoint):
+    def test_query_csv(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.csv(
             colors=["str"],

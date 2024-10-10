@@ -14,7 +14,7 @@ from testpreparer import DatetimeClientTestBase, DatetimePreparer
 class TestDatetimeResponseHeaderOperations(DatetimeClientTestBase):
     @DatetimePreparer()
     @recorded_by_proxy
-    def test_default(self, datetime_endpoint):
+    def test_response_header_default(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.response_header.default()
 
@@ -23,7 +23,7 @@ class TestDatetimeResponseHeaderOperations(DatetimeClientTestBase):
 
     @DatetimePreparer()
     @recorded_by_proxy
-    def test_rfc3339(self, datetime_endpoint):
+    def test_response_header_rfc3339(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.response_header.rfc3339()
 
@@ -32,7 +32,7 @@ class TestDatetimeResponseHeaderOperations(DatetimeClientTestBase):
 
     @DatetimePreparer()
     @recorded_by_proxy
-    def test_rfc7231(self, datetime_endpoint):
+    def test_response_header_rfc7231(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.response_header.rfc7231()
 
@@ -41,7 +41,7 @@ class TestDatetimeResponseHeaderOperations(DatetimeClientTestBase):
 
     @DatetimePreparer()
     @recorded_by_proxy
-    def test_unix_timestamp(self, datetime_endpoint):
+    def test_response_header_unix_timestamp(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.response_header.unix_timestamp()
 

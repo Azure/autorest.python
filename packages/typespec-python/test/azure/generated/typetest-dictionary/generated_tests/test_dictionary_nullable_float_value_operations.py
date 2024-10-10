@@ -14,7 +14,7 @@ from testpreparer import DictionaryClientTestBase, DictionaryPreparer
 class TestDictionaryNullableFloatValueOperations(DictionaryClientTestBase):
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_get(self, dictionary_endpoint):
+    def test_nullable_float_value_get(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.nullable_float_value.get()
 
@@ -23,7 +23,7 @@ class TestDictionaryNullableFloatValueOperations(DictionaryClientTestBase):
 
     @DictionaryPreparer()
     @recorded_by_proxy
-    def test_put(self, dictionary_endpoint):
+    def test_nullable_float_value_put(self, dictionary_endpoint):
         client = self.create_client(endpoint=dictionary_endpoint)
         response = client.nullable_float_value.put(
             body={"str": 0.0},

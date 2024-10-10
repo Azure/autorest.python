@@ -13,15 +13,19 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class NotDiscriminatedClientConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+class NotDiscriminatedClientConfiguration:  # pylint: disable=too-many-instance-attributes
     """Configuration for NotDiscriminatedClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
+
+    :param endpoint: Service host. Default value is "http://localhost:3000".
+    :type endpoint: str
     """
 
-    def __init__(self, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
+        self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "typetest-model-notdiscriminated/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

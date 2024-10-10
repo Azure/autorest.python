@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -84,7 +84,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -125,7 +125,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -166,9 +166,7 @@ class BasicOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Required.
@@ -192,7 +190,7 @@ class BasicOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
@@ -208,9 +206,7 @@ class BasicOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Please put {id: 2, name: 'abc', color: 'Magenta'}.
 
         :param complex_body: Please put {id: 2, name: 'abc', color: 'Magenta'}. Is either a JSON type
@@ -230,7 +226,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -294,7 +290,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -352,7 +348,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -410,7 +406,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,7 +464,7 @@ class BasicOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -543,7 +539,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -584,9 +580,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_int(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
@@ -609,9 +603,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_int(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Required.
@@ -625,9 +617,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_int(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_int(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with integer properties.
 
         :param complex_body: Please put -1 and 2. Is either a JSON type or a IO[bytes] type. Required.
@@ -645,7 +635,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -707,7 +697,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -748,9 +738,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_long(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
@@ -773,9 +761,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_long(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Required.
@@ -789,9 +775,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_long(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_long(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with long properties.
 
         :param complex_body: Please put 1099511627775 and -999511627788. Is either a JSON type or a
@@ -810,7 +794,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -872,7 +856,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -913,9 +897,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_float(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Required.
@@ -938,7 +920,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_float(  # pylint: disable=inconsistent-return-statements
+    async def put_float(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with float properties.
@@ -954,9 +936,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_float(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_float(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with float properties.
 
         :param complex_body: Please put 1.05 and -0.003. Is either a JSON type or a IO[bytes] type.
@@ -975,7 +955,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field2": 0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1038,7 +1018,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1079,9 +1059,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_double(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1106,7 +1084,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_double(  # pylint: disable=inconsistent-return-statements
+    async def put_double(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with double properties.
@@ -1123,9 +1101,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_double(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_double(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with double properties.
 
         :param complex_body: Please put 3e-100 and
@@ -1146,7 +1122,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                       0.0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1208,7 +1184,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1249,9 +1225,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_bool(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
@@ -1274,9 +1248,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_bool(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Required.
@@ -1290,9 +1262,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_bool(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_bool(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with bool properties.
 
         :param complex_body: Please put true and false. Is either a JSON type or a IO[bytes] type.
@@ -1311,7 +1281,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field_true": bool
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1374,7 +1344,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1415,9 +1385,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_string(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Required.
@@ -1441,7 +1409,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_string(  # pylint: disable=inconsistent-return-statements
+    async def put_string(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with string properties.
@@ -1457,9 +1425,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_string(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_string(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with string properties.
 
         :param complex_body: Please put 'goodrequest', '', and null. Is either a JSON type or a
@@ -1479,7 +1445,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "null": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1541,7 +1507,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1582,9 +1548,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_date(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
@@ -1607,9 +1571,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_date(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Required.
@@ -1623,9 +1585,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_date(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_date(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with date properties.
 
         :param complex_body: Please put '0001-01-01' and '2016-02-29'. Is either a JSON type or a
@@ -1644,7 +1604,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "leap": "2020-02-20"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1706,7 +1666,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1747,9 +1707,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_date_time(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'.
@@ -1773,7 +1731,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_date_time(  # pylint: disable=inconsistent-return-statements
+    async def put_date_time(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetime properties.
@@ -1790,9 +1748,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_date_time(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_date_time(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with datetime properties.
 
         :param complex_body: Please put '0001-01-01T12:00:00-04:00' and '2015-05-18T11:38:00-08:00'. Is
@@ -1811,7 +1767,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1873,7 +1829,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1914,7 +1870,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+    async def put_date_time_rfc1123(
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
@@ -1940,7 +1896,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
+    async def put_date_time_rfc1123(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with datetimeRfc1123 properties.
@@ -1957,9 +1913,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_date_time_rfc1123(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_date_time_rfc1123(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with datetimeRfc1123 properties.
 
         :param complex_body: Please put 'Mon, 01 Jan 0001 12:00:00 GMT' and 'Mon, 18 May 2015 11:38:00
@@ -1978,7 +1932,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "now": "2020-02-20 00:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2039,7 +1993,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2080,9 +2034,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_duration(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'. Required.
@@ -2104,7 +2056,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_duration(  # pylint: disable=inconsistent-return-statements
+    async def put_duration(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with duration properties.
@@ -2120,9 +2072,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_duration(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_duration(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with duration properties.
 
         :param complex_body: Please put 'P123DT22H14M12.011S'. Is either a JSON type or a IO[bytes]
@@ -2140,7 +2090,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": "1 day, 0:00:00"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2201,7 +2151,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2242,9 +2192,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_byte(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
@@ -2267,9 +2215,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_byte(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6).
@@ -2284,9 +2230,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_byte(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_byte(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with byte properties.
 
         :param complex_body: Please put non-ascii byte string hex(FF FE FD FC 00 FA F9 F8 F7 F6). Is
@@ -2304,7 +2248,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
                     "field": bytes("bytes", encoding="utf-8")
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2385,7 +2329,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2426,9 +2370,7 @@ class ArrayOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
@@ -2453,7 +2395,7 @@ class ArrayOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property.
@@ -2470,9 +2412,7 @@ class ArrayOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with array property.
 
         :param complex_body: Please put an array with 4 items: "1, 2, 3, 4", "", null, "&S#$(*Y", "The
@@ -2492,7 +2432,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2555,7 +2495,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2596,9 +2536,7 @@ class ArrayOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_empty(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array. Required.
@@ -2622,7 +2560,7 @@ class ArrayOperations:
         """
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
+    async def put_empty(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with array property which is empty.
@@ -2638,9 +2576,7 @@ class ArrayOperations:
         """
 
     @distributed_trace_async
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_empty(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with array property which is empty.
 
         :param complex_body: Please put an empty array. Is either a JSON type or a IO[bytes] type.
@@ -2660,7 +2596,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2723,7 +2659,7 @@ class ArrayOperations:
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2799,7 +2735,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2840,9 +2776,7 @@ class DictionaryOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
@@ -2867,7 +2801,7 @@ class DictionaryOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property.
@@ -2884,9 +2818,7 @@ class DictionaryOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with dictionary property.
 
         :param complex_body: Please put a dictionary with 5 key-value pairs: "txt":"notepad",
@@ -2907,7 +2839,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2970,7 +2902,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3011,9 +2943,7 @@ class DictionaryOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_empty(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary. Required.
@@ -3037,7 +2967,7 @@ class DictionaryOperations:
         """
 
     @overload
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
+    async def put_empty(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types with dictionary property which is empty.
@@ -3053,9 +2983,7 @@ class DictionaryOperations:
         """
 
     @distributed_trace_async
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_empty(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param complex_body: Please put an empty dictionary. Is either a JSON type or a IO[bytes] type.
@@ -3075,7 +3003,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3138,7 +3066,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3196,7 +3124,7 @@ class DictionaryOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3280,7 +3208,7 @@ class InheritanceOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3321,9 +3249,7 @@ class InheritanceOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -3357,7 +3283,7 @@ class InheritanceOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
@@ -3375,9 +3301,7 @@ class InheritanceOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -3407,7 +3331,7 @@ class InheritanceOperations:
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3539,7 +3463,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3580,9 +3504,7 @@ class PolymorphismOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -3689,7 +3611,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic.
@@ -3737,9 +3659,7 @@ class PolymorphismOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -3841,7 +3761,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3911,7 +3831,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == dot_fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3997,7 +3917,7 @@ class PolymorphismOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4083,7 +4003,7 @@ class PolymorphismOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4154,7 +4074,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4195,7 +4115,7 @@ class PolymorphismOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_complicated(  # pylint: disable=inconsistent-return-statements
+    async def put_complicated(
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -4234,7 +4154,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    async def put_complicated(  # pylint: disable=inconsistent-return-statements
+    async def put_complicated(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
@@ -4251,9 +4171,7 @@ class PolymorphismOperations:
         """
 
     @distributed_trace_async
-    async def put_complicated(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_complicated(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
         additional properties.
 
@@ -4285,7 +4203,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4476,7 +4394,7 @@ class PolymorphismOperations:
                 # response body for status code(s): 200
                 response == salmon
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4529,7 +4447,7 @@ class PolymorphismOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+    async def put_valid_missing_required(
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -4633,7 +4551,7 @@ class PolymorphismOperations:
         """
 
     @overload
-    async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
+    async def put_valid_missing_required(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
@@ -4676,9 +4594,7 @@ class PolymorphismOperations:
         """
 
     @distributed_trace_async
-    async def put_valid_missing_required(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid_missing_required(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
         request should not be allowed from the client.
 
@@ -4775,7 +4691,7 @@ class PolymorphismOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4907,7 +4823,7 @@ class PolymorphicrecursiveOperations:
                 # response body for status code(s): 200
                 response == fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4948,9 +4864,7 @@ class PolymorphicrecursiveOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -5077,7 +4991,7 @@ class PolymorphicrecursiveOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
@@ -5145,9 +5059,7 @@ class PolymorphicrecursiveOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -5269,7 +5181,7 @@ class PolymorphicrecursiveOperations:
                 # JSON input template you can fill out and use as your body input.
                 complex_body = fish
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5349,7 +5261,7 @@ class ReadonlypropertyOperations:
                     "size": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5390,9 +5302,7 @@ class ReadonlypropertyOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body: Required.
@@ -5415,7 +5325,7 @@ class ReadonlypropertyOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that have readonly properties.
@@ -5431,9 +5341,7 @@ class ReadonlypropertyOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that have readonly properties.
 
         :param complex_body: Is either a JSON type or a IO[bytes] type. Required.
@@ -5451,7 +5359,7 @@ class ReadonlypropertyOperations:
                     "size": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5541,7 +5449,7 @@ class FlattencomplexOperations:
                 # response body for status code(s): 200
                 response == my_base_type
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

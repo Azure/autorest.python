@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,7 +30,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -87,9 +86,7 @@ class ExplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -100,20 +97,10 @@ class ExplicitBodyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -127,9 +114,7 @@ class ExplicitBodyOperations:
         """
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -153,16 +138,8 @@ class ExplicitBodyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -189,7 +166,10 @@ class ExplicitBodyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -224,9 +204,7 @@ class ImplicitBodyOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -237,20 +215,10 @@ class ImplicitBodyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, *, name: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :keyword name: Required.
@@ -264,9 +232,7 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def simple(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -292,16 +258,8 @@ class ImplicitBodyOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -333,7 +291,10 @@ class ImplicitBodyOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

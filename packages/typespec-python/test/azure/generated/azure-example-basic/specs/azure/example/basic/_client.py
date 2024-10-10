@@ -19,7 +19,7 @@ from ._operations import AzureExampleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AzureExampleClient(AzureExampleClientOperationsMixin):
     """AzureExampleClient.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
@@ -33,7 +33,8 @@ class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = AzureExampleClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = AzureExampleClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -51,7 +52,7 @@ class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -76,7 +77,11 @@ class AzureExampleClient(AzureExampleClientOperationsMixin):  # pylint: disable=
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:

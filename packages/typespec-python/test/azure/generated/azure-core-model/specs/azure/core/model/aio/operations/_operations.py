@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -61,14 +60,14 @@ class AzureCoreEmbeddingVectorOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get(self, **kwargs: Any) -> List[int]:
         """get an embedding vector.
 
-        :return: None
-        :rtype: None
+        :return: list of int
+        :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -79,15 +78,18 @@ class AzureCoreEmbeddingVectorOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
         _request = build_azure_core_embedding_vector_get_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = False
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -95,16 +97,26 @@ class AzureCoreEmbeddingVectorOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(List[int], response.json())
+
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: List[int], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put an embedding vector.
 
         :param body: _. Required.
@@ -115,20 +127,10 @@ class AzureCoreEmbeddingVectorOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = [
-                    0
-                ]
         """
 
     @overload
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put an embedding vector.
 
         :param body: _. Required.
@@ -142,9 +144,7 @@ class AzureCoreEmbeddingVectorOperations:
         """
 
     @distributed_trace_async
-    async def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put(self, body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
         """put an embedding vector.
 
         :param body: _. Is either a [int] type or a IO[bytes] type. Required.
@@ -153,7 +153,7 @@ class AzureCoreEmbeddingVectorOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -180,7 +180,10 @@ class AzureCoreEmbeddingVectorOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -210,23 +213,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "embedding": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -243,16 +229,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @overload
@@ -269,16 +245,6 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
 
     @distributed_trace_async
@@ -292,25 +258,8 @@ class AzureCoreEmbeddingVectorOperations:
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "embedding": [
-                        0
-                    ]
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "embedding": [
-                        0
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -337,7 +286,10 @@ class AzureCoreEmbeddingVectorOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

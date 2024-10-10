@@ -17,14 +17,17 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import ResourcesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import NestedProxyResourcesOperations, TopLevelTrackedResourcesOperations
+from .operations import (
+    NestedProxyResourcesOperations,
+    SingletonTrackedResourcesOperations,
+    TopLevelTrackedResourcesOperations,
+)
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
+class ResourcesClient:
     """Arm Resource Provider management API.
 
     :ivar top_level_tracked_resources: TopLevelTrackedResourcesOperations operations
@@ -33,6 +36,9 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar nested_proxy_resources: NestedProxyResourcesOperations operations
     :vartype nested_proxy_resources:
      azure.resourcemanager.models.resources.operations.NestedProxyResourcesOperations
+    :ivar singleton_tracked_resources: SingletonTrackedResourcesOperations operations
+    :vartype singleton_tracked_resources:
+     azure.resourcemanager.models.resources.operations.SingletonTrackedResourcesOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -54,7 +60,10 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         base_url: str = "https://management.azure.com",
         **kwargs: Any
     ) -> None:
-        self._config = ResourcesClientConfiguration(credential=credential, subscription_id=subscription_id, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = ResourcesClientConfiguration(
+            credential=credential, subscription_id=subscription_id, base_url=base_url, **kwargs
+        )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -73,7 +82,7 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -82,6 +91,9 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.nested_proxy_resources = NestedProxyResourcesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.singleton_tracked_resources = SingletonTrackedResourcesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -104,7 +116,11 @@ class ResourcesClient:  # pylint: disable=client-accepts-api-version-keyword
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:

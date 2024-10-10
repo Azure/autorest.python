@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -13,7 +12,6 @@ from .. import _model_base
 from .._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from .. import models as _models
 
 
@@ -23,7 +21,6 @@ class AbstractModel(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     RealModel
 
-    All required parameters must be populated in order to send to server.
 
     :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
     :vartype kind: str
@@ -41,7 +38,6 @@ class AbstractModel(_model_base.Model):
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -54,7 +50,6 @@ class BaseModel(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -67,7 +62,6 @@ class InnerModel(_model_base.Model):
 class InternalDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -80,7 +74,6 @@ class InternalDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -93,7 +86,6 @@ class NoDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -123,7 +115,6 @@ class NoDecoratorModelInPublic(_model_base.Model):
 class OuterModel(BaseModel):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -138,7 +129,6 @@ class OuterModel(BaseModel):
 class PublicDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation but with public decorator, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -168,7 +158,6 @@ class PublicDecoratorModelInInternal(_model_base.Model):
 class PublicDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -198,7 +187,6 @@ class PublicDecoratorModelInPublic(_model_base.Model):
 class RealModel(AbstractModel, discriminator="real"):
     """Used in internal operations, should be generated but not exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -213,7 +201,6 @@ class RealModel(AbstractModel, discriminator="real"):
 class SharedModel(_model_base.Model):
     """Used by both public and internal operation. It should be generated and exported.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

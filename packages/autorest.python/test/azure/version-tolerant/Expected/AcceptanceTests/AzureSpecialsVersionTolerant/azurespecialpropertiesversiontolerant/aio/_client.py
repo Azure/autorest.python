@@ -29,11 +29,10 @@ from .operations import (
 )
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
+class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-instance-attributes
     """Test Infrastructure for AutoRest.
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations

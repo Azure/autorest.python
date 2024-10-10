@@ -8,13 +8,22 @@
 # This script is used to execute pyright within a tox environment. Depending on which package is being executed against,
 # a failure may be suppressed.
 
+import os
 from subprocess import check_output, CalledProcessError
 import logging
 import sys
 import time
-from util import run_check, AUTOREST_PACKAGE_DIR
+from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
+
+
+def get_pyright_config_file_location():
+    pyright_config = os.path.join(os.getcwd(), "../../scripts/eng/pyrightconfig.json")
+    if os.path.exists(pyright_config):
+        return pyright_config
+    else:
+        return os.path.join(os.getcwd(), "../../../scripts/eng/pyrightconfig.json")
 
 
 def _single_dir_pyright(mod):
@@ -28,7 +37,7 @@ def _single_dir_pyright(mod):
                     "-m",
                     "pyright",
                     "-p",
-                    str(AUTOREST_PACKAGE_DIR),
+                    get_pyright_config_file_location(),
                     str(inner_class.absolute()),
                 ],
                 text=True,

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, Union
+from typing import Any, Callable, Dict, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -62,7 +62,7 @@ from ...operations._multiple_responses_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -96,7 +96,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -146,7 +146,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -196,7 +196,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -246,7 +246,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -296,7 +296,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -346,7 +346,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -398,7 +398,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -450,7 +450,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException or ~httpinfrastructure.models.B
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -503,7 +503,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -559,7 +559,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -615,7 +615,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -671,7 +671,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
          ~httpinfrastructure.models.D
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -717,16 +717,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error202_none(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_error202_none(self, **kwargs: Any) -> None:  # pylint: disable=name-too-long
         """Send a 202 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -761,16 +759,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error204_none(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_error204_none(self, **kwargs: Any) -> None:  # pylint: disable=name-too-long
         """Send a 204 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -805,16 +801,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_error400_valid(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_error400_valid(self, **kwargs: Any) -> None:  # pylint: disable=name-too-long
         """Send a 400 response with valid payload: {'code': '400', 'message': 'client error'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -849,16 +843,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none202_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_none202_invalid(self, **kwargs: Any) -> None:  # pylint: disable=name-too-long
         """Send a 202 response with an unexpected payload {'property': 'value'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -892,16 +884,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none204_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_none204_none(self, **kwargs: Any) -> None:
         """Send a 204 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -935,16 +925,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -978,16 +966,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get202_none204_none_default_none400_invalid(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, **kwargs: Any
-    ) -> None:
+    async def get202_none204_none_default_none400_invalid(self, **kwargs: Any) -> None:  # pylint: disable=name-too-long
         """Send a 400 response with an unexpected payload {'property': 'value'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1028,7 +1014,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1073,7 +1059,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1111,16 +1097,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_valid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get_default_model_a400_valid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1155,16 +1139,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_default_model_a400_none(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get_default_model_a400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1199,16 +1181,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get_default_none200_invalid(self, **kwargs: Any) -> None:
         """Send a 200 response with invalid payload: {'statusCode': '200'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1242,14 +1222,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none200_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_default_none200_none(self, **kwargs: Any) -> None:
         """Send a 200 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1283,16 +1263,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_invalid(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def get_default_none400_invalid(self, **kwargs: Any) -> None:
         """Send a 400 response with valid payload: {'statusCode': '400'}.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1326,14 +1304,14 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_default_none400_none(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_default_none400_none(self, **kwargs: Any) -> None:
         """Send a 400 response with no payload.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1375,7 +1353,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1420,7 +1398,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1465,7 +1443,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1510,7 +1488,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1555,7 +1533,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1600,7 +1578,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1645,7 +1623,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~httpinfrastructure.models.MyException
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

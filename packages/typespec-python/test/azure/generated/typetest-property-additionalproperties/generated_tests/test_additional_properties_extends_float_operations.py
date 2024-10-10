@@ -14,7 +14,7 @@ from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertie
 class TestAdditionalPropertiesExtendsFloatOperations(AdditionalPropertiesClientTestBase):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_get(self, additionalproperties_endpoint):
+    def test_extends_float_get(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_float.get()
 
@@ -23,7 +23,7 @@ class TestAdditionalPropertiesExtendsFloatOperations(AdditionalPropertiesClientT
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy
-    def test_put(self, additionalproperties_endpoint):
+    def test_extends_float_put(self, additionalproperties_endpoint):
         client = self.create_client(endpoint=additionalproperties_endpoint)
         response = client.extends_float.put(
             body={"id": 0.0},

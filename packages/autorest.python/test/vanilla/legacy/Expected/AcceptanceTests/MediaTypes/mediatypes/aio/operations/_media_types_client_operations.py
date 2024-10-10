@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -38,7 +37,7 @@ from .._vendor import MediaTypesClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -89,7 +88,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -142,7 +141,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    async def analyze_body_no_accept_header(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -159,7 +158,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @overload
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    async def analyze_body_no_accept_header(
         self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -177,7 +176,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         """
 
     @distributed_trace_async
-    async def analyze_body_no_accept_header(  # pylint: disable=inconsistent-return-statements
+    async def analyze_body_no_accept_header(
         self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
@@ -190,7 +189,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -248,7 +247,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -304,7 +303,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -358,7 +357,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -463,7 +462,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -523,7 +522,7 @@ class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

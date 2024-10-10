@@ -1,5 +1,146 @@
 # Release
 
+## 0.35.1
+
+### Bug Fixes
+
+- [#2864](https://github.com/Azure/autorest.python/pull/2864) Await call to http-client-python onEmit
+
+
+## 0.35.0
+
+### Bug Fixes
+
+- [#2861](https://github.com/Azure/autorest.python/pull/2861) Fix install issue
+
+
+## 0.34.0
+
+### Bump dependencies
+
+- [#2851](https://github.com/Azure/autorest.python/pull/2851) bump cadl-ranch
+- [#2854](https://github.com/Azure/autorest.python/pull/2854) bump tcgc 0.46.2
+
+### Features
+
+- [#2856](https://github.com/Azure/autorest.python/pull/2856) Depend completely on `@typespec/http-client-python`
+
+
+## 0.33.0
+
+### Bump dependencies
+
+- [#2845](https://github.com/Azure/autorest.python/pull/2845) bump dependencies
+- [#2847](https://github.com/Azure/autorest.python/pull/2847) bump to tcgc 0.46.1
+
+
+## 0.32.1
+
+### Bug Fixes
+
+- [#2842](https://github.com/Azure/autorest.python/pull/2842) Map `Foundations.Error` -> `core.OdataV4Format`
+- [#2839](https://github.com/Azure/autorest.python/pull/2839) Fix wrong word in generated test
+
+
+## 0.32.0
+
+### Bug Fixes
+
+- [#2835](https://github.com/Azure/autorest.python/pull/2835) Fix lint issue "line-too-long" for docstring in operation
+- [#2837](https://github.com/Azure/autorest.python/pull/2837) Fix "line-too-long" for property of model
+
+### Bump dependencies
+
+- [#2834](https://github.com/Azure/autorest.python/pull/2834) Bump typespec 0.60.0
+
+
+## 0.31.1
+
+### Bug Fixes
+
+- [#2830](https://github.com/Azure/autorest.python/pull/2830) Add pylint disable for "line-too-long" and "too-many-locals"
+- [#2831](https://github.com/Azure/autorest.python/pull/2831) Add pylint disable for "unsubscriptable-object"
+- [#2829](https://github.com/Azure/autorest.python/pull/2829) Fix bandit error in serialization
+
+
+## 0.31.0
+
+### Bug Fixes
+
+- [#2814](https://github.com/Azure/autorest.python/pull/2814) Fix pylint errors in serialization.py
+- [#2823](https://github.com/Azure/autorest.python/pull/2823) Include link to core models for `HttpResponseError` when it's included as a property in a model
+
+### Features
+
+- [#2815](https://github.com/Azure/autorest.python/pull/2815) Add support for `HttpPart<{@body body: XXX}>` of multipart
+- [#2810](https://github.com/Azure/autorest.python/pull/2810) Optimize snake-case naming rule
+- [#2806](https://github.com/Azure/autorest.python/pull/2806) dpg model support xml
+
+
+## 0.30.0
+
+### Features
+
+- [#2775](https://github.com/Azure/autorest.python/pull/2775) support query `explode` and path `allowReserved`, also change the logic of generating spread body parameter
+- [#2771](https://github.com/Azure/autorest.python/pull/2771) Support encode int as string
+- [#2805](https://github.com/Azure/autorest.python/pull/2805) Add `x-ms-original-file` in generated sample to declare original sample file of typespec
+
+
+## 0.29.0
+
+### Bug Fixes
+
+- [#2756](https://github.com/Azure/autorest.python/pull/2756) Fix to get right response and exception
+- [#2763](https://github.com/Azure/autorest.python/pull/2763) Fix import for "json" and bump cadl-ranch dependency
+- [#2784](https://github.com/Azure/autorest.python/pull/2784) Fix sample generation for keyword-only parameters
+
+### Bump dependencies
+
+- [#2773](https://github.com/Azure/autorest.python/pull/2773) Use `@typespec/compiler` `0.59.1` to absorb fix for compiler
+
+### Features
+
+- [#2740](https://github.com/Azure/autorest.python/pull/2740) Support advanced multipart for `@multipartBody`
+- [#2750](https://github.com/Azure/autorest.python/pull/2750) optimize performance of dpg model
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
+## 0.28.0
+
+### Bug Fixes
+
+- [#2759](https://github.com/Azure/autorest.python/pull/2759) Fix sample generation for lro and paging operation
+- [#2758](https://github.com/Azure/autorest.python/pull/2758) Revert client signature `endpoint` to `base_url` to avoid breaking for Mgmt SDK
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
+## 0.27.1
+
+### Bug Fixes
+
+- [#2737](https://github.com/Azure/autorest.python/pull/2737) Fix initialize for model which only has discriminator property
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+- [#2729](https://github.com/Azure/autorest.python/pull/2729) Fix import for multipart
+
+### Bump dependencies
+
+- [#2723](https://github.com/Azure/autorest.python/pull/2723) upgrade to tcgc 0.44.2
+
+
+## 0.27.0
+
+### Bug Fixes
+
+- [#2716](https://github.com/Azure/autorest.python/pull/2716) Fix the logic to judge whether model is output or not
+
+### Features
+
+- [#2706](https://github.com/Azure/autorest.python/pull/2706) Generate API for multi content types of internal operation
+
+
 ## 0.26.0
 
 ### Bug Fixes

@@ -14,7 +14,7 @@ from testpreparer import ValueTypesClientTestBase, ValueTypesPreparer
 class TestValueTypesDatetimeOperations(ValueTypesClientTestBase):
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_get(self, valuetypes_endpoint):
+    def test_datetime_get(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.datetime.get()
 
@@ -23,7 +23,7 @@ class TestValueTypesDatetimeOperations(ValueTypesClientTestBase):
 
     @ValueTypesPreparer()
     @recorded_by_proxy
-    def test_put(self, valuetypes_endpoint):
+    def test_datetime_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.datetime.put(
             body={"property": "2020-02-20 00:00:00"},

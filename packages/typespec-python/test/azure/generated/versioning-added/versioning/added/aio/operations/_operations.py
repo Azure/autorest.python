@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -39,7 +38,7 @@ from .._vendor import AddedClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -76,23 +75,6 @@ class InterfaceV2Operations:
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -109,16 +91,6 @@ class InterfaceV2Operations:
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -135,16 +107,6 @@ class InterfaceV2Operations:
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @distributed_trace_async
@@ -160,25 +122,8 @@ class InterfaceV2Operations:
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -256,23 +201,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV1. The ModelV1 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV1
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -291,16 +219,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV1. The ModelV1 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV1
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -319,16 +237,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV1. The ModelV1 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV1
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @distributed_trace_async
@@ -347,25 +255,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV1. The ModelV1 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV1
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -439,23 +330,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -470,16 +344,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @overload
@@ -494,16 +358,6 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
 
     @distributed_trace_async
@@ -519,25 +373,8 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         :return: ModelV2. The ModelV2 is compatible with MutableMapping
         :rtype: ~versioning.added.models.ModelV2
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "enumProp": "str",
-                    "prop": "str",
-                    "unionProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

@@ -21,11 +21,10 @@ from ._configuration import MultiapiServiceClientConfiguration
 from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

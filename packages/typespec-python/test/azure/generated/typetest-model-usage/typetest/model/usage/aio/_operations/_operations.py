@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -38,7 +37,7 @@ from .._vendor import UsageClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -47,9 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class UsageClientOperationsMixin(UsageClientMixinABC):
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -60,20 +57,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "requiredProp": "str"
-                }
         """
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -87,9 +74,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @overload
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def input(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """input.
 
         :param input: Required.
@@ -103,9 +88,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         """
 
     @distributed_trace_async
-    async def input(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def input(self, input: Union[_models.InputRecord, JSON, IO[bytes]], **kwargs: Any) -> None:
         """input.
 
         :param input: Is one of the following types: InputRecord, JSON, IO[bytes] Required.
@@ -113,16 +96,8 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "requiredProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -149,7 +124,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -172,16 +150,8 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: OutputRecord. The OutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.OutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -198,7 +168,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -240,19 +213,6 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProp": "str"
-                }
         """
 
     @overload
@@ -269,14 +229,6 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProp": "str"
-                }
         """
 
     @overload
@@ -293,14 +245,6 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProp": "str"
-                }
         """
 
     @distributed_trace_async
@@ -314,21 +258,8 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         :return: InputOutputRecord. The InputOutputRecord is compatible with MutableMapping
         :rtype: ~typetest.model.usage.models.InputOutputRecord
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProp": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProp": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -355,7 +286,10 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access

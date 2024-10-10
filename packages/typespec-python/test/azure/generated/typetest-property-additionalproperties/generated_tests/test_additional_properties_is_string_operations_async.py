@@ -15,7 +15,7 @@ from testpreparer_async import AdditionalPropertiesClientTestBaseAsync
 class TestAdditionalPropertiesIsStringOperationsAsync(AdditionalPropertiesClientTestBaseAsync):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, additionalproperties_endpoint):
+    async def test_is_string_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.is_string.get()
 
@@ -24,7 +24,7 @@ class TestAdditionalPropertiesIsStringOperationsAsync(AdditionalPropertiesClient
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, additionalproperties_endpoint):
+    async def test_is_string_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.is_string.put(
             body={"name": "str"},

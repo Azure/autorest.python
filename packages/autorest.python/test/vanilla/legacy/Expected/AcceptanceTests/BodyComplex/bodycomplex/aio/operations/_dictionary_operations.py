@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,7 +34,7 @@ from ...operations._dictionary_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -67,7 +66,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -106,9 +105,7 @@ class DictionaryOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
-    ) -> None:
+    async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
@@ -117,7 +114,7 @@ class DictionaryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -165,7 +162,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -204,9 +201,7 @@ class DictionaryOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any
-    ) -> None:
+    async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
@@ -215,7 +210,7 @@ class DictionaryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -263,7 +258,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -309,7 +304,7 @@ class DictionaryOperations:
         :rtype: ~bodycomplex.models.DictionaryWrapper
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

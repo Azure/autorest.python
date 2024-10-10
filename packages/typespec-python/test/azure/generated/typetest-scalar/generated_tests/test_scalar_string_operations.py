@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarStringOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_get(self, scalar_endpoint):
+    def test_string_get(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.string.get()
 
@@ -23,7 +23,7 @@ class TestScalarStringOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_put(self, scalar_endpoint):
+    def test_string_put(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.string.put(
             body="str",

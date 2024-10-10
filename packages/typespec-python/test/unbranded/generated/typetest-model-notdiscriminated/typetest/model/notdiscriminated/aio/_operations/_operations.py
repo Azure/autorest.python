@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from .._vendor import NotDiscriminatedClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -46,7 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
+    async def post_valid(
         self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """post_valid.
@@ -59,22 +58,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Required.
@@ -88,9 +75,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         """
 
     @overload
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Required.
@@ -103,9 +88,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def post_valid(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> None:
         """post_valid.
 
         :param input: Is one of the following types: Siamese, JSON, IO[bytes] Required.
@@ -113,18 +96,8 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -151,7 +124,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -173,18 +149,8 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -201,7 +167,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -243,23 +212,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -274,16 +226,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     @overload
@@ -300,16 +242,6 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
 
     async def put_valid(self, input: Union[_models.Siamese, JSON, IO[bytes]], **kwargs: Any) -> _models.Siamese:
@@ -320,25 +252,8 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         :return: Siamese. The Siamese is compatible with MutableMapping
         :rtype: ~typetest.model.notdiscriminated.models.Siamese
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "age": 0,
-                    "name": "str",
-                    "smart": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -365,7 +280,10 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access

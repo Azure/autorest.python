@@ -15,7 +15,7 @@ from testpreparer_async import ValueTypesClientTestBaseAsync
 class TestValueTypesDurationOperationsAsync(ValueTypesClientTestBaseAsync):
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, valuetypes_endpoint):
+    async def test_duration_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.duration.get()
 
@@ -24,7 +24,7 @@ class TestValueTypesDurationOperationsAsync(ValueTypesClientTestBaseAsync):
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, valuetypes_endpoint):
+    async def test_duration_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.duration.put(
             body={"property": "1 day, 0:00:00"},

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -132,7 +132,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -156,9 +156,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.AndModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_and(self, body: _models.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_and.
 
         :param body: Required.
@@ -169,20 +167,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_and(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_and.
 
         :param body: Required.
@@ -196,9 +184,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_and(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_and.
 
         :param body: Required.
@@ -211,9 +197,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AndModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_and(self, body: Union[_models.AndModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_and.
 
         :param body: Is one of the following types: AndModel, JSON, IO[bytes] Required.
@@ -221,16 +205,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -257,7 +233,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -274,9 +253,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.AsModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_as(self, body: _models.AsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_as.
 
         :param body: Required.
@@ -287,20 +264,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_as(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_as.
 
         :param body: Required.
@@ -314,9 +281,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_as(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_as.
 
         :param body: Required.
@@ -329,9 +294,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AsModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_as(self, body: Union[_models.AsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_as.
 
         :param body: Is one of the following types: AsModel, JSON, IO[bytes] Required.
@@ -339,16 +302,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -375,7 +330,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -392,7 +350,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_assert(  # pylint: disable=inconsistent-return-statements
+    async def with_assert(
         self, body: _models.AssertModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_assert.
@@ -405,20 +363,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_assert(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_assert.
 
         :param body: Required.
@@ -432,9 +380,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_assert(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_assert.
 
         :param body: Required.
@@ -447,9 +393,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AssertModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_assert(self, body: Union[_models.AssertModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_assert.
 
         :param body: Is one of the following types: AssertModel, JSON, IO[bytes] Required.
@@ -457,16 +401,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -493,7 +429,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -510,7 +449,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_async(  # pylint: disable=inconsistent-return-statements
+    async def with_async(
         self, body: _models.AsyncModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_async.
@@ -523,20 +462,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_async(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_async.
 
         :param body: Required.
@@ -550,9 +479,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_async(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_async.
 
         :param body: Required.
@@ -565,9 +492,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AsyncModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_async(self, body: Union[_models.AsyncModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_async.
 
         :param body: Is one of the following types: AsyncModel, JSON, IO[bytes] Required.
@@ -575,16 +500,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -611,7 +528,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -628,7 +548,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_await(  # pylint: disable=inconsistent-return-statements
+    async def with_await(
         self, body: _models.AwaitModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_await.
@@ -641,20 +561,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_await(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_await.
 
         :param body: Required.
@@ -668,9 +578,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_await(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_await.
 
         :param body: Required.
@@ -683,9 +591,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.AwaitModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_await(self, body: Union[_models.AwaitModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_await.
 
         :param body: Is one of the following types: AwaitModel, JSON, IO[bytes] Required.
@@ -693,16 +599,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -729,7 +627,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -746,7 +647,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_break(  # pylint: disable=inconsistent-return-statements
+    async def with_break(
         self, body: _models.BreakModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_break.
@@ -759,20 +660,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_break(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_break.
 
         :param body: Required.
@@ -786,9 +677,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_break(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_break.
 
         :param body: Required.
@@ -801,9 +690,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BreakModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_break(self, body: Union[_models.BreakModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_break.
 
         :param body: Is one of the following types: BreakModel, JSON, IO[bytes] Required.
@@ -811,16 +698,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -847,7 +726,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -864,7 +746,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_class(  # pylint: disable=inconsistent-return-statements
+    async def with_class(
         self, body: _models.ClassModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_class.
@@ -877,20 +759,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_class(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_class.
 
         :param body: Required.
@@ -904,9 +776,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_class(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_class.
 
         :param body: Required.
@@ -919,9 +789,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ClassModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_class(self, body: Union[_models.ClassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_class.
 
         :param body: Is one of the following types: ClassModel, JSON, IO[bytes] Required.
@@ -929,16 +797,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -965,7 +825,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -982,7 +845,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_constructor(  # pylint: disable=inconsistent-return-statements
+    async def with_constructor(
         self, body: _models.Constructor, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_constructor.
@@ -995,20 +858,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_constructor(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_constructor.
 
         :param body: Required.
@@ -1022,9 +875,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_constructor(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_constructor.
 
         :param body: Required.
@@ -1037,9 +888,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.Constructor, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_constructor(self, body: Union[_models.Constructor, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_constructor.
 
         :param body: Is one of the following types: Constructor, JSON, IO[bytes] Required.
@@ -1047,16 +896,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1083,7 +924,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1100,7 +944,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_continue(  # pylint: disable=inconsistent-return-statements
+    async def with_continue(
         self, body: _models.ContinueModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_continue.
@@ -1113,20 +957,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_continue(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_continue.
 
         :param body: Required.
@@ -1140,9 +974,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_continue(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_continue.
 
         :param body: Required.
@@ -1155,9 +987,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ContinueModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_continue(self, body: Union[_models.ContinueModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_continue.
 
         :param body: Is one of the following types: ContinueModel, JSON, IO[bytes] Required.
@@ -1165,16 +995,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1201,7 +1023,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1218,9 +1043,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.DefModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_def(self, body: _models.DefModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_def.
 
         :param body: Required.
@@ -1231,20 +1054,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_def(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_def.
 
         :param body: Required.
@@ -1258,9 +1071,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_def(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_def.
 
         :param body: Required.
@@ -1273,9 +1084,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DefModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_def(self, body: Union[_models.DefModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_def.
 
         :param body: Is one of the following types: DefModel, JSON, IO[bytes] Required.
@@ -1283,16 +1092,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1319,7 +1120,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1336,9 +1140,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.DelModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_del(self, body: _models.DelModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_del.
 
         :param body: Required.
@@ -1349,20 +1151,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_del(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_del.
 
         :param body: Required.
@@ -1376,9 +1168,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_del(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_del.
 
         :param body: Required.
@@ -1391,9 +1181,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DelModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_del(self, body: Union[_models.DelModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_del.
 
         :param body: Is one of the following types: DelModel, JSON, IO[bytes] Required.
@@ -1401,16 +1189,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1437,7 +1217,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1454,7 +1237,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_elif(  # pylint: disable=inconsistent-return-statements
+    async def with_elif(
         self, body: _models.ElifModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_elif.
@@ -1467,20 +1250,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_elif(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_elif.
 
         :param body: Required.
@@ -1494,9 +1267,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_elif(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_elif.
 
         :param body: Required.
@@ -1509,9 +1280,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ElifModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_elif(self, body: Union[_models.ElifModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_elif.
 
         :param body: Is one of the following types: ElifModel, JSON, IO[bytes] Required.
@@ -1519,16 +1288,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1555,7 +1316,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1572,7 +1336,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_else(  # pylint: disable=inconsistent-return-statements
+    async def with_else(
         self, body: _models.ElseModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_else.
@@ -1585,20 +1349,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_else(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_else.
 
         :param body: Required.
@@ -1612,9 +1366,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_else(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_else.
 
         :param body: Required.
@@ -1627,9 +1379,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ElseModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_else(self, body: Union[_models.ElseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_else.
 
         :param body: Is one of the following types: ElseModel, JSON, IO[bytes] Required.
@@ -1637,16 +1387,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1673,7 +1415,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1690,7 +1435,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_except(  # pylint: disable=inconsistent-return-statements
+    async def with_except(
         self, body: _models.ExceptModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_except.
@@ -1703,20 +1448,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_except(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_except.
 
         :param body: Required.
@@ -1730,9 +1465,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_except(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_except.
 
         :param body: Required.
@@ -1745,9 +1478,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExceptModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_except(self, body: Union[_models.ExceptModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_except.
 
         :param body: Is one of the following types: ExceptModel, JSON, IO[bytes] Required.
@@ -1755,16 +1486,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1791,7 +1514,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1808,7 +1534,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_exec(  # pylint: disable=inconsistent-return-statements
+    async def with_exec(
         self, body: _models.ExecModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_exec.
@@ -1821,20 +1547,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_exec(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_exec.
 
         :param body: Required.
@@ -1848,9 +1564,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_exec(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_exec.
 
         :param body: Required.
@@ -1863,9 +1577,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ExecModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_exec(self, body: Union[_models.ExecModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_exec.
 
         :param body: Is one of the following types: ExecModel, JSON, IO[bytes] Required.
@@ -1873,16 +1585,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1909,7 +1613,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1926,7 +1633,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_finally(  # pylint: disable=inconsistent-return-statements
+    async def with_finally(
         self, body: _models.FinallyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_finally.
@@ -1939,20 +1646,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_finally(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_finally.
 
         :param body: Required.
@@ -1966,9 +1663,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_finally(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_finally.
 
         :param body: Required.
@@ -1981,9 +1676,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FinallyModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_finally(self, body: Union[_models.FinallyModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_finally.
 
         :param body: Is one of the following types: FinallyModel, JSON, IO[bytes] Required.
@@ -1991,16 +1684,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2027,7 +1712,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2044,9 +1732,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ForModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_for(self, body: _models.ForModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_for.
 
         :param body: Required.
@@ -2057,20 +1743,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_for(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_for.
 
         :param body: Required.
@@ -2084,9 +1760,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_for(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_for.
 
         :param body: Required.
@@ -2099,9 +1773,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ForModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_for(self, body: Union[_models.ForModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_for.
 
         :param body: Is one of the following types: ForModel, JSON, IO[bytes] Required.
@@ -2109,16 +1781,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2145,7 +1809,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2162,7 +1829,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_from(  # pylint: disable=inconsistent-return-statements
+    async def with_from(
         self, body: _models.FromModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_from.
@@ -2175,20 +1842,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_from(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_from.
 
         :param body: Required.
@@ -2202,9 +1859,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_from(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_from.
 
         :param body: Required.
@@ -2217,9 +1872,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FromModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_from(self, body: Union[_models.FromModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_from.
 
         :param body: Is one of the following types: FromModel, JSON, IO[bytes] Required.
@@ -2227,16 +1880,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2263,7 +1908,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2280,7 +1928,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_global(  # pylint: disable=inconsistent-return-statements
+    async def with_global(
         self, body: _models.GlobalModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_global.
@@ -2293,20 +1941,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_global(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_global.
 
         :param body: Required.
@@ -2320,9 +1958,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_global(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_global.
 
         :param body: Required.
@@ -2335,9 +1971,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.GlobalModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_global(self, body: Union[_models.GlobalModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_global.
 
         :param body: Is one of the following types: GlobalModel, JSON, IO[bytes] Required.
@@ -2345,16 +1979,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2381,7 +2007,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2398,9 +2027,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.IfModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_if(self, body: _models.IfModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_if.
 
         :param body: Required.
@@ -2411,20 +2038,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_if(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_if.
 
         :param body: Required.
@@ -2438,9 +2055,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_if(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_if.
 
         :param body: Required.
@@ -2453,9 +2068,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IfModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_if(self, body: Union[_models.IfModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_if.
 
         :param body: Is one of the following types: IfModel, JSON, IO[bytes] Required.
@@ -2463,16 +2076,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2499,7 +2104,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2516,7 +2124,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_import(  # pylint: disable=inconsistent-return-statements
+    async def with_import(
         self, body: _models.ImportModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_import.
@@ -2529,20 +2137,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_import(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_import.
 
         :param body: Required.
@@ -2556,9 +2154,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_import(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_import.
 
         :param body: Required.
@@ -2571,9 +2167,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ImportModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_import(self, body: Union[_models.ImportModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_import.
 
         :param body: Is one of the following types: ImportModel, JSON, IO[bytes] Required.
@@ -2581,16 +2175,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2617,7 +2203,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2634,9 +2223,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.InModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_in(self, body: _models.InModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_in.
 
         :param body: Required.
@@ -2647,20 +2234,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_in(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_in.
 
         :param body: Required.
@@ -2674,9 +2251,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_in(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_in.
 
         :param body: Required.
@@ -2689,9 +2264,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.InModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_in(self, body: Union[_models.InModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_in.
 
         :param body: Is one of the following types: InModel, JSON, IO[bytes] Required.
@@ -2699,16 +2272,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2735,7 +2300,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2752,9 +2320,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.IsModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_is(self, body: _models.IsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_is.
 
         :param body: Required.
@@ -2765,20 +2331,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_is(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_is.
 
         :param body: Required.
@@ -2792,9 +2348,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_is(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_is.
 
         :param body: Required.
@@ -2807,9 +2361,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IsModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_is(self, body: Union[_models.IsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_is.
 
         :param body: Is one of the following types: IsModel, JSON, IO[bytes] Required.
@@ -2817,16 +2369,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2853,7 +2397,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2870,7 +2417,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_lambda(  # pylint: disable=inconsistent-return-statements
+    async def with_lambda(
         self, body: _models.LambdaModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_lambda.
@@ -2883,20 +2430,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_lambda(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_lambda.
 
         :param body: Required.
@@ -2910,9 +2447,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_lambda(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_lambda.
 
         :param body: Required.
@@ -2925,9 +2460,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.LambdaModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_lambda(self, body: Union[_models.LambdaModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_lambda.
 
         :param body: Is one of the following types: LambdaModel, JSON, IO[bytes] Required.
@@ -2935,16 +2468,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2971,7 +2496,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -2988,9 +2516,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.NotModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_not(self, body: _models.NotModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_not.
 
         :param body: Required.
@@ -3001,20 +2527,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_not(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_not.
 
         :param body: Required.
@@ -3028,9 +2544,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_not(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_not.
 
         :param body: Required.
@@ -3043,9 +2557,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.NotModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_not(self, body: Union[_models.NotModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_not.
 
         :param body: Is one of the following types: NotModel, JSON, IO[bytes] Required.
@@ -3053,16 +2565,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3089,7 +2593,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3106,9 +2613,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.OrModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_or(self, body: _models.OrModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_or.
 
         :param body: Required.
@@ -3119,20 +2624,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_or(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_or.
 
         :param body: Required.
@@ -3146,9 +2641,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_or(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_or.
 
         :param body: Required.
@@ -3161,9 +2654,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.OrModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_or(self, body: Union[_models.OrModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_or.
 
         :param body: Is one of the following types: OrModel, JSON, IO[bytes] Required.
@@ -3171,16 +2662,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3207,7 +2690,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3224,7 +2710,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_pass(  # pylint: disable=inconsistent-return-statements
+    async def with_pass(
         self, body: _models.PassModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_pass.
@@ -3237,20 +2723,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_pass(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_pass.
 
         :param body: Required.
@@ -3264,9 +2740,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_pass(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_pass.
 
         :param body: Required.
@@ -3279,9 +2753,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PassModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_pass(self, body: Union[_models.PassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_pass.
 
         :param body: Is one of the following types: PassModel, JSON, IO[bytes] Required.
@@ -3289,16 +2761,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3325,7 +2789,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3342,7 +2809,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_raise(  # pylint: disable=inconsistent-return-statements
+    async def with_raise(
         self, body: _models.RaiseModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_raise.
@@ -3355,20 +2822,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_raise(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_raise.
 
         :param body: Required.
@@ -3382,9 +2839,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_raise(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_raise.
 
         :param body: Required.
@@ -3397,9 +2852,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RaiseModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_raise(self, body: Union[_models.RaiseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_raise.
 
         :param body: Is one of the following types: RaiseModel, JSON, IO[bytes] Required.
@@ -3407,16 +2860,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3443,7 +2888,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3460,7 +2908,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_return(  # pylint: disable=inconsistent-return-statements
+    async def with_return(
         self, body: _models.ReturnModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_return.
@@ -3473,20 +2921,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_return(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_return.
 
         :param body: Required.
@@ -3500,9 +2938,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_return(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_return.
 
         :param body: Required.
@@ -3515,9 +2951,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ReturnModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_return(self, body: Union[_models.ReturnModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_return.
 
         :param body: Is one of the following types: ReturnModel, JSON, IO[bytes] Required.
@@ -3525,16 +2959,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3561,7 +2987,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3578,9 +3007,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.TryModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_try(self, body: _models.TryModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_try.
 
         :param body: Required.
@@ -3591,20 +3018,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_try(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_try.
 
         :param body: Required.
@@ -3618,9 +3035,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_try(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_try.
 
         :param body: Required.
@@ -3633,9 +3048,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.TryModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_try(self, body: Union[_models.TryModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_try.
 
         :param body: Is one of the following types: TryModel, JSON, IO[bytes] Required.
@@ -3643,16 +3056,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3679,7 +3084,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3696,7 +3104,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_while(  # pylint: disable=inconsistent-return-statements
+    async def with_while(
         self, body: _models.WhileModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_while.
@@ -3709,20 +3117,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_while(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_while.
 
         :param body: Required.
@@ -3736,9 +3134,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_while(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_while.
 
         :param body: Required.
@@ -3751,9 +3147,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.WhileModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_while(self, body: Union[_models.WhileModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_while.
 
         :param body: Is one of the following types: WhileModel, JSON, IO[bytes] Required.
@@ -3761,16 +3155,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3797,7 +3183,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3814,7 +3203,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_with(  # pylint: disable=inconsistent-return-statements
+    async def with_with(
         self, body: _models.WithModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_with.
@@ -3827,20 +3216,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_with(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_with.
 
         :param body: Required.
@@ -3854,9 +3233,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_with(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_with.
 
         :param body: Required.
@@ -3869,9 +3246,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.WithModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_with(self, body: Union[_models.WithModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_with.
 
         :param body: Is one of the following types: WithModel, JSON, IO[bytes] Required.
@@ -3879,16 +3254,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3915,7 +3282,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -3932,7 +3302,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_yield(  # pylint: disable=inconsistent-return-statements
+    async def with_yield(
         self, body: _models.YieldModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_yield.
@@ -3945,20 +3315,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
 
     @overload
-    async def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_yield(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_yield.
 
         :param body: Required.
@@ -3972,9 +3332,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def with_yield(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_yield.
 
         :param body: Required.
@@ -3987,9 +3345,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.YieldModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def with_yield(self, body: Union[_models.YieldModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_yield.
 
         :param body: Is one of the following types: YieldModel, JSON, IO[bytes] Required.
@@ -3997,16 +3353,8 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "name": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4033,7 +3381,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4068,7 +3419,7 @@ class ModelPropertiesOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def same_as_model(  # pylint: disable=inconsistent-return-statements
+    async def same_as_model(
         self, body: _models.SameAsModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """same_as_model.
@@ -4081,20 +3432,10 @@ class ModelPropertiesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "SameAsModel": "str"
-                }
         """
 
     @overload
-    async def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def same_as_model(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """same_as_model.
 
         :param body: Required.
@@ -4108,9 +3449,7 @@ class ModelPropertiesOperations:
         """
 
     @overload
-    async def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def same_as_model(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """same_as_model.
 
         :param body: Required.
@@ -4123,9 +3462,7 @@ class ModelPropertiesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SameAsModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def same_as_model(self, body: Union[_models.SameAsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """same_as_model.
 
         :param body: Is one of the following types: SameAsModel, JSON, IO[bytes] Required.
@@ -4133,16 +3470,8 @@ class ModelPropertiesOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "SameAsModel": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4169,7 +3498,10 @@ class ModelPropertiesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4203,14 +3535,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def and_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def and_method(self, **kwargs: Any) -> None:
         """and_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4227,7 +3559,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4243,14 +3578,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def as_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def as_method(self, **kwargs: Any) -> None:
         """as_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4267,7 +3602,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4283,14 +3621,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def assert_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def assert_method(self, **kwargs: Any) -> None:
         """assert_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4307,7 +3645,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4323,14 +3664,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def async_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def async_method(self, **kwargs: Any) -> None:
         """async_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4347,7 +3688,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4363,14 +3707,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def await_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def await_method(self, **kwargs: Any) -> None:
         """await_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4387,7 +3731,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4403,14 +3750,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def break_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def break_method(self, **kwargs: Any) -> None:
         """break_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4427,7 +3774,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4443,14 +3793,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def class_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def class_method(self, **kwargs: Any) -> None:
         """class_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4467,7 +3817,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4483,14 +3836,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def constructor(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def constructor(self, **kwargs: Any) -> None:
         """constructor.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4507,7 +3860,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4523,14 +3879,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def continue_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def continue_method(self, **kwargs: Any) -> None:
         """continue_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4547,7 +3903,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4563,14 +3922,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def def_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def def_method(self, **kwargs: Any) -> None:
         """def_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4587,7 +3946,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4603,14 +3965,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def del_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def del_method(self, **kwargs: Any) -> None:
         """del_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4627,7 +3989,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4643,14 +4008,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def elif_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def elif_method(self, **kwargs: Any) -> None:
         """elif_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4667,7 +4032,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4683,14 +4051,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def else_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def else_method(self, **kwargs: Any) -> None:
         """else_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4707,7 +4075,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4723,14 +4094,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def except_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def except_method(self, **kwargs: Any) -> None:
         """except_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4747,7 +4118,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4763,14 +4137,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def exec_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def exec_method(self, **kwargs: Any) -> None:
         """exec_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4787,7 +4161,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4803,14 +4180,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def finally_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def finally_method(self, **kwargs: Any) -> None:
         """finally_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4827,7 +4204,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4843,14 +4223,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def for_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def for_method(self, **kwargs: Any) -> None:
         """for_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4867,7 +4247,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4883,14 +4266,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def from_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def from_method(self, **kwargs: Any) -> None:
         """from_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4907,7 +4290,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4923,14 +4309,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def global_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def global_method(self, **kwargs: Any) -> None:
         """global_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4947,7 +4333,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -4963,14 +4352,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def if_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def if_method(self, **kwargs: Any) -> None:
         """if_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4987,7 +4376,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5003,14 +4395,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def import_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def import_method(self, **kwargs: Any) -> None:
         """import_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5027,7 +4419,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5043,14 +4438,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def in_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def in_method(self, **kwargs: Any) -> None:
         """in_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5067,7 +4462,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5083,14 +4481,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def is_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def is_method(self, **kwargs: Any) -> None:
         """is_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5107,7 +4505,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5123,14 +4524,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def lambda_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def lambda_method(self, **kwargs: Any) -> None:
         """lambda_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5147,7 +4548,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5163,14 +4567,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def not_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def not_method(self, **kwargs: Any) -> None:
         """not_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5187,7 +4591,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5203,14 +4610,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def or_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def or_method(self, **kwargs: Any) -> None:
         """or_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5227,7 +4634,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5243,14 +4653,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def pass_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def pass_method(self, **kwargs: Any) -> None:
         """pass_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5267,7 +4677,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5283,14 +4696,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def raise_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def raise_method(self, **kwargs: Any) -> None:
         """raise_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5307,7 +4720,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5323,14 +4739,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def return_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def return_method(self, **kwargs: Any) -> None:
         """return_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5347,7 +4763,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5363,14 +4782,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def try_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def try_method(self, **kwargs: Any) -> None:
         """try_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5387,7 +4806,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5403,14 +4825,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def while_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def while_method(self, **kwargs: Any) -> None:
         """while_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5427,7 +4849,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5443,14 +4868,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def with_method(self, **kwargs: Any) -> None:
         """with_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5467,7 +4892,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5483,14 +4911,14 @@ class Operations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def yield_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def yield_method(self, **kwargs: Any) -> None:
         """yield_method.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5507,7 +4935,10 @@ class Operations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5541,9 +4972,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def with_and(  # pylint: disable=inconsistent-return-statements
-        self, *, and_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_and(self, *, and_parameter: str, **kwargs: Any) -> None:
         """with_and.
 
         :keyword and_parameter: Required.
@@ -5552,7 +4981,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5570,7 +4999,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5586,9 +5018,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_as(  # pylint: disable=inconsistent-return-statements
-        self, *, as_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_as(self, *, as_parameter: str, **kwargs: Any) -> None:
         """with_as.
 
         :keyword as_parameter: Required.
@@ -5597,7 +5027,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5615,7 +5045,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5631,9 +5064,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, *, assert_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_assert(self, *, assert_parameter: str, **kwargs: Any) -> None:
         """with_assert.
 
         :keyword assert_parameter: Required.
@@ -5642,7 +5073,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5660,7 +5091,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5676,9 +5110,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_async(  # pylint: disable=inconsistent-return-statements
-        self, *, async_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_async(self, *, async_parameter: str, **kwargs: Any) -> None:
         """with_async.
 
         :keyword async_parameter: Required.
@@ -5687,7 +5119,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5705,7 +5137,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5721,9 +5156,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_await(  # pylint: disable=inconsistent-return-statements
-        self, *, await_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_await(self, *, await_parameter: str, **kwargs: Any) -> None:
         """with_await.
 
         :keyword await_parameter: Required.
@@ -5732,7 +5165,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5750,7 +5183,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5766,9 +5202,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_break(  # pylint: disable=inconsistent-return-statements
-        self, *, break_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_break(self, *, break_parameter: str, **kwargs: Any) -> None:
         """with_break.
 
         :keyword break_parameter: Required.
@@ -5777,7 +5211,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5795,7 +5229,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5811,9 +5248,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_class(  # pylint: disable=inconsistent-return-statements
-        self, *, class_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_class(self, *, class_parameter: str, **kwargs: Any) -> None:
         """with_class.
 
         :keyword class_parameter: Required.
@@ -5822,7 +5257,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5840,7 +5275,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5856,9 +5294,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, *, constructor: str, **kwargs: Any
-    ) -> None:
+    async def with_constructor(self, *, constructor: str, **kwargs: Any) -> None:
         """with_constructor.
 
         :keyword constructor: Required.
@@ -5867,7 +5303,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5885,7 +5321,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5901,9 +5340,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, *, continue_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_continue(self, *, continue_parameter: str, **kwargs: Any) -> None:
         """with_continue.
 
         :keyword continue_parameter: Required.
@@ -5912,7 +5349,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5930,7 +5367,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5946,9 +5386,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_def(  # pylint: disable=inconsistent-return-statements
-        self, *, def_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_def(self, *, def_parameter: str, **kwargs: Any) -> None:
         """with_def.
 
         :keyword def_parameter: Required.
@@ -5957,7 +5395,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5975,7 +5413,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -5991,9 +5432,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_del(  # pylint: disable=inconsistent-return-statements
-        self, *, del_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_del(self, *, del_parameter: str, **kwargs: Any) -> None:
         """with_del.
 
         :keyword del_parameter: Required.
@@ -6002,7 +5441,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6020,7 +5459,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6036,9 +5478,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, *, elif_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_elif(self, *, elif_parameter: str, **kwargs: Any) -> None:
         """with_elif.
 
         :keyword elif_parameter: Required.
@@ -6047,7 +5487,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6065,7 +5505,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6081,9 +5524,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_else(  # pylint: disable=inconsistent-return-statements
-        self, *, else_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_else(self, *, else_parameter: str, **kwargs: Any) -> None:
         """with_else.
 
         :keyword else_parameter: Required.
@@ -6092,7 +5533,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6110,7 +5551,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6126,9 +5570,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_except(  # pylint: disable=inconsistent-return-statements
-        self, *, except_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_except(self, *, except_parameter: str, **kwargs: Any) -> None:
         """with_except.
 
         :keyword except_parameter: Required.
@@ -6137,7 +5579,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6155,7 +5597,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6171,9 +5616,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, *, exec_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_exec(self, *, exec_parameter: str, **kwargs: Any) -> None:
         """with_exec.
 
         :keyword exec_parameter: Required.
@@ -6182,7 +5625,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6200,7 +5643,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6216,9 +5662,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, *, finally_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_finally(self, *, finally_parameter: str, **kwargs: Any) -> None:
         """with_finally.
 
         :keyword finally_parameter: Required.
@@ -6227,7 +5671,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6245,7 +5689,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6261,9 +5708,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_for(  # pylint: disable=inconsistent-return-statements
-        self, *, for_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_for(self, *, for_parameter: str, **kwargs: Any) -> None:
         """with_for.
 
         :keyword for_parameter: Required.
@@ -6272,7 +5717,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6290,7 +5735,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6306,9 +5754,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_from(  # pylint: disable=inconsistent-return-statements
-        self, *, from_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_from(self, *, from_parameter: str, **kwargs: Any) -> None:
         """with_from.
 
         :keyword from_parameter: Required.
@@ -6317,7 +5763,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6335,7 +5781,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6351,9 +5800,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_global(  # pylint: disable=inconsistent-return-statements
-        self, *, global_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_global(self, *, global_parameter: str, **kwargs: Any) -> None:
         """with_global.
 
         :keyword global_parameter: Required.
@@ -6362,7 +5809,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6380,7 +5827,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6396,9 +5846,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_if(  # pylint: disable=inconsistent-return-statements
-        self, *, if_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_if(self, *, if_parameter: str, **kwargs: Any) -> None:
         """with_if.
 
         :keyword if_parameter: Required.
@@ -6407,7 +5855,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6425,7 +5873,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6441,9 +5892,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_import(  # pylint: disable=inconsistent-return-statements
-        self, *, import_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_import(self, *, import_parameter: str, **kwargs: Any) -> None:
         """with_import.
 
         :keyword import_parameter: Required.
@@ -6452,7 +5901,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6470,7 +5919,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6486,9 +5938,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_in(  # pylint: disable=inconsistent-return-statements
-        self, *, in_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_in(self, *, in_parameter: str, **kwargs: Any) -> None:
         """with_in.
 
         :keyword in_parameter: Required.
@@ -6497,7 +5947,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6515,7 +5965,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6531,9 +5984,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_is(  # pylint: disable=inconsistent-return-statements
-        self, *, is_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_is(self, *, is_parameter: str, **kwargs: Any) -> None:
         """with_is.
 
         :keyword is_parameter: Required.
@@ -6542,7 +5993,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6560,7 +6011,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6576,9 +6030,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, *, lambda_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_lambda(self, *, lambda_parameter: str, **kwargs: Any) -> None:
         """with_lambda.
 
         :keyword lambda_parameter: Required.
@@ -6587,7 +6039,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6605,7 +6057,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6621,9 +6076,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_not(  # pylint: disable=inconsistent-return-statements
-        self, *, not_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_not(self, *, not_parameter: str, **kwargs: Any) -> None:
         """with_not.
 
         :keyword not_parameter: Required.
@@ -6632,7 +6085,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6650,7 +6103,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6666,9 +6122,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_or(  # pylint: disable=inconsistent-return-statements
-        self, *, or_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_or(self, *, or_parameter: str, **kwargs: Any) -> None:
         """with_or.
 
         :keyword or_parameter: Required.
@@ -6677,7 +6131,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6695,7 +6149,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6711,9 +6168,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, *, pass_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_pass(self, *, pass_parameter: str, **kwargs: Any) -> None:
         """with_pass.
 
         :keyword pass_parameter: Required.
@@ -6722,7 +6177,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6740,7 +6195,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6756,9 +6214,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, *, raise_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_raise(self, *, raise_parameter: str, **kwargs: Any) -> None:
         """with_raise.
 
         :keyword raise_parameter: Required.
@@ -6767,7 +6223,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6785,7 +6241,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6801,9 +6260,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_return(  # pylint: disable=inconsistent-return-statements
-        self, *, return_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_return(self, *, return_parameter: str, **kwargs: Any) -> None:
         """with_return.
 
         :keyword return_parameter: Required.
@@ -6812,7 +6269,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6830,7 +6287,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6846,9 +6306,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_try(  # pylint: disable=inconsistent-return-statements
-        self, *, try_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_try(self, *, try_parameter: str, **kwargs: Any) -> None:
         """with_try.
 
         :keyword try_parameter: Required.
@@ -6857,7 +6315,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6875,7 +6333,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6891,9 +6352,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_while(  # pylint: disable=inconsistent-return-statements
-        self, *, while_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_while(self, *, while_parameter: str, **kwargs: Any) -> None:
         """with_while.
 
         :keyword while_parameter: Required.
@@ -6902,7 +6361,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6920,7 +6379,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6936,9 +6398,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_with(  # pylint: disable=inconsistent-return-statements
-        self, *, with_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_with(self, *, with_parameter: str, **kwargs: Any) -> None:
         """with_with.
 
         :keyword with_parameter: Required.
@@ -6947,7 +6407,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6965,7 +6425,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -6981,9 +6444,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, *, yield_parameter: str, **kwargs: Any
-    ) -> None:
+    async def with_yield(self, *, yield_parameter: str, **kwargs: Any) -> None:
         """with_yield.
 
         :keyword yield_parameter: Required.
@@ -6992,7 +6453,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7010,7 +6471,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access
@@ -7026,9 +6490,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def with_cancellation_token(  # pylint: disable=inconsistent-return-statements
-        self, *, cancellation_token: str, **kwargs: Any
-    ) -> None:
+    async def with_cancellation_token(self, *, cancellation_token: str, **kwargs: Any) -> None:
         """with_cancellation_token.
 
         :keyword cancellation_token: Required.
@@ -7037,7 +6499,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -7055,7 +6517,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # pylint: disable=protected-access

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar, Union
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar, Union
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,7 +30,7 @@ from ...operations._formdataurlencoded_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -56,7 +55,7 @@ class FormdataurlencodedOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def update_pet_with_form(  # pylint: disable=inconsistent-return-statements
+    async def update_pet_with_form(
         self,
         pet_id: int,
         pet_type: Union[str, _models.PetType],
@@ -88,7 +87,7 @@ class FormdataurlencodedOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -137,9 +136,7 @@ class FormdataurlencodedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def partial_constant_body(  # pylint: disable=inconsistent-return-statements
-        self, service: str, access_token: str, **kwargs: Any
-    ) -> None:
+    async def partial_constant_body(self, service: str, access_token: str, **kwargs: Any) -> None:
         """Test a partially constant formdata body. Pass in { grant_type: 'access_token', access_token:
         'foo', service: 'bar' } to pass the test.
 
@@ -152,7 +149,7 @@ class FormdataurlencodedOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

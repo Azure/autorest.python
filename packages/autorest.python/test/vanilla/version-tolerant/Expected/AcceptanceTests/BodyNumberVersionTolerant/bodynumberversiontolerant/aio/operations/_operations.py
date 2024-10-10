@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -52,7 +52,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -82,7 +82,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -130,7 +130,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -178,7 +178,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -226,7 +226,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -267,9 +267,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_float(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_big_float(self, number_body: float, **kwargs: Any) -> None:
         """Put big float value 3.402823e+20.
 
         :param number_body: number body. Required.
@@ -278,7 +276,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -324,7 +322,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -365,9 +363,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_big_double(self, number_body: float, **kwargs: Any) -> None:
         """Put big double value 2.5976931e+101.
 
         :param number_body: number body. Required.
@@ -376,7 +372,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -422,7 +418,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -463,16 +459,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_positive_decimal(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def put_big_double_positive_decimal(self, **kwargs: Any) -> None:
         """Put big double value 99999999.99.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -519,7 +513,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -560,16 +554,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_double_negative_decimal(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def put_big_double_negative_decimal(self, **kwargs: Any) -> None:
         """Put big double value -99999999.99.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -616,7 +608,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -657,9 +649,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_big_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put big decimal value 2.5976931e+101.
 
         :param number_body: number body. Required.
@@ -668,7 +658,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -714,7 +704,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -755,16 +745,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_positive_decimal(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def put_big_decimal_positive_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value 99999999.99.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -811,7 +799,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -852,16 +840,14 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_big_decimal_negative_decimal(  # pylint: disable=inconsistent-return-statements
-        self, **kwargs: Any
-    ) -> None:
+    async def put_big_decimal_negative_decimal(self, **kwargs: Any) -> None:
         """Put big decimal value -99999999.99.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -908,7 +894,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -949,9 +935,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_small_float(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_small_float(self, number_body: float, **kwargs: Any) -> None:
         """Put small float value 3.402823e-20.
 
         :param number_body: number body. Required.
@@ -960,7 +944,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1006,7 +990,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1047,9 +1031,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_small_double(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_small_double(self, number_body: float, **kwargs: Any) -> None:
         """Put small double value 2.5976931e-101.
 
         :param number_body: number body. Required.
@@ -1058,7 +1040,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1104,7 +1086,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1145,9 +1127,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         return cast(float, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_small_decimal(  # pylint: disable=inconsistent-return-statements
-        self, number_body: float, **kwargs: Any
-    ) -> None:
+    async def put_small_decimal(self, number_body: float, **kwargs: Any) -> None:
         """Put small decimal value 2.5976931e-101.
 
         :param number_body: number body. Required.
@@ -1156,7 +1136,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1202,7 +1182,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :rtype: float
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

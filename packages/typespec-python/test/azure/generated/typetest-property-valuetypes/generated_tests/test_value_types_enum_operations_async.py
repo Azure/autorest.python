@@ -15,7 +15,7 @@ from testpreparer_async import ValueTypesClientTestBaseAsync
 class TestValueTypesEnumOperationsAsync(ValueTypesClientTestBaseAsync):
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, valuetypes_endpoint):
+    async def test_enum_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.enum.get()
 
@@ -24,7 +24,7 @@ class TestValueTypesEnumOperationsAsync(ValueTypesClientTestBaseAsync):
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, valuetypes_endpoint):
+    async def test_enum_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.enum.put(
             body={"property": "str"},

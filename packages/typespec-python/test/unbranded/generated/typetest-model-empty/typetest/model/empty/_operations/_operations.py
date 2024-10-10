@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +32,7 @@ from .._vendor import EmptyClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -90,9 +89,7 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
 class EmptyClientOperationsMixin(EmptyClientMixinABC):
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -103,18 +100,10 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {}
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -128,9 +117,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         """
 
     @overload
-    def put_empty(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_empty(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_empty.
 
         :param input: Required.
@@ -153,14 +140,8 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                input = {}
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -187,7 +168,10 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -210,7 +194,7 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :rtype: ~typetest.model.empty.models.EmptyOutput
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -227,7 +211,10 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -269,12 +256,6 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {}
         """
 
     @overload
@@ -319,14 +300,8 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
         :return: EmptyInputOutput. The EmptyInputOutput is compatible with MutableMapping
         :rtype: ~typetest.model.empty.models.EmptyInputOutput
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {}
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -353,7 +328,10 @@ class EmptyClientOperationsMixin(EmptyClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access

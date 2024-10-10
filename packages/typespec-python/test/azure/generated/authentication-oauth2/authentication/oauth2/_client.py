@@ -19,7 +19,6 @@ from ._operations import OAuth2ClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials import TokenCredential
 
 
@@ -35,7 +34,8 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(
         self, credential: "TokenCredential", *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = OAuth2ClientConfiguration(credential=credential, **kwargs)
+        _endpoint = "{endpoint}"
+        self._config = OAuth2ClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -53,7 +53,7 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -78,7 +78,11 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     def close(self) -> None:

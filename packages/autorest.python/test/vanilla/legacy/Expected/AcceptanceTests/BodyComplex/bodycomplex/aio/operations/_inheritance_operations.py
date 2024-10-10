@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -29,7 +28,7 @@ from ...operations._inheritance_operations import build_get_valid_request, build
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -61,7 +60,7 @@ class InheritanceOperations:
         :rtype: ~bodycomplex.models.Siamese
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -100,7 +99,7 @@ class InheritanceOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
@@ -118,7 +117,7 @@ class InheritanceOperations:
         """
 
     @overload
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
+    async def put_valid(
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that extend others.
@@ -136,9 +135,7 @@ class InheritanceOperations:
         """
 
     @distributed_trace_async
-    async def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: Union[_models.Siamese, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_valid(self, complex_body: Union[_models.Siamese, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that extend others.
 
         :param complex_body: Please put a siamese with id=2, name="Siameee", color=green,
@@ -150,7 +147,7 @@ class InheritanceOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

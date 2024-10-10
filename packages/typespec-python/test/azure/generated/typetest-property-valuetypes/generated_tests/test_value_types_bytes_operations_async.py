@@ -15,7 +15,7 @@ from testpreparer_async import ValueTypesClientTestBaseAsync
 class TestValueTypesBytesOperationsAsync(ValueTypesClientTestBaseAsync):
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, valuetypes_endpoint):
+    async def test_bytes_get(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.bytes.get()
 
@@ -24,7 +24,7 @@ class TestValueTypesBytesOperationsAsync(ValueTypesClientTestBaseAsync):
 
     @ValueTypesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, valuetypes_endpoint):
+    async def test_bytes_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.bytes.put(
             body={"property": bytes("bytes", encoding="utf-8")},

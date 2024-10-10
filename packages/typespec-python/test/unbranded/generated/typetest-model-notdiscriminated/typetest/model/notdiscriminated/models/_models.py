@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -16,7 +15,6 @@ from .._model_base import rest_field
 class Pet(_model_base.Model):
     """This is base model for not-discriminated normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -46,7 +44,6 @@ class Pet(_model_base.Model):
 class Cat(Pet):
     """The second level model in the normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str
@@ -79,7 +76,6 @@ class Cat(Pet):
 class Siamese(Cat):
     """The third level model in the normal multiple levels inheritance.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar name: Required.
     :vartype name: str

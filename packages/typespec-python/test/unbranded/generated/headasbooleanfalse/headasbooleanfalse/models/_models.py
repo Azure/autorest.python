@@ -1,5 +1,4 @@
 # coding=utf-8
-# pylint: disable=too-many-lines
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
 # Licensed under the MIT License. See License.txt in the project root for license information.
@@ -35,7 +34,6 @@ class VisibilityModel(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    All required parameters must be populated in order to send to server.
 
     :ivar read_prop: Required string, illustrating a readonly property. Required.
     :vartype read_prop: str

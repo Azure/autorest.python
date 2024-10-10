@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -42,7 +41,7 @@ from .._vendor import MultiapiServiceClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -55,9 +54,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
             return ""
 
     @distributed_trace_async
-    async def test_one(  # pylint: disable=inconsistent-return-statements
-        self, id: int, message: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def test_one(self, id: int, message: Optional[str] = None, **kwargs: Any) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter. Required.
@@ -68,7 +65,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -111,7 +108,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     async def _test_lro_initial(
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -266,7 +263,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -324,6 +321,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+        # pylint: disable=line-too-long
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -342,7 +340,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
 
         cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -447,9 +445,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         )
 
     @distributed_trace_async
-    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
-        self, greeting_in_english: str, **kwargs: Any
-    ) -> None:
+    async def test_different_calls(self, greeting_in_english: str, **kwargs: Any) -> None:
         """Has added parameters across the API versions.
 
         :param greeting_in_english: pass in 'hello' to pass test. Required.
@@ -458,7 +454,7 @@ class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

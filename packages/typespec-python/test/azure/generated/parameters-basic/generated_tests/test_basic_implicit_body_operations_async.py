@@ -15,7 +15,7 @@ from testpreparer_async import BasicClientTestBaseAsync
 class TestBasicImplicitBodyOperationsAsync(BasicClientTestBaseAsync):
     @BasicPreparer()
     @recorded_by_proxy_async
-    async def test_simple(self, basic_endpoint):
+    async def test_implicit_body_simple(self, basic_endpoint):
         client = self.create_async_client(endpoint=basic_endpoint)
         response = await client.implicit_body.simple(
             body={"name": "str"},

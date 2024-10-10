@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Literal, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -48,7 +48,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -79,7 +79,7 @@ class StringOperations:
         :rtype: str or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -120,9 +120,7 @@ class StringOperations:
         return cast(Optional[str], deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_null(  # pylint: disable=inconsistent-return-statements
-        self, string_body: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_null(self, string_body: Optional[str] = None, **kwargs: Any) -> None:
         """Set string value null.
 
         :param string_body: string body. Default value is None.
@@ -131,7 +129,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -180,7 +178,7 @@ class StringOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -221,14 +219,14 @@ class StringOperations:
         return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_empty(self, **kwargs: Any) -> None:
         """Set string value empty ''.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -275,7 +273,7 @@ class StringOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -316,14 +314,14 @@ class StringOperations:
         return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_mbcs(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_mbcs(self, **kwargs: Any) -> None:
         """Set string value mbcs '啊齄丂狛狜隣郎隣兀﨩ˊ〞〡￤℡㈱‐ー﹡﹢﹫、〓ⅰⅹ⒈€㈠㈩ⅠⅫ！￣ぁんァヶΑ︴АЯаяāɡㄅㄩ─╋︵﹄︻︱︳︴ⅰⅹɑɡ〇〾⿻⺁䜣€'.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -377,7 +375,7 @@ class StringOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -418,7 +416,7 @@ class StringOperations:
         return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_whitespace(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put_whitespace(self, **kwargs: Any) -> None:
         """Set String value with leading and trailing whitespace
         ':code:`<tab>`:code:`<space>`:code:`<space>`Now is the time for all good men to come to the aid
         of their country:code:`<tab>`:code:`<space>`:code:`<space>`'.
@@ -427,7 +425,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -476,7 +474,7 @@ class StringOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -524,7 +522,7 @@ class StringOperations:
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -572,7 +570,7 @@ class StringOperations:
         :rtype: bytes
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -613,9 +611,7 @@ class StringOperations:
         return cast(bytes, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_base64_url_encoded(  # pylint: disable=inconsistent-return-statements
-        self, string_body: bytes, **kwargs: Any
-    ) -> None:
+    async def put_base64_url_encoded(self, string_body: bytes, **kwargs: Any) -> None:
         """Put value that is base64url encoded.
 
         :param string_body: string body. Required.
@@ -624,7 +620,7 @@ class StringOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -670,7 +666,7 @@ class StringOperations:
         :rtype: bytes or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -736,7 +732,7 @@ class EnumOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -777,9 +773,7 @@ class EnumOperations:
         return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_not_expandable(  # pylint: disable=inconsistent-return-statements
-        self, string_body: str, **kwargs: Any
-    ) -> None:
+    async def put_not_expandable(self, string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param string_body: string body. Known values are: "red color", "green-color", and
@@ -789,7 +783,7 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -835,7 +829,7 @@ class EnumOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -876,9 +870,7 @@ class EnumOperations:
         return cast(str, deserialized)  # type: ignore
 
     @distributed_trace_async
-    async def put_referenced(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: str, **kwargs: Any
-    ) -> None:
+    async def put_referenced(self, enum_string_body: str, **kwargs: Any) -> None:
         """Sends value 'red color' from enumeration of 'red color', 'green-color', 'blue_color'.
 
         :param enum_string_body: enum string body. Known values are: "red color", "green-color", and
@@ -888,7 +880,7 @@ class EnumOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -943,7 +935,7 @@ class EnumOperations:
                     "field1": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -984,7 +976,7 @@ class EnumOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @overload
-    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+    async def put_referenced_constant(
         self, enum_string_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
@@ -1009,7 +1001,7 @@ class EnumOperations:
         """
 
     @overload
-    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
+    async def put_referenced_constant(
         self, enum_string_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Sends value 'green-color' from a constant.
@@ -1025,9 +1017,7 @@ class EnumOperations:
         """
 
     @distributed_trace_async
-    async def put_referenced_constant(  # pylint: disable=inconsistent-return-statements
-        self, enum_string_body: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_referenced_constant(self, enum_string_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Sends value 'green-color' from a constant.
 
         :param enum_string_body: enum string body. Is either a JSON type or a IO[bytes] type. Required.
@@ -1045,7 +1035,7 @@ class EnumOperations:
                     "field1": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

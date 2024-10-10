@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -31,7 +31,7 @@ from .._vendor import NamingClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_client_request(**kwargs: Any) -> HttpRequest:
+def build_client_model_client_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -54,7 +54,7 @@ def build_model_client_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_language_request(**kwargs: Any) -> HttpRequest:
+def build_client_model_language_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -174,14 +174,14 @@ def build_naming_response_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ModelOperations:
+class ClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.NamingClient`'s
-        :attr:`model` attribute.
+        :attr:`client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs):
@@ -192,9 +192,7 @@ class ModelOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -205,20 +203,10 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -232,9 +220,7 @@ class ModelOperations:
         """
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -257,16 +243,8 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -287,13 +265,16 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_request(
+        _request = build_client_model_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -310,9 +291,7 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -323,20 +302,10 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -350,9 +319,7 @@ class ModelOperations:
         """
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -375,16 +342,8 @@ class ModelOperations:
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -405,13 +364,16 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_language_request(
+        _request = build_client_model_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -456,7 +418,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -478,7 +440,10 @@ class UnionEnumOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -505,7 +470,7 @@ class UnionEnumOperations:
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -527,7 +492,10 @@ class UnionEnumOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -553,7 +521,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -570,7 +538,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -595,7 +566,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -613,7 +584,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -630,9 +604,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -643,20 +615,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -670,9 +632,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    def client(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -695,16 +655,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -731,7 +683,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -748,7 +703,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
+    def language(
         self, body: _models.LanguageClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
@@ -761,20 +716,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -788,9 +733,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    def language(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -813,16 +756,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "defaultName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -849,7 +784,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -866,7 +804,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    def compatible_with_encoded_name(
         self, body: _models.ClientNameAndJsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -879,18 +817,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
 
     @overload
-    def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    def compatible_with_encoded_name(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -906,7 +836,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         """
 
     @overload
-    def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
+    def compatible_with_encoded_name(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -932,16 +862,8 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "wireName": bool
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -968,7 +890,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -993,7 +918,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1011,7 +936,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -1034,7 +962,7 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1051,7 +979,10 @@ class NamingClientOperationsMixin(NamingClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterator, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -36,7 +35,7 @@ from .._vendor import RpcClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -72,7 +71,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
     def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -100,7 +99,10 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -144,19 +146,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -176,14 +165,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @overload
@@ -203,14 +184,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
 
     @distributed_trace
@@ -228,19 +201,6 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~azurecore.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "prompt": "str"
-                }
-
-                # response body for status code(s): 202
-                response == {
-                    "data": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -269,8 +229,14 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:

@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalDurationOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_duration_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.duration.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalDurationOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_duration_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.duration.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalDurationOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_duration_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.duration.put_all(
             body={"property": "1 day, 0:00:00"},
@@ -43,7 +43,7 @@ class TestOptionalDurationOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_duration_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.duration.put_default(
             body={"property": "1 day, 0:00:00"},

@@ -16,6 +16,7 @@ export interface PythonEmitterOptions {
     "generate-test"?: boolean;
     "debug"?: boolean;
     "flavor"?: "azure";
+    "examples-dir"?: string;
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
@@ -41,6 +42,7 @@ const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
         "generate-test": { type: "boolean", nullable: true },
         "debug": { type: "boolean", nullable: true },
         "flavor": { type: "string", nullable: true },
+        "examples-dir": { type: "string", nullable: true, format: "absolute-path" },
     },
     required: [],
 };

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,7 +33,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -172,44 +171,8 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -230,7 +193,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -287,75 +253,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -385,42 +282,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -450,42 +311,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @distributed_trace
@@ -513,77 +338,8 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200, 201
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -614,7 +370,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -671,75 +430,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -769,42 +459,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @overload
@@ -834,42 +488,6 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
 
     @distributed_trace
@@ -897,77 +515,8 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
         :rtype:
          ~azure.resourcemanager.models.commontypes.managedidentity.models.ManagedIdentityTrackedResource
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                properties = {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str",
-                    "id": "str",
-                    "identity": {
-                        "type": "str",
-                        "principalId": "str",
-                        "tenantId": "str",
-                        "userAssignedIdentities": {
-                            "str": {
-                                "clientId": "str",
-                                "principalId": "str"
-                            }
-                        }
-                    },
-                    "name": "str",
-                    "properties": {
-                        "provisioningState": "str"
-                    },
-                    "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
-                        "createdBy": "str",
-                        "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
-                        "lastModifiedBy": "str",
-                        "lastModifiedByType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -998,7 +547,10 @@ class ManagedIdentityTrackedResourcesOperations:  # pylint: disable=name-too-lon
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access

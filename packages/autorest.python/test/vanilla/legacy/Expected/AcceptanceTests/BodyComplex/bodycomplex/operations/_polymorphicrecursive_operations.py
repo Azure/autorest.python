@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from msrest import Serializer
 
@@ -30,7 +29,7 @@ from .. import models as _models
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -95,7 +94,7 @@ class PolymorphicrecursiveOperations:
         :rtype: ~bodycomplex.models.Fish
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -134,9 +133,7 @@ class PolymorphicrecursiveOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -202,9 +199,7 @@ class PolymorphicrecursiveOperations:
         """
 
     @overload
-    def put_valid(  # pylint: disable=inconsistent-return-statements
-        self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_valid(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
         :param complex_body: Please put a salmon that looks like this:
@@ -333,7 +328,7 @@ class PolymorphicrecursiveOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

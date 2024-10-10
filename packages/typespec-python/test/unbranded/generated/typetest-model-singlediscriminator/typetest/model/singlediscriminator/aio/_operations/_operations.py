@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -41,7 +40,7 @@ from .._vendor import SingleDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -55,48 +54,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -113,7 +72,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -142,9 +104,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -155,52 +115,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -214,9 +132,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_model.
 
         :param input: Required.
@@ -229,9 +145,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_model(self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_model.
 
         :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.
@@ -239,48 +153,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -307,7 +181,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -329,48 +206,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -387,7 +224,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -416,7 +256,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         return deserialized  # type: ignore
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+    async def put_recursive_model(
         self, input: _models.Bird, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
@@ -429,52 +269,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_recursive_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Required.
@@ -488,7 +286,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         """
 
     @overload
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
+    async def put_recursive_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put_recursive_model.
@@ -503,9 +301,7 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put_recursive_model(  # pylint: disable=inconsistent-return-statements
-        self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_recursive_model(self, input: Union[_models.Bird, JSON, IO[bytes]], **kwargs: Any) -> None:
         """put_recursive_model.
 
         :param input: Is one of the following types: Bird, JSON, IO[bytes] Required.
@@ -513,48 +309,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -581,7 +337,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -603,48 +362,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -661,7 +380,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -695,48 +417,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Bird. The Bird is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Bird
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "eagle":
-                bird = {
-                    "kind": "eagle",
-                    "wingspan": 0,
-                    "friends": [
-                        bird
-                    ],
-                    "hate": {
-                        "str": bird
-                    },
-                    "partner": bird
-                }
-
-                # JSON input template for discriminator value "goose":
-                bird = {
-                    "kind": "goose",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "seagull":
-                bird = {
-                    "kind": "seagull",
-                    "wingspan": 0
-                }
-
-                # JSON input template for discriminator value "sparrow":
-                bird = {
-                    "kind": "sparrow",
-                    "wingspan": 0
-                }
-
-                # response body for status code(s): 200
-                response == bird
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -753,7 +435,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -787,23 +472,8 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
         :return: Dinosaur. The Dinosaur is compatible with MutableMapping
         :rtype: ~typetest.model.singlediscriminator.models.Dinosaur
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "t-rex":
-                dinosaur = {
-                    "kind": "t-rex",
-                    "size": 0
-                }
-
-                # response body for status code(s): 200
-                response == dinosaur
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -820,7 +490,10 @@ class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access

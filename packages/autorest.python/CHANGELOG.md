@@ -1,5 +1,74 @@
 # Release
 
+## 6.25.0
+
+No changes, version bump only.
+
+## 6.24.0
+
+### Features
+
+- [#2856](https://github.com/Azure/autorest.python/pull/2856) Depend completely on `@typespec/http-client-python`
+
+
+## 6.23.0
+
+No changes, version bump only.
+
+## 6.22.0
+
+### Bug Fixes
+
+- [#2835](https://github.com/Azure/autorest.python/pull/2835) Fix lint issue "line-too-long" for docstring in operation
+
+
+## 6.21.1
+
+### Bug Fixes
+
+- [#2831](https://github.com/Azure/autorest.python/pull/2831) Add pylint disable for "unsubscriptable-object"
+
+
+## 6.21.0
+
+### Bug Fixes
+
+- [#2814](https://github.com/Azure/autorest.python/pull/2814) Fix pylint errors in serialization.py
+
+
+## 6.20.0
+
+No changes, version bump only.
+
+## 6.19.0
+
+### Bug Fixes
+
+- [#2766](https://github.com/Azure/autorest.python/pull/2766) Fix crash when paging operation return type has parent type
+
+### Features
+
+- [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
+
+
+## 6.18.0
+
+### Features
+
+- [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
+
+
+## 6.17.1
+
+### Bug Fixes
+
+- [#2727](https://github.com/Azure/autorest.python/pull/2727) Fix vendor import for mixin operation group when there are multi sub-clients
+
+
+## 6.17.0
+
+No changes, version bump only.
+
 ## 6.16.0
 
 ### Bug Fixes

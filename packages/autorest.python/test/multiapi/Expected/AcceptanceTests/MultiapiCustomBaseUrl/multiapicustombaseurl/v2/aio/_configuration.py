@@ -11,7 +11,6 @@ from typing import Any, TYPE_CHECKING
 from azure.core.pipeline import policies
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from azure.core.credentials_async import AsyncTokenCredential
 
 VERSION = "unknown"

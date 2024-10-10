@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -32,7 +31,7 @@ from .._vendor import ResiliencyServiceDrivenClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -43,15 +42,15 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         method_added_on="v2",
-    )  # pylint: disable=inconsistent-return-statements
-    async def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    )
+    async def add_operation(self, **kwargs: Any) -> None:
         """Added operation.
 
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -103,7 +102,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -147,10 +146,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
-    async def from_one_required(  # pylint: disable=inconsistent-return-statements
-        self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    )
+    async def from_one_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Operation that grew up from accepting one required parameter to accepting a required parameter
         and an optional parameter.
 
@@ -162,7 +159,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -206,8 +203,8 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
-    async def from_one_optional(  # pylint: disable=inconsistent-return-statements
+    )
+    async def from_one_optional(
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Tests that we can grow up an operation from accepting one optional parameter to accepting two
@@ -221,7 +218,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

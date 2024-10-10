@@ -14,7 +14,7 @@ from testpreparer import OptionalClientTestBase, OptionalPreparer
 class TestOptionalStringOperations(OptionalClientTestBase):
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_all(self, optional_endpoint):
+    def test_string_get_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.string.get_all()
 
@@ -23,7 +23,7 @@ class TestOptionalStringOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_get_default(self, optional_endpoint):
+    def test_string_get_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.string.get_default()
 
@@ -32,7 +32,7 @@ class TestOptionalStringOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_all(self, optional_endpoint):
+    def test_string_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.string.put_all(
             body={"property": "str"},
@@ -43,7 +43,7 @@ class TestOptionalStringOperations(OptionalClientTestBase):
 
     @OptionalPreparer()
     @recorded_by_proxy
-    def test_put_default(self, optional_endpoint):
+    def test_string_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.string.put_default(
             body={"property": "str"},

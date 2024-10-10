@@ -15,7 +15,7 @@ from testpreparer_async import AccessClientTestBaseAsync
 class TestAccessSharedModelInOperationOperationsAsync(AccessClientTestBaseAsync):
     @AccessPreparer()
     @recorded_by_proxy_async
-    async def test_public(self, access_endpoint):
+    async def test_shared_model_in_operation_public(self, access_endpoint):
         client = self.create_async_client(endpoint=access_endpoint)
         response = await client.shared_model_in_operation.public(
             name="str",

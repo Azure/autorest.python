@@ -15,7 +15,7 @@ from testpreparer_async import AdditionalPropertiesClientTestBaseAsync
 class TestAdditionalPropertiesExtendsDifferentSpreadModelOperationsAsync(AdditionalPropertiesClientTestBaseAsync):
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_get(self, additionalproperties_endpoint):
+    async def test_extends_different_spread_model_get(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_different_spread_model.get()
 
@@ -24,7 +24,7 @@ class TestAdditionalPropertiesExtendsDifferentSpreadModelOperationsAsync(Additio
 
     @AdditionalPropertiesPreparer()
     @recorded_by_proxy_async
-    async def test_put(self, additionalproperties_endpoint):
+    async def test_extends_different_spread_model_put(self, additionalproperties_endpoint):
         client = self.create_async_client(endpoint=additionalproperties_endpoint)
         response = await client.extends_different_spread_model.put(
             body={"derivedProp": {"state": "str"}, "knownProp": "str"},

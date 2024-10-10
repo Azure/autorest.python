@@ -53,6 +53,7 @@ class MultiapiServiceClientOperationsMixin(object):
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
     ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+        # pylint: disable=line-too-long
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
@@ -79,7 +80,7 @@ class MultiapiServiceClientOperationsMixin(object):
         mixin_instance._deserialize = Deserializer(self._models_dict(api_version))
         return await mixin_instance.begin_test_lro_and_paging(client_request_id, test_lro_and_paging_options, **kwargs)
 
-    async def test_different_calls(  # pylint: disable=inconsistent-return-statements
+    async def test_different_calls(
         self,
         greeting_in_english: str,
         greeting_in_chinese: Optional[str] = None,
@@ -118,9 +119,7 @@ class MultiapiServiceClientOperationsMixin(object):
             greeting_in_english, greeting_in_chinese, greeting_in_french, **kwargs
         )
 
-    async def test_one(  # pylint: disable=inconsistent-return-statements
-        self, id: int, message: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def test_one(self, id: int, message: Optional[str] = None, **kwargs: Any) -> None:
         """TestOne should be in an FirstVersionOperationsMixin.
 
         :param id: An int parameter. Required.

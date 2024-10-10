@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -61,7 +61,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
@@ -85,9 +85,7 @@ class ImplicitOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_required_path(  # pylint: disable=inconsistent-return-statements
-        self, path_parameter: str, **kwargs: Any
-    ) -> None:
+    async def get_required_path(self, path_parameter: str, **kwargs: Any) -> None:
         """Test implicitly required path parameter.
 
         :param path_parameter: Required.
@@ -96,7 +94,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -131,9 +129,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_query(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_query(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
 
         :keyword query_parameter: Default value is None.
@@ -142,7 +138,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -177,9 +173,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_header(  # pylint: disable=inconsistent-return-statements
-        self, *, query_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_header(self, *, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional header parameter.
 
         :keyword query_parameter: Default value is None.
@@ -188,7 +182,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -223,9 +217,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
@@ -234,7 +226,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -276,9 +268,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_binary_body(self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
@@ -287,7 +277,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -326,14 +316,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_required_global_path(self, **kwargs: Any) -> None:
         """Test implicitly required path parameter.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -368,14 +358,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_required_global_query(self, **kwargs: Any) -> None:
         """Test implicitly required query parameter.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -410,14 +400,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_optional_global_query(self, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
 
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -470,9 +460,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_binary_body(self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any) -> None:
         """Test explicitly optional body parameter.
 
         :param body_parameter: Default value is None.
@@ -481,7 +469,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -520,9 +508,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_required_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: IO[bytes], **kwargs: Any
-    ) -> None:
+    async def put_required_binary_body(self, body_parameter: IO[bytes], **kwargs: Any) -> None:
         """Test explicitly required body parameter.
 
         :param body_parameter: Required.
@@ -531,7 +517,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -570,9 +556,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_integer_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: int, **kwargs: Any
-    ) -> None:
+    async def post_required_integer_parameter(self, body_parameter: int, **kwargs: Any) -> None:
         """Test explicitly required integer. Please put null and the client library should throw before
         the request is sent.
 
@@ -582,7 +566,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -621,9 +605,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[int] = None, **kwargs: Any
-    ) -> None:
+    async def post_optional_integer_parameter(self, body_parameter: Optional[int] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put null.
 
         :param body_parameter: Default value is None.
@@ -632,7 +614,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -674,7 +656,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_integer_property(
         self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
@@ -699,7 +681,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_integer_property(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
@@ -716,9 +698,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_integer_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_integer_property(self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required integer. Please put a valid int-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -736,7 +716,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "value": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -782,7 +762,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_integer_property(
         self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -806,7 +786,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_integer_property(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -822,7 +802,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_integer_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_integer_property(
         self, body_parameter: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid int-wrapper with 'value' = null.
@@ -841,7 +821,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "value": 0
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -890,9 +870,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_integer_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: int, **kwargs: Any
-    ) -> None:
+    async def post_required_integer_header(self, *, header_parameter: int, **kwargs: Any) -> None:
         """Test explicitly required integer. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -902,7 +880,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -937,9 +915,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_integer_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[int] = None, **kwargs: Any
-    ) -> None:
+    async def post_optional_integer_header(self, *, header_parameter: Optional[int] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :keyword header_parameter: Default value is None.
@@ -948,7 +924,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -983,9 +959,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: str, **kwargs: Any
-    ) -> None:
+    async def post_required_string_parameter(self, body_parameter: str, **kwargs: Any) -> None:
         """Test explicitly required string. Please put null and the client library should throw before the
         request is sent.
 
@@ -995,7 +969,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1034,9 +1008,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def post_optional_string_parameter(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test explicitly optional string. Please put null.
 
         :param body_parameter: Default value is None.
@@ -1045,7 +1017,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1087,7 +1059,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_string_property(
         self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
@@ -1112,7 +1084,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_string_property(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
@@ -1129,9 +1101,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_string_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_string_property(self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required string. Please put a valid string-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -1149,7 +1119,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "value": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1195,7 +1165,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_string_property(
         self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -1219,7 +1189,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_string_property(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -1235,7 +1205,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_string_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_string_property(
         self, body_parameter: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a valid string-wrapper with 'value' = null.
@@ -1254,7 +1224,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "value": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1303,9 +1273,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_string_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: str, **kwargs: Any
-    ) -> None:
+    async def post_required_string_header(self, *, header_parameter: str, **kwargs: Any) -> None:
         """Test explicitly required string. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -1315,7 +1283,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1350,9 +1318,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_string_header(  # pylint: disable=inconsistent-return-statements
-        self, *, body_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def post_optional_string_header(self, *, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test explicitly optional string. Please put a header 'headerParameter' => null.
 
         :keyword body_parameter: Default value is None.
@@ -1361,7 +1327,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1396,7 +1362,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_required_class_parameter(
         self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -1422,7 +1388,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_required_class_parameter(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
@@ -1439,9 +1405,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_class_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_class_parameter(self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required complex object. Please put null and the client library should throw
         before the request is sent.
 
@@ -1460,7 +1424,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1506,7 +1470,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_parameter(
         self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1531,7 +1495,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_parameter(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1547,7 +1511,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_class_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_parameter(
         self, body_parameter: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put null.
@@ -1567,7 +1531,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     "name": "str"
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1616,7 +1580,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_class_property(
         self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -1644,7 +1608,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_class_property(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
@@ -1661,9 +1625,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_class_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_class_property(self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required complex object. Please put a valid class-wrapper with 'value' = null
         and the client library should throw before the request is sent.
 
@@ -1684,7 +1646,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1730,7 +1692,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_property(
         self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1757,7 +1719,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_property(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1773,7 +1735,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_class_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_class_property(
         self, body_parameter: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional complex object. Please put a valid class-wrapper with 'value' = null.
@@ -1795,7 +1757,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1844,7 +1806,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_required_array_parameter(
         self, body_parameter: List[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
@@ -1869,7 +1831,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_required_array_parameter(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
@@ -1886,9 +1848,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_array_parameter(self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
@@ -1898,7 +1858,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1944,7 +1904,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_parameter(
         self, body_parameter: Optional[List[str]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -1968,7 +1928,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_parameter(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -1984,7 +1944,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_parameter(
         self, body_parameter: Optional[Union[List[str], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
@@ -1995,7 +1955,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2044,7 +2004,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_array_property(
         self, body_parameter: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
@@ -2071,7 +2031,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
+    async def post_required_array_property(
         self, body_parameter: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
@@ -2088,9 +2048,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def post_required_array_property(self, body_parameter: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
 
@@ -2110,7 +2068,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2156,7 +2114,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_property(
         self, body_parameter: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -2182,7 +2140,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @overload
-    async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_property(
         self, body_parameter: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -2198,7 +2156,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
+    async def post_optional_array_property(
         self, body_parameter: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
@@ -2219,7 +2177,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
                     ]
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2268,9 +2226,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: List[str], **kwargs: Any
-    ) -> None:
+    async def post_required_array_header(self, *, header_parameter: List[str], **kwargs: Any) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -2280,7 +2236,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2315,9 +2271,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
-        self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any
-    ) -> None:
+    async def post_optional_array_header(self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :keyword header_parameter: Default value is None.
@@ -2326,7 +2280,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

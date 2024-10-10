@@ -14,7 +14,7 @@ from testpreparer import ScalarClientTestBase, ScalarPreparer
 class TestScalarBooleanOperations(ScalarClientTestBase):
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_get(self, scalar_endpoint):
+    def test_boolean_get(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.boolean.get()
 
@@ -23,7 +23,7 @@ class TestScalarBooleanOperations(ScalarClientTestBase):
 
     @ScalarPreparer()
     @recorded_by_proxy
-    def test_put(self, scalar_endpoint):
+    def test_boolean_put(self, scalar_endpoint):
         client = self.create_client(endpoint=scalar_endpoint)
         response = client.boolean.put(
             body=bool,

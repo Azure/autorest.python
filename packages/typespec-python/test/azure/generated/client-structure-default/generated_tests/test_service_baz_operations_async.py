@@ -15,7 +15,7 @@ from testpreparer_async import ServiceClientTestBaseAsync
 class TestServiceBazOperationsAsync(ServiceClientTestBaseAsync):
     @ServicePreparer()
     @recorded_by_proxy_async
-    async def test_seven(self, service_endpoint):
+    async def test_baz_foo_seven(self, service_endpoint):
         client = self.create_async_client(endpoint=service_endpoint)
         response = await client.baz.foo.seven()
 

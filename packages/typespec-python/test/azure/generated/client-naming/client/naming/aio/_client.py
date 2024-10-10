@@ -16,14 +16,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ModelOperations, NamingClientOperationsMixin, UnionEnumOperations
+from .operations import ClientModelOperations, NamingClientOperationsMixin, UnionEnumOperations
 
 
 class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
 
-    :ivar model: ModelOperations operations
-    :vartype model: client.naming.aio.operations.ModelOperations
+    :ivar client_model: ClientModelOperations operations
+    :vartype client_model: client.naming.aio.operations.ClientModelOperations
     :ivar union_enum: UnionEnumOperations operations
     :vartype union_enum: client.naming.aio.operations.UnionEnumOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
@@ -33,7 +33,8 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
-        self._config = NamingClientConfiguration(**kwargs)
+        _endpoint = "{endpoint}"
+        self._config = NamingClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -51,12 +52,12 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.client_model = ClientModelOperations(self._client, self._config, self._serialize, self._deserialize)
         self.union_enum = UnionEnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
@@ -80,7 +81,11 @@ class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accep
         """
 
         request_copy = deepcopy(request)
-        request_copy.url = self._client.format_url(request_copy.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
+        request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
     async def close(self) -> None:

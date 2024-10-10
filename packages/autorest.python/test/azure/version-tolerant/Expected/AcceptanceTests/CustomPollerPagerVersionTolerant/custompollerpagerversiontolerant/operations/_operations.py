@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, Literal, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterable, Iterator, Literal, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from custompollerpagerdefinitions import CustomPager, CustomPoller
@@ -37,7 +37,7 @@ from .._serialization import Serializer
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -568,7 +568,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -650,7 +650,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -732,7 +732,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -814,7 +814,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -964,7 +964,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1057,7 +1057,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1147,7 +1147,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1236,7 +1236,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         query_constant: Literal[True] = kwargs.pop("query_constant", _params.pop("queryConstant", True))
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1318,7 +1318,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1402,7 +1402,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         maxpagesize = kwargs.pop("maxpagesize", None)
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1493,7 +1493,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1587,7 +1587,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1673,7 +1673,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1756,7 +1756,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1838,7 +1838,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1920,7 +1920,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2002,7 +2002,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2088,7 +2088,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2174,7 +2174,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2233,7 +2233,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def _get_multiple_pages_lro_initial(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2309,7 +2309,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2432,7 +2432,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2516,7 +2516,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2602,7 +2602,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

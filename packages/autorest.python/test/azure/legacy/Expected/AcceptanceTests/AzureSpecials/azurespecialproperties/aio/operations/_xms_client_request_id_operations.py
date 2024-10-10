@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -28,7 +27,7 @@ from ...operations._xms_client_request_id_operations import build_get_request, b
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -53,7 +52,7 @@ class XMsClientRequestIdOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get(self, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -61,7 +60,7 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -95,9 +94,7 @@ class XMsClientRequestIdOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def param_get(  # pylint: disable=inconsistent-return-statements
-        self, x_ms_client_request_id: str, **kwargs: Any
-    ) -> None:
+    async def param_get(self, x_ms_client_request_id: str, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
@@ -108,7 +105,7 @@ class XMsClientRequestIdOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

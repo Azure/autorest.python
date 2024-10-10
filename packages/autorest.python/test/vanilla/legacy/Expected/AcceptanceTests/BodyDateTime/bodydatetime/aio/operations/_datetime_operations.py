@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 import datetime
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -52,7 +52,7 @@ from ...operations._datetime_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -84,7 +84,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime or None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -130,7 +130,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -176,7 +176,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -222,7 +222,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -261,9 +261,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_max_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_utc_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value 9999-12-31T23:59:59.999Z.
 
         :param datetime_body: datetime body. Required.
@@ -272,7 +270,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -312,9 +310,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_max_date_time7_digits(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_utc_max_date_time7_digits(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value 9999-12-31T23:59:59.9999999Z.
 
         This is against the recommendation that asks for 3 digits, but allow to test what happens in
@@ -326,7 +322,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -373,7 +369,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -419,7 +415,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,7 +464,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -507,9 +503,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_local_positive_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_local_positive_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999+14:00.
 
         :param datetime_body: datetime body. Required.
@@ -518,7 +512,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -567,7 +561,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -615,7 +609,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -654,9 +648,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_local_negative_offset_max_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_local_negative_offset_max_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put max datetime value with positive numoffset 9999-12-31t23:59:59.999-14:00.
 
         :param datetime_body: datetime body. Required.
@@ -665,7 +657,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -714,7 +706,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -762,7 +754,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -801,9 +793,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_utc_min_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_utc_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00Z.
 
         :param datetime_body: datetime body. Required.
@@ -812,7 +802,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -859,7 +849,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -898,9 +888,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_local_positive_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_local_positive_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00+14:00.
 
         :param datetime_body: datetime body. Required.
@@ -909,7 +897,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -956,7 +944,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -995,9 +983,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_local_negative_offset_min_date_time(  # pylint: disable=inconsistent-return-statements
-        self, datetime_body: datetime.datetime, **kwargs: Any
-    ) -> None:
+    async def put_local_negative_offset_min_date_time(self, datetime_body: datetime.datetime, **kwargs: Any) -> None:
         """Put min datetime value 0001-01-01T00:00:00-14:00.
 
         :param datetime_body: datetime body. Required.
@@ -1006,7 +992,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1053,7 +1039,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1099,7 +1085,7 @@ class DatetimeOperations:  # pylint: disable=too-many-public-methods
         :rtype: ~datetime.datetime
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

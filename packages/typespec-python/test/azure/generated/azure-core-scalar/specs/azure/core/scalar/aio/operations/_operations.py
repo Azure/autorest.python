@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -39,7 +38,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -70,7 +69,7 @@ class AzureLocationScalarOperations:
         :rtype: str
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -87,7 +86,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -116,7 +118,7 @@ class AzureLocationScalarOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put(self, body: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def put(self, body: str, **kwargs: Any) -> None:
         """put azureLocation value.
 
         :param body: _. Required.
@@ -125,7 +127,7 @@ class AzureLocationScalarOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -147,7 +149,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -177,19 +182,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -206,14 +198,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @overload
@@ -230,14 +214,6 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
 
     @distributed_trace_async
@@ -251,21 +227,8 @@ class AzureLocationScalarOperations:
         :return: AzureLocationModel. The AzureLocationModel is compatible with MutableMapping
         :rtype: ~specs.azure.core.scalar.models.AzureLocationModel
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "location": "str"
-                }
-
-                # response body for status code(s): 200
-                response == {
-                    "location": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -292,7 +255,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -321,7 +287,7 @@ class AzureLocationScalarOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def header(self, *, region: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def header(self, *, region: str, **kwargs: Any) -> None:
         """azureLocation value header.
 
         :keyword region: _. Required.
@@ -330,7 +296,7 @@ class AzureLocationScalarOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -348,7 +314,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -365,7 +334,7 @@ class AzureLocationScalarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def query(self, *, region: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def query(self, *, region: str, **kwargs: Any) -> None:
         """azureLocation value query.
 
         :keyword region: _. Required.
@@ -374,7 +343,7 @@ class AzureLocationScalarOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -392,7 +361,10 @@ class AzureLocationScalarOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

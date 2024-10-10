@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, List, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -29,7 +29,7 @@ from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -245,7 +245,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
 ):
 
     @overload
-    def put_array(  # pylint: disable=inconsistent-return-statements
+    def put_array(
         self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
@@ -280,7 +280,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @overload
-    def put_array(  # pylint: disable=inconsistent-return-statements
+    def put_array(
         self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
@@ -314,7 +314,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -395,7 +395,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -436,7 +436,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         return cast(List[JSON], deserialized)  # type: ignore
 
     @overload
-    def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+    def put_wrapped_array(
         self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -466,7 +466,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @overload
-    def put_wrapped_array(  # pylint: disable=inconsistent-return-statements
+    def put_wrapped_array(
         self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
@@ -502,7 +502,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -574,7 +574,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 ]
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -615,7 +615,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         return cast(List[JSON], deserialized)  # type: ignore
 
     @overload
-    def put_dictionary(  # pylint: disable=inconsistent-return-statements
+    def put_dictionary(
         self,
         resource_dictionary: Optional[Dict[str, JSON]] = None,
         *,
@@ -660,7 +660,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @overload
-    def put_dictionary(  # pylint: disable=inconsistent-return-statements
+    def put_dictionary(
         self, resource_dictionary: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
@@ -694,7 +694,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -775,7 +775,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -816,7 +816,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         return cast(Dict[str, JSON], deserialized)  # type: ignore
 
     @overload
-    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+    def put_resource_collection(
         self, resource_complex_object: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as a ResourceCollection.
@@ -892,7 +892,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
         """
 
     @overload
-    def put_resource_collection(  # pylint: disable=inconsistent-return-statements
+    def put_resource_collection(
         self,
         resource_complex_object: Optional[IO[bytes]] = None,
         *,
@@ -987,7 +987,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1102,7 +1102,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1273,7 +1273,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1461,7 +1461,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1665,7 +1665,7 @@ class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=n
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

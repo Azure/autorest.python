@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines,too-many-statements
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +9,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -61,14 +61,14 @@ from ...operations._operations import (
     build_int_literal_get_default_request,
     build_int_literal_put_all_request,
     build_int_literal_put_default_request,
-    build_plaindate_get_all_request,
-    build_plaindate_get_default_request,
-    build_plaindate_put_all_request,
-    build_plaindate_put_default_request,
-    build_plaintime_get_all_request,
-    build_plaintime_get_default_request,
-    build_plaintime_put_all_request,
-    build_plaintime_put_default_request,
+    build_plain_date_get_all_request,
+    build_plain_date_get_default_request,
+    build_plain_date_put_all_request,
+    build_plain_date_put_default_request,
+    build_plain_time_get_all_request,
+    build_plain_time_get_default_request,
+    build_plain_time_put_all_request,
+    build_plain_time_put_default_request,
     build_required_and_optional_get_all_request,
     build_required_and_optional_get_required_only_request,
     build_required_and_optional_put_all_request,
@@ -98,7 +98,7 @@ from ...operations._operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -128,16 +128,8 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -154,7 +146,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -189,16 +184,8 @@ class StringOperations:
         :return: StringProperty. The StringProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -215,7 +202,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -244,7 +234,7 @@ class StringOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -257,20 +247,10 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "str"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -284,9 +264,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -300,9 +278,7 @@ class StringOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -310,16 +286,8 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -346,7 +314,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -363,7 +334,7 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -376,20 +347,10 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "str"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -403,9 +364,7 @@ class StringOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -419,9 +378,7 @@ class StringOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringProperty, JSON, IO[bytes] Required.
@@ -429,16 +386,8 @@ class StringOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -465,7 +414,10 @@ class StringOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -506,16 +458,8 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -532,7 +476,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -567,16 +514,8 @@ class BytesOperations:
         :return: BytesProperty. The BytesProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BytesProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -593,7 +532,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -622,7 +564,7 @@ class BytesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -635,20 +577,10 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -662,9 +594,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -678,9 +608,7 @@ class BytesOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -688,16 +616,8 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -724,7 +644,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -741,7 +664,7 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BytesProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -754,20 +677,10 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -781,9 +694,7 @@ class BytesOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -797,9 +708,7 @@ class BytesOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BytesProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BytesProperty, JSON, IO[bytes] Required.
@@ -807,16 +716,8 @@ class BytesOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": bytes("bytes", encoding="utf-8")
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -843,7 +744,10 @@ class BytesOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -884,16 +788,8 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -910,7 +806,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -945,16 +844,8 @@ class DatetimeOperations:
         :return: DatetimeProperty. The DatetimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DatetimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -971,7 +862,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1000,7 +894,7 @@ class DatetimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1013,20 +907,10 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1040,9 +924,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1056,9 +938,7 @@ class DatetimeOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1066,16 +946,8 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1102,7 +974,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1119,7 +994,7 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1132,20 +1007,10 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1159,9 +1024,7 @@ class DatetimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1175,9 +1038,7 @@ class DatetimeOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DatetimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DatetimeProperty, JSON, IO[bytes] Required.
@@ -1185,16 +1046,8 @@ class DatetimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20 00:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1221,7 +1074,10 @@ class DatetimeOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1262,16 +1118,8 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "1 day, 0:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1288,7 +1136,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1323,16 +1174,8 @@ class DurationOperations:
         :return: DurationProperty. The DurationProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.DurationProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "1 day, 0:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1349,7 +1192,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1378,7 +1224,7 @@ class DurationOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -1391,20 +1237,10 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "1 day, 0:00:00"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1418,9 +1254,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1434,9 +1268,7 @@ class DurationOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1444,16 +1276,8 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "1 day, 0:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1480,7 +1304,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1497,7 +1324,7 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.DurationProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -1510,20 +1337,10 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "1 day, 0:00:00"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1537,9 +1354,7 @@ class DurationOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1553,9 +1368,7 @@ class DurationOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.DurationProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: DurationProperty, JSON, IO[bytes] Required.
@@ -1563,16 +1376,8 @@ class DurationOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "1 day, 0:00:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1599,7 +1404,10 @@ class DurationOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1616,14 +1424,14 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlaindateOperations:
+class PlainDateOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plaindate` attribute.
+        :attr:`plain_date` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1634,22 +1442,14 @@ class PlaindateOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_all(self, **kwargs: Any) -> _models.PlaindateProperty:
+    async def get_all(self, **kwargs: Any) -> _models.PlainDateProperty:
         """Get models that will return all properties in the model.
 
-        :return: PlaindateProperty. The PlaindateProperty is compatible with MutableMapping
-        :rtype: ~typetest.property.optional.models.PlaindateProperty
+        :return: PlainDateProperty. The PlainDateProperty is compatible with MutableMapping
+        :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "2020-02-20"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1660,13 +1460,16 @@ class PlaindateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PlaindateProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaindate_get_all_request(
+        _request = build_plain_date_get_all_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1687,7 +1490,7 @@ class PlaindateOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PlaindateProperty, response.json())
+            deserialized = _deserialize(_models.PlainDateProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1695,22 +1498,14 @@ class PlaindateOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_default(self, **kwargs: Any) -> _models.PlaindateProperty:
+    async def get_default(self, **kwargs: Any) -> _models.PlainDateProperty:
         """Get models that will return the default object.
 
-        :return: PlaindateProperty. The PlaindateProperty is compatible with MutableMapping
-        :rtype: ~typetest.property.optional.models.PlaindateProperty
+        :return: PlainDateProperty. The PlainDateProperty is compatible with MutableMapping
+        :rtype: ~typetest.property.optional.models.PlainDateProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "2020-02-20"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1721,13 +1516,16 @@ class PlaindateOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PlaindateProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaindate_get_default_request(
+        _request = build_plain_date_get_default_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1748,7 +1546,7 @@ class PlaindateOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PlaindateProperty, response.json())
+            deserialized = _deserialize(_models.PlainDateProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1756,33 +1554,23 @@ class PlaindateOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.PlaindateProperty, *, content_type: str = "application/json", **kwargs: Any
+    async def put_all(
+        self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty
+        :type body: ~typetest.property.optional.models.PlainDateProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1796,9 +1584,7 @@ class PlaindateOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -1812,26 +1598,16 @@ class PlaindateOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlaindateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
-        :param body: Is one of the following types: PlaindateProperty, JSON, IO[bytes] Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty or JSON or IO[bytes]
+        :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.PlainDateProperty or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1852,13 +1628,16 @@ class PlaindateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaindate_put_all_request(
+        _request = build_plain_date_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1875,33 +1654,23 @@ class PlaindateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: _models.PlaindateProperty, *, content_type: str = "application/json", **kwargs: Any
+    async def put_default(
+        self, body: _models.PlainDateProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
 
         :param body: Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty
+        :type body: ~typetest.property.optional.models.PlainDateProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1915,9 +1684,7 @@ class PlaindateOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -1931,26 +1698,16 @@ class PlaindateOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlaindateProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainDateProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
-        :param body: Is one of the following types: PlaindateProperty, JSON, IO[bytes] Required.
-        :type body: ~typetest.property.optional.models.PlaindateProperty or JSON or IO[bytes]
+        :param body: Is one of the following types: PlainDateProperty, JSON, IO[bytes] Required.
+        :type body: ~typetest.property.optional.models.PlainDateProperty or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "2020-02-20"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -1971,13 +1728,16 @@ class PlaindateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaindate_put_default_request(
+        _request = build_plain_date_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -1994,14 +1754,14 @@ class PlaindateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlaintimeOperations:
+class PlainTimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plaintime` attribute.
+        :attr:`plain_time` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2018,16 +1778,8 @@ class PlaintimeOperations:
         :return: PlainTimeProperty. The PlainTimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.PlainTimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "12:30:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2040,11 +1792,14 @@ class PlaintimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaintime_get_all_request(
+        _request = build_plain_time_get_all_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2079,16 +1834,8 @@ class PlaintimeOperations:
         :return: PlainTimeProperty. The PlainTimeProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.PlainTimeProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "12:30:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2101,11 +1848,14 @@ class PlaintimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plaintime_get_default_request(
+        _request = build_plain_time_get_default_request(
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2134,7 +1884,7 @@ class PlaintimeOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2147,20 +1897,10 @@ class PlaintimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "12:30:00"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2174,9 +1914,7 @@ class PlaintimeOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2190,9 +1928,7 @@ class PlaintimeOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -2200,16 +1936,8 @@ class PlaintimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "12:30:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2230,13 +1958,16 @@ class PlaintimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaintime_put_all_request(
+        _request = build_plain_time_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2253,7 +1984,7 @@ class PlaintimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.PlainTimeProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2266,20 +1997,10 @@ class PlaintimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "12:30:00"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2293,9 +2014,7 @@ class PlaintimeOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2309,9 +2028,7 @@ class PlaintimeOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.PlainTimeProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: PlainTimeProperty, JSON, IO[bytes] Required.
@@ -2319,16 +2036,8 @@ class PlaintimeOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "12:30:00"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2349,13 +2058,16 @@ class PlaintimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plaintime_put_default_request(
+        _request = build_plain_time_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2396,18 +2108,8 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2424,7 +2126,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2459,18 +2164,8 @@ class CollectionsByteOperations:
         :return: CollectionsByteProperty. The CollectionsByteProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsByteProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2487,7 +2182,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2516,7 +2214,7 @@ class CollectionsByteOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2529,22 +2227,10 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2558,9 +2244,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2574,9 +2258,7 @@ class CollectionsByteOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2584,18 +2266,8 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2622,7 +2294,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2639,7 +2314,7 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsByteProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -2652,22 +2327,10 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2681,9 +2344,7 @@ class CollectionsByteOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -2697,9 +2358,7 @@ class CollectionsByteOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsByteProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsByteProperty, JSON, IO[bytes] Required.
@@ -2707,18 +2366,8 @@ class CollectionsByteOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        bytes("bytes", encoding="utf-8")
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2745,7 +2394,10 @@ class CollectionsByteOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2787,20 +2439,8 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2817,7 +2457,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2853,20 +2496,8 @@ class CollectionsModelOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.CollectionsModelProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -2883,7 +2514,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -2912,7 +2546,7 @@ class CollectionsModelOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -2925,24 +2559,10 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2956,9 +2576,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -2972,9 +2590,7 @@ class CollectionsModelOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -2982,20 +2598,8 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3022,7 +2626,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3039,7 +2646,7 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.CollectionsModelProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3052,24 +2659,10 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3083,9 +2676,7 @@ class CollectionsModelOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3099,9 +2690,7 @@ class CollectionsModelOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.CollectionsModelProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: CollectionsModelProperty, JSON, IO[bytes] Required.
@@ -3109,20 +2698,8 @@ class CollectionsModelOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": [
-                        {
-                            "property": "str"
-                        }
-                    ]
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3149,7 +2726,10 @@ class CollectionsModelOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3190,16 +2770,8 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3216,7 +2788,10 @@ class StringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3251,16 +2826,8 @@ class StringLiteralOperations:
         :return: StringLiteralProperty. The StringLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.StringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3277,7 +2844,10 @@ class StringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3306,7 +2876,7 @@ class StringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3319,20 +2889,10 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3346,9 +2906,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3362,9 +2920,7 @@ class StringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -3372,16 +2928,8 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3408,7 +2956,10 @@ class StringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3425,7 +2976,7 @@ class StringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.StringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3438,20 +2989,10 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3465,9 +3006,7 @@ class StringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3481,9 +3020,7 @@ class StringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.StringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: StringLiteralProperty, JSON, IO[bytes] Required.
@@ -3491,16 +3028,8 @@ class StringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3527,7 +3056,10 @@ class StringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3568,16 +3100,8 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3594,7 +3118,10 @@ class IntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3629,16 +3156,8 @@ class IntLiteralOperations:
         :return: IntLiteralProperty. The IntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.IntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3655,7 +3174,10 @@ class IntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3684,7 +3206,7 @@ class IntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -3697,20 +3219,10 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3724,9 +3236,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -3740,9 +3250,7 @@ class IntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3750,16 +3258,8 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3786,7 +3286,10 @@ class IntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3803,7 +3306,7 @@ class IntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.IntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -3816,20 +3319,10 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3843,9 +3336,7 @@ class IntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -3859,9 +3350,7 @@ class IntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.IntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: IntLiteralProperty, JSON, IO[bytes] Required.
@@ -3869,16 +3358,8 @@ class IntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3905,7 +3386,10 @@ class IntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -3946,16 +3430,8 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -3972,7 +3448,10 @@ class FloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4007,16 +3486,8 @@ class FloatLiteralOperations:
         :return: FloatLiteralProperty. The FloatLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.FloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4033,7 +3504,10 @@ class FloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4062,7 +3536,7 @@ class FloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4075,20 +3549,10 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4102,9 +3566,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4118,9 +3580,7 @@ class FloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -4128,16 +3588,8 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4164,7 +3616,10 @@ class FloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4181,7 +3636,7 @@ class FloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.FloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4194,20 +3649,10 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4221,9 +3666,7 @@ class FloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4237,9 +3680,7 @@ class FloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.FloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: FloatLiteralProperty, JSON, IO[bytes] Required.
@@ -4247,16 +3688,8 @@ class FloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4283,7 +3716,10 @@ class FloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4324,16 +3760,8 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": True
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4350,7 +3778,10 @@ class BooleanLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4385,16 +3816,8 @@ class BooleanLiteralOperations:
         :return: BooleanLiteralProperty. The BooleanLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.BooleanLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": True
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4411,7 +3834,10 @@ class BooleanLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4440,7 +3866,7 @@ class BooleanLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4453,20 +3879,10 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": True
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4480,9 +3896,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4496,9 +3910,7 @@ class BooleanLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4506,16 +3918,8 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": True
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4542,7 +3946,10 @@ class BooleanLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4559,7 +3966,7 @@ class BooleanLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.BooleanLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4572,20 +3979,10 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": True
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4599,9 +3996,7 @@ class BooleanLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4615,9 +4010,7 @@ class BooleanLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.BooleanLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: BooleanLiteralProperty, JSON, IO[bytes] Required.
@@ -4625,16 +4018,8 @@ class BooleanLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": True
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4661,7 +4046,10 @@ class BooleanLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4703,16 +4091,8 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4729,7 +4109,10 @@ class UnionStringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4765,16 +4148,8 @@ class UnionStringLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionStringLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4791,7 +4166,10 @@ class UnionStringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4820,7 +4198,7 @@ class UnionStringLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -4833,20 +4211,10 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4860,9 +4228,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -4876,9 +4242,7 @@ class UnionStringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionStringLiteralProperty, JSON, IO[bytes]
@@ -4887,16 +4251,8 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -4923,7 +4279,10 @@ class UnionStringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -4940,7 +4299,7 @@ class UnionStringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionStringLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -4953,20 +4312,10 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4980,9 +4329,7 @@ class UnionStringLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -4996,7 +4343,7 @@ class UnionStringLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: Union[_models.UnionStringLiteralProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -5007,16 +4354,8 @@ class UnionStringLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": "hello"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5043,7 +4382,10 @@ class UnionStringLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5084,16 +4426,8 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5110,7 +4444,10 @@ class UnionIntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5145,16 +4482,8 @@ class UnionIntLiteralOperations:
         :return: UnionIntLiteralProperty. The UnionIntLiteralProperty is compatible with MutableMapping
         :rtype: ~typetest.property.optional.models.UnionIntLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5171,7 +4500,10 @@ class UnionIntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5200,7 +4532,7 @@ class UnionIntLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5213,20 +4545,10 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5240,9 +4562,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5256,9 +4576,7 @@ class UnionIntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -5266,16 +4584,8 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5302,7 +4612,10 @@ class UnionIntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5319,7 +4632,7 @@ class UnionIntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionIntLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -5332,20 +4645,10 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5359,9 +4662,7 @@ class UnionIntLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5375,9 +4676,7 @@ class UnionIntLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionIntLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionIntLiteralProperty, JSON, IO[bytes] Required.
@@ -5385,16 +4684,8 @@ class UnionIntLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5421,7 +4712,10 @@ class UnionIntLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5463,16 +4757,8 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5489,7 +4775,10 @@ class UnionFloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5525,16 +4814,8 @@ class UnionFloatLiteralOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.UnionFloatLiteralProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5551,7 +4832,10 @@ class UnionFloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5580,7 +4864,7 @@ class UnionFloatLiteralOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5593,20 +4877,10 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5620,9 +4894,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -5636,9 +4908,7 @@ class UnionFloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5647,16 +4917,8 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5683,7 +4945,10 @@ class UnionFloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5700,7 +4965,7 @@ class UnionFloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
+    async def put_default(
         self, body: _models.UnionFloatLiteralProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with default properties.
@@ -5713,20 +4978,10 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5740,9 +4995,7 @@ class UnionFloatLiteralOperations:
         """
 
     @overload
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Required.
@@ -5756,9 +5009,7 @@ class UnionFloatLiteralOperations:
         """
 
     @distributed_trace_async
-    async def put_default(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_default(self, body: Union[_models.UnionFloatLiteralProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with default properties.
 
         :param body: Is one of the following types: UnionFloatLiteralProperty, JSON, IO[bytes]
@@ -5767,16 +5018,8 @@ class UnionFloatLiteralOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "property": 1.25
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5803,7 +5046,10 @@ class UnionFloatLiteralOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5845,17 +5091,8 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5872,7 +5109,10 @@ class RequiredAndOptionalOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5908,17 +5148,8 @@ class RequiredAndOptionalOperations:
          MutableMapping
         :rtype: ~typetest.property.optional.models.RequiredAndOptionalProperty
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 200
-                response == {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -5935,7 +5166,10 @@ class RequiredAndOptionalOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -5964,7 +5198,7 @@ class RequiredAndOptionalOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
+    async def put_all(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with all properties present.
@@ -5977,21 +5211,10 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -6005,9 +5228,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Required.
@@ -6021,9 +5242,7 @@ class RequiredAndOptionalOperations:
         """
 
     @distributed_trace_async
-    async def put_all(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def put_all(self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put a body with all properties present.
 
         :param body: Is one of the following types: RequiredAndOptionalProperty, JSON, IO[bytes]
@@ -6032,17 +5251,8 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6069,7 +5279,10 @@ class RequiredAndOptionalOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -6086,7 +5299,7 @@ class RequiredAndOptionalOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: _models.RequiredAndOptionalProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -6099,21 +5312,10 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def put_required_only(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put a body with only required properties.
 
         :param body: Required.
@@ -6127,7 +5329,7 @@ class RequiredAndOptionalOperations:
         """
 
     @overload
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -6143,7 +5345,7 @@ class RequiredAndOptionalOperations:
         """
 
     @distributed_trace_async
-    async def put_required_only(  # pylint: disable=inconsistent-return-statements
+    async def put_required_only(
         self, body: Union[_models.RequiredAndOptionalProperty, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put a body with only required properties.
@@ -6154,17 +5356,8 @@ class RequiredAndOptionalOperations:
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                body = {
-                    "requiredProperty": 0,
-                    "optionalProperty": "str"
-                }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -6191,7 +5384,10 @@ class RequiredAndOptionalOperations:
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

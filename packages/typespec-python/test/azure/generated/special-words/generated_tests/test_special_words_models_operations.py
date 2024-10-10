@@ -14,7 +14,7 @@ from testpreparer import SpecialWordsClientTestBase, SpecialWordsPreparer
 class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_and(self, specialwords_endpoint):
+    def test_models_with_and(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_and(
             body={"name": "str"},
@@ -25,7 +25,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_as(self, specialwords_endpoint):
+    def test_models_with_as(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_as(
             body={"name": "str"},
@@ -36,7 +36,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_assert(self, specialwords_endpoint):
+    def test_models_with_assert(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_assert(
             body={"name": "str"},
@@ -47,7 +47,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_async(self, specialwords_endpoint):
+    def test_models_with_async(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_async(
             body={"name": "str"},
@@ -58,7 +58,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_await(self, specialwords_endpoint):
+    def test_models_with_await(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_await(
             body={"name": "str"},
@@ -69,7 +69,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_break(self, specialwords_endpoint):
+    def test_models_with_break(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_break(
             body={"name": "str"},
@@ -80,7 +80,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_class(self, specialwords_endpoint):
+    def test_models_with_class(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_class(
             body={"name": "str"},
@@ -91,7 +91,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_constructor(self, specialwords_endpoint):
+    def test_models_with_constructor(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_constructor(
             body={"name": "str"},
@@ -102,7 +102,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_continue(self, specialwords_endpoint):
+    def test_models_with_continue(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_continue(
             body={"name": "str"},
@@ -113,7 +113,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_def(self, specialwords_endpoint):
+    def test_models_with_def(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_def(
             body={"name": "str"},
@@ -124,7 +124,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_del(self, specialwords_endpoint):
+    def test_models_with_del(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_del(
             body={"name": "str"},
@@ -135,7 +135,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_elif(self, specialwords_endpoint):
+    def test_models_with_elif(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_elif(
             body={"name": "str"},
@@ -146,7 +146,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_else(self, specialwords_endpoint):
+    def test_models_with_else(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_else(
             body={"name": "str"},
@@ -157,7 +157,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_except(self, specialwords_endpoint):
+    def test_models_with_except(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_except(
             body={"name": "str"},
@@ -168,7 +168,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_exec(self, specialwords_endpoint):
+    def test_models_with_exec(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_exec(
             body={"name": "str"},
@@ -179,7 +179,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_finally(self, specialwords_endpoint):
+    def test_models_with_finally(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_finally(
             body={"name": "str"},
@@ -190,7 +190,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_for(self, specialwords_endpoint):
+    def test_models_with_for(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_for(
             body={"name": "str"},
@@ -201,7 +201,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_from(self, specialwords_endpoint):
+    def test_models_with_from(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_from(
             body={"name": "str"},
@@ -212,7 +212,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_global(self, specialwords_endpoint):
+    def test_models_with_global(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_global(
             body={"name": "str"},
@@ -223,7 +223,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_if(self, specialwords_endpoint):
+    def test_models_with_if(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_if(
             body={"name": "str"},
@@ -234,7 +234,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_import(self, specialwords_endpoint):
+    def test_models_with_import(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_import(
             body={"name": "str"},
@@ -245,7 +245,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_in(self, specialwords_endpoint):
+    def test_models_with_in(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_in(
             body={"name": "str"},
@@ -256,7 +256,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_is(self, specialwords_endpoint):
+    def test_models_with_is(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_is(
             body={"name": "str"},
@@ -267,7 +267,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_lambda(self, specialwords_endpoint):
+    def test_models_with_lambda(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_lambda(
             body={"name": "str"},
@@ -278,7 +278,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_not(self, specialwords_endpoint):
+    def test_models_with_not(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_not(
             body={"name": "str"},
@@ -289,7 +289,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_or(self, specialwords_endpoint):
+    def test_models_with_or(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_or(
             body={"name": "str"},
@@ -300,7 +300,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_pass(self, specialwords_endpoint):
+    def test_models_with_pass(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_pass(
             body={"name": "str"},
@@ -311,7 +311,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_raise(self, specialwords_endpoint):
+    def test_models_with_raise(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_raise(
             body={"name": "str"},
@@ -322,7 +322,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_return(self, specialwords_endpoint):
+    def test_models_with_return(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_return(
             body={"name": "str"},
@@ -333,7 +333,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_try(self, specialwords_endpoint):
+    def test_models_with_try(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_try(
             body={"name": "str"},
@@ -344,7 +344,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_while(self, specialwords_endpoint):
+    def test_models_with_while(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_while(
             body={"name": "str"},
@@ -355,7 +355,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_with(self, specialwords_endpoint):
+    def test_models_with_with(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_with(
             body={"name": "str"},
@@ -366,7 +366,7 @@ class TestSpecialWordsModelsOperations(SpecialWordsClientTestBase):
 
     @SpecialWordsPreparer()
     @recorded_by_proxy
-    def test_with_yield(self, specialwords_endpoint):
+    def test_models_with_yield(self, specialwords_endpoint):
         client = self.create_client(endpoint=specialwords_endpoint)
         response = client.models.with_yield(
             body={"name": "str"},

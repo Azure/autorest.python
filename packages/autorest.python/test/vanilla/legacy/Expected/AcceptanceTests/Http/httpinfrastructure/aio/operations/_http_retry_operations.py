@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -38,7 +37,7 @@ from ...operations._http_retry_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -63,14 +62,14 @@ class HttpRetryOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def head408(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def head408(self, **kwargs: Any) -> None:
         """Return 408 status code, then 200 after retry.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -105,9 +104,7 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put500(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -117,7 +114,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -160,9 +157,7 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch500(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -172,7 +167,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -215,14 +210,14 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get502(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get502(self, **kwargs: Any) -> None:
         """Return 502 status code, then 200 after retry.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -264,7 +259,7 @@ class HttpRetryOperations:
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -303,9 +298,7 @@ class HttpRetryOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def post503(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -315,7 +308,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -358,9 +351,7 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def delete503(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -370,7 +361,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -413,9 +404,7 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def put504(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -425,7 +414,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -468,9 +457,7 @@ class HttpRetryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
-    ) -> None:
+    async def patch504(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
@@ -480,7 +467,7 @@ class HttpRetryOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

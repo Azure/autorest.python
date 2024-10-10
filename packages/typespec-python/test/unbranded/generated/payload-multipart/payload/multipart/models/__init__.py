@@ -8,8 +8,12 @@
 
 from ._models import Address
 from ._models import BinaryArrayPartsRequest
+from ._models import ComplexHttpPartsModelRequest
 from ._models import ComplexPartsRequest
-from ._models import JsonArrayPartsRequest
+from ._models import FileWithHttpPartOptionalContentTypeRequest
+from ._models import FileWithHttpPartRequiredContentTypeRequest
+from ._models import FileWithHttpPartSpecificContentTypeRequest
+from ._models import FloatRequest
 from ._models import JsonPartRequest
 from ._models import MultiBinaryPartsRequest
 from ._models import MultiPartRequest
@@ -20,8 +24,12 @@ from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     "Address",
     "BinaryArrayPartsRequest",
+    "ComplexHttpPartsModelRequest",
     "ComplexPartsRequest",
-    "JsonArrayPartsRequest",
+    "FileWithHttpPartOptionalContentTypeRequest",
+    "FileWithHttpPartRequiredContentTypeRequest",
+    "FileWithHttpPartSpecificContentTypeRequest",
+    "FloatRequest",
     "JsonPartRequest",
     "MultiBinaryPartsRequest",
     "MultiPartRequest",

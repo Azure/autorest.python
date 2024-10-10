@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, IO, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -37,7 +36,7 @@ from ...operations._implicit_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -62,9 +61,7 @@ class ImplicitOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_required_path(  # pylint: disable=inconsistent-return-statements
-        self, path_parameter: str, **kwargs: Any
-    ) -> None:
+    async def get_required_path(self, path_parameter: str, **kwargs: Any) -> None:
         """Test implicitly required path parameter.
 
         :param path_parameter: Required.
@@ -73,7 +70,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -109,9 +106,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_query(  # pylint: disable=inconsistent-return-statements
-        self, query_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_query(self, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
 
         :param query_parameter: Default value is None.
@@ -120,7 +115,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -156,9 +151,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_header(  # pylint: disable=inconsistent-return-statements
-        self, query_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_header(self, query_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional header parameter.
 
         :param query_parameter: Default value is None.
@@ -167,7 +160,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -203,9 +196,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[str] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_body(self, body_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
@@ -214,7 +205,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -257,9 +248,7 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def put_optional_binary_body(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any
-    ) -> None:
+    async def put_optional_binary_body(self, body_parameter: Optional[IO[bytes]] = None, **kwargs: Any) -> None:
         """Test implicitly optional body parameter.
 
         :param body_parameter: Default value is None.
@@ -268,7 +257,7 @@ class ImplicitOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -308,14 +297,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_path(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_required_global_path(self, **kwargs: Any) -> None:
         """Test implicitly required path parameter.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -351,14 +340,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_required_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_required_global_query(self, **kwargs: Any) -> None:
         """Test implicitly required query parameter.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -394,14 +383,14 @@ class ImplicitOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_optional_global_query(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    async def get_optional_global_query(self, **kwargs: Any) -> None:
         """Test implicitly optional query parameter.
 
         :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

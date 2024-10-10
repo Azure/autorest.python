@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -8,7 +7,7 @@
 # --------------------------------------------------------------------------
 from io import IOBase
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -28,7 +27,7 @@ from ...operations._operations import build_availability_sets_update_request
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -52,7 +51,7 @@ class AvailabilitySetsOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def update(  # pylint: disable=inconsistent-return-statements
+    async def update(
         self, resource_group_name: str, avset: str, tags: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Updates the tags for an availability set.
@@ -82,7 +81,7 @@ class AvailabilitySetsOperations:
         """
 
     @overload
-    async def update(  # pylint: disable=inconsistent-return-statements
+    async def update(
         self,
         resource_group_name: str,
         avset: str,
@@ -108,9 +107,7 @@ class AvailabilitySetsOperations:
         """
 
     @distributed_trace_async
-    async def update(  # pylint: disable=inconsistent-return-statements
-        self, resource_group_name: str, avset: str, tags: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def update(self, resource_group_name: str, avset: str, tags: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Updates the tags for an availability set.
 
         :param resource_group_name: The name of the resource group. Required.
@@ -133,7 +130,7 @@ class AvailabilitySetsOperations:
                     }
                 }
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

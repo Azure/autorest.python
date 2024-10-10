@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Iterator, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -36,7 +35,7 @@ from .._vendor import StandardClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -126,7 +125,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
     def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -155,7 +154,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -200,21 +202,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -235,15 +222,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -264,15 +242,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @distributed_trace
@@ -291,21 +260,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         :return: An instance of LROPoller that returns User. The User is compatible with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -340,8 +294,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -358,7 +318,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
 
     def _delete_initial(self, name: str, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -377,7 +337,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -434,8 +397,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             if cls:
                 return cls(pipeline_response, None, {})  # type: ignore
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:
@@ -450,7 +419,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> Iterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -470,7 +439,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
@@ -511,15 +483,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          with MutableMapping
         :rtype: ~azure.core.polling.LROPoller[~specs.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "name": "str",
-                    "resourceUri": "str"
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -547,8 +510,14 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: PollingMethod = cast(PollingMethod, LROBasePolling(lro_delay, **kwargs))
+            polling_method: PollingMethod = cast(
+                PollingMethod, LROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs)
+            )
         elif polling is False:
             polling_method = cast(PollingMethod, NoPolling())
         else:

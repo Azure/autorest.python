@@ -11,7 +11,6 @@ from typing import TYPE_CHECKING
 from ._configuration import EnumDiscriminatorClientConfiguration
 
 if TYPE_CHECKING:
-    # pylint: disable=unused-import,ungrouped-imports
     from corehttp.runtime import PipelineClient
 
     from ._serialization import Deserializer, Serializer

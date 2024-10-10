@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, Type, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -40,7 +39,7 @@ from .._vendor import StandardClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -51,7 +50,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
     async def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -80,7 +79,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -126,21 +128,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -162,15 +149,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @overload
@@ -192,15 +170,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
 
     @distributed_trace_async
@@ -220,21 +189,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.User]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # JSON input template you can fill out and use as your body input.
-                resource = {
-                    "name": "str",
-                    "role": "str"
-                }
-
-                # response body for status code(s): 201, 200
-                response == {
-                    "name": "str",
-                    "role": "str"
-                }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -269,8 +223,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))
+            polling_method: AsyncPollingMethod = cast(
+                AsyncPollingMethod,
+                AsyncLROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs),
+            )
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
@@ -287,7 +248,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         )
 
     async def _delete_initial(self, name: str, **kwargs: Any) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -306,7 +267,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -363,8 +327,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             if cls:
                 return cls(pipeline_response, None, {})  # type: ignore
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))
+            polling_method: AsyncPollingMethod = cast(
+                AsyncPollingMethod,
+                AsyncLROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs),
+            )
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:
@@ -379,7 +350,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         return AsyncLROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     async def _export_initial(self, name: str, *, format: str, **kwargs: Any) -> AsyncIterator[bytes]:
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -399,7 +370,10 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = True
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
@@ -440,15 +414,6 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
          compatible with MutableMapping
         :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.standard.models.ExportedUser]
         :raises ~azure.core.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # response body for status code(s): 202
-                response == {
-                    "name": "str",
-                    "resourceUri": "str"
-                }
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -476,8 +441,15 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
 
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+
         if polling is True:
-            polling_method: AsyncPollingMethod = cast(AsyncPollingMethod, AsyncLROBasePolling(lro_delay, **kwargs))
+            polling_method: AsyncPollingMethod = cast(
+                AsyncPollingMethod,
+                AsyncLROBasePolling(lro_delay, path_format_arguments=path_format_arguments, **kwargs),
+            )
         elif polling is False:
             polling_method = cast(AsyncPollingMethod, AsyncNoPolling())
         else:

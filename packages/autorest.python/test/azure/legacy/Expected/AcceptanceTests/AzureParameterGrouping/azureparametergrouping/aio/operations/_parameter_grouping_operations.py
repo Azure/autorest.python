@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,7 +34,7 @@ from ...operations._parameter_grouping_operations import (
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -60,7 +59,7 @@ class ParameterGroupingOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def post_required(  # pylint: disable=inconsistent-return-statements
+    async def post_required(
         self,
         parameter_grouping_post_required_parameters: _models.ParameterGroupingPostRequiredParameters,
         **kwargs: Any
@@ -74,7 +73,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -126,7 +125,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional(  # pylint: disable=inconsistent-return-statements
+    async def post_optional(
         self,
         parameter_grouping_post_optional_parameters: Optional[_models.ParameterGroupingPostOptionalParameters] = None,
         **kwargs: Any
@@ -140,7 +139,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -183,7 +182,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_reserved_words(  # pylint: disable=inconsistent-return-statements
+    async def post_reserved_words(
         self,
         parameter_grouping_post_reserved_words_parameters: Optional[
             _models.ParameterGroupingPostReservedWordsParameters
@@ -200,7 +199,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -243,7 +242,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_multi_param_groups(  # pylint: disable=inconsistent-return-statements
+    async def post_multi_param_groups(
         self,
         first_parameter_group: Optional[_models.FirstParameterGroup] = None,
         parameter_grouping_post_multi_param_groups_second_param_group: Optional[
@@ -263,7 +262,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -313,7 +312,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_shared_parameter_group_object(  # pylint: disable=inconsistent-return-statements
+    async def post_shared_parameter_group_object(
         self, first_parameter_group: Optional[_models.FirstParameterGroup] = None, **kwargs: Any
     ) -> None:
         """Post parameters with a shared parameter group object.
@@ -324,7 +323,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -367,9 +366,7 @@ class ParameterGroupingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, grouper: Optional[_models.Grouper] = None, **kwargs: Any
-    ) -> None:
+    async def group_with_constant(self, grouper: Optional[_models.Grouper] = None, **kwargs: Any) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.
 
@@ -379,7 +376,7 @@ class ParameterGroupingOperations:
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,

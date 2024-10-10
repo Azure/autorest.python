@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines,too-many-statements
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -9,7 +8,7 @@
 from io import IOBase
 import json
 import sys
-from typing import Any, Callable, Dict, IO, Optional, Type, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -33,7 +32,7 @@ from .._vendor import EnumDiscriminatorClientMixinABC
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
-    from typing import MutableMapping  # type: ignore  # pylint: disable=ungrouped-imports
+    from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -174,23 +173,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -207,7 +191,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -236,7 +223,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_extensible_model(  # pylint: disable=inconsistent-return-statements
+    def put_extensible_model(
         self, input: _models.Dog, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Send model with extensible enum discriminator type.
@@ -249,27 +236,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = dog
         """
 
     @overload
-    def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_extensible_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
@@ -283,9 +253,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    def put_extensible_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_extensible_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with extensible enum discriminator type.
 
         :param input: Dog to create. Required.
@@ -308,23 +276,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = dog
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -351,7 +304,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -373,23 +329,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -406,7 +347,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -440,23 +384,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Dog. The Dog is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Dog
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "golden":
-                dog = {
-                    "kind": "golden",
-                    "weight": 0
-                }
-
-                # response body for status code(s): 200
-                response == dog
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -473,7 +402,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -507,23 +439,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -540,7 +457,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -569,9 +489,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         return deserialized  # type: ignore
 
     @overload
-    def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: _models.Snake, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_fixed_model(self, input: _models.Snake, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -582,27 +500,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = snake
         """
 
     @overload
-    def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_fixed_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -616,9 +517,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         """
 
     @overload
-    def put_fixed_model(  # pylint: disable=inconsistent-return-statements
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def put_fixed_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Send model with fixed enum discriminator type.
 
         :param input: Snake to create. Required.
@@ -641,23 +540,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # JSON input template you can fill out and use as your body input.
-                input = snake
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -684,7 +568,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -706,23 +593,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -739,7 +611,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
@@ -773,23 +648,8 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         :return: Snake. The Snake is compatible with MutableMapping
         :rtype: ~typetest.model.enumdiscriminator.models.Snake
         :raises ~corehttp.exceptions.HttpResponseError:
-
-        Example:
-            .. code-block:: python
-
-                # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
-
-                # JSON input template for discriminator value "cobra":
-                snake = {
-                    "kind": "cobra",
-                    "length": 0
-                }
-
-                # response body for status code(s): 200
-                response == snake
         """
-        error_map: MutableMapping[int, Type[HttpResponseError]] = {
+        error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
             409: ResourceExistsError,
@@ -806,7 +666,10 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
             headers=_headers,
             params=_params,
         )
-        _request.url = self._client.format_url(_request.url)
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
