@@ -34,5 +34,5 @@ class ManagedServiceIdentityType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """System assigned managed identity."""
     USER_ASSIGNED = "UserAssigned"
     """User assigned managed identity."""
-    SYSTEM_AND_USER_ASSIGNED_V3 = "SystemAssigned,UserAssigned"
+    SYSTEM_ASSIGNED_USER_ASSIGNED = "SystemAssigned,UserAssigned"
     """System and user assigned managed identity."""

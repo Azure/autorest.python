@@ -25,7 +25,9 @@ class TestNotVersioned(NotVersionedClientTestBase):
     @recorded_by_proxy
     def test_with_query_api_version(self, notversioned_endpoint):
         client = self.create_client(endpoint=notversioned_endpoint)
-        response = client.with_query_api_version()
+        response = client.with_query_api_version(
+            api_version="str",
+        )
 
         # please add some check logic here by yourself
         # ...
@@ -34,7 +36,9 @@ class TestNotVersioned(NotVersionedClientTestBase):
     @recorded_by_proxy
     def test_with_path_api_version(self, notversioned_endpoint):
         client = self.create_client(endpoint=notversioned_endpoint)
-        response = client.with_path_api_version()
+        response = client.with_path_api_version(
+            api_version="str",
+        )
 
         # please add some check logic here by yourself
         # ...

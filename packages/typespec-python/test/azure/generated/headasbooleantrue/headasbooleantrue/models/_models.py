@@ -66,10 +66,10 @@ class VisibilityModel(_model_base.Model):
         create_prop: List[str],
         update_prop: List[int],
         delete_prop: bool,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

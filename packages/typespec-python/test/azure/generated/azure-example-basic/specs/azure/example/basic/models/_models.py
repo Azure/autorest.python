@@ -44,10 +44,10 @@ class ActionRequest(_model_base.Model):
         model_property: Optional["_models.Model"] = None,
         array_property: Optional[List[str]] = None,
         record_property: Optional[Dict[str, str]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -85,10 +85,10 @@ class ActionResponse(_model_base.Model):
         model_property: Optional["_models.Model"] = None,
         array_property: Optional[List[str]] = None,
         record_property: Optional[Dict[str, str]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -121,10 +121,10 @@ class Model(_model_base.Model):
         int32_property: Optional[int] = None,
         float32_property: Optional[float] = None,
         enum_property: Optional[Union[str, "_models.EnumEnum"]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
