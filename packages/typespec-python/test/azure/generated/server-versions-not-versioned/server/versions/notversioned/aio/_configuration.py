@@ -21,18 +21,13 @@ class NotVersionedClientConfiguration:  # pylint: disable=too-many-instance-attr
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
-    :param api_version: Required.
-    :type api_version: str
     """
 
-    def __init__(self, endpoint: str, api_version: str, **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        if api_version is None:
-            raise ValueError("Parameter 'api_version' must not be None.")
 
         self.endpoint = endpoint
-        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "server-versions-notversioned/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

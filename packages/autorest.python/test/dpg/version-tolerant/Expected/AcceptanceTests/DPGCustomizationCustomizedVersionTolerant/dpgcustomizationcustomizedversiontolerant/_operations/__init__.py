@@ -14,5 +14,5 @@ from ._patch import patch_sdk as _patch_sdk
 __all__ = [
     "DPGClientOperationsMixin",
 ]
-
+# pyright: ignore
 _patch_sdk()

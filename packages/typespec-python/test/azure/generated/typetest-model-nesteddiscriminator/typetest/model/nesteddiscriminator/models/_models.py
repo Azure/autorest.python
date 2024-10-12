@@ -40,10 +40,10 @@ class Fish(_model_base.Model):
         *,
         kind: str,
         age: int,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -81,10 +81,10 @@ class Shark(Fish, discriminator="shark"):
         *,
         age: int,
         sharktype: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -115,10 +115,10 @@ class GoblinShark(Shark, discriminator="goblin"):
         self,
         *,
         age: int,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -159,10 +159,10 @@ class Salmon(Fish, discriminator="salmon"):
         friends: Optional[List["_models.Fish"]] = None,
         hate: Optional[Dict[str, "_models.Fish"]] = None,
         partner: Optional["_models.Fish"] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -193,10 +193,10 @@ class SawShark(Shark, discriminator="saw"):
         self,
         *,
         age: int,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

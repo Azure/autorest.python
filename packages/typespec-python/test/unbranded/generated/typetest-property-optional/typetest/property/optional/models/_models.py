@@ -31,10 +31,10 @@ class BooleanLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[True]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -60,10 +60,10 @@ class BytesProperty(_model_base.Model):
         self,
         *,
         property: Optional[bytes] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -88,10 +88,10 @@ class CollectionsByteProperty(_model_base.Model):
         self,
         *,
         property: Optional[List[bytes]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -116,10 +116,10 @@ class CollectionsModelProperty(_model_base.Model):
         self,
         *,
         property: Optional[List["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -144,10 +144,10 @@ class DatetimeProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.datetime] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -172,10 +172,10 @@ class DurationProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.timedelta] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -200,10 +200,10 @@ class FloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[float] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -228,10 +228,10 @@ class IntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[1]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -256,10 +256,10 @@ class PlainDateProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.date] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -284,10 +284,10 @@ class PlainTimeProperty(_model_base.Model):
         self,
         *,
         property: Optional[datetime.time] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -318,10 +318,10 @@ class RequiredAndOptionalProperty(_model_base.Model):
         *,
         required_property: int,
         optional_property: Optional[str] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -346,10 +346,10 @@ class StringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal["hello"]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -375,10 +375,10 @@ class StringProperty(_model_base.Model):
         self,
         *,
         property: Optional[str] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -403,10 +403,10 @@ class UnionFloatLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[float] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -431,10 +431,10 @@ class UnionIntLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal[1, 2]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -459,10 +459,10 @@ class UnionStringLiteralProperty(_model_base.Model):
         self,
         *,
         property: Optional[Literal["hello", "world"]] = None,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

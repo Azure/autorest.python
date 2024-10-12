@@ -31,10 +31,10 @@ class Cat(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -60,10 +60,10 @@ class Dog(_model_base.Model):
         self,
         *,
         bark: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -98,10 +98,10 @@ class EnumsOnlyCases(_model_base.Model):
         *,
         lr: Literal["left", "right", "up", "down"],
         ud: Literal["up", "down"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -127,10 +127,10 @@ class GetResponse(_model_base.Model):
         self,
         *,
         prop: "_models.MixedTypesCases",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -156,10 +156,10 @@ class GetResponse1(_model_base.Model):
         self,
         *,
         prop: "_models.MixedLiteralsCases",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -185,10 +185,10 @@ class GetResponse2(_model_base.Model):
         self,
         *,
         prop: "_models.StringAndArrayCases",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -214,10 +214,10 @@ class GetResponse3(_model_base.Model):
         self,
         *,
         prop: "_models.EnumsOnlyCases",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -243,10 +243,10 @@ class GetResponse4(_model_base.Model):
         self,
         *,
         prop: Union["_models.Cat", "_models.Dog"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -272,10 +272,10 @@ class GetResponse5(_model_base.Model):
         self,
         *,
         prop: float,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -301,10 +301,10 @@ class GetResponse6(_model_base.Model):
         self,
         *,
         prop: Literal[1, 2, 3],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -330,10 +330,10 @@ class GetResponse7(_model_base.Model):
         self,
         *,
         prop: Union[str, "_models.StringExtensibleNamedUnion"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -359,10 +359,10 @@ class GetResponse8(_model_base.Model):
         self,
         *,
         prop: Union[Literal["b"], Literal["c"], str],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -388,10 +388,10 @@ class GetResponse9(_model_base.Model):
         self,
         *,
         prop: Literal["a", "b", "c"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -440,10 +440,10 @@ class MixedLiteralsCases(_model_base.Model):
         int_literal: Literal["a", 2, True],
         float_literal: Literal["a", 2, True],
         boolean_literal: Literal["a", 2, True],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -497,10 +497,10 @@ class MixedTypesCases(_model_base.Model):
         int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
         array: List[Union["_models.Cat", Literal["a"], int, bool]],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -533,10 +533,10 @@ class StringAndArrayCases(_model_base.Model):
         *,
         string: Union[str, List[str]],
         array: Union[str, List[str]],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

@@ -24,15 +24,13 @@ class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
-    :param api_version: Required.
-    :type api_version: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, api_version: str, **kwargs: Any
+        self, endpoint: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = NotVersionedClientConfiguration(endpoint=endpoint, api_version=api_version, **kwargs)
+        self._config = NotVersionedClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -33,10 +33,10 @@ class DifferentSpreadFloatRecord(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -66,10 +66,10 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
         *,
         name: str,
         derived_prop: float,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -95,10 +95,10 @@ class DifferentSpreadModelArrayRecord(_model_base.Model):
         self,
         *,
         known_prop: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -128,10 +128,10 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
         *,
         known_prop: str,
         derived_prop: List["_models.ModelForRecord"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -157,10 +157,10 @@ class DifferentSpreadModelRecord(_model_base.Model):
         self,
         *,
         known_prop: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -190,10 +190,10 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
         *,
         known_prop: str,
         derived_prop: "_models.ModelForRecord",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -219,10 +219,10 @@ class DifferentSpreadStringRecord(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -252,10 +252,10 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
         *,
         id: float,  # pylint: disable=redefined-builtin
         derived_prop: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -281,10 +281,10 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -310,10 +310,10 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -339,10 +339,10 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -368,10 +368,10 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -397,10 +397,10 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -434,10 +434,10 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         name: str,
         index: int,
         age: Optional[float] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -472,10 +472,10 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
         *,
         name: str,
         kind: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -515,10 +515,10 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -544,10 +544,10 @@ class IsFloatAdditionalProperties(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -573,10 +573,10 @@ class IsModelAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -602,10 +602,10 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -631,10 +631,10 @@ class IsStringAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -660,10 +660,10 @@ class IsUnknownAdditionalProperties(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -697,10 +697,10 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         name: str,
         index: int,
         age: Optional[float] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -735,10 +735,10 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
         *,
         name: str,
         kind: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -778,10 +778,10 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         name: str,
         index: int,
         age: Optional[float] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -807,10 +807,10 @@ class ModelForRecord(_model_base.Model):
         self,
         *,
         state: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -836,10 +836,10 @@ class MultipleSpreadRecord(_model_base.Model):
         self,
         *,
         flag: bool,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -865,10 +865,10 @@ class SpreadFloatRecord(_model_base.Model):
         self,
         *,
         id: float,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -894,10 +894,10 @@ class SpreadModelArrayRecord(_model_base.Model):
         self,
         *,
         known_prop: List["_models.ModelForRecord"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -923,10 +923,10 @@ class SpreadModelRecord(_model_base.Model):
         self,
         *,
         known_prop: "_models.ModelForRecord",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -952,10 +952,10 @@ class SpreadRecordForDiscriminatedUnion(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -981,10 +981,10 @@ class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1010,10 +1010,10 @@ class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1039,10 +1039,10 @@ class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1068,10 +1068,10 @@ class SpreadRecordForUnion(_model_base.Model):
         self,
         *,
         flag: bool,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1097,10 +1097,10 @@ class SpreadStringRecord(_model_base.Model):
         self,
         *,
         name: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1132,10 +1132,10 @@ class WidgetData0(_model_base.Model):
         self,
         *,
         foo_prop: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1172,10 +1172,10 @@ class WidgetData1(_model_base.Model):
         *,
         start: datetime.datetime,
         end: Optional[datetime.datetime] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -1208,10 +1208,10 @@ class WidgetData2(_model_base.Model):
         self,
         *,
         start: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

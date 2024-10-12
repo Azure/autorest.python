@@ -26,7 +26,9 @@ class TestNotVersionedAsync(NotVersionedClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_with_query_api_version(self, notversioned_endpoint):
         client = self.create_async_client(endpoint=notversioned_endpoint)
-        response = await client.with_query_api_version()
+        response = await client.with_query_api_version(
+            api_version="str",
+        )
 
         # please add some check logic here by yourself
         # ...
@@ -35,7 +37,9 @@ class TestNotVersionedAsync(NotVersionedClientTestBaseAsync):
     @recorded_by_proxy_async
     async def test_with_path_api_version(self, notversioned_endpoint):
         client = self.create_async_client(endpoint=notversioned_endpoint)
-        response = await client.with_path_api_version()
+        response = await client.with_path_api_version(
+            api_version="str",
+        )
 
         # please add some check logic here by yourself
         # ...
