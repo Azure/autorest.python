@@ -70,8 +70,8 @@ importers:
         specifier: ^3.3.50
         version: 3.3.50
       '@typespec/http-client-python':
-        specifier: 0.3.0
-        version: 0.3.0(vm3zl3bny6zj5nharspdvjsyym)
+        specifier: /Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz
+        version: file:../typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz(vm3zl3bny6zj5nharspdvjsyym)
       chalk:
         specifier: 5.3.0
         version: 5.3.0
@@ -82,8 +82,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.3.0
-        version: 0.3.0(vm3zl3bny6zj5nharspdvjsyym)
+        specifier: /Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz
+        version: file:../typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz(vm3zl3bny6zj5nharspdvjsyym)
       '@typespec/openapi3':
         specifier: ~0.61.0
         version: 0.61.0(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0))(@typespec/openapi@0.61.0(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0)))(@typespec/versioning@0.61.0(@typespec/compiler@0.61.0))(openapi-types@12.1.3)
@@ -1226,8 +1226,9 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@0.3.0':
-    resolution: {integrity: sha512-Hl3KMMgju68IxQh+Rcf1l6IDp4zr5vGisi1mBLjOTY9yYpOEED9Mf0DGEHE4DAQfqrDUvw3CWhdXwpaVUAfs3Q==}
+  '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz':
+    resolution: {integrity: sha512-G/WZfzrNoKSyJ3ymiu5ClLuglunObxm+TJ1geOktGcPTY4PY1A9wW5Rj0C1bFhSy7xAafozzvJUM+6GG4aE3nw==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz}
+    version: 0.3.0
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.47.0 <1.0.0'
@@ -4981,7 +4982,7 @@ snapshots:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  '@typespec/http-client-python@0.3.0(vm3zl3bny6zj5nharspdvjsyym)':
+  '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz(vm3zl3bny6zj5nharspdvjsyym)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.47.0(it3uieauvfbt3ppm5uhk4o7n64)
       '@azure-tools/typespec-azure-core': 0.47.0(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0))(@typespec/rest@0.61.0(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0)))
