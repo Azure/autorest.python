@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@microsoft.azure/autorest.testserver": "^3.3.50",
-    "@typespec/http-client-python": "/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.3.0.tgz",
+    "@typespec/http-client-python": "/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.3.1.tgz",
     "chalk": "5.3.0",
     "typescript": "~5.1.6"
   },

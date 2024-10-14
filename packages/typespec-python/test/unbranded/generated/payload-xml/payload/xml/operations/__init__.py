@@ -12,18 +12,20 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import SimpleModelValueOperations
-from ._operations import ModelWithSimpleArraysValueOperations
-from ._operations import ModelWithArrayOfModelValueOperations
-from ._operations import ModelWithOptionalFieldValueOperations
-from ._operations import ModelWithAttributesValueOperations
-from ._operations import ModelWithUnwrappedArrayValueOperations
-from ._operations import ModelWithRenamedArraysValueOperations
-from ._operations import ModelWithRenamedFieldsValueOperations
-from ._operations import ModelWithEmptyArrayValueOperations
-from ._operations import ModelWithTextValueOperations
-from ._operations import ModelWithDictionaryValueOperations
-from ._operations import ModelWithEncodedNamesValueOperations
+from ._operations import (  # type: ignore
+    SimpleModelValueOperations,
+    ModelWithSimpleArraysValueOperations,
+    ModelWithArrayOfModelValueOperations,
+    ModelWithOptionalFieldValueOperations,
+    ModelWithAttributesValueOperations,
+    ModelWithUnwrappedArrayValueOperations,
+    ModelWithRenamedArraysValueOperations,
+    ModelWithRenamedFieldsValueOperations,
+    ModelWithEmptyArrayValueOperations,
+    ModelWithTextValueOperations,
+    ModelWithDictionaryValueOperations,
+    ModelWithEncodedNamesValueOperations,
+)
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

@@ -12,11 +12,15 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._models_py3 import (  # type: ignore
+    PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema,
+    PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema,
+)
 
-from ._models_py3 import PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema
-from ._models_py3 import PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema
+from ._reserved_words_client_enums import (  # type: ignore
+    MyEnum,
+)
 
-from ._reserved_words_client_enums import MyEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -26,5 +30,6 @@ __all__ = [
     "PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema",
     "MyEnum",
 ]
+
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

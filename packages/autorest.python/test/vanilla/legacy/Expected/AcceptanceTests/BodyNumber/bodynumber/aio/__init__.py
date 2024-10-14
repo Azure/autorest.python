@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._auto_rest_number_test_service import AutoRestNumberTestService
+from ._auto_rest_number_test_service import AutoRestNumberTestService  # type: ignore
 
 try:
     from ._patch import __all__ as _patch_all

@@ -12,9 +12,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import TopLevelTrackedResourcesOperations
-from ._operations import NestedProxyResourcesOperations
-from ._operations import SingletonTrackedResourcesOperations
+from ._operations import (  # type: ignore
+    TopLevelTrackedResourcesOperations,
+    NestedProxyResourcesOperations,
+    SingletonTrackedResourcesOperations,
+)
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

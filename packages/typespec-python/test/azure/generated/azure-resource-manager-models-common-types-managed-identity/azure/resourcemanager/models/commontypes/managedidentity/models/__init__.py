@@ -12,20 +12,24 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._models import (  # type: ignore
+    ErrorAdditionalInfo,
+    ErrorDetail,
+    ErrorResponse,
+    ManagedIdentityTrackedResource,
+    ManagedIdentityTrackedResourceProperties,
+    ManagedServiceIdentity,
+    Resource,
+    SystemData,
+    TrackedResource,
+    UserAssignedIdentity,
+)
 
-from ._models import ErrorAdditionalInfo
-from ._models import ErrorDetail
-from ._models import ErrorResponse
-from ._models import ManagedIdentityTrackedResource
-from ._models import ManagedIdentityTrackedResourceProperties
-from ._models import ManagedServiceIdentity
-from ._models import Resource
-from ._models import SystemData
-from ._models import TrackedResource
-from ._models import UserAssignedIdentity
+from ._enums import (  # type: ignore
+    CreatedByType,
+    ManagedServiceIdentityType,
+)
 
-from ._enums import CreatedByType
-from ._enums import ManagedServiceIdentityType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -44,5 +48,6 @@ __all__ = [
     "CreatedByType",
     "ManagedServiceIdentityType",
 ]
+
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

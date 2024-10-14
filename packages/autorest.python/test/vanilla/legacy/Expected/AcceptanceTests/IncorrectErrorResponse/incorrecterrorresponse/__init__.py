@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._incorrect_returned_error_model import IncorrectReturnedErrorModel
+from ._incorrect_returned_error_model import IncorrectReturnedErrorModel  # type: ignore
 from ._version import VERSION
 
 __version__ = VERSION

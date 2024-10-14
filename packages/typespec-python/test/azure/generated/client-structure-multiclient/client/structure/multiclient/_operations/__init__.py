@@ -12,8 +12,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ClientAClientOperationsMixin
-from ._operations import ClientBClientOperationsMixin
+from ._operations import (  # type: ignore
+    ClientAClientOperationsMixin,
+    ClientBClientOperationsMixin,
+)
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

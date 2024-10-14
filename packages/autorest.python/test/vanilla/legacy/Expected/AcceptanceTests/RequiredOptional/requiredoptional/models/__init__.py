@@ -12,17 +12,19 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._models_py3 import (  # type: ignore
+    ArrayOptionalWrapper,
+    ArrayWrapper,
+    ClassOptionalWrapper,
+    ClassWrapper,
+    Error,
+    IntOptionalWrapper,
+    IntWrapper,
+    Product,
+    StringOptionalWrapper,
+    StringWrapper,
+)
 
-from ._models_py3 import ArrayOptionalWrapper
-from ._models_py3 import ArrayWrapper
-from ._models_py3 import ClassOptionalWrapper
-from ._models_py3 import ClassWrapper
-from ._models_py3 import Error
-from ._models_py3 import IntOptionalWrapper
-from ._models_py3 import IntWrapper
-from ._models_py3 import Product
-from ._models_py3 import StringOptionalWrapper
-from ._models_py3 import StringWrapper
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -39,5 +41,6 @@ __all__ = [
     "StringOptionalWrapper",
     "StringWrapper",
 ]
+
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()
