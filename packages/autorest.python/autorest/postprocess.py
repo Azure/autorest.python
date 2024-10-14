@@ -3,14 +3,12 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import logging
+from typing import Any, Dict
 
-_LOGGER = logging.getLogger(__name__)
-
+from pygen.postprocess import PostProcessPlugin
 from . import PluginAutorest
 
 
-class PostProcessPluginAutorest(PluginAutorest):
-    def process(self) -> bool:
-        _LOGGER.warning("There is no need for this plugin anymore, mypy will work with all customizations to generated code. Please remove this plugin from your configuration.")
-        return True
+class PostProcessPluginAutorest(PostProcessPlugin, PluginAutorest):
+    def get_options(self) -> Dict[str, Any]:
+        return {"outputFolderUri": self._autorestapi.get_value("outputFolderUri")}
