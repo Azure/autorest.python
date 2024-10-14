@@ -16,6 +16,7 @@ from ._models import (
 )
 
 from ._enums import (
+    TYPE_CHECKING,
     ContentType,
 )
 
@@ -31,6 +32,7 @@ __all__ = [
     "ModelTwo",
     "ModelThree",
     "SourcePath",
+    "TYPE_CHECKING",
     "ContentType",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])
