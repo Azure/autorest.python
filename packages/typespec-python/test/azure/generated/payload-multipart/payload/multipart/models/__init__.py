@@ -12,20 +12,18 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models import (  # type: ignore
-    Address,
-    BinaryArrayPartsRequest,
-    ComplexHttpPartsModelRequest,
-    ComplexPartsRequest,
-    FileWithHttpPartOptionalContentTypeRequest,
-    FileWithHttpPartRequiredContentTypeRequest,
-    FileWithHttpPartSpecificContentTypeRequest,
-    FloatRequest,
-    JsonPartRequest,
-    MultiBinaryPartsRequest,
-    MultiPartRequest,
-)
 
+from ._models import Address
+from ._models import BinaryArrayPartsRequest
+from ._models import ComplexHttpPartsModelRequest
+from ._models import ComplexPartsRequest
+from ._models import FileWithHttpPartOptionalContentTypeRequest
+from ._models import FileWithHttpPartRequiredContentTypeRequest
+from ._models import FileWithHttpPartSpecificContentTypeRequest
+from ._models import FloatRequest
+from ._models import JsonPartRequest
+from ._models import MultiBinaryPartsRequest
+from ._models import MultiPartRequest
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -43,6 +41,5 @@ __all__ = [
     "MultiBinaryPartsRequest",
     "MultiPartRequest",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

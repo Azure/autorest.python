@@ -12,28 +12,24 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models import (  # type: ignore
-    ErrorAdditionalInfo,
-    ErrorDetail,
-    ErrorResponse,
-    NestedProxyResource,
-    NestedProxyResourceProperties,
-    NotificationDetails,
-    ProxyResource,
-    Resource,
-    SingletonTrackedResource,
-    SingletonTrackedResourceProperties,
-    SystemData,
-    TopLevelTrackedResource,
-    TopLevelTrackedResourceProperties,
-    TrackedResource,
-)
 
-from ._enums import (  # type: ignore
-    CreatedByType,
-    ProvisioningState,
-)
+from ._models import ErrorAdditionalInfo
+from ._models import ErrorDetail
+from ._models import ErrorResponse
+from ._models import NestedProxyResource
+from ._models import NestedProxyResourceProperties
+from ._models import NotificationDetails
+from ._models import ProxyResource
+from ._models import Resource
+from ._models import SingletonTrackedResource
+from ._models import SingletonTrackedResourceProperties
+from ._models import SystemData
+from ._models import TopLevelTrackedResource
+from ._models import TopLevelTrackedResourceProperties
+from ._models import TrackedResource
 
+from ._enums import CreatedByType
+from ._enums import ProvisioningState
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -56,6 +52,5 @@ __all__ = [
     "CreatedByType",
     "ProvisioningState",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

@@ -12,12 +12,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import (  # type: ignore
-    PathParametersOperations,
-    QueryParametersOperations,
-    InInterfaceOperations,
-    RoutesClientOperationsMixin,
-)
+from ._operations import PathParametersOperations
+from ._operations import QueryParametersOperations
+from ._operations import InInterfaceOperations
+from ._operations import RoutesClientOperationsMixin
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

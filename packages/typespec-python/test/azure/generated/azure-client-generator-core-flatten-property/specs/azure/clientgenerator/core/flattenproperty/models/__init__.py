@@ -12,13 +12,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models import (  # type: ignore
-    ChildFlattenModel,
-    ChildModel,
-    FlattenModel,
-    NestedFlattenModel,
-)
 
+from ._models import ChildFlattenModel
+from ._models import ChildModel
+from ._models import FlattenModel
+from ._models import NestedFlattenModel
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -29,6 +27,5 @@ __all__ = [
     "FlattenModel",
     "NestedFlattenModel",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()
