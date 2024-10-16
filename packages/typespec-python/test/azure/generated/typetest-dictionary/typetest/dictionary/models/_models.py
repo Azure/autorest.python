@@ -35,10 +35,10 @@ class InnerModel(_model_base.Model):
         *,
         property: str,  # pylint: disable=redefined-builtin
         children: Optional[Dict[str, "_models.InnerModel"]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

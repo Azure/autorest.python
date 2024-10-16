@@ -26,7 +26,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", and "two-operation-group". Required.
+     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.multiclient.models.ClientType
     """
 
@@ -99,7 +99,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", and "two-operation-group". Required.
+     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.multiclient.models.ClientType
     """
 

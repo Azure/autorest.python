@@ -80,9 +80,11 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
-    async def with_query_api_version(self, **kwargs: Any) -> bool:
+    async def with_query_api_version(self, *, api_version: str, **kwargs: Any) -> bool:
         """with_query_api_version.
 
+        :keyword api_version: Required.
+        :paramtype api_version: str
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -101,7 +103,7 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_not_versioned_with_query_api_version_request(
-            api_version=self._config.api_version,
+            api_version=api_version,
             headers=_headers,
             params=_params,
         )
@@ -125,9 +127,11 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
 
-    async def with_path_api_version(self, **kwargs: Any) -> bool:
+    async def with_path_api_version(self, api_version: str, **kwargs: Any) -> bool:
         """with_path_api_version.
 
+        :param api_version: Required.
+        :type api_version: str
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -146,7 +150,7 @@ class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_not_versioned_with_path_api_version_request(
-            api_version=self._config.api_version,
+            api_version=api_version,
             headers=_headers,
             params=_params,
         )

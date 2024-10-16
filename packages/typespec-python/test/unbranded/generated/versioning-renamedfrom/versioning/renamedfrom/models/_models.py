@@ -41,10 +41,10 @@ class NewModel(_model_base.Model):
         new_prop: str,
         enum_prop: Union[str, "_models.NewEnum"],
         union_prop: "_types.NewUnion",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

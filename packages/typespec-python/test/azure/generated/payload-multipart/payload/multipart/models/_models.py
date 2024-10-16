@@ -33,10 +33,10 @@ class Address(_model_base.Model):
         self,
         *,
         city: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -68,10 +68,10 @@ class BinaryArrayPartsRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         pictures: List[FileType],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -118,10 +118,10 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
         profile_image: FileType,
         previous_addresses: List["_models.Address"],
         pictures: List[FileType],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -163,10 +163,10 @@ class ComplexPartsRequest(_model_base.Model):
         address: "_models.Address",
         profile_image: FileType,
         pictures: List[FileType],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -193,10 +193,10 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
         self,
         *,
         profile_image: FileType,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -223,10 +223,10 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
         self,
         *,
         profile_image: FileType,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -253,10 +253,10 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
         self,
         *,
         profile_image: FileType,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -283,10 +283,10 @@ class FloatRequest(_model_base.Model):
         self,
         *,
         temperature: float,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -318,10 +318,10 @@ class JsonPartRequest(_model_base.Model):
         *,
         address: "_models.Address",
         profile_image: FileType,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -352,10 +352,10 @@ class MultiBinaryPartsRequest(_model_base.Model):
         *,
         profile_image: FileType,
         picture: Optional[FileType] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -387,10 +387,10 @@ class MultiPartRequest(_model_base.Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         profile_image: FileType,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

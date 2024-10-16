@@ -1,5 +1,12 @@
 # Release
 
+## 6.26.0
+
+### Bump dependencies
+
+- [#2867](https://github.com/Azure/autorest.python/pull/2867) Bump http-client-python 0.3.0
+
+
 ## 6.25.0
 
 No changes, version bump only.

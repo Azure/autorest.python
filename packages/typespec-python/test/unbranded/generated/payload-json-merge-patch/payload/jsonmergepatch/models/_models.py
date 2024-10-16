@@ -33,10 +33,10 @@ class InnerModel(_model_base.Model):
         *,
         name: Optional[str] = None,
         description: Optional[str] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -90,10 +90,10 @@ class Resource(_model_base.Model):
         float_value: Optional[float] = None,
         inner_model: Optional["_models.InnerModel"] = None,
         int_array: Optional[List[int]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -141,10 +141,10 @@ class ResourcePatch(_model_base.Model):
         float_value: Optional[float] = None,
         inner_model: Optional["_models.InnerModel"] = None,
         int_array: Optional[List[int]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

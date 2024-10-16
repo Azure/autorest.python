@@ -2219,9 +2219,14 @@ class TestRuntimeDeserialized(unittest.TestCase):
         self.assertTrue(animals[2].likes_mice)
 
         message = {"Name": "Didier", "dType": "Animal"}
-        animal = self.d(Animal, message)
-        self.assertIsInstance(animal, Animal)
-        self.assertEqual(animal.name, "Didier")
+        animal1 = self.d(Animal, message)
+        animal2 = Animal.from_dict(message)
+        for animal in [animal1, animal2]:
+            self.assertIsInstance(animal, Animal)
+            self.assertEqual(animal.name, "Didier")
+
+            # deserialize must not change original data
+            self.assertEqual(message["dType"], "Animal")
 
     @unittest.skipIf(sys.version_info < (3, 4), "assertLogs not supported before 3.4")
     def test_polymorphic_missing_info(self):

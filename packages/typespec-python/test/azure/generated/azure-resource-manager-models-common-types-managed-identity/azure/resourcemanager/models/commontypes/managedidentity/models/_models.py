@@ -82,10 +82,10 @@ class ErrorResponse(_model_base.Model):
         self,
         *,
         error: Optional["_models.ErrorDetail"] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -162,10 +162,10 @@ class TrackedResource(Resource):
         *,
         location: str,
         tags: Optional[Dict[str, str]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -219,10 +219,10 @@ class ManagedIdentityTrackedResource(TrackedResource):
         tags: Optional[Dict[str, str]] = None,
         properties: Optional["_models.ManagedIdentityTrackedResourceProperties"] = None,
         identity: Optional["_models.ManagedServiceIdentity"] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -287,10 +287,10 @@ class ManagedServiceIdentity(_model_base.Model):
         *,
         type: Union[str, "_models.ManagedServiceIdentityType"],
         user_assigned_identities: Optional[Dict[str, "_models.UserAssignedIdentity"]] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -346,10 +346,10 @@ class SystemData(_model_base.Model):
         last_modified_by: Optional[str] = None,
         last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
         last_modified_at: Optional[datetime.datetime] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

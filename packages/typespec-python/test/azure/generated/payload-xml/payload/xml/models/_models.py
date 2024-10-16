@@ -31,10 +31,10 @@ class ModelWithArrayOfModel(_model_base.Model):
         self,
         *,
         items_property: List["_models.SimpleModel"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -70,10 +70,10 @@ class ModelWithAttributes(_model_base.Model):
         id1: int,
         id2: str,
         enabled: bool,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -99,10 +99,10 @@ class ModelWithDictionary(_model_base.Model):
         self,
         *,
         metadata: Dict[str, str],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -128,10 +128,10 @@ class ModelWithEmptyArray(_model_base.Model):
         self,
         *,
         items_property: List["_models.SimpleModel"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -164,10 +164,10 @@ class ModelWithEncodedNames(_model_base.Model):
         *,
         model_data: "_models.SimpleModel",
         colors: List[str],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -197,10 +197,10 @@ class ModelWithOptionalField(_model_base.Model):
         *,
         item: str,
         value: Optional[int] = None,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -232,10 +232,10 @@ class ModelWithRenamedArrays(_model_base.Model):
         *,
         colors: List[str],
         counts: List[int],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -268,10 +268,10 @@ class ModelWithRenamedFields(_model_base.Model):
         *,
         input_data: "_models.SimpleModel",
         output_data: "_models.SimpleModel",
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -302,10 +302,10 @@ class ModelWithSimpleArrays(_model_base.Model):
         *,
         colors: List[str],
         counts: List[int],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -336,10 +336,10 @@ class ModelWithText(_model_base.Model):
         *,
         language: str,
         content: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -370,10 +370,10 @@ class ModelWithUnwrappedArray(_model_base.Model):
         *,
         colors: List[str],
         counts: List[int],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -404,10 +404,10 @@ class SimpleModel(_model_base.Model):
         *,
         name: str,
         age: int,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]

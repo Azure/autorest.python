@@ -1,5 +1,12 @@
 # Release
 
+## 0.36.0
+
+### Bump dependencies
+
+- [#2867](https://github.com/Azure/autorest.python/pull/2867) Bump to typespec 0.61.0
+
+
 ## 0.35.1
 
 ### Bug Fixes

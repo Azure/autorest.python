@@ -17,3 +17,4 @@ class ClientType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     MULTI_CLIENT = "multi-client"
     RENAMED_OPERATION = "renamed-operation"
     TWO_OPERATION_GROUP = "two-operation-group"
+    CLIENT_OPERATION_GROUP = "client-operation-group"

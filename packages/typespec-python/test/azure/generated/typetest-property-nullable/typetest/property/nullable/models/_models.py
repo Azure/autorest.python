@@ -38,10 +38,10 @@ class BytesProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: bytes,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -72,10 +72,10 @@ class CollectionsByteProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: List[bytes],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -106,10 +106,10 @@ class CollectionsModelProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: List["_models.InnerModel"],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -140,10 +140,10 @@ class CollectionsStringProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: List[str],
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -174,10 +174,10 @@ class DatetimeProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: datetime.datetime,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -208,10 +208,10 @@ class DurationProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: datetime.timedelta,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -237,10 +237,10 @@ class InnerModel(_model_base.Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
@@ -272,10 +272,10 @@ class StringProperty(_model_base.Model):
         *,
         required_property: str,
         nullable_property: str,
-    ): ...
+    ) -> None: ...
 
     @overload
-    def __init__(self, mapping: Mapping[str, Any]):
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
         """
         :param mapping: raw JSON to initialize the model.
         :type mapping: Mapping[str, Any]
