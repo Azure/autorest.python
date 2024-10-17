@@ -12,52 +12,48 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models_py3 import (  # type: ignore
-    ModelAsStringNoRequiredOneValueDefault,
-    ModelAsStringNoRequiredOneValueNoDefault,
-    ModelAsStringNoRequiredTwoValueDefault,
-    ModelAsStringNoRequiredTwoValueNoDefault,
-    ModelAsStringRequiredOneValueDefault,
-    ModelAsStringRequiredOneValueNoDefault,
-    ModelAsStringRequiredTwoValueDefault,
-    ModelAsStringRequiredTwoValueNoDefault,
-    NoModelAsStringNoRequiredOneValueDefault,
-    NoModelAsStringNoRequiredOneValueNoDefault,
-    NoModelAsStringNoRequiredTwoValueDefault,
-    NoModelAsStringNoRequiredTwoValueNoDefault,
-    NoModelAsStringRequiredOneValueDefault,
-    NoModelAsStringRequiredOneValueNoDefault,
-    NoModelAsStringRequiredTwoValueDefault,
-    NoModelAsStringRequiredTwoValueNoDefault,
-)
 
-from ._auto_rest_swagger_constant_service_enums import (  # type: ignore
-    ModelAsStringNoRequiredOneValueDefaultEnum,
-    ModelAsStringNoRequiredOneValueDefaultOpEnum,
-    ModelAsStringNoRequiredOneValueNoDefaultEnum,
-    ModelAsStringNoRequiredOneValueNoDefaultOpEnum,
-    ModelAsStringNoRequiredTwoValueDefaultEnum,
-    ModelAsStringNoRequiredTwoValueDefaultOpEnum,
-    ModelAsStringNoRequiredTwoValueNoDefaultEnum,
-    ModelAsStringNoRequiredTwoValueNoDefaultOpEnum,
-    ModelAsStringRequiredOneValueDefaultEnum,
-    ModelAsStringRequiredOneValueDefaultOpEnum,
-    ModelAsStringRequiredOneValueNoDefaultEnum,
-    ModelAsStringRequiredOneValueNoDefaultOpEnum,
-    ModelAsStringRequiredTwoValueDefaultEnum,
-    ModelAsStringRequiredTwoValueDefaultOpEnum,
-    ModelAsStringRequiredTwoValueNoDefaultEnum,
-    ModelAsStringRequiredTwoValueNoDefaultOpEnum,
-    NoModelAsStringNoRequiredTwoValueDefaultEnum,
-    NoModelAsStringNoRequiredTwoValueDefaultOpEnum,
-    NoModelAsStringNoRequiredTwoValueNoDefaultEnum,
-    NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum,
-    NoModelAsStringRequiredTwoValueDefaultEnum,
-    NoModelAsStringRequiredTwoValueDefaultOpEnum,
-    NoModelAsStringRequiredTwoValueNoDefaultEnum,
-    NoModelAsStringRequiredTwoValueNoDefaultOpEnum,
-)
+from ._models_py3 import ModelAsStringNoRequiredOneValueDefault
+from ._models_py3 import ModelAsStringNoRequiredOneValueNoDefault
+from ._models_py3 import ModelAsStringNoRequiredTwoValueDefault
+from ._models_py3 import ModelAsStringNoRequiredTwoValueNoDefault
+from ._models_py3 import ModelAsStringRequiredOneValueDefault
+from ._models_py3 import ModelAsStringRequiredOneValueNoDefault
+from ._models_py3 import ModelAsStringRequiredTwoValueDefault
+from ._models_py3 import ModelAsStringRequiredTwoValueNoDefault
+from ._models_py3 import NoModelAsStringNoRequiredOneValueDefault
+from ._models_py3 import NoModelAsStringNoRequiredOneValueNoDefault
+from ._models_py3 import NoModelAsStringNoRequiredTwoValueDefault
+from ._models_py3 import NoModelAsStringNoRequiredTwoValueNoDefault
+from ._models_py3 import NoModelAsStringRequiredOneValueDefault
+from ._models_py3 import NoModelAsStringRequiredOneValueNoDefault
+from ._models_py3 import NoModelAsStringRequiredTwoValueDefault
+from ._models_py3 import NoModelAsStringRequiredTwoValueNoDefault
 
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredOneValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredOneValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredOneValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredOneValueNoDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredTwoValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredTwoValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredTwoValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredOneValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredOneValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredOneValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredOneValueNoDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredTwoValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredTwoValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredTwoValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import ModelAsStringRequiredTwoValueNoDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringNoRequiredTwoValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringNoRequiredTwoValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringNoRequiredTwoValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringRequiredTwoValueDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringRequiredTwoValueDefaultOpEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringRequiredTwoValueNoDefaultEnum
+from ._auto_rest_swagger_constant_service_enums import NoModelAsStringRequiredTwoValueNoDefaultOpEnum
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -104,6 +100,5 @@ __all__ = [
     "NoModelAsStringRequiredTwoValueNoDefaultEnum",
     "NoModelAsStringRequiredTwoValueNoDefaultOpEnum",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

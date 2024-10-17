@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient  # type: ignore
+from ._auto_rest_azure_special_parameters_test_client import AutoRestAzureSpecialParametersTestClient
 
 try:
     from ._patch import __all__ as _patch_all

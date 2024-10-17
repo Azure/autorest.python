@@ -12,15 +12,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import (  # type: ignore
-    HttpFailureOperations,
-    HttpSuccessOperations,
-    HttpRedirectsOperations,
-    HttpClientFailureOperations,
-    HttpServerFailureOperations,
-    HttpRetryOperations,
-    MultipleResponsesOperations,
-)
+from ._operations import HttpFailureOperations
+from ._operations import HttpSuccessOperations
+from ._operations import HttpRedirectsOperations
+from ._operations import HttpClientFailureOperations
+from ._operations import HttpServerFailureOperations
+from ._operations import HttpRetryOperations
+from ._operations import MultipleResponsesOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

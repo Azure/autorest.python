@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._microsoft_azure_test_url import MicrosoftAzureTestUrl  # type: ignore
+from ._microsoft_azure_test_url import MicrosoftAzureTestUrl
 from ._version import VERSION
 
 __version__ = VERSION

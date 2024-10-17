@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints  # type: ignore
+from ._lro_with_paramaterized_endpoints import LROWithParamaterizedEndpoints
 
 try:
     from ._patch import __all__ as _patch_all

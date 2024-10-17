@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._paging_client import PagingClient  # type: ignore
+from ._paging_client import PagingClient
 
 try:
     from ._patch import __all__ as _patch_all

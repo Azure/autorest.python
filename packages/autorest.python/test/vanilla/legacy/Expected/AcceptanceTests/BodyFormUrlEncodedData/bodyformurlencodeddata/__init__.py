@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._body_forms_data_url_encoded import BodyFormsDataURLEncoded  # type: ignore
+from ._body_forms_data_url_encoded import BodyFormsDataURLEncoded
 from ._version import VERSION
 
 __version__ = VERSION

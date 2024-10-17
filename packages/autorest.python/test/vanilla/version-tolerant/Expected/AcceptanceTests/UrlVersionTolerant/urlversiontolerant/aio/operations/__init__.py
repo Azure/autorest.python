@@ -12,11 +12,9 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import (  # type: ignore
-    PathsOperations,
-    QueriesOperations,
-    PathItemsOperations,
-)
+from ._operations import PathsOperations
+from ._operations import QueriesOperations
+from ._operations import PathItemsOperations
 
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import

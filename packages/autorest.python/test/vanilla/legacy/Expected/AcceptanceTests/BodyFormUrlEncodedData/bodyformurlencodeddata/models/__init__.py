@@ -12,16 +12,16 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models_py3 import (  # type: ignore
+
+from ._models_py3 import (
     Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
+)
+from ._models_py3 import (
     PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema,
 )
 
-from ._body_forms_data_url_encoded_enums import (  # type: ignore
-    PetFood,
-    PetType,
-)
-
+from ._body_forms_data_url_encoded_enums import PetFood
+from ._body_forms_data_url_encoded_enums import PetType
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -32,6 +32,5 @@ __all__ = [
     "PetFood",
     "PetType",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

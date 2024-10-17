@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService  # type: ignore
+from ._auto_rest_swagger_bat_byte_service import AutoRestSwaggerBATByteService
 from ._version import VERSION
 
 __version__ = VERSION

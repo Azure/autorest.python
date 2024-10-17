@@ -12,14 +12,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models_py3 import (  # type: ignore
-    Error,
-)
 
-from ._auto_rest_url_test_service_enums import (  # type: ignore
-    UriColor,
-)
+from ._models_py3 import Error
 
+from ._auto_rest_url_test_service_enums import UriColor
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -28,6 +24,5 @@ __all__ = [
     "Error",
     "UriColor",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

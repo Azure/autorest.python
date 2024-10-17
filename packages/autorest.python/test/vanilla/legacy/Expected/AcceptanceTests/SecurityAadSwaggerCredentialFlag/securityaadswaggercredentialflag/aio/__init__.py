@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._security_aad_swagger_credential_flag import SecurityAadSwaggerCredentialFlag  # type: ignore
+from ._security_aad_swagger_credential_flag import SecurityAadSwaggerCredentialFlag
 
 try:
     from ._patch import __all__ as _patch_all

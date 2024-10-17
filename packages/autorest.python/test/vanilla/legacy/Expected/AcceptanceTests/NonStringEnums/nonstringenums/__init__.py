@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._non_string_enums_client import NonStringEnumsClient  # type: ignore
+from ._non_string_enums_client import NonStringEnumsClient
 from ._version import VERSION
 
 __version__ = VERSION

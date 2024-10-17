@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._reserved_words_client import ReservedWordsClient  # type: ignore
+from ._reserved_words_client import ReservedWordsClient
 from ._version import VERSION
 
 __version__ = VERSION

@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._merge_patch_json_client import MergePatchJsonClient  # type: ignore
+from ._merge_patch_json_client import MergePatchJsonClient
 from ._version import VERSION
 
 __version__ = VERSION

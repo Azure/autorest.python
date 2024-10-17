@@ -12,26 +12,22 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._models_py3 import (  # type: ignore
-    BodyParam,
-    CustomParameterGroup,
-    OdataProductResult,
-    OperationResult,
-    PagingGetMultiplePagesLroOptions,
-    PagingGetMultiplePagesOptions,
-    PagingGetMultiplePagesWithOffsetOptions,
-    PagingGetOdataMultiplePagesOptions,
-    Product,
-    ProductProperties,
-    ProductResult,
-    ProductResultValue,
-    ProductResultValueWithXMSClientName,
-)
 
-from ._auto_rest_paging_test_service_enums import (  # type: ignore
-    OperationResultStatus,
-)
+from ._models_py3 import BodyParam
+from ._models_py3 import CustomParameterGroup
+from ._models_py3 import OdataProductResult
+from ._models_py3 import OperationResult
+from ._models_py3 import PagingGetMultiplePagesLroOptions
+from ._models_py3 import PagingGetMultiplePagesOptions
+from ._models_py3 import PagingGetMultiplePagesWithOffsetOptions
+from ._models_py3 import PagingGetOdataMultiplePagesOptions
+from ._models_py3 import Product
+from ._models_py3 import ProductProperties
+from ._models_py3 import ProductResult
+from ._models_py3 import ProductResultValue
+from ._models_py3 import ProductResultValueWithXMSClientName
 
+from ._auto_rest_paging_test_service_enums import OperationResultStatus
 from ._patch import __all__ as _patch_all
 from ._patch import *  # pylint: disable=unused-wildcard-import
 from ._patch import patch_sdk as _patch_sdk
@@ -52,6 +48,5 @@ __all__ = [
     "ProductResultValueWithXMSClientName",
     "OperationResultStatus",
 ]
-
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

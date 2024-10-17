@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._storage_management_client import StorageManagementClient  # type: ignore
+from ._storage_management_client import StorageManagementClient
 
 try:
     from ._patch import __all__ as _patch_all

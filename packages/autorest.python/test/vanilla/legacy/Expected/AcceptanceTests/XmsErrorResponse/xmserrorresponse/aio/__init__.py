@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._xms_error_response_extensions import XMSErrorResponseExtensions  # type: ignore
+from ._xms_error_response_extensions import XMSErrorResponseExtensions
 
 try:
     from ._patch import __all__ as _patch_all

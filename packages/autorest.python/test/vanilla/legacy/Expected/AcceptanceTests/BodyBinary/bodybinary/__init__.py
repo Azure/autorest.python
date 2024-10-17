@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._binary_with_content_type_application_json import BinaryWithContentTypeApplicationJson  # type: ignore
+from ._binary_with_content_type_application_json import BinaryWithContentTypeApplicationJson
 from ._version import VERSION
 
 __version__ = VERSION
