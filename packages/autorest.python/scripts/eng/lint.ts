@@ -58,8 +58,7 @@ export function eslint() {
 if (argv.command === "pylint") {
     pylint();
 } else if (argv.command === "mypy") {
-    // skip for now and will reopen soon
-    // mypy();
+    mypy();
 } else if (argv.command === "pyright") {
     pyright();
 } else if (argv.command === "eslint") {
@@ -68,8 +67,7 @@ if (argv.command === "pylint") {
     }
 } else {
     pylint();
-    // skip for now and will reopen soon
-    // mypy();
+    mypy();
     pyright();
     if (!argv.skipEslint) {
         eslint();
