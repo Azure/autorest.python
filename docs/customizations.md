@@ -247,10 +247,6 @@ class ServiceClient(ServiceClientGenerated):
 __all__ = ["ServiceClient"]
 ```
 
-## Postprocessing (Optional)
+## Postprocessing (REMOVED)
 
-All of the code, linting, and intellisense between generated and handwritten code should work immediately. In some cases, to correctly point mypy to the patched code, you will need to run our postprocessing step. To run this step, run
-
-```bash
-autorest --python --postprocess --output-folder=<path-to-root-of-sdk>
-```
+There is no need to run the postprocessing script anymore, since we deal with all typing issues at generation time. As such, support for this command has been removed

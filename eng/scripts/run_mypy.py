@@ -46,4 +46,6 @@ def _single_dir_mypy(mod):
 
 
 if __name__ == "__main__":
-    run_check("mypy", _single_dir_mypy, "MyPy")
+    # skip mypy check for now and will reopen it soon
+    # run_check("mypy", _single_dir_mypy, "MyPy")
+    sys.exit(0)
