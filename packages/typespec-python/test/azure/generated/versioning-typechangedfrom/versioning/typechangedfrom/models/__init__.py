@@ -17,7 +17,7 @@ from ._models import TestModel
 
 from ._enums import Versions
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

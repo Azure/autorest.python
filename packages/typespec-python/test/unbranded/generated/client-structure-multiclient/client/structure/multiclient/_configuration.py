@@ -14,7 +14,7 @@ from . import models as _models
 from ._version import VERSION
 
 
-class ClientAClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ClientAClientConfiguration:
     """Configuration for ClientAClient.
 
     Note that all parameters used to create this instance are saved as instance
@@ -49,7 +49,7 @@ class ClientAClientConfiguration:  # pylint: disable=too-many-instance-attribute
         self.authentication_policy = kwargs.get("authentication_policy")
 
 
-class ClientBClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ClientBClientConfiguration:
     """Configuration for ClientBClient.
 
     Note that all parameters used to create this instance are saved as instance

@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class XmlClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class XmlClientConfiguration:
     """Configuration for XmlClient.
 
     Note that all parameters used to create this instance are saved as instance

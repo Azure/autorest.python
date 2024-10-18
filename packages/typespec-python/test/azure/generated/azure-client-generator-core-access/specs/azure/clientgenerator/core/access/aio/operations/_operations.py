@@ -200,7 +200,7 @@ class InternalOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def _no_decorator_in_internal(  # pylint: disable=protected-access
+    async def _no_decorator_in_internal(
         self, *, name: str, **kwargs: Any
     ) -> _models._models.NoDecoratorModelInInternal:
         """no_decorator_in_internal.
@@ -264,7 +264,7 @@ class InternalOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def _internal_decorator_in_internal(  # pylint: disable=protected-access
+    async def _internal_decorator_in_internal(
         self, *, name: str, **kwargs: Any
     ) -> _models._models.InternalDecoratorModelInInternal:
         """internal_decorator_in_internal.
@@ -545,9 +545,7 @@ class RelativeModelInOperationOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def _operation(  # pylint: disable=protected-access
-        self, *, name: str, **kwargs: Any
-    ) -> _models._models.OuterModel:
+    async def _operation(self, *, name: str, **kwargs: Any) -> _models._models.OuterModel:
         """Expected query parameter: name=:code:`<any string>`
         Expected response body:
 
@@ -617,9 +615,7 @@ class RelativeModelInOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def _discriminator(  # pylint: disable=protected-access
-        self, *, kind: str, **kwargs: Any
-    ) -> _models._models.AbstractModel:
+    async def _discriminator(self, *, kind: str, **kwargs: Any) -> _models._models.AbstractModel:
         """Expected query parameter: kind=:code:`<any string>`
         Expected response body:
 

@@ -14,7 +14,7 @@ from .. import models as _models
 from .._version import VERSION
 
 
-class RenamedFromClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class RenamedFromClientConfiguration:
     """Configuration for RenamedFromClient.
 
     Note that all parameters used to create this instance are saved as instance
