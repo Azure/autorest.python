@@ -49,4 +49,7 @@ def _single_dir_pylint(mod):
 
 
 if __name__ == "__main__":
+    if sys.version_info >= (3, 9, 0):
+        # only run pylint with python 3.8
+        sys.exit(0)
     run_check("pylint", _single_dir_pylint, "Pylint")
