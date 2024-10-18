@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class NullableClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class NullableClientConfiguration:
     """Configuration for NullableClient.
 
     Note that all parameters used to create this instance are saved as instance

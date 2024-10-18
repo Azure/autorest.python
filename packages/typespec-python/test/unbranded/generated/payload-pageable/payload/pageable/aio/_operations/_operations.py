@@ -97,7 +97,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             _request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response

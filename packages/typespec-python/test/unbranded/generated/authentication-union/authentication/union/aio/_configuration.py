@@ -17,7 +17,7 @@ if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential
 
 
-class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class UnionClientConfiguration:
     """Configuration for UnionClient.
 
     Note that all parameters used to create this instance are saved as instance

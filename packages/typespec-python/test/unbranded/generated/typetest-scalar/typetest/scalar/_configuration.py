@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class ScalarClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ScalarClientConfiguration:
     """Configuration for ScalarClient.
 
     Note that all parameters used to create this instance are saved as instance

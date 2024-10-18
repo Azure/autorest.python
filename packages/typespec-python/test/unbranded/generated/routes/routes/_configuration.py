@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class RoutesClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class RoutesClientConfiguration:
     """Configuration for RoutesClient.
 
     Note that all parameters used to create this instance are saved as instance

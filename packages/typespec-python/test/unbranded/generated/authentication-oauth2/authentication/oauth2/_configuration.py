@@ -16,7 +16,7 @@ if TYPE_CHECKING:
     from corehttp.credentials import TokenCredential
 
 
-class OAuth2ClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class OAuth2ClientConfiguration:
     """Configuration for OAuth2Client.
 
     Note that all parameters used to create this instance are saved as instance

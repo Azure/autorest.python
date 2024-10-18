@@ -70,7 +70,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
@@ -114,7 +114,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
@@ -158,7 +158,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
@@ -205,7 +205,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
@@ -249,7 +249,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
@@ -293,7 +293,7 @@ class ClientBClientOperationsMixin(ClientBClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 

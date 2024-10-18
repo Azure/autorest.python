@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class JsonMergePatchClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class JsonMergePatchClientConfiguration:
     """Configuration for JsonMergePatchClient.
 
     Note that all parameters used to create this instance are saved as instance

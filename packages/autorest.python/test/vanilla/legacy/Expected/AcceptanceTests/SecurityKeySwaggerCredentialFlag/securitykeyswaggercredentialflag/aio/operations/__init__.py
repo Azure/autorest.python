@@ -15,7 +15,7 @@ if TYPE_CHECKING:
 from ._security_key_swagger_credential_flag_operations import SecurityKeySwaggerCredentialFlagOperationsMixin
 
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

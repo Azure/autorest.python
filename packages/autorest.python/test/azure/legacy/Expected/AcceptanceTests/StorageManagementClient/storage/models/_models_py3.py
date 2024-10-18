@@ -232,7 +232,7 @@ class Resource(_serialization.Model):
         self.tags = tags
 
 
-class StorageAccount(Resource):  # pylint: disable=too-many-instance-attributes
+class StorageAccount(Resource):
     """The storage account.
 
     Variables are only populated by the server, and will be ignored when sending a request.
