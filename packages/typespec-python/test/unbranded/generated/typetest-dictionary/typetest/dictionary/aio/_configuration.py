@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class DictionaryClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class DictionaryClientConfiguration:
     """Configuration for DictionaryClient.
 
     Note that all parameters used to create this instance are saved as instance

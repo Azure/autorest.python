@@ -120,9 +120,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
             _request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-                _request, stream=_stream, **kwargs
-            )
+            pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
             response = pipeline_response.http_response
 
             if response.status_code not in [200]:

@@ -14,7 +14,7 @@ from . import models as _models
 from ._version import VERSION
 
 
-class ServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class ServiceClientConfiguration:
     """Configuration for ServiceClient.
 
     Note that all parameters used to create this instance are saved as instance

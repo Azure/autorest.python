@@ -13,14 +13,18 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import Error
-from ._models_py3 import Product
+from ._models_py3 import (  # type: ignore
+    Error,
+    Product,
+)
 
-from ._auto_rest_swagger_bat_array_service_enums import Enum0
-from ._auto_rest_swagger_bat_array_service_enums import Enum1
-from ._auto_rest_swagger_bat_array_service_enums import FooEnum
+from ._auto_rest_swagger_bat_array_service_enums import (  # type: ignore
+    Enum0,
+    Enum1,
+    FooEnum,
+)
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

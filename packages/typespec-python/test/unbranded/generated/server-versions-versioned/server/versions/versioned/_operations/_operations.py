@@ -112,9 +112,7 @@ class VersionedClientOperationsMixin(VersionedClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -157,9 +155,7 @@ class VersionedClientOperationsMixin(VersionedClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -202,9 +198,7 @@ class VersionedClientOperationsMixin(VersionedClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -247,9 +241,7 @@ class VersionedClientOperationsMixin(VersionedClientMixinABC):
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 

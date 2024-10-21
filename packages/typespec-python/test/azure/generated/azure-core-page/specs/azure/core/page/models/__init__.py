@@ -13,15 +13,19 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import FirstItem
-from ._models import ListItemInputBody
-from ._models import SecondItem
-from ._models import User
-from ._models import UserOrder
+from ._models import (  # type: ignore
+    FirstItem,
+    ListItemInputBody,
+    SecondItem,
+    User,
+    UserOrder,
+)
 
-from ._enums import ListItemInputExtensibleEnum
+from ._enums import (  # type: ignore
+    ListItemInputExtensibleEnum,
+)
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

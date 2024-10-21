@@ -13,16 +13,20 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import ClientModel
-from ._models import ClientNameAndJsonEncodedNameModel
-from ._models import ClientNameModel
-from ._models import LanguageClientNameModel
-from ._models import PythonModel
+from ._models import (  # type: ignore
+    ClientModel,
+    ClientNameAndJsonEncodedNameModel,
+    ClientNameModel,
+    LanguageClientNameModel,
+    PythonModel,
+)
 
-from ._enums import ClientExtensibleEnum
-from ._enums import ExtensibleEnum
+from ._enums import (  # type: ignore
+    ClientExtensibleEnum,
+    ExtensibleEnum,
+)
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

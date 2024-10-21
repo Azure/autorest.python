@@ -12,12 +12,12 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._client import ClientAClient
-from ._client import ClientBClient
+from ._client import ClientAClient  # type: ignore
+from ._client import ClientBClient  # type: ignore
 
 try:
     from ._patch import __all__ as _patch_all
-    from ._patch import *  # pylint: disable=unused-wildcard-import
+    from ._patch import *
 except ImportError:
     _patch_all = []
 from ._patch import patch_sdk as _patch_sdk

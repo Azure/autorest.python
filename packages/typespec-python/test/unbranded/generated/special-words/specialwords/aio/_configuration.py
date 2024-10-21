@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class SpecialWordsClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class SpecialWordsClientConfiguration:
     """Configuration for SpecialWordsClient.
 
     Note that all parameters used to create this instance are saved as instance

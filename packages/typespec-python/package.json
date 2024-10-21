@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.36.0",
+  "version": "0.36.1",
   "author": "Microsoft Corporation",
   "description": "TypeSpec emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -61,7 +61,7 @@
     "@typespec/openapi3": "~0.61.0",
     "semver": "~7.6.2",
     "tsx": "4.17.0",
-    "@typespec/http-client-python": "~0.3.2",
+    "@typespec/http-client-python": "~0.3.4",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {

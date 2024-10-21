@@ -12,12 +12,12 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import MultiapiServiceClientOperationsMixin
-from ._operations import OperationGroupOneOperations
-from ._operations import OperationGroupTwoOperations
+from ._operations import MultiapiServiceClientOperationsMixin  # type: ignore
+from ._operations import OperationGroupOneOperations  # type: ignore
+from ._operations import OperationGroupTwoOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

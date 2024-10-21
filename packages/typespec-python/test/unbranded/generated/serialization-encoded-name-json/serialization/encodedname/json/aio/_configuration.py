@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from .._version import VERSION
 
 
-class JsonClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class JsonClientConfiguration:
     """Configuration for JsonClient.
 
     Note that all parameters used to create this instance are saved as instance

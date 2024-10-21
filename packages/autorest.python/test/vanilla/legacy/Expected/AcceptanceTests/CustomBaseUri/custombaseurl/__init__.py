@@ -12,14 +12,14 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient
+from ._auto_rest_parameterized_host_test_client import AutoRestParameterizedHostTestClient  # type: ignore
 from ._version import VERSION
 
 __version__ = VERSION
 
 try:
     from ._patch import __all__ as _patch_all
-    from ._patch import *  # pylint: disable=unused-wildcard-import
+    from ._patch import *
 except ImportError:
     _patch_all = []
 from ._patch import patch_sdk as _patch_sdk

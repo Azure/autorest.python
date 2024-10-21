@@ -409,9 +409,7 @@ class SimpleModelValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -474,9 +472,7 @@ class SimpleModelValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -535,9 +531,7 @@ class ModelWithSimpleArraysValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -602,9 +596,7 @@ class ModelWithSimpleArraysValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -663,9 +655,7 @@ class ModelWithArrayOfModelValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -730,9 +720,7 @@ class ModelWithArrayOfModelValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -791,9 +779,7 @@ class ModelWithOptionalFieldValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -858,9 +844,7 @@ class ModelWithOptionalFieldValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -919,9 +903,7 @@ class ModelWithAttributesValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -986,9 +968,7 @@ class ModelWithAttributesValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1047,9 +1027,7 @@ class ModelWithUnwrappedArrayValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1114,9 +1092,7 @@ class ModelWithUnwrappedArrayValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1175,9 +1151,7 @@ class ModelWithRenamedArraysValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1242,9 +1216,7 @@ class ModelWithRenamedArraysValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1303,9 +1275,7 @@ class ModelWithRenamedFieldsValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1370,9 +1340,7 @@ class ModelWithRenamedFieldsValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1431,9 +1399,7 @@ class ModelWithEmptyArrayValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1498,9 +1464,7 @@ class ModelWithEmptyArrayValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1559,9 +1523,7 @@ class ModelWithTextValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1626,9 +1588,7 @@ class ModelWithTextValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1687,9 +1647,7 @@ class ModelWithDictionaryValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1754,9 +1712,7 @@ class ModelWithDictionaryValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1815,9 +1771,7 @@ class ModelWithEncodedNamesValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -1882,9 +1836,7 @@ class ModelWithEncodedNamesValueOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 

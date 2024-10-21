@@ -13,7 +13,7 @@ from corehttp.runtime import policies
 from ._version import VERSION
 
 
-class RecursiveClientConfiguration:  # pylint: disable=too-many-instance-attributes
+class RecursiveClientConfiguration:
     """Configuration for RecursiveClient.
 
     Note that all parameters used to create this instance are saved as instance

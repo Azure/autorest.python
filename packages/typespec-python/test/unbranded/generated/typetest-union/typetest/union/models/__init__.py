@@ -13,26 +13,30 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import Cat
-from ._models import Dog
-from ._models import EnumsOnlyCases
-from ._models import GetResponse
-from ._models import GetResponse1
-from ._models import GetResponse2
-from ._models import GetResponse3
-from ._models import GetResponse4
-from ._models import GetResponse5
-from ._models import GetResponse6
-from ._models import GetResponse7
-from ._models import GetResponse8
-from ._models import GetResponse9
-from ._models import MixedLiteralsCases
-from ._models import MixedTypesCases
-from ._models import StringAndArrayCases
+from ._models import (  # type: ignore
+    Cat,
+    Dog,
+    EnumsOnlyCases,
+    GetResponse,
+    GetResponse1,
+    GetResponse2,
+    GetResponse3,
+    GetResponse4,
+    GetResponse5,
+    GetResponse6,
+    GetResponse7,
+    GetResponse8,
+    GetResponse9,
+    MixedLiteralsCases,
+    MixedTypesCases,
+    StringAndArrayCases,
+)
 
-from ._enums import StringExtensibleNamedUnion
+from ._enums import (  # type: ignore
+    StringExtensibleNamedUnion,
+)
 from ._patch import __all__ as _patch_all
-from ._patch import *  # pylint: disable=unused-wildcard-import
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [

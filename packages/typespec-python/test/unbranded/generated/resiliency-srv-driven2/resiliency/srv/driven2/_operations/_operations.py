@@ -98,7 +98,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         method_added_on="v2",
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def add_operation(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Added operation.
 
@@ -133,9 +133,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -186,9 +184,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -202,7 +198,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_required(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
@@ -246,9 +242,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
@@ -261,7 +255,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
 
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
-    )  # pylint: disable=inconsistent-return-statements
+    )
     def from_one_optional(  # pylint: disable=inconsistent-return-statements
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
@@ -305,9 +299,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client.pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
-        )
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
 
