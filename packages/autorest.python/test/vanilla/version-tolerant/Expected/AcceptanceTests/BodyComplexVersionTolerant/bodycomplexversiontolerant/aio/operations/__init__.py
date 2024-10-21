@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import BasicOperations
-from ._operations import PrimitiveOperations
-from ._operations import ArrayOperations
-from ._operations import DictionaryOperations
-from ._operations import InheritanceOperations
-from ._operations import PolymorphismOperations
-from ._operations import PolymorphicrecursiveOperations
-from ._operations import ReadonlypropertyOperations
-from ._operations import FlattencomplexOperations
+from ._operations import BasicOperations  # type: ignore
+from ._operations import PrimitiveOperations  # type: ignore
+from ._operations import ArrayOperations  # type: ignore
+from ._operations import DictionaryOperations  # type: ignore
+from ._operations import InheritanceOperations  # type: ignore
+from ._operations import PolymorphismOperations  # type: ignore
+from ._operations import PolymorphicrecursiveOperations  # type: ignore
+from ._operations import ReadonlypropertyOperations  # type: ignore
+from ._operations import FlattencomplexOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

@@ -13,13 +13,15 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import CatAPTrue
-from ._models_py3 import Error
-from ._models_py3 import PetAPInProperties
-from ._models_py3 import PetAPInPropertiesWithAPString
-from ._models_py3 import PetAPObject
-from ._models_py3 import PetAPString
-from ._models_py3 import PetAPTrue
+from ._models_py3 import (  # type: ignore
+    CatAPTrue,
+    Error,
+    PetAPInProperties,
+    PetAPInPropertiesWithAPString,
+    PetAPObject,
+    PetAPString,
+    PetAPTrue,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
