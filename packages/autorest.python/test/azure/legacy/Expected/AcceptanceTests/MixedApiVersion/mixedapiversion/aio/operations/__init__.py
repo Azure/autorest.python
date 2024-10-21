@@ -12,15 +12,15 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._http_success_operations import HttpSuccessOperations
-from ._xms_client_request_id_operations import XMsClientRequestIdOperations
-from ._subscription_in_credentials_operations import SubscriptionInCredentialsOperations
-from ._subscription_in_method_operations import SubscriptionInMethodOperations
-from ._api_version_default_operations import ApiVersionDefaultOperations
-from ._api_version_local_operations import ApiVersionLocalOperations
-from ._skip_url_encoding_operations import SkipUrlEncodingOperations
-from ._odata_operations import OdataOperations
-from ._header_operations import HeaderOperations
+from ._http_success_operations import HttpSuccessOperations  # type: ignore
+from ._xms_client_request_id_operations import XMsClientRequestIdOperations  # type: ignore
+from ._subscription_in_credentials_operations import SubscriptionInCredentialsOperations  # type: ignore
+from ._subscription_in_method_operations import SubscriptionInMethodOperations  # type: ignore
+from ._api_version_default_operations import ApiVersionDefaultOperations  # type: ignore
+from ._api_version_local_operations import ApiVersionLocalOperations  # type: ignore
+from ._skip_url_encoding_operations import SkipUrlEncodingOperations  # type: ignore
+from ._odata_operations import OdataOperations  # type: ignore
+from ._header_operations import HeaderOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

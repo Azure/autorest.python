@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._media_types_client import MediaTypesClient
+from ._media_types_client import MediaTypesClient  # type: ignore
 from ._version import VERSION
 
 __version__ = VERSION

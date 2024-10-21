@@ -13,18 +13,20 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import ModelWithArrayOfModel
-from ._models import ModelWithAttributes
-from ._models import ModelWithDictionary
-from ._models import ModelWithEmptyArray
-from ._models import ModelWithEncodedNames
-from ._models import ModelWithOptionalField
-from ._models import ModelWithRenamedArrays
-from ._models import ModelWithRenamedFields
-from ._models import ModelWithSimpleArrays
-from ._models import ModelWithText
-from ._models import ModelWithUnwrappedArray
-from ._models import SimpleModel
+from ._models import (  # type: ignore
+    ModelWithArrayOfModel,
+    ModelWithAttributes,
+    ModelWithDictionary,
+    ModelWithEmptyArray,
+    ModelWithEncodedNames,
+    ModelWithOptionalField,
+    ModelWithRenamedArrays,
+    ModelWithRenamedFields,
+    ModelWithSimpleArrays,
+    ModelWithText,
+    ModelWithUnwrappedArray,
+    SimpleModel,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

@@ -13,9 +13,11 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import Error
-from ._models_py3 import Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema
-from ._models_py3 import Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema
+from ._models_py3 import (  # type: ignore
+    Error,
+    Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema,
+    Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

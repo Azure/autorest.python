@@ -13,12 +13,16 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import Error
-from ._models_py3 import ModelThree
-from ._models_py3 import PagingResult
-from ._models_py3 import SourcePath
+from ._models_py3 import (  # type: ignore
+    Error,
+    ModelThree,
+    PagingResult,
+    SourcePath,
+)
 
-from ._multiapi_service_client_enums import ContentType
+from ._multiapi_service_client_enums import (  # type: ignore
+    ContentType,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

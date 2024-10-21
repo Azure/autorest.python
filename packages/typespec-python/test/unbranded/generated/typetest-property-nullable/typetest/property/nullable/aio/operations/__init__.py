@@ -12,13 +12,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import StringOperations
-from ._operations import BytesOperations
-from ._operations import DatetimeOperations
-from ._operations import DurationOperations
-from ._operations import CollectionsByteOperations
-from ._operations import CollectionsModelOperations
-from ._operations import CollectionsStringOperations
+from ._operations import StringOperations  # type: ignore
+from ._operations import BytesOperations  # type: ignore
+from ._operations import DatetimeOperations  # type: ignore
+from ._operations import DurationOperations  # type: ignore
+from ._operations import CollectionsByteOperations  # type: ignore
+from ._operations import CollectionsModelOperations  # type: ignore
+from ._operations import CollectionsStringOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

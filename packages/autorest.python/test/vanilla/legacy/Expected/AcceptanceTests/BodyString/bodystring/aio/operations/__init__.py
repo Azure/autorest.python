@@ -12,8 +12,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._string_operations import StringOperations
-from ._enum_operations import EnumOperations
+from ._string_operations import StringOperations  # type: ignore
+from ._enum_operations import EnumOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._datetimerfc1123_operations import Datetimerfc1123Operations
+from ._datetimerfc1123_operations import Datetimerfc1123Operations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

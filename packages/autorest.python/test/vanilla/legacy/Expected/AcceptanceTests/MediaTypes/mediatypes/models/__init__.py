@@ -13,12 +13,16 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import SourcePath
+from ._models_py3 import (  # type: ignore
+    SourcePath,
+)
 
-from ._media_types_client_enums import ContentType
-from ._media_types_client_enums import ContentType1
-from ._media_types_client_enums import ContentType2
-from ._media_types_client_enums import ContentType3
+from ._media_types_client_enums import (  # type: ignore
+    ContentType,
+    ContentType1,
+    ContentType2,
+    ContentType3,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

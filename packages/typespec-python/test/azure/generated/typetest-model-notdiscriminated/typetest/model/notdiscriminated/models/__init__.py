@@ -13,9 +13,11 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import Cat
-from ._models import Pet
-from ._models import Siamese
+from ._models import (  # type: ignore
+    Cat,
+    Pet,
+    Siamese,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

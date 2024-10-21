@@ -13,9 +13,13 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models_py3 import Error
+from ._models_py3 import (  # type: ignore
+    Error,
+)
 
-from ._auto_rest_url_test_service_enums import UriColor
+from ._auto_rest_url_test_service_enums import (  # type: ignore
+    UriColor,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
