@@ -13,8 +13,10 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._non_string_enums_client_enums import FloatEnum
-from ._non_string_enums_client_enums import IntEnum
+from ._non_string_enums_client_enums import (  # type: ignore
+    FloatEnum,
+    IntEnum,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

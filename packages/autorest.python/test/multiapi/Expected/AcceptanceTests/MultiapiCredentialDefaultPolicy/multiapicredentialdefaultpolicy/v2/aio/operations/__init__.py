@@ -12,9 +12,9 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin
-from ._operation_group_one_operations import OperationGroupOneOperations
-from ._operation_group_two_operations import OperationGroupTwoOperations
+from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin  # type: ignore
+from ._operation_group_one_operations import OperationGroupOneOperations  # type: ignore
+from ._operation_group_two_operations import OperationGroupTwoOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

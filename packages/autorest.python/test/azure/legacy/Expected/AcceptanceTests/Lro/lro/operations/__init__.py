@@ -12,10 +12,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._lros_operations import LROsOperations
-from ._lro_retrys_operations import LRORetrysOperations
-from ._lrosads_operations import LROSADsOperations
-from ._lr_os_custom_header_operations import LROsCustomHeaderOperations
+from ._lros_operations import LROsOperations  # type: ignore
+from ._lro_retrys_operations import LRORetrysOperations  # type: ignore
+from ._lrosads_operations import LROSADsOperations  # type: ignore
+from ._lr_os_custom_header_operations import LROsCustomHeaderOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

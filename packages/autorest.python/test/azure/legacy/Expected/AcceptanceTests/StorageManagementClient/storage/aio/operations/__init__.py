@@ -12,8 +12,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._storage_accounts_operations import StorageAccountsOperations
-from ._usage_operations import UsageOperations
+from ._storage_accounts_operations import StorageAccountsOperations  # type: ignore
+from ._usage_operations import UsageOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

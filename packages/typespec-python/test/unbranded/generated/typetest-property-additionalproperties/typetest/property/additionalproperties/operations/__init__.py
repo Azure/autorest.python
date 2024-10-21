@@ -12,38 +12,38 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ExtendsUnknownOperations
-from ._operations import ExtendsUnknownDerivedOperations
-from ._operations import ExtendsUnknownDiscriminatedOperations
-from ._operations import IsUnknownOperations
-from ._operations import IsUnknownDerivedOperations
-from ._operations import IsUnknownDiscriminatedOperations
-from ._operations import ExtendsStringOperations
-from ._operations import IsStringOperations
-from ._operations import SpreadStringOperations
-from ._operations import ExtendsFloatOperations
-from ._operations import IsFloatOperations
-from ._operations import SpreadFloatOperations
-from ._operations import ExtendsModelOperations
-from ._operations import IsModelOperations
-from ._operations import SpreadModelOperations
-from ._operations import ExtendsModelArrayOperations
-from ._operations import IsModelArrayOperations
-from ._operations import SpreadModelArrayOperations
-from ._operations import SpreadDifferentStringOperations
-from ._operations import SpreadDifferentFloatOperations
-from ._operations import SpreadDifferentModelOperations
-from ._operations import SpreadDifferentModelArrayOperations
-from ._operations import ExtendsDifferentSpreadStringOperations
-from ._operations import ExtendsDifferentSpreadFloatOperations
-from ._operations import ExtendsDifferentSpreadModelOperations
-from ._operations import ExtendsDifferentSpreadModelArrayOperations
-from ._operations import MultipleSpreadOperations
-from ._operations import SpreadRecordUnionOperations
-from ._operations import SpreadRecordDiscriminatedUnionOperations
-from ._operations import SpreadRecordNonDiscriminatedUnionOperations
-from ._operations import SpreadRecordNonDiscriminatedUnion2Operations
-from ._operations import SpreadRecordNonDiscriminatedUnion3Operations
+from ._operations import ExtendsUnknownOperations  # type: ignore
+from ._operations import ExtendsUnknownDerivedOperations  # type: ignore
+from ._operations import ExtendsUnknownDiscriminatedOperations  # type: ignore
+from ._operations import IsUnknownOperations  # type: ignore
+from ._operations import IsUnknownDerivedOperations  # type: ignore
+from ._operations import IsUnknownDiscriminatedOperations  # type: ignore
+from ._operations import ExtendsStringOperations  # type: ignore
+from ._operations import IsStringOperations  # type: ignore
+from ._operations import SpreadStringOperations  # type: ignore
+from ._operations import ExtendsFloatOperations  # type: ignore
+from ._operations import IsFloatOperations  # type: ignore
+from ._operations import SpreadFloatOperations  # type: ignore
+from ._operations import ExtendsModelOperations  # type: ignore
+from ._operations import IsModelOperations  # type: ignore
+from ._operations import SpreadModelOperations  # type: ignore
+from ._operations import ExtendsModelArrayOperations  # type: ignore
+from ._operations import IsModelArrayOperations  # type: ignore
+from ._operations import SpreadModelArrayOperations  # type: ignore
+from ._operations import SpreadDifferentStringOperations  # type: ignore
+from ._operations import SpreadDifferentFloatOperations  # type: ignore
+from ._operations import SpreadDifferentModelOperations  # type: ignore
+from ._operations import SpreadDifferentModelArrayOperations  # type: ignore
+from ._operations import ExtendsDifferentSpreadStringOperations  # type: ignore
+from ._operations import ExtendsDifferentSpreadFloatOperations  # type: ignore
+from ._operations import ExtendsDifferentSpreadModelOperations  # type: ignore
+from ._operations import ExtendsDifferentSpreadModelArrayOperations  # type: ignore
+from ._operations import MultipleSpreadOperations  # type: ignore
+from ._operations import SpreadRecordUnionOperations  # type: ignore
+from ._operations import SpreadRecordDiscriminatedUnionOperations  # type: ignore
+from ._operations import SpreadRecordNonDiscriminatedUnionOperations  # type: ignore
+from ._operations import SpreadRecordNonDiscriminatedUnion2Operations  # type: ignore
+from ._operations import SpreadRecordNonDiscriminatedUnion3Operations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

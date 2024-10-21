@@ -13,11 +13,13 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import InputModel
-from ._models import OrphanModel
-from ._models import OutputModel
-from ._models import ResultModel
-from ._models import RoundTripModel
+from ._models import (  # type: ignore
+    InputModel,
+    OrphanModel,
+    OutputModel,
+    ResultModel,
+    RoundTripModel,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

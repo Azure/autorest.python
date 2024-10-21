@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._parameter_grouping_operations import ParameterGroupingOperations
+from ._parameter_grouping_operations import ParameterGroupingOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

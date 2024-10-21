@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._object_type_client import ObjectTypeClient
+from ._object_type_client import ObjectTypeClient  # type: ignore
 
 try:
     from ._patch import __all__ as _patch_all

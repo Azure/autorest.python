@@ -13,10 +13,12 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from ._models import ChildFlattenModel
-from ._models import ChildModel
-from ._models import FlattenModel
-from ._models import NestedFlattenModel
+from ._models import (  # type: ignore
+    ChildFlattenModel,
+    ChildModel,
+    FlattenModel,
+    NestedFlattenModel,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
