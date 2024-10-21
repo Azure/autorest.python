@@ -1,5 +1,15 @@
 # Release
 
+## 0.36.1
+
+### Bug Fixes
+
+- [#2876](https://github.com/Azure/autorest.python/pull/2876) - Fix pylint issue for useless suppressions
+- [#2870](https://github.com/Azure/autorest.python/pull/2870) Update generated code so there is no need to run the `postprocess` script when customizations are made
+- [#2877](https://github.com/Azure/autorest.python/pull/2877) Added ignore comment in `__init__.py` to avoid mypy error
+- [#2430](https://github.com/Azure/autorest.python/pull/2430) Avoid change original data when deserialize for polymorphic model
+
+
 ## 0.36.0
 
 ### Bump dependencies
