@@ -10,7 +10,7 @@ steps:
     - script: npm run test -- --command=lint --folder=${{ parameters.folderName }}
       displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion) --folder=${{ parameters.folderName }}
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
-      condition: and(eq(variables['PythonVersion'], '3.10'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
+      condition: and(eq(variables['PythonVersion'], '3.8'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
     - script: npm run test -- --command=mypy --folder=${{ parameters.folderName }}
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
