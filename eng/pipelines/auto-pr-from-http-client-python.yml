@@ -26,8 +26,8 @@ resources:
     #   ref: main
     - repository: typespec
       type: github
-      name: microsoft/typespec
-      endpoint: microsoft
+      name: msyyc/typespec
+      endpoint: msyyc
       ref: $(HttpClientPythonBranch)
 
 jobs:
