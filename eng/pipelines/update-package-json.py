@@ -42,7 +42,8 @@ def main(branch: str, build_id: str, package_path: str, token: str):
     logging.info(f"Download url of {package_name}: {url}")
 
     # update package.json for autorest.python and typespec-python
-    for package in ["autorest.python", "typespec-python"]:
+    # for package in ["autorest.python", "typespec-python"]:
+    for package in ["typespec-python"]:
         package_path = Path(f"packages/{package}")
         package_json = package_path / "package.json"
         with open(package_json, "r") as f:
