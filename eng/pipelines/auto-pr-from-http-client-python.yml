@@ -16,6 +16,7 @@ pool:
 
 variables:
   - group: Release Secrets for GitHub
+  - group: Azure SDK Auto Release Pipeline Secrets
 
 # resources:
 #   repositories:
@@ -34,11 +35,16 @@ jobs:
     inputs:
       versionSpec: '18.x'
 
+  - script: npm install -g pnpm@9.5.0
+    displayName: Install pnpm 9.5.0
+
   # build and publish package for http-client-python
   - bash: |
       mkdir $(Build.SourcesDirectory)/typespec
       git clone https://$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
-    displayName: git clone
+      cd $(Build.SourcesDirectory)/typespec
+      git checkout $(HttpClientPythonBranch)
+    displayName: clone microsoft/typespec
 
   - script: npm install
     displayName: npm install http-client-python
@@ -58,22 +64,38 @@ jobs:
     workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
     displayName: find package path
 
-  - bash: echo "$AbsolutePkgPath"
-    displayName: test1
-    condition: succeededOrFailed()
-
-  - bash: echo "$(AbsolutePkgPath)"
-    displayName: test2
-    condition: succeededOrFailed()
-
-  - publish: $AbsolutePkgPath
-    artifact: http-client-python
-    condition: succeededOrFailed()
-
   - publish: $(AbsolutePkgPath)
     artifact: http-client-python
     condition: succeededOrFailed()
 
+  - bash: |
+      pip install eng/update-package-json-requirements.txt
+      python eng/scripts/update-package-json.py --branch $(HttpClientPythonBranch) --build-id $(Build.BuildId) --package-path $(AbsolutePkgPath) --token $(PIPELINE-TOKEN)
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+    displayName: update package.json
 
-  # - script: npm install -g pnpm@9.5.0
-  #   displayName: Install pnpm 9.5.0
+  - bash: |
+      pnpm install
+      pnpm build
+      git add .
+      git commit -m "update package.json"
+      git push origin HEAD
+
+      source packages/autorest.python/venv/bin/activate
+      cd $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
+      npm run regenerate
+      cd $(Build.SourcesDirectory)/autorest.python
+      git add .
+      git commit -m "Regenerate for typespec-python"
+      git push origin HEAD
+
+      cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
+      inv regenerate
+
+      cd $(Build.SourcesDirectory)/autorest.python
+      black .
+      git add .
+      git commit -m "Regenerate for typespec-python"
+      git push origin HEAD
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+    displayName: regenerate and push
