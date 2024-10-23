@@ -80,7 +80,7 @@ jobs:
 
   - bash: |
       pip install -r $(YmlPath)/update-package-json-requirements.txt
-      python $(YmlPath)/update-package-json.py --branch $(HttpClientPythonBranch) --build-id $(Build.BuildId) --package-path $(AbsolutePkgPath) --token $(PIPELINE-TOKEN)
+      python $(YmlPath)/update-package-json.py --branch=$(HttpClientPythonBranch) --build-id=$(Build.BuildId) --package-path=$(AbsolutePkgPath) --token=$(PIPELINE-TOKEN)
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
 
