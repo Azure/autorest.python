@@ -54,16 +54,26 @@ jobs:
   
   - bash: |
       AbsolutePkgPath=$(find "$(pwd)" -name "typespec-http-client-python-*" -maxdepth 1)
-      echo "##vso[task.setvariable variable=AbsolutePkgPath;isOutput=true]$AbsolutePkgPath"
+      echo "##vso[task.setvariable variable=AbsolutePkgPath]$AbsolutePkgPath"
     workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
     displayName: find package path
 
+  - bash: echo "$AbsolutePkgPath"
+    displayName: test1
+    condition: succeededOrFailed()
+
+  - bash: echo "$(AbsolutePkgPath)"
+    displayName: test2
+    condition: succeededOrFailed()
+
   - publish: $AbsolutePkgPath
     artifact: http-client-python
+    condition: succeededOrFailed()
+
+  - publish: $(AbsolutePkgPath)
+    artifact: http-client-python
+    condition: succeededOrFailed()
 
 
-
-
-
-  - script: npm install -g pnpm@9.5.0
-    displayName: Install pnpm 9.5.0
+  # - script: npm install -g pnpm@9.5.0
+  #   displayName: Install pnpm 9.5.0
