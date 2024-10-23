@@ -14,8 +14,8 @@ pool:
   name: "azsdk-pool-mms-ubuntu-2004-general"
   vmImage: "MMSUbuntu20.04"
 
-# variables:
-#   - group: Release Secrets for GitHub
+variables:
+  - group: Release Secrets for GitHub
 
 resources:
   repositories:
@@ -24,23 +24,20 @@ resources:
     #   name: Azure/azure-sdk-for-python
     #   endpoint: azure
     #   ref: main
-    - repository: typespec
-      type: github
-      name: msyyc/typespec
-      endpoint: msyyc
-      ref: $(HttpClientPythonBranch)
 
 jobs:
 - job: BuildAndCreatePr
 
   steps:
-  # build and publish package for http-client-python
-  - checkout: typespec
-
   - task: NodeTool@0
     displayName: 'Install Node.js 18.x'
     inputs:
       versionSpec: '18.x'
+
+  # build and publish package for http-client-python
+  - bash: |
+      mkdir $(Build.SourcesDirectory)/typespec
+      git clone https://$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
 
   - script: npm install
     displayName: npm install http-client-python
