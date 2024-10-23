@@ -17,8 +17,8 @@ pool:
 variables:
   - group: Release Secrets for GitHub
 
-resources:
-  repositories:
+# resources:
+#   repositories:
     # - repository: azure-sdk-for-python
     #   type: github
     #   name: Azure/azure-sdk-for-python
