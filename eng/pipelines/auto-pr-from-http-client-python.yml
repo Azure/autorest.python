@@ -14,10 +14,6 @@ pool:
   name: "azsdk-pool-mms-ubuntu-2004-general"
   vmImage: "MMSUbuntu20.04"
 
-variables:
-  - name: HttpClientPythonBranch
-    value: "main"
-
 # variables:
 #   - group: Release Secrets for GitHub
 
