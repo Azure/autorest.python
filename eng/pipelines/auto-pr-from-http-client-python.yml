@@ -32,7 +32,7 @@ resources:
       type: github
       name: microsoft/typespec
       endpoint: microsoft
-      ref: ${{ parameters.HttpClientPythonBranch }}
+      ref: $(HttpClientPythonBranch)
 
 jobs:
 - job: BuildAndCreatePr
