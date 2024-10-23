@@ -18,13 +18,18 @@ variables:
   - group: Release Secrets for GitHub
   - group: Azure SDK Auto Release Pipeline Secrets
 
-# resources:
-#   repositories:
+resources:
+  repositories:
     # - repository: azure-sdk-for-python
     #   type: github
     #   name: Azure/azure-sdk-for-python
     #   endpoint: azure
     #   ref: main
+    - repository: autorest.python
+      type: github
+      name: Azure/autorest.python
+      endpoint: azure
+      ref: main
 
 jobs:
 - job: BuildAndCreatePr
@@ -37,6 +42,11 @@ jobs:
 
   - script: npm install -g pnpm@9.5.0
     displayName: Install pnpm 9.5.0
+
+  - bash: |
+        YmlPath=$(pwd)/eng/pipelines
+        echo "##vso[task.setvariable variable=YmlPath]$YmlPath"
+    displayName: find yml path
 
   # build and publish package for http-client-python
   - bash: |
@@ -69,8 +79,8 @@ jobs:
     condition: succeededOrFailed()
 
   - bash: |
-      pip install eng/update-package-json-requirements.txt
-      python eng/scripts/update-package-json.py --branch $(HttpClientPythonBranch) --build-id $(Build.BuildId) --package-path $(AbsolutePkgPath) --token $(PIPELINE-TOKEN)
+      pip install $(YmlPath)/update-package-json-requirements.txt
+      python $(YmlPath)/update-package-json.py --branch $(HttpClientPythonBranch) --build-id $(Build.BuildId) --package-path $(AbsolutePkgPath) --token $(PIPELINE-TOKEN)
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
 
