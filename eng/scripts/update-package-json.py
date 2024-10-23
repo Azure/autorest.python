@@ -19,8 +19,9 @@ def log_call(command: str):
     logging.info(f"== {command} ==")
     check_call(command, shell=True)
 
+
 def main(branch: str, build_id: str, package_path: str, token: str):
-    new_branch = f'auto-{branch}'
+    new_branch = f"auto-{branch}"
     # checkout branch
     try:
         log_call(f"git checkout {new_branch}")
@@ -29,27 +30,25 @@ def main(branch: str, build_id: str, package_path: str, token: str):
         log_call(f"git checkout -b {new_branch}")
 
     # get download url of http-client-python
-    package_name = Path(package_path).name
-
-    client = BuildClient(base_url='https://dev.azure.com/azure-sdk',
-                                    creds=BasicAuthentication(token, ''))
- 
+    client = BuildClient(base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(token, ""))
     artifact = client.get_artifact(
-        project='internal',
+        project="internal",
         build_id=build_id,
-        artifact_name='http-client-python',
+        artifact_name="http-client-python",
     )
     resource_url = artifact.resource.download_url
+    package_name = Path(package_path).name
     url = resource_url.replace("=zip", f"=file&subPath=%2F{package_name}")
+    logging.info(f"Download url of {package_name}: {url}")
 
     # update package.json for autorest.python and typespec-python
-    for package in ['autorest.python', 'typespec-python']:
-        package_path = Path(f'packages/{package}')
-        package_json = package_path / 'package.json'
-        with open(package_json, 'r') as f:
+    for package in ["autorest.python", "typespec-python"]:
+        package_path = Path(f"packages/{package}")
+        package_json = package_path / "package.json"
+        with open(package_json, "r") as f:
             package_data = json.load(f)
-        package_data['dependencies']['@typespec/http-client-python'] = url
-        with open(package_json, 'w') as f:
+        package_data["dependencies"]["@typespec/http-client-python"] = url
+        with open(package_json, "w") as f:
             json.dump(package_data, f, indent=2)
 
 
@@ -67,13 +66,13 @@ if __name__ == "__main__":
         help="build id of pipeline",
         type=str,
     )
- 
+
     parser.add_argument(
         "--package-path",
         help="package path of http-client-python",
         type=str,
     )
- 
+
     parser.add_argument(
         "--token",
         help="pipeline token",
