@@ -58,7 +58,7 @@ jobs:
     workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
     displayName: find package path
 
-  - publish: $(AbsolutePkgPath)
+  - publish: $AbsolutePkgPath
     artifact: http-client-python
 
 
