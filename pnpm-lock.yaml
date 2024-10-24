@@ -59,6 +59,9 @@ importers:
       '@autorest/system-requirements':
         specifier: ~1.0.2
         version: 1.0.2
+      '@typespec/http-client-python':
+        specifier: 0.3.4
+        version: 0.3.4(vm3zl3bny6zj5nharspdvjsyym)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -69,9 +72,6 @@ importers:
       '@microsoft.azure/autorest.testserver':
         specifier: ^3.3.50
         version: 3.3.50
-      '@typespec/http-client-python':
-        specifier: 0.3.4
-        version: 0.3.4(vm3zl3bny6zj5nharspdvjsyym)
       chalk:
         specifier: 5.3.0
         version: 5.3.0
