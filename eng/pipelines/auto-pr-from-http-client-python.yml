@@ -85,7 +85,7 @@ jobs:
     displayName: update package.json
 
   - bash: |
-      pnpm install
+      pnpm install --no-frozen-lockfile
       pnpm build
       git add .
       git commit -m "update package.json"

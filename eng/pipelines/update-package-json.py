@@ -14,9 +14,11 @@ from subprocess import check_call, CalledProcessError
 from msrest.authentication import BasicAuthentication
 from azure.devops.v7_1.build import BuildClient
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
 
 def log_call(command: str):
-    logging.info(f"== {command} ==")
+    logger.info(f"== {command} ==")
     check_call(command, shell=True)
 
 
@@ -26,7 +28,7 @@ def main(branch: str, build_id: str, package_path: str, token: str):
     try:
         log_call(f"git checkout {new_branch}")
     except CalledProcessError:
-        logging.info(f"Branch {new_branch} does not exist. Creating a new branch.")
+        logger.info(f"Branch {new_branch} does not exist. Creating a new branch.")
         log_call(f"git checkout -b {new_branch}")
 
     # get download url of http-client-python
@@ -39,7 +41,7 @@ def main(branch: str, build_id: str, package_path: str, token: str):
     resource_url = artifact.resource.download_url
     package_name = Path(package_path).name
     url = resource_url.replace("=zip", f"=file&subPath=%2F{package_name}")
-    logging.info(f"Download url of {package_name}: {url}")
+    logger.info(f"Download url of {package_name}: {url}")
 
     # update package.json for autorest.python and typespec-python
     for package in ["autorest.python", "typespec-python"]:
