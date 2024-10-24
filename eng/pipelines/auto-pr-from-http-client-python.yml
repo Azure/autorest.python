@@ -18,18 +18,14 @@ variables:
   - group: Release Secrets for GitHub
   - group: Azure SDK Auto Release Pipeline Secrets
 
-resources:
-  repositories:
+# resources:
+#   repositories:
     # - repository: azure-sdk-for-python
     #   type: github
     #   name: Azure/azure-sdk-for-python
     #   endpoint: azure
     #   ref: main
-    - repository: autorest.python
-      type: github
-      name: Azure/autorest.python
-      endpoint: azure
-      ref: main
+
 
 jobs:
 - job: BuildAndCreatePr
@@ -51,9 +47,13 @@ jobs:
   # build and publish package for http-client-python
   - bash: |
       mkdir $(Build.SourcesDirectory)/typespec
-      git clone https://$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
+      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
       cd $(Build.SourcesDirectory)/typespec
       git checkout $(HttpClientPythonBranch)
+
+      mkdir $(Build.SourcesDirectory)/autorest.python
+      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
+      
     displayName: clone microsoft/typespec
 
   - script: npm install
@@ -79,17 +79,18 @@ jobs:
     condition: succeededOrFailed()
 
   - bash: |
-      pip install $(YmlPath)/update-package-json-requirements.txt
-      python $(YmlPath)/update-package-json.py --branch $(HttpClientPythonBranch) --build-id $(Build.BuildId) --package-path $(AbsolutePkgPath) --token $(PIPELINE-TOKEN)
+      pip install -r $(YmlPath)/update-package-json-requirements.txt
+      python $(YmlPath)/update-package-json.py --branch=$(HttpClientPythonBranch) --build-id=$(Build.BuildId) --package-path=$(AbsolutePkgPath) --token=$(PIPELINE-TOKEN)
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
 
   - bash: |
       pnpm install --no-frozen-lockfile
       pnpm build
+      git remote add azure https://github.com/Azure/autorest.python.git
       git add .
       git commit -m "update package.json"
-      git push origin HEAD
+      git push azure HEAD
 
       source packages/autorest.python/venv/bin/activate
       cd $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
@@ -97,7 +98,7 @@ jobs:
       cd $(Build.SourcesDirectory)/autorest.python
       git add .
       git commit -m "Regenerate for typespec-python"
-      git push origin HEAD
+      git push azure HEAD
 
       cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
       inv regenerate
@@ -106,6 +107,6 @@ jobs:
       black .
       git add .
       git commit -m "Regenerate for typespec-python"
-      git push origin HEAD
+      git push azure HEAD
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: regenerate and push
