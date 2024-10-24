@@ -15,17 +15,7 @@ pool:
   vmImage: "MMSUbuntu20.04"
 
 variables:
-  - group: Release Secrets for GitHub
   - group: Azure SDK Auto Release Pipeline Secrets
-
-# resources:
-#   repositories:
-    # - repository: azure-sdk-for-python
-    #   type: github
-    #   name: Azure/azure-sdk-for-python
-    #   endpoint: azure
-    #   ref: main
-
 
 jobs:
 - job: BuildAndCreatePr
@@ -46,15 +36,15 @@ jobs:
 
   # build and publish package for http-client-python
   - bash: |
+      git config --global user.email "AutoPrFromHttpClientPython"
+      git config --global user.name "AutoPrFromHttpClientPython"
       mkdir $(Build.SourcesDirectory)/typespec
-      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
-      cd $(Build.SourcesDirectory)/typespec
-      git checkout $(HttpClientPythonBranch)
+      git clone -b $(HttpClientPythonBranch) https://github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
 
       mkdir $(Build.SourcesDirectory)/autorest.python
-      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
+      git clone https://msyyc:$(Yuchao-GitToken)@github.com/msyyc/autorest.python.git $(Build.SourcesDirectory)/autorest.python
       
-    displayName: clone microsoft/typespec
+    displayName: clone repo
 
   - script: npm install
     displayName: npm install http-client-python
@@ -80,33 +70,34 @@ jobs:
 
   - bash: |
       pip install -r $(YmlPath)/update-package-json-requirements.txt
-      python $(YmlPath)/update-package-json.py --branch=$(HttpClientPythonBranch) --build-id=$(Build.BuildId) --package-path=$(AbsolutePkgPath) --token=$(PIPELINE-TOKEN)
+      python $(YmlPath)/update-package-json.py --branch=auto-$(HttpClientPythonBranch) --build-id=$(Build.BuildId) --package-path=$(AbsolutePkgPath) --token=$(PIPELINE-TOKEN)
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
 
   - bash: |
       pnpm install --no-frozen-lockfile
       pnpm build
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+    displayName: pnpm install and build
+
+  - script: |
+        find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
+        find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete
+        npm run regenerate
+        git add . && git commit -m "Regenerate for typespec-python"
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
+    displayName: regenerate for typespec-python
+
+  # - bash: |
+  #     source packages/autorest.python/venv/bin/activate
+  #     inv regenerate
+  #     black .
+  #     git add . && git commit -m "Regenerate for autorest.python"
+  #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
+  #   displayName: regenerate for autorest.python
+
+  - bash: 
       git remote add azure https://github.com/Azure/autorest.python.git
-      git add .
-      git commit -m "update package.json"
-      git push azure HEAD
-
-      source packages/autorest.python/venv/bin/activate
-      cd $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
-      npm run regenerate
-      cd $(Build.SourcesDirectory)/autorest.python
-      git add .
-      git commit -m "Regenerate for typespec-python"
-      git push azure HEAD
-
-      cd $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
-      inv regenerate
-
-      cd $(Build.SourcesDirectory)/autorest.python
-      black .
-      git add .
-      git commit -m "Regenerate for typespec-python"
       git push azure HEAD
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: regenerate and push
+    displayName: push commit to Azure/autorest.python

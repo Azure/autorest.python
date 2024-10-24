@@ -18,18 +18,17 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
 def log_call(command: str):
-    logger.info(f"== {command} ==")
+    logger.info(f"=== {command} ===")
     check_call(command, shell=True)
 
 
 def main(branch: str, build_id: str, package_path: str, token: str):
-    new_branch = f"auto-{branch}"
     # checkout branch
     try:
-        log_call(f"git checkout {new_branch}")
+        log_call(f"git checkout {branch}")
     except CalledProcessError:
-        logger.info(f"Branch {new_branch} does not exist. Creating a new branch.")
-        log_call(f"git checkout -b {new_branch}")
+        logger.info(f"Branch {branch} does not exist. Creating a new branch.")
+        log_call(f"git checkout -b {branch}")
 
     # get download url of http-client-python
     client = BuildClient(base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(token, ""))
@@ -53,13 +52,12 @@ def main(branch: str, build_id: str, package_path: str, token: str):
         with open(package_json, "w") as f:
             json.dump(package_data, f, indent=2)
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--branch",
-        help="Branch name of microsoft/typespec",
+        help="new branch name to be created",
         type=str,
     )
 
