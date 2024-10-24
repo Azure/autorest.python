@@ -74,11 +74,13 @@ jobs:
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
 
-  - bash: |
-      pnpm install --no-frozen-lockfile
-      pnpm build
+  - bash: pnpm install --no-frozen-lockfile
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: pnpm install and build
+    displayName: pnpm install
+
+  - bash: pnpm build
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python
+    displayName: pnpm build
 
   - script: |
         find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
