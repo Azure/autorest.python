@@ -42,7 +42,7 @@ jobs:
       git clone -b $(HttpClientPythonBranch) https://github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
 
       mkdir $(Build.SourcesDirectory)/autorest.python
-      git clone https://msyyc:$(Yuchao-GitToken)@github.com/msyyc/autorest.python.git $(Build.SourcesDirectory)/autorest.python
+      git clone https://Azure:$(Yuchao-GitToken)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
       
     displayName: clone repo
 
@@ -96,8 +96,9 @@ jobs:
   #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
   #   displayName: regenerate for autorest.python
 
-  - bash: 
-      git remote add azure https://github.com/Azure/autorest.python.git
-      git push azure HEAD
+  - bash: |
+      # git remote add azure https://github.com/Azure/autorest.python.git
+      # git push azure HEAD
+      git push origin HEAD
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: push commit to Azure/autorest.python
