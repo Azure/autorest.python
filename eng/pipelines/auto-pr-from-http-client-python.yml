@@ -47,12 +47,12 @@ jobs:
   # build and publish package for http-client-python
   - bash: |
       mkdir $(Build.SourcesDirectory)/typespec
-      git clone https://azure-sdk:$(azuresdk-github-pat)@microsoft/typespec.git $(Build.SourcesDirectory)/typespec
+      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
       cd $(Build.SourcesDirectory)/typespec
       git checkout $(HttpClientPythonBranch)
 
       mkdir $(Build.SourcesDirectory)/autorest.python
-      git clone https://azure-sdk:$(azuresdk-github-pat)@Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
+      git clone https://azure-sdk:$(azuresdk-github-pat)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
       
     displayName: clone microsoft/typespec
 
