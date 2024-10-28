@@ -39,48 +39,18 @@ jobs:
       git config --global user.email "AutoPrFromHttpClientPython"
       git config --global user.name "AutoPrFromHttpClientPython"
       mkdir $(Build.SourcesDirectory)/typespec
-      git clone -b $(HttpClientPythonBranch) https://github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
+      git clone https://github.com/microsoft/typespec.git $(Build.SourcesDirectory)/typespec
 
       mkdir $(Build.SourcesDirectory)/autorest.python
       git clone https://Azure:$(Yuchao-GitToken)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
       
     displayName: clone repo
 
-  - script: npm install
-    displayName: npm install http-client-python
-    workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
-
-  - script: npm run build
-    displayName: npm build http-client-python
-    workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
-
-  - script: npm pack
-    displayName: npm pack http-client-python
-    workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
-  
   - bash: |
-      AbsolutePkgPath=$(find "$(pwd)" -name "typespec-http-client-python-*" -maxdepth 1)
-      echo "##vso[task.setvariable variable=AbsolutePkgPath]$AbsolutePkgPath"
-    workingDirectory: $(Build.SourcesDirectory)/typespec/packages/http-client-python
-    displayName: find package path
-
-  - publish: $(AbsolutePkgPath)
-    artifact: http-client-python
-    condition: succeededOrFailed()
-
-  - bash: |
-      pip install -r $(YmlPath)/update-package-json-requirements.txt
-      python $(YmlPath)/update-package-json.py --branch=auto-$(HttpClientPythonBranch) --build-id=$(Build.BuildId) --package-path=$(AbsolutePkgPath) --token=$(PIPELINE-TOKEN)
+      pip install -r $(YmlPath)/auto-pr-from-http-client-python.txt
+      python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --pipeline-token=$(PIPELINE-TOKEN) --typespec-repo-path=$(Build.SourcesDirectory)/typespec
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
-
-  - bash: pnpm install --no-frozen-lockfile
-    workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: pnpm install
-
-  - bash: pnpm build
-    workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: pnpm build
 
   - script: |
         find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
