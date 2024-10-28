@@ -91,23 +91,22 @@ class Repo:
         return self._pull
 
     @property
-    def source_bracnch_name(self):
+    def source_branch_name(self):
         return self.pull.head.ref
 
     def checkout_branch(self):
-        branch_name = f"auto-{self.source_bracnch_name}"
+        self.new_branch_name = f"auto-{self.source_branch_name}"
         try:
-            log_call(f"git checkout {branch_name}")
+            log_call(f"git checkout {self.new_branch_name}")
         except CalledProcessError:
-            logger.info(f"Branch {branch} does not exist. Creating a new branch.")
-            log_call(f"git checkout -b {branch_name}")
-        self.new_branch_name = branch_name
+            logger.info(f"Branch {self.new_branch_name} does not exist. Creating a new branch.")
+            log_call(f"git checkout -b {self.new_branch_name}")
 
     @return_origin_path
     def http_client_python_json(self):
         if not self._http_client_python_json:
             os.chdir(self.typespec_repo_path)
-            log_call(f"git checkout {self.source_bracnch_name}")
+            log_call(f"git checkout {self.source_branch_name}")
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
 
@@ -132,7 +131,7 @@ class Repo:
         artifact = client.get_artifact(
             project="internal",
             build_id=build_id,
-            artifact_name="http-client-python",
+            artifact_name="build_artifacts_python",
         )
         resource_url = artifact.resource.download_url
 
@@ -140,7 +139,7 @@ class Repo:
         http_client_python_version = source_json["version"]
 
         package_name = f"typespec-http-client-python-{http_client_python_version}.tgz"
-        url = resource_url.replace("=zip", f"=file&subPath=%2F{package_name}")
+        url = resource_url.replace("=zip", f"=file&subPath=%2Fpackages%2F{package_name}")
         logger.info(f"Download url of {package_name}: {url}")
         return url
 
@@ -190,6 +189,7 @@ class Repo:
             title=f'Auto PR for "{self.pull_url}"',
             body=f'Auto PR for "{self.pull_url}"',
             maintainer_can_modify=True,
+            draft=False,
         )
 
     def run(self):
