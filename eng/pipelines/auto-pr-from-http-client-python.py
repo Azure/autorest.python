@@ -21,9 +21,11 @@ from azure.devops.v7_1.build import BuildClient
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
 
+
 def log_call(command: str):
     logger.info(f"=== {command} ===")
     check_call(command, shell=True)
+
 
 def return_origin_path(func):
     @wraps(func)
@@ -35,24 +37,33 @@ def return_origin_path(func):
 
     return wrapper
 
+
 def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
     log_call('git add . && git commit -m "Update dependencies"')
 
+
 def regen_for_typespec_python():
-    log_call("cd packages/typespec-python && find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
-    log_call("cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
+    log_call(
+        "cd packages/typespec-python && find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
+    )
+    log_call(
+        "cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
+    )
     log_call("cd packages/typespec-python && npm run regenerate")
     log_call('git add . && git commit -m "Regenerate for typespec-python"')
+
 
 def regen_for_autorest_python():
     log_call("cd packages/autorest.python && source venv/bin/activate && inv regenerate")
     log_call("source packages/autorest.python/venv/bin/activate && black .")
     log_call('git add . && git commit -m "Regenerate for autorest.python"')
 
+
 def git_push():
     log_call("git push origin HEAD")
+
 
 class Repo:
     def __init__(self, pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str):
@@ -63,13 +74,14 @@ class Repo:
         self._repo = None
         self._pull = None
         self._http_client_python_json = None
+        self.new_branch_name = None
 
     @property
     def repo(self):
         if not self._repo:
             self._repo = Github(auth=Auth.Token(self.repo_token)).get_repo("microsoft/typespec")
         return self._repo
-    
+
     @property
     def pull(self):
         if not self._pull:
@@ -77,11 +89,11 @@ class Repo:
             logger.info(f"Pull number: {pull_number}")
             self._pull = self.repo.get_pull(pull_number)
         return self._pull
-    
+
     @property
     def source_bracnch_name(self):
         return self.pull.head.ref
-    
+
     def checkout_branch(self):
         branch_name = f"auto-{self.source_bracnch_name}"
         try:
@@ -89,6 +101,7 @@ class Repo:
         except CalledProcessError:
             logger.info(f"Branch {branch} does not exist. Creating a new branch.")
             log_call(f"git checkout -b {branch_name}")
+        self.new_branch_name = branch_name
 
     @return_origin_path
     def http_client_python_json(self):
@@ -99,21 +112,23 @@ class Repo:
                 self._http_client_python_json = json.load(f)
 
         return self._http_client_python_json
-    
+
     def get_artifact_url(self):
         # get build_id
         build_id = None
         commit = self.repo.get_commit(self.pull.head.sha)
         for item in list(commit.get_check_runs()):
             if "Python" in item.name and item.conclusion == "success":
-                build_id = re.findall(r'buildId=\d+', item.details_url)[0]
+                build_id = re.findall(r"buildId=\d+", item.details_url)[0]
                 break
         if not build_id:
             raise Exception("No successful Python build found.")
         logger.info(f"Build id: {build_id}")
 
         # get artifact url
-        client = BuildClient(base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(self.pipeline_token, ""))
+        client = BuildClient(
+            base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(self.pipeline_token, "")
+        )
         artifact = client.get_artifact(
             project="internal",
             build_id=build_id,
@@ -152,12 +167,11 @@ class Repo:
                     target[k] = v
         with open(target_json, "r") as f:
             package_data = json.load(f)
-            
+
     def update_dependency(self, url: str):
         self.update_dependency_http_client_python(url)
         self.update_other_dependencies()
 
-    
     # prepare pr for autorest.python repo
     def prepare_pr(self):
         install_and_build()
@@ -167,6 +181,16 @@ class Repo:
         regen_for_autorest_python()
 
         git_push()
+
+    # create PR in autorest.python repo
+    def create_pr(self):
+        self.repo.create_pull(
+            base="main",
+            head=self.new_branch_name,
+            title=f'Auto PR for "{self.pull_url}"',
+            body=f'Auto PR for "{self.pull_url}"',
+            maintainer_can_modify=True,
+        )
 
     def run(self):
         self.checkout_branch()
