@@ -41,10 +41,18 @@ def install_and_build():
     log_call('git add . && git commit -m "Update dependencies"')
 
 def regen_for_typespec_python():
-    log_call("find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
-    log_call("find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
-    log_call("npm run regenerate")
+    log_call("cd packages/typespec-python && find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
+    log_call("cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete")
+    log_call("cd packages/typespec-python && npm run regenerate")
     log_call('git add . && git commit -m "Regenerate for typespec-python"')
+
+def regen_for_autorest_python():
+    log_call("cd packages/autorest.python && source venv/bin/activate && inv regenerate")
+    log_call("source packages/autorest.python/venv/bin/activate && black .")
+    log_call('git add . && git commit -m "Regenerate for autorest.python"')
+
+def git_push():
+    log_call("git push origin HEAD")
 
 class Repo:
     def __init__(self, pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str):
@@ -154,128 +162,18 @@ class Repo:
     def prepare_pr(self):
         install_and_build()
 
+        regen_for_typespec_python()
+
+        regen_for_autorest_python()
+
+        git_push()
+
     def run(self):
         self.checkout_branch()
         url = self.get_artifact_url()
         self.update_dependency(url)
         self.prepare_pr()
         self.create_pr()
-
-
-def get_package_json(package_path: str, branch_name: str) -> Dict[str, Any]:
-    original_path = os.getcwd()
-    log_call(f"cd {package_path}")
-    log_call(f"git checkout {branch_name}")
-    with open(package_path, "r") as f:
-        data = json.load(f)
-
-    os.chdir(original_path)
-    return data
-
-
-def get_pull():
-    repo = Github(auth=Auth.Token(repo_token)).get_repo("microsoft/typespec")
-    pull_number = re.findall(r"pull/\d+", pull_url)[0].replace("pull/", "")
-    pull = repo.get_pull(pull_number)
-
-def update_dependency(url: str):
-    for package in ["autorest.python", "typespec-python"]:
-        package_path = Path(f"packages/{package}")
-        package_json = package_path / "package.json"
-        with open(package_json, "r") as f:
-            package_data = json.load(f)
-        package_data["dependencies"]["@typespec/http-client-python"] = url
-        with open(package_json, "w") as f:
-            json.dump(package_data, f, indent=2)
-
-
-
-def get_repo(repo_token: str):
-    return Github(auth=Auth.Token(repo_token)).get_repo("microsoft/typespec")
-
-def get_pull():
-    repo = get_repo(repo_token)
-    pull_number = re.findall(r"pull/\d+", pull_url)[0].replace("pull/", "")
-    return repo.get_pull(pull_number)
-
-def get_branch_name(repo_token: str, pull_url: str):
-    repo = get_repo(repo_token)
-    pull_number = re.findall(r"pull/\d+", pull_url)[0].replace("pull/", "")
-    pull = repo.get_pull(pull_number)
-    return pull.head.ref
-
-def get_build_id():
-    pull = repo.get_pull(pull_number)
-    commit = repo.get_commit(pull.head.sha)
-    branch_name = pull.head.ref
-    logger.info(f"Commit sha: {commit.sha}")
-    check_runs = commit.get_check_runs()
-    build_id = None
-    for item in list(check_runs):
-        if "Python" in item.name and item.conclusion == "success":
-            build_id = re.findall(r'buildId=\d+', item.details_url)[0]
-            break
-    if not build_id:
-        raise Exception("No successful Python build found.")
-    logger.info(f"Build id: {build_id}")
-
-def get_artifact_url():
-
-    get_build_id()
-    client = BuildClient(base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(pipeline_token, ""))
-    artifact = client.get_artifact(
-        project="internal",
-        build_id=build_id,
-        artifact_name="http-client-python",
-    )
-    resource_url = artifact.resource.download_url
-
-    # get package.json of http-client-python in microsoft/typespec repo
-    source_json = get_package_json(typespec_repo_path, branch_name)
-    http_client_python_version = source_json["version"]
-
-    package_name = f"typespec-http-client-python-{http_client_python_version}.tgz"
-    url = resource_url.replace("=zip", f"=file&subPath=%2F{package_name}")
-    logger.info(f"Download url of {package_name}: {url}")
-
-
-
-def main(pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str):
-    # get repo instance
-    repo = get_repo(repo_token)
-    pull_number = re.findall(r"pull/\d+", pull_url)[0].replace("pull/", "")
-    pull = repo.get_pull(pull_number)
-    commit = repo.get_commit(pull.head.sha)
-    branch_name = pull.head.ref
-    logger.info(f"Commit sha: {commit.sha}")
-    check_runs = commit.get_check_runs()
-
-
-    # checkout new branch
-    checkout_branch(branch_name)
-
-    # get download url of http-client-python
-    client = BuildClient(base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(pipeline_token, ""))
-    artifact = client.get_artifact(
-        project="internal",
-        build_id=build_id,
-        artifact_name="http-client-python",
-    )
-    resource_url = artifact.resource.download_url
-
-    # get package.json of http-client-python in microsoft/typespec repo
-    source_json = get_package_json(typespec_repo_path, branch_name)
-    http_client_python_version = source_json["version"]
-
-    package_name = f"typespec-http-client-python-{http_client_python_version}.tgz"
-    url = resource_url.replace("=zip", f"=file&subPath=%2F{package_name}")
-    logger.info(f"Download url of {package_name}: {url}")
-
-    # update dependency "http-client-python" for autorest.python and typespec-python
-    update_dependency(url)
-
-    # update other dependencies for typespec-python
-    update_other_dependencies(source_json)
 
 
 if __name__ == "__main__":
