@@ -118,7 +118,7 @@ class Repo:
         commit = self.repo.get_commit(self.pull.head.sha)
         for item in list(commit.get_check_runs()):
             if "Python" in item.name and item.conclusion == "success":
-                build_id = re.findall(r"buildId=\d+", item.details_url)[0]
+                build_id = int(re.findall(r"buildId=\d+", item.details_url)[0].replace("buildId=", ""))
                 break
         if not build_id:
             raise Exception("No successful Python build found.")
