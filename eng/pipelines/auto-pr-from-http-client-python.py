@@ -170,20 +170,24 @@ class Repo:
     # prepare pr for autorest.python repo
     def prepare_pr(self):
         install_and_build()
-        # regen_for_typespec_python()
-        # regen_for_autorest_python()
+        regen_for_typespec_python()
+        regen_for_autorest_python()
         git_push()
 
     # create PR in autorest.python repo
     def create_pr(self):
-        self.autorest_repo.create_pull(
-            base="main",
-            head=self.new_branch_name,
-            title=f"Auto PR for {self.pull_url}",
-            body=f"Auto PR for {self.pull_url}",
-            maintainer_can_modify=True,
-            draft=False,
-        )
+        has_existing_pr = len(list(self.autorest_repo.get_pulls(state="open", head=self.new_branch_name, base="main"))) > 0
+        if has_existing_pr:
+            logger.info(f"PR already exists for {self.pull_url}")
+        else:
+            self.autorest_repo.create_pull(
+                base="main",
+                head=self.new_branch_name,
+                title=f"Auto PR for {self.pull_url}",
+                body=f"Auto PR for {self.pull_url}",
+                maintainer_can_modify=True,
+                draft=False,
+            )
 
     def run(self):
         self.checkout_branch()
