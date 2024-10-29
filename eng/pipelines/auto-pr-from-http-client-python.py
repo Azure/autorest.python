@@ -161,7 +161,7 @@ class Repo:
         for dependency in ["devDependencies", "peerDependencies"]:
             source = source_json[dependency]
             target = package_data[dependency]
-            for k, v in source.items:
+            for k, v in source.items():
                 if k in target:
                     target[k] = v
         with open(target_json, "r") as f:
