@@ -162,7 +162,7 @@ class Repo:
                     logger.info(f"{dependency}: Update {k} from {target[k]} to {v}")
                     target[k] = v
         with open(target_json, "r") as f:
-            package_data = json.load(f)
+            json.dump(package_data, f, indent=2)
 
     def update_dependency(self):
         self.update_dependency_http_client_python()
