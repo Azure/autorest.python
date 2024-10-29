@@ -66,11 +66,14 @@ def git_push():
 
 
 class Repo:
-    def __init__(self, pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str):
+    def __init__(
+        self, pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str, artifacts_url_prefix: str
+    ):
         self.pull_url = pull_url
         self.repo_token = repo_token
         self.pipeline_token = pipeline_token
         self.typespec_repo_path = typespec_repo_path
+        self.artifacts_url_prefix = artifacts_url_prefix
         self._repo = None
         self._pull = None
         self._http_client_python_json = None
@@ -139,8 +142,10 @@ class Repo:
         http_client_python_version = source_json["version"]
 
         package_name = f"typespec-http-client-python-{http_client_python_version}.tgz"
-        url = resource_url.replace("=zip", f"=file&subPath=%2Fpackages%2F{package_name}")
-        logger.info(f"Download url of {package_name}: {url}")
+        origin_url = resource_url.replace("=zip", f"=file&subPath=%2Fpackages%2F{package_name}")
+        logger.info(f"Original Download url of {package_name}: {origin_url}")
+        url = self.artifacts_url_prefix + origin_url.split("_apis/artifact")[1]
+        logger.info(f"Final Download url of {package_name}: {url}")
         return url
 
     def update_dependency_http_client_python(self, url: str):
@@ -224,6 +229,12 @@ if __name__ == "__main__":
         type=str,
     )
 
+    parser.add_argument(
+        "--artifacts-url-prefix",
+        help="Prefix of artifacts url",
+        type=str,
+    )
+
     args = parser.parse_args()
-    repo = Repo(args.pull_url, args.repo_token, args.pipeline_token, args.typespec_repo_path)
+    repo = Repo(args.pull_url, args.repo_token, args.pipeline_token, args.typespec_repo_path, args.artifacts_url_prefix)
     repo.run()
