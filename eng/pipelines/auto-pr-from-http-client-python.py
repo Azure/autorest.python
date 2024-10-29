@@ -159,6 +159,7 @@ class Repo:
             target = package_data[dependency]
             for k, v in source.items():
                 if k in target:
+                    logger.info(f"{dependency}: Update {k} from {target[k]} to {v}")
                     target[k] = v
         with open(target_json, "r") as f:
             package_data = json.load(f)
