@@ -11,12 +11,8 @@ import logging
 import json
 import re
 from github import Github, Auth
-from typing import Dict, Any
 from functools import wraps
-
 from subprocess import check_call, CalledProcessError
-from msrest.authentication import BasicAuthentication
-from azure.devops.v7_1.build import BuildClient
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -66,14 +62,11 @@ def git_push():
 
 
 class Repo:
-    def __init__(
-        self, pull_url: str, repo_token: str, pipeline_token: str, typespec_repo_path: str, artifacts_url_prefix: str
-    ):
+    def __init__(self, pull_url: str, repo_token: str, typespec_repo_path: str, artifacts_url: str):
         self.pull_url = pull_url
         self.repo_token = repo_token
-        self.pipeline_token = pipeline_token
         self.typespec_repo_path = typespec_repo_path
-        self.artifacts_url_prefix = artifacts_url_prefix
+        self.artifacts_url = artifacts_url
         self._repo = None
         self._pull = None
         self._http_client_python_json = None
@@ -115,46 +108,13 @@ class Repo:
 
         return self._http_client_python_json
 
-    def get_artifact_url(self):
-        # get build_id
-        build_id = None
-        commit = self.repo.get_commit(self.pull.head.sha)
-        for item in list(commit.get_check_runs()):
-            if "Python" in item.name and item.conclusion == "success":
-                build_id = int(re.findall(r"buildId=\d+", item.details_url)[0].replace("buildId=", ""))
-                break
-        if not build_id:
-            raise Exception("No successful Python build found.")
-        logger.info(f"Build id: {build_id}")
-
-        # get artifact url
-        client = BuildClient(
-            base_url="https://dev.azure.com/azure-sdk", creds=BasicAuthentication(self.pipeline_token, "")
-        )
-        artifact = client.get_artifact(
-            project="internal",
-            build_id=build_id,
-            artifact_name="build_artifacts_python",
-        )
-        resource_url = artifact.resource.download_url
-
-        source_json = self.http_client_python_json()
-        http_client_python_version = source_json["version"]
-
-        package_name = f"typespec-http-client-python-{http_client_python_version}.tgz"
-        origin_url = resource_url.replace("=zip", f"=file&subPath=%2Fpackages%2F{package_name}")
-        logger.info(f"Original Download url of {package_name}: {origin_url}")
-        url = self.artifacts_url_prefix + origin_url.split("_apis/artifact")[1]
-        logger.info(f"Final Download url of {package_name}: {url}")
-        return url
-
-    def update_dependency_http_client_python(self, url: str):
+    def update_dependency_http_client_python(self):
         for package in ["autorest.python", "typespec-python"]:
             package_path = Path(f"packages/{package}")
             package_json = package_path / "package.json"
             with open(package_json, "r") as f:
                 package_data = json.load(f)
-            package_data["dependencies"]["@typespec/http-client-python"] = url
+            package_data["dependencies"]["@typespec/http-client-python"] = self.artifacts_url
             with open(package_json, "w") as f:
                 json.dump(package_data, f, indent=2)
 
@@ -172,8 +132,8 @@ class Repo:
         with open(target_json, "r") as f:
             package_data = json.load(f)
 
-    def update_dependency(self, url: str):
-        self.update_dependency_http_client_python(url)
+    def update_dependency(self):
+        self.update_dependency_http_client_python()
         self.update_other_dependencies()
 
     # prepare pr for autorest.python repo
@@ -196,8 +156,7 @@ class Repo:
 
     def run(self):
         self.checkout_branch()
-        url = self.get_artifact_url()
-        self.update_dependency(url)
+        self.update_dependency()
         self.prepare_pr()
         self.create_pr()
 
@@ -218,23 +177,17 @@ if __name__ == "__main__":
     )
 
     parser.add_argument(
-        "--pipeline-token",
-        help="Token to access the pipeline",
-        type=str,
-    )
-
-    parser.add_argument(
         "--typespec-repo-path",
         help="microsft/typespec repo path",
         type=str,
     )
 
     parser.add_argument(
-        "--artifacts-url-prefix",
-        help="Prefix of artifacts url",
+        "--artifacts-url",
+        help="Artifacts url",
         type=str,
     )
 
     args = parser.parse_args()
-    repo = Repo(args.pull_url, args.repo_token, args.pipeline_token, args.typespec_repo_path, args.artifacts_url_prefix)
+    repo = Repo(args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url)
     repo.run()
