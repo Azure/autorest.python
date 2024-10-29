@@ -18,7 +18,7 @@ variables:
   - group: Azure SDK Auto Release Pipeline Secrets
 
 jobs:
-- job: BuildAndCreatePr
+- job: CreatePrForHttpClientPython
 
   steps:
   - task: NodeTool@0
@@ -34,7 +34,6 @@ jobs:
         echo "##vso[task.setvariable variable=YmlPath]$YmlPath"
     displayName: find yml path
 
-  # build and publish package for http-client-python
   - bash: |
       git config --global user.email "AutoPrFromHttpClientPython"
       git config --global user.name "AutoPrFromHttpClientPython"
@@ -43,7 +42,6 @@ jobs:
 
       mkdir $(Build.SourcesDirectory)/autorest.python
       git clone https://Azure:$(Yuchao-GitToken)@github.com/Azure/autorest.python.git $(Build.SourcesDirectory)/autorest.python
-      
     displayName: clone repo
 
   - bash: |
@@ -51,26 +49,3 @@ jobs:
       python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --pipeline-token=$(PIPELINE-TOKEN) --typespec-repo-path=$(Build.SourcesDirectory)/typespec
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: update package.json
-
-  - script: |
-        find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
-        find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete
-        npm run regenerate
-        git add . && git commit -m "Regenerate for typespec-python"
-    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
-    displayName: regenerate for typespec-python
-
-  # - bash: |
-  #     source packages/autorest.python/venv/bin/activate
-  #     inv regenerate
-  #     black .
-  #     git add . && git commit -m "Regenerate for autorest.python"
-  #   workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python
-  #   displayName: regenerate for autorest.python
-
-  - bash: |
-      # git remote add azure https://github.com/Azure/autorest.python.git
-      # git push azure HEAD
-      git push origin HEAD
-    workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: push commit to Azure/autorest.python

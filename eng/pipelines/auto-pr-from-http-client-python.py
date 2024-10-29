@@ -174,11 +174,8 @@ class Repo:
     # prepare pr for autorest.python repo
     def prepare_pr(self):
         install_and_build()
-
         regen_for_typespec_python()
-
         regen_for_autorest_python()
-
         git_push()
 
     # create PR in autorest.python repo
