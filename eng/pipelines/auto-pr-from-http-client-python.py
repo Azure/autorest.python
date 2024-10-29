@@ -13,6 +13,7 @@ import re
 from github import Github, Auth
 from functools import wraps
 from subprocess import check_call, CalledProcessError
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -34,10 +35,14 @@ def return_origin_path(func):
     return wrapper
 
 
+def get_current_time():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+
 def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
-    log_call('git add . && git commit -m "Update dependencies"')
+    log_call(f'git add . && git commit -m "Update dependencies ({get_current_time()})"')
 
 
 def regen_for_typespec_python():
@@ -48,13 +53,13 @@ def regen_for_typespec_python():
         "cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
     )
     log_call("cd packages/typespec-python && npm run regenerate")
-    log_call('git add . && git commit -m "Regenerate for typespec-python"')
+    log_call(f'git add . && git commit -m "Regenerate for typespec-python ({get_current_time()})"')
 
 
 def regen_for_autorest_python():
     log_call("cd packages/autorest.python && source venv/bin/activate && inv regenerate")
     log_call("source packages/autorest.python/venv/bin/activate && black .")
-    log_call('git add . && git commit -m "Regenerate for autorest.python"')
+    log_call(f'git add . && git commit -m "Regenerate for autorest.python ({get_current_time()})"')
 
 
 def git_push():
@@ -91,7 +96,7 @@ class Repo:
         return self.pull.head.ref
 
     def checkout_branch(self):
-        self.new_branch_name = f"auto-{self.source_branch_name}"
+        self.new_branch_name = f"auto-{self.source_branch_name.replace(':', '-')}"
         try:
             log_call(f"git checkout {self.new_branch_name}")
         except CalledProcessError:
@@ -102,7 +107,14 @@ class Repo:
     def http_client_python_json(self):
         if not self._http_client_python_json:
             os.chdir(self.typespec_repo_path)
-            log_call(f"git checkout {self.source_branch_name}")
+            if ":" in self.source_branch_name:
+                user_name = self.source_branch_name.split(":")[0]
+                branch_name = self.source_branch_name.split(":")[1]
+                log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
+                log_call(f"git fetch {user_name} {branch_name}")
+                log_call(f"git checkout {branch_name}")
+            else:
+                log_call(f"git checkout {self.source_branch_name}")
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
 
