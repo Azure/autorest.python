@@ -65,8 +65,8 @@ def regen_for_typespec_python():
 
 
 def regen_for_autorest_python():
-    log_call("cd packages/autorest.python && source venv/bin/activate && inv regenerate")
-    log_call("source packages/autorest.python/venv/bin/activate && black .")
+    log_call("cd packages/autorest.python && . venv/bin/activate && inv regenerate")
+    log_call(". packages/autorest.python/venv/bin/activate && black .")
     log_call("git add .")
     try:
         log_call(f'git commit -m "Regenerate for autorest.python ({get_current_time()})"')
