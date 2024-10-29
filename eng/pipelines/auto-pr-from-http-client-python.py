@@ -84,23 +84,30 @@ class Repo:
         self.repo_token = repo_token
         self.typespec_repo_path = typespec_repo_path
         self.artifacts_url = artifacts_url
-        self._repo = None
+        self._tsp_repo = None
+        self._autorest_repo = None
         self._pull = None
         self._http_client_python_json = None
         self.new_branch_name = None
 
     @property
-    def repo(self):
-        if not self._repo:
-            self._repo = Github(auth=Auth.Token(self.repo_token)).get_repo("microsoft/typespec")
-        return self._repo
+    def tsp_repo(self):
+        if not self._tsp_repo:
+            self._tsp_repo = Github(auth=Auth.Token(self.repo_token)).get_repo("microsoft/typespec")
+        return self._tsp_repo
+
+    @property
+    def autorest_repo(self):
+        if not self._autorest_repo:
+            self._autorest_repo = Github(auth=Auth.Token(self.repo_token)).get_repo("Azure/autorest.python")
+        return self._autorest_repo
 
     @property
     def pull(self):
         if not self._pull:
             pull_number = re.findall(r"pull/\d+", self.pull_url)[0].replace("pull/", "")
             logger.info(f"Pull number: {pull_number}")
-            self._pull = self.repo.get_pull(int(pull_number))
+            self._pull = self.tsp_repo.get_pull(int(pull_number))
         return self._pull
 
     @property
@@ -169,13 +176,11 @@ class Repo:
 
     # create PR in autorest.python repo
     def create_pr(self):
-        self.repo.create_pull(
+        self.autorest_repo.create_pull(
             base="main",
             head=self.new_branch_name,
-            # title=f'Auto PR for {self.pull_url}',
-            title='Auto PR ',
-            # body=f'Auto PR for {self.pull_url}',
-            body='Auto PR ',
+            title=f"Auto PR for {self.pull_url}",
+            body=f"Auto PR for {self.pull_url}",
             maintainer_can_modify=True,
             draft=False,
         )
