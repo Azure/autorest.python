@@ -53,4 +53,4 @@ jobs:
       pip install -r $(YmlPath)/auto-pr-from-http-client-python.txt
       python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --pipeline-token=$(PIPELINE-TOKEN) --typespec-repo-path=$(Build.SourcesDirectory)/typespec
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
-    displayName: update package.json
+    displayName: create PR

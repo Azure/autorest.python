@@ -87,7 +87,7 @@ class Repo:
         if not self._pull:
             pull_number = re.findall(r"pull/\d+", self.pull_url)[0].replace("pull/", "")
             logger.info(f"Pull number: {pull_number}")
-            self._pull = self.repo.get_pull(pull_number)
+            self._pull = self.repo.get_pull(int(pull_number))
         return self._pull
 
     @property
