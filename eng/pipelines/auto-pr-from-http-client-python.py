@@ -161,7 +161,7 @@ class Repo:
                 if k in target:
                     logger.info(f"{dependency}: Update {k} from {target[k]} to {v}")
                     target[k] = v
-        with open(target_json, "r") as f:
+        with open(target_json, "w") as f:
             json.dump(package_data, f, indent=2)
 
     def update_dependency(self):
