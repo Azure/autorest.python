@@ -60,7 +60,7 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: 0.3.4
+        specifier: ~0.3.4
         version: 0.3.4(vm3zl3bny6zj5nharspdvjsyym)
       fs-extra:
         specifier: ~11.2.0
