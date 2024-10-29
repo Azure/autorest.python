@@ -163,8 +163,8 @@ class Repo:
     # prepare pr for autorest.python repo
     def prepare_pr(self):
         install_and_build()
-        regen_for_typespec_python()
-        regen_for_autorest_python()
+        # regen_for_typespec_python()
+        # regen_for_autorest_python()
         git_push()
 
     # create PR in autorest.python repo
@@ -172,8 +172,8 @@ class Repo:
         self.repo.create_pull(
             base="main",
             head=self.new_branch_name,
-            title=f'Auto PR for "{self.pull_url}"',
-            body=f'Auto PR for "{self.pull_url}"',
+            title=f'Auto PR for {self.pull_url}',
+            body=f'Auto PR for {self.pull_url}',
             maintainer_can_modify=True,
             draft=False,
         )
