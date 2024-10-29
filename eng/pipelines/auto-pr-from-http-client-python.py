@@ -189,7 +189,7 @@ class Repo:
                 title=f"Auto PR for {self.pull_url}",
                 body=f"Auto PR for {self.pull_url}",
                 maintainer_can_modify=True,
-                draft=False,
+                draft=True,
             )
 
     def run(self):
