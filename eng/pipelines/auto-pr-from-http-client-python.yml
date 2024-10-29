@@ -26,6 +26,11 @@ jobs:
     inputs:
       versionSpec: '18.x'
 
+  - task: UsePythonVersion@0
+    displayName: "Use Python 3.10"
+    inputs:
+        versionSpec: 3.10
+
   - script: npm install -g pnpm@9.5.0
     displayName: Install pnpm 9.5.0
 
