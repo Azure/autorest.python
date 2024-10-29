@@ -176,7 +176,9 @@ class Repo:
 
     # create PR in autorest.python repo
     def create_pr(self):
-        has_existing_pr = len(list(self.autorest_repo.get_pulls(state="open", head=self.new_branch_name, base="main"))) > 0
+        has_existing_pr = (
+            len(list(self.autorest_repo.get_pulls(state="open", head=self.new_branch_name, base="main"))) > 0
+        )
         if has_existing_pr:
             logger.info(f"PR already exists for {self.pull_url}")
         else:
