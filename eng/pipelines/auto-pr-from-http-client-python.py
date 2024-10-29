@@ -42,7 +42,11 @@ def get_current_time():
 def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
-    log_call(f'git add . && git commit -m "Update dependencies ({get_current_time()})"')
+    log_call("git add")
+    try:
+        log_call(f'git commit -m "Update dependencies ({get_current_time()})"')
+    except CalledProcessError:
+        logger.info("No changes to commit.")
 
 
 def regen_for_typespec_python():
@@ -53,13 +57,21 @@ def regen_for_typespec_python():
         "cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
     )
     log_call("cd packages/typespec-python && npm run regenerate")
-    log_call(f'git add . && git commit -m "Regenerate for typespec-python ({get_current_time()})"')
+    log_call("git add .")
+    try:
+        log_call(f'git commit -m "Regenerate for typespec-python ({get_current_time()})"')
+    except CalledProcessError:
+        logger.info("No changes to commit.")
 
 
 def regen_for_autorest_python():
     log_call("cd packages/autorest.python && source venv/bin/activate && inv regenerate")
     log_call("source packages/autorest.python/venv/bin/activate && black .")
-    log_call(f'git add . && git commit -m "Regenerate for autorest.python ({get_current_time()})"')
+    log_call("git add .")
+    try:
+        log_call(f'git commit -m "Regenerate for autorest.python ({get_current_time()})"')
+    except CalledProcessError:
+        logger.info("No changes to commit.")
 
 
 def git_push():
