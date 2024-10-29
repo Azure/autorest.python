@@ -42,7 +42,7 @@ def get_current_time():
 def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
-    log_call("git add")
+    log_call("git add .")
     try:
         log_call(f'git commit -m "Update dependencies ({get_current_time()})"')
     except CalledProcessError:
@@ -172,8 +172,10 @@ class Repo:
         self.repo.create_pull(
             base="main",
             head=self.new_branch_name,
-            title=f'Auto PR for {self.pull_url}',
-            body=f'Auto PR for {self.pull_url}',
+            # title=f'Auto PR for {self.pull_url}',
+            title='Auto PR ',
+            # body=f'Auto PR for {self.pull_url}',
+            body='Auto PR ',
             maintainer_can_modify=True,
             draft=False,
         )
