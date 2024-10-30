@@ -1,0 +1,20 @@
+{
+    "CrossLanguagePackageId": "Azure.ResourceManager.CommonProperties",
+    "CrossLanguageDefinitionId": {
+        "azure.resourcemanager.commonproperties.models.ErrorAdditionalInfo": "Azure.ResourceManager.CommonTypes.ErrorAdditionalInfo",
+        "azure.resourcemanager.commonproperties.models.ErrorDetail": "Azure.ResourceManager.CommonTypes.ErrorDetail",
+        "azure.resourcemanager.commonproperties.models.ErrorResponse": "Azure.ResourceManager.CommonTypes.ErrorResponse",
+        "azure.resourcemanager.commonproperties.models.Resource": "Azure.ResourceManager.CommonTypes.Resource",
+        "azure.resourcemanager.commonproperties.models.TrackedResource": "Azure.ResourceManager.CommonTypes.TrackedResource",
+        "azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResource": "Azure.ResourceManager.CommonProperties.ManagedIdentityTrackedResource",
+        "azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResourceProperties": "Azure.ResourceManager.CommonProperties.ManagedIdentityTrackedResourceProperties",
+        "azure.resourcemanager.commonproperties.models.ManagedServiceIdentity": "Azure.ResourceManager.CommonTypes.ManagedServiceIdentity",
+        "azure.resourcemanager.commonproperties.models.SystemData": "Azure.ResourceManager.CommonTypes.SystemData",
+        "azure.resourcemanager.commonproperties.models.UserAssignedIdentity": "Azure.ResourceManager.CommonTypes.UserAssignedIdentity",
+        "azure.resourcemanager.commonproperties.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
+        "azure.resourcemanager.commonproperties.models.ManagedServiceIdentityType": "Azure.ResourceManager.CommonTypes.ManagedServiceIdentityType",
+        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.get": "Azure.ResourceManager.CommonProperties.ManagedIdentity.get",
+        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.create_with_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.createWithSystemAssigned",
+        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.update_with_user_assigned_and_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.updateWithUserAssignedAndSystemAssigned"
+    }
+}
