@@ -69,6 +69,7 @@
     "@azure-tools/typespec-autorest": "~0.47.0",
     "@azure-tools/cadl-ranch-expect": "~0.15.5",
     "@azure-tools/cadl-ranch-specs": "~0.39.0",
+    "@azure-tools/cadl-ranch": "~0.16.0",
     "@types/js-yaml": "~4.0.5",
     "@types/node": "~22.5.4",
     "@types/yargs": "~17.0.33",
