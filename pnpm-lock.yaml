@@ -11,9 +11,6 @@ importers:
       '@actions/github':
         specifier: 6.0.0
         version: 6.0.0
-      '@azure-tools/cadl-ranch':
-        specifier: ~0.16.0
-        version: 0.16.0(@typespec/versioning@0.61.0(@typespec/compiler@0.61.0))
       '@chronus/chronus':
         specifier: ^0.12.1
         version: 0.12.1
@@ -100,6 +97,9 @@ importers:
         specifier: 4.17.0
         version: 4.17.0
     devDependencies:
+      '@azure-tools/cadl-ranch':
+        specifier: ~0.16.0
+        version: 0.16.0(@typespec/versioning@0.61.0(@typespec/compiler@0.61.0))
       '@azure-tools/cadl-ranch-expect':
         specifier: ~0.15.5
         version: 0.15.5(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0))(@typespec/rest@0.61.0(@typespec/compiler@0.61.0)(@typespec/http@0.61.0(@typespec/compiler@0.61.0)))(@typespec/versioning@0.61.0(@typespec/compiler@0.61.0))
