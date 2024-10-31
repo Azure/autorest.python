@@ -50,12 +50,7 @@ def install_and_build():
 
 
 def regen_for_typespec_python():
-    log_call(
-        "cd packages/typespec-python && find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
-    )
-    log_call(
-        "cd packages/typespec-python && find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete"
-    )
+    log_call("rm -rf test/azure/generated test/unbranded/generated")
     log_call("cd packages/typespec-python && npm run regenerate")
     log_call("git add .")
     try:
