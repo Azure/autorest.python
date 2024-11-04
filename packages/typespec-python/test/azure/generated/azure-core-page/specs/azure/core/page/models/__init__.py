@@ -15,7 +15,6 @@ if TYPE_CHECKING:
 
 from ._models import (  # type: ignore
     FirstItem,
-    InnerError,
     ListItemInputBody,
     SecondItem,
     User,
@@ -31,7 +30,6 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "FirstItem",
-    "InnerError",
     "ListItemInputBody",
     "SecondItem",
     "User",

@@ -14,7 +14,6 @@ if TYPE_CHECKING:
 
 
 from ._models import (  # type: ignore
-    InnerError,
     User,
     UserActionParam,
     UserActionResponse,
@@ -28,7 +27,6 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "InnerError",
     "User",
     "UserActionParam",
     "UserActionResponse",
