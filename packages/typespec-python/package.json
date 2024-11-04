@@ -48,7 +48,7 @@
     "@azure-tools/typespec-azure-core": ">=0.47.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.47.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.47.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.47.1 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.47.4 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.47.0 <3.0.0",
     "@typespec/compiler": ">=0.61.0 <1.0.0",
     "@typespec/http": ">=0.61.0 <1.0.0",
@@ -61,7 +61,7 @@
     "@typespec/openapi3": "~0.61.0",
     "semver": "~7.6.2",
     "tsx": "4.17.0",
-    "@typespec/http-client-python": "~0.3.4",
+    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDI5MzM5Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.4.tgz",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -81,7 +81,7 @@
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.5.0",
     "@azure-tools/typespec-azure-core": "~0.47.0",
-    "@azure-tools/typespec-client-generator-core": "~0.47.1",
+    "@azure-tools/typespec-client-generator-core": "~0.47.4",
     "@typespec/compiler": "~0.61.0",
     "@typespec/http": "~0.61.0",
     "@typespec/rest": "~0.61.0",
