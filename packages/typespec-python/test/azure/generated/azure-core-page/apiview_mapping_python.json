@@ -2,6 +2,7 @@
     "CrossLanguagePackageId": "_Specs_.Azure.Core.Page",
     "CrossLanguageDefinitionId": {
         "specs.azure.core.page.models.FirstItem": "_Specs_.Azure.Core.Page.FirstItem",
+        "specs.azure.core.page.models.InnerError": "Azure.Core.Foundations.InnerError",
         "specs.azure.core.page.models.ListItemInputBody": "_Specs_.Azure.Core.Page.ListItemInputBody",
         "specs.azure.core.page.models.SecondItem": "_Specs_.Azure.Core.Page.SecondItem",
         "specs.azure.core.page.models.User": "_Specs_.Azure.Core.Page.User",

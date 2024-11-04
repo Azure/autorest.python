@@ -30,6 +30,41 @@ class FirstItem(_model_base.Model):
     """The id of the item. Required."""
 
 
+class InnerError(_model_base.Model):
+    """An object containing more specific information about the error. As per Microsoft One API
+    guidelines -
+    https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
+
+    :ivar code: One of a server-defined set of error codes.
+    :vartype code: str
+    :ivar innererror: Inner error.
+    :vartype innererror: ~specs.azure.core.page.models.InnerError
+    """
+
+    code: Optional[str] = rest_field()
+    """One of a server-defined set of error codes."""
+    innererror: Optional["_models.InnerError"] = rest_field()
+    """Inner error."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        code: Optional[str] = None,
+        innererror: Optional["_models.InnerError"] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ListItemInputBody(_model_base.Model):
     """The body of the input.
 
