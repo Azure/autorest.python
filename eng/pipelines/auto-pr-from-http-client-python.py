@@ -172,11 +172,11 @@ class Repo:
 
     # create PR in autorest.python repo
     def create_pr(self):
-        has_existing_pr = (
-            len(list(self.autorest_repo.get_pulls(state="open", head=self.new_branch_name, base="main"))) > 0
-        )
-        if has_existing_pr:
+        existing_pr = list(self.autorest_repo.get_pulls(state="open", head=f"Azure:{self.new_branch_name}", base="main"))
+        if len(existing_pr) > 0:
             logger.info(f"PR already exists for {self.pull_url}")
+            for item in existing_pr:
+                logger.info(f"Existing PR: {item.html_url}")
         else:
             self.autorest_repo.create_pull(
                 base="main",
