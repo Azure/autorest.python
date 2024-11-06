@@ -1,0 +1,6 @@
+{
+    "CrossLanguagePackageId": "Client.Initialization.Basic",
+    "CrossLanguageDefinitionId": {
+        "client.initialization.basic.BasicClient.sub_client.action": "Client.Initialization.Basic.SubClient.action"
+    }
+}
