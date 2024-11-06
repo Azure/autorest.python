@@ -1,5 +1,14 @@
 # Release
 
+## 0.36.2
+
+### Bump dependencies
+
+- [#2902](https://github.com/Azure/autorest.python/pull/2902) Bump typespec 0.62.0 and http-client-python 0.3.6
+- [#2896](https://github.com/Azure/autorest.python/pull/2896) Add devDependency `@azure-tools/cadl-ranch`
+- [#2901](https://github.com/Azure/autorest.python/pull/2901) Bump http-client-python to 0.3.5 and tcgc to 0.47.4
+
+
 ## 0.36.1
 
 ### Bug Fixes

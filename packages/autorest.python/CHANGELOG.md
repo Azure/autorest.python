@@ -1,5 +1,17 @@
 # Release
 
+## 6.26.2
+
+### Bug Fixes
+
+- [#2891](https://github.com/Azure/autorest.python/pull/2891) Float dependency for `@typespec/http-client-python`
+
+### Bump dependencies
+
+- [#2902](https://github.com/Azure/autorest.python/pull/2902) Bump typespec 0.62.0 and http-client-python 0.3.6
+- [#2901](https://github.com/Azure/autorest.python/pull/2901) Bump http-client-python to 0.3.5 and tcgc to 0.47.4
+
+
 ## 6.26.1
 
 ### Bug Fixes
