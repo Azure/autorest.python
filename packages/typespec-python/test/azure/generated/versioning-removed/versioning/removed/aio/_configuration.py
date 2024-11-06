@@ -22,8 +22,8 @@ class RemovedClientConfiguration:  # pylint: disable=too-many-instance-attribute
 
     :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
     :type endpoint: str
-    :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
-     Required.
+    :param version: Need to be set as 'v1', 'v2preview' or 'v2' in client. Known values are: "v1",
+     "v2preview", and "v2". Required.
     :type version: str or ~versioning.removed.models.Versions
     """
 

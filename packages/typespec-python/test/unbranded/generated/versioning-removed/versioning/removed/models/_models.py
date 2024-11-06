@@ -53,3 +53,37 @@ class ModelV2(_model_base.Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
+
+
+class ModelV3(_model_base.Model):
+    """ModelV3.
+
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar enum_prop: Required. Known values are: "enumMemberV1" and "enumMemberV2Preview".
+    :vartype enum_prop: str or ~versioning.removed.models.EnumV3
+    """
+
+    id: str = rest_field()
+    """Required."""
+    enum_prop: Union[str, "_models.EnumV3"] = rest_field(name="enumProp")
+    """Required. Known values are: \"enumMemberV1\" and \"enumMemberV2Preview\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        enum_prop: Union[str, "_models.EnumV3"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
