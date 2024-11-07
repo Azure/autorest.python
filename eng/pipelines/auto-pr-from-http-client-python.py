@@ -149,7 +149,7 @@ class Repo:
         source_json = self.http_client_python_json()
         with open(target_json, "r") as f:
             package_data = json.load(f)
-        for dependency in ["devDependencies", "peerDependencies"]:
+        for dependency in ["dependencies", "devDependencies", "peerDependencies"]:
             source = source_json[dependency]
             target = package_data[dependency]
             for k, v in source.items():
