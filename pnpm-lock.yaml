@@ -20,9 +20,6 @@ importers:
       '@eslint/js':
         specifier: ^9.11.1
         version: 9.11.1
-      '@typespec/prettier-plugin-typespec':
-        specifier: ~0.60.0
-        version: 0.60.0
       autorest:
         specifier: ~3.7.1
         version: 3.7.1
@@ -57,14 +54,14 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz(adr36ipppdbqiaonm57cbaqjli)
+        specifier: ~0.3.7
+        version: 0.3.7(adr36ipppdbqiaonm57cbaqjli)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
       tsx:
-        specifier: 4.17.0
-        version: 4.17.0
+        specifier: ~4.19.1
+        version: 4.19.2
     devDependencies:
       '@microsoft.azure/autorest.testserver':
         specifier: ^3.3.50
@@ -79,11 +76,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz(adr36ipppdbqiaonm57cbaqjli)
-      '@typespec/openapi3':
-        specifier: ~0.61.0
-        version: 0.61.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/openapi@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))(@typespec/versioning@0.62.0(@typespec/compiler@0.62.0))(openapi-types@12.1.3)
+        specifier: ~0.3.7
+        version: 0.3.7(adr36ipppdbqiaonm57cbaqjli)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -180,9 +174,6 @@ packages:
 
   '@actions/http-client@2.2.3':
     resolution: {integrity: sha512-mx8hyJi/hjFvbPokCg4uRd4ZX78t+YyRPtnKWwIl+RzNaVuFpQHfmlGVfsKEJN8LwTCvL+DfVgAM04XaHkm6bA==}
-
-  '@apidevtools/swagger-methods@3.0.2':
-    resolution: {integrity: sha512-QAkD5kK2b1WfjDS/UQn/qQkbwF31uqRjPTrsCs5ZG9BQGAkjwvqGFjjPqAuzac/IYzpPtRzjCP1WrTuAIjMrXg==}
 
   '@autorest/system-requirements@1.0.2':
     resolution: {integrity: sha512-T21naRb6JDdjjn2s/zwr9iCIv/9jviL/PRtiWAhi+3UA2WKH2wrId2VqJa4uVD7iEV8BLkuGgFmMkaMBG26hFw==}
@@ -364,10 +355,6 @@ packages:
 
   '@babel/highlight@7.25.9':
     resolution: {integrity: sha512-llL88JShoCsth8fF8R4SJnIn+WLvR6ccFxu1H3FlMhDontdcmZWf2HgIZ7AIqV3Xcck1idlohrN4EUBQz6klbw==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/runtime@7.25.6':
-    resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
     engines: {node: '>=6.9.0'}
 
   '@bcoe/v8-coverage@0.2.3':
@@ -724,10 +711,6 @@ packages:
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
     engines: {node: '>=12.22'}
 
-  '@humanwhocodes/momoa@2.0.4':
-    resolution: {integrity: sha512-RE815I4arJFtt+FVeU1Tgp9/Xvecacji8w/V6XtXsWWH/wz/eNkNbhb+ny/+PlVZjV0rxQpRSQKNKE3lcktHEA==}
-    engines: {node: '>=10.10.0'}
-
   '@humanwhocodes/retry@0.3.0':
     resolution: {integrity: sha512-d2CGZR2o7fS6sWB7DG/3a95bGKQyHMACZ5aW8qGkkqQpUoZV6C0X7Pc7l4ZNMZkfNBf4VWNe9E1jRsf0G146Ew==}
     engines: {node: '>=18.18'}
@@ -749,9 +732,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@jsdevtools/ono@7.1.3':
-    resolution: {integrity: sha512-4JQNk+3mVzK3xh2rqd6RB4J46qUR19azEHBneZyTZM+c456qOrbbM/5xcR8huNCCcbVt7+UmizG6GuUvPvKUYg==}
 
   '@microsoft.azure/autorest.testserver@3.3.50':
     resolution: {integrity: sha512-jpJ7pzbDD0CA3/umfbMSzig2x1a8EcRd9dWYH7oFMJ0JjjueYNDLS1R3RDh1MZuys37GhddPZ4rlVgDGj7ZZsg==}
@@ -969,25 +949,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@readme/better-ajv-errors@1.6.0':
-    resolution: {integrity: sha512-9gO9rld84Jgu13kcbKRU+WHseNhaVt76wYMeRDGsUGYxwJtI3RmEJ9LY9dZCYQGI8eUZLuxb5qDja0nqklpFjQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      ajv: 4.11.8 - 8
-
-  '@readme/json-schema-ref-parser@1.2.0':
-    resolution: {integrity: sha512-Bt3QVovFSua4QmHa65EHUmh2xS0XJ3rgTEUPH998f4OW4VVJke3BuS16f+kM0ZLOGdvIrzrPRqwihuv5BAjtrA==}
-
-  '@readme/openapi-parser@2.6.0':
-    resolution: {integrity: sha512-pyFJXezWj9WI1O+gdp95CoxfY+i+Uq3kKk4zXIFuRAZi9YnHpHOpjumWWr67wkmRTw19Hskh9spyY0Iyikf3fA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      openapi-types: '>=7'
-
-  '@readme/openapi-schemas@3.1.0':
-    resolution: {integrity: sha512-9FC/6ho8uFa8fV50+FPy/ngWN53jaUu4GRXlAjcxIRrzhltJnpKkBG2Tp0IDraFJeWrOpk84RJ9EMEEYzaI1Bw==}
-    engines: {node: '>=18'}
 
   '@rollup/rollup-android-arm-eabi@4.22.4':
     resolution: {integrity: sha512-Fxamp4aEZnfPOcGA8KSNEohV8hX7zVHOemC8jVBoBUHu5zpJK/Eu3uJwt6BMgy9fkvzxDaurgj96F/NiLukF2w==}
@@ -1272,9 +1233,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz}
-    version: 0.3.7
+  '@typespec/http-client-python@0.3.7':
+    resolution: {integrity: sha512-aGe266CP8ccNs5V2MoSAvPPS0XUQ7TyzRO7Cag/MUpPr0ReFXc1f/ghMV0xHmIEY1DQry7COKBaD757cWlXeLg==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.48.0 <1.0.0'
@@ -1298,25 +1258,12 @@ packages:
       '@typespec/streams':
         optional: true
 
-  '@typespec/openapi3@0.61.0':
-    resolution: {integrity: sha512-ALLsTkK1UiJBzvygV1Zk/yZaym+lOWroGeEUhQNXYShsq+/GLZkK0rl8sd76Gigq+TVXKMOEwUUvgfws/LMUJw==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-    peerDependencies:
-      '@typespec/compiler': ~0.61.0
-      '@typespec/http': ~0.61.0
-      '@typespec/openapi': ~0.61.0
-      '@typespec/versioning': ~0.61.0
-
   '@typespec/openapi@0.62.0':
     resolution: {integrity: sha512-Xtm0Nd2BuSmEfSWGtc10ok22jyomYm9L2jY+kVTy+v5J89DrVh0o6+YpipUl1QhcItM1YMBphWHIHPfwkDRbnw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@typespec/compiler': ~0.62.0
       '@typespec/http': ~0.62.0
-
-  '@typespec/prettier-plugin-typespec@0.60.0':
-    resolution: {integrity: sha512-hQ6eiTKzJULd8lLU255cT4NWwyAZzaWEd6zJVdTxi4jqmPkYKVEPdsXfaLEPT0Gm8x7dN5DTm1b45d8DlEDdIw==}
 
   '@typespec/rest@0.62.0':
     resolution: {integrity: sha512-ci5UjelEKFwsPTdpgysoUoDCcw02EnbG4GBuYJdR5mRrFCBZMxrbro+OJLgSN3g/TORSsWlW7dEOWLfbyrmlZQ==}
@@ -1391,14 +1338,6 @@ packages:
   aggregate-error@3.1.0:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
-
-  ajv-draft-04@1.0.0:
-    resolution: {integrity: sha512-mv00Te6nmYbRp5DCwclxtt7yV/joXJPGS7nM+97GdxvuttCOfgI3K4U25zboyeX0O+myI8ERluxQe5wljMmVIw==}
-    peerDependencies:
-      ajv: ^8.5.0
-    peerDependenciesMeta:
-      ajv:
-        optional: true
 
   ajv@6.12.6:
     resolution: {integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==}
@@ -1560,9 +1499,6 @@ packages:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
     engines: {node: '>= 0.4'}
 
-  call-me-maybe@1.0.2:
-    resolution: {integrity: sha512-HpX65o1Hnr9HH25ojC1YGs7HCQLq0GCOibSaWER0eNpgJ/Z1MZv2mTc7+xh6WOPxbRVcmgbv4hGU+uSQ/2xFZQ==}
-
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
@@ -1624,10 +1560,6 @@ packages:
   cliui@8.0.1:
     resolution: {integrity: sha512-BSeNnyus75C4//NQ9gQt1/csTXyo/8Sb+afLAkzAptFuMsod9HFokGNudZpi/oQV73hnVK+sR+5PVRMd+Dr7YQ==}
     engines: {node: '>=12'}
-
-  code-error-fragment@0.0.230:
-    resolution: {integrity: sha512-cadkfKp6932H8UkhzE/gcUqhRMNf8jHzkAN7+5Myabswaghu4xABTgPHDCjW+dBAJxj/SpkTYokpzDqY4pCzQw==}
-    engines: {node: '>= 4'}
 
   color-convert@1.9.3:
     resolution: {integrity: sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==}
@@ -2218,9 +2150,6 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
-  grapheme-splitter@1.0.4:
-    resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
-
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
 
@@ -2539,10 +2468,6 @@ packages:
   json-stable-stringify-without-jsonify@1.0.1:
     resolution: {integrity: sha512-Bdboy+l7tA3OGW6FjyFHWkP5LuByj1Tk33Ljyq0axyzdk9//JSi2u3fP1QSmd1KNwq6VOKYGlAu87CisVir6Pw==}
 
-  json-to-ast@2.1.0:
-    resolution: {integrity: sha512-W9Lq347r8tA1DfMvAGn9QNcgYm4Wm7Yc+k8e6vezpMnRT+NHbtlxgNBXRVjXe9YM6eTn6+p/MKOlV/aABJcSnQ==}
-    engines: {node: '>= 4'}
-
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
@@ -2556,10 +2481,6 @@ packages:
   jsonparse@1.3.1:
     resolution: {integrity: sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg==}
     engines: {'0': node >= 0.2.0}
-
-  jsonpointer@5.0.1:
-    resolution: {integrity: sha512-p/nXbhSEcu3pZRdkW1OfJhpsVtW1gd4Wa1fnQc9YLiTfAjn0312eMKimbdIQzuZl9aa9xUGaRlP9T/CJE/ditQ==}
-    engines: {node: '>=0.10.0'}
 
   jsonwebtoken@9.0.2:
     resolution: {integrity: sha512-PRp66vJ865SSqOlgqS8hujT5U4AOgMfhrwYIuIhfKaoSCZcirrmASQr8CX7cUg+RMih+hgznrjp99o+W4pJLHQ==}
@@ -2586,10 +2507,6 @@ packages:
 
   kuler@2.0.0:
     resolution: {integrity: sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==}
-
-  leven@3.1.0:
-    resolution: {integrity: sha512-qsda+H8jTaUaN/x5vzW2rzc+8Rw4TAQ/4KjB46IwK5VH+IlVeeeje/EoZRpiXvIqjFgK84QffqPztGI3VBLG1A==}
-    engines: {node: '>=6'}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -2919,9 +2836,6 @@ packages:
     resolution: {integrity: sha512-7x81NCL719oNbsq/3mh+hVrAWmFuEYUqrq/Iw3kUzH8ReypT9QQ0BLoJS7/G9k6N81XjW4qHWtjWwe/9eLy1EQ==}
     engines: {node: '>=12'}
 
-  openapi-types@12.1.3:
-    resolution: {integrity: sha512-N4YtSYJqghVu4iek2ZUvcN/0aqH1kRDuNqzcycDxhOUpg7GdvLa2F3DgS6yBNhInhv2r/6I0Flkn7CqL8+nIcw==}
-
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
     engines: {node: '>= 0.8.0'}
@@ -3105,9 +3019,6 @@ packages:
   readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}
     engines: {node: '>= 6'}
-
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==}
 
   regexp-tree@0.1.27:
     resolution: {integrity: sha512-iETxpjK6YoRWJG5o6hXLwvjYAoW+FEZn9os0PD/b6AP6xQwsa/Y7lCVgIixBbUPMfhu+i2LtdeAqVTgGlQarfA==}
@@ -3473,11 +3384,6 @@ packages:
   tslib@2.7.0:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
-  tsx@4.17.0:
-    resolution: {integrity: sha512-eN4mnDA5UMKDt4YZixo9tBioibaMBpoxBkD+rIPAjVmYERSG0/dWEY1CEFuV89CgASlKL499q8AhmkMnnjtOJg==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-
   tsx@4.19.2:
     resolution: {integrity: sha512-pOUl6Vo2LUq/bSa8S5q7b91cgNSjctn9ugq/+Mvow99qW6x/UZYwzxy/3NmqoT66eHYfCVvFvACC58UBPFf28g==}
     engines: {node: '>=18.0.0'}
@@ -3828,8 +3734,6 @@ snapshots:
       tunnel: 0.0.6
       undici: 5.28.4
 
-  '@apidevtools/swagger-methods@3.0.2': {}
-
   '@autorest/system-requirements@1.0.2':
     dependencies:
       '@azure/logger': 1.1.4
@@ -4120,10 +4024,6 @@ snapshots:
       js-tokens: 4.0.0
       picocolors: 1.1.0
 
-  '@babel/runtime@7.25.6':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@bcoe/v8-coverage@0.2.3': {}
 
   '@chronus/chronus@0.12.1':
@@ -4376,8 +4276,6 @@ snapshots:
 
   '@humanwhocodes/module-importer@1.0.1': {}
 
-  '@humanwhocodes/momoa@2.0.4': {}
-
   '@humanwhocodes/retry@0.3.0': {}
 
   '@isaacs/cliui@8.0.2':
@@ -4399,8 +4297,6 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
-
-  '@jsdevtools/ono@7.1.3': {}
 
   '@microsoft.azure/autorest.testserver@3.3.50':
     dependencies:
@@ -4713,38 +4609,6 @@ snapshots:
   '@pkgjs/parseargs@0.11.0':
     optional: true
 
-  '@readme/better-ajv-errors@1.6.0(ajv@8.17.1)':
-    dependencies:
-      '@babel/code-frame': 7.24.7
-      '@babel/runtime': 7.25.6
-      '@humanwhocodes/momoa': 2.0.4
-      ajv: 8.17.1
-      chalk: 4.1.2
-      json-to-ast: 2.1.0
-      jsonpointer: 5.0.1
-      leven: 3.1.0
-
-  '@readme/json-schema-ref-parser@1.2.0':
-    dependencies:
-      '@jsdevtools/ono': 7.1.3
-      '@types/json-schema': 7.0.15
-      call-me-maybe: 1.0.2
-      js-yaml: 4.1.0
-
-  '@readme/openapi-parser@2.6.0(openapi-types@12.1.3)':
-    dependencies:
-      '@apidevtools/swagger-methods': 3.0.2
-      '@jsdevtools/ono': 7.1.3
-      '@readme/better-ajv-errors': 1.6.0(ajv@8.17.1)
-      '@readme/json-schema-ref-parser': 1.2.0
-      '@readme/openapi-schemas': 3.1.0
-      ajv: 8.17.1
-      ajv-draft-04: 1.0.0(ajv@8.17.1)
-      call-me-maybe: 1.0.2
-      openapi-types: 12.1.3
-
-  '@readme/openapi-schemas@3.1.0': {}
-
   '@rollup/rollup-android-arm-eabi@4.22.4':
     optional: true
 
@@ -5054,7 +4918,7 @@ snapshots:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDMwODYzNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.7.tgz(adr36ipppdbqiaonm57cbaqjli)':
+  '@typespec/http-client-python@0.3.7(adr36ipppdbqiaonm57cbaqjli)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.48.0(eltkenvcfknbgsjpk2r2c3erra)
       '@azure-tools/typespec-azure-core': 0.48.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))
@@ -5074,25 +4938,10 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.62.0
 
-  '@typespec/openapi3@0.61.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/openapi@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))(@typespec/versioning@0.62.0(@typespec/compiler@0.62.0))(openapi-types@12.1.3)':
-    dependencies:
-      '@readme/openapi-parser': 2.6.0(openapi-types@12.1.3)
-      '@typespec/compiler': 0.62.0
-      '@typespec/http': 0.62.0(@typespec/compiler@0.62.0)
-      '@typespec/openapi': 0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))
-      '@typespec/versioning': 0.62.0(@typespec/compiler@0.62.0)
-      yaml: 2.5.1
-    transitivePeerDependencies:
-      - openapi-types
-
   '@typespec/openapi@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))':
     dependencies:
       '@typespec/compiler': 0.62.0
       '@typespec/http': 0.62.0(@typespec/compiler@0.62.0)
-
-  '@typespec/prettier-plugin-typespec@0.60.0':
-    dependencies:
-      prettier: 3.3.3
 
   '@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))':
     dependencies:
@@ -5170,10 +5019,6 @@ snapshots:
     dependencies:
       clean-stack: 2.2.0
       indent-string: 4.0.0
-
-  ajv-draft-04@1.0.0(ajv@8.17.1):
-    optionalDependencies:
-      ajv: 8.17.1
 
   ajv@6.12.6:
     dependencies:
@@ -5379,8 +5224,6 @@ snapshots:
       get-intrinsic: 1.2.4
       set-function-length: 1.2.2
 
-  call-me-maybe@1.0.2: {}
-
   callsites@3.1.0: {}
 
   caniuse-lite@1.0.30001663: {}
@@ -5435,8 +5278,6 @@ snapshots:
       string-width: 4.2.3
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
-
-  code-error-fragment@0.0.230: {}
 
   color-convert@1.9.3:
     dependencies:
@@ -6208,8 +6049,6 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  grapheme-splitter@1.0.4: {}
-
   graphemer@1.4.0: {}
 
   has-bigints@1.0.2: {}
@@ -6482,11 +6321,6 @@ snapshots:
 
   json-stable-stringify-without-jsonify@1.0.1: {}
 
-  json-to-ast@2.1.0:
-    dependencies:
-      code-error-fragment: 0.0.230
-      grapheme-splitter: 1.0.4
-
   json5@1.0.2:
     dependencies:
       minimist: 1.2.8
@@ -6500,8 +6334,6 @@ snapshots:
       graceful-fs: 4.2.11
 
   jsonparse@1.3.1: {}
-
-  jsonpointer@5.0.1: {}
 
   jsonwebtoken@9.0.2:
     dependencies:
@@ -6545,8 +6377,6 @@ snapshots:
   kleur@3.0.3: {}
 
   kuler@2.0.0: {}
-
-  leven@3.1.0: {}
 
   levn@0.4.1:
     dependencies:
@@ -6911,8 +6741,6 @@ snapshots:
       is-docker: 2.2.1
       is-wsl: 2.2.0
 
-  openapi-types@12.1.3: {}
-
   optionator@0.9.4:
     dependencies:
       deep-is: 0.1.4
@@ -7111,8 +6939,6 @@ snapshots:
       inherits: 2.0.4
       string_decoder: 1.3.0
       util-deprecate: 1.0.2
-
-  regenerator-runtime@0.14.1: {}
 
   regexp-tree@0.1.27: {}
 
@@ -7518,13 +7344,6 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.7.0: {}
-
-  tsx@4.17.0:
-    dependencies:
-      esbuild: 0.23.1
-      get-tsconfig: 4.8.1
-    optionalDependencies:
-      fsevents: 2.3.3
 
   tsx@4.19.2:
     dependencies:
