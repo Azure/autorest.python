@@ -1,5 +1,16 @@
 # Release
 
+## 0.36.3
+
+### Bug Fixes
+
+- [#2908](https://github.com/Azure/autorest.python/pull/2908) Bump http-client-python to fix access for paging operation and lro
+
+### Bump dependencies
+
+- [#2906](https://github.com/Azure/autorest.python/pull/2906) Bump http-client-python 0.3.7
+
+
 ## 0.36.2
 
 ### Bump dependencies
