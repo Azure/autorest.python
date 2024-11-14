@@ -54,8 +54,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.3.8
-        version: 0.3.8(adr36ipppdbqiaonm57cbaqjli)
+        specifier: ~0.3.9
+        version: 0.3.9(adr36ipppdbqiaonm57cbaqjli)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -76,8 +76,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.3.8
-        version: 0.3.8(adr36ipppdbqiaonm57cbaqjli)
+        specifier: ~0.3.9
+        version: 0.3.9(adr36ipppdbqiaonm57cbaqjli)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1233,8 +1233,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@0.3.8':
-    resolution: {integrity: sha512-FRuKMLmHIkt+ouyQXtO1pEn0vsJE8+Er1xgmr7nTbGRI19NN1pSD4M73QjPnnkpZzW/I7UI7r2xRGODZZoQ3mw==}
+  '@typespec/http-client-python@0.3.9':
+    resolution: {integrity: sha512-EvnfKsZYE7riKvw9F+Ba7Ukrz84LJwyZBn6X3nCTZke/rzP1LYnBW7uY5Xg4EXdMWMxpqxnFoO35tfkkWWXqXQ==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.48.0 <1.0.0'
@@ -4918,7 +4918,7 @@ snapshots:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  '@typespec/http-client-python@0.3.8(adr36ipppdbqiaonm57cbaqjli)':
+  '@typespec/http-client-python@0.3.9(adr36ipppdbqiaonm57cbaqjli)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.48.0(eltkenvcfknbgsjpk2r2c3erra)
       '@azure-tools/typespec-azure-core': 0.48.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))
