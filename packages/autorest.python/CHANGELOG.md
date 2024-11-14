@@ -1,5 +1,12 @@
 # Release
 
+## 6.26.4
+
+### Bug Fixes
+
+- [#2918](https://github.com/Azure/autorest.python/pull/2918) Fix quote for string type
+
+
 ## 6.26.3
 
 ### Bug Fixes
