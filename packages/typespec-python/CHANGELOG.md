@@ -1,5 +1,12 @@
 # Release
 
+## 0.36.5
+
+### Bump dependencies
+
+- [#2928](https://github.com/Azure/autorest.python/pull/2928) bump `@typespec/http-client-python` to `0.3.10`
+
+
 ## 0.36.4
 
 ### Bug Fixes
