@@ -1,5 +1,13 @@
 # Release
 
+## 6.26.6
+
+### Bug Fixes
+
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Fix crash if no valid client define in typespec file
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Pad special property name in model to avoid conflict
+
+
 ## 6.26.5
 
 ### Bump dependencies
