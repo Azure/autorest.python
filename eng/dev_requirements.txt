@@ -3,6 +3,6 @@ colorama==0.4.6
 debugpy==1.8.8
 pytest==8.3.3
 tox==4.23.2
-coverage==7.6.7
+coverage==7.6.8
 black==24.10.0
 setuptools==73.0.1
