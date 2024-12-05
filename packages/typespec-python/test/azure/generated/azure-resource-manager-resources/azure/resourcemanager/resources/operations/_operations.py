@@ -32,7 +32,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from .._serialization import Serializer
 
 if sys.version_info >= (3, 9):
