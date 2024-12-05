@@ -1,5 +1,12 @@
 # Release
 
+## 0.36.7
+
+### Bug Fixes
+
+- [#2943](https://github.com/Azure/autorest.python/pull/2943) Fix pylint `useless-object-inheritance` in generated code
+
+
 ## 0.36.6
 
 ### Bug Fixes
