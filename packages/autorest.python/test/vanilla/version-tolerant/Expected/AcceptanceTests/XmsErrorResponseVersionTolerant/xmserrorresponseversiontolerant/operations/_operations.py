@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -132,9 +132,6 @@ class PetOperations:
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            400: HttpResponseError,
-            404: cast(Type[HttpResponseError], lambda response: ResourceNotFoundError(response=response)),
-            501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -158,7 +155,7 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)  # type: ignore
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
         deserialized = None
@@ -196,7 +193,6 @@ class PetOperations:
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -252,7 +248,6 @@ class PetOperations:
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            500: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
