@@ -10,6 +10,7 @@ from typing import Any, Optional
 
 from ... import _serialization
 
+
 class Error(_serialization.Model):
     """Error.
 
@@ -24,13 +25,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int

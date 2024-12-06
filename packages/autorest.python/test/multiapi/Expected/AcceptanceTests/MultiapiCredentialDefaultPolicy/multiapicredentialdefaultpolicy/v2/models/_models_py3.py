@@ -10,6 +10,7 @@ from typing import Any, Optional
 
 from ... import _serialization
 
+
 class Error(_serialization.Model):
     """Error.
 
@@ -24,13 +25,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -40,6 +35,7 @@ class Error(_serialization.Model):
         super().__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class ModelTwo(_serialization.Model):
     """Only exists in api version 2.0.0.
@@ -53,7 +49,7 @@ class ModelTwo(_serialization.Model):
     """
 
     _validation = {
-        'id': {'required': True},
+        "id": {"required": True},
     }
 
     _attribute_map = {
@@ -62,11 +58,7 @@ class ModelTwo(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        id: int,  # pylint: disable=redefined-builtin
-        message: Optional[str] = None,
-        **kwargs: Any
+        self, *, id: int, message: Optional[str] = None, **kwargs: Any  # pylint: disable=redefined-builtin
     ) -> None:
         """
         :keyword id: Required.

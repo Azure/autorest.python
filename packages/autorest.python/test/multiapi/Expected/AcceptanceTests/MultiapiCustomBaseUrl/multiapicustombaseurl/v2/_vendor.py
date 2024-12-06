@@ -15,12 +15,11 @@ if TYPE_CHECKING:
 
     from .._serialization import Deserializer, Serializer
 
-class MultiapiCustomBaseUrlServiceClientMixinABC(  # pylint: disable=name-too-long
-    ABC
-):
+
+class MultiapiCustomBaseUrlServiceClientMixinABC(ABC):  # pylint: disable=name-too-long
     """DO NOT use this class. It is for internal typing use only."""
+
     _client: "PipelineClient"
     _config: MultiapiCustomBaseUrlServiceClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
-

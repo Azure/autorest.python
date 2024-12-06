@@ -11,8 +11,7 @@ from azure.core import CaseInsensitiveEnumMeta
 
 
 class ContentType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """Content type for upload.
-    """
+    """Content type for upload."""
 
     APPLICATION_PDF = "application/pdf"
     """Content Type 'application/pdf'"""

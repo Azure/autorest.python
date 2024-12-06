@@ -8,7 +8,14 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    ResourceNotModifiedError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -21,40 +28,33 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_test_two_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_test_two_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop('api_version', _params.pop('api-version', "0.0.0"))
-    accept = _headers.pop('Accept', "application/json")
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "0.0.0"))
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/multiapi/one/testTwoEndpoint")
 
     # Construct parameters
-    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
+    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
     # Construct headers
-    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(
-        method="GET",
-        url=_url,
-        params=_params,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
-class OperationGroupOneOperations: 
+
+class OperationGroupOneOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -74,14 +74,8 @@ class OperationGroupOneOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
-
-
-
     @distributed_trace
-    def test_two(  # pylint: disable=inconsistent-return-statements
-        self,
-        **kwargs: Any
-    ) -> None:
+    def test_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """TestTwo should be in OperationGroupOneOperations.
 
         :return: None or the result of cls(response)
@@ -89,19 +83,19 @@ class OperationGroupOneOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version or "0.0.0"))
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "0.0.0"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        
         _request = build_test_two_request(
             api_version=api_version,
             headers=_headers,
@@ -110,10 +104,8 @@ class OperationGroupOneOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -124,6 +116,4 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore

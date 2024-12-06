@@ -13,6 +13,7 @@ from ... import _serialization
 if TYPE_CHECKING:
     from .. import models as _models
 
+
 class Error(_serialization.Model):
     """Error.
 
@@ -27,13 +28,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -43,6 +38,7 @@ class Error(_serialization.Model):
         super().__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class ModelThree(_serialization.Model):
     """Only exists in api version 3.0.0.
@@ -55,18 +51,14 @@ class ModelThree(_serialization.Model):
         "optional_property": {"key": "optionalProperty", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        optional_property: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, optional_property: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword optional_property:
         :paramtype optional_property: str
         """
         super().__init__(**kwargs)
         self.optional_property = optional_property
+
 
 class PagingResult(_serialization.Model):
     """PagingResult.
@@ -83,11 +75,7 @@ class PagingResult(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.ModelThree"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs: Any
+        self, *, values: Optional[List["_models.ModelThree"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword values:
@@ -99,6 +87,7 @@ class PagingResult(_serialization.Model):
         self.values = values
         self.next_link = next_link
 
+
 class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
@@ -107,19 +96,14 @@ class SourcePath(_serialization.Model):
     """
 
     _validation = {
-        'source': {'max_length': 2048},
+        "source": {"max_length": 2048},
     }
 
     _attribute_map = {
         "source": {"key": "source", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        source: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, source: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword source: File source path.
         :paramtype source: str

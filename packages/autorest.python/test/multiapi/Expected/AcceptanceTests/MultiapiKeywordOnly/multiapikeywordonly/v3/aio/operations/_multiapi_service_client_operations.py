@@ -10,7 +10,14 @@ from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar
 import urllib.parse
 
 from azure.core.async_paging import AsyncItemPaged, AsyncList
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    ResourceNotModifiedError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
@@ -18,19 +25,21 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_paging_request
+from ...operations._multiapi_service_client_operations import (
+    build_test_different_calls_request,
+    build_test_paging_request,
+)
 from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-class MultiapiServiceClientOperationsMixin( 
-    MultiapiServiceClientMixinABC
-):
+
+class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version
@@ -38,10 +47,7 @@ class MultiapiServiceClientOperationsMixin(
             return ""
 
     @distributed_trace
-    def test_paging(
-        self,
-        **kwargs: Any
-    ) -> AsyncIterable["_models.ModelThree"]:
+    def test_paging(self, **kwargs: Any) -> AsyncIterable["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :return: An iterator like instance of either ModelThree or the result of cls(response)
@@ -51,17 +57,19 @@ class MultiapiServiceClientOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PagingResult] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[_models.PagingResult] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
         def prepare_request(next_link=None):
             if not next_link:
-                
+
                 _request = build_test_paging_request(
                     headers=_headers,
                     params=_params,
@@ -71,22 +79,25 @@ class MultiapiServiceClientOperationsMixin(
             else:
                 # make call to next link with the client's api-version
                 _parsed_next_link = urllib.parse.urlparse(next_link)
-                _next_request_params = case_insensitive_dict({
-                    key: [urllib.parse.quote(v) for v in value]    for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()})
+                _next_request_params = case_insensitive_dict(
+                    {
+                        key: [urllib.parse.quote(v) for v in value]
+                        for key, value in urllib.parse.parse_qs(_parsed_next_link.query).items()
+                    }
+                )
                 _next_request_params["api-version"] = self._config.api_version
-                _request = HttpRequest("GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params)
+                _request = HttpRequest(
+                    "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
+                )
                 _request.url = self._client.format_url(_request.url)
                 _request.method = "GET"
             return _request
 
         async def extract_data(pipeline_response):
-            deserialized = self._deserialize(
-            "PagingResult",
-            pipeline_response
-        )
+            deserialized = self._deserialize("PagingResult", pipeline_response)
             list_of_elem = deserialized.values
             if cls:
-                list_of_elem = cls(list_of_elem) # type: ignore
+                list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.next_link or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
@@ -94,9 +105,7 @@ class MultiapiServiceClientOperationsMixin(
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-                _request,
-                stream=_stream,
-                **kwargs
+                _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
 
@@ -106,11 +115,7 @@ class MultiapiServiceClientOperationsMixin(
 
             return pipeline_response
 
-
-        return AsyncItemPaged(
-            get_next, extract_data
-        )
-
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace_async
     async def test_different_calls(
@@ -134,19 +139,21 @@ class MultiapiServiceClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version('test_different_calls') or "3.0.0"))
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
+        api_version: str = kwargs.pop(
+            "api_version", _params.pop("api-version", self._api_version("test_different_calls") or "3.0.0")
         )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        
         _request = build_test_different_calls_request(
             greeting_in_english=greeting_in_english,
             greeting_in_chinese=greeting_in_chinese,
@@ -159,9 +166,7 @@ class MultiapiServiceClientOperationsMixin(
 
         _stream = False
         pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -172,6 +177,4 @@ class MultiapiServiceClientOperationsMixin(
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore

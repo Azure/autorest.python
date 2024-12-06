@@ -23,6 +23,7 @@ from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneO
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
+
 class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
@@ -40,34 +41,42 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """
 
     def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        base_url: str = "http://localhost:3000",
-        **kwargs: Any
+        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
-        _policies = kwargs.pop('policies', None)
+        _policies = kwargs.pop("policies", None)
         if _policies is None:
-            _policies = [policies.RequestIdPolicy(**kwargs),self._config.headers_policy,self._config.user_agent_policy,self._config.proxy_policy,policies.ContentDecodePolicy(**kwargs),AsyncARMAutoResourceProviderRegistrationPolicy(),self._config.redirect_policy,self._config.retry_policy,self._config.authentication_policy,self._config.custom_hook_policy,self._config.logging_policy,policies.DistributedTracingPolicy(**kwargs),policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,self._config.http_logging_policy]
+            _policies = [
+                policies.RequestIdPolicy(**kwargs),
+                self._config.headers_policy,
+                self._config.user_agent_policy,
+                self._config.proxy_policy,
+                policies.ContentDecodePolicy(**kwargs),
+                AsyncARMAutoResourceProviderRegistrationPolicy(),
+                self._config.redirect_policy,
+                self._config.retry_policy,
+                self._config.authentication_policy,
+                self._config.custom_hook_policy,
+                self._config.logging_policy,
+                policies.DistributedTracingPolicy(**kwargs),
+                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
+                self._config.http_logging_policy,
+            ]
         self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
-
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.operation_group_one = OperationGroupOneOperations(
-            self._client, self._config, self._serialize, self._deserialize, '3.0.0'
+            self._client, self._config, self._serialize, self._deserialize, "3.0.0"
         )
         self.operation_group_two = OperationGroupTwoOperations(
-            self._client, self._config, self._serialize, self._deserialize, '3.0.0'
+            self._client, self._config, self._serialize, self._deserialize, "3.0.0"
         )
 
-
     def _send_request(
-        self,
-        request: HttpRequest, *, stream: bool = False,
-        **kwargs: Any
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
     ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 

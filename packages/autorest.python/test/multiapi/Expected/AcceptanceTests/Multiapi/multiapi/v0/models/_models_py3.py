@@ -13,6 +13,7 @@ from ... import _serialization
 if TYPE_CHECKING:
     from .. import models as _models
 
+
 class Error(_serialization.Model):
     """Error.
 
@@ -27,13 +28,7 @@ class Error(_serialization.Model):
         "message": {"key": "message", "type": "str"},
     }
 
-    def __init__(
-        self,
-        *,
-        status: Optional[int] = None,
-        message: Optional[str] = None,
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, status: Optional[int] = None, message: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword status:
         :paramtype status: int
@@ -43,6 +38,7 @@ class Error(_serialization.Model):
         super().__init__(**kwargs)
         self.status = status
         self.message = message
+
 
 class PagingResult(_serialization.Model):
     """PagingResult.
@@ -59,11 +55,7 @@ class PagingResult(_serialization.Model):
     }
 
     def __init__(
-        self,
-        *,
-        values: Optional[List["_models.Product"]] = None,
-        next_link: Optional[str] = None,
-        **kwargs: Any
+        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword values:
@@ -74,6 +66,7 @@ class PagingResult(_serialization.Model):
         super().__init__(**kwargs)
         self.values = values
         self.next_link = next_link
+
 
 class Product(_serialization.Model):
     """Product.
@@ -86,12 +79,7 @@ class Product(_serialization.Model):
         "id": {"key": "id", "type": "int"},
     }
 
-    def __init__(
-        self,
-        *,
-        id: Optional[int] = None,  # pylint: disable=redefined-builtin
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, *, id: Optional[int] = None, **kwargs: Any) -> None:  # pylint: disable=redefined-builtin
         """
         :keyword id:
         :paramtype id: int
