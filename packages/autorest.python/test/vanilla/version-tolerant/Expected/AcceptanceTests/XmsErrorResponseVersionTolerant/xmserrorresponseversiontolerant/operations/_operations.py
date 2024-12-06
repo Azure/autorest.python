@@ -130,6 +130,7 @@ class PetOperations:
         """
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
