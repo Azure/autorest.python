@@ -54,13 +54,13 @@
     "@azure-tools/typespec-azure-resource-manager": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.48.0 <3.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.48.0 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.48.1 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.3.12",
+    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDM5MDc1Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.3.12.tgz",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -73,7 +73,7 @@
     "@azure-tools/typespec-azure-core": "~0.48.0",
     "@azure-tools/typespec-azure-rulesets": "~0.48.0",
     "@azure-tools/typespec-autorest": "~0.48.0",
-    "@azure-tools/typespec-client-generator-core": "~0.48.0",
+    "@azure-tools/typespec-client-generator-core": "~0.48.1",
     "@azure-tools/cadl-ranch-expect": "~0.15.6",
     "@azure-tools/cadl-ranch-specs": "~0.39.1",
     "@azure-tools/cadl-ranch": "~0.16.1",
