@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -125,14 +125,6 @@ class PetOperations:
             401: ClientAuthenticationError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            400: HttpResponseError,
-            404: cast(
-                Type[HttpResponseError],
-                lambda response: ResourceNotFoundError(
-                    response=response, model=self._deserialize(NotFoundErrorBase, response)
-                ),
-            ),
-            501: HttpResponseError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -156,8 +148,12 @@ class PetOperations:
         response = pipeline_response.http_response
 
         if response.status_code not in [200, 202]:
-            map_error(status_code=response.status_code, response=response, error_map=error_map)  # type: ignore
-            raise HttpResponseError(response=response)
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            error = None
+            if response.status_code == 404:
+                error = self._deserialize.failsafe_deserialize(_models.NotFoundErrorBase, pipeline_response)
+                raise ResourceNotFoundError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error)
 
         deserialized = None
         if response.status_code == 200:
@@ -183,12 +179,6 @@ class PetOperations:
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            500: cast(
-                Type[HttpResponseError],
-                lambda response: HttpResponseError(
-                    response=response, model=self._deserialize(PetActionError, response)
-                ),
-            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -213,7 +203,11 @@ class PetOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+            error = None
+            if response.status_code == 500:
+                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+            else:
+                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize("PetAction", pipeline_response.http_response)
@@ -242,12 +236,6 @@ class PetOperations:
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            500: cast(
-                Type[HttpResponseError],
-                lambda response: HttpResponseError(
-                    response=response, model=self._deserialize(PetActionError, response)
-                ),
-            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -272,7 +260,11 @@ class PetOperations:
 
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+            error = None
+            if response.status_code == 500:
+                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+            else:
+                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

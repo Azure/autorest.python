@@ -8,9 +8,12 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
+
+if TYPE_CHECKING:
+    from .. import models as _models
 
 
 class ArrayWrapper(msrest.serialization.Model):
