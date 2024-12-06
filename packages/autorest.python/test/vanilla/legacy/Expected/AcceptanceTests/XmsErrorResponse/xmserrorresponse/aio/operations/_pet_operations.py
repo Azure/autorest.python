@@ -72,7 +72,7 @@ class PetOperations:
             404: cast(
                 Type[HttpResponseError],
                 lambda response: ResourceNotFoundError(
-                    response=response, model=self._deserialize(_models.NotFoundErrorBase, response)
+                    response=response, model=self._deserialize(NotFoundErrorBase, response)
                 ),
             ),
             501: HttpResponseError,
@@ -129,7 +129,7 @@ class PetOperations:
             500: cast(
                 Type[HttpResponseError],
                 lambda response: HttpResponseError(
-                    response=response, model=self._deserialize(_models.PetActionError, response)
+                    response=response, model=self._deserialize(PetActionError, response)
                 ),
             ),
         }
@@ -186,7 +186,7 @@ class PetOperations:
             500: cast(
                 Type[HttpResponseError],
                 lambda response: HttpResponseError(
-                    response=response, model=self._deserialize(_models.PetActionError, response)
+                    response=response, model=self._deserialize(PetActionError, response)
                 ),
             ),
         }

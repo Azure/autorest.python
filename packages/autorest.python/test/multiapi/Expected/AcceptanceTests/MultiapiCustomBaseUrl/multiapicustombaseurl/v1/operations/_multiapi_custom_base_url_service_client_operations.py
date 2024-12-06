@@ -8,14 +8,7 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    ResourceNotModifiedError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
@@ -29,34 +22,43 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-T = TypeVar("T")
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
+def build_test_request(
+    *,
+    id: int,
+    **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "1.0.0"))
-    accept = _headers.pop("Accept", "application/json")
+    api_version: str = kwargs.pop('api_version', _params.pop('api-version', "1.0.0"))
+    accept = _headers.pop('Accept', "application/json")
 
     # Construct URL
     _url = kwargs.pop("template_url", "/test")
 
     # Construct parameters
-    _params["id"] = _SERIALIZER.query("id", id, "int")
-    _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
+    _params['id'] = _SERIALIZER.query("id", id, 'int')
+    _params['api-version'] = _SERIALIZER.query("api_version", api_version, 'str')
 
     # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+    _headers['Accept'] = _SERIALIZER.header("accept", accept, 'str')
 
-    return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(
+        method="PUT",
+        url=_url,
+        params=_params,
+        headers=_headers,
+        **kwargs
+    )
 
-
-class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
+class MultiapiCustomBaseUrlServiceClientOperationsMixin(   # pylint: disable=name-too-long
     MultiapiCustomBaseUrlServiceClientMixinABC
 ):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
@@ -66,7 +68,11 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             return ""
 
     @distributed_trace
-    def test(self, id: int, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def test(  # pylint: disable=inconsistent-return-statements
+        self,
+        id: int,
+        **kwargs: Any
+    ) -> None:
         """Should be a mixin operation. Put in 1 for the required parameter and have the correct api
         version of 1.0.0 to pass.
 
@@ -77,19 +83,19 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version("test") or "1.0.0"))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version('test') or "1.0.0"))
+        cls: ClsType[None] = kwargs.pop(
+            'cls', None
+        )
 
+        
         _request = build_test_request(
             id=id,
             api_version=api_version,
@@ -97,13 +103,15 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             params=_params,
         )
         path_format_arguments = {
-            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
+            _request,
+            stream=_stream,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -114,4 +122,6 @@ class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name
             raise HttpResponseError(response=response, model=error)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {}) # type: ignore
+
+

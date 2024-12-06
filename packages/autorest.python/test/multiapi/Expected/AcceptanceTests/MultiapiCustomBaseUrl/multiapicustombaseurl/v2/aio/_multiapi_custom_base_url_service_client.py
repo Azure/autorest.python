@@ -22,7 +22,6 @@ from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
-
 class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
 
@@ -35,37 +34,30 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", endpoint: str, **kwargs: Any) -> None:
-        _endpoint = "{Endpoint}/multiapiCustomBaseUrl/v2"
-        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(
-            credential=credential, endpoint=endpoint, **kwargs
-        )
-        _policies = kwargs.pop("policies", None)
+    def __init__(
+        self,
+        credential: "AsyncTokenCredential",
+        endpoint: str,
+        **kwargs: Any
+    ) -> None:
+        _endpoint = '{Endpoint}/multiapiCustomBaseUrl/v2'
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+        _policies = kwargs.pop('policies', None)
         if _policies is None:
-            _policies = [
-                policies.RequestIdPolicy(**kwargs),
-                self._config.headers_policy,
-                self._config.user_agent_policy,
-                self._config.proxy_policy,
-                policies.ContentDecodePolicy(**kwargs),
-                self._config.redirect_policy,
-                self._config.retry_policy,
-                self._config.authentication_policy,
-                self._config.custom_hook_policy,
-                self._config.logging_policy,
-                policies.DistributedTracingPolicy(**kwargs),
-                policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
-                self._config.http_logging_policy,
-            ]
+            _policies = [policies.RequestIdPolicy(**kwargs),self._config.headers_policy,self._config.user_agent_policy,self._config.proxy_policy,policies.ContentDecodePolicy(**kwargs),self._config.redirect_policy,self._config.retry_policy,self._config.authentication_policy,self._config.custom_hook_policy,self._config.logging_policy,policies.DistributedTracingPolicy(**kwargs),policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,self._config.http_logging_policy]
         self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+
 
         client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
 
+
     def _send_request(
-        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+        self,
+        request: HttpRequest, *, stream: bool = False,
+        **kwargs: Any
     ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
@@ -86,7 +78,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "Endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

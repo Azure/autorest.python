@@ -15,11 +15,12 @@ if TYPE_CHECKING:
 
     from ..._serialization import Deserializer, Serializer
 
-
-class MultiapiServiceClientMixinABC(ABC):
+class MultiapiServiceClientMixinABC(  
+    ABC
+):
     """DO NOT use this class. It is for internal typing use only."""
-
     _client: "AsyncPipelineClient"
     _config: MultiapiServiceClientConfiguration
     _serialize: "Serializer"
     _deserialize: "Deserializer"
+

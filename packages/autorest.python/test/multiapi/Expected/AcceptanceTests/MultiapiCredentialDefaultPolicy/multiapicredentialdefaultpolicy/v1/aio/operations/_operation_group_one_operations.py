@@ -8,14 +8,7 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core.exceptions import (
-    ClientAuthenticationError,
-    HttpResponseError,
-    ResourceExistsError,
-    ResourceNotFoundError,
-    ResourceNotModifiedError,
-    map_error,
-)
+from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
@@ -29,11 +22,10 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-T = TypeVar("T")
+T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
-
-class OperationGroupOneOperations:
+class OperationGroupOneOperations: 
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -53,8 +45,14 @@ class OperationGroupOneOperations:
         self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
+
+
+
     @distributed_trace_async
-    async def test_two(self, **kwargs: Any) -> None:
+    async def test_two(
+        self,
+        **kwargs: Any
+    ) -> None:
         """TestTwo should be in OperationGroupOneOperations.
 
         :return: None or the result of cls(response)
@@ -62,19 +60,19 @@ class OperationGroupOneOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
+            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update(kwargs.pop('error_map', {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-        api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "1.0.0"))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        api_version: str = kwargs.pop('api_version', _params.pop('api-version', self._api_version or "1.0.0"))
+        cls: ClsType[None] = kwargs.pop(
+            'cls', None
+        )
 
+        
         _request = build_test_two_request(
             api_version=api_version,
             headers=_headers,
@@ -83,8 +81,10 @@ class OperationGroupOneOperations:
         _request.url = self._client.format_url(_request.url)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
-            _request, stream=_stream, **kwargs
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(   # pylint: disable=protected-access
+            _request,
+            stream=_stream,
+            **kwargs
         )
 
         response = pipeline_response.http_response
@@ -95,4 +95,6 @@ class OperationGroupOneOperations:
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
-            return cls(pipeline_response, None, {})  # type: ignore
+            return cls(pipeline_response, None, {}) # type: ignore
+
+
