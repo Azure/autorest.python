@@ -66,8 +66,6 @@ class PetOperations:
         """
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -93,12 +91,9 @@ class PetOperations:
         if response.status_code not in [200, 202]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
-            if response.status_code == 400:
-                error = self._deserialize.failsafe_deserialize(str, pipeline_response)
-            elif response.status_code == 404:
+            if response.status_code == 404:
                 error = self._deserialize.failsafe_deserialize(_models.NotFoundErrorBase, pipeline_response)
-            elif response.status_code == 501:
-                error = self._deserialize.failsafe_deserialize(int, pipeline_response)
+                raise ResourceNotFoundError(response=response, model=error)
             raise HttpResponseError(response=response, model=error)
 
         deserialized = None
@@ -122,9 +117,6 @@ class PetOperations:
         """
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -177,9 +169,6 @@ class PetOperations:
         """
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
