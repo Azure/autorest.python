@@ -86,9 +86,6 @@ class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
         """
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
-            404: ResourceNotFoundError,
-            409: ResourceExistsError,
-            304: ResourceNotModifiedError,
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
