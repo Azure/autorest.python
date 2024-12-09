@@ -1,5 +1,12 @@
 # Release
 
+## 6.27.0
+
+### Features
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Refine exception handling logic and support exception with ranged status code
+
+
 ## 6.26.7
 
 ### Bug Fixes
