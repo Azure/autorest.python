@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Optional, Type, TypeVar, cast
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -21,7 +21,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import _deserialize
+from .._model_base import _failsafe_deserialize
 from .._serialization import Serializer
 from .._vendor import CustomClientMixinABC
 
@@ -112,12 +112,6 @@ class CustomClientOperationsMixin(CustomClientMixinABC):
             404: ResourceNotFoundError,
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
-            403: cast(
-                Type[HttpResponseError],
-                lambda response: HttpResponseError(
-                    response=response, model=_deserialize(_models.InvalidAuth, response.json())
-                ),
-            ),
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
@@ -142,7 +136,10 @@ class CustomClientOperationsMixin(CustomClientMixinABC):
 
         if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
-            raise HttpResponseError(response=response)
+            error = None
+            if response.status_code == 403:
+                error = _failsafe_deserialize(_models.InvalidAuth, response.json())
+            raise HttpResponseError(response=response, model=error)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
