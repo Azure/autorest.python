@@ -1,5 +1,17 @@
 # Release
 
+## 0.37.0
+
+### Bug Fixes
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Filter out credential that python does not support for now
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Ignore models only used as LRO envelope results because we don't do anything with them
+
+### Features
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Refine exception handling logic and support exception with ranged status code
+
+
 ## 0.36.7
 
 ### Bug Fixes
