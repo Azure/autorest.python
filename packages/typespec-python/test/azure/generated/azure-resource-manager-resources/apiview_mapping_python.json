@@ -17,6 +17,7 @@
         "azure.resourcemanager.resources.models.TopLevelTrackedResourceProperties": "Azure.ResourceManager.Resources.TopLevelTrackedResourceProperties",
         "azure.resourcemanager.resources.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
         "azure.resourcemanager.resources.models.ProvisioningState": "Azure.ResourceManager.Resources.ProvisioningState",
+        "azure.resourcemanager.resources.models.ResourceProvisioningState": "Azure.ResourceManager.ResourceProvisioningState",
         "azure.resourcemanager.resources.ResourcesClient.top_level.get": "Azure.ResourceManager.Resources.TopLevel.get",
         "azure.resourcemanager.resources.ResourcesClient.top_level.begin_create_or_replace": "Azure.ResourceManager.Resources.TopLevel.createOrReplace",
         "azure.resourcemanager.resources.ResourcesClient.top_level.begin_update": "Azure.ResourceManager.Resources.TopLevel.update",
