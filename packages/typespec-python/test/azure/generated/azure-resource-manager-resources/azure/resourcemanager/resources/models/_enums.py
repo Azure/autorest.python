@@ -36,14 +36,3 @@ class ProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     UPDATING = "Updating"
     DELETING = "Deleting"
     ACCEPTED = "Accepted"
-
-
-class ResourceProvisioningState(str, Enum, metaclass=CaseInsensitiveEnumMeta):
-    """The provisioning state of a resource type."""
-
-    SUCCEEDED = "Succeeded"
-    """Resource has been created."""
-    FAILED = "Failed"
-    """Resource creation failed."""
-    CANCELED = "Canceled"
-    """Resource creation was canceled."""
