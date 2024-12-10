@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.36.7",
+  "version": "0.37.0",
   "author": "Microsoft Corporation",
   "description": "TypeSpec emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -54,13 +54,13 @@
     "@azure-tools/typespec-azure-resource-manager": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.48.0 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.48.0 <3.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.48.0 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.48.5 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.3.12",
+    "@typespec/http-client-python": "~0.4.2",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -73,7 +73,7 @@
     "@azure-tools/typespec-azure-core": "~0.48.0",
     "@azure-tools/typespec-azure-rulesets": "~0.48.0",
     "@azure-tools/typespec-autorest": "~0.48.0",
-    "@azure-tools/typespec-client-generator-core": "~0.48.0",
+    "@azure-tools/typespec-client-generator-core": "~0.48.5",
     "@azure-tools/cadl-ranch-expect": "~0.15.6",
     "@azure-tools/cadl-ranch-specs": "~0.39.1",
     "@azure-tools/cadl-ranch": "~0.16.1",
