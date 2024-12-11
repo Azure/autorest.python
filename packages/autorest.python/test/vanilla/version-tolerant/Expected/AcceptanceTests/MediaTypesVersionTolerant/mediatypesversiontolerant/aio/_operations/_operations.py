@@ -30,7 +30,8 @@ from ..._operations._operations import (
     build_media_types_content_type_with_encoding_request,
     build_media_types_put_text_and_json_body_request,
 )
-from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
+from ..._vendor import raise_if_not_implemented
+from .._vendor import MediaTypesClientMixinABC
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
