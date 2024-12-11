@@ -23,8 +23,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._vendor import raise_if_not_implemented
 from ...operations._operations import build_formdata_upload_file_via_body_request
+from .._vendor import raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
