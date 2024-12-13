@@ -655,7 +655,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
             list_of_elem = _deserialize(List[_models.User], deserialized["items"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextLink") or None, iter(list_of_elem)
+            return None, iter(list_of_elem)
 
         def get_next(next_link=None):
             _request = prepare_request(next_link)
