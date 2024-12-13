@@ -8,12 +8,9 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Dict, List, Optional, Union
 
 from .. import _serialization
-
-if TYPE_CHECKING:
-    from .. import models as _models
 
 
 class AccessPolicy(_serialization.Model):

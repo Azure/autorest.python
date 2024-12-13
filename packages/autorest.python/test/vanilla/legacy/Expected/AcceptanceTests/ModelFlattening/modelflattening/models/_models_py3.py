@@ -6,12 +6,9 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, List, Literal, Optional, TYPE_CHECKING
+from typing import Any, Dict, List, Literal, Optional
 
 from .. import _serialization
-
-if TYPE_CHECKING:
-    from .. import models as _models
 
 
 class BaseProduct(_serialization.Model):
