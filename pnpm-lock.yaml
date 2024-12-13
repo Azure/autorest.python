@@ -54,8 +54,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz(3vals54vp74j2sypwpyzyguv24)
+        specifier: ~0.4.3
+        version: 0.4.3(3vals54vp74j2sypwpyzyguv24)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -76,8 +76,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz(3vals54vp74j2sypwpyzyguv24)
+        specifier: ~0.4.3
+        version: 0.4.3(3vals54vp74j2sypwpyzyguv24)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -92,8 +92,8 @@ importers:
         version: 4.19.2
     devDependencies:
       '@azure-tools/cadl-ranch':
-        specifier: ~0.16.1
-        version: 0.16.1(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))
+        specifier: ~0.16.2
+        version: 0.16.2(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))
       '@azure-tools/cadl-ranch-expect':
         specifier: ~0.15.7
         version: 0.15.7(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))(@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0)))(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))
@@ -207,11 +207,6 @@ packages:
       '@typespec/rest': ~0.63.0
       '@typespec/versioning': ~0.63.0
       '@typespec/xml': ~0.63.0
-
-  '@azure-tools/cadl-ranch@0.16.1':
-    resolution: {integrity: sha512-4tyd+2GDsZjkcsiB14T2m5imkPCokJkFLKrPe0mINb5Z6DVVzk/2BkhId//zk9KinpYL0ThG9ewM1ZeJ0jnoeg==}
-    engines: {node: '>=16.0.0'}
-    hasBin: true
 
   '@azure-tools/cadl-ranch@0.16.2':
     resolution: {integrity: sha512-1FtmiOp89qo3Jj2Gq6hTq23paolHocxNoBIugZPcEPY0ZNwOe+Ea24D0v0e3gd6RbomRKfKbmr3UVodN/xWLQA==}
@@ -1225,19 +1220,13 @@ packages:
     resolution: {integrity: sha512-b1tx0orFCCh/THWPQa2ZwWzvOeyzzp36vkJYOpVg0u8UVOIsfVrnuC9FqAw9gRKn+rG2VmWQ/zDJZzkxUnj/XQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@typespec/compiler@0.62.0':
-    resolution: {integrity: sha512-RfKJ/rF2Wjxu7dl74oJE8yEfSkeL7NopFlyJ4dW1JQXpRN2IOJYPxas12qZA6H9ZEIB8rBjyrHNxJSQbvn/UDQ==}
-    engines: {node: '>=18.0.0'}
-    hasBin: true
-
   '@typespec/compiler@0.63.0':
     resolution: {integrity: sha512-cC3YniwbFghn1fASX3r1IgNjMrwaY4gmzznkHT4f/NxE+HK4XoXWn4EG7287QgVMCaHUykzJCIfW9k7kIleW5A==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz}
-    version: 0.4.3
+  '@typespec/http-client-python@0.4.3':
+    resolution: {integrity: sha512-4Zc1lE5Hpol4HpfSXGaUxO1qYPMv8A9EQclGn0LDzsc8kxo5cjxxJ0Fqzg14f/mGYfzE1mTus4aZ9kbKei8w7w==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.49.0 <1.0.0'
@@ -1250,16 +1239,6 @@ packages:
       '@typespec/openapi': '>=0.63.0 <1.0.0'
       '@typespec/rest': '>=0.63.0 <1.0.0'
       '@typespec/versioning': '>=0.63.0 <1.0.0'
-
-  '@typespec/http@0.62.0':
-    resolution: {integrity: sha512-6H9y9e32lb2s76MMy29ITCwSZNG42sa/qWthiByUvfbTEXMpu5a1fQHNj7RXg+xmDKmVIHv3gAfjGPAWfXhkaQ==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.62.0
-      '@typespec/streams': ~0.62.0
-    peerDependenciesMeta:
-      '@typespec/streams':
-        optional: true
 
   '@typespec/http@0.63.0':
     resolution: {integrity: sha512-SYVbBmLPAPdWZfdMs0QlbpTnFREDnkINu2FR+0kRX12qzbRgpRbLsdhg59qx4TfKoh4IAPgSV+Fq84w7BWGsyQ==}
@@ -1277,13 +1256,6 @@ packages:
     peerDependencies:
       '@typespec/compiler': ~0.63.0
       '@typespec/http': ~0.63.0
-
-  '@typespec/rest@0.62.0':
-    resolution: {integrity: sha512-ci5UjelEKFwsPTdpgysoUoDCcw02EnbG4GBuYJdR5mRrFCBZMxrbro+OJLgSN3g/TORSsWlW7dEOWLfbyrmlZQ==}
-    engines: {node: '>=18.0.0'}
-    peerDependencies:
-      '@typespec/compiler': ~0.62.0
-      '@typespec/http': ~0.62.0
 
   '@typespec/rest@0.63.0':
     resolution: {integrity: sha512-HftzMjSDHAYX+ILE9C6pFS4oAq7oBHMCtpA8QgSFPDF4V5a8l1k2K8c4x1B+7yl+GkREmIdtpc6S0xZm2G7hXg==}
@@ -3789,13 +3761,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@azure-tools/cadl-ranch-expect@0.15.7(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))':
-    dependencies:
-      '@typespec/compiler': 0.62.0
-      '@typespec/http': 0.62.0(@typespec/compiler@0.62.0)
-      '@typespec/rest': 0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))
-      '@typespec/versioning': 0.63.0(@typespec/compiler@0.63.0)
-
   '@azure-tools/cadl-ranch-expect@0.15.7(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))(@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0)))(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))':
     dependencies:
       '@typespec/compiler': 0.63.0
@@ -3817,41 +3782,6 @@ snapshots:
     transitivePeerDependencies:
       - '@types/express'
       - '@typespec/streams'
-      - debug
-      - supports-color
-
-  '@azure-tools/cadl-ranch@0.16.1(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))':
-    dependencies:
-      '@azure-tools/cadl-ranch-api': 0.5.0
-      '@azure-tools/cadl-ranch-coverage-sdk': 0.9.0
-      '@azure-tools/cadl-ranch-expect': 0.15.7(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))(@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0)))(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))
-      '@azure/identity': 4.4.1
-      '@types/js-yaml': 4.0.9
-      '@typespec/compiler': 0.62.0
-      '@typespec/http': 0.62.0(@typespec/compiler@0.62.0)
-      '@typespec/rest': 0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))
-      ajv: 8.17.1
-      axios: 1.7.7
-      body-parser: 1.20.3
-      deep-equal: 2.2.3
-      express: 4.21.0
-      express-promise-router: 4.1.1(express@4.21.0)
-      form-data: 3.0.2
-      glob: 11.0.0
-      jackspeak: 4.0.1
-      js-yaml: 4.1.0
-      morgan: 1.10.0
-      multer: 1.4.5-lts.1
-      node-fetch: 3.3.2
-      picocolors: 1.1.0
-      source-map-support: 0.5.21
-      winston: 3.14.2
-      xml2js: 0.6.2
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/express'
-      - '@typespec/streams'
-      - '@typespec/versioning'
       - debug
       - supports-color
 
@@ -3878,7 +3808,7 @@ snapshots:
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       node-fetch: 3.3.2
-      picocolors: 1.1.0
+      picocolors: 1.1.1
       source-map-support: 0.5.21
       winston: 3.14.2
       xml2js: 0.6.2
@@ -4955,23 +4885,6 @@ snapshots:
       '@typescript-eslint/types': 8.7.0
       eslint-visitor-keys: 3.4.3
 
-  '@typespec/compiler@0.62.0':
-    dependencies:
-      '@babel/code-frame': 7.25.9
-      ajv: 8.17.1
-      change-case: 5.4.4
-      globby: 14.0.2
-      mustache: 4.2.0
-      picocolors: 1.1.0
-      prettier: 3.3.3
-      prompts: 2.4.2
-      semver: 7.6.3
-      temporal-polyfill: 0.2.5
-      vscode-languageserver: 9.0.1
-      vscode-languageserver-textdocument: 1.0.12
-      yaml: 2.5.1
-      yargs: 17.7.2
-
   '@typespec/compiler@0.63.0':
     dependencies:
       '@babel/code-frame': 7.25.9
@@ -4989,7 +4902,7 @@ snapshots:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDQwNTg3Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.4.3.tgz(3vals54vp74j2sypwpyzyguv24)':
+  '@typespec/http-client-python@0.4.3(3vals54vp74j2sypwpyzyguv24)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.49.0(f6dpljntn5qjht2uh6yzcx3zty)
       '@azure-tools/typespec-azure-core': 0.49.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))(@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0)))
@@ -5005,10 +4918,6 @@ snapshots:
       semver: 7.6.3
       tsx: 4.19.2
 
-  '@typespec/http@0.62.0(@typespec/compiler@0.62.0)':
-    dependencies:
-      '@typespec/compiler': 0.62.0
-
   '@typespec/http@0.63.0(@typespec/compiler@0.63.0)':
     dependencies:
       '@typespec/compiler': 0.63.0
@@ -5017,11 +4926,6 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.63.0
       '@typespec/http': 0.63.0(@typespec/compiler@0.63.0)
-
-  '@typespec/rest@0.62.0(@typespec/compiler@0.62.0)(@typespec/http@0.62.0(@typespec/compiler@0.62.0))':
-    dependencies:
-      '@typespec/compiler': 0.62.0
-      '@typespec/http': 0.62.0(@typespec/compiler@0.62.0)
 
   '@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))':
     dependencies:
