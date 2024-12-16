@@ -6,9 +6,12 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Literal, Optional
+from typing import Any, List, Literal, Optional, TYPE_CHECKING
 
 import msrest.serialization
+
+if TYPE_CHECKING:
+    from .. import models as _models
 
 
 class ChildProduct(msrest.serialization.Model):
