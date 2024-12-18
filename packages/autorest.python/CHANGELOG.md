@@ -1,5 +1,12 @@
 # Release
 
+## 6.27.2
+
+### Bug Fixes
+
+- [#2973](https://github.com/Azure/autorest.python/pull/2973) `:code:` in docstring should always be preceded by `\`
+
+
 ## 6.27.1
 
 ### Bump dependencies
