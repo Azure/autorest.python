@@ -184,10 +184,10 @@ jobs:
             package: "typespec-python"
             folderName: "unbranded"
 
-      - script: cadl-ranch check-coverage http/
+      - script: tsp-spector check-coverage http/
         displayName: Check Coverage
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs
         continueOnError: true
 
-      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/cadl-ranch-specs/cadl-ranch-coverage.json
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs/tsp-spector-coverage.json
         artifact: CoverageReport
