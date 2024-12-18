@@ -7,27 +7,108 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, overload
+from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
 from .. import _model_base
 from .._model_base import rest_field
 
+if TYPE_CHECKING:
+    from .. import models as _models
 
-class User(_model_base.Model):
-    """User model.
+
+class LinkResponse(_model_base.Model):
+    """LinkResponse.
 
 
-    :ivar name: User name. Required.
-    :vartype name: str
+    :ivar pets: Required.
+    :vartype pets: list[~payload.pageable.models.Pet]
+    :ivar links: Required.
+    :vartype links: ~payload.pageable.models.LinkResponseLinks
     """
 
-    name: str = rest_field()
-    """User name. Required."""
+    pets: List["_models.Pet"] = rest_field()
+    """Required."""
+    links: "_models.LinkResponseLinks" = rest_field()
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
+        pets: List["_models.Pet"],
+        links: "_models.LinkResponseLinks",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class LinkResponseLinks(_model_base.Model):
+    """LinkResponseLinks.
+
+    :ivar next:
+    :vartype next: str
+    :ivar prev:
+    :vartype prev: str
+    :ivar first:
+    :vartype first: str
+    :ivar last:
+    :vartype last: str
+    """
+
+    next: Optional[str] = rest_field()
+    prev: Optional[str] = rest_field()
+    first: Optional[str] = rest_field()
+    last: Optional[str] = rest_field()
+
+    @overload
+    def __init__(
+        self,
+        *,
+        next: Optional[str] = None,
+        prev: Optional[str] = None,
+        first: Optional[str] = None,
+        last: Optional[str] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Pet(_model_base.Model):
+    """Pet.
+
+
+    :ivar id: Required.
+    :vartype id: str
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    id: str = rest_field()
+    """Required."""
+    name: str = rest_field()
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
         name: str,
     ) -> None: ...
 
