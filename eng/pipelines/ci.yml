@@ -189,5 +189,5 @@ jobs:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs
         continueOnError: true
 
-      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs/tsp-spector-coverage.json
+      - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs/spec-coverage.json
         artifact: CoverageReport
