@@ -15,12 +15,15 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import PageableClientConfiguration
-from ._operations import PageableClientOperationsMixin
+from .operations import ServerDrivenPaginationOperations
 
 
-class PageableClient(PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test describing pageable.
+class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
+    """Test for pageable payload.
 
+    :ivar server_driven_pagination: ServerDrivenPaginationOperations operations
+    :vartype server_driven_pagination:
+     payload.pageable.aio.operations.ServerDrivenPaginationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -46,6 +49,9 @@ class PageableClient(PageableClientOperationsMixin):  # pylint: disable=client-a
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.server_driven_pagination = ServerDrivenPaginationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

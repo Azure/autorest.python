@@ -27,8 +27,8 @@ class Versions(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """The version of the API."""
 
     V1 = "v1"
-    """The original version v1."""
+    """The version v1."""
     V2_PREVIEW = "v2preview"
     """The V2 Preview version."""
     V2 = "v2"
-    """The latest version v2."""
+    """The version v2."""
