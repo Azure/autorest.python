@@ -191,3 +191,4 @@ jobs:
 
       - publish: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs/spec-coverage.json
         artifact: CoverageReport
+        continueOnError: true
