@@ -1,5 +1,78 @@
 # Release
 
+## 6.27.2
+
+### Bug Fixes
+
+- [#2973](https://github.com/Azure/autorest.python/pull/2973) `:code:` in docstring should always be preceded by `\`
+
+
+## 6.27.1
+
+### Bump dependencies
+
+- [#2965](https://github.com/Azure/autorest.python/pull/2965) Bump `@typespec/*` 0.63.0 and `@azure-tools/*` 0.49.0
+
+
+## 6.27.0
+
+### Features
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Refine exception handling logic and support exception with ranged status code
+
+
+## 6.26.7
+
+### Bug Fixes
+
+- [#2943](https://github.com/Azure/autorest.python/pull/2943) Fix pylint `useless-object-inheritance` in generated code
+
+
+## 6.26.6
+
+### Bug Fixes
+
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Fix crash if no valid client define in typespec file
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Pad special property name in model to avoid conflict
+
+
+## 6.26.5
+
+### Bump dependencies
+
+- [#2928](https://github.com/Azure/autorest.python/pull/2928) bump `@typespec/http-client-python` to `0.3.10`
+
+
+## 6.26.4
+
+### Bug Fixes
+
+- [#2918](https://github.com/Azure/autorest.python/pull/2918) Fix quote for string type
+
+
+## 6.26.3
+
+### Bug Fixes
+
+- [#2908](https://github.com/Azure/autorest.python/pull/2908) Bump http-client-python to fix access for paging operation and lro
+
+### Bump dependencies
+
+- [#2906](https://github.com/Azure/autorest.python/pull/2906) Bump http-client-python 0.3.7
+
+
+## 6.26.2
+
+### Bug Fixes
+
+- [#2891](https://github.com/Azure/autorest.python/pull/2891) Float dependency for `@typespec/http-client-python`
+
+### Bump dependencies
+
+- [#2902](https://github.com/Azure/autorest.python/pull/2902) Bump typespec 0.62.0 and http-client-python 0.3.6
+- [#2901](https://github.com/Azure/autorest.python/pull/2901) Bump http-client-python to 0.3.5 and tcgc to 0.47.4
+
+
 ## 6.26.1
 
 ### Bug Fixes

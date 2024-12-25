@@ -1,5 +1,80 @@
 # Release
 
+## 0.37.2
+
+### Bug Fixes
+
+- [#2973](https://github.com/Azure/autorest.python/pull/2973) `:code:` in docstring should always be preceded by `\`
+
+
+## 0.37.1
+
+### Bump dependencies
+
+- [#2965](https://github.com/Azure/autorest.python/pull/2965) Bump `@typespec/*` 0.63.0 and `@azure-tools/*` 0.49.0
+
+
+## 0.37.0
+
+### Bug Fixes
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Filter out credential that python does not support for now
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Ignore models only used as LRO envelope results because we don't do anything with them
+
+### Features
+
+- [#2959](https://github.com/Azure/autorest.python/pull/2959) Refine exception handling logic and support exception with ranged status code
+
+
+## 0.36.7
+
+### Bug Fixes
+
+- [#2943](https://github.com/Azure/autorest.python/pull/2943) Fix pylint `useless-object-inheritance` in generated code
+
+
+## 0.36.6
+
+### Bug Fixes
+
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Fix crash if no valid client define in typespec file
+- [#2935](https://github.com/Azure/autorest.python/pull/2935) Pad special property name in model to avoid conflict
+
+
+## 0.36.5
+
+### Bump dependencies
+
+- [#2928](https://github.com/Azure/autorest.python/pull/2928) bump `@typespec/http-client-python` to `0.3.10`
+
+
+## 0.36.4
+
+### Bug Fixes
+
+- [#2918](https://github.com/Azure/autorest.python/pull/2918) Fix quote for string type
+
+
+## 0.36.3
+
+### Bug Fixes
+
+- [#2908](https://github.com/Azure/autorest.python/pull/2908) Bump http-client-python to fix access for paging operation and lro
+
+### Bump dependencies
+
+- [#2906](https://github.com/Azure/autorest.python/pull/2906) Bump http-client-python 0.3.7
+
+
+## 0.36.2
+
+### Bump dependencies
+
+- [#2902](https://github.com/Azure/autorest.python/pull/2902) Bump typespec 0.62.0 and http-client-python 0.3.6
+- [#2896](https://github.com/Azure/autorest.python/pull/2896) Add devDependency `@azure-tools/cadl-ranch`
+- [#2901](https://github.com/Azure/autorest.python/pull/2901) Bump http-client-python to 0.3.5 and tcgc to 0.47.4
+
+
 ## 0.36.1
 
 ### Bug Fixes

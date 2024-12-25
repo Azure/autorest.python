@@ -113,8 +113,7 @@ steps:
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: |
-        find test/azure/generated -type f ! -name '*apiview_mapping_python.json*' -delete
-        find test/unbranded/generated -type f ! -name '*apiview_mapping_python.json*' -delete
+        rm -rf test/azure/generated test/unbranded/generated
         npm run regenerate
       displayName: "Regenerate Code(typespec)"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/

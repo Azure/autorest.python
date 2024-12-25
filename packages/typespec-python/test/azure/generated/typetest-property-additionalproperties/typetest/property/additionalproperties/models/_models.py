@@ -19,7 +19,7 @@ if TYPE_CHECKING:
 
 
 class DifferentSpreadFloatRecord(_model_base.Model):
-    """The model spread Record:code:`<float32>` with the different known property type.
+    """The model spread Record\\ :code:`<float32>` with the different known property type.
 
 
     :ivar name: The id property. Required.
@@ -48,7 +48,7 @@ class DifferentSpreadFloatRecord(_model_base.Model):
 
 
 class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
-    """The model extends from a model that spread Record:code:`<float32>` with the different known
+    """The model extends from a model that spread Record\\ :code:`<float32>` with the different known
     property type.
 
 
@@ -143,7 +143,7 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
 
 
 class DifferentSpreadModelRecord(_model_base.Model):
-    """The model spread Record:code:`<ModelForRecord>` with the different known property type.
+    """The model spread Record\\ :code:`<ModelForRecord>` with the different known property type.
 
 
     :ivar known_prop: Required.
@@ -172,7 +172,7 @@ class DifferentSpreadModelRecord(_model_base.Model):
 
 
 class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
-    """The model extends from a model that spread Record:code:`<ModelForRecord>` with the different
+    """The model extends from a model that spread Record\\ :code:`<ModelForRecord>` with the different
     known property type.
 
 
@@ -205,7 +205,7 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
 
 
 class DifferentSpreadStringRecord(_model_base.Model):
-    """The model spread Record:code:`<string>` with the different known property type.
+    """The model spread Record\\ :code:`<string>` with the different known property type.
 
 
     :ivar id: The name property. Required.
@@ -234,7 +234,7 @@ class DifferentSpreadStringRecord(_model_base.Model):
 
 
 class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
-    """The model extends from a model that spread Record:code:`<string>` with the different known
+    """The model extends from a model that spread Record\\ :code:`<string>` with the different known
     property type.
 
 
@@ -267,7 +267,7 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
 
 
 class ExtendsFloatAdditionalProperties(_model_base.Model):
-    """The model extends from Record:code:`<float32>` type.
+    """The model extends from Record\\ :code:`<float32>` type.
 
 
     :ivar id: The id property. Required.
@@ -296,7 +296,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
 
 
 class ExtendsModelAdditionalProperties(_model_base.Model):
-    """The model extends from Record:code:`<ModelForRecord>` type.
+    """The model extends from Record\\ :code:`<ModelForRecord>` type.
 
 
     :ivar known_prop: Required.
@@ -354,7 +354,7 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
 
 
 class ExtendsStringAdditionalProperties(_model_base.Model):
-    """The model extends from Record:code:`<string>` type.
+    """The model extends from Record\\ :code:`<string>` type.
 
 
     :ivar name: The name property. Required.
@@ -383,7 +383,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
 
 
 class ExtendsUnknownAdditionalProperties(_model_base.Model):
-    """The model extends from Record:code:`<unknown>` type.
+    """The model extends from Record\\ :code:`<unknown>` type.
 
 
     :ivar name: The name property. Required.
@@ -412,7 +412,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
 
 
 class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperties):  # pylint: disable=name-too-long
-    """The model extends from a type that extends from Record:code:`<unknown>`.
+    """The model extends from a type that extends from Record\\ :code:`<unknown>`.
 
 
     :ivar name: The name property. Required.
@@ -449,7 +449,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
 
 
 class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
-    """The model extends from Record:code:`<unknown>` with a discriminator.
+    """The model extends from Record\\ :code:`<unknown>` with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
@@ -530,7 +530,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 
 
 class IsFloatAdditionalProperties(_model_base.Model):
-    """The model is from Record:code:`<float32>` type.
+    """The model is from Record\\ :code:`<float32>` type.
 
 
     :ivar id: The id property. Required.
@@ -559,7 +559,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
 
 
 class IsModelAdditionalProperties(_model_base.Model):
-    """The model is from Record:code:`<ModelForRecord>` type.
+    """The model is from Record\\ :code:`<ModelForRecord>` type.
 
 
     :ivar known_prop: Required.
@@ -617,7 +617,7 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
 
 
 class IsStringAdditionalProperties(_model_base.Model):
-    """The model is from Record:code:`<string>` type.
+    """The model is from Record\\ :code:`<string>` type.
 
 
     :ivar name: The name property. Required.
@@ -646,7 +646,7 @@ class IsStringAdditionalProperties(_model_base.Model):
 
 
 class IsUnknownAdditionalProperties(_model_base.Model):
-    """The model is from Record:code:`<unknown>` type.
+    """The model is from Record\\ :code:`<unknown>` type.
 
 
     :ivar name: The name property. Required.
@@ -675,7 +675,7 @@ class IsUnknownAdditionalProperties(_model_base.Model):
 
 
 class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
-    """The model extends from a type that is Record:code:`<unknown>` type.
+    """The model extends from a type that is Record\\ :code:`<unknown>` type.
 
 
     :ivar name: The name property. Required.
@@ -712,7 +712,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
 
 
 class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
-    """The model is Record:code:`<unknown>` with a discriminator.
+    """The model is Record\\ :code:`<unknown>` with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     IsUnknownAdditionalPropertiesDiscriminatedDerived
@@ -822,7 +822,7 @@ class ModelForRecord(_model_base.Model):
 
 
 class MultipleSpreadRecord(_model_base.Model):
-    """The model spread Record:code:`<string>` and Record:code:`<float32>`.
+    """The model spread Record\\ :code:`<string>` and Record\\ :code:`<float32>`.
 
 
     :ivar flag: The name property. Required.
@@ -851,7 +851,7 @@ class MultipleSpreadRecord(_model_base.Model):
 
 
 class SpreadFloatRecord(_model_base.Model):
-    """The model spread Record:code:`<float32>` with the same known property type.
+    """The model spread Record\\ :code:`<float32>` with the same known property type.
 
 
     :ivar id: The id property. Required.
@@ -909,7 +909,7 @@ class SpreadModelArrayRecord(_model_base.Model):
 
 
 class SpreadModelRecord(_model_base.Model):
-    """The model spread Record:code:`<ModelForRecord>` with the same known property type.
+    """The model spread Record\\ :code:`<ModelForRecord>` with the same known property type.
 
 
     :ivar known_prop: Required.
@@ -938,7 +938,7 @@ class SpreadModelRecord(_model_base.Model):
 
 
 class SpreadRecordForDiscriminatedUnion(_model_base.Model):
-    """The model spread Record:code:`<WidgetData>`.
+    """The model spread Record\\ :code:`<WidgetData>`.
 
 
     :ivar name: The name property. Required.
@@ -1083,7 +1083,7 @@ class SpreadRecordForUnion(_model_base.Model):
 
 
 class SpreadStringRecord(_model_base.Model):
-    """The model spread Record:code:`<string>` with the same known property type.
+    """The model spread Record\\ :code:`<string>` with the same known property type.
 
 
     :ivar name: The name property. Required.
