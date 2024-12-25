@@ -68,7 +68,7 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "name": "Madge"
            }.
 
         :param body: Required.
@@ -88,7 +88,7 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "name": "Madge"
            }.
 
         :param body: Required.
@@ -110,7 +110,7 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "name": "Madge"
            }.
 
         :param body: Required.
@@ -130,7 +130,7 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "name": "Madge"
            }.
 
         :param body: Is one of the following types: InputModel, JSON, IO[bytes] Required.
@@ -192,7 +192,7 @@ class ModelInOperationOperations:
         .. code-block:: json
 
            {
-             "name": <any string>
+             "name": "Madge"
            }.
 
         :return: OutputModel. The OutputModel is compatible with MutableMapping
@@ -266,7 +266,7 @@ class ModelInOperationOperations:
 
            {
              "result": {
-               "name": <any string>
+               "name": "Madge"
              }
            }.
 
@@ -299,7 +299,7 @@ class ModelInOperationOperations:
 
            {
              "result": {
-               "name": <any string>
+               "name": "Madge"
              }
            }.
 
@@ -332,7 +332,7 @@ class ModelInOperationOperations:
 
            {
              "result": {
-               "name": <any string>
+               "name": "Madge"
              }
            }.
 
@@ -365,7 +365,7 @@ class ModelInOperationOperations:
 
            {
              "result": {
-               "name": <any string>
+               "name": "Madge"
              }
            }.
 

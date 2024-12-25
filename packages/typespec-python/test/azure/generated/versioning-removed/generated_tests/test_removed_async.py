@@ -23,3 +23,14 @@ class TestRemovedAsync(RemovedClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @RemovedPreparer()
+    @recorded_by_proxy_async
+    async def test_model_v3(self, removed_endpoint):
+        client = self.create_async_client(endpoint=removed_endpoint)
+        response = await client.model_v3(
+            body={"enumProp": "str", "id": "str"},
+        )
+
+        # please add some check logic here by yourself
+        # ...

@@ -22,3 +22,14 @@ class TestRemoved(RemovedClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @RemovedPreparer()
+    @recorded_by_proxy
+    def test_model_v3(self, removed_endpoint):
+        client = self.create_client(endpoint=removed_endpoint)
+        response = client.model_v3(
+            body={"enumProp": "str", "id": "str"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
