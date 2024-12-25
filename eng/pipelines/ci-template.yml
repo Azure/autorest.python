@@ -82,14 +82,17 @@ steps:
     - script: pnpm run lint --command pylint
       displayName: Pylint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: pnpm run lint --command mypy
       displayName: Mypy
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: pnpm run lint --command pyright
       displayName: Pyright
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+      condition: and(succeeded(), eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: pnpm run format
       displayName: Black

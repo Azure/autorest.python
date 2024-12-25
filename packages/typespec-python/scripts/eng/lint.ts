@@ -18,9 +18,9 @@ const validCommands = ["pylint", "mypy", "pyright", "eslint"];
 const argv = yargs(hideBin(process.argv))
     .option("folderName", {
         type: "string",
-        choices: ["generator", "autorest"],
+        choices: ["autorest"],
         description: "Specify the flavor",
-        default: "generator",
+        default: "autorest",
     })
     .option("command", {
         alias: "c",
