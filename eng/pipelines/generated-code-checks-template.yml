@@ -25,4 +25,4 @@ steps:
     - script: npm run test -- --command=apiview --folder=${{ parameters.folderName }}
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
-      condition: eq(variables['PythonVersion'], '3.10')
+      condition: eq(variables['PythonVersion'], '3.11')

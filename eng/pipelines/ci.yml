@@ -107,7 +107,7 @@ jobs:
 
       - script: tox run -e apiview
         displayName: 'Validate multiapi APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.10'))
+        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
