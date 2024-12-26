@@ -1,1 +1,1 @@
--r packages/typespec-python/dev_requirements.txt
+-r ../packages/typespec-python/dev_requirements.txt
