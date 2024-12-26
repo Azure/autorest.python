@@ -49,7 +49,7 @@ export function pylint() {
 }
 
 function checkPythonFile(directory: string): boolean {
-    const files = fs.existsSync(directory) ? fs.readdirSync(directory): [];
+    const files = fs.existsSync(directory) ? fs.readdirSync(directory) : [];
     for (let i = 0; i < files.length; i++) {
         if (path.extname(files[i]) === ".py") {
             return true;
