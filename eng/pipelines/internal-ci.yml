@@ -33,7 +33,7 @@ steps:
         azureSubscription: "TypeSpec Storage"
         scriptType: "bash"
         scriptLocation: "inlineScript"
-        inlineScript: tsp-spector upload-coverage --coverageFile ./spec-coverage.json --generatorName "@typespec/http-client-python" --storageAccountName typespec --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@typspec/http-client-python/package.json').version") --containerName coverages --generatorMode standard
+        inlineScript: npx tsp-spector upload-coverage --coverageFile ./spec-coverage.json --generatorName "@typespec/http-client-python" --storageAccountName typespec --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@typspec/http-client-python/package.json').version") --containerName coverages --generatorMode standard
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs
 
     - script: |
@@ -47,5 +47,5 @@ steps:
         azureSubscription: "TypeSpec Storage"
         scriptType: "bash"
         scriptLocation: "inlineScript"
-        inlineScript: tsp-spector upload-coverage --coverageFile ./spec-coverage.json --generatorName "@azure-tools/typespec-python" --storageAccountName typespec --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/package.json').version") --containerName coverages --generatorMode azure
+        inlineScript: npx tsp-spector upload-coverage --coverageFile ./spec-coverage.json --generatorName "@azure-tools/typespec-python" --storageAccountName typespec --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/package.json').version") --containerName coverages --generatorMode azure
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs
