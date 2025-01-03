@@ -22,7 +22,7 @@ def start_server_process():
         cmd = "npx tsp-spector serve ./specs"
     else:
         os.chdir(azure_http_path.resolve())
-        cmd = f"npx tsp-spector serve {(http_path / 'specs').resolve()} -p 3001"
+        cmd = f"npx tsp-spector serve {(http_path / 'specs').resolve()}"
     if os.name == "nt":
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
