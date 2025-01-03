@@ -54,8 +54,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.4.4
-        version: 0.4.4(3vals54vp74j2sypwpyzyguv24)
+        specifier: ~0.5.0
+        version: 0.5.0(3vals54vp74j2sypwpyzyguv24)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -76,8 +76,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.4.4
-        version: 0.4.4(3vals54vp74j2sypwpyzyguv24)
+        specifier: ~0.5.0
+        version: 0.5.0(3vals54vp74j2sypwpyzyguv24)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1202,8 +1202,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@0.4.4':
-    resolution: {integrity: sha512-zp9MawS7VstDuNkCyrNNuE4e3nFmAsz05dPc/GvhREpSQbsZCkagssiAx24O1deElvhsVOp6Iy0XMXtR75PRVQ==}
+  '@typespec/http-client-python@0.5.0':
+    resolution: {integrity: sha512-CP6NJU0RNW4ixnSvy5Bi2XxQiXPW8FnDi/jO+ZfV7fPkPJVQkUST/flwFiciQ0XNU0VCsRY+GSrBzpTTytUP1A==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.49.0 <1.0.0'
@@ -2996,6 +2996,10 @@ packages:
   pure-rand@6.1.0:
     resolution: {integrity: sha512-bVWawvoZoBYpp6yIoQtQXHZjmz35RSVHnUOTefl8Vcjr8snTPY1wnpSPMWekcFwbxI6gtmT7rSYPFvz71ldiOA==}
 
+  pyodide@0.26.2:
+    resolution: {integrity: sha512-8VCRdFX83gBsWs6XP2rhG8HMaB+JaVyyav4q/EMzoV8fXH8HN6T5IISC92SNma6i1DRA3SVXA61S1rJcB8efgA==}
+    engines: {node: '>=18.0.0'}
+
   qs@6.13.0:
     resolution: {integrity: sha512-+38qI9SOr8tfZ4QmJNplMUxqjbe7LKvvZgWdExBOmd+egZTtjLB67Gu0HRX3u/XOq7UU2Nx6nsjvS16Z9uwfpg==}
     engines: {node: '>=0.6'}
@@ -3690,6 +3694,18 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
+    engines: {node: '>=10.0.0'}
+    peerDependencies:
+      bufferutil: ^4.0.1
+      utf-8-validate: '>=5.0.2'
+    peerDependenciesMeta:
+      bufferutil:
+        optional: true
+      utf-8-validate:
+        optional: true
 
   xml2js@0.6.2:
     resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
@@ -4852,7 +4868,7 @@ snapshots:
       yaml: 2.5.1
       yargs: 17.7.2
 
-  '@typespec/http-client-python@0.4.4(3vals54vp74j2sypwpyzyguv24)':
+  '@typespec/http-client-python@0.5.0(3vals54vp74j2sypwpyzyguv24)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.49.0(f6dpljntn5qjht2uh6yzcx3zty)
       '@azure-tools/typespec-azure-core': 0.49.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))(@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0)))
@@ -4865,8 +4881,12 @@ snapshots:
       '@typespec/rest': 0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))
       '@typespec/versioning': 0.63.0(@typespec/compiler@0.63.0)
       js-yaml: 4.1.0
+      pyodide: 0.26.2
       semver: 7.6.3
       tsx: 4.19.2
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@typespec/http-specs@0.1.0-alpha.5(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0))(@typespec/rest@0.63.0(@typespec/compiler@0.63.0)(@typespec/http@0.63.0(@typespec/compiler@0.63.0)))(@typespec/versioning@0.63.0(@typespec/compiler@0.63.0))(@typespec/xml@0.59.0(@typespec/compiler@0.63.0))':
     dependencies:
@@ -6955,6 +6975,13 @@ snapshots:
 
   pure-rand@6.1.0: {}
 
+  pyodide@0.26.2:
+    dependencies:
+      ws: 8.18.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   qs@6.13.0:
     dependencies:
       side-channel: 1.0.6
@@ -7736,6 +7763,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  ws@8.18.0: {}
 
   xml2js@0.6.2:
     dependencies:
