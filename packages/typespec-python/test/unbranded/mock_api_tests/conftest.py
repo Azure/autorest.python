@@ -12,9 +12,9 @@ from pathlib import Path
 
 
 def start_server_process():
-    path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@azure-tools/cadl-ranch-specs")
-    os.chdir(path.resolve())
-    cmd = "cadl-ranch serve ./http"
+    http_path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@typespec/http-specs")
+    os.chdir(http_path.resolve())
+    cmd = "npx tsp-spector serve ./specs"
     if os.name == "nt":
         return subprocess.Popen(cmd, shell=True)
     return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
