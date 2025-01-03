@@ -34,7 +34,7 @@ steps:
         scriptType: "bash"
         scriptLocation: "inlineScript"
         inlineScript: npx tsp-spector upload-coverage --coverageFile ./spec-coverage.json --generatorName "@typespec/http-client-python" --storageAccountName typespec --generatorVersion $(node -p -e "require('$(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@typespec/http-client-python/package.json').version") --containerName coverages --generatorMode standard
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@azure-tools/azure-http-specs
+        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@typespec/http-specs
 
     - script: |
             tox run -e ci
