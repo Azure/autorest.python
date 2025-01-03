@@ -10,7 +10,6 @@ import pytest
 import importlib
 from pathlib import Path
 from typing import List
-import logging
 
 FILE_FOLDER = Path(__file__).parent
 
