@@ -30,6 +30,8 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
+    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
+    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
@@ -58,7 +60,7 @@
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.4.4",
+    "@typespec/http-client-python": "~0.5.0",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
