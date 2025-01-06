@@ -30,8 +30,6 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
-    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
