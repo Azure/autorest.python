@@ -96,7 +96,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client = PipelineClient(base_url=base_url, policies=_policies, **kwargs)
+        self._client: PipelineClient = PipelineClient(base_url=base_url, policies=_policies, **kwargs)
         super(MultiapiCustomBaseUrlServiceClient, self).__init__(
             api_version=api_version,
             profile=profile
