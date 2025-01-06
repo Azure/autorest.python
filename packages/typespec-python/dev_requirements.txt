@@ -1,2 +1,15 @@
--r ../../eng/requirements.txt
--r ../../eng/dev_requirements.txt
+# shall keep aligned with dev_requirements.txt of @typspec/http-client-python
+pyright==1.1.389
+pylint==3.2.7
+tox==4.16.0
+mypy==1.13.0
+colorama==0.4.6
+debugpy==1.8.2
+pytest==8.3.2
+coverage==7.6.1
+black==24.8.0
+ptvsd==4.3.2
+types-PyYAML==6.0.12.8
+
+# additional dependency needed for development
+setuptools

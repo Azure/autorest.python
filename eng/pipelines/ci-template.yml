@@ -20,10 +20,11 @@ steps:
       displayName: "Install Node.js 18.x"
       inputs:
           versionSpec: "18.x"
+
     - task: UsePythonVersion@0
-      displayName: "Use Python 3.11"
+      displayName: "Use Python $(PythonVersion)"
       inputs:
-          versionSpec: 3.11
+          versionSpec: $(PythonVersion)
 
     - script: npm install -g pnpm@9.5.0
       displayName: Install pnpm 9.5.0
@@ -124,11 +125,6 @@ steps:
       displayName: Fail on regeneration diff in Autorest
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
       condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }})
-
-    - task: UsePythonVersion@0
-      displayName: "Use Python $(PythonVersion)"
-      inputs:
-          versionSpec: $(PythonVersion)
 
     - script: |
           pnpm pack
