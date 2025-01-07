@@ -1,5 +1,16 @@
 # Release
 
+## 0.37.3
+
+### Bug Fixes
+
+- [#2993](https://github.com/Azure/autorest.python/pull/2993) Do not do exception sort if there is no operation groups
+
+### Features
+
+- [#2988](https://github.com/Azure/autorest.python/pull/2988) set flavor to azure if not set
+
+
 ## 0.37.2
 
 ### Bug Fixes
