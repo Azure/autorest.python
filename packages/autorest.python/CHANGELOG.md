@@ -1,5 +1,12 @@
 # Release
 
+## 6.27.4
+
+### Bug Fixes
+
+- [771c357](https://github.com/Azure/autorest.python/commit/771c35756afc5c69928835aa01576200d43172b0) Fix install for autorest.python
+
+
 ## 6.27.3
 
 ### Bug Fixes
