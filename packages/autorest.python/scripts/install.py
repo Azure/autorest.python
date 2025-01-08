@@ -42,6 +42,7 @@ def main():
 
         python_run(venv_context, "pip", ["install", "-U", "pip"])
         python_run(venv_context, "pip", ["install", "-e", f"{_ROOT_DIR}/generator"])
+        python_run(venv_context, "pip", ["install", "-e", f"{_ROOT_DIR}/requirements.txt"])
 
 
 if __name__ == "__main__":
