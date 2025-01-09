@@ -1,8 +1,8 @@
 {
     "CrossLanguagePackageId": "Payload.Pageable",
     "CrossLanguageDefinitionId": {
-        "payload.pageable.serverdrivenpagination.models.LinkResponse": "Payload.Pageable.ServerDrivenPagination.link.Response.anonymous",
-        "payload.pageable.serverdrivenpagination.models.LinkResponseLinks": "Payload.Pageable.ServerDrivenPagination.link.Response.links.anonymous",
+        "payload.pageable.models.LinkResponse": "Payload.Pageable.ServerDrivenPagination.link.Response.anonymous",
+        "payload.pageable.models.LinkResponseLinks": "Payload.Pageable.ServerDrivenPagination.link.Response.links.anonymous",
         "payload.pageable.models.Pet": "Payload.Pageable.Pet",
         "payload.pageable.PageableClient.server_driven_pagination.link": "Payload.Pageable.ServerDrivenPagination.link"
     }

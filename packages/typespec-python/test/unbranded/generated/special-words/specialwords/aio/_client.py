@@ -14,10 +14,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
-from ..modelproperties.aio.operations import ModelPropertiesOperations
-from ..models.aio.operations import ModelsOperations
 from ._configuration import SpecialWordsClientConfiguration
-from .operations import Operations, ParametersOperations
+from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword

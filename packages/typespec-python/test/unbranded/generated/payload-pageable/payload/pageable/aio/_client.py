@@ -14,8 +14,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
-from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
 from ._configuration import PageableClientConfiguration
+from .operations import ServerDrivenPaginationOperations
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword

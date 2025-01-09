@@ -15,7 +15,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import NumericClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .property.operations import PropertyOperations
+from .operations import PropertyOperations
 
 
 class NumericClient:  # pylint: disable=client-accepts-api-version-keyword

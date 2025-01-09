@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.property.additionalproperties.aio import AdditionalPropertiesClient
+from typetest.property.additionalproperties.aio import AdditionalPropertiesClient
 
 
 class AdditionalPropertiesClientTestBaseAsync(AzureRecordedTestCase):

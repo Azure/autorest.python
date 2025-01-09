@@ -16,8 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SpreadClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .alias.operations import AliasOperations
-from .model.operations import ModelOperations
+from .operations import AliasOperations, ModelOperations
 
 
 class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword

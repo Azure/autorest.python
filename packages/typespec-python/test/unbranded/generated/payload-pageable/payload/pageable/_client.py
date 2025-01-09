@@ -15,7 +15,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import PageableClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .serverdrivenpagination.operations import ServerDrivenPaginationOperations
+from .operations import ServerDrivenPaginationOperations
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword

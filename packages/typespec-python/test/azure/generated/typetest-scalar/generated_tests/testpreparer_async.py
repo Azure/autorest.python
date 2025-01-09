@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.scalar.aio import ScalarClient
+from typetest.scalar.aio import ScalarClient
 
 
 class ScalarClientTestBaseAsync(AzureRecordedTestCase):

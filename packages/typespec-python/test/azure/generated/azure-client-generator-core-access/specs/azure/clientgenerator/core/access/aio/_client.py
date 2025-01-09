@@ -15,11 +15,13 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ..internaloperation.aio.operations import InternalOperationOperations
-from ..publicoperation.aio.operations import PublicOperationOperations
-from ..relativemodelinoperation.aio.operations import RelativeModelInOperationOperations
-from ..sharedmodelinoperation.aio.operations import SharedModelInOperationOperations
 from ._configuration import AccessClientConfiguration
+from .operations import (
+    InternalOperationOperations,
+    PublicOperationOperations,
+    RelativeModelInOperationOperations,
+    SharedModelInOperationOperations,
+)
 
 
 class AccessClient:  # pylint: disable=client-accepts-api-version-keyword

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.model.inheritance.nesteddiscriminator import NestedDiscriminatorClient
+from typetest.model.nesteddiscriminator import NestedDiscriminatorClient
 
 
 class NestedDiscriminatorClientTestBase(AzureRecordedTestCase):

@@ -16,11 +16,13 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BytesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .header.operations import HeaderOperations
-from .property.operations import PropertyOperations
-from .query.operations import QueryOperations
-from .requestbody.operations import RequestBodyOperations
-from .responsebody.operations import ResponseBodyOperations
+from .operations import (
+    HeaderOperations,
+    PropertyOperations,
+    QueryOperations,
+    RequestBodyOperations,
+    ResponseBodyOperations,
+)
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword

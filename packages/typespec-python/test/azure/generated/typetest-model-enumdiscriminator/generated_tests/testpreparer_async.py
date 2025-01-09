@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.model.inheritance.enumdiscriminator.aio import EnumDiscriminatorClient
+from typetest.model.enumdiscriminator.aio import EnumDiscriminatorClient
 
 
 class EnumDiscriminatorClientTestBaseAsync(AzureRecordedTestCase):

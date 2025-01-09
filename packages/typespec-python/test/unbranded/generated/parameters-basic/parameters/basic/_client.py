@@ -15,8 +15,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import BasicClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .explicitbody.operations import ExplicitBodyOperations
-from .implicitbody.operations import ImplicitBodyOperations
+from .operations import ExplicitBodyOperations, ImplicitBodyOperations
 
 
 class BasicClient:  # pylint: disable=client-accepts-api-version-keyword

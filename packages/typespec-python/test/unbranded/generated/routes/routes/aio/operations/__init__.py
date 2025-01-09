@@ -12,6 +12,8 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._operations import PathParametersOperations  # type: ignore
+from ._operations import QueryParametersOperations  # type: ignore
 from ._operations import InInterfaceOperations  # type: ignore
 from ._operations import RoutesClientOperationsMixin  # type: ignore
 
@@ -20,6 +22,8 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "PathParametersOperations",
+    "QueryParametersOperations",
     "InInterfaceOperations",
     "RoutesClientOperationsMixin",
 ]

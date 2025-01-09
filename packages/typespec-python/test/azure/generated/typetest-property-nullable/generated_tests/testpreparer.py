@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.property.nullable import NullableClient
+from typetest.property.nullable import NullableClient
 
 
 class NullableClientTestBase(AzureRecordedTestCase):

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.model.inheritance.recursive import RecursiveClient
+from typetest.model.recursive import RecursiveClient
 
 
 class RecursiveClientTestBase(AzureRecordedTestCase):

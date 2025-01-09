@@ -14,7 +14,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from ...service import models as _models
+from .. import models as _models
 from .._serialization import Deserializer, Serializer
 from ._configuration import TwoOperationGroupClientConfiguration
 from .operations import Group1Operations, Group2Operations

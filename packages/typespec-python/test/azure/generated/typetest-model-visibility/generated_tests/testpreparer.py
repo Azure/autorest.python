@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.model.visibility import VisibilityClient
+from typetest.model.visibility import VisibilityClient
 
 
 class VisibilityClientTestBase(AzureRecordedTestCase):

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from resiliency.servicedriven import ResiliencyServiceDrivenClient
+from resiliency.srv.driven2 import ResiliencyServiceDrivenClient
 
 
 class ResiliencyServiceDrivenClientTestBase(AzureRecordedTestCase):

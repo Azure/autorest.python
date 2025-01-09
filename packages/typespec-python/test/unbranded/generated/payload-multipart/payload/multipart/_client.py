@@ -15,7 +15,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import MultiPartClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .formdata.operations import FormDataOperations
+from .operations import FormDataOperations
 
 
 class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.property.optional.aio import OptionalClient
+from typetest.property.optional.aio import OptionalClient
 
 
 class OptionalClientTestBaseAsync(AzureRecordedTestCase):

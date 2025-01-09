@@ -15,8 +15,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import CollectionFormatClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .header.operations import HeaderOperations
-from .query.operations import QueryOperations
+from .operations import HeaderOperations, QueryOperations
 
 
 class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyword

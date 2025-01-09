@@ -15,8 +15,8 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
-from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
 from ._configuration import PageableClientConfiguration
+from .operations import ServerDrivenPaginationOperations
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword

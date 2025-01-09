@@ -10,7 +10,7 @@ from typing import Any, Union
 
 from azure.core.pipeline import policies
 
-from ...service import models as _models
+from .. import models as _models
 from .._version import VERSION
 
 

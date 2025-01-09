@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.enum.fixed import FixedClient
+from typetest.enum.fixed import FixedClient
 
 
 class FixedClientTestBase(AzureRecordedTestCase):

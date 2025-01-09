@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.enum.fixed.aio import FixedClient
+from typetest.enum.fixed.aio import FixedClient
 
 
 class FixedClientTestBaseAsync(AzureRecordedTestCase):

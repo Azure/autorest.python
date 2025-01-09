@@ -16,9 +16,12 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import RoutesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import InInterfaceOperations, RoutesClientOperationsMixin
-from .pathparameters.operations import PathParametersOperations
-from .queryparameters.operations import QueryParametersOperations
+from .operations import (
+    InInterfaceOperations,
+    PathParametersOperations,
+    QueryParametersOperations,
+    RoutesClientOperationsMixin,
+)
 
 
 class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

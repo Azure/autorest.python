@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.model.inheritance.recursive.aio import RecursiveClient
+from typetest.model.recursive.aio import RecursiveClient
 
 
 class RecursiveClientTestBaseAsync(AzureRecordedTestCase):

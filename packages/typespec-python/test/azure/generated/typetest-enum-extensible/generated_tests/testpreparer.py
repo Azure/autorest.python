@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.enum.extensible import ExtensibleClient
+from typetest.enum.extensible import ExtensibleClient
 
 
 class ExtensibleClientTestBase(AzureRecordedTestCase):

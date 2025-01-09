@@ -1,7 +1,7 @@
 {
     "CrossLanguagePackageId": "Type.Dictionary",
     "CrossLanguageDefinitionId": {
-        "type.dictionary.models.InnerModel": "Type.Dictionary.InnerModel",
+        "typetest.dictionary.models.InnerModel": "Type.Dictionary.InnerModel",
         "typetest.dictionary.DictionaryClient.int32_value.get": "Type.Dictionary.Int32Value.get",
         "typetest.dictionary.DictionaryClient.int32_value.put": "Type.Dictionary.Int32Value.put",
         "typetest.dictionary.DictionaryClient.int64_value.get": "Type.Dictionary.Int64Value.get",

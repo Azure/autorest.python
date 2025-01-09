@@ -14,8 +14,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
-from ..stringbody.aio.operations import StringBodyOperations
 from ._configuration import MediaTypeClientConfiguration
+from .operations import StringBodyOperations
 
 
 class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword

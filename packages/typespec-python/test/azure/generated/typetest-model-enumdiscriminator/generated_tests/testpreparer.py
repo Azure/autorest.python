@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.model.inheritance.enumdiscriminator import EnumDiscriminatorClient
+from typetest.model.enumdiscriminator import EnumDiscriminatorClient
 
 
 class EnumDiscriminatorClientTestBase(AzureRecordedTestCase):

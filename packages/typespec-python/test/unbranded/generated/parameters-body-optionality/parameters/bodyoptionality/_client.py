@@ -14,9 +14,8 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import BodyOptionalityClientConfiguration
-from ._operations import BodyOptionalityClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .optionalexplicit.operations import OptionalExplicitOperations
+from .operations import BodyOptionalityClientOperationsMixin, OptionalExplicitOperations
 
 
 class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

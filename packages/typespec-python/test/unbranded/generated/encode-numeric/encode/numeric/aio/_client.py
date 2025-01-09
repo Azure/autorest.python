@@ -14,8 +14,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
-from ..property.aio.operations import PropertyOperations
 from ._configuration import NumericClientConfiguration
+from .operations import PropertyOperations
 
 
 class NumericClient:  # pylint: disable=client-accepts-api-version-keyword

@@ -16,9 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DurationClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .header.operations import HeaderOperations
-from .property.operations import PropertyOperations
-from .query.operations import QueryOperations
+from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword

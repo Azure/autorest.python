@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from type.model.visibility.aio import VisibilityClient
+from typetest.model.visibility.aio import VisibilityClient
 
 
 class VisibilityClientTestBaseAsync(AzureRecordedTestCase):

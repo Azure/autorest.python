@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from type.union import UnionClient
+from typetest.union import UnionClient
 
 
 class UnionClientTestBase(AzureRecordedTestCase):
