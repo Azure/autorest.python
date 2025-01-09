@@ -104,7 +104,9 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
     },
-    "mgmt/sphere": [{ "package-name": "azure-mgmt-spheredpg" }],
+    "client/namespace": {
+        "enable-typespec-namespace": "true",
+    },
 };
 
 function toPosix(dir: string): string {
@@ -236,6 +238,9 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
             options["company-name"] = "Unbranded";
         }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
+        if (options["enable-typespec-namespace"] === undefined) {
+            options["enable-typespec-namespace"] = "false";
+        }
         const configs = Object.entries(options).flatMap(([k, v]) => {
             return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
