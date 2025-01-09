@@ -1,5 +1,0 @@
-# This is for CI requirements or dev only
-pyright==1.1.390
-pylint==3.2.7
-tox==4.23.2
-mypy==1.10.1

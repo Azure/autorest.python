@@ -91,7 +91,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client = AsyncPipelineClient(base_url=base_url, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=base_url, policies=_policies, **kwargs)
         super(MultiapiServiceClient, self).__init__(
             api_version=api_version,
             profile=profile

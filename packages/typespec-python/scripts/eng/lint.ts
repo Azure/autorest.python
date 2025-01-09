@@ -40,10 +40,16 @@ const argv = yargs(hideBin(process.argv))
     }).argv as Arguments;
 
 export function pylint() {
-    runCommand(`pylint ${argv.folderName}/ --rcfile ./scripts/eng/pylintrc`, "pylint");
+    if (checkPythonFile(argv.folderName)) {
+        runCommand(`pylint ${argv.folderName}/ --rcfile ./scripts/eng/pylintrc`, "pylint");
+    } else {
+        console.log("No python file found in the directory");
+        console.log("pylint passed");
+    }
 }
+
 function checkPythonFile(directory: string): boolean {
-    const files = fs.readdirSync(directory);
+    const files = fs.existsSync(directory) ? fs.readdirSync(directory) : [];
     for (let i = 0; i < files.length; i++) {
         if (path.extname(files[i]) === ".py") {
             return true;
@@ -62,7 +68,12 @@ export function mypy() {
 }
 
 export function pyright() {
-    runCommand(`pyright ${argv.folderName}/ -p ./scripts/eng/pyrightconfig.json`, "pyright");
+    if (checkPythonFile(argv.folderName)) {
+        runCommand(`pyright ${argv.folderName}/ -p ./scripts/eng/pyrightconfig.json`, "pyright");
+    } else {
+        console.log("No python file found in the directory");
+        console.log("pyright passed");
+    }
 }
 
 export function eslint() {

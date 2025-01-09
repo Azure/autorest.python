@@ -1,5 +1,20 @@
 # Release
 
+## 6.27.4
+
+### Bug Fixes
+
+- [771c357](https://github.com/Azure/autorest.python/commit/771c35756afc5c69928835aa01576200d43172b0) Fix install for autorest.python
+
+
+## 6.27.3
+
+### Bug Fixes
+
+- [#2993](https://github.com/Azure/autorest.python/pull/2993) Do not do exception sort if there is no operation groups
+- [#2990](https://github.com/Azure/autorest.python/pull/2990) Improve mypy typing for pipeline clients in deprecated multiapi package
+
+
 ## 6.27.2
 
 ### Bug Fixes

@@ -13,7 +13,6 @@ def __init__(
     **kwargs: Any
 ){{" -> None" if async_mode else "" }}:{% endmacro %}
 {# actual template starts here #}
-{% set pipeline_client = "ARMPipelineClient" if azure_arm else "PipelineClient" %}
 {% set relative_path = ".." if async_mode else "." %}
 {% set def = "async def" if async_mode else "def" %}
 {% set async_prefix = "Async" if async_mode else "" %}
@@ -97,7 +96,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
                 {{ p }},
                 {% endfor %}
             ]
-        self._client = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ code_model.host_variable_name }}, policies=_policies, **kwargs)
+        self._client: {{ async_prefix }}{{ code_model.client.pipeline_client }} = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ code_model.host_variable_name }}, policies=_policies, **kwargs)
         super({{ code_model.client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
