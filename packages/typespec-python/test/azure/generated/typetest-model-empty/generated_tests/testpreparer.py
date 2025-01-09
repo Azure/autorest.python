@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.model.empty import EmptyClient
+from type.model.empty import EmptyClient
 
 
 class EmptyClientTestBase(AzureRecordedTestCase):

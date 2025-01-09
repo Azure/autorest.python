@@ -15,8 +15,10 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..header.aio.operations import HeaderOperations
+from ..property.aio.operations import PropertyOperations
+from ..query.aio.operations import QueryOperations
 from ._configuration import DurationClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword

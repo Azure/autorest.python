@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.model.singlediscriminator import SingleDiscriminatorClient
+from type.model.inheritance.singlediscriminator import SingleDiscriminatorClient
 
 
 class SingleDiscriminatorClientTestBase(AzureRecordedTestCase):

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.array import ArrayClient
+from type.array import ArrayClient
 
 
 class ArrayClientTestBase(AzureRecordedTestCase):

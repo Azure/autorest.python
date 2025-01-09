@@ -1,7 +1,7 @@
 {
     "CrossLanguagePackageId": "Parameters.Spread",
     "CrossLanguageDefinitionId": {
-        "parameters.spread.models.BodyParameter": "Parameters.Spread.Model.BodyParameter",
+        "parameters.spread.model.models.BodyParameter": "Parameters.Spread.Model.BodyParameter",
         "parameters.spread.SpreadClient.model.spread_as_request_body": "Parameters.Spread.Model.spreadAsRequestBody",
         "parameters.spread.SpreadClient.model.spread_composite_request_only_with_body": "Parameters.Spread.Model.spreadCompositeRequestOnlyWithBody",
         "parameters.spread.SpreadClient.model.spread_composite_request_without_body": "Parameters.Spread.Model.spreadCompositeRequestWithoutBody",

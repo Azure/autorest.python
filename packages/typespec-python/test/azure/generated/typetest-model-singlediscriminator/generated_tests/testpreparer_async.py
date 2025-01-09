@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from typetest.model.singlediscriminator.aio import SingleDiscriminatorClient
+from type.model.inheritance.singlediscriminator.aio import SingleDiscriminatorClient
 
 
 class SingleDiscriminatorClientTestBaseAsync(AzureRecordedTestCase):

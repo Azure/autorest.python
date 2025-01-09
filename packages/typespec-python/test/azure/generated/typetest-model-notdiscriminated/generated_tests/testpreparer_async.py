@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from typetest.model.notdiscriminated.aio import NotDiscriminatedClient
+from type.model.inheritance.notdiscriminated.aio import NotDiscriminatedClient
 
 
 class NotDiscriminatedClientTestBaseAsync(AzureRecordedTestCase):

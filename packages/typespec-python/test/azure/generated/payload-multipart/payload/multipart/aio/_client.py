@@ -15,8 +15,8 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..formdata.aio.operations import FormDataOperations
 from ._configuration import MultiPartClientConfiguration
-from .operations import FormDataOperations
 
 
 class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword

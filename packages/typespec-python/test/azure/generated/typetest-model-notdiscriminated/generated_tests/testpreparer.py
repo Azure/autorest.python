@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.model.notdiscriminated import NotDiscriminatedClient
+from type.model.inheritance.notdiscriminated import NotDiscriminatedClient
 
 
 class NotDiscriminatedClientTestBase(AzureRecordedTestCase):

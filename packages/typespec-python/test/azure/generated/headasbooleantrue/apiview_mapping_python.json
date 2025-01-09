@@ -1,8 +1,8 @@
 {
     "CrossLanguagePackageId": "Type.Model.Visibility",
     "CrossLanguageDefinitionId": {
-        "headasbooleantrue.models.ReadOnlyModel": "Type.Model.Visibility.ReadOnlyModel",
-        "headasbooleantrue.models.VisibilityModel": "Type.Model.Visibility.VisibilityModel",
+        "type.model.visibility.models.ReadOnlyModel": "Type.Model.Visibility.ReadOnlyModel",
+        "type.model.visibility.models.VisibilityModel": "Type.Model.Visibility.VisibilityModel",
         "headasbooleantrue.VisibilityClient.get_model": "Type.Model.Visibility.getModel",
         "headasbooleantrue.VisibilityClient.head_model": "Type.Model.Visibility.headModel",
         "headasbooleantrue.VisibilityClient.put_model": "Type.Model.Visibility.putModel",

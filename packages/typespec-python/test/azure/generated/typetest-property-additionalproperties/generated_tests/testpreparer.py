@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.property.additionalproperties import AdditionalPropertiesClient
+from type.property.additionalproperties import AdditionalPropertiesClient
 
 
 class AdditionalPropertiesClientTestBase(AzureRecordedTestCase):

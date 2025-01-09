@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.property.optional import OptionalClient
+from type.property.optional import OptionalClient
 
 
 class OptionalClientTestBase(AzureRecordedTestCase):

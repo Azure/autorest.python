@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.property.valuetypes import ValueTypesClient
+from type.property.valuetypes import ValueTypesClient
 
 
 class ValueTypesClientTestBase(AzureRecordedTestCase):

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from typetest.model.nesteddiscriminator.aio import NestedDiscriminatorClient
+from type.model.inheritance.nesteddiscriminator.aio import NestedDiscriminatorClient
 
 
 class NestedDiscriminatorClientTestBaseAsync(AzureRecordedTestCase):

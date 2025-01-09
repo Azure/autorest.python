@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.scalar import ScalarClient
+from type.scalar import ScalarClient
 
 
 class ScalarClientTestBase(AzureRecordedTestCase):

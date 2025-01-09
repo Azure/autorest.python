@@ -1,10 +1,10 @@
 {
     "CrossLanguagePackageId": "Type.Model.Inheritance.EnumDiscriminator",
     "CrossLanguageDefinitionId": {
-        "typetest.model.enumdiscriminator.models.Snake": "Type.Model.Inheritance.EnumDiscriminator.Snake",
-        "typetest.model.enumdiscriminator.models.Cobra": "Type.Model.Inheritance.EnumDiscriminator.Cobra",
-        "typetest.model.enumdiscriminator.models.Dog": "Type.Model.Inheritance.EnumDiscriminator.Dog",
-        "typetest.model.enumdiscriminator.models.Golden": "Type.Model.Inheritance.EnumDiscriminator.Golden",
+        "type.model.inheritance.enumdiscriminator.models.Snake": "Type.Model.Inheritance.EnumDiscriminator.Snake",
+        "type.model.inheritance.enumdiscriminator.models.Cobra": "Type.Model.Inheritance.EnumDiscriminator.Cobra",
+        "type.model.inheritance.enumdiscriminator.models.Dog": "Type.Model.Inheritance.EnumDiscriminator.Dog",
+        "type.model.inheritance.enumdiscriminator.models.Golden": "Type.Model.Inheritance.EnumDiscriminator.Golden",
         "typetest.model.enumdiscriminator.models.DogKind": "Type.Model.Inheritance.EnumDiscriminator.DogKind",
         "typetest.model.enumdiscriminator.models.SnakeKind": "Type.Model.Inheritance.EnumDiscriminator.SnakeKind",
         "typetest.model.enumdiscriminator.EnumDiscriminatorClient.get_extensible_model": "Type.Model.Inheritance.EnumDiscriminator.getExtensibleModel",

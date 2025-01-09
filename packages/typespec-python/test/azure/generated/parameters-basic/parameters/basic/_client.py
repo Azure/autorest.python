@@ -16,7 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BasicClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import ExplicitBodyOperations, ImplicitBodyOperations
+from .explicitbody.operations import ExplicitBodyOperations
+from .implicitbody.operations import ImplicitBodyOperations
 
 
 class BasicClient:  # pylint: disable=client-accepts-api-version-keyword

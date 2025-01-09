@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NumericClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import PropertyOperations
+from .property.operations import PropertyOperations
 
 
 class NumericClient:  # pylint: disable=client-accepts-api-version-keyword

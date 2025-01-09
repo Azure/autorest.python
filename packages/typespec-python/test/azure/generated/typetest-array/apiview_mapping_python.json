@@ -1,7 +1,7 @@
 {
     "CrossLanguagePackageId": "Type.Array",
     "CrossLanguageDefinitionId": {
-        "typetest.array.models.InnerModel": "Type.Array.InnerModel",
+        "type.array.models.InnerModel": "Type.Array.InnerModel",
         "typetest.array.ArrayClient.int32_value.get": "Type.Array.Int32Value.get",
         "typetest.array.ArrayClient.int32_value.put": "Type.Array.Int32Value.put",
         "typetest.array.ArrayClient.int64_value.get": "Type.Array.Int64Value.get",

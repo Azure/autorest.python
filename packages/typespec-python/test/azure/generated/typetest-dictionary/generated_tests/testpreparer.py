@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.dictionary import DictionaryClient
+from type.dictionary import DictionaryClient
 
 
 class DictionaryClientTestBase(AzureRecordedTestCase):

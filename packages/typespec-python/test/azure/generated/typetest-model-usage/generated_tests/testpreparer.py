@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from typetest.model.usage import UsageClient
+from type.model.usage import UsageClient
 
 
 class UsageClientTestBase(AzureRecordedTestCase):

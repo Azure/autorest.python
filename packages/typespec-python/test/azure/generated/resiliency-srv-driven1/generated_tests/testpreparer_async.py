@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from resiliency.srv.driven1.aio import ResiliencyServiceDrivenClient
+from resiliency.servicedriven.aio import ResiliencyServiceDrivenClient
 
 
 class ResiliencyServiceDrivenClientTestBaseAsync(AzureRecordedTestCase):

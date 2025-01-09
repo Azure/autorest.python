@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from typetest.property.valuetypes.aio import ValueTypesClient
+from type.property.valuetypes.aio import ValueTypesClient
 
 
 class ValueTypesClientTestBaseAsync(AzureRecordedTestCase):

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from specs.azure.example.basic import AzureExampleClient
+from azureexamplebasicclient import AzureExampleClient
 
 """
 # PREREQUISITES
