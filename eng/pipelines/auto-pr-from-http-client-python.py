@@ -107,7 +107,7 @@ class Repo:
 
     @property
     def source_branch_name(self):
-        return self.pull.head.ref
+        return self.pull.head.label
 
     def checkout_branch(self):
         self.new_branch_name = f"auto-{self.source_branch_name.replace(':', '-')}"
@@ -121,14 +121,12 @@ class Repo:
     def http_client_python_json(self):
         if not self._http_client_python_json:
             os.chdir(self.typespec_repo_path)
-            if ":" in self.source_branch_name:
-                user_name = self.source_branch_name.split(":")[0]
-                branch_name = self.source_branch_name.split(":")[1]
-                log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
-                log_call(f"git fetch {user_name} {branch_name}")
-                log_call(f"git checkout {branch_name}")
-            else:
-                log_call(f"git checkout {self.source_branch_name}")
+            logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
+            user_name = self.source_branch_name.split(":")[0]
+            branch_name = self.source_branch_name.split(":")[1]
+            log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
+            log_call(f"git fetch {user_name} {branch_name}")
+            log_call(f"git checkout {branch_name}")
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
 
