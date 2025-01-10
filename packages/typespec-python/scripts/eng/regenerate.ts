@@ -12,7 +12,8 @@ const exec = promisify(execCallback);
 
 // Get the directory of the current file
 const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
-const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
+const AZURE_HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@azure-tools/azure-http-specs/specs");
+const HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@typespec/http-specs/specs");
 interface TspCommand {
     outputDir: string;
     command: string;
@@ -103,7 +104,9 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
     },
-    "mgmt/sphere": [{ "package-name": "azure-mgmt-spheredpg" }],
+    "client/namespace": {
+        "enable-typespec-namespace": "true",
+    },
 };
 
 function toPosix(dir: string): string {
@@ -111,7 +114,8 @@ function toPosix(dir: string): string {
 }
 
 function getEmitterOption(spec: string): Record<string, string>[] {
-    const relativeSpec = toPosix(relative(CADL_RANCH_DIR, spec));
+    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
+    const relativeSpec = toPosix(relative(specDir, spec));
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
     const result = EMITTER_OPTIONS[key] || [{}];
     return Array.isArray(result) ? result : [result];
@@ -167,7 +171,6 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const clientTspPath = join(subDirPath, "client.tsp");
 
                 const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
-                if (flags.flavor === "unbranded" && mainTspRelativePath.includes("azure")) return;
 
                 // after fix test generation for nested operation group, remove this check
                 if (mainTspRelativePath.includes("client-operation-group")) return;
@@ -205,7 +208,8 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 }
 
 function defaultPackageName(spec: string): string {
-    return toPosix(relative(CADL_RANCH_DIR, dirname(spec)))
+    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
+    return toPosix(relative(specDir, dirname(spec)))
         .replace(/\//g, "-")
         .toLowerCase();
 }
@@ -234,6 +238,9 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
             options["company-name"] = "Unbranded";
         }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
+        if (options["enable-typespec-namespace"] === undefined) {
+            options["enable-typespec-namespace"] = "false";
+        }
         const configs = Object.entries(options).flatMap(([k, v]) => {
             return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
@@ -259,8 +266,12 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
         await regenerate({ ...flags, flavor: "unbranded" });
     } else {
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
-        const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
-        const subdirectories = await getSubdirectories(CADL_RANCH_DIR, flagsResolved);
+        const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
+        const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
+        const subdirectories =
+            flags.flavor === "azure"
+                ? [...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
+                : subdirectoriesForNonAzure;
         const cmdList: TspCommand[] = subdirectories.flatMap((subdirectory) =>
             _getCmdList(subdirectory, flagsResolved),
         );

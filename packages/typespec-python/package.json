@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.37.2",
+  "version": "0.37.3",
   "author": "Microsoft Corporation",
   "description": "TypeSpec emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -30,11 +30,11 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
+    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
+    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "lint": "tsx ./scripts/eng/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
-    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
-    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
     "regenerate": "tsx ./scripts/eng/regenerate.ts",
     "test": "tsx ./scripts/eng/run-tests.ts"
   },
@@ -54,13 +54,13 @@
     "@azure-tools/typespec-azure-resource-manager": ">=0.49.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.49.0 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.49.0 <3.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.49.0 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.49.1 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.4.4",
+    "@typespec/http-client-python": "~0.6.0",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -73,10 +73,9 @@
     "@azure-tools/typespec-azure-core": "~0.49.0",
     "@azure-tools/typespec-azure-rulesets": "~0.49.0",
     "@azure-tools/typespec-autorest": "~0.49.0",
-    "@azure-tools/typespec-client-generator-core": "~0.49.0",
-    "@azure-tools/cadl-ranch-expect": "~0.15.7",
-    "@azure-tools/cadl-ranch-specs": "~0.39.6",
-    "@azure-tools/cadl-ranch": "~0.16.2",
+    "@azure-tools/typespec-client-generator-core": "~0.49.1",
+    "@azure-tools/azure-http-specs": "0.1.0-alpha.4",
+    "@typespec/http-specs": "0.1.0-alpha.5",
     "@types/js-yaml": "~4.0.5",
     "@types/node": "~22.5.4",
     "@types/yargs": "~17.0.33",
