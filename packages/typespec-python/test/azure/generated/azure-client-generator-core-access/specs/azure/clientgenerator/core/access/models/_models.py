@@ -35,6 +35,24 @@ class AbstractModel(_model_base.Model):
     name: str = rest_field()
     """Required."""
 
+    @overload
+    def __init__(
+        self,
+        *,
+        kind: str,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
 
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
@@ -46,6 +64,23 @@ class BaseModel(_model_base.Model):
 
     name: str = rest_field()
     """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
 
 
 class InnerModel(_model_base.Model):
@@ -59,6 +94,23 @@ class InnerModel(_model_base.Model):
     name: str = rest_field()
     """Required."""
 
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
 
 class InternalDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
@@ -71,6 +123,23 @@ class InternalDecoratorModelInInternal(_model_base.Model):
     name: str = rest_field()
     """Required."""
 
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
 
 class NoDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
@@ -82,6 +151,23 @@ class NoDecoratorModelInInternal(_model_base.Model):
 
     name: str = rest_field()
     """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
 
 
 class NoDecoratorModelInPublic(_model_base.Model):
@@ -125,6 +211,24 @@ class OuterModel(BaseModel):
 
     inner: "_models._models.InnerModel" = rest_field()
     """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+        inner: "_models._models.InnerModel",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
 
 
 class PublicDecoratorModelInInternal(_model_base.Model):
@@ -197,6 +301,23 @@ class RealModel(AbstractModel, discriminator="real"):
 
     kind: Literal["real"] = rest_discriminator(name="kind")  # type: ignore
     """Required. Default value is \"real\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, kind="real", **kwargs)
 
 
 class SharedModel(_model_base.Model):
