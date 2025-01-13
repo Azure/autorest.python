@@ -113,13 +113,35 @@ function toPosix(dir: string): string {
     return dir.replace(/\\/g, "/");
 }
 
-function getEmitterOption(spec: string): Record<string, string>[] {
+function getEmitterOption(spec: string, flavor: string): Record<string, string>[] {
     const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
     const relativeSpec = toPosix(relative(specDir, spec));
-    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
-    const result = EMITTER_OPTIONS[key] || [{}];
-    return Array.isArray(result) ? result : [result];
-}
+    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp")
+      ? relativeSpec
+      : dirname(relativeSpec);
+    const emitter_options = EMITTER_OPTIONS[key] || [{}];
+    const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
+  
+    function updateOptions(options: Record<string, string>): void {
+      if (options["package-name"] && options["enable-typespec-namespace"] === undefined) {
+        options["enable-typespec-namespace"] = "false";
+      }
+    }
+  
+    if (flavor !== "azure") {
+      for (const options of result) {
+        if (Array.isArray(options)) {
+          for (const option of options) {
+            updateOptions(option);
+          }
+        } else {
+          updateOptions(options);
+        }
+      }
+    }
+  
+    return result;
+  }
 
 // Function to execute CLI commands asynchronously
 async function executeCommand(tspCommand: TspCommand): Promise<void> {
@@ -221,7 +243,7 @@ interface EmitterConfig {
 
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): EmitterConfig[] {
     const emitterConfigs: EmitterConfig[] = [];
-    for (const config of getEmitterOption(spec)) {
+    for (const config of getEmitterOption(spec, flags.flavor)) {
         const options: Record<string, string> = { ...config };
         options["flavor"] = flags.flavor;
         for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
@@ -238,9 +260,6 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
             options["company-name"] = "Unbranded";
         }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
-        if (options["enable-typespec-namespace"] === undefined) {
-            options["enable-typespec-namespace"] = "false";
-        }
         const configs = Object.entries(options).flatMap(([k, v]) => {
             return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
