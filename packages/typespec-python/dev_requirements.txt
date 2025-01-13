@@ -9,7 +9,7 @@ pytest==8.3.2
 coverage==7.6.1
 black==24.8.0
 ptvsd==4.3.2
-types-PyYAML==6.0.12.8
+types-PyYAML==6.0.12.20241230
 
 # additional dependency needed for development
 setuptools
