@@ -9,6 +9,7 @@ import signal
 import pytest
 import re
 from pathlib import Path
+from typing import List
 
 FILE_FOLDER = Path(__file__).parent
 
