@@ -10,6 +10,7 @@ import sys
 from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
 import urllib.parse
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,7 +27,8 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
-from .._serialization import Serializer
+from ..._serialization import Deserializer, Serializer
+from .._configuration import MultiapiServiceClientConfiguration
 from .._vendor import MultiapiServiceClientMixinABC
 
 if sys.version_info >= (3, 9):
