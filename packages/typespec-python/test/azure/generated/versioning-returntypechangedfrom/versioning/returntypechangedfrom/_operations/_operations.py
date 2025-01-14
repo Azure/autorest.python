@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._model_base import SdkJSONEncoder, _deserialize
+from .._model_base import SdkJSONEncoder
 from .._serialization import Serializer
 from .._vendor import ReturnTypeChangedFromClientMixinABC
 

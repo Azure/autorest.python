@@ -24,7 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
+from ..._model_base import SdkJSONEncoder
 from ...operations._operations import (
     build_string_get_known_value_request,
     build_string_get_unknown_value_request,

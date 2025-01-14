@@ -14,13 +14,10 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..pathparameters.aio.operations import PathParametersOperations
+from ..queryparameters.aio.operations import QueryParametersOperations
 from ._configuration import RoutesClientConfiguration
-from .operations import (
-    InInterfaceOperations,
-    PathParametersOperations,
-    QueryParametersOperations,
-    RoutesClientOperationsMixin,
-)
+from .operations import InInterfaceOperations, RoutesClientOperationsMixin
 
 
 class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

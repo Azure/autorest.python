@@ -15,7 +15,10 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import DatetimeClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
+from .header.operations import HeaderOperations
+from .property.operations import PropertyOperations
+from .query.operations import QueryOperations
+from .responseheader.operations import ResponseHeaderOperations
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
