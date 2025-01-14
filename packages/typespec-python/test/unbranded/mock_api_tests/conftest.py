@@ -13,6 +13,7 @@ from typing import List
 
 FILE_FOLDER = Path(__file__).parent
 
+
 def start_server_process():
     http_path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@typespec/http-specs")
     os.chdir(http_path.resolve())
