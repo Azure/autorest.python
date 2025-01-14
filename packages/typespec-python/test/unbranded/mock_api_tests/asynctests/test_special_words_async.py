@@ -8,6 +8,7 @@ from specialwords.aio import SpecialWordsClient
 from specialwords.models import models
 from specialwords.modelproperties import models as model_properties_models
 
+
 @pytest.fixture
 async def client():
     async with SpecialWordsClient() as client:

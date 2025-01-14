@@ -116,32 +116,30 @@ function toPosix(dir: string): string {
 function getEmitterOption(spec: string, flavor: string): Record<string, string>[] {
     const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
     const relativeSpec = toPosix(relative(specDir, spec));
-    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp")
-      ? relativeSpec
-      : dirname(relativeSpec);
+    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
     const emitter_options = EMITTER_OPTIONS[key] || [{}];
     const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
-  
+
     function updateOptions(options: Record<string, string>): void {
-      if (options["package-name"] && options["enable-typespec-namespace"] === undefined) {
-        options["enable-typespec-namespace"] = "false";
-      }
-    }
-  
-    if (flavor !== "azure") {
-      for (const options of result) {
-        if (Array.isArray(options)) {
-          for (const option of options) {
-            updateOptions(option);
-          }
-        } else {
-          updateOptions(options);
+        if (options["package-name"] && options["enable-typespec-namespace"] === undefined) {
+            options["enable-typespec-namespace"] = "false";
         }
-      }
     }
-  
+
+    if (flavor !== "azure") {
+        for (const options of result) {
+            if (Array.isArray(options)) {
+                for (const option of options) {
+                    updateOptions(option);
+                }
+            } else {
+                updateOptions(options);
+            }
+        }
+    }
+
     return result;
-  }
+}
 
 // Function to execute CLI commands asynchronously
 async function executeCommand(tspCommand: TspCommand): Promise<void> {

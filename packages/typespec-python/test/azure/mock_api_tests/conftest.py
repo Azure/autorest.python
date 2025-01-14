@@ -13,6 +13,7 @@ from pathlib import Path
 
 FILE_FOLDER = Path(__file__).parent
 
+
 def start_server_process():
     azure_http_path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@azure-tools/azure-http-specs")
     http_path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@typespec/http-specs")
@@ -150,7 +151,6 @@ def authentication_policy():
     from azure.core.pipeline.policies import SansIOHTTPPolicy
 
     return SansIOHTTPPolicy()
-
 
 
 SPECIAL_WORDS = [
