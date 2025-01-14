@@ -124,8 +124,9 @@ class Repo:
             logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
             user_name = self.source_branch_name.split(":")[0]
             branch_name = self.source_branch_name.split(":")[1]
-            log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
-            log_call(f"git fetch {user_name} {branch_name}")
+            if user_name != "microsoft":
+                log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
+                log_call(f"git fetch {user_name} {branch_name}")
             log_call(f"git checkout {branch_name}")
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
