@@ -9,6 +9,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,12 +26,14 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._model_base import SdkJSONEncoder, _deserialize
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_string_body_get_as_json_request,
     build_string_body_get_as_text_request,
     build_string_body_send_as_json_request,
     build_string_body_send_as_text_request,
 )
+from .._configuration import MediaTypeClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -52,10 +55,10 @@ class StringBodyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MediaTypeClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def send_as_text(self, text: str, **kwargs: Any) -> None:

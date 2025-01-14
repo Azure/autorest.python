@@ -11,6 +11,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,8 +26,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._configuration import SpecialWordsClientConfiguration
 from .._model_base import SdkJSONEncoder
-from .._serialization import Serializer
+from .._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -1171,10 +1173,10 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def with_and(self, body: _models.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
@@ -4495,10 +4497,10 @@ class ModelPropertiesOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def same_as_model(
@@ -4615,10 +4617,10 @@ class Operations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def and_method(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -6085,10 +6087,10 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def with_and(self, *, and_parameter: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

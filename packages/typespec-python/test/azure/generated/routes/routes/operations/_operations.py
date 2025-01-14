@@ -9,6 +9,7 @@
 import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,7 +23,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
+from .._configuration import RoutesClientConfiguration
+from .._serialization import Deserializer, Serializer
 from .._vendor import RoutesClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -674,10 +676,10 @@ class PathParametersOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.reserved_expansion = PathParametersReservedExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -849,10 +851,10 @@ class QueryParametersOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.query_expansion = QueryParametersQueryExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1015,10 +1017,10 @@ class InInterfaceOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1124,10 +1126,10 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def template(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1236,10 +1238,10 @@ class PathParametersSimpleExpansionOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = PathParametersSimpleExpansionStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1261,10 +1263,10 @@ class PathParametersPathExpansionOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = PathParametersPathExpansionStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1286,10 +1288,10 @@ class PathParametersLabelExpansionOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = PathParametersLabelExpansionStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1311,10 +1313,10 @@ class PathParametersMatrixExpansionOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = PathParametersMatrixExpansionStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1336,10 +1338,10 @@ class QueryParametersQueryExpansionOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = QueryParametersQueryExpansionStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1361,10 +1363,10 @@ class QueryParametersQueryContinuationOperations:  # pylint: disable=name-too-lo
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.standard = QueryParametersQueryContinuationStandardOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -1386,10 +1388,10 @@ class PathParametersSimpleExpansionStandardOperations:  # pylint: disable=name-t
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1545,10 +1547,10 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1704,10 +1706,10 @@ class PathParametersPathExpansionStandardOperations:  # pylint: disable=name-too
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -1863,10 +1865,10 @@ class PathParametersPathExpansionExplodeOperations:  # pylint: disable=name-too-
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2022,10 +2024,10 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2181,10 +2183,10 @@ class PathParametersLabelExpansionExplodeOperations:  # pylint: disable=name-too
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2340,10 +2342,10 @@ class PathParametersMatrixExpansionStandardOperations:  # pylint: disable=name-t
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2499,10 +2501,10 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2658,10 +2660,10 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2817,10 +2819,10 @@ class QueryParametersQueryExpansionExplodeOperations:  # pylint: disable=name-to
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2976,10 +2978,10 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -3135,10 +3137,10 @@ class QueryParametersQueryContinuationExplodeOperations:  # pylint: disable=name
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def primitive(self, *, param: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

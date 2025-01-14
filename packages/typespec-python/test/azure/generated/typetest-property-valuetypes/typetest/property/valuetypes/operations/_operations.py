@@ -11,6 +11,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,8 +28,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._configuration import ValueTypesClientConfiguration
 from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
+from .._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -866,10 +868,10 @@ class BooleanOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.BooleanProperty:
@@ -1040,10 +1042,10 @@ class StringOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.StringProperty:
@@ -1214,10 +1216,10 @@ class BytesOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.BytesProperty:
@@ -1388,10 +1390,10 @@ class IntOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.IntProperty:
@@ -1562,10 +1564,10 @@ class FloatOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.FloatProperty:
@@ -1736,10 +1738,10 @@ class DecimalOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DecimalProperty:
@@ -1910,10 +1912,10 @@ class Decimal128Operations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.Decimal128Property:
@@ -2084,10 +2086,10 @@ class DatetimeOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DatetimeProperty:
@@ -2258,10 +2260,10 @@ class DurationOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DurationProperty:
@@ -2432,10 +2434,10 @@ class EnumOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.EnumProperty:
@@ -2606,10 +2608,10 @@ class ExtensibleEnumOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.ExtensibleEnumProperty:
@@ -2783,10 +2785,10 @@ class ModelOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.ModelProperty:
@@ -2957,10 +2959,10 @@ class CollectionsStringOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsStringProperty:
@@ -3135,10 +3137,10 @@ class CollectionsIntOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsIntProperty:
@@ -3312,10 +3314,10 @@ class CollectionsModelOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.CollectionsModelProperty:
@@ -3490,10 +3492,10 @@ class DictionaryStringOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.DictionaryStringProperty:
@@ -3668,10 +3670,10 @@ class NeverOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.NeverProperty:
@@ -3842,10 +3844,10 @@ class UnknownStringOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnknownStringProperty:
@@ -4019,10 +4021,10 @@ class UnknownIntOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnknownIntProperty:
@@ -4193,10 +4195,10 @@ class UnknownDictOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnknownDictProperty:
@@ -4368,10 +4370,10 @@ class UnknownArrayOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnknownArrayProperty:
@@ -4543,10 +4545,10 @@ class StringLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.StringLiteralProperty:
@@ -4720,10 +4722,10 @@ class IntLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.IntLiteralProperty:
@@ -4894,10 +4896,10 @@ class FloatLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.FloatLiteralProperty:
@@ -5069,10 +5071,10 @@ class BooleanLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.BooleanLiteralProperty:
@@ -5246,10 +5248,10 @@ class UnionStringLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnionStringLiteralProperty:
@@ -5425,10 +5427,10 @@ class UnionIntLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnionIntLiteralProperty:
@@ -5602,10 +5604,10 @@ class UnionFloatLiteralOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnionFloatLiteralProperty:
@@ -5780,10 +5782,10 @@ class UnionEnumValueOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get(self, **kwargs: Any) -> _models.UnionEnumValueProperty:

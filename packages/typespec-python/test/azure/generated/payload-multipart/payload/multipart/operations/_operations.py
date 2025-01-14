@@ -9,6 +9,7 @@
 import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,7 +24,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import _model_base, models as _models
-from .._serialization import Serializer
+from .._configuration import MultiPartClientConfiguration
+from .._serialization import Deserializer, Serializer
 from .._vendor import FileType, prepare_multipart_form_data
 
 if sys.version_info >= (3, 9):
@@ -169,10 +171,10 @@ class FormDataOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MultiPartClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
 
@@ -735,10 +737,10 @@ class FormDataHttpPartsOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MultiPartClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.content_type = FormDataHttpPartsContentTypeOperations(
             self._client, self._config, self._serialize, self._deserialize
@@ -837,10 +839,10 @@ class FormDataHttpPartsContentTypeOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MultiPartClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def image_jpeg_content_type(self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any) -> None:
@@ -1089,10 +1091,10 @@ class FormDataHttpPartsNonStringOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MultiPartClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def float(self, body: _models.FloatRequest, **kwargs: Any) -> None:

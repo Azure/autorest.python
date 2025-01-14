@@ -22,11 +22,13 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_enums_only_get_request,
     build_enums_only_send_request,
@@ -49,6 +51,7 @@ from ...operations._operations import (
     build_strings_only_get_request,
     build_strings_only_send_request,
 )
+from .._configuration import UnionClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -72,10 +75,10 @@ class StringsOnlyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse9:
         """get.
@@ -251,10 +254,10 @@ class StringExtensibleOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse8:
         """get.
@@ -432,10 +435,10 @@ class StringExtensibleNamedOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse7:
         """get.
@@ -617,10 +620,10 @@ class IntsOnlyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse6:
         """get.
@@ -792,10 +795,10 @@ class FloatsOnlyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse5:
         """get.
@@ -965,10 +968,10 @@ class ModelsOnlyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse4:
         """get.
@@ -1142,10 +1145,10 @@ class EnumsOnlyOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse3:
         """get.
@@ -1319,10 +1322,10 @@ class StringAndArrayOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse2:
         """get.
@@ -1496,10 +1499,10 @@ class MixedLiteralsOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse1:
         """get.
@@ -1673,10 +1676,10 @@ class MixedTypesOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get(self, **kwargs: Any) -> _models.GetResponse:
         """get.

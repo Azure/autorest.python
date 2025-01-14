@@ -20,16 +20,19 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_string_get_known_value_request,
     build_string_put_known_value_request,
     build_string_put_unknown_value_request,
 )
+from .._configuration import FixedClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -51,10 +54,10 @@ class StringOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: FixedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     async def get_known_value(self, **kwargs: Any) -> Union[str, _models.DaysOfWeekEnum]:
         """getKnownValue.

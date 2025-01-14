@@ -8,6 +8,7 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -20,6 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_group_renamed_four_request,
     build_group_renamed_six_request,
@@ -28,6 +30,7 @@ from ...operations._operations import (
     build_renamed_operation_renamed_one_request,
     build_renamed_operation_renamed_three_request,
 )
+from .._configuration import RenamedOperationClientConfiguration
 from .._vendor import RenamedOperationClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -50,10 +53,10 @@ class GroupOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RenamedOperationClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def renamed_two(self, **kwargs: Any) -> None:
