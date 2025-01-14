@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from encode.numeric import NumericClient, models
+from encode.numeric import NumericClient
+from encode.numeric.property import models
 
 
 @pytest.fixture

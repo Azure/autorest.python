@@ -6,6 +6,7 @@
 from pathlib import Path
 import pytest
 from payload.multipart import MultiPartClient, models
+from payload.multipart.formdata.httpparts.nonstring.models import FloatRequest
 
 JPG = Path(__file__).parent / "data/image.jpg"
 PNG = Path(__file__).parent / "data/image.png"
@@ -137,4 +138,4 @@ def test_complex_with_http_part(client: MultiPartClient):
 
 
 def test_http_parts_non_string_float(client: MultiPartClient):
-    client.form_data.http_parts.non_string.float(models.FloatRequest(temperature=0.5))
+    client.form_data.http_parts.non_string.float(FloatRequest(temperature=0.5))

@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 import pytest
 from specialwords.aio import SpecialWordsClient
-from specialwords import models
-
+from specialwords.models import models
+from specialwords.modelproperties import models as model_properties_models
 
 @pytest.fixture
 async def client():
@@ -39,4 +39,4 @@ async def test_model(client: SpecialWordsClient, special_words):
 
 @pytest.mark.asyncio
 async def test_model_properties(client: SpecialWordsClient):
-    await client.model_properties.same_as_model(models.SameAsModel(same_as_model="ok"))
+    await client.model_properties.same_as_model(model_properties_models.SameAsModel(same_as_model="ok"))

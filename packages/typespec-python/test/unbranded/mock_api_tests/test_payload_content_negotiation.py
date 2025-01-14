@@ -6,7 +6,7 @@
 import base64
 import pytest
 from payload.contentnegotiation import ContentNegotiationClient
-from payload.contentnegotiation.models import PngImageAsJson
+from payload.contentnegotiation.differentbody.models import PngImageAsJson
 
 
 @pytest.fixture

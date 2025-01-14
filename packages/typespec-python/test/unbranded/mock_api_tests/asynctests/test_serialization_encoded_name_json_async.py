@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from serialization.encodedname.json.aio import JsonClient
-from serialization.encodedname.json import models
+from serialization.encodedname.json.property import models
 
 
 @pytest.fixture

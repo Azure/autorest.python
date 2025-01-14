@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from serialization.encodedname.json import JsonClient, models
+from serialization.encodedname.json import JsonClient
+from serialization.encodedname.json.property import models
 
 
 @pytest.fixture

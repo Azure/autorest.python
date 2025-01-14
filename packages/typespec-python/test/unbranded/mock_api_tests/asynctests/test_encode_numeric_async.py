@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from encode.numeric.aio import NumericClient
-from encode.numeric import models
+from encode.numeric.property import models
 
 
 @pytest.fixture

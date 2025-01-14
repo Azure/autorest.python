@@ -4,7 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from specialwords import SpecialWordsClient, models
+from specialwords import SpecialWordsClient
+from specialwords.models import models
+from specialwords.modelproperties import models as model_properties_models
 
 
 @pytest.fixture
@@ -34,4 +36,4 @@ def test_model(client: SpecialWordsClient, special_words):
 
 
 def test_model_properties(client: SpecialWordsClient):
-    client.model_properties.same_as_model(models.SameAsModel(same_as_model="ok"))
+    client.model_properties.same_as_model(model_properties_models.SameAsModel(same_as_model="ok"))

@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 from parameters.basic.aio import BasicClient
-from parameters.basic.models import User
+from parameters.basic.explicitbody.models import User
 
 
 @pytest.fixture
