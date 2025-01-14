@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 from payload.multipart import models
 from payload.multipart.formdata.httpparts.nonstring.models import FloatRequest
+from payload.multipart.aio import MultiPartClient
 
 JPG = Path(__file__).parent.parent / "data/image.jpg"
 PNG = Path(__file__).parent.parent / "data/image.png"
