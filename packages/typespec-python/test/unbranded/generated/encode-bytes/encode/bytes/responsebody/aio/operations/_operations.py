@@ -21,6 +21,7 @@ from corehttp.exceptions import (
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 
+from ...._model_base import _deserialize
 from ...operations._operations import (
     build_response_body_base64_request,
     build_response_body_base64_url_request,

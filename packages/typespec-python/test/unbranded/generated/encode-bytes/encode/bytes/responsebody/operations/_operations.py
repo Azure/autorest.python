@@ -22,6 +22,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
+from ..._model_base import _deserialize
 from ..._serialization import Serializer
 
 if sys.version_info >= (3, 9):

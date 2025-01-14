@@ -24,7 +24,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ..._model_base import SdkJSONEncoder
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ...operations._operations import (
     build_boolean_get_request,
     build_boolean_put_request,

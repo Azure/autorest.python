@@ -22,6 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from ... import models as _models
+from ..._model_base import _deserialize
 from ..._operations._operations import build_pageable_list_request
 from ..._validation import api_version_validation
 from .._vendor import PageableClientMixinABC

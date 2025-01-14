@@ -23,7 +23,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ..._model_base import SdkJSONEncoder
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_return_type_changed_from_test_request
 from .._vendor import ReturnTypeChangedFromClientMixinABC
 
