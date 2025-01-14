@@ -24,7 +24,7 @@ class UnionClientConfiguration:
     attributes.
 
     :param credential: Credential used to authenticate requests to the service. Is either a
-     ServiceKeyCredential type or a TokenCredential type. Required.
+     ServiceKeyCredential type or a token credential type. Required.
     :type credential: ~corehttp.credentials.ServiceKeyCredential or
      ~corehttp.credentials.TokenCredential
     :param endpoint: Service host. Default value is "http://localhost:3000".

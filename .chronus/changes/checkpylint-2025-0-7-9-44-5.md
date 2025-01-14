@@ -1,8 +1,8 @@
 ---
-changeKind: feature
+changeKind: internal
 packages:
   - "@autorest/python"
   - "@azure-tools/typespec-python"
 ---
 
-Support typespec namespace
+Updating pylint tooling

@@ -1,5 +1,18 @@
 # Release
 
+## 0.38.0
+
+### Bug Fixes
+
+- [#3000](https://github.com/Azure/autorest.python/pull/3000) Only add linting disables for a file with too many lines if the file doesn't already disable this linter rule
+- [#3000](https://github.com/Azure/autorest.python/pull/3000) Don't automatically overwrite version in `_version.py` file and `setup.py` file if the existing version is newer
+- [#3000](https://github.com/Azure/autorest.python/pull/3000) Generate __init__ for internal models to allow for discriminator needs
+
+### Features
+
+- [#2968](https://github.com/Azure/autorest.python/pull/2968) Support typespec namespace
+
+
 ## 0.37.3
 
 ### Bug Fixes
