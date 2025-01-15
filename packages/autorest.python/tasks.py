@@ -528,15 +528,11 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapisecurity/README.md",
         # create multiapi client with keyword only params
         "test/multiapi/specification/multiapikeywordonly/README.md",
-        # create basic multiapi client (package-name=multapicombiner)
-        "test/multiapi/specification/multiapicombiner/README.md",
     ]
 
     cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
 
     _run_autorest(cmds, debug)
-
-    check_call(f"python {Path('test/multiapi/run_multiapi_combiner.py')} multiapicombiner", shell=True)
 
 
 @task
