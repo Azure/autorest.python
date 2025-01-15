@@ -214,7 +214,7 @@ class TestModelDeserialization(unittest.TestCase):
 
         data = {
             "properties": {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []},
-            "id": "/subscriptions/abc-def-ghi-jklmnop/resourceGroups/test_mgmt_resource_test_resourcesea/providers/Microsoft.Compute/availabilitySets/pytest", # cspell:disable-line
+            "id": "/subscriptions/abc-def-ghi-jklmnop/resourceGroups/test_mgmt_resource_test_resourcesea/providers/Microsoft.Compute/availabilitySets/pytest",  # cspell:disable-line
             "name": "pytest",
             "type": "Microsoft.Compute/availabilitySets",
             "location": "westus",
@@ -500,7 +500,7 @@ class TestRuntimeSerialized(unittest.TestCase):
     def test_validate(self):
         # Assert not necessary, should not raise exception
         self.s.validate("simplestring", "StringForLog", pattern="^[a-z]+$")
-        self.s.validate("UTF8ééééé", "StringForLog", pattern=r"^[\w]+$") # cspell:disable-line
+        self.s.validate("UTF8ééééé", "StringForLog", pattern=r"^[\w]+$")  # cspell:disable-line
 
     @pytest.mark.skip(
         "validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428"
@@ -1579,7 +1579,13 @@ class TestRuntimeDeserialized(unittest.TestCase):
         # we decide to accept it with log warning
 
         obj = TestKeyTypeObj.from_dict(
-            {"attr_a": 1, "attr_b": 12, "id": 14, "key_c": 3, "key_d": 4}  # Conflict with "id"  # Conflict with "attr_b"
+            {
+                "attr_a": 1,
+                "attr_b": 12,
+                "id": 14,
+                "key_c": 3,
+                "key_d": 4,
+            }  # Conflict with "id"  # Conflict with "attr_b"
         )
 
         self.assertEqual(1, obj.attr_a)
@@ -2408,9 +2414,9 @@ class TestRuntimeDeserialized(unittest.TestCase):
 
         self.assertEqual(obj.abc, TestEnum.val)
 
-        obj = deserializer("TestEnumObj", {"ABC": "azerty"}) # cspell:disable-line
+        obj = deserializer("TestEnumObj", {"ABC": "azerty"})  # cspell:disable-line
 
-        self.assertEqual(obj.abc, "azerty") # cspell:disable-line
+        self.assertEqual(obj.abc, "azerty")  # cspell:disable-line
 
         class TestEnum2(Enum):
             val2 = "Value"
@@ -2500,7 +2506,7 @@ class TestUrlEncoding(unittest.TestCase):
         result1 = s.url("resource_id", origin_url, "str", skip_quote=True)
         result2 = s.url("resource_id", origin_url, "str")
         self.assertEqual("/database/%7BObject.value%7D", result1)
-        self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2) # cspell:disable-line
+        self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2)  # cspell:disable-line
 
 
 def test_deserialize_text():
