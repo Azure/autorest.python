@@ -392,12 +392,12 @@ class StringProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with union of float literal property.
 
-    :ivar property: Property. Is either a float type or a float type.
+    :ivar property: Property. Is one of the following types: float
     :vartype property: float or float
     """
 
     property: Optional[float] = rest_field()
-    """Property. Is either a float type or a float type."""
+    """Property. Is one of the following types: float"""
 
     @overload
     def __init__(

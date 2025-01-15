@@ -17,11 +17,13 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ..... import _model_base, models as _models4
-from ....._serialization import Serializer
+from ....._configuration import MultiPartClientConfiguration
+from ....._serialization import Deserializer, Serializer
 from ....._vendor import prepare_multipart_form_data
 
 if sys.version_info >= (3, 9):
@@ -81,10 +83,10 @@ class FormDataHttpPartsContentTypeOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: MultiPartClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def image_jpeg_content_type(self, body: _models4.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any) -> None:

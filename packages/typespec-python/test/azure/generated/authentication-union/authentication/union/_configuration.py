@@ -23,8 +23,8 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential used to authenticate requests to the service. Is either a
-     AzureKeyCredential type or a token credential type. Required.
+    :param credential: Credential used to authenticate requests to the service. Is either a key
+     credential type or a token credential type. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential or
      ~azure.core.credentials.TokenCredential
     :param endpoint: Service host. Default value is "http://localhost:3000".

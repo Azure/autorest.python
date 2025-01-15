@@ -17,10 +17,12 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ..._serialization import Serializer
+from ..._configuration import RoutesClientConfiguration
+from ..._serialization import Deserializer, Serializer
 from ..querycontinuation.operations._operations import QueryParametersQueryContinuationOperations
 from ..queryexpansion.operations._operations import QueryParametersQueryExpansionOperations
 
@@ -87,10 +89,10 @@ class QueryParametersOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.query_expansion = QueryParametersQueryExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
