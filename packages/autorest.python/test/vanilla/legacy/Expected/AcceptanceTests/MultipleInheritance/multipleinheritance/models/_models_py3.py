@@ -33,8 +33,8 @@ class Feline(_serialization.Model):
         :paramtype hisses: bool
         """
         super().__init__(**kwargs)
-        self.meows = meows
-        self.hisses = hisses
+        self.meows: Optional[bool] = meows
+        self.hisses: Optional[bool] = hisses
 
 
 class Pet(_serialization.Model):
@@ -60,7 +60,7 @@ class Pet(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.name = name
+        self.name: str = name
 
 
 class Cat(Pet, Feline):
@@ -109,10 +109,10 @@ class Cat(Pet, Feline):
         :paramtype likes_milk: bool
         """
         super().__init__(name=name, meows=meows, hisses=hisses, **kwargs)
-        self.meows = meows
-        self.hisses = hisses
-        self.likes_milk = likes_milk
-        self.name = name
+        self.meows: Optional[bool] = meows
+        self.hisses: Optional[bool] = hisses
+        self.likes_milk: Optional[bool] = likes_milk
+        self.name: str = name
 
 
 class Error(_serialization.Model):
@@ -137,8 +137,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class Horse(Pet):
@@ -169,7 +169,7 @@ class Horse(Pet):
         :paramtype is_a_show_horse: bool
         """
         super().__init__(name=name, **kwargs)
-        self.is_a_show_horse = is_a_show_horse
+        self.is_a_show_horse: Optional[bool] = is_a_show_horse
 
 
 class Kitten(Cat):
@@ -224,4 +224,4 @@ class Kitten(Cat):
         :paramtype eats_mice_yet: bool
         """
         super().__init__(meows=meows, hisses=hisses, name=name, likes_milk=likes_milk, **kwargs)
-        self.eats_mice_yet = eats_mice_yet
+        self.eats_mice_yet: Optional[bool] = eats_mice_yet

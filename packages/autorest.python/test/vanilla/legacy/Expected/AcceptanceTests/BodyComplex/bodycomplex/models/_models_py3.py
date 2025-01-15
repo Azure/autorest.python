@@ -33,7 +33,7 @@ class ArrayWrapper(msrest.serialization.Model):
         :paramtype array: list[str]
         """
         super().__init__(**kwargs)
-        self.array = array
+        self.array: Optional[List[str]] = array
 
 
 class Basic(msrest.serialization.Model):
@@ -72,9 +72,9 @@ class Basic(msrest.serialization.Model):
         :paramtype color: str or ~bodycomplex.models.CMYKColors
         """
         super().__init__(**kwargs)
-        self.id = id
-        self.name = name
-        self.color = color
+        self.id: Optional[int] = id
+        self.name: Optional[str] = name
+        self.color: Optional[Union[str, "_models.CMYKColors"]] = color
 
 
 class BooleanWrapper(msrest.serialization.Model):
@@ -99,8 +99,8 @@ class BooleanWrapper(msrest.serialization.Model):
         :paramtype field_false: bool
         """
         super().__init__(**kwargs)
-        self.field_true = field_true
-        self.field_false = field_false
+        self.field_true: Optional[bool] = field_true
+        self.field_false: Optional[bool] = field_false
 
 
 class ByteWrapper(msrest.serialization.Model):
@@ -120,7 +120,7 @@ class ByteWrapper(msrest.serialization.Model):
         :paramtype field: bytes
         """
         super().__init__(**kwargs)
-        self.field = field
+        self.field: Optional[bytes] = field
 
 
 class Pet(msrest.serialization.Model):
@@ -151,8 +151,8 @@ class Pet(msrest.serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id = id
-        self.name = name
+        self.id: Optional[int] = id
+        self.name: Optional[str] = name
 
 
 class Cat(Pet):
@@ -195,8 +195,8 @@ class Cat(Pet):
         :paramtype hates: list[~bodycomplex.models.Dog]
         """
         super().__init__(id=id, name=name, **kwargs)
-        self.color = color
-        self.hates = hates
+        self.color: Optional[str] = color
+        self.hates: Optional[List["_models.Dog"]] = hates
 
 
 class Fish(msrest.serialization.Model):
@@ -249,9 +249,9 @@ class Fish(msrest.serialization.Model):
         """
         super().__init__(**kwargs)
         self.fishtype: Optional[str] = None
-        self.species = species
-        self.length = length
-        self.siblings = siblings
+        self.species: Optional[str] = species
+        self.length: float = length
+        self.siblings: Optional[List["_models.Fish"]] = siblings
 
 
 class Shark(Fish):
@@ -319,8 +319,8 @@ class Shark(Fish):
         """
         super().__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype: str = "shark"
-        self.age = age
-        self.birthday = birthday
+        self.age: Optional[int] = age
+        self.birthday: datetime.datetime = birthday
 
 
 class Cookiecuttershark(Shark):
@@ -407,8 +407,8 @@ class Datetimerfc1123Wrapper(msrest.serialization.Model):
         :paramtype now: ~datetime.datetime
         """
         super().__init__(**kwargs)
-        self.field = field
-        self.now = now
+        self.field: Optional[datetime.datetime] = field
+        self.now: Optional[datetime.datetime] = now
 
 
 class DatetimeWrapper(msrest.serialization.Model):
@@ -435,8 +435,8 @@ class DatetimeWrapper(msrest.serialization.Model):
         :paramtype now: ~datetime.datetime
         """
         super().__init__(**kwargs)
-        self.field = field
-        self.now = now
+        self.field: Optional[datetime.datetime] = field
+        self.now: Optional[datetime.datetime] = now
 
 
 class DateWrapper(msrest.serialization.Model):
@@ -463,8 +463,8 @@ class DateWrapper(msrest.serialization.Model):
         :paramtype leap: ~datetime.date
         """
         super().__init__(**kwargs)
-        self.field = field
-        self.leap = leap
+        self.field: Optional[datetime.date] = field
+        self.leap: Optional[datetime.date] = leap
 
 
 class DictionaryWrapper(msrest.serialization.Model):
@@ -484,7 +484,7 @@ class DictionaryWrapper(msrest.serialization.Model):
         :paramtype default_program: dict[str, str]
         """
         super().__init__(**kwargs)
-        self.default_program = default_program
+        self.default_program: Optional[Dict[str, str]] = default_program
 
 
 class Dog(Pet):
@@ -521,7 +521,7 @@ class Dog(Pet):
         :paramtype food: str
         """
         super().__init__(id=id, name=name, **kwargs)
-        self.food = food
+        self.food: Optional[str] = food
 
 
 class DotFish(msrest.serialization.Model):
@@ -556,7 +556,7 @@ class DotFish(msrest.serialization.Model):
         """
         super().__init__(**kwargs)
         self.fish_type: Optional[str] = None
-        self.species = species
+        self.species: Optional[str] = species
 
 
 class DotFishMarket(msrest.serialization.Model):
@@ -599,10 +599,10 @@ class DotFishMarket(msrest.serialization.Model):
         :paramtype fishes: list[~bodycomplex.models.DotFish]
         """
         super().__init__(**kwargs)
-        self.sample_salmon = sample_salmon
-        self.salmons = salmons
-        self.sample_fish = sample_fish
-        self.fishes = fishes
+        self.sample_salmon: Optional["_models.DotSalmon"] = sample_salmon
+        self.salmons: Optional[List["_models.DotSalmon"]] = salmons
+        self.sample_fish: Optional["_models.DotFish"] = sample_fish
+        self.fishes: Optional[List["_models.DotFish"]] = fishes
 
 
 class DotSalmon(DotFish):
@@ -649,8 +649,8 @@ class DotSalmon(DotFish):
         """
         super().__init__(species=species, **kwargs)
         self.fish_type: str = "DotSalmon"
-        self.location = location
-        self.iswild = iswild
+        self.location: Optional[str] = location
+        self.iswild: Optional[bool] = iswild
 
 
 class DoubleWrapper(msrest.serialization.Model):
@@ -692,10 +692,10 @@ class DoubleWrapper(msrest.serialization.Model):
          float
         """
         super().__init__(**kwargs)
-        self.field1 = field1
-        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose = (
-            field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose
-        )
+        self.field1: Optional[float] = field1
+        self.field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose: (
+            Optional[float]
+        ) = (field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose)
 
 
 class DurationWrapper(msrest.serialization.Model):
@@ -715,7 +715,7 @@ class DurationWrapper(msrest.serialization.Model):
         :paramtype field: ~datetime.timedelta
         """
         super().__init__(**kwargs)
-        self.field = field
+        self.field: Optional[datetime.timedelta] = field
 
 
 class Error(msrest.serialization.Model):
@@ -740,8 +740,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class FloatWrapper(msrest.serialization.Model):
@@ -766,8 +766,8 @@ class FloatWrapper(msrest.serialization.Model):
         :paramtype field2: float
         """
         super().__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+        self.field1: Optional[float] = field1
+        self.field2: Optional[float] = field2
 
 
 class Goblinshark(Shark):
@@ -840,8 +840,8 @@ class Goblinshark(Shark):
         """
         super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype: str = "goblin"
-        self.jawsize = jawsize
-        self.color = color
+        self.jawsize: Optional[int] = jawsize
+        self.color: Union[str, "_models.GoblinSharkColor"] = color
 
 
 class IntWrapper(msrest.serialization.Model):
@@ -866,8 +866,8 @@ class IntWrapper(msrest.serialization.Model):
         :paramtype field2: int
         """
         super().__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+        self.field1: Optional[int] = field1
+        self.field2: Optional[int] = field2
 
 
 class LongWrapper(msrest.serialization.Model):
@@ -892,8 +892,8 @@ class LongWrapper(msrest.serialization.Model):
         :paramtype field2: int
         """
         super().__init__(**kwargs)
-        self.field1 = field1
-        self.field2 = field2
+        self.field1: Optional[int] = field1
+        self.field2: Optional[int] = field2
 
 
 class MyBaseType(msrest.serialization.Model):
@@ -933,8 +933,8 @@ class MyBaseType(msrest.serialization.Model):
         """
         super().__init__(**kwargs)
         self.kind: Optional[str] = None
-        self.prop_b1 = prop_b1
-        self.prop_bh1 = prop_bh1
+        self.prop_b1: Optional[str] = prop_b1
+        self.prop_bh1: Optional[str] = prop_bh1
 
 
 class MyDerivedType(MyBaseType):
@@ -981,7 +981,7 @@ class MyDerivedType(MyBaseType):
         """
         super().__init__(prop_b1=prop_b1, prop_bh1=prop_bh1, **kwargs)
         self.kind: str = "Kind1"
-        self.prop_d1 = prop_d1
+        self.prop_d1: Optional[str] = prop_d1
 
 
 class ReadonlyObj(msrest.serialization.Model):
@@ -1010,8 +1010,8 @@ class ReadonlyObj(msrest.serialization.Model):
         :paramtype size: int
         """
         super().__init__(**kwargs)
-        self.id = None
-        self.size = size
+        self.id: Optional[str] = None
+        self.size: Optional[int] = size
 
 
 class Salmon(Fish):
@@ -1076,8 +1076,8 @@ class Salmon(Fish):
         """
         super().__init__(species=species, length=length, siblings=siblings, **kwargs)
         self.fishtype: str = "salmon"
-        self.location = location
-        self.iswild = iswild
+        self.location: Optional[str] = location
+        self.iswild: Optional[bool] = iswild
 
 
 class Sawshark(Shark):
@@ -1144,7 +1144,7 @@ class Sawshark(Shark):
         """
         super().__init__(species=species, length=length, siblings=siblings, age=age, birthday=birthday, **kwargs)
         self.fishtype: str = "sawshark"
-        self.picture = picture
+        self.picture: Optional[bytes] = picture
 
 
 class Siamese(Cat):
@@ -1193,7 +1193,7 @@ class Siamese(Cat):
         :paramtype breed: str
         """
         super().__init__(id=id, name=name, color=color, hates=hates, **kwargs)
-        self.breed = breed
+        self.breed: Optional[str] = breed
 
 
 class SmartSalmon(Salmon):
@@ -1267,8 +1267,8 @@ class SmartSalmon(Salmon):
         """
         super().__init__(species=species, length=length, siblings=siblings, location=location, iswild=iswild, **kwargs)
         self.fishtype: str = "smart_salmon"
-        self.additional_properties = additional_properties
-        self.college_degree = college_degree
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.college_degree: Optional[str] = college_degree
 
 
 class StringWrapper(msrest.serialization.Model):
@@ -1300,6 +1300,6 @@ class StringWrapper(msrest.serialization.Model):
         :paramtype null: str
         """
         super().__init__(**kwargs)
-        self.field = field
-        self.empty = empty
-        self.null = null
+        self.field: Optional[str] = field
+        self.empty: Optional[str] = empty
+        self.null: Optional[str] = null

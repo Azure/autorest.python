@@ -33,8 +33,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class FirstParameterGroup(msrest.serialization.Model):
@@ -59,8 +59,8 @@ class FirstParameterGroup(msrest.serialization.Model):
         :paramtype query_one: int
         """
         super().__init__(**kwargs)
-        self.header_one = header_one
-        self.query_one = query_one
+        self.header_one: Optional[str] = header_one
+        self.query_one: int = query_one
 
 
 class Grouper(msrest.serialization.Model):
@@ -91,8 +91,8 @@ class Grouper(msrest.serialization.Model):
         :paramtype grouped_parameter: str
         """
         super().__init__(**kwargs)
-        self.grouped_constant = grouped_constant
-        self.grouped_parameter = grouped_parameter
+        self.grouped_constant: Optional[Literal["foo"]] = grouped_constant
+        self.grouped_parameter: Optional[str] = grouped_parameter
 
 
 class ParameterGroupingPostMultiParamGroupsSecondParamGroup(
@@ -119,8 +119,8 @@ class ParameterGroupingPostMultiParamGroupsSecondParamGroup(
         :paramtype query_two: int
         """
         super().__init__(**kwargs)
-        self.header_two = header_two
-        self.query_two = query_two
+        self.header_two: Optional[str] = header_two
+        self.query_two: int = query_two
 
 
 class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
@@ -145,8 +145,8 @@ class ParameterGroupingPostOptionalParameters(msrest.serialization.Model):
         :paramtype query: int
         """
         super().__init__(**kwargs)
-        self.custom_header = custom_header
-        self.query = query
+        self.custom_header: Optional[str] = custom_header
+        self.query: int = query
 
 
 class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
@@ -190,10 +190,10 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
         :paramtype body: int
         """
         super().__init__(**kwargs)
-        self.custom_header = custom_header
-        self.query = query
-        self.path = path
-        self.body = body
+        self.custom_header: Optional[str] = custom_header
+        self.query: int = query
+        self.path: str = path
+        self.body: int = body
 
 
 class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
@@ -218,5 +218,5 @@ class ParameterGroupingPostReservedWordsParameters(msrest.serialization.Model): 
         :paramtype accept: str
         """
         super().__init__(**kwargs)
-        self.from_property = from_property
-        self.accept = accept
+        self.from_property: Optional[str] = from_property
+        self.accept: Optional[str] = accept

@@ -33,7 +33,7 @@ class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringNoRequiredOneValueDefaultEnum"] = parameter
 
 
 class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
@@ -58,7 +58,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredOneValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredOneValueNoDefaultEnum"]] = parameter
 
 
 class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
@@ -80,7 +80,7 @@ class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringNoRequiredTwoValueDefaultEnum"] = parameter
 
 
 class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
@@ -105,7 +105,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringNoRequiredTwoValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Optional[Union[str, "_models.ModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = parameter
 
 
 class ModelAsStringRequiredOneValueDefault(_serialization.Model):
@@ -133,7 +133,7 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringRequiredOneValueDefaultEnum"] = parameter
 
 
 class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
@@ -161,7 +161,7 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringRequiredOneValueNoDefaultEnum"] = parameter
 
 
 class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
@@ -189,7 +189,7 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringRequiredTwoValueDefaultEnum"] = parameter
 
 
 class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
@@ -217,7 +217,7 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.ModelAsStringRequiredTwoValueNoDefaultEnum"] = parameter
 
 
 class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
@@ -237,7 +237,7 @@ class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
         :paramtype parameter: str
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Literal["value1"] = parameter
 
 
 class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
@@ -257,7 +257,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylin
         :paramtype parameter: str
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Optional[Literal["value1"]] = parameter
 
 
 class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
@@ -279,7 +279,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.NoModelAsStringNoRequiredTwoValueDefaultEnum"] = parameter
 
 
 class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
@@ -304,7 +304,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylin
         :paramtype parameter: str or ~constants.models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Optional[Union[str, "_models.NoModelAsStringNoRequiredTwoValueNoDefaultEnum"]] = parameter
 
 
 class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
@@ -384,7 +384,7 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueDefaultEnum"] = parameter
 
 
 class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
@@ -412,4 +412,4 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
         :paramtype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
         """
         super().__init__(**kwargs)
-        self.parameter = parameter
+        self.parameter: Union[str, "_models.NoModelAsStringRequiredTwoValueNoDefaultEnum"] = parameter

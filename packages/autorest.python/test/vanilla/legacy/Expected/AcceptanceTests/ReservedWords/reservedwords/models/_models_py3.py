@@ -42,8 +42,8 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
         :paramtype world: str
         """
         super().__init__(**kwargs)
-        self.data = data
-        self.world = world
+        self.data: str = data
+        self.world: str = world
 
 
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(
@@ -77,5 +77,5 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
         :paramtype file_name: str
         """
         super().__init__(**kwargs)
-        self.files = files
-        self.file_name = file_name
+        self.files: IO[bytes] = files
+        self.file_name: str = file_name

@@ -44,7 +44,7 @@ class ChildProduct(msrest.serialization.Model):
         :paramtype count: int
         """
         super().__init__(**kwargs)
-        self.count = count
+        self.count: Optional[int] = count
 
 
 class ConstantProduct(msrest.serialization.Model):
@@ -107,9 +107,9 @@ class Error(msrest.serialization.Model):
         :paramtype fields: str
         """
         super().__init__(**kwargs)
-        self.code = code
-        self.message = message
-        self.fields = fields
+        self.code: Optional[int] = code
+        self.message: Optional[str] = message
+        self.fields: Optional[str] = fields
 
 
 class Product(msrest.serialization.Model):
@@ -189,9 +189,9 @@ class Product(msrest.serialization.Model):
         :paramtype const_string_as_enum: str
         """
         super().__init__(**kwargs)
-        self.display_names = display_names
-        self.capacity = capacity
-        self.image = image
-        self.child = child
-        self.const_child = const_child
-        self.const_string_as_enum = const_string_as_enum
+        self.display_names: Optional[List[str]] = display_names
+        self.capacity: Optional[int] = capacity
+        self.image: Optional[str] = image
+        self.child: "_models.ChildProduct" = child
+        self.const_child: "_models.ConstantProduct" = const_child
+        self.const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = const_string_as_enum

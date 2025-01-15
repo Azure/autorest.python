@@ -28,7 +28,7 @@ class Animal(_serialization.Model):
         :paramtype ani_type: str
         """
         super().__init__(**kwargs)
-        self.ani_type = ani_type
+        self.ani_type: Optional[str] = ani_type
 
 
 class BaseError(_serialization.Model):
@@ -48,7 +48,7 @@ class BaseError(_serialization.Model):
         :paramtype some_base_prop: str
         """
         super().__init__(**kwargs)
-        self.some_base_prop = some_base_prop
+        self.some_base_prop: Optional[str] = some_base_prop
 
 
 class NotFoundErrorBase(BaseError):
@@ -87,7 +87,7 @@ class NotFoundErrorBase(BaseError):
         :paramtype reason: str
         """
         super().__init__(some_base_prop=some_base_prop, **kwargs)
-        self.reason = reason
+        self.reason: Optional[str] = reason
         self.what_not_found: Optional[str] = None
 
 
@@ -135,7 +135,7 @@ class AnimalNotFound(NotFoundErrorBase):
         """
         super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found: str = "AnimalNotFound"
-        self.name = name
+        self.name: Optional[str] = name
 
 
 class LinkNotFound(NotFoundErrorBase):
@@ -182,7 +182,7 @@ class LinkNotFound(NotFoundErrorBase):
         """
         super().__init__(some_base_prop=some_base_prop, reason=reason, **kwargs)
         self.what_not_found: str = "InvalidResourceLink"
-        self.what_sub_address = what_sub_address
+        self.what_sub_address: Optional[str] = what_sub_address
 
 
 class Pet(Animal):
@@ -211,7 +211,7 @@ class Pet(Animal):
         :paramtype ani_type: str
         """
         super().__init__(ani_type=ani_type, **kwargs)
-        self.name = None
+        self.name: Optional[str] = None
 
 
 class PetAction(_serialization.Model):
@@ -231,7 +231,7 @@ class PetAction(_serialization.Model):
         :paramtype action_response: str
         """
         super().__init__(**kwargs)
-        self.action_response = action_response
+        self.action_response: Optional[str] = action_response
 
 
 class PetActionError(PetAction):
@@ -273,7 +273,7 @@ class PetActionError(PetAction):
         """
         super().__init__(action_response=action_response, **kwargs)
         self.error_type: Optional[str] = None
-        self.error_message = error_message
+        self.error_message: Optional[str] = error_message
 
 
 class PetSadError(PetActionError):
@@ -325,7 +325,7 @@ class PetSadError(PetActionError):
         """
         super().__init__(action_response=action_response, error_message=error_message, **kwargs)
         self.error_type: str = "PetSadError"
-        self.reason = reason
+        self.reason: Optional[str] = reason
 
 
 class PetHungryOrThirstyError(PetSadError):
@@ -378,4 +378,4 @@ class PetHungryOrThirstyError(PetSadError):
         """
         super().__init__(action_response=action_response, error_message=error_message, reason=reason, **kwargs)
         self.error_type: str = "PetHungryOrThirstyError"
-        self.hungry_or_thirsty = hungry_or_thirsty
+        self.hungry_or_thirsty: Optional[str] = hungry_or_thirsty

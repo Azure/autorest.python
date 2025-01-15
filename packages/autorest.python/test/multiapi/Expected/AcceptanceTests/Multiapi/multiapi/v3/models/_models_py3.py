@@ -36,8 +36,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class ModelThree(_serialization.Model):
@@ -57,7 +57,7 @@ class ModelThree(_serialization.Model):
         :paramtype optional_property: str
         """
         super().__init__(**kwargs)
-        self.optional_property = optional_property
+        self.optional_property: Optional[str] = optional_property
 
 
 class PagingResult(_serialization.Model):
@@ -84,8 +84,8 @@ class PagingResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.values = values
-        self.next_link = next_link
+        self.values: Optional[List["_models.ModelThree"]] = values
+        self.next_link: Optional[str] = next_link
 
 
 class SourcePath(_serialization.Model):
@@ -109,4 +109,4 @@ class SourcePath(_serialization.Model):
         :paramtype source: str
         """
         super().__init__(**kwargs)
-        self.source = source
+        self.source: Optional[str] = source

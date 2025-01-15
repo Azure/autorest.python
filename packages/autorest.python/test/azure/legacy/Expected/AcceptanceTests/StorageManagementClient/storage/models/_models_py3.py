@@ -32,7 +32,7 @@ class Bar(_serialization.Model):
         :paramtype recursive_point: ~storage.models.Endpoints
         """
         super().__init__(**kwargs)
-        self.recursive_point = recursive_point
+        self.recursive_point: Optional["_models.Endpoints"] = recursive_point
 
 
 class CheckNameAvailabilityResult(_serialization.Model):
@@ -77,9 +77,9 @@ class CheckNameAvailabilityResult(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.name_available = name_available
-        self.reason = reason
-        self.message = message
+        self.name_available: Optional[bool] = name_available
+        self.reason: Optional[Union[str, "_models.Reason"]] = reason
+        self.message: Optional[str] = message
 
 
 class CustomDomain(_serialization.Model):
@@ -106,8 +106,8 @@ class CustomDomain(_serialization.Model):
         :paramtype use_sub_domain: bool
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.use_sub_domain = use_sub_domain
+        self.name: Optional[str] = name
+        self.use_sub_domain: Optional[bool] = use_sub_domain
 
 
 class Endpoints(_serialization.Model):
@@ -156,11 +156,11 @@ class Endpoints(_serialization.Model):
         :paramtype foo_point: ~storage.models.Foo
         """
         super().__init__(**kwargs)
-        self.blob = blob
-        self.queue = queue
-        self.table = table
-        self.dummy_end_point = dummy_end_point
-        self.foo_point = foo_point
+        self.blob: Optional[str] = blob
+        self.queue: Optional[str] = queue
+        self.table: Optional[str] = table
+        self.dummy_end_point: Optional["_models.Endpoints"] = dummy_end_point
+        self.foo_point: Optional["_models.Foo"] = foo_point
 
 
 class Foo(_serialization.Model):
@@ -180,7 +180,7 @@ class Foo(_serialization.Model):
         :paramtype bar_point: ~storage.models.Bar
         """
         super().__init__(**kwargs)
-        self.bar_point = bar_point
+        self.bar_point: Optional["_models.Bar"] = bar_point
 
 
 class Resource(_serialization.Model):
@@ -225,11 +225,11 @@ class Resource(_serialization.Model):
         :paramtype tags: dict[str, str]
         """
         super().__init__(**kwargs)
-        self.id = None
-        self.name = None
-        self.type = None
-        self.location = location
-        self.tags = tags
+        self.id: Optional[str] = None
+        self.name: Optional[str] = None
+        self.type: Optional[str] = None
+        self.location: str = location
+        self.tags: Optional[Dict[str, str]] = tags
 
 
 class StorageAccount(Resource):
@@ -372,17 +372,17 @@ class StorageAccount(Resource):
         :paramtype secondary_endpoints: ~storage.models.Endpoints
         """
         super().__init__(location=location, tags=tags, **kwargs)
-        self.provisioning_state = provisioning_state
-        self.account_type = account_type
-        self.primary_endpoints = primary_endpoints
-        self.primary_location = primary_location
-        self.status_of_primary = status_of_primary
-        self.last_geo_failover_time = last_geo_failover_time
-        self.secondary_location = secondary_location
-        self.status_of_secondary = status_of_secondary
-        self.creation_time = creation_time
-        self.custom_domain = custom_domain
-        self.secondary_endpoints = secondary_endpoints
+        self.provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = provisioning_state
+        self.account_type: Optional[Union[str, "_models.AccountType"]] = account_type
+        self.primary_endpoints: Optional["_models.Endpoints"] = primary_endpoints
+        self.primary_location: Optional[str] = primary_location
+        self.status_of_primary: Optional[Union[str, "_models.AccountStatus"]] = status_of_primary
+        self.last_geo_failover_time: Optional[datetime.datetime] = last_geo_failover_time
+        self.secondary_location: Optional[str] = secondary_location
+        self.status_of_secondary: Optional[Union[str, "_models.AccountStatus"]] = status_of_secondary
+        self.creation_time: Optional[datetime.datetime] = creation_time
+        self.custom_domain: Optional["_models.CustomDomain"] = custom_domain
+        self.secondary_endpoints: Optional["_models.Endpoints"] = secondary_endpoints
 
 
 class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):  # pylint: disable=name-too-long
@@ -413,8 +413,8 @@ class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):  # py
         :paramtype type: str
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.type = type
+        self.name: str = name
+        self.type: str = type
 
 
 class StorageAccountCreateParameters(Resource):
@@ -473,7 +473,7 @@ class StorageAccountCreateParameters(Resource):
         :paramtype account_type: str or ~storage.models.AccountType
         """
         super().__init__(location=location, tags=tags, **kwargs)
-        self.account_type = account_type
+        self.account_type: Optional[Union[str, "_models.AccountType"]] = account_type
 
 
 class StorageAccountKeys(_serialization.Model):
@@ -498,8 +498,8 @@ class StorageAccountKeys(_serialization.Model):
         :paramtype key2: str
         """
         super().__init__(**kwargs)
-        self.key1 = key1
-        self.key2 = key2
+        self.key1: Optional[str] = key1
+        self.key2: Optional[str] = key2
 
 
 class StorageAccountListResult(_serialization.Model):
@@ -528,8 +528,8 @@ class StorageAccountListResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.value = value
-        self.next_link = next_link
+        self.value: Optional[List["_models.StorageAccount"]] = value
+        self.next_link: Optional[str] = next_link
 
 
 class StorageAccountRegenerateKeyParameters(_serialization.Model):
@@ -549,7 +549,7 @@ class StorageAccountRegenerateKeyParameters(_serialization.Model):
         :paramtype key_name: str or ~storage.models.KeyName
         """
         super().__init__(**kwargs)
-        self.key_name = key_name
+        self.key_name: Optional[Union[str, "_models.KeyName"]] = key_name
 
 
 class StorageAccountUpdateParameters(Resource):
@@ -622,8 +622,8 @@ class StorageAccountUpdateParameters(Resource):
         :paramtype custom_domain: ~storage.models.CustomDomain
         """
         super().__init__(location=location, tags=tags, **kwargs)
-        self.account_type = account_type
-        self.custom_domain = custom_domain
+        self.account_type: Optional[Union[str, "_models.AccountType"]] = account_type
+        self.custom_domain: Optional["_models.CustomDomain"] = custom_domain
 
 
 class SubResource(_serialization.Model):
@@ -643,7 +643,7 @@ class SubResource(_serialization.Model):
         :paramtype id: str
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[str] = id
 
 
 class Usage(_serialization.Model):
@@ -689,10 +689,10 @@ class Usage(_serialization.Model):
         :paramtype name: ~storage.models.UsageName
         """
         super().__init__(**kwargs)
-        self.unit = unit
-        self.current_value = current_value
-        self.limit = limit
-        self.name = name
+        self.unit: Optional[Union[str, "_models.UsageUnit"]] = unit
+        self.current_value: Optional[int] = current_value
+        self.limit: Optional[int] = limit
+        self.name: Optional["_models.UsageName"] = name
 
 
 class UsageListResult(_serialization.Model):
@@ -712,7 +712,7 @@ class UsageListResult(_serialization.Model):
         :paramtype value: list[~storage.models.Usage]
         """
         super().__init__(**kwargs)
-        self.value = value
+        self.value: Optional[List["_models.Usage"]] = value
 
 
 class UsageName(_serialization.Model):
@@ -737,5 +737,5 @@ class UsageName(_serialization.Model):
         :paramtype localized_value: str
         """
         super().__init__(**kwargs)
-        self.value = value
-        self.localized_value = localized_value
+        self.value: Optional[str] = value
+        self.localized_value: Optional[str] = localized_value

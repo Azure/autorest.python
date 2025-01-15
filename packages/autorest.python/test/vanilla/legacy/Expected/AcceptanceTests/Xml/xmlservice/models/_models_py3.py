@@ -51,9 +51,9 @@ class AccessPolicy(_serialization.Model):
         :paramtype permission: str
         """
         super().__init__(**kwargs)
-        self.start = start
-        self.expiry = expiry
-        self.permission = permission
+        self.start: datetime.datetime = start
+        self.expiry: datetime.datetime = expiry
+        self.permission: str = permission
 
 
 class AppleBarrel(_serialization.Model):
@@ -80,8 +80,8 @@ class AppleBarrel(_serialization.Model):
         :paramtype bad_apples: list[str]
         """
         super().__init__(**kwargs)
-        self.good_apples = good_apples
-        self.bad_apples = bad_apples
+        self.good_apples: Optional[List[str]] = good_apples
+        self.bad_apples: Optional[List[str]] = bad_apples
 
 
 class Banana(_serialization.Model):
@@ -119,9 +119,9 @@ class Banana(_serialization.Model):
         :paramtype expiration: ~datetime.datetime
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.flavor = flavor
-        self.expiration = expiration
+        self.name: Optional[str] = name
+        self.flavor: Optional[str] = flavor
+        self.expiration: Optional[datetime.datetime] = expiration
 
 
 class Blob(_serialization.Model):
@@ -180,11 +180,11 @@ class Blob(_serialization.Model):
         :paramtype metadata: dict[str, str]
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.deleted = deleted
-        self.snapshot = snapshot
-        self.properties = properties
-        self.metadata = metadata
+        self.name: str = name
+        self.deleted: bool = deleted
+        self.snapshot: str = snapshot
+        self.properties: "_models.BlobProperties" = properties
+        self.metadata: Optional[Dict[str, str]] = metadata
 
 
 class BlobPrefix(_serialization.Model):
@@ -210,7 +210,7 @@ class BlobPrefix(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.name = name
+        self.name: str = name
 
 
 class BlobProperties(_serialization.Model):
@@ -410,34 +410,34 @@ class BlobProperties(_serialization.Model):
         :paramtype archive_status: str or ~xmlservice.models.ArchiveStatus
         """
         super().__init__(**kwargs)
-        self.last_modified = last_modified
-        self.etag = etag
-        self.content_length = content_length
-        self.content_type = content_type
-        self.content_encoding = content_encoding
-        self.content_language = content_language
-        self.content_md5 = content_md5
-        self.content_disposition = content_disposition
-        self.cache_control = cache_control
-        self.blob_sequence_number = blob_sequence_number
-        self.blob_type = blob_type
-        self.lease_status = lease_status
-        self.lease_state = lease_state
-        self.lease_duration = lease_duration
-        self.copy_id = copy_id
-        self.copy_status = copy_status
-        self.copy_source = copy_source
-        self.copy_progress = copy_progress
-        self.copy_completion_time = copy_completion_time
-        self.copy_status_description = copy_status_description
-        self.server_encrypted = server_encrypted
-        self.incremental_copy = incremental_copy
-        self.destination_snapshot = destination_snapshot
-        self.deleted_time = deleted_time
-        self.remaining_retention_days = remaining_retention_days
-        self.access_tier = access_tier
-        self.access_tier_inferred = access_tier_inferred
-        self.archive_status = archive_status
+        self.last_modified: datetime.datetime = last_modified
+        self.etag: str = etag
+        self.content_length: Optional[int] = content_length
+        self.content_type: Optional[str] = content_type
+        self.content_encoding: Optional[str] = content_encoding
+        self.content_language: Optional[str] = content_language
+        self.content_md5: Optional[str] = content_md5
+        self.content_disposition: Optional[str] = content_disposition
+        self.cache_control: Optional[str] = cache_control
+        self.blob_sequence_number: Optional[int] = blob_sequence_number
+        self.blob_type: Optional[Union[str, "_models.BlobType"]] = blob_type
+        self.lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = lease_status
+        self.lease_state: Optional[Union[str, "_models.LeaseStateType"]] = lease_state
+        self.lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = lease_duration
+        self.copy_id: Optional[str] = copy_id
+        self.copy_status: Optional[Union[str, "_models.CopyStatusType"]] = copy_status
+        self.copy_source: Optional[str] = copy_source
+        self.copy_progress: Optional[str] = copy_progress
+        self.copy_completion_time: Optional[datetime.datetime] = copy_completion_time
+        self.copy_status_description: Optional[str] = copy_status_description
+        self.server_encrypted: Optional[bool] = server_encrypted
+        self.incremental_copy: Optional[bool] = incremental_copy
+        self.destination_snapshot: Optional[str] = destination_snapshot
+        self.deleted_time: Optional[datetime.datetime] = deleted_time
+        self.remaining_retention_days: Optional[int] = remaining_retention_days
+        self.access_tier: Optional[Union[str, "_models.AccessTier"]] = access_tier
+        self.access_tier_inferred: Optional[bool] = access_tier_inferred
+        self.archive_status: Optional[Union[str, "_models.ArchiveStatus"]] = archive_status
 
 
 class Blobs(_serialization.Model):
@@ -468,8 +468,8 @@ class Blobs(_serialization.Model):
         :paramtype blob: list[~xmlservice.models.Blob]
         """
         super().__init__(**kwargs)
-        self.blob_prefix = blob_prefix
-        self.blob = blob
+        self.blob_prefix: Optional[List["_models.BlobPrefix"]] = blob_prefix
+        self.blob: Optional[List["_models.Blob"]] = blob
 
 
 class ComplexTypeNoMeta(_serialization.Model):
@@ -489,7 +489,7 @@ class ComplexTypeNoMeta(_serialization.Model):
         :paramtype id: str
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[str] = id
 
 
 class ComplexTypeWithMeta(_serialization.Model):
@@ -510,7 +510,7 @@ class ComplexTypeWithMeta(_serialization.Model):
         :paramtype id: str
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[str] = id
 
 
 class Container(_serialization.Model):
@@ -554,9 +554,9 @@ class Container(_serialization.Model):
         :paramtype metadata: dict[str, str]
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.properties = properties
-        self.metadata = metadata
+        self.name: str = name
+        self.properties: "_models.ContainerProperties" = properties
+        self.metadata: Optional[Dict[str, str]] = metadata
 
 
 class ContainerProperties(_serialization.Model):
@@ -620,12 +620,12 @@ class ContainerProperties(_serialization.Model):
         :paramtype public_access: str or ~xmlservice.models.PublicAccessType
         """
         super().__init__(**kwargs)
-        self.last_modified = last_modified
-        self.etag = etag
-        self.lease_status = lease_status
-        self.lease_state = lease_state
-        self.lease_duration = lease_duration
-        self.public_access = public_access
+        self.last_modified: datetime.datetime = last_modified
+        self.etag: str = etag
+        self.lease_status: Optional[Union[str, "_models.LeaseStatusType"]] = lease_status
+        self.lease_state: Optional[Union[str, "_models.LeaseStateType"]] = lease_state
+        self.lease_duration: Optional[Union[str, "_models.LeaseDurationType"]] = lease_duration
+        self.public_access: Optional[Union[str, "_models.PublicAccessType"]] = public_access
 
 
 class CorsRule(_serialization.Model):
@@ -704,11 +704,11 @@ class CorsRule(_serialization.Model):
         :paramtype max_age_in_seconds: int
         """
         super().__init__(**kwargs)
-        self.allowed_origins = allowed_origins
-        self.allowed_methods = allowed_methods
-        self.allowed_headers = allowed_headers
-        self.exposed_headers = exposed_headers
-        self.max_age_in_seconds = max_age_in_seconds
+        self.allowed_origins: str = allowed_origins
+        self.allowed_methods: str = allowed_methods
+        self.allowed_headers: str = allowed_headers
+        self.exposed_headers: str = exposed_headers
+        self.max_age_in_seconds: int = max_age_in_seconds
 
 
 class Error(_serialization.Model):
@@ -733,8 +733,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class JSONInput(_serialization.Model):
@@ -754,7 +754,7 @@ class JSONInput(_serialization.Model):
         :paramtype id: int
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[int] = id
 
 
 class JSONOutput(_serialization.Model):
@@ -774,7 +774,7 @@ class JSONOutput(_serialization.Model):
         :paramtype id: int
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[int] = id
 
 
 class ListBlobsResponse(_serialization.Model):
@@ -854,14 +854,14 @@ class ListBlobsResponse(_serialization.Model):
         :paramtype next_marker: str
         """
         super().__init__(**kwargs)
-        self.service_endpoint = service_endpoint
-        self.container_name = container_name
-        self.prefix = prefix
-        self.marker = marker
-        self.max_results = max_results
-        self.delimiter = delimiter
-        self.blobs = blobs
-        self.next_marker = next_marker
+        self.service_endpoint: Optional[str] = service_endpoint
+        self.container_name: str = container_name
+        self.prefix: str = prefix
+        self.marker: str = marker
+        self.max_results: int = max_results
+        self.delimiter: str = delimiter
+        self.blobs: "_models.Blobs" = blobs
+        self.next_marker: str = next_marker
 
 
 class ListContainersResponse(_serialization.Model):
@@ -926,12 +926,12 @@ class ListContainersResponse(_serialization.Model):
         :paramtype next_marker: str
         """
         super().__init__(**kwargs)
-        self.service_endpoint = service_endpoint
-        self.prefix = prefix
-        self.marker = marker
-        self.max_results = max_results
-        self.containers = containers
-        self.next_marker = next_marker
+        self.service_endpoint: str = service_endpoint
+        self.prefix: str = prefix
+        self.marker: Optional[str] = marker
+        self.max_results: int = max_results
+        self.containers: Optional[List["_models.Container"]] = containers
+        self.next_marker: str = next_marker
 
 
 class Logging(_serialization.Model):
@@ -990,11 +990,11 @@ class Logging(_serialization.Model):
         :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
         """
         super().__init__(**kwargs)
-        self.version = version
-        self.delete = delete
-        self.read = read
-        self.write = write
-        self.retention_policy = retention_policy
+        self.version: str = version
+        self.delete: bool = delete
+        self.read: bool = read
+        self.write: bool = write
+        self.retention_policy: "_models.RetentionPolicy" = retention_policy
 
 
 class Metrics(_serialization.Model):
@@ -1045,10 +1045,10 @@ class Metrics(_serialization.Model):
         :paramtype retention_policy: ~xmlservice.models.RetentionPolicy
         """
         super().__init__(**kwargs)
-        self.version = version
-        self.enabled = enabled
-        self.include_apis = include_apis
-        self.retention_policy = retention_policy
+        self.version: Optional[str] = version
+        self.enabled: bool = enabled
+        self.include_apis: Optional[bool] = include_apis
+        self.retention_policy: Optional["_models.RetentionPolicy"] = retention_policy
 
 
 class ModelWithByteProperty(_serialization.Model):
@@ -1068,7 +1068,7 @@ class ModelWithByteProperty(_serialization.Model):
         :paramtype bytes: bytes
         """
         super().__init__(**kwargs)
-        self.bytes = bytes
+        self.bytes: Optional[bytes] = bytes
 
 
 class ModelWithUrlProperty(_serialization.Model):
@@ -1088,7 +1088,7 @@ class ModelWithUrlProperty(_serialization.Model):
         :paramtype url: str
         """
         super().__init__(**kwargs)
-        self.url = url
+        self.url: Optional[str] = url
 
 
 class ObjectWithXMsTextProperty(_serialization.Model):
@@ -1114,8 +1114,8 @@ class ObjectWithXMsTextProperty(_serialization.Model):
         :paramtype content: str
         """
         super().__init__(**kwargs)
-        self.language = language
-        self.content = content
+        self.language: Optional[str] = language
+        self.content: Optional[str] = content
 
 
 class RetentionPolicy(_serialization.Model):
@@ -1151,8 +1151,8 @@ class RetentionPolicy(_serialization.Model):
         :paramtype days: int
         """
         super().__init__(**kwargs)
-        self.enabled = enabled
-        self.days = days
+        self.enabled: bool = enabled
+        self.days: Optional[int] = days
 
 
 class RootWithRefAndMeta(_serialization.Model):
@@ -1183,8 +1183,8 @@ class RootWithRefAndMeta(_serialization.Model):
         :paramtype something: str
         """
         super().__init__(**kwargs)
-        self.ref_to_model = ref_to_model
-        self.something = something
+        self.ref_to_model: Optional["_models.ComplexTypeWithMeta"] = ref_to_model
+        self.something: Optional[str] = something
 
 
 class RootWithRefAndNoMeta(_serialization.Model):
@@ -1215,8 +1215,8 @@ class RootWithRefAndNoMeta(_serialization.Model):
         :paramtype something: str
         """
         super().__init__(**kwargs)
-        self.ref_to_model = ref_to_model
-        self.something = something
+        self.ref_to_model: Optional["_models.ComplexTypeNoMeta"] = ref_to_model
+        self.something: Optional[str] = something
 
 
 class SignedIdentifier(_serialization.Model):
@@ -1251,8 +1251,8 @@ class SignedIdentifier(_serialization.Model):
         :paramtype access_policy: ~xmlservice.models.AccessPolicy
         """
         super().__init__(**kwargs)
-        self.id = id
-        self.access_policy = access_policy
+        self.id: str = id
+        self.access_policy: "_models.AccessPolicy" = access_policy
 
 
 class Slide(_serialization.Model):
@@ -1290,9 +1290,9 @@ class Slide(_serialization.Model):
         :paramtype items: list[str]
         """
         super().__init__(**kwargs)
-        self.type = type
-        self.title = title
-        self.items = items
+        self.type: Optional[str] = type
+        self.title: Optional[str] = title
+        self.items: Optional[List[str]] = items
 
 
 class Slideshow(_serialization.Model):
@@ -1336,10 +1336,10 @@ class Slideshow(_serialization.Model):
         :paramtype slides: list[~xmlservice.models.Slide]
         """
         super().__init__(**kwargs)
-        self.title = title
-        self.date = date
-        self.author = author
-        self.slides = slides
+        self.title: Optional[str] = title
+        self.date: Optional[str] = date
+        self.author: Optional[str] = author
+        self.slides: Optional[List["_models.Slide"]] = slides
 
 
 class StorageServiceProperties(_serialization.Model):
@@ -1402,9 +1402,9 @@ class StorageServiceProperties(_serialization.Model):
         :paramtype delete_retention_policy: ~xmlservice.models.RetentionPolicy
         """
         super().__init__(**kwargs)
-        self.logging = logging
-        self.hour_metrics = hour_metrics
-        self.minute_metrics = minute_metrics
-        self.cors = cors
-        self.default_service_version = default_service_version
-        self.delete_retention_policy = delete_retention_policy
+        self.logging: Optional["_models.Logging"] = logging
+        self.hour_metrics: Optional["_models.Metrics"] = hour_metrics
+        self.minute_metrics: Optional["_models.Metrics"] = minute_metrics
+        self.cors: Optional[List["_models.CorsRule"]] = cors
+        self.default_service_version: Optional[str] = default_service_version
+        self.delete_retention_policy: Optional["_models.RetentionPolicy"] = delete_retention_policy

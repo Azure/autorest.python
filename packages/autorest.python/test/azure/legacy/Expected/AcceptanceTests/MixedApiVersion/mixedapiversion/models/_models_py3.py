@@ -46,8 +46,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):  # pylint: disable=name-too-long
@@ -73,7 +73,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):  
         :paramtype foo_client_request_id: str
         """
         super().__init__(**kwargs)
-        self.foo_client_request_id = foo_client_request_id
+        self.foo_client_request_id: str = foo_client_request_id
 
 
 class OdataFilter(_serialization.Model):
@@ -104,5 +104,5 @@ class OdataFilter(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id = id
-        self.name = name
+        self.id: Optional[int] = id
+        self.name: Optional[str] = name

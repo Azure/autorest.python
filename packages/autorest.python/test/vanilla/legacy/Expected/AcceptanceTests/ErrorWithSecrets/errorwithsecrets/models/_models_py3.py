@@ -79,12 +79,12 @@ class Error(_serialization.Model):
         :paramtype innererror: ~errorwithsecrets.models.InnerError
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.code = code
-        self.message = message
-        self.target = target
-        self.details = details
-        self.innererror = innererror
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.code: Union[str, "_models.ErrorCode"] = code
+        self.message: str = message
+        self.target: Optional[str] = target
+        self.details: Optional[List["_models.Error"]] = details
+        self.innererror: Optional["_models.InnerError"] = innererror
 
 
 class ErrorResponse(_serialization.Model):
@@ -119,8 +119,8 @@ class ErrorResponse(_serialization.Model):
         :paramtype error: ~errorwithsecrets.models.Error
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.error = error
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.error: "_models.Error" = error
 
 
 class InnerError(_serialization.Model):
@@ -178,10 +178,10 @@ class InnerError(_serialization.Model):
         :paramtype innererror: ~errorwithsecrets.models.InnerError
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.code = code
-        self.message = message
-        self.innererror = innererror
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.code: Union[str, "_models.InnerErrorCode"] = code
+        self.message: str = message
+        self.innererror: Optional["_models.InnerError"] = innererror
 
 
 class SecretResponse(_serialization.Model):
@@ -213,5 +213,5 @@ class SecretResponse(_serialization.Model):
         :paramtype value: str
         """
         super().__init__(**kwargs)
-        self.key = key
-        self.value = value
+        self.key: str = key
+        self.value: str = value

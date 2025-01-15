@@ -33,8 +33,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.code = code
-        self.message = message
+        self.code: Optional[int] = code
+        self.message: Optional[str] = message
 
 
 class SampleResourceGroup(_serialization.Model):
@@ -59,5 +59,5 @@ class SampleResourceGroup(_serialization.Model):
         :paramtype location: str
         """
         super().__init__(**kwargs)
-        self.name = name
-        self.location = location
+        self.name: Optional[str] = name
+        self.location: Optional[str] = location

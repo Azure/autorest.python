@@ -59,10 +59,10 @@ class PetAPTrue(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
-        self.status = None
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.id: int = id
+        self.name: Optional[str] = name
+        self.status: Optional[bool] = None
 
 
 class CatAPTrue(PetAPTrue):
@@ -119,7 +119,7 @@ class CatAPTrue(PetAPTrue):
         :paramtype friendly: bool
         """
         super().__init__(additional_properties=additional_properties, id=id, name=name, **kwargs)
-        self.friendly = friendly
+        self.friendly: Optional[bool] = friendly
 
 
 class Error(_serialization.Model):
@@ -144,8 +144,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class PetAPInProperties(_serialization.Model):
@@ -194,10 +194,10 @@ class PetAPInProperties(_serialization.Model):
         :paramtype additional_properties: dict[str, float]
         """
         super().__init__(**kwargs)
-        self.id = id
-        self.name = name
-        self.status = None
-        self.additional_properties = additional_properties
+        self.id: int = id
+        self.name: Optional[str] = name
+        self.status: Optional[bool] = None
+        self.additional_properties: Optional[Dict[str, float]] = additional_properties
 
 
 class PetAPInPropertiesWithAPString(_serialization.Model):
@@ -261,12 +261,12 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         :paramtype additional_properties1: dict[str, float]
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
-        self.status = None
-        self.odata_location = odata_location
-        self.additional_properties1 = additional_properties1
+        self.additional_properties: Optional[Dict[str, str]] = additional_properties
+        self.id: int = id
+        self.name: Optional[str] = name
+        self.status: Optional[bool] = None
+        self.odata_location: str = odata_location
+        self.additional_properties1: Optional[Dict[str, float]] = additional_properties1
 
 
 class PetAPObject(_serialization.Model):
@@ -317,10 +317,10 @@ class PetAPObject(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
-        self.status = None
+        self.additional_properties: Optional[Dict[str, Any]] = additional_properties
+        self.id: int = id
+        self.name: Optional[str] = name
+        self.status: Optional[bool] = None
 
 
 class PetAPString(_serialization.Model):
@@ -371,7 +371,7 @@ class PetAPString(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.additional_properties = additional_properties
-        self.id = id
-        self.name = name
-        self.status = None
+        self.additional_properties: Optional[Dict[str, str]] = additional_properties
+        self.id: int = id
+        self.name: Optional[str] = name
+        self.status: Optional[bool] = None

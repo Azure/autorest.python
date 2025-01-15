@@ -33,8 +33,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class Widget(_serialization.Model):
@@ -59,5 +59,5 @@ class Widget(_serialization.Model):
         :paramtype string: str
         """
         super().__init__(**kwargs)
-        self.integer = integer
-        self.string = string
+        self.integer: Optional[int] = integer
+        self.string: Optional[str] = string

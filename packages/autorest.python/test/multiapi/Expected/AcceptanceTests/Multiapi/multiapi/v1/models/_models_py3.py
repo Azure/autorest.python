@@ -36,8 +36,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class PagingResult(_serialization.Model):
@@ -64,8 +64,8 @@ class PagingResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.values = values
-        self.next_link = next_link
+        self.values: Optional[List["_models.Product"]] = values
+        self.next_link: Optional[str] = next_link
 
 
 class Product(_serialization.Model):
@@ -85,7 +85,7 @@ class Product(_serialization.Model):
         :paramtype id: int
         """
         super().__init__(**kwargs)
-        self.id = id
+        self.id: Optional[int] = id
 
 
 class TestLroAndPagingOptions(_serialization.Model):
@@ -112,5 +112,5 @@ class TestLroAndPagingOptions(_serialization.Model):
         :paramtype timeout: int
         """
         super().__init__(**kwargs)
-        self.maxresults = maxresults
-        self.timeout = timeout
+        self.maxresults: Optional[int] = maxresults
+        self.timeout: int = timeout

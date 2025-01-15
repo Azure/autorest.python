@@ -33,8 +33,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status = status
-        self.message = message
+        self.status: Optional[int] = status
+        self.message: Optional[str] = message
 
 
 class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(
@@ -69,8 +69,8 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
         :paramtype file_name: str
         """
         super().__init__(**kwargs)
-        self.file_content = file_content
-        self.file_name = file_name
+        self.file_content: IO[bytes] = file_content
+        self.file_name: str = file_name
 
 
 class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(
@@ -98,4 +98,4 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
         :paramtype file_content: list[IO[bytes]]
         """
         super().__init__(**kwargs)
-        self.file_content = file_content
+        self.file_content: List[IO[bytes]] = file_content

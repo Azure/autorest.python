@@ -37,7 +37,7 @@ class Input(_serialization.Model):
         :paramtype hello: str
         """
         super().__init__(**kwargs)
-        self.hello = hello
+        self.hello: str = hello
 
 
 class Product(_serialization.Model):
@@ -63,7 +63,7 @@ class Product(_serialization.Model):
         :paramtype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
         """
         super().__init__(**kwargs)
-        self.received = received
+        self.received: Union[str, "_models.ProductReceived"] = received
 
 
 class LROProduct(Product):
@@ -97,7 +97,7 @@ class LROProduct(Product):
         :paramtype provisioning_state: str
         """
         super().__init__(received=received, **kwargs)
-        self.provisioning_state = provisioning_state
+        self.provisioning_state: str = provisioning_state
 
 
 class ProductResult(_serialization.Model):
@@ -124,5 +124,5 @@ class ProductResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.values = values
-        self.next_link = next_link
+        self.values: Optional[List["_models.Product"]] = values
+        self.next_link: Optional[str] = next_link

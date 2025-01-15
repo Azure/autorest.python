@@ -34,4 +34,4 @@ class AvailabilitySetUpdateParameters(_serialization.Model):
         :paramtype tags: dict[str, str]
         """
         super().__init__(**kwargs)
-        self.tags = tags
+        self.tags: Dict[str, str] = tags
