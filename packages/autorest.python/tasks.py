@@ -295,7 +295,7 @@ def _run_autorest(cmds, debug):
     if len(cmds) == 1:
         success = _run_single_autorest(cmds[0], debug=debug)
     else:
-        # Execute actual taks in parallel
+        # Execute actual tasks in parallel
         with Pool() as pool:
             result = pool.map(_run_single_autorest, cmds)
         success = all(result)
@@ -512,7 +512,7 @@ def _multiapi_command_line(location, debug):
 def regenerate_multiapi(c, debug=False, swagger_name="test"):
     # being hacky: making default swagger_name 'test', since it appears in each spec name
     available_specifications = [
-        # create basic multiapi client (package-name=multapi)
+        # create basic multiapi client (package-name=multiapi)
         "test/multiapi/specification/multiapi/README.md",
         # create multiapi client with submodule (package-name=multiapi#submodule)
         "test/multiapi/specification/multiapiwithsubmodule/README.md",
@@ -524,11 +524,11 @@ def regenerate_multiapi(c, debug=False, swagger_name="test"):
         "test/multiapi/specification/multiapidataplane/README.md",
         # multiapi client with custom base url (package-name=multiapicustombaseurl)
         "test/multiapi/specification/multiapicustombaseurl/README.md",
-        # create multiapi client with security definition (package-name=multapisecurity)
+        # create multiapi client with security definition (package-name=multiapisecurity)
         "test/multiapi/specification/multiapisecurity/README.md",
         # create multiapi client with keyword only params
         "test/multiapi/specification/multiapikeywordonly/README.md",
-        # create basic multiapi client (package-name=multapicombiner)
+        # create basic multiapi client (package-name=multiapicombiner)
         "test/multiapi/specification/multiapicombiner/README.md",
     ]
 

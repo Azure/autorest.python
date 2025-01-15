@@ -49,7 +49,7 @@ def test_send_request_with_body_get_model_deserialize():
 
     deserialized = response.json()
     assert 2 == deserialized["id"]
-    assert "Siameeee" == deserialized["name"]
+    assert "Siamese" == deserialized["name"]
     assert -1 == deserialized["hates"][1]["id"]
     assert "Tomato" == deserialized["hates"][1]["name"]
 
@@ -70,7 +70,7 @@ def test_send_request_with_stream_get_direct_json():
     data = b"".join([chunk for chunk in response.iter_bytes()]).decode("utf-8")
     json_response = json.loads(data)
     assert 2 == json_response["id"]
-    assert "Siameeee" == json_response["name"]
+    assert "Siamese" == json_response["name"]
     assert -1 == json_response["hates"][1]["id"]
     assert "Tomato" == json_response["hates"][1]["name"]
 
@@ -82,7 +82,7 @@ def test_send_request_with_body_put_json_dumps():
 
     siamese_body = {
         "id": 2,
-        "name": "Siameeee",
+        "name": "Siamese",
         "color": "green",
         "hates": [{"id": 1, "name": "Potato", "food": "tomato"}, {"id": -1, "name": "Tomato", "food": "french fries"}],
         "breed": "persian",
@@ -177,6 +177,6 @@ def test_send_request_full_url():
     response.raise_for_status()
     deserialized = response.json()
     assert 2 == deserialized["id"]
-    assert "Siameeee" == deserialized["name"]
+    assert "Siamese" == deserialized["name"]
     assert -1 == deserialized["hates"][1]["id"]
     assert "Tomato" == deserialized["hates"][1]["name"]

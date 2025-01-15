@@ -492,7 +492,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         *,
         is_overload: bool = False,
     ) -> Dict[str, Any]:
-        in_overriden = body_parameter["type"]["type"] == "combined" if body_parameter else False
+        in_overridden = body_parameter["type"]["type"] == "combined" if body_parameter else False
         abstract = False
         if body_parameter and (body_parameter.get("entries") or len(body_parameter["type"].get("types", [])) > 2):
             # this means it's formdata or urlencoded, or there are more than 2 types of body
@@ -507,7 +507,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                 yaml_data,
                 body_parameter,
                 in_overload=is_overload,
-                in_overriden=in_overriden,
+                in_overridden=in_overridden,
             ),
             "bodyParameter": body_parameter,
             "responses": [update_response(r) for r in yaml_data.get("responses", [])],
@@ -723,7 +723,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         request_media_types: List[str],
         *,
         in_overload: bool = False,
-        in_overriden: bool = False,
+        in_overridden: bool = False,
     ) -> Dict[str, Any]:
         # override content type type to string
         if not body_parameter:
@@ -737,14 +737,14 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         description = param["language"]["default"]["description"]
         if description and description[-1] != ".":
             description += "."
-        if not (in_overriden or in_overload):
+        if not (in_overridden or in_overload):
             param["inDocstring"] = False
         elif in_overload:
             description += " Content type parameter for " f"{get_body_type_for_description(body_parameter)} body."
         if not in_overload or (body_parameter["type"]["type"] == "binary" and len(request_media_types) > 1):
             content_types = "'" + "', '".join(request_media_types) + "'"
             description += f" Known values are: {content_types}."
-        if not in_overload and not in_overriden:
+        if not in_overload and not in_overridden:
             param["clientDefaultValue"] = body_parameter["defaultContentType"]
         param["language"]["default"]["description"] = description
         return param
@@ -758,7 +758,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         request_media_types: List[str],
         *,
         in_overload: bool = False,
-        in_overriden: bool = False,
+        in_overridden: bool = False,
     ) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         has_flattened_body = body_parameter and body_parameter.get("flattened")
@@ -785,9 +785,9 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                     body_parameter,
                     request_media_types,
                     in_overload=in_overload,
-                    in_overriden=in_overriden,
+                    in_overridden=in_overridden,
                 )
-            updated_param = self.update_parameter(param, in_overload=in_overload, in_overriden=in_overriden)
+            updated_param = self.update_parameter(param, in_overload=in_overload, in_overridden=in_overridden)
             retval.append(updated_param)
         return retval
 
@@ -797,7 +797,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         body_parameter: Optional[Dict[str, Any]],
         *,
         in_overload: bool = False,
-        in_overriden: bool = False,
+        in_overridden: bool = False,
     ) -> List[Dict[str, Any]]:
         retval: List[Dict[str, Any]] = []
         seen_client_names: Set[str] = set()
@@ -812,7 +812,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                 groupers,
                 request_media_types,
                 in_overload=in_overload,
-                in_overriden=in_overriden,
+                in_overridden=in_overridden,
             )
         )
         # now we handle content type and accept headers.
@@ -831,7 +831,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                     groupers,
                     request_media_types,
                     in_overload=in_overload,
-                    in_overriden=in_overriden,
+                    in_overridden=in_overridden,
                 )
             )
         all_params = (retval + [body_parameter]) if body_parameter else retval
@@ -853,7 +853,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         *,
         override_client_name: Optional[str] = None,
         in_overload: bool = False,
-        in_overriden: bool = False,
+        in_overridden: bool = False,
     ) -> Dict[str, Any]:
         param_base = self.update_parameter_base(yaml_data, override_client_name=override_client_name)
         type = get_type(yaml_data["schema"])
@@ -869,7 +869,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
                 "inOverload": in_overload,
                 "skipUrlEncoding": yaml_data.get("extensions", {}).get("x-ms-skip-url-encoding", False),
                 "inDocstring": yaml_data.get("inDocstring", True),
-                "inOverriden": in_overriden,
+                "inOverridden": in_overridden,
                 "delimiter": update_parameter_delimiter(protocol_http.get("style")),
             }
         )

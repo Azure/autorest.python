@@ -323,7 +323,7 @@ class TestHttp(object):
         self.assert_status(200, client.http_redirects.get302)
         self.assert_status(requests.codes.found, client.http_redirects.patch302)
 
-    def test_redicret_to_303(self, client):
+    def test_redirect_to_303(self, client):
         self.assert_status(200, client.http_redirects.post303)
 
     def test_redirect_to_307(self, client):

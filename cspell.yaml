@@ -1,0 +1,164 @@
+version: "0.2"
+language: en
+allowCompoundWords: true
+dictionaries:
+  - node
+  - typescript
+  - python
+words:
+  - aiohttp
+  - apim
+  - arrayofresources
+  - autorest
+  - azsdk
+  - azuresdk
+  - buongiorno
+  - byversion
+  - cadl
+  - clientenumversiontolerant
+  - codegen
+  - collisons
+  - combinedtype
+  - commitish
+  - contoso
+  - corehttp
+  - ctxt
+  - deduplicator
+  - dictionaryofresources
+  - dotenv
+  - dpgcustomizationcustomizedversiontolerant
+  - dpgcustomizationinitialversiontolerant
+  - dpgservicedriveninitialversiontolerant
+  - dpgservicedrivenupdateoneversiontolerant
+  - dpgtestmodelsversiontolerant
+  - eastus
+  - enumdiscriminator
+  - espt
+  - extensibleenumsswagger
+  - extensibleenumsswaggerversiontolerant
+  - fspath
+  - getpgid
+  - giacamo
+  - hdvcmxk
+  - hira
+  - headasbooleanfalse
+  - headasbooleantrue
+  - innie
+  - iohttp
+  - iswild
+  - ivar
+  - killpg
+  - kwarg
+  - levelno
+  - linuxnextvmimage
+  - linuxos
+  - linuxvmimage
+  - lmazuel
+  - lropaging
+  - lropagingversiontolerant
+  - lros
+  - lrosads
+  - lroversiontolerant
+  - lrowithparameterizedendpoints
+  - lrowithparameterizedendpointsversiontolerant
+  - macvmimage
+  - mday
+  - mergepatchjsonversiontolerant
+  - mgmt
+  - mgmtplane
+  - mros
+  - mspaint
+  - msrc
+  - multiapi
+  - multiapiclient
+  - multiapinoasync
+  - multiapisecurity
+  - mutli
+  - myenv
+  - myoption
+  - mypythonfile
+  - myuser
+  - nexted
+  - nihao
+  - noprop
+  - nspkg
+  - nonstringenums
+  - nonstringenumsversiontolerant
+  - nooperations
+  - nopolling
+  - npmjs
+  - odata
+  - psscriptanalyzer
+  - ptvsd
+  - pylint
+  - pylintrc
+  - pygen
+  - qnas
+  - ragrs
+  - rcfile
+  - recommonmark
+  - reqs
+  - retrys
+  - roundtrippable
+  - rscc
+  - rscd
+  - rsce
+  - rscl
+  - rsct
+  - rtype
+  - sads
+  - scooby
+  - sdkcore
+  - securityaadswagger
+  - securityaadswaggercredentialflag
+  - securityaadswaggerversiontolerant
+  - siameeee
+  - spheredpg
+  - subclient
+  - subnamespace
+  - subscriptionidapiversion
+  - subscriptionidapiversionversiontolerant
+  - tcgc
+  - tfft
+  - tikka
+  - toctree
+  - undoc
+  - venv
+  - venvtools
+  - wday
+  - westus
+  - windowsvmimage
+  - xmsclientrequestid
+  - xmserrorresponse
+  - xmserrorresponseversiontolerant
+  - yankovic
+  - zval
+ignorePaths:
+  - "**/node_modules/**"
+  - "**/dist/**"
+  - "**/coverage/**"
+  - "**/__pycache__/**"
+  - pnpm-lock.yaml
+  - .git/**
+  - .gitignore
+  - .vscode/**
+  - .github/CODEOWNERS
+  - "**/Expected/AcceptanceTests/**"
+  - "**/generated/**"
+  - "**/CHANGELOG.md"
+  - .prettierignore
+  - "**/.github/**"
+
+useGitignore: true
+enableGlobDot: true
+enableFiletypes:
+  - cadl
+patterns:
+  - name: cursortest
+    pattern: /(.*)┆(.*)/g
+  - name: Authorization_Basic
+    description: Ignore Base64 authorization tokens
+    pattern: "/Authorization: Basic\\s+\\S+/g"
+ignoreRegExpList:
+  - cursortest
+  - Authorization_Basic

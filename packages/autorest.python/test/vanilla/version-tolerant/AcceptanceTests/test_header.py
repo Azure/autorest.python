@@ -119,7 +119,7 @@ def test_enum(client, value_header):
     # We receive an empty string.
     # Starting msrest 0.4.22, we consider that if a string is not in the enum, this not
     # a Deserialization issue and we return the string.
-    # Here we now return empty string without failin **on purpose**
+    # Here we now return empty string without failing **on purpose**
     # with pytest.raises(DeserializationError):
     response = client.header.response_enum(scenario="null", cls=value_header)
     assert response == ""

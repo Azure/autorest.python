@@ -362,7 +362,7 @@ class TestHttp(object):
         await self.assert_status(requests.codes.found, client.http_redirects.patch302)
 
     @pytest.mark.asyncio
-    async def test_redicret_to_303(self, client):
+    async def test_redirect_to_303(self, client):
         await self.assert_status(200, client.http_redirects.post303)
 
     @pytest.mark.asyncio

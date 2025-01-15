@@ -12,7 +12,7 @@ from pathlib import Path
 
 
 class Channel(Enum):
-    # Information is considered the mildest of responses; not necesarily actionable.
+    # Information is considered the mildest of responses; not necessarily actionable.
     Information = "information"
 
     # Warnings are considered important for best practices, but not catastrophic in nature.
@@ -27,7 +27,7 @@ class Channel(Enum):
     # Verbose messages give the user additional clarity on the process.
     Verbose = "verbose"
 
-    # Catastrophic failure, likely abending the process.
+    # Catastrophic failure, likely ending the process.
     Fatal = "fatal"
 
 

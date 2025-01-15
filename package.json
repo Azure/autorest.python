@@ -14,6 +14,7 @@
     "clean": "pnpm -r run clean",
     "lint": "pnpm -r run lint",
     "format": "npx prettier **/*.ts --write",
+    "cspell": "cspell --no-progress .",
     "check-format": "npx prettier **/*.ts --check --end-of-line auto",
     "check-version-mismatch": "syncpack list-mismatches --types prod,peer",
     "fix-version-mismatch": "syncpack fix-mismatches",
@@ -42,7 +43,8 @@
     "prettier": "~3.3.3",
     "syncpack": "^13.0.0",
     "typescript": "~5.6.2",
-    "typescript-eslint": "^8.7.0"
+    "typescript-eslint": "^8.7.0",
+    "cspell": "^7.0.0"
   },
   "syncpack": {
     "dependencyTypes": [

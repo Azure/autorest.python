@@ -180,7 +180,7 @@ class TestModelDeserialization(unittest.TestCase):
         self.assertIn("Readonly", cm.output[0])
 
         with self.assertLogs("storage_models.serialization", level="WARNING") as cm:
-            MyModel(something="ioprez")  # Should log that this is unknown
+            MyModel(something="blah")  # Should log that this is unknown
         self.assertEqual(len(cm.output), 1)
         self.assertIn("not a known attribute", cm.output[0])
 
@@ -214,7 +214,7 @@ class TestModelDeserialization(unittest.TestCase):
 
         data = {
             "properties": {"platformUpdateDomainCount": 5, "platformFaultDomainCount": 3, "virtualMachines": []},
-            "id": "/subscriptions/abc-def-ghi-jklmnop/resourceGroups/test_mgmt_resource_test_resourcesea/providers/Microsoft.Compute/availabilitySets/pytest",
+            "id": "/subscriptions/abc-def-ghi-jklmnop/resourceGroups/test_mgmt_resource_test_resourcesea/providers/Microsoft.Compute/availabilitySets/pytest", # cspell:disable-line
             "name": "pytest",
             "type": "Microsoft.Compute/availabilitySets",
             "location": "westus",
@@ -440,7 +440,7 @@ class TestRuntimeSerialized(unittest.TestCase):
         }
         self.assertDictEqual(expected, serialized)
 
-        jsonable = json.dumps(testobj.as_dict())
+        json_obj = json.dumps(testobj.as_dict())
         expected = {
             "attr_a": "myid",
             "attr_b": 42,
@@ -450,9 +450,9 @@ class TestRuntimeSerialized(unittest.TestCase):
             "attr_f": "P1D",
             "attr_g": "RecursiveObject",
         }
-        self.assertDictEqual(expected, json.loads(jsonable))
+        self.assertDictEqual(expected, json.loads(json_obj))
 
-        jsonable = json.dumps(testobj.as_dict(key_transformer=last_restapi_key_transformer))
+        json_obj = json.dumps(testobj.as_dict(key_transformer=last_restapi_key_transformer))
         expected = {
             "id": "myid",
             "AttrB": 42,
@@ -462,9 +462,9 @@ class TestRuntimeSerialized(unittest.TestCase):
             "AttrF": "P1D",
             "AttrG": "RecursiveObject",
         }
-        self.assertDictEqual(expected, json.loads(jsonable))
+        self.assertDictEqual(expected, json.loads(json_obj))
 
-        jsonable = json.dumps(testobj.as_dict(key_transformer=lambda x, y, z: (x + "XYZ", z)))
+        json_obj = json.dumps(testobj.as_dict(key_transformer=lambda x, y, z: (x + "XYZ", z)))
         expected = {
             "attr_aXYZ": "myid",
             "attr_bXYZ": 42,
@@ -474,7 +474,7 @@ class TestRuntimeSerialized(unittest.TestCase):
             "attr_fXYZ": "P1D",
             "attr_gXYZ": "RecursiveObject",
         }
-        self.assertDictEqual(expected, json.loads(jsonable))
+        self.assertDictEqual(expected, json.loads(json_obj))
 
         def value_override(attr, attr_desc, value):
             key, value = last_restapi_key_transformer(attr, attr_desc, value)
@@ -482,7 +482,7 @@ class TestRuntimeSerialized(unittest.TestCase):
                 value += 1
             return key, value
 
-        jsonable = json.dumps(testobj.as_dict(key_transformer=value_override))
+        json_obj = json.dumps(testobj.as_dict(key_transformer=value_override))
         expected = {
             "id": "myid",
             "AttrB": 43,
@@ -492,7 +492,7 @@ class TestRuntimeSerialized(unittest.TestCase):
             "AttrF": "P1D",
             "AttrG": "RecursiveObject",
         }
-        self.assertDictEqual(expected, json.loads(jsonable))
+        self.assertDictEqual(expected, json.loads(json_obj))
 
     @pytest.mark.skip(
         "validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428"
@@ -500,7 +500,7 @@ class TestRuntimeSerialized(unittest.TestCase):
     def test_validate(self):
         # Assert not necessary, should not raise exception
         self.s.validate("simplestring", "StringForLog", pattern="^[a-z]+$")
-        self.s.validate("UTF8ééééé", "StringForLog", pattern=r"^[\w]+$")
+        self.s.validate("UTF8ééééé", "StringForLog", pattern=r"^[\w]+$") # cspell:disable-line
 
     @pytest.mark.skip(
         "validation is not priority: https://github.com/Azure/autorest.python/pull/2002#discussion_r1256223428"
@@ -791,7 +791,7 @@ class TestRuntimeSerialized(unittest.TestCase):
         list_obj._attribute_map = {"abc": {"key": "ABC", "type": "int"}}
         list_obj.abc = "123"
 
-        test_obj = type("CmplxTestObj", (Model,), {"_attribute_map": None, "_validation": {}, "test_list": None})
+        test_obj = type("ComplexTestObj", (Model,), {"_attribute_map": None, "_validation": {}, "test_list": None})
 
         test_obj._attribute_map = {"test_list": {"key": "_list", "type": "[ListObj]"}}
         test_obj.test_list = [list_obj]
@@ -1173,8 +1173,8 @@ class TestRuntimeSerialized(unittest.TestCase):
             _attribute_map = {
                 "attr_a": {"key": "attr_a", "type": "int"},
                 "attr_b": {"key": "id", "type": "int"},
-                "attr_c": {"key": "KeyC", "type": "int"},
-                "attr_d": {"key": "properties.KeyD", "type": "int"},
+                "attr_c": {"key": "Key_C", "type": "int"},
+                "attr_d": {"key": "properties.Key_D", "type": "int"},
             }
 
         old_dependencies = self.s.dependencies
@@ -1182,9 +1182,9 @@ class TestRuntimeSerialized(unittest.TestCase):
             "TestKeyTypeObj": TestKeyTypeObj,
         }
 
-        serialized = self.s.body({"attr_a": 1, "id": 2, "keyc": 3, "keyd": 4}, "TestKeyTypeObj")
+        serialized = self.s.body({"attr_a": 1, "id": 2, "key_c": 3, "key_d": 4}, "TestKeyTypeObj")
 
-        message = {"attr_a": 1, "id": 2, "KeyC": 3, "properties": {"KeyD": 4}}
+        message = {"attr_a": 1, "id": 2, "Key_C": 3, "properties": {"Key_D": 4}}
 
         self.assertEqual(serialized, message)
 
@@ -1557,18 +1557,18 @@ class TestRuntimeDeserialized(unittest.TestCase):
             _attribute_map = {
                 "attr_a": {"key": "attr_a", "type": "int"},
                 "attr_b": {"key": "id", "type": "int"},
-                "attr_c": {"key": "KeyC", "type": "int"},
-                "attr_d": {"key": "properties.KeyD", "type": "int"},
+                "attr_c": {"key": "Key_C", "type": "int"},
+                "attr_d": {"key": "properties.Key_D", "type": "int"},
             }
 
-        obj = TestKeyTypeObj.from_dict({"attr_a": 1, "id": 2, "keyc": 3, "keyd": 4})
+        obj = TestKeyTypeObj.from_dict({"attr_a": 1, "id": 2, "key_c": 3, "key_d": 4})
 
         self.assertEqual(1, obj.attr_a)
         self.assertEqual(2, obj.attr_b)
         self.assertEqual(3, obj.attr_c)
         self.assertEqual(4, obj.attr_d)
 
-        obj = TestKeyTypeObj.from_dict({"attr_a": 1, "id": 2, "keyc": 3, "properties": {"KeyD": 4}})
+        obj = TestKeyTypeObj.from_dict({"attr_a": 1, "id": 2, "key_c": 3, "properties": {"Key_D": 4}})
 
         self.assertEqual(1, obj.attr_a)
         self.assertEqual(2, obj.attr_b)
@@ -1579,7 +1579,7 @@ class TestRuntimeDeserialized(unittest.TestCase):
         # we decide to accept it with log warning
 
         obj = TestKeyTypeObj.from_dict(
-            {"attr_a": 1, "attr_b": 12, "id": 14, "keyc": 3, "keyd": 4}  # Conflict with "id"  # Conflict with "attr_b"
+            {"attr_a": 1, "attr_b": 12, "id": 14, "key_c": 3, "key_d": 4}  # Conflict with "id"  # Conflict with "attr_b"
         )
 
         self.assertEqual(1, obj.attr_a)
@@ -1887,12 +1887,12 @@ class TestRuntimeDeserialized(unittest.TestCase):
         class ListObj(Model):
             _attribute_map = {"abc": {"key": "ABC", "type": "int"}}
 
-        class CmplxTestObj(Model):
+        class ComplexTestObj(Model):
             _response_map = {}
             _attribute_map = {"attr_a": {"key": "id", "type": "[ListObj]"}}
 
         d = Deserializer({"ListObj": ListObj})
-        response = d(CmplxTestObj, json.dumps({"id": [{"ABC": "123"}]}), "application/json")
+        response = d(ComplexTestObj, json.dumps({"id": [{"ABC": "123"}]}), "application/json")
         deserialized_list = list(response.attr_a)
 
         self.assertIsInstance(deserialized_list[0], ListObj)
@@ -2408,9 +2408,9 @@ class TestRuntimeDeserialized(unittest.TestCase):
 
         self.assertEqual(obj.abc, TestEnum.val)
 
-        obj = deserializer("TestEnumObj", {"ABC": "azerty"})
+        obj = deserializer("TestEnumObj", {"ABC": "azerty"}) # cspell:disable-line
 
-        self.assertEqual(obj.abc, "azerty")
+        self.assertEqual(obj.abc, "azerty") # cspell:disable-line
 
         class TestEnum2(Enum):
             val2 = "Value"
@@ -2500,7 +2500,7 @@ class TestUrlEncoding(unittest.TestCase):
         result1 = s.url("resource_id", origin_url, "str", skip_quote=True)
         result2 = s.url("resource_id", origin_url, "str")
         self.assertEqual("/database/%7BObject.value%7D", result1)
-        self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2)
+        self.assertEqual("%2Fdatabase%2F%7BObject.value%7D", result2) # cspell:disable-line
 
 
 def test_deserialize_text():

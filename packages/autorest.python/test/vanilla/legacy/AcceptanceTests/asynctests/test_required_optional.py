@@ -143,11 +143,11 @@ class TestRequiredOptional(object):
             await client.explicit.post_required_class_property(None)
 
     @pytest.mark.asyncio
-    async def test_explict_put_optional_binary_body(self, client):
+    async def test_explicit_put_optional_binary_body(self, client):
         await client.explicit.put_optional_binary_body()
 
     @pytest.mark.asyncio
-    async def test_explict_put_required_binary_body(self, client):
+    async def test_explicit_put_required_binary_body(self, client):
         test_string = "Upload file test case"
         test_bytes = bytearray(test_string, encoding="utf-8")
         result = io.BytesIO()
