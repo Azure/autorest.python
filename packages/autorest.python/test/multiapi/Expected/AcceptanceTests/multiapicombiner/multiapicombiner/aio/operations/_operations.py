@@ -61,13 +61,13 @@ from ...operations._operations import build_multiapi_service_test_one_request
 class OperationGroupOneOperations:
     """
     
-    .. warning::
-        **DO NOT** instantiate this class directly.
+.. warning::
+    **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through
-        :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
-        :attr:`operation_group_one` attribute.
-    
+    Instead, you should access the following operations through
+    :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
+    :attr:`operation_group_one` attribute.
+
     """
     models = _models
 
@@ -278,13 +278,13 @@ class OperationGroupOneOperations:
 class OperationGroupTwoOperations:
     """
     
-    .. warning::
-        **DO NOT** instantiate this class directly.
+.. warning::
+    **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through
-        :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
-        :attr:`operation_group_two` attribute.
-    
+    Instead, you should access the following operations through
+    :class:`~multiapicombiner.v3.aio.MultiapiServiceClient`'s
+    :attr:`operation_group_two` attribute.
+
     """
     models = _models
 

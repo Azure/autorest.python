@@ -88,6 +88,7 @@ words:
   - nopolling
   - npmjs
   - odata
+  - overriden
   - psscriptanalyzer
   - ptvsd
   - pylint

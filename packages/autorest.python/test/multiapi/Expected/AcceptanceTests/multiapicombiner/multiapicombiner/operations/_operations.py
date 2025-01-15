@@ -106,13 +106,13 @@ def build_operation_group_one_test_operation_group_paging_request(  # pylint: di
 class OperationGroupOneOperations:
     """
     
-    .. warning::
-        **DO NOT** instantiate this class directly.
+.. warning::
+    **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through
-        :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
-        :attr:`operation_group_one` attribute.
-    
+    Instead, you should access the following operations through
+    :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
+    :attr:`operation_group_one` attribute.
+
     """
     models = _models
 
@@ -362,13 +362,13 @@ def build_operation_group_two_test_five_request(**kwargs: Any) -> HttpRequest:  
 class OperationGroupTwoOperations:
     """
     
-    .. warning::
-        **DO NOT** instantiate this class directly.
+.. warning::
+    **DO NOT** instantiate this class directly.
 
-        Instead, you should access the following operations through
-        :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
-        :attr:`operation_group_two` attribute.
-    
+    Instead, you should access the following operations through
+    :class:`~multiapicombiner.v3.MultiapiServiceClient`'s
+    :attr:`operation_group_two` attribute.
+
     """
     models = _models
 

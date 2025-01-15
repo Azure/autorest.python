@@ -2331,7 +2331,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> Iterable["_models.Product"]:
-        """A paging operation that returns a paging model whose item name is is overridden by
+        """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
         :return: An iterator like instance of either Product or the result of cls(response)

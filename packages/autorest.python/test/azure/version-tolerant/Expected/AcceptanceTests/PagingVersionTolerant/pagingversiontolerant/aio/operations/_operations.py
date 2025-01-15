@@ -2137,7 +2137,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
         self, **kwargs: Any
     ) -> AsyncIterable[JSON]:
-        """A paging operation that returns a paging model whose item name is is overridden by
+        """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 
         :return: An iterator like instance of JSON object
