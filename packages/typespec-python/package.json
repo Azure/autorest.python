@@ -30,13 +30,13 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
-    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
-    "lint": "tsx ./scripts/eng/lint.ts",
+    "install": "node ./dist/scripts/run-python3.js ./scripts/install.py",
+    "prepare": "node ./dist/scripts/run-python3.js ./scripts/prepare.py",
+    "lint": "node ./dist/scripts/eng/lint.js",
     "lint:fix": "eslint . --fix --ext .ts",
-    "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
-    "regenerate": "tsx ./scripts/eng/regenerate.ts",
-    "test": "tsx ./scripts/eng/run-tests.ts"
+    "format": "npx prettier **/*.ts --write && node ./dist/scripts/eng/format.js",
+    "regenerate": "node ./dist/scripts/eng/regenerate.js",
+    "test": "node ./dist/scripts/eng/run-tests.js"
   },
   "files": [
     "dist/**",
@@ -59,7 +59,6 @@
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
-    "tsx": "~4.19.1",
     "@typespec/http-client-python": "~0.6.5",
     "fs-extra": "~11.2.0"
   },
