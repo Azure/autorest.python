@@ -33,8 +33,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message
 
 
 class Product(_serialization.Model):
@@ -59,5 +59,5 @@ class Product(_serialization.Model):
         :paramtype string: str
         """
         super().__init__(**kwargs)
-        self.integer: Optional[int] = integer
-        self.string: Optional[str] = string
+        self.integer = integer
+        self.string = string

@@ -45,8 +45,8 @@ class OperationResult(_serialization.Model):
         :paramtype error: ~lro.models.OperationResultError
         """
         super().__init__(**kwargs)
-        self.status: Optional[Union[str, "_models.OperationResultStatus"]] = status
-        self.error: Optional["_models.OperationResultError"] = error
+        self.status = status
+        self.error = error
 
 
 class OperationResultError(_serialization.Model):
@@ -71,8 +71,8 @@ class OperationResultError(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.code: Optional[int] = code
-        self.message: Optional[str] = message
+        self.code = code
+        self.message = message
 
 
 class Resource(_serialization.Model):
@@ -116,8 +116,8 @@ class Resource(_serialization.Model):
         super().__init__(**kwargs)
         self.id: Optional[str] = None
         self.type: Optional[str] = None
-        self.tags: Optional[Dict[str, str]] = tags
-        self.location: Optional[str] = location
+        self.tags = tags
+        self.location = location
         self.name: Optional[str] = None
 
 
@@ -177,7 +177,7 @@ class Product(Resource):
         :paramtype provisioning_state: str
         """
         super().__init__(tags=tags, location=location, **kwargs)
-        self.provisioning_state: Optional[str] = provisioning_state
+        self.provisioning_state = provisioning_state
         self.provisioning_state_values: Optional[Union[str, "_models.ProductPropertiesProvisioningStateValues"]] = None
 
 
@@ -209,8 +209,8 @@ class Sku(_serialization.Model):
         :paramtype id: str
         """
         super().__init__(**kwargs)
-        self.name: Optional[str] = name
-        self.id: Optional[str] = id
+        self.name = name
+        self.id = id
 
 
 class SubResource(_serialization.Model):
@@ -268,7 +268,7 @@ class SubProduct(SubResource):
         :paramtype provisioning_state: str
         """
         super().__init__(**kwargs)
-        self.provisioning_state: Optional[str] = provisioning_state
+        self.provisioning_state = provisioning_state
         self.provisioning_state_values: Optional[Union[str, "_models.SubProductPropertiesProvisioningStateValues"]] = (
             None
         )

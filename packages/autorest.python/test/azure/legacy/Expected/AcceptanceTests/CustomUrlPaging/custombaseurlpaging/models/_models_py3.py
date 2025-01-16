@@ -36,8 +36,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message
 
 
 class Product(_serialization.Model):
@@ -57,7 +57,7 @@ class Product(_serialization.Model):
         :paramtype properties: ~custombaseurlpaging.models.ProductProperties
         """
         super().__init__(**kwargs)
-        self.properties: Optional["_models.ProductProperties"] = properties
+        self.properties = properties
 
 
 class ProductProperties(_serialization.Model):
@@ -88,8 +88,8 @@ class ProductProperties(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id: Optional[int] = id
-        self.name: Optional[str] = name
+        self.id = id
+        self.name = name
 
 
 class ProductResult(_serialization.Model):
@@ -116,5 +116,5 @@ class ProductResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.values: Optional[List["_models.Product"]] = values
-        self.next_link: Optional[str] = next_link
+        self.values = values
+        self.next_link = next_link

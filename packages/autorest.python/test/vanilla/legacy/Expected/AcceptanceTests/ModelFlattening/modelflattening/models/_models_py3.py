@@ -46,8 +46,8 @@ class BaseProduct(_serialization.Model):
         :paramtype description: str
         """
         super().__init__(**kwargs)
-        self.product_id: str = product_id
-        self.description: Optional[str] = description
+        self.product_id = product_id
+        self.description = description
 
 
 class Error(_serialization.Model):
@@ -84,9 +84,9 @@ class Error(_serialization.Model):
         :paramtype parent_error: ~modelflattening.models.Error
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
-        self.parent_error: Optional["_models.Error"] = parent_error
+        self.status = status
+        self.message = message
+        self.parent_error = parent_error
 
 
 class Resource(_serialization.Model):
@@ -130,8 +130,8 @@ class Resource(_serialization.Model):
         super().__init__(**kwargs)
         self.id: Optional[str] = None
         self.type: Optional[str] = None
-        self.tags: Optional[Dict[str, str]] = tags
-        self.location: Optional[str] = location
+        self.tags = tags
+        self.location = location
         self.name: Optional[str] = None
 
 
@@ -204,12 +204,12 @@ class FlattenedProduct(Resource):
         :paramtype provisioning_state: str
         """
         super().__init__(tags=tags, location=location, **kwargs)
-        self.p_name: Optional[str] = p_name
-        self.type_properties_type: Optional[str] = type_properties_type
+        self.p_name = p_name
+        self.type_properties_type = type_properties_type
         self.provisioning_state_values: Optional[
             Union[str, "_models.FlattenedProductPropertiesProvisioningStateValues"]
         ] = None
-        self.provisioning_state: Optional[str] = provisioning_state
+        self.provisioning_state = provisioning_state
 
 
 class FlattenParameterGroup(_serialization.Model):
@@ -287,14 +287,14 @@ class FlattenParameterGroup(_serialization.Model):
         :paramtype odata_value: str
         """
         super().__init__(**kwargs)
-        self.name: str = name
-        self.simple_body_product: Optional["_models.SimpleProduct"] = simple_body_product
-        self.product_id: str = product_id
-        self.description: Optional[str] = description
-        self.max_product_display_name: Optional[str] = max_product_display_name
-        self.capacity: Optional[Literal["Large"]] = capacity
-        self.generic_value: Optional[str] = generic_value
-        self.odata_value: Optional[str] = odata_value
+        self.name = name
+        self.simple_body_product = simple_body_product
+        self.product_id = product_id
+        self.description = description
+        self.max_product_display_name = max_product_display_name
+        self.capacity = capacity
+        self.generic_value = generic_value
+        self.odata_value = odata_value
 
 
 class GenericUrl(_serialization.Model):
@@ -314,7 +314,7 @@ class GenericUrl(_serialization.Model):
         :paramtype generic_value: str
         """
         super().__init__(**kwargs)
-        self.generic_value: Optional[str] = generic_value
+        self.generic_value = generic_value
 
 
 class ProductUrl(GenericUrl):
@@ -341,7 +341,7 @@ class ProductUrl(GenericUrl):
         :paramtype odata_value: str
         """
         super().__init__(generic_value=generic_value, **kwargs)
-        self.odata_value: Optional[str] = odata_value
+        self.odata_value = odata_value
 
 
 class ProductWrapper(_serialization.Model):
@@ -361,7 +361,7 @@ class ProductWrapper(_serialization.Model):
         :paramtype value: str
         """
         super().__init__(**kwargs)
-        self.value: Optional[str] = value
+        self.value = value
 
 
 class ResourceCollection(_serialization.Model):
@@ -398,9 +398,9 @@ class ResourceCollection(_serialization.Model):
         :paramtype dictionaryofresources: dict[str, ~modelflattening.models.FlattenedProduct]
         """
         super().__init__(**kwargs)
-        self.productresource: Optional["_models.FlattenedProduct"] = productresource
-        self.arrayofresources: Optional[List["_models.FlattenedProduct"]] = arrayofresources
-        self.dictionaryofresources: Optional[Dict[str, "_models.FlattenedProduct"]] = dictionaryofresources
+        self.productresource = productresource
+        self.arrayofresources = arrayofresources
+        self.dictionaryofresources = dictionaryofresources
 
 
 class SimpleProduct(BaseProduct):
@@ -465,10 +465,10 @@ class SimpleProduct(BaseProduct):
         :paramtype odata_value: str
         """
         super().__init__(product_id=product_id, description=description, **kwargs)
-        self.max_product_display_name: Optional[str] = max_product_display_name
-        self.capacity: Optional[Literal["Large"]] = capacity
-        self.generic_value: Optional[str] = generic_value
-        self.odata_value: Optional[str] = odata_value
+        self.max_product_display_name = max_product_display_name
+        self.capacity = capacity
+        self.generic_value = generic_value
+        self.odata_value = odata_value
 
 
 class WrappedProduct(_serialization.Model):
@@ -488,4 +488,4 @@ class WrappedProduct(_serialization.Model):
         :paramtype value: str
         """
         super().__init__(**kwargs)
-        self.value: Optional[str] = value
+        self.value = value

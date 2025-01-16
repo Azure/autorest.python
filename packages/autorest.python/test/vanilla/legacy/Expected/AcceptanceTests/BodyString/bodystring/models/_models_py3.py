@@ -33,8 +33,8 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message
 
 
 class RefColorConstant(_serialization.Model):
@@ -68,4 +68,4 @@ class RefColorConstant(_serialization.Model):
         :paramtype field1: str
         """
         super().__init__(**kwargs)
-        self.field1: Optional[str] = field1
+        self.field1 = field1

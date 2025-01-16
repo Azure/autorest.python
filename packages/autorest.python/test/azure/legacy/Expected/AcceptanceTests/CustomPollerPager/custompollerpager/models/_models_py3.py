@@ -31,7 +31,7 @@ class BodyParam(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.name: Optional[str] = name
+        self.name = name
 
 
 class CustomParameterGroup(_serialization.Model):
@@ -63,8 +63,8 @@ class CustomParameterGroup(_serialization.Model):
         :paramtype tenant: str
         """
         super().__init__(**kwargs)
-        self.api_version: str = api_version
-        self.tenant: str = tenant
+        self.api_version = api_version
+        self.tenant = tenant
 
 
 class OdataProductResult(_serialization.Model):
@@ -91,8 +91,8 @@ class OdataProductResult(_serialization.Model):
         :paramtype odata_next_link: str
         """
         super().__init__(**kwargs)
-        self.values: Optional[List["_models.Product"]] = values
-        self.odata_next_link: Optional[str] = odata_next_link
+        self.values = values
+        self.odata_next_link = odata_next_link
 
 
 class OperationResult(_serialization.Model):
@@ -115,7 +115,7 @@ class OperationResult(_serialization.Model):
         :paramtype status: str or ~custompollerpager.models.OperationResultStatus
         """
         super().__init__(**kwargs)
-        self.status: Optional[Union[str, "_models.OperationResultStatus"]] = status
+        self.status = status
 
 
 class PagingGetMultiplePagesLroOptions(_serialization.Model):
@@ -142,8 +142,8 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         :paramtype timeout: int
         """
         super().__init__(**kwargs)
-        self.maxresults: Optional[int] = maxresults
-        self.timeout: int = timeout
+        self.maxresults = maxresults
+        self.timeout = timeout
 
 
 class PagingGetMultiplePagesOptions(_serialization.Model):
@@ -170,8 +170,8 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         :paramtype timeout: int
         """
         super().__init__(**kwargs)
-        self.maxresults: Optional[int] = maxresults
-        self.timeout: int = timeout
+        self.maxresults = maxresults
+        self.timeout = timeout
 
 
 class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
@@ -209,9 +209,9 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         :paramtype timeout: int
         """
         super().__init__(**kwargs)
-        self.maxresults: Optional[int] = maxresults
-        self.offset: int = offset
-        self.timeout: int = timeout
+        self.maxresults = maxresults
+        self.offset = offset
+        self.timeout = timeout
 
 
 class PagingGetOdataMultiplePagesOptions(_serialization.Model):
@@ -238,8 +238,8 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         :paramtype timeout: int
         """
         super().__init__(**kwargs)
-        self.maxresults: Optional[int] = maxresults
-        self.timeout: int = timeout
+        self.maxresults = maxresults
+        self.timeout = timeout
 
 
 class Product(_serialization.Model):
@@ -259,7 +259,7 @@ class Product(_serialization.Model):
         :paramtype properties: ~custompollerpager.models.ProductProperties
         """
         super().__init__(**kwargs)
-        self.properties: Optional["_models.ProductProperties"] = properties
+        self.properties = properties
 
 
 class ProductProperties(_serialization.Model):
@@ -290,8 +290,8 @@ class ProductProperties(_serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id: Optional[int] = id
-        self.name: Optional[str] = name
+        self.id = id
+        self.name = name
 
 
 class ProductResult(_serialization.Model):
@@ -318,8 +318,8 @@ class ProductResult(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.values: Optional[List["_models.Product"]] = values
-        self.next_link: Optional[str] = next_link
+        self.values = values
+        self.next_link = next_link
 
 
 class ProductResultValue(_serialization.Model):
@@ -346,8 +346,8 @@ class ProductResultValue(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.value: Optional[List["_models.Product"]] = value
-        self.next_link: Optional[str] = next_link
+        self.value = value
+        self.next_link = next_link
 
 
 class ProductResultValueWithXMSClientName(_serialization.Model):
@@ -374,5 +374,5 @@ class ProductResultValueWithXMSClientName(_serialization.Model):
         :paramtype next_link: str
         """
         super().__init__(**kwargs)
-        self.indexes: Optional[List["_models.Product"]] = indexes
-        self.next_link: Optional[str] = next_link
+        self.indexes = indexes
+        self.next_link = next_link

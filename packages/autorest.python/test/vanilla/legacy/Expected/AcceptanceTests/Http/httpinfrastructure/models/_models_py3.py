@@ -28,7 +28,7 @@ class MyException(_serialization.Model):
         :paramtype status_code: str
         """
         super().__init__(**kwargs)
-        self.status_code: Optional[str] = status_code
+        self.status_code = status_code
 
 
 class B(MyException):
@@ -55,7 +55,7 @@ class B(MyException):
         :paramtype text_status_code: str
         """
         super().__init__(status_code=status_code, **kwargs)
-        self.text_status_code: Optional[str] = text_status_code
+        self.text_status_code = text_status_code
 
 
 class C(_serialization.Model):
@@ -75,7 +75,7 @@ class C(_serialization.Model):
         :paramtype http_code: str
         """
         super().__init__(**kwargs)
-        self.http_code: Optional[str] = http_code
+        self.http_code = http_code
 
 
 class D(_serialization.Model):
@@ -95,7 +95,7 @@ class D(_serialization.Model):
         :paramtype http_status_code: str
         """
         super().__init__(**kwargs)
-        self.http_status_code: Optional[str] = http_status_code
+        self.http_status_code = http_status_code
 
 
 class Error(_serialization.Model):
@@ -120,5 +120,5 @@ class Error(_serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message

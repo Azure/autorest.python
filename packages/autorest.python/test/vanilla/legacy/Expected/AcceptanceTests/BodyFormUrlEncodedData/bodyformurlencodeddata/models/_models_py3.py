@@ -74,11 +74,11 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
         :paramtype status: str
         """
         super().__init__(**kwargs)
-        self.pet_type: Union[str, "_models.PetType"] = pet_type
-        self.pet_food: Union[str, "_models.PetFood"] = pet_food
-        self.pet_age: int = pet_age
-        self.name: Optional[str] = name
-        self.status: Optional[str] = status
+        self.pet_type = pet_type
+        self.pet_food = pet_food
+        self.pet_age = pet_age
+        self.name = name
+        self.status = status
 
 
 class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema(
@@ -122,5 +122,5 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
         :paramtype aad_access_token: str
         """
         super().__init__(**kwargs)
-        self.service: str = service
-        self.aad_access_token: str = aad_access_token
+        self.service = service
+        self.aad_access_token = aad_access_token

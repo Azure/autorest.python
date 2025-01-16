@@ -31,7 +31,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         :paramtype value: list[str]
         """
         super().__init__(**kwargs)
-        self.value: Optional[List[str]] = value
+        self.value = value
 
 
 class ArrayWrapper(msrest.serialization.Model):
@@ -57,7 +57,7 @@ class ArrayWrapper(msrest.serialization.Model):
         :paramtype value: list[str]
         """
         super().__init__(**kwargs)
-        self.value: List[str] = value
+        self.value = value
 
 
 class ClassOptionalWrapper(msrest.serialization.Model):
@@ -77,7 +77,7 @@ class ClassOptionalWrapper(msrest.serialization.Model):
         :paramtype value: ~requiredoptional.models.Product
         """
         super().__init__(**kwargs)
-        self.value: Optional["_models.Product"] = value
+        self.value = value
 
 
 class ClassWrapper(msrest.serialization.Model):
@@ -103,7 +103,7 @@ class ClassWrapper(msrest.serialization.Model):
         :paramtype value: ~requiredoptional.models.Product
         """
         super().__init__(**kwargs)
-        self.value: "_models.Product" = value
+        self.value = value
 
 
 class Error(msrest.serialization.Model):
@@ -128,8 +128,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message
 
 
 class IntOptionalWrapper(msrest.serialization.Model):
@@ -149,7 +149,7 @@ class IntOptionalWrapper(msrest.serialization.Model):
         :paramtype value: int
         """
         super().__init__(**kwargs)
-        self.value: Optional[int] = value
+        self.value = value
 
 
 class IntWrapper(msrest.serialization.Model):
@@ -175,7 +175,7 @@ class IntWrapper(msrest.serialization.Model):
         :paramtype value: int
         """
         super().__init__(**kwargs)
-        self.value: int = value
+        self.value = value
 
 
 class Product(msrest.serialization.Model):
@@ -208,8 +208,8 @@ class Product(msrest.serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id: int = id
-        self.name: Optional[str] = name
+        self.id = id
+        self.name = name
 
 
 class StringOptionalWrapper(msrest.serialization.Model):
@@ -229,7 +229,7 @@ class StringOptionalWrapper(msrest.serialization.Model):
         :paramtype value: str
         """
         super().__init__(**kwargs)
-        self.value: Optional[str] = value
+        self.value = value
 
 
 class StringWrapper(msrest.serialization.Model):
@@ -255,4 +255,4 @@ class StringWrapper(msrest.serialization.Model):
         :paramtype value: str
         """
         super().__init__(**kwargs)
-        self.value: str = value
+        self.value = value

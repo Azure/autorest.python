@@ -56,6 +56,6 @@ class Pet(_serialization.Model):
         :paramtype int_enum: str or ~extensibleenumsswagger.models.IntEnum
         """
         super().__init__(**kwargs)
-        self.name: Optional[str] = name
-        self.days_of_week: Union[str, "_models.DaysOfWeekExtensibleEnum"] = days_of_week
-        self.int_enum: Union[str, "_models.IntEnum"] = int_enum
+        self.name = name
+        self.days_of_week = days_of_week
+        self.int_enum = int_enum

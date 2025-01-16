@@ -32,4 +32,4 @@ class SourcePath(_serialization.Model):
         :paramtype source: str
         """
         super().__init__(**kwargs)
-        self.source: Optional[str] = source
+        self.source = source

@@ -46,8 +46,8 @@ class Error(msrest.serialization.Model):
         :paramtype message: str
         """
         super().__init__(**kwargs)
-        self.status: Optional[int] = status
-        self.message: Optional[str] = message
+        self.status = status
+        self.message = message
 
 
 class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Model):  # pylint: disable=name-too-long
@@ -73,7 +73,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
         :paramtype foo_client_request_id: str
         """
         super().__init__(**kwargs)
-        self.foo_client_request_id: str = foo_client_request_id
+        self.foo_client_request_id = foo_client_request_id
 
 
 class OdataFilter(msrest.serialization.Model):
@@ -104,5 +104,5 @@ class OdataFilter(msrest.serialization.Model):
         :paramtype name: str
         """
         super().__init__(**kwargs)
-        self.id: Optional[int] = id
-        self.name: Optional[str] = name
+        self.id = id
+        self.name = name
