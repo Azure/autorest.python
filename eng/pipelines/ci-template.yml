@@ -72,6 +72,10 @@ steps:
       displayName: List installed packages
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
+    - script: pnpm run cspell
+      displayName: Cspell
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+
     - script: pnpm run lint --command eslint --skipWarning ${{ parameters.skipWarning }}
       displayName: Eslint
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
