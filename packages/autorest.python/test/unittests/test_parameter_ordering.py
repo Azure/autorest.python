@@ -12,7 +12,7 @@ def get_code_model():
         {
             "clients": [
                 {
-                    "name": "cient",
+                    "name": "client",
                     "namespace": "blah",
                     "moduleName": "blah",
                     "parameters": [],

@@ -153,12 +153,12 @@ async def test_post_required_class(client):
 
 
 @pytest.mark.asyncio
-async def test_explict_put_optional_binary_body(client):
+async def test_explicit_put_optional_binary_body(client):
     await client.explicit.put_optional_binary_body()
 
 
 @pytest.mark.asyncio
-async def test_explict_put_required_binary_body(client):
+async def test_explicit_put_required_binary_body(client):
     test_string = "Upload file test case"
     test_bytes = bytearray(test_string, encoding="utf-8")
     with io.BytesIO(test_bytes) as stream_data:

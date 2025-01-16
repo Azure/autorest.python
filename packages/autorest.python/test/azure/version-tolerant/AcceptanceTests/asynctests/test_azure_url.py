@@ -37,6 +37,6 @@ async def test_azure_url(credential, authentication_policy):
 
     async with MicrosoftAzureTestUrl(credential, sub_id, authentication_policy=authentication_policy) as client:
 
-        group = await client.group.get_sample_resource_group("testgoup101")
+        group = await client.group.get_sample_resource_group("testgroup101")
         assert group["name"] == "testgroup101"
         assert group["location"] == "West US"

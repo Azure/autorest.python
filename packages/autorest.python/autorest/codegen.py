@@ -40,7 +40,7 @@ class JinjaSerializerAutorest(JinjaSerializer, ReaderAndWriterAutorest):
 class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
     def get_options(self) -> Dict[str, Any]:
         if self._autorestapi.get_boolean_value("python3-only") is False:
-            _LOGGER.warning("You have passed in --python3-only=False. We have force overriden this to True.")
+            _LOGGER.warning("You have passed in --python3-only=False. We have force overridden this to True.")
         if self._autorestapi.get_boolean_value("add-python3-operation-files"):
             _LOGGER.warning(
                 "You have passed in --add-python3-operation-files. "
@@ -48,7 +48,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             )
         if self._autorestapi.get_boolean_value("reformat-next-link"):
             _LOGGER.warning(
-                "You have passed in --reformat-next-link. We have force overriden "
+                "You have passed in --reformat-next-link. We have force overridden "
                 "this to False because we no longer reformat initial query parameters into next "
                 "calls unless explicitly defined in the service definition."
             )

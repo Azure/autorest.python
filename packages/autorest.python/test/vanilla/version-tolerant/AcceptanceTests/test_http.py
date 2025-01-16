@@ -344,7 +344,7 @@ def test_redirect_to_302(client):
     assert_status(requests.codes.found, client.http_redirects.patch302)
 
 
-def test_redicret_to_303(client):
+def test_redirect_to_303(client):
     assert_status(200, client.http_redirects.post303)
 
 

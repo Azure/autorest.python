@@ -116,7 +116,7 @@ class TestString(object):
         with pytest.raises(HttpResponseError):
             client.enum.put_not_expandable("not a colour")
 
-    def test_get_base64_encdoded(self, client):
+    def test_get_base64_encoded(self, client):
         assert client.string.get_base64_encoded() == "a string that gets encoded with base64".encode()
 
     def test_base64_url_encoded(self, client):

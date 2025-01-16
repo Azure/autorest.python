@@ -866,14 +866,14 @@ def test_model_recursion_complex():
 
 def test_literals():
     class LiteralModel(Model):
-        species: Literal["Mongose", "Eagle", "Penguin"] = rest_field()
+        species: Literal["Mongoose", "Eagle", "Penguin"] = rest_field()
         age: Literal[1, 2, 3] = rest_field()
 
         @overload
         def __init__(
             self,
             *,
-            species: Literal["Mongose", "Eagle", "Penguin"],
+            species: Literal["Mongoose", "Eagle", "Penguin"],
             age: Literal[1, 2, 3],
         ): ...
 
@@ -1946,7 +1946,7 @@ def test_inner_model_custom_serializer():
 
     outer = OuterModel({"innie": {"prop": "hello"}})
     assert outer.innie["prop"] == outer["innie"]["prop"] == "hello"
-    assert outer.innie.prop == outer["innie"].prop == "olleh"
+    assert outer.innie.prop == outer["innie"].prop == "olleh"  # cspell:disable-line
 
 
 def test_default_value():
@@ -3357,7 +3357,7 @@ class CatComplex(PetComplex):
     [
         CatComplex(
             id=2,
-            name="Siameeee",
+            name="Siamese",
             hates=[
                 DogComplex(id=1, name="Potato", food="tomato"),
                 DogComplex(id=-1, name="Tomato", food="french fries"),
@@ -3365,7 +3365,7 @@ class CatComplex(PetComplex):
         ),
         CatComplex(
             id=2,
-            name="Siameeee",
+            name="Siamese",
             hates=[
                 DogComplex(id=1, name="Potato", food="tomato"),
                 {"id": -1, "name": "Tomato", "food": "french fries"},
@@ -3373,7 +3373,7 @@ class CatComplex(PetComplex):
         ),
         CatComplex(
             id=2,
-            name="Siameeee",
+            name="Siamese",
             hates=[
                 {"id": 1, "name": "Potato", "food": "tomato"},
                 {"id": -1, "name": "Tomato", "food": "french fries"},
@@ -3383,7 +3383,7 @@ class CatComplex(PetComplex):
 )
 def test_complex_inheritance(model):
     assert model.id == model["id"] == 2
-    assert model.name == model["name"] == "Siameeee"
+    assert model.name == model["name"] == "Siamese"
     assert model.hates
     assert model.hates[1] == model["hates"][1] == {"id": -1, "name": "Tomato", "food": "french fries"}
     model["breed"] = "persian"
@@ -3392,7 +3392,7 @@ def test_complex_inheritance(model):
         model.breed
     assert model == {
         "id": 2,
-        "name": "Siameeee",
+        "name": "Siamese",
         "color": "green",
         "breed": "persian",
         "hates": [
@@ -3430,7 +3430,7 @@ def test_required_prop_not_passed():
         model["requiredProperty"]
 
 
-def test_null_serilization(core_library):
+def test_null_serialization(core_library):
     dict_response = {
         "name": "it's me!",
         "listOfMe": [
@@ -3622,7 +3622,7 @@ def test_as_dict():
 
     model = CatComplex(
         id=2,
-        name="Siameeee",
+        name="Siamese",
         hates=[
             DogComplex(id=1, name="Potato", food="tomato"),
             DogComplex(id=-1, name="Tomato", food="french fries"),
@@ -3630,7 +3630,7 @@ def test_as_dict():
     )
     assert model.as_dict(exclude_readonly=True) == {
         "id": 2,
-        "name": "Siameeee",
+        "name": "Siamese",
         "color": None,
     }
 
