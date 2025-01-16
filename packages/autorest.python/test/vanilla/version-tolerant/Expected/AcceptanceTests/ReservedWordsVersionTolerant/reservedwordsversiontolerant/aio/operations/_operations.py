@@ -8,6 +8,7 @@
 import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,6 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_import_operations_operation_one_request,
     build_reserved_words_operation_with_content_param_request,
@@ -28,6 +30,7 @@ from ...operations._operations import (
     build_reserved_words_operation_with_url_request,
     build_reserved_words_reserved_enum_request,
 )
+from .._configuration import ReservedWordsClientConfiguration
 from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
 if sys.version_info >= (3, 9):
@@ -51,10 +54,10 @@ class ImportOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ReservedWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def operation_one(self, *, parameter1: str, **kwargs: Any) -> JSON:

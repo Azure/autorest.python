@@ -14,14 +14,12 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..header.aio.operations import HeaderOperations
+from ..property.aio.operations import PropertyOperations
+from ..query.aio.operations import QueryOperations
+from ..requestbody.aio.operations import RequestBodyOperations
+from ..responsebody.aio.operations import ResponseBodyOperations
 from ._configuration import BytesClientConfiguration
-from .operations import (
-    HeaderOperations,
-    PropertyOperations,
-    QueryOperations,
-    RequestBodyOperations,
-    ResponseBodyOperations,
-)
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword

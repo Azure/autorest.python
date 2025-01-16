@@ -14,8 +14,9 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..header.aio.operations import HeaderOperations
+from ..query.aio.operations import QueryOperations
 from ._configuration import CollectionFormatClientConfiguration
-from .operations import HeaderOperations, QueryOperations
 
 
 class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyword

@@ -5,7 +5,12 @@
         "azure.resourcemanager.resources.models.ErrorDetail": "Azure.ResourceManager.CommonTypes.ErrorDetail",
         "azure.resourcemanager.resources.models.ErrorResponse": "Azure.ResourceManager.CommonTypes.ErrorResponse",
         "azure.resourcemanager.resources.models.Resource": "Azure.ResourceManager.CommonTypes.Resource",
+        "azure.resourcemanager.resources.models.ExtensionResource": "Azure.ResourceManager.CommonTypes.ExtensionResource",
+        "azure.resourcemanager.resources.models.ExtensionsResource": "Azure.ResourceManager.Resources.ExtensionsResource",
+        "azure.resourcemanager.resources.models.ExtensionsResourceProperties": "Azure.ResourceManager.Resources.ExtensionsResourceProperties",
         "azure.resourcemanager.resources.models.ProxyResource": "Azure.ResourceManager.CommonTypes.ProxyResource",
+        "azure.resourcemanager.resources.models.LocationResource": "Azure.ResourceManager.Resources.LocationResource",
+        "azure.resourcemanager.resources.models.LocationResourceProperties": "Azure.ResourceManager.Resources.LocationResourceProperties",
         "azure.resourcemanager.resources.models.NestedProxyResource": "Azure.ResourceManager.Resources.NestedProxyResource",
         "azure.resourcemanager.resources.models.NestedProxyResourceProperties": "Azure.ResourceManager.Resources.NestedProxyResourceProperties",
         "azure.resourcemanager.resources.models.NotificationDetails": "Azure.ResourceManager.Resources.NotificationDetails",
@@ -32,6 +37,16 @@
         "azure.resourcemanager.resources.ResourcesClient.singleton.get_by_resource_group": "Azure.ResourceManager.Resources.Singleton.getByResourceGroup",
         "azure.resourcemanager.resources.ResourcesClient.singleton.begin_create_or_update": "Azure.ResourceManager.Resources.Singleton.createOrUpdate",
         "azure.resourcemanager.resources.ResourcesClient.singleton.update": "Azure.ResourceManager.Resources.Singleton.update",
-        "azure.resourcemanager.resources.ResourcesClient.singleton.list_by_resource_group": "Azure.ResourceManager.Resources.Singleton.listByResourceGroup"
+        "azure.resourcemanager.resources.ResourcesClient.singleton.list_by_resource_group": "Azure.ResourceManager.Resources.Singleton.listByResourceGroup",
+        "azure.resourcemanager.resources.ResourcesClient.extensions_resources.get": "Azure.ResourceManager.Resources.ExtensionsResources.get",
+        "azure.resourcemanager.resources.ResourcesClient.extensions_resources.begin_create_or_update": "Azure.ResourceManager.Resources.ExtensionsResources.createOrUpdate",
+        "azure.resourcemanager.resources.ResourcesClient.extensions_resources.update": "Azure.ResourceManager.Resources.ExtensionsResources.update",
+        "azure.resourcemanager.resources.ResourcesClient.extensions_resources.delete": "Azure.ResourceManager.Resources.ExtensionsResources.delete",
+        "azure.resourcemanager.resources.ResourcesClient.extensions_resources.list_by_scope": "Azure.ResourceManager.Resources.ExtensionsResources.listByScope",
+        "azure.resourcemanager.resources.ResourcesClient.location_resources.get": "Azure.ResourceManager.Resources.LocationResources.get",
+        "azure.resourcemanager.resources.ResourcesClient.location_resources.create_or_update": "Azure.ResourceManager.Resources.LocationResources.createOrUpdate",
+        "azure.resourcemanager.resources.ResourcesClient.location_resources.update": "Azure.ResourceManager.Resources.LocationResources.update",
+        "azure.resourcemanager.resources.ResourcesClient.location_resources.delete": "Azure.ResourceManager.Resources.LocationResources.delete",
+        "azure.resourcemanager.resources.ResourcesClient.location_resources.list_by_location": "Azure.ResourceManager.Resources.LocationResources.listByLocation"
     }
 }

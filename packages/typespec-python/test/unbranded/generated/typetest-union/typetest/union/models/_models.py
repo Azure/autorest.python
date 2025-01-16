@@ -261,12 +261,12 @@ class GetResponse5(_model_base.Model):
     """GetResponse5.
 
 
-    :ivar prop: Required. Is one of the following types: float, float, float
+    :ivar prop: Required. Is one of the following types: float
     :vartype prop: float or float or float
     """
 
     prop: float = rest_field()
-    """Required. Is one of the following types: float, float, float"""
+    """Required. Is one of the following types: float"""
 
     @overload
     def __init__(

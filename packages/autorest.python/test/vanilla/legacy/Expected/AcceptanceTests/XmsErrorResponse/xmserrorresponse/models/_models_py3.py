@@ -211,7 +211,7 @@ class Pet(Animal):
         :paramtype ani_type: str
         """
         super().__init__(ani_type=ani_type, **kwargs)
-        self.name = None
+        self.name: Optional[str] = None
 
 
 class PetAction(_serialization.Model):

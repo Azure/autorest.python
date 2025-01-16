@@ -1,5 +1,17 @@
 # Release
 
+## 6.28.1
+
+### Bug Fixes
+
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Fix import issues for typespec namespace
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Only import helpers for serialization if input body is not binary
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Unify descriptions for credentials in documentation
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Add type annotations for initialized properties in msrest model inits
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Add mypy typing to operation group inits
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Remove Python2 specific datetime logic from internal serialization.
+
+
 ## 6.28.0
 
 ### Bug Fixes

@@ -8,6 +8,7 @@
 import sys
 from typing import Any, Callable, Dict, Literal, Optional, TypeVar, Union
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,6 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._serialization import Deserializer, Serializer
 from ...operations._contants_operations import (
     build_put_client_constants_request,
     build_put_model_as_string_no_required_one_value_default_request,
@@ -41,6 +43,7 @@ from ...operations._contants_operations import (
     build_put_no_model_as_string_required_two_value_default_request,
     build_put_no_model_as_string_required_two_value_no_default_request,
 )
+from .._configuration import AutoRestSwaggerConstantServiceConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -64,10 +67,12 @@ class ContantsOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestSwaggerConstantServiceConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_two_value_no_default(  # pylint: disable=name-too-long
