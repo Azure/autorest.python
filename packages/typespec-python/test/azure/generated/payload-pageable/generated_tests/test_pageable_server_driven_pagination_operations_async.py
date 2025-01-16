@@ -17,7 +17,7 @@ class TestPageableServerDrivenPaginationOperationsAsync(PageableClientTestBaseAs
     @recorded_by_proxy_async
     async def test_server_driven_pagination_link(self, pageable_endpoint):
         client = self.create_async_client(endpoint=pageable_endpoint)
-        response = await client.server_driven_pagination.link()
-
+        response = client.server_driven_pagination.link()
+        result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
