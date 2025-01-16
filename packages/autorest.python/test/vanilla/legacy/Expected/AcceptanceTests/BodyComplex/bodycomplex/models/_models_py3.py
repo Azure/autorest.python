@@ -1010,7 +1010,7 @@ class ReadonlyObj(msrest.serialization.Model):
         :paramtype size: int
         """
         super().__init__(**kwargs)
-        self.id = None
+        self.id: Optional[str] = None
         self.size = size
 
 

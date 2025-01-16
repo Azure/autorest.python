@@ -14,8 +14,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..property.aio.operations import PropertyOperations
 from ._configuration import JsonClientConfiguration
-from .operations import PropertyOperations
 
 
 class JsonClient:  # pylint: disable=client-accepts-api-version-keyword

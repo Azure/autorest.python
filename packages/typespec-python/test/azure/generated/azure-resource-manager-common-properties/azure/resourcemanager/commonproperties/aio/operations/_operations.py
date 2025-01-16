@@ -10,6 +10,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -28,11 +29,13 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_managed_identity_create_with_system_assigned_request,
     build_managed_identity_get_request,
     build_managed_identity_update_with_user_assigned_and_system_assigned_request,
 )
+from .._configuration import CommonPropertiesClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -55,10 +58,10 @@ class ManagedIdentityOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: CommonPropertiesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def get(

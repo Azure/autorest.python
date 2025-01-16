@@ -10,6 +10,7 @@ import sys
 from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, Literal, Optional, TypeVar, Union, cast
 import urllib.parse
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,6 +32,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
+from ..._serialization import Deserializer, Serializer
 from ...operations._paging_operations import (
     build_append_api_version_request,
     build_duplicate_params_request,
@@ -59,6 +61,7 @@ from ...operations._paging_operations import (
     build_page_with_max_page_size_request,
     build_replace_api_version_request,
 )
+from .._configuration import PagingClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -82,10 +85,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: PagingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable["_models.Product"]:

@@ -9,6 +9,7 @@
 import sys
 from typing import Any, Callable, Dict, Literal, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,6 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._serialization import Deserializer, Serializer
 from ...operations._http_success_operations import (
     build_delete200_request,
     build_delete202_request,
@@ -44,6 +46,7 @@ from ...operations._http_success_operations import (
     build_put202_request,
     build_put204_request,
 )
+from .._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -67,10 +70,12 @@ class HttpSuccessOperations:
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def head200(self, **kwargs: Any) -> None:

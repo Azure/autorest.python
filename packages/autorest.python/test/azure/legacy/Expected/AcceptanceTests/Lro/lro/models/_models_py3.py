@@ -114,11 +114,11 @@ class Resource(_serialization.Model):
         :paramtype location: str
         """
         super().__init__(**kwargs)
-        self.id = None
-        self.type = None
+        self.id: Optional[str] = None
+        self.type: Optional[str] = None
         self.tags = tags
         self.location = location
-        self.name = None
+        self.name: Optional[str] = None
 
 
 class Product(Resource):
@@ -178,7 +178,7 @@ class Product(Resource):
         """
         super().__init__(tags=tags, location=location, **kwargs)
         self.provisioning_state = provisioning_state
-        self.provisioning_state_values = None
+        self.provisioning_state_values: Optional[Union[str, "_models.ProductPropertiesProvisioningStateValues"]] = None
 
 
 class Sku(_serialization.Model):
@@ -233,7 +233,7 @@ class SubResource(_serialization.Model):
     def __init__(self, **kwargs: Any) -> None:
         """ """
         super().__init__(**kwargs)
-        self.id = None
+        self.id: Optional[str] = None
 
 
 class SubProduct(SubResource):
@@ -269,4 +269,6 @@ class SubProduct(SubResource):
         """
         super().__init__(**kwargs)
         self.provisioning_state = provisioning_state
-        self.provisioning_state_values = None
+        self.provisioning_state_values: Optional[Union[str, "_models.SubProductPropertiesProvisioningStateValues"]] = (
+            None
+        )

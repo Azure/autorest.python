@@ -62,7 +62,7 @@ class PetAPTrue(_serialization.Model):
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status: Optional[bool] = None
 
 
 class CatAPTrue(PetAPTrue):
@@ -196,7 +196,7 @@ class PetAPInProperties(_serialization.Model):
         super().__init__(**kwargs)
         self.id = id
         self.name = name
-        self.status = None
+        self.status: Optional[bool] = None
         self.additional_properties = additional_properties
 
 
@@ -264,7 +264,7 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status: Optional[bool] = None
         self.odata_location = odata_location
         self.additional_properties1 = additional_properties1
 
@@ -320,7 +320,7 @@ class PetAPObject(_serialization.Model):
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status: Optional[bool] = None
 
 
 class PetAPString(_serialization.Model):
@@ -374,4 +374,4 @@ class PetAPString(_serialization.Model):
         self.additional_properties = additional_properties
         self.id = id
         self.name = name
-        self.status = None
+        self.status: Optional[bool] = None
