@@ -134,11 +134,14 @@ class StringsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
+         Required.
+        :paramtype prop: str or str or str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -148,14 +151,11 @@ class StringsOnlyOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: Literal["a", "b", "c"], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-         Required.
-        :paramtype prop: str or str or str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -313,11 +313,13 @@ class StringExtensibleOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
+        :paramtype prop: str or str or str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -327,13 +329,11 @@ class StringExtensibleOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: Union[Literal["b"], Literal["c"], str], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: Literal["b"], Literal["c"], str Required.
-        :paramtype prop: str or str or str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -494,20 +494,6 @@ class StringExtensibleNamedOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """send.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
     async def send(
         self,
         *,
@@ -519,6 +505,20 @@ class StringExtensibleNamedOperations:
 
         :keyword prop: Known values are: "b" and "c". Required.
         :paramtype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """send.
+
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -679,11 +679,11 @@ class IntsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
+        :paramtype prop: int or int or int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -693,11 +693,11 @@ class IntsOnlyOperations:
         """
 
     @overload
-    async def send(self, *, prop: Literal[1, 2, 3], content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: Literal[1], Literal[2], Literal[3] Required.
-        :paramtype prop: int or int or int
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -854,11 +854,11 @@ class FloatsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(self, *, prop: float, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Is one of the following types: float Required.
+        :paramtype prop: float or float or float
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -868,11 +868,11 @@ class FloatsOnlyOperations:
         """
 
     @overload
-    async def send(self, *, prop: float, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Is one of the following types: float Required.
-        :paramtype prop: float or float or float
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1027,11 +1027,13 @@ class ModelsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: Union[_models.Cat, _models.Dog], content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Is either a Cat type or a Dog type. Required.
+        :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1041,13 +1043,11 @@ class ModelsOnlyOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: Union[_models.Cat, _models.Dog], content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Is either a Cat type or a Dog type. Required.
-        :paramtype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1204,11 +1204,13 @@ class EnumsOnlyOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Required.
+        :paramtype prop: ~typetest.union.models.EnumsOnlyCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1218,13 +1220,11 @@ class EnumsOnlyOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: _models.EnumsOnlyCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models.EnumsOnlyCases
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1381,11 +1381,13 @@ class StringAndArrayOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Required.
+        :paramtype prop: ~typetest.union.models.StringAndArrayCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1395,13 +1397,11 @@ class StringAndArrayOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: _models.StringAndArrayCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models.StringAndArrayCases
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1558,11 +1558,13 @@ class MixedLiteralsOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Required.
+        :paramtype prop: ~typetest.union.models.MixedLiteralsCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1572,13 +1574,11 @@ class MixedLiteralsOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: _models.MixedLiteralsCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models.MixedLiteralsCases
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1735,11 +1735,13 @@ class MixedTypesOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def send(
+        self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """send.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword prop: Required.
+        :paramtype prop: ~typetest.union.models.MixedTypesCases
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1749,13 +1751,11 @@ class MixedTypesOperations:
         """
 
     @overload
-    async def send(
-        self, *, prop: _models.MixedTypesCases, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def send(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """send.
 
-        :keyword prop: Required.
-        :paramtype prop: ~typetest.union.models.MixedTypesCases
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
