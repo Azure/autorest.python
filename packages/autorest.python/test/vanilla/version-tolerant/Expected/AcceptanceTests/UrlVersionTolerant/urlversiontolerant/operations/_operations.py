@@ -536,9 +536,7 @@ def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = (
-        "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"
-    )
+    _url = "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}"  # pylint: disable=line-too-long
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
