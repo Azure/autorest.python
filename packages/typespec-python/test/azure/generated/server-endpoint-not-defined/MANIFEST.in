@@ -2,6 +2,4 @@ include *.md
 include LICENSE
 include server/endpoint/notdefined/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.md
-include server/__init__.py
-include server/endpoint/__init__.py
+recursive-include samples *.py *.mdinclude server/__init__.pyinclude server/endpoint/__init__.py

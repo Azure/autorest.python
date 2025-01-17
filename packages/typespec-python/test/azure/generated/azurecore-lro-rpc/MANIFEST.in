@@ -2,6 +2,4 @@ include *.md
 include LICENSE
 include azurecore/lro/rpc/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.md
-include azurecore/__init__.py
-include azurecore/lro/__init__.py
+recursive-include samples *.py *.mdinclude azurecore/__init__.pyinclude azurecore/lro/__init__.py

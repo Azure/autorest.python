@@ -2,6 +2,4 @@ include *.md
 include LICENSE
 include server/versions/versioned/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.md
-include server/__init__.py
-include server/versions/__init__.py
+recursive-include samples *.py *.mdinclude server/__init__.pyinclude server/versions/__init__.py

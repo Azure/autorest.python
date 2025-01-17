@@ -13,10 +13,11 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "parameters-basic"
+PACKAGE_NAMESPACE = "parameters.basic"
 PACKAGE_PPRINT_NAME = "Parameters Basic"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:

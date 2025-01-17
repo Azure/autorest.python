@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -14,15 +14,16 @@ from corehttp.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
-from corehttp.paging import ItemPaged
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models2
+from .. import models as _models1
 from ..._configuration import PageableClientConfiguration
 from ..._model_base import _deserialize
 from ..._serialization import Deserializer, Serializer
@@ -69,18 +70,13 @@ class ServerDrivenPaginationOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def link(self, **kwargs: Any) -> Iterable["_models2.Pet"]:
+    def link(self, **kwargs: Any) -> _models1.LinkResponse:
         """link.
 
-        :return: An iterator like instance of Pet
-        :rtype: ~corehttp.paging.ItemPaged[~payload.pageable.models.Pet]
+        :return: LinkResponse. The LinkResponse is compatible with MutableMapping
+        :rtype: ~payload.pageable.models.LinkResponse
         :raises ~corehttp.exceptions.HttpResponseError:
         """
-        _headers = kwargs.pop("headers", {}) or {}
-        _params = kwargs.pop("params", {}) or {}
-
-        cls: ClsType[List[_models2.Pet]] = kwargs.pop("cls", None)
-
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
             404: ResourceNotFoundError,
@@ -89,49 +85,40 @@ class ServerDrivenPaginationOperations:
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
 
-                _request = build_server_driven_pagination_link_request(
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        cls: ClsType[_models1.LinkResponse] = kwargs.pop("cls", None)
 
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
+        _request = build_server_driven_pagination_link_request(
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-            return _request
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
-        def extract_data(pipeline_response):
-            deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models2.Pet], deserialized["pets"])
-            if cls:
-                list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("next") or None, iter(list_of_elem)
+        response = pipeline_response.http_response
 
-        def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
 
-            _stream = False
-            pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
-            response = pipeline_response.http_response
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models1.LinkResponse, response.json())
 
-            if response.status_code not in [200]:
-                map_error(status_code=response.status_code, response=response, error_map=error_map)
-                raise HttpResponseError(response=response)
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
 
-            return pipeline_response
-
-        return ItemPaged(get_next, extract_data)
+        return deserialized  # type: ignore

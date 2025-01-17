@@ -17,13 +17,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import ResourcesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import (
-    ExtensionsResourcesOperations,
-    LocationResourcesOperations,
-    NestedOperations,
-    SingletonOperations,
-    TopLevelOperations,
-)
+from .operations import NestedOperations, SingletonOperations, TopLevelOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
@@ -38,12 +32,6 @@ class ResourcesClient:
     :vartype nested: azure.resourcemanager.resources.operations.NestedOperations
     :ivar singleton: SingletonOperations operations
     :vartype singleton: azure.resourcemanager.resources.operations.SingletonOperations
-    :ivar extensions_resources: ExtensionsResourcesOperations operations
-    :vartype extensions_resources:
-     azure.resourcemanager.resources.operations.ExtensionsResourcesOperations
-    :ivar location_resources: LocationResourcesOperations operations
-    :vartype location_resources:
-     azure.resourcemanager.resources.operations.LocationResourcesOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -95,12 +83,6 @@ class ResourcesClient:
         self.top_level = TopLevelOperations(self._client, self._config, self._serialize, self._deserialize)
         self.nested = NestedOperations(self._client, self._config, self._serialize, self._deserialize)
         self.singleton = SingletonOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extensions_resources = ExtensionsResourcesOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.location_resources = LocationResourcesOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

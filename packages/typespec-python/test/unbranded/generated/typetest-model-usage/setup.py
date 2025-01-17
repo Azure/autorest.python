@@ -13,10 +13,11 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "typetest-model-usage"
+PACKAGE_NAMESPACE = "type.model.usage"
 PACKAGE_PPRINT_NAME = "Typetest Model Usage"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
@@ -57,7 +58,7 @@ setup(
     ),
     include_package_data=True,
     package_data={
-        "typetest.model.usage": ["py.typed"],
+        "type.model.usage": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

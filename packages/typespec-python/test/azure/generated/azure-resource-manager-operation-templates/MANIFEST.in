@@ -2,6 +2,4 @@ include *.md
 include LICENSE
 include azure/resourcemanager/operationtemplates/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.md
-include azure/__init__.py
-include azure/resourcemanager/__init__.py
+recursive-include samples *.py *.mdinclude azure/__init__.pyinclude azure/resourcemanager/__init__.py
