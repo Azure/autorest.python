@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-Fix sphinx typing for raising documentation
+Order keyword-only args overload first in generated operations
