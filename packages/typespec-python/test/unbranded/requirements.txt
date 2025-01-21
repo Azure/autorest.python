@@ -1,7 +1,4 @@
-aiohttp;python_full_version>="3.5.2"
-requests==2.32.2
-pytest
-pytest-asyncio==0.14.0;python_full_version>="3.5.2"
+-r ../dev_requirements.txt
 corehttp==1.0.0b3
 
 # common test case

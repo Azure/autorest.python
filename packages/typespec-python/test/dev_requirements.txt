@@ -1,0 +1,1 @@
+-r ../node_modules/@typespec/http-client-python/generator/test/dev_requirements.txt
