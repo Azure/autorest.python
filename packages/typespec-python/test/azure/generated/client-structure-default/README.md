@@ -14,6 +14,8 @@ python -m pip install client-structure-service
 - Python 3.8 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Client Structure Service instance.
+
+
 ## Contributing
 
 This project welcomes contributions and suggestions. Most contributions require

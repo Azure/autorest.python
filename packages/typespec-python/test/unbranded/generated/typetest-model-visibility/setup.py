@@ -25,8 +25,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -52,8 +50,8 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "typetest",
-            "typetest.model",
+            "type",
+            "type.model",
         ]
     ),
     include_package_data=True,

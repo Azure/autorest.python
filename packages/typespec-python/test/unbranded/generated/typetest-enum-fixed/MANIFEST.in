@@ -2,4 +2,6 @@ include *.md
 include LICENSE
 include typetest/enum/fixed/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.mdinclude typetest/__init__.pyinclude typetest/enum/__init__.py
+recursive-include samples *.py *.md
+include type/__init__.py
+include type/enum/__init__.py

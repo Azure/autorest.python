@@ -2,4 +2,6 @@ include *.md
 include LICENSE
 include typetest/model/usage/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.mdinclude typetest/__init__.pyinclude typetest/model/__init__.py
+recursive-include samples *.py *.md
+include type/__init__.py
+include type/model/__init__.py

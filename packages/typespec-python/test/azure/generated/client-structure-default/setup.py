@@ -24,8 +24,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,

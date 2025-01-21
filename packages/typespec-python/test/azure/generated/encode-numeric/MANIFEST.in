@@ -2,4 +2,5 @@ include *.md
 include LICENSE
 include encode/numeric/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.mdinclude encode/__init__.py
+recursive-include samples *.py *.md
+include encode/__init__.py

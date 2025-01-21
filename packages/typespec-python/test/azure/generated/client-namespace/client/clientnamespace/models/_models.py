@@ -7,10 +7,13 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, overload
+from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
-from ... import _model_base
-from ..._model_base import rest_field
+from .. import _model_base
+from .._model_base import rest_field
+
+if TYPE_CHECKING:
+    from .. import models as _models
 
 
 class FirstClientResult(_model_base.Model):
@@ -29,6 +32,35 @@ class FirstClientResult(_model_base.Model):
         self,
         *,
         name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class SecondClientResult(_model_base.Model):
+    """SecondClientResult.
+
+
+    :ivar type: Required. "second"
+    :vartype type: str or ~client.clientnamespace.models.SecondClientEnumType
+    """
+
+    type: Union[str, "_models.SecondClientEnumType"] = rest_field()
+    """Required. \"second\""""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        type: Union[str, "_models.SecondClientEnumType"],
     ) -> None: ...
 
     @overload

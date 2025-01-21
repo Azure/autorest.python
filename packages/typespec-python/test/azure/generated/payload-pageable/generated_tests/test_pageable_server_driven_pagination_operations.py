@@ -17,6 +17,6 @@ class TestPageableServerDrivenPaginationOperations(PageableClientTestBase):
     def test_server_driven_pagination_link(self, pageable_endpoint):
         client = self.create_client(endpoint=pageable_endpoint)
         response = client.server_driven_pagination.link()
-
+        result = [r for r in response]
         # please add some check logic here by yourself
         # ...
