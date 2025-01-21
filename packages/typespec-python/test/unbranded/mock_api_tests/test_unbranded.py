@@ -9,7 +9,7 @@ from pathlib import Path
 import traceback
 from importlib import import_module
 import pytest
-from typetest.scalar import ScalarClient
+from type.scalar import ScalarClient
 from corehttp.exceptions import HttpResponseError
 
 
@@ -53,5 +53,5 @@ def check_sensitive_word(folder: Path, word: str) -> str:
 def test_sensitive_word():
     check_folder = (Path(os.path.dirname(__file__)) / "../generated").resolve()
     assert [] == check_sensitive_word(check_folder, "azure")
-    # after update cadl-ranch, it shall also equal to []
+    # after update spector, it shall also equal to []
     assert ["authentication-oauth2", "authentication-union"] == check_sensitive_word(check_folder, "microsoft")
