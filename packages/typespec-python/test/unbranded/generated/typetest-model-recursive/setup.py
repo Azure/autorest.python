@@ -13,10 +13,11 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "typetest-model-recursive"
+PACKAGE_NAMESPACE = "type.model.inheritance.recursive"
 PACKAGE_PPRINT_NAME = "Typetest Model Recursive"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
@@ -24,8 +25,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -51,13 +50,14 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "typetest",
-            "typetest.model",
+            "type",
+            "type.model",
+            "type.model.inheritance",
         ]
     ),
     include_package_data=True,
     package_data={
-        "typetest.model.recursive": ["py.typed"],
+        "type.model.inheritance.recursive": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

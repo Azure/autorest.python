@@ -3,4 +3,4 @@ include LICENSE
 include typetest/union/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
-include typetest/__init__.py
+include type/__init__.py

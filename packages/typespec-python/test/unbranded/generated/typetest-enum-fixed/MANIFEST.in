@@ -3,5 +3,5 @@ include LICENSE
 include typetest/enum/fixed/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
-include typetest/__init__.py
-include typetest/enum/__init__.py
+include type/__init__.py
+include type/enum/__init__.py

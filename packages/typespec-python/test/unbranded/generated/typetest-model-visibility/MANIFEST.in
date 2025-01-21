@@ -3,5 +3,5 @@ include LICENSE
 include typetest/model/visibility/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
-include typetest/__init__.py
-include typetest/model/__init__.py
+include type/__init__.py
+include type/model/__init__.py

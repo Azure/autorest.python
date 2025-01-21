@@ -13,10 +13,11 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "typetest-property-additionalproperties"
+PACKAGE_NAMESPACE = "type.property.additionalproperties"
 PACKAGE_PPRINT_NAME = "Typetest Property Additionalproperties"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
@@ -24,8 +25,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -51,13 +50,13 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "typetest",
-            "typetest.property",
+            "type",
+            "type.property",
         ]
     ),
     include_package_data=True,
     package_data={
-        "typetest.property.additionalproperties": ["py.typed"],
+        "type.property.additionalproperties": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

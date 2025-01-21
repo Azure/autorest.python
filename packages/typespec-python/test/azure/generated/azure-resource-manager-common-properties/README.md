@@ -1,5 +1,3 @@
-
-
 # Azure Resourcemanager Commonproperties client library for Python
 <!-- write necessary description of service -->
 
@@ -16,6 +14,7 @@ python -m pip install azure-resourcemanager-commonproperties
 - Python 3.8 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Azure Resourcemanager Commonproperties instance.
+
 #### Create with an Azure Active Directory Credential
 To use an [Azure Active Directory (AAD) token credential][authenticate_with_token],
 provide an instance of the desired credential type obtained from the
@@ -77,4 +76,3 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
-

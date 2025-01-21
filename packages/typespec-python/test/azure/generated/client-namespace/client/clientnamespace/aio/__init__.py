@@ -12,6 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._client import ClientNamespaceSecondClient  # type: ignore
 from ._client import ClientNamespaceFirstClient  # type: ignore
 
 try:
@@ -22,6 +23,7 @@ except ImportError:
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "ClientNamespaceSecondClient",
     "ClientNamespaceFirstClient",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
