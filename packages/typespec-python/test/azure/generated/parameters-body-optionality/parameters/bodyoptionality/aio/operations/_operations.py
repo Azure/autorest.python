@@ -379,11 +379,11 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def required_implicit(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def required_implicit(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_implicit.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -393,11 +393,11 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @overload
-    async def required_implicit(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def required_implicit(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """required_implicit.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
