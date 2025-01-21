@@ -63,13 +63,11 @@ class ModelOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def spread_as_request_body(
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    async def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -79,11 +77,13 @@ class ModelOperations:
         """
 
     @overload
-    async def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def spread_as_request_body(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """spread_as_request_body.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -449,26 +449,6 @@ class ModelOperations:
 
     @overload
     async def spread_composite_request_mix(
-        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_composite_request_mix.
-
-        :param name: Required.
-        :type name: str
-        :param body: Required.
-        :type body: JSON
-        :keyword test_header: Required.
-        :paramtype test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~corehttp.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def spread_composite_request_mix(
         self, name: str, *, test_header: str, prop: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -479,6 +459,26 @@ class ModelOperations:
         :paramtype test_header: str
         :keyword prop: Required.
         :paramtype prop: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def spread_composite_request_mix(
+        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: JSON
+        :keyword test_header: Required.
+        :paramtype test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
