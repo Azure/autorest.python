@@ -4,7 +4,7 @@ pylint==3.2.7
 tox==4.23.2
 mypy==1.13.0
 colorama==0.4.6
-debugpy==1.8.2
+debugpy==1.8.12
 pytest==8.3.4
 coverage==7.6.1
 black==24.8.0
