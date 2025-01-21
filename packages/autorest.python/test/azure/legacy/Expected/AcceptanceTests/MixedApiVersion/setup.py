@@ -11,8 +11,6 @@ from setuptools import setup, find_packages
 
 PACKAGE_NAME = "mixedapiversion"
 version = "1.0.0b1"
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,

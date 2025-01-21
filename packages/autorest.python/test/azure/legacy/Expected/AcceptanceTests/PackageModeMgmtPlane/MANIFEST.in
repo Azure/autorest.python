@@ -2,4 +2,6 @@ include *.md
 include LICENSE
 include azure/package/mode/py.typed
 recursive-include tests *.py
-recursive-include samples *.py *.mdinclude azure/__init__.pyinclude azure/package/__init__.py
+recursive-include samples *.py *.md
+include azure/__init__.py
+include azure/package/__init__.py
