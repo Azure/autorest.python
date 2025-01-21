@@ -1,1 +1,0 @@
--r ../packages/typespec-python/dev_requirements.txt
