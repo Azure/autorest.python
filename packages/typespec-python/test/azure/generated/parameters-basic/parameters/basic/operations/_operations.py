@@ -206,11 +206,11 @@ class ImplicitBodyOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def simple(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -220,11 +220,11 @@ class ImplicitBodyOperations:
         """
 
     @overload
-    def simple(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
+    def simple(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
