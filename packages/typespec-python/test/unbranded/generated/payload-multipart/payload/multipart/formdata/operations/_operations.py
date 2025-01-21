@@ -569,22 +569,22 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
+    def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword profile_image: Required.
+        :paramtype profile_image: ~payload.multipart._vendor.FileType
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
     @overload
-    def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
+    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
-        :keyword profile_image: Required.
-        :paramtype profile_image: ~payload.multipart._vendor.FileType
+        :param body: Required.
+        :type body: JSON
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
