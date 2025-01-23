@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 
-from ._client import AutoRestHeadTestService  # type: ignore
+from ._client import CustomizeClient  # type: ignore
 
 __all__ = [
-    "AutoRestHeadTestService",
+    "CustomizeClient",
 ]
