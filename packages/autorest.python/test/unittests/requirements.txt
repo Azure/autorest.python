@@ -5,3 +5,4 @@ pytest-cov
 azure-core==1.30.0
 -e ../../.
 -e ../../generator
+-e ../../samples/specification/azure-mgmt-test/test/azure-mgmt-test
