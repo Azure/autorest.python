@@ -65,9 +65,6 @@ setup(
         ]
     ),
     include_package_data=True,
-    package_data={
-        "pytyped": ["py.typed"],
-    },
     install_requires=[
         "isodate>=0.6.1",
         "typing-extensions>=4.6.0",
