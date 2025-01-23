@@ -6,17 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_service_client import MultiapiServiceClient
+from ._generated._client import AutoRestHeadTestService
 
-__all__ = ["MultiapiServiceClient"]
 
-try:
-    from ._patch import patch_sdk  # type: ignore
-
-    patch_sdk()
-except ImportError:
+class CustomizeClient(AutoRestHeadTestService):
     pass
-
-from ._version import VERSION
-
-__version__ = VERSION

@@ -6,17 +6,4 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._multiapi_service_client import MultiapiServiceClient
-
-__all__ = ["MultiapiServiceClient"]
-
-try:
-    from ._patch import patch_sdk  # type: ignore
-
-    patch_sdk()
-except ImportError:
-    pass
-
-from ._version import VERSION
-
-__version__ = VERSION
+VERSION = "1.0.0b1"
