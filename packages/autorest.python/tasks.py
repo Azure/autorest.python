@@ -596,6 +596,8 @@ def regenerate_samples(c, debug=False):
         "azure_key_credential": None,
         "directives": None,
         "basic": None,
+        "azure-mgmt-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-test", "python": True},
+        "azure-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-test"},
     }
 
     cmds = []

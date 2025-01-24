@@ -1,6 +1,6 @@
 {
   "name": "@azure-tools/typespec-python",
-  "version": "0.38.1",
+  "version": "0.38.2",
   "author": "Microsoft Corporation",
   "description": "TypeSpec emitter for Python SDKs",
   "homepage": "https://github.com/Azure/autorest.python",
@@ -54,13 +54,13 @@
     "@azure-tools/typespec-azure-resource-manager": ">=0.50.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.50.0 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.50.0 <3.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.50.0 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.50.2 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.6.7",
+    "@typespec/http-client-python": "~0.6.8",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -73,7 +73,7 @@
     "@azure-tools/typespec-azure-core": "~0.50.0",
     "@azure-tools/typespec-azure-rulesets": "~0.50.0",
     "@azure-tools/typespec-autorest": "~0.50.0",
-    "@azure-tools/typespec-client-generator-core": "~0.50.0",
+    "@azure-tools/typespec-client-generator-core": "~0.50.2",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.5",
     "@typespec/http-specs": "0.1.0-alpha.7",
     "@types/js-yaml": "~4.0.5",
