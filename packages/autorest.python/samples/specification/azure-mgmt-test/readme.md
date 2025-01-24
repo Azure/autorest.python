@@ -5,13 +5,14 @@ This file is to check whether standard [readme.python.md](https://github.com/Azu
 ### Settings
 
 ``` yaml $(python)
-input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
+input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/body-array.json
 azure-arm: true
 license-header: MICROSOFT_MIT_NO_VERSION
 package-name: azure-mgmt-test
 namespace: azure.mgmt.test
 package-version: 1.0.0b1
 clear-output-folder: true
+version-tolerant: false
 ```
 
 ``` yaml $(python)

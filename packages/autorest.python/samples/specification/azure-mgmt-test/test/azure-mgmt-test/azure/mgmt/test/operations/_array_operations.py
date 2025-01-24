@@ -24,6 +24,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
+from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 from .._configuration import AutoRestSwaggerBATArrayServiceConfiguration
@@ -40,13 +41,13 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_array_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/null"
+    _url = kwargs.pop("template_url", "/array/null")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -54,13 +55,13 @@ def build_array_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_invalid_request(**kwargs: Any) -> HttpRequest:
+def build_get_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/invalid"
+    _url = kwargs.pop("template_url", "/array/invalid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -68,13 +69,13 @@ def build_array_get_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/empty"
+    _url = kwargs.pop("template_url", "/array/empty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -82,14 +83,14 @@ def build_array_get_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_empty_request(**kwargs: Any) -> HttpRequest:
+def build_put_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/empty"
+    _url = kwargs.pop("template_url", "/array/empty")
 
     # Construct headers
     if content_type is not None:
@@ -99,13 +100,13 @@ def build_array_put_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
+def build_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/boolean/tfft"
+    _url = kwargs.pop("template_url", "/array/prim/boolean/tfft")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -113,14 +114,14 @@ def build_array_get_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
+def build_put_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/boolean/tfft"
+    _url = kwargs.pop("template_url", "/array/prim/boolean/tfft")
 
     # Construct headers
     if content_type is not None:
@@ -130,13 +131,13 @@ def build_array_put_boolean_tfft_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/boolean/true.null.false"
+    _url = kwargs.pop("template_url", "/array/prim/boolean/true.null.false")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -144,13 +145,13 @@ def build_array_get_boolean_invalid_null_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/boolean/true.boolean.false"
+    _url = kwargs.pop("template_url", "/array/prim/boolean/true.boolean.false")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -158,13 +159,13 @@ def build_array_get_boolean_invalid_string_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/integer/1.-1.3.300"
+    _url = kwargs.pop("template_url", "/array/prim/integer/1.-1.3.300")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -172,14 +173,14 @@ def build_array_get_integer_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_integer_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_integer_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/integer/1.-1.3.300"
+    _url = kwargs.pop("template_url", "/array/prim/integer/1.-1.3.300")
 
     # Construct headers
     if content_type is not None:
@@ -189,13 +190,13 @@ def build_array_put_integer_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/integer/1.null.zero"
+    _url = kwargs.pop("template_url", "/array/prim/integer/1.null.zero")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -203,13 +204,13 @@ def build_array_get_int_invalid_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/integer/1.integer.0"
+    _url = kwargs.pop("template_url", "/array/prim/integer/1.integer.0")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -217,13 +218,13 @@ def build_array_get_int_invalid_string_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_long_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/long/1.-1.3.300"
+    _url = kwargs.pop("template_url", "/array/prim/long/1.-1.3.300")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -231,14 +232,14 @@ def build_array_get_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_long_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_long_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/long/1.-1.3.300"
+    _url = kwargs.pop("template_url", "/array/prim/long/1.-1.3.300")
 
     # Construct headers
     if content_type is not None:
@@ -248,13 +249,13 @@ def build_array_put_long_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/long/1.null.zero"
+    _url = kwargs.pop("template_url", "/array/prim/long/1.null.zero")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -262,13 +263,13 @@ def build_array_get_long_invalid_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/long/1.integer.0"
+    _url = kwargs.pop("template_url", "/array/prim/long/1.integer.0")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -276,13 +277,13 @@ def build_array_get_long_invalid_string_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_float_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/float/0--0.01-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/float/0--0.01-1.2e20")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -290,14 +291,14 @@ def build_array_get_float_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_float_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_float_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/float/0--0.01-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/float/0--0.01-1.2e20")
 
     # Construct headers
     if content_type is not None:
@@ -307,13 +308,13 @@ def build_array_put_float_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/float/0.0-null-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/float/0.0-null-1.2e20")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -321,13 +322,13 @@ def build_array_get_float_invalid_null_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/float/1.number.0"
+    _url = kwargs.pop("template_url", "/array/prim/float/1.number.0")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -335,13 +336,13 @@ def build_array_get_float_invalid_string_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_double_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/double/0--0.01-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/double/0--0.01-1.2e20")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -349,14 +350,14 @@ def build_array_get_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_double_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_double_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/double/0--0.01-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/double/0--0.01-1.2e20")
 
     # Construct headers
     if content_type is not None:
@@ -366,13 +367,13 @@ def build_array_put_double_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/double/0.0-null-1.2e20"
+    _url = kwargs.pop("template_url", "/array/prim/double/0.0-null-1.2e20")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -380,13 +381,13 @@ def build_array_get_double_invalid_null_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/double/1.number.0"
+    _url = kwargs.pop("template_url", "/array/prim/double/1.number.0")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -394,13 +395,13 @@ def build_array_get_double_invalid_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_string_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/string/foo1.foo2.foo3")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -408,14 +409,14 @@ def build_array_get_string_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_string_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_string_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/string/foo1.foo2.foo3")
 
     # Construct headers
     if content_type is not None:
@@ -425,13 +426,13 @@ def build_array_put_string_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/enum/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/enum/foo1.foo2.foo3")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -439,14 +440,14 @@ def build_array_get_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_enum_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_enum_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/enum/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/enum/foo1.foo2.foo3")
 
     # Construct headers
     if content_type is not None:
@@ -456,13 +457,13 @@ def build_array_put_enum_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string-enum/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/string-enum/foo1.foo2.foo3")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -470,14 +471,14 @@ def build_array_get_string_enum_valid_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_string_enum_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put_string_enum_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string-enum/foo1.foo2.foo3"
+    _url = kwargs.pop("template_url", "/array/prim/string-enum/foo1.foo2.foo3")
 
     # Construct headers
     if content_type is not None:
@@ -487,13 +488,13 @@ def build_array_put_string_enum_valid_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string/foo.null.foo2"
+    _url = kwargs.pop("template_url", "/array/prim/string/foo.null.foo2")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -501,13 +502,13 @@ def build_array_get_string_with_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/string/foo.123.foo2"
+    _url = kwargs.pop("template_url", "/array/prim/string/foo.123.foo2")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -515,13 +516,13 @@ def build_array_get_string_with_invalid_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/uuid/valid"
+    _url = kwargs.pop("template_url", "/array/prim/uuid/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -529,14 +530,14 @@ def build_array_get_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_uuid_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/uuid/valid"
+    _url = kwargs.pop("template_url", "/array/prim/uuid/valid")
 
     # Construct headers
     if content_type is not None:
@@ -546,13 +547,13 @@ def build_array_put_uuid_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/uuid/invalidchars"
+    _url = kwargs.pop("template_url", "/array/prim/uuid/invalidchars")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -560,13 +561,13 @@ def build_array_get_uuid_invalid_chars_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -574,14 +575,14 @@ def build_array_get_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_date_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_date_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date/valid")
 
     # Construct headers
     if content_type is not None:
@@ -591,13 +592,13 @@ def build_array_put_date_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date/invalidnull"
+    _url = kwargs.pop("template_url", "/array/prim/date/invalidnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -605,13 +606,13 @@ def build_array_get_date_invalid_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date/invalidchars"
+    _url = kwargs.pop("template_url", "/array/prim/date/invalidchars")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -619,13 +620,13 @@ def build_array_get_date_invalid_chars_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date-time/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -633,14 +634,14 @@ def build_array_get_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_date_time_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date-time/valid")
 
     # Construct headers
     if content_type is not None:
@@ -650,13 +651,13 @@ def build_array_put_date_time_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time/invalidnull"
+    _url = kwargs.pop("template_url", "/array/prim/date-time/invalidnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -664,13 +665,13 @@ def build_array_get_date_time_invalid_null_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time/invalidchars"
+    _url = kwargs.pop("template_url", "/array/prim/date-time/invalidchars")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -678,13 +679,13 @@ def build_array_get_date_time_invalid_chars_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time-rfc1123/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date-time-rfc1123/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -692,14 +693,14 @@ def build_array_get_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/date-time-rfc1123/valid"
+    _url = kwargs.pop("template_url", "/array/prim/date-time-rfc1123/valid")
 
     # Construct headers
     if content_type is not None:
@@ -709,13 +710,13 @@ def build_array_put_date_time_rfc1123_valid_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/duration/valid"
+    _url = kwargs.pop("template_url", "/array/prim/duration/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -723,14 +724,14 @@ def build_array_get_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_duration_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_duration_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/duration/valid"
+    _url = kwargs.pop("template_url", "/array/prim/duration/valid")
 
     # Construct headers
     if content_type is not None:
@@ -740,13 +741,13 @@ def build_array_put_duration_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/byte/valid"
+    _url = kwargs.pop("template_url", "/array/prim/byte/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -754,14 +755,14 @@ def build_array_get_byte_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_byte_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_byte_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/byte/valid"
+    _url = kwargs.pop("template_url", "/array/prim/byte/valid")
 
     # Construct headers
     if content_type is not None:
@@ -771,13 +772,13 @@ def build_array_put_byte_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/byte/invalidnull"
+    _url = kwargs.pop("template_url", "/array/prim/byte/invalidnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -785,13 +786,13 @@ def build_array_get_byte_invalid_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_base64_url_request(**kwargs: Any) -> HttpRequest:
+def build_get_base64_url_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/prim/base64url/valid"
+    _url = kwargs.pop("template_url", "/array/prim/base64url/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -799,13 +800,13 @@ def build_array_get_base64_url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_complex_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/null"
+    _url = kwargs.pop("template_url", "/array/complex/null")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -813,13 +814,13 @@ def build_array_get_complex_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/empty"
+    _url = kwargs.pop("template_url", "/array/complex/empty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -827,13 +828,13 @@ def build_array_get_complex_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/itemnull"
+    _url = kwargs.pop("template_url", "/array/complex/itemnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -841,13 +842,13 @@ def build_array_get_complex_item_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/itemempty"
+    _url = kwargs.pop("template_url", "/array/complex/itemempty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -855,13 +856,13 @@ def build_array_get_complex_item_empty_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/valid"
+    _url = kwargs.pop("template_url", "/array/complex/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -869,14 +870,14 @@ def build_array_get_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_complex_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_complex_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/complex/valid"
+    _url = kwargs.pop("template_url", "/array/complex/valid")
 
     # Construct headers
     if content_type is not None:
@@ -886,13 +887,13 @@ def build_array_put_complex_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_array_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/null"
+    _url = kwargs.pop("template_url", "/array/array/null")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -900,13 +901,13 @@ def build_array_get_array_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_array_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/empty"
+    _url = kwargs.pop("template_url", "/array/array/empty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -914,13 +915,13 @@ def build_array_get_array_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/itemnull"
+    _url = kwargs.pop("template_url", "/array/array/itemnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -928,13 +929,13 @@ def build_array_get_array_item_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/itemempty"
+    _url = kwargs.pop("template_url", "/array/array/itemempty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -942,13 +943,13 @@ def build_array_get_array_item_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_array_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/valid"
+    _url = kwargs.pop("template_url", "/array/array/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -956,14 +957,14 @@ def build_array_get_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_array_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_array_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/array/valid"
+    _url = kwargs.pop("template_url", "/array/array/valid")
 
     # Construct headers
     if content_type is not None:
@@ -973,13 +974,13 @@ def build_array_put_array_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/null"
+    _url = kwargs.pop("template_url", "/array/dictionary/null")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -987,13 +988,13 @@ def build_array_get_dictionary_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/empty"
+    _url = kwargs.pop("template_url", "/array/dictionary/empty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1001,13 +1002,13 @@ def build_array_get_dictionary_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/itemnull"
+    _url = kwargs.pop("template_url", "/array/dictionary/itemnull")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1015,13 +1016,13 @@ def build_array_get_dictionary_item_null_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/itemempty"
+    _url = kwargs.pop("template_url", "/array/dictionary/itemempty")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1029,13 +1030,13 @@ def build_array_get_dictionary_item_empty_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
+def build_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/valid"
+    _url = kwargs.pop("template_url", "/array/dictionary/valid")
 
     # Construct headers
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
@@ -1043,14 +1044,14 @@ def build_array_get_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_put_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
+def build_put_dictionary_valid_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/array/dictionary/valid"
+    _url = kwargs.pop("template_url", "/array/dictionary/valid")
 
     # Construct headers
     if content_type is not None:
@@ -1066,7 +1067,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.test.AutoRestSwaggerBATArrayService`'s
+        :class:`~azure.mgmt.test.AutoRestSwaggerBATArrayService`'s
         :attr:`array` attribute.
     """
 
@@ -1085,7 +1086,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_null(self, **kwargs: Any) -> List[int]:
         """Get null array value.
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1102,7 +1103,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_null_request(
+        _request = build_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1118,7 +1119,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1131,7 +1132,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_invalid(self, **kwargs: Any) -> List[int]:
         """Get invalid array [1, 2, 3.
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1148,7 +1149,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_invalid_request(
+        _request = build_get_invalid_request(
             headers=_headers,
             params=_params,
         )
@@ -1164,7 +1165,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1177,7 +1178,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_empty(self, **kwargs: Any) -> List[int]:
         """Get empty array value [].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1194,7 +1195,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_empty_request(
+        _request = build_get_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -1210,7 +1211,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1228,7 +1229,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1242,7 +1243,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1255,7 +1256,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1281,7 +1282,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[str]")
 
-        _request = build_array_put_empty_request(
+        _request = build_put_empty_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1300,7 +1301,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -1309,7 +1310,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
         """Get boolean array value [true, false, false, true].
 
-        :return: list of bool
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1326,7 +1327,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_boolean_tfft_request(
+        _request = build_get_boolean_tfft_request(
             headers=_headers,
             params=_params,
         )
@@ -1342,7 +1343,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[bool]", pipeline_response.http_response)
 
@@ -1362,7 +1363,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1376,7 +1377,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1389,7 +1390,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [bool] type or a IO[bytes] type. Required.
         :type array_body: list[bool] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1415,7 +1416,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[bool]")
 
-        _request = build_array_put_boolean_tfft_request(
+        _request = build_put_boolean_tfft_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1434,7 +1435,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -1443,7 +1444,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
         """Get boolean array value [true, null, false].
 
-        :return: list of bool
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1460,7 +1461,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_boolean_invalid_null_request(
+        _request = build_get_boolean_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1476,7 +1477,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[bool]", pipeline_response.http_response)
 
@@ -1489,7 +1490,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
         """Get boolean array value [true, 'boolean', false].
 
-        :return: list of bool
+        :return: list of bool or the result of cls(response)
         :rtype: list[bool]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1506,7 +1507,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bool]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_boolean_invalid_string_request(
+        _request = build_get_boolean_invalid_string_request(
             headers=_headers,
             params=_params,
         )
@@ -1522,7 +1523,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[bool]", pipeline_response.http_response)
 
@@ -1535,7 +1536,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_integer_valid(self, **kwargs: Any) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1552,7 +1553,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_integer_valid_request(
+        _request = build_get_integer_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -1568,7 +1569,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1588,7 +1589,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1604,7 +1605,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1617,7 +1618,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
         :type array_body: list[int] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1643,7 +1644,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[int]")
 
-        _request = build_array_put_integer_valid_request(
+        _request = build_put_integer_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1662,7 +1663,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -1671,7 +1672,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
         """Get integer array value [1, null, 0].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1688,7 +1689,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_int_invalid_null_request(
+        _request = build_get_int_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1704,7 +1705,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1717,7 +1718,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
         """Get integer array value [1, 'integer', 0].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1734,7 +1735,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_int_invalid_string_request(
+        _request = build_get_int_invalid_string_request(
             headers=_headers,
             params=_params,
         )
@@ -1750,7 +1751,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1763,7 +1764,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_long_valid(self, **kwargs: Any) -> List[int]:
         """Get integer array value [1, -1, 3, 300].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1780,7 +1781,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_long_valid_request(
+        _request = build_get_long_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -1796,7 +1797,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1814,7 +1815,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1828,7 +1829,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1841,7 +1842,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
         :type array_body: list[int] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1867,7 +1868,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[int]")
 
-        _request = build_array_put_long_valid_request(
+        _request = build_put_long_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -1886,7 +1887,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -1895,7 +1896,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
         """Get long array value [1, null, 0].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1912,7 +1913,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_long_invalid_null_request(
+        _request = build_get_long_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1928,7 +1929,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1941,7 +1942,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
         """Get long array value [1, 'integer', 0].
 
-        :return: list of int
+        :return: list of int or the result of cls(response)
         :rtype: list[int]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -1958,7 +1959,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[int]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_long_invalid_string_request(
+        _request = build_get_long_invalid_string_request(
             headers=_headers,
             params=_params,
         )
@@ -1974,7 +1975,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[int]", pipeline_response.http_response)
 
@@ -1987,7 +1988,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_float_valid(self, **kwargs: Any) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2004,7 +2005,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_float_valid_request(
+        _request = build_get_float_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2020,7 +2021,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2040,7 +2041,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2054,7 +2055,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2067,7 +2068,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
         :type array_body: list[float] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2093,7 +2094,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[float]")
 
-        _request = build_array_put_float_valid_request(
+        _request = build_put_float_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2112,7 +2113,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -2121,7 +2122,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2138,7 +2139,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_float_invalid_null_request(
+        _request = build_get_float_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2154,7 +2155,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2167,7 +2168,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2184,7 +2185,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_float_invalid_string_request(
+        _request = build_get_float_invalid_string_request(
             headers=_headers,
             params=_params,
         )
@@ -2200,7 +2201,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2213,7 +2214,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_double_valid(self, **kwargs: Any) -> List[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2230,7 +2231,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_double_valid_request(
+        _request = build_get_double_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2246,7 +2247,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2266,7 +2267,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2280,7 +2281,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2293,7 +2294,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
         :type array_body: list[float] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2319,7 +2320,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[float]")
 
-        _request = build_array_put_double_valid_request(
+        _request = build_put_double_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2338,7 +2339,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -2347,7 +2348,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
         """Get float array value [0.0, null, -1.2e20].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2364,7 +2365,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_double_invalid_null_request(
+        _request = build_get_double_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2380,7 +2381,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2393,7 +2394,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
-        :return: list of float
+        :return: list of float or the result of cls(response)
         :rtype: list[float]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2410,7 +2411,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[float]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_double_invalid_string_request(
+        _request = build_get_double_invalid_string_request(
             headers=_headers,
             params=_params,
         )
@@ -2426,7 +2427,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[float]", pipeline_response.http_response)
 
@@ -2439,7 +2440,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_string_valid(self, **kwargs: Any) -> List[str]:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of str
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2456,7 +2457,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_string_valid_request(
+        _request = build_get_string_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2472,7 +2473,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2490,7 +2491,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2504,7 +2505,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2517,7 +2518,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2543,7 +2544,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[str]")
 
-        _request = build_array_put_string_valid_request(
+        _request = build_put_string_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2562,7 +2563,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -2571,8 +2572,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.FooEnum]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of FooEnum
-        :rtype: list[str or ~azure.test.models.FooEnum]
+        :return: list of FooEnum or the result of cls(response)
+        :rtype: list[str or ~azure.mgmt.test.models.FooEnum]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -2588,7 +2589,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Union[str, _models.FooEnum]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_enum_valid_request(
+        _request = build_get_enum_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2604,7 +2605,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2620,11 +2621,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
-        :type array_body: list[str or ~azure.test.models.FooEnum]
+        :type array_body: list[str or ~azure.mgmt.test.models.FooEnum]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2638,7 +2639,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2651,8 +2652,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [Union[str, "_models.FooEnum"]] type or a IO[bytes] type.
          Required.
-        :type array_body: list[str or ~azure.test.models.FooEnum] or IO[bytes]
-        :return: None
+        :type array_body: list[str or ~azure.mgmt.test.models.FooEnum] or IO[bytes]
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2678,7 +2679,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[str]")
 
-        _request = build_array_put_enum_valid_request(
+        _request = build_put_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2697,7 +2698,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -2706,8 +2707,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_string_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.Enum0]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
-        :return: list of Enum0
-        :rtype: list[str or ~azure.test.models.Enum0]
+        :return: list of Enum0 or the result of cls(response)
+        :rtype: list[str or ~azure.mgmt.test.models.Enum0]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -2723,7 +2724,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Union[str, _models.Enum0]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_string_enum_valid_request(
+        _request = build_get_string_enum_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2739,7 +2740,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2755,11 +2756,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Required.
-        :type array_body: list[str or ~azure.test.models.Enum1]
+        :type array_body: list[str or ~azure.mgmt.test.models.Enum1]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2775,7 +2776,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2788,8 +2789,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [Union[str, "_models.Enum1"]] type or a IO[bytes] type.
          Required.
-        :type array_body: list[str or ~azure.test.models.Enum1] or IO[bytes]
-        :return: None
+        :type array_body: list[str or ~azure.mgmt.test.models.Enum1] or IO[bytes]
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2815,7 +2816,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[str]")
 
-        _request = build_array_put_string_enum_valid_request(
+        _request = build_put_string_enum_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -2834,7 +2835,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -2843,7 +2844,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_string_with_null(self, **kwargs: Any) -> List[str]:
         """Get string array value ['foo', null, 'foo2'].
 
-        :return: list of str
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2860,7 +2861,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_string_with_null_request(
+        _request = build_get_string_with_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2876,7 +2877,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2889,7 +2890,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
         """Get string array value ['foo', 123, 'foo2'].
 
-        :return: list of str
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2906,7 +2907,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_string_with_invalid_request(
+        _request = build_get_string_with_invalid_request(
             headers=_headers,
             params=_params,
         )
@@ -2922,7 +2923,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2936,7 +2937,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
-        :return: list of str
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -2953,7 +2954,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_uuid_valid_request(
+        _request = build_get_uuid_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -2969,7 +2970,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -2988,7 +2989,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3003,7 +3004,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3017,7 +3018,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3043,7 +3044,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[str]")
 
-        _request = build_array_put_uuid_valid_request(
+        _request = build_put_uuid_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3062,7 +3063,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3071,7 +3072,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
-        :return: list of str
+        :return: list of str or the result of cls(response)
         :rtype: list[str]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3088,7 +3089,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[str]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_uuid_invalid_chars_request(
+        _request = build_get_uuid_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
@@ -3104,7 +3105,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[str]", pipeline_response.http_response)
 
@@ -3117,7 +3118,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
-        :return: list of date
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3134,7 +3135,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_valid_request(
+        _request = build_get_date_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -3150,7 +3151,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[date]", pipeline_response.http_response)
 
@@ -3170,7 +3171,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3184,7 +3185,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3197,7 +3198,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.date] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.date] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3223,7 +3224,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[date]")
 
-        _request = build_array_put_date_valid_request(
+        _request = build_put_date_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3242,7 +3243,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3251,7 +3252,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
-        :return: list of date
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3268,7 +3269,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_invalid_null_request(
+        _request = build_get_date_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -3284,7 +3285,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[date]", pipeline_response.http_response)
 
@@ -3297,7 +3298,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
         """Get date array value ['2011-03-22', 'date'].
 
-        :return: list of date
+        :return: list of date or the result of cls(response)
         :rtype: list[~datetime.date]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3314,7 +3315,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_invalid_chars_request(
+        _request = build_get_date_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
@@ -3330,7 +3331,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[date]", pipeline_response.http_response)
 
@@ -3344,7 +3345,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
-        :return: list of datetime
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3361,7 +3362,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_time_valid_request(
+        _request = build_get_date_time_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -3377,7 +3378,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[iso-8601]", pipeline_response.http_response)
 
@@ -3398,7 +3399,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3415,7 +3416,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3429,7 +3430,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3455,7 +3456,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[iso-8601]")
 
-        _request = build_array_put_date_time_valid_request(
+        _request = build_put_date_time_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3474,7 +3475,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3483,7 +3484,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
-        :return: list of datetime
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3500,7 +3501,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_time_invalid_null_request(
+        _request = build_get_date_time_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -3516,7 +3517,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[iso-8601]", pipeline_response.http_response)
 
@@ -3529,7 +3530,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
-        :return: list of datetime
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3546,7 +3547,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_time_invalid_chars_request(
+        _request = build_get_date_time_invalid_chars_request(
             headers=_headers,
             params=_params,
         )
@@ -3562,7 +3563,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[iso-8601]", pipeline_response.http_response)
 
@@ -3576,7 +3577,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
-        :return: list of datetime
+        :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3593,7 +3594,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_date_time_rfc1123_valid_request(
+        _request = build_get_date_time_rfc1123_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -3609,7 +3610,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[rfc-1123]", pipeline_response.http_response)
 
@@ -3630,7 +3631,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3647,7 +3648,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3661,7 +3662,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3687,7 +3688,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[rfc-1123]")
 
-        _request = build_array_put_date_time_rfc1123_valid_request(
+        _request = build_put_date_time_rfc1123_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3706,7 +3707,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3715,7 +3716,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
-        :return: list of timedelta
+        :return: list of timedelta or the result of cls(response)
         :rtype: list[~datetime.timedelta]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3732,7 +3733,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[datetime.timedelta]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_duration_valid_request(
+        _request = build_get_duration_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -3748,7 +3749,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[duration]", pipeline_response.http_response)
 
@@ -3768,7 +3769,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3784,7 +3785,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3797,7 +3798,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.timedelta] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3823,7 +3824,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[duration]")
 
-        _request = build_array_put_duration_valid_request(
+        _request = build_put_duration_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3842,7 +3843,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3852,7 +3853,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
-        :return: list of bytes
+        :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3869,7 +3870,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_byte_valid_request(
+        _request = build_get_byte_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -3885,7 +3886,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[bytearray]", pipeline_response.http_response)
 
@@ -3904,7 +3905,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3919,7 +3920,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3933,7 +3934,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [bytes] type or a IO[bytes] type. Required.
         :type array_body: list[bytes] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -3959,7 +3960,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[bytearray]")
 
-        _request = build_array_put_byte_valid_request(
+        _request = build_put_byte_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -3978,7 +3979,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -3987,7 +3988,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_byte_invalid_null(self, **kwargs: Any) -> List[bytes]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
-        :return: list of bytes
+        :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4004,7 +4005,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_byte_invalid_null_request(
+        _request = build_get_byte_invalid_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4020,7 +4021,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[bytearray]", pipeline_response.http_response)
 
@@ -4034,7 +4035,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
         the items base64url encoded.
 
-        :return: list of bytes
+        :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4051,7 +4052,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_base64_url_request(
+        _request = build_get_base64_url_request(
             headers=_headers,
             params=_params,
         )
@@ -4067,7 +4068,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[base64]", pipeline_response.http_response)
 
@@ -4080,8 +4081,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_complex_null(self, **kwargs: Any) -> List[_models.Product]:
         """Get array of complex type null value.
 
-        :return: list of Product
-        :rtype: list[~azure.test.models.Product]
+        :return: list of Product or the result of cls(response)
+        :rtype: list[~azure.mgmt.test.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -4097,7 +4098,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_complex_null_request(
+        _request = build_get_complex_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4113,7 +4114,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[Product]", pipeline_response.http_response)
 
@@ -4126,8 +4127,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_complex_empty(self, **kwargs: Any) -> List[_models.Product]:
         """Get empty array of complex type [].
 
-        :return: list of Product
-        :rtype: list[~azure.test.models.Product]
+        :return: list of Product or the result of cls(response)
+        :rtype: list[~azure.mgmt.test.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -4143,7 +4144,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_complex_empty_request(
+        _request = build_get_complex_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4159,7 +4160,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[Product]", pipeline_response.http_response)
 
@@ -4173,8 +4174,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
-        :return: list of Product
-        :rtype: list[~azure.test.models.Product]
+        :return: list of Product or the result of cls(response)
+        :rtype: list[~azure.mgmt.test.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -4190,7 +4191,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_complex_item_null_request(
+        _request = build_get_complex_item_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4206,7 +4207,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[Product]", pipeline_response.http_response)
 
@@ -4220,8 +4221,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
-        :return: list of Product
-        :rtype: list[~azure.test.models.Product]
+        :return: list of Product or the result of cls(response)
+        :rtype: list[~azure.mgmt.test.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -4237,7 +4238,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_complex_item_empty_request(
+        _request = build_get_complex_item_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4253,7 +4254,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[Product]", pipeline_response.http_response)
 
@@ -4267,8 +4268,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
-        :return: list of Product
-        :rtype: list[~azure.test.models.Product]
+        :return: list of Product or the result of cls(response)
+        :rtype: list[~azure.mgmt.test.models.Product]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -4284,7 +4285,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_complex_valid_request(
+        _request = build_get_complex_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -4300,7 +4301,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[Product]", pipeline_response.http_response)
 
@@ -4317,11 +4318,11 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Required.
-        :type array_body: list[~azure.test.models.Product]
+        :type array_body: list[~azure.mgmt.test.models.Product]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4338,7 +4339,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4351,8 +4352,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Is either a [Product] type or a IO[bytes] type. Required.
-        :type array_body: list[~azure.test.models.Product] or IO[bytes]
-        :return: None
+        :type array_body: list[~azure.mgmt.test.models.Product] or IO[bytes]
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4378,7 +4379,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[Product]")
 
-        _request = build_array_put_complex_valid_request(
+        _request = build_put_complex_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -4397,7 +4398,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -4406,7 +4407,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_array_null(self, **kwargs: Any) -> List[List[str]]:
         """Get a null array.
 
-        :return: list of list of str
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4423,7 +4424,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_array_null_request(
+        _request = build_get_array_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4439,7 +4440,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[[str]]", pipeline_response.http_response)
 
@@ -4452,7 +4453,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
         """Get an empty array [].
 
-        :return: list of list of str
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4469,7 +4470,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_array_empty_request(
+        _request = build_get_array_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4485,7 +4486,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[[str]]", pipeline_response.http_response)
 
@@ -4498,7 +4499,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
-        :return: list of list of str
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4515,7 +4516,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_array_item_null_request(
+        _request = build_get_array_item_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4531,7 +4532,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[[str]]", pipeline_response.http_response)
 
@@ -4544,7 +4545,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
-        :return: list of list of str
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4561,7 +4562,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_array_item_empty_request(
+        _request = build_get_array_item_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4577,7 +4578,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[[str]]", pipeline_response.http_response)
 
@@ -4590,7 +4591,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
-        :return: list of list of str
+        :return: list of list of str or the result of cls(response)
         :rtype: list[list[str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4607,7 +4608,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_array_valid_request(
+        _request = build_get_array_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -4623,7 +4624,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[[str]]", pipeline_response.http_response)
 
@@ -4643,7 +4644,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4657,7 +4658,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4670,7 +4671,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [[str]] type or a IO[bytes] type. Required.
         :type array_body: list[list[str]] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4696,7 +4697,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[[str]]")
 
-        _request = build_array_put_array_valid_request(
+        _request = build_put_array_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -4715,7 +4716,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
@@ -4724,7 +4725,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
         """Get an array of Dictionaries with value null.
 
-        :return: list of dict mapping str to str
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4741,7 +4742,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_dictionary_null_request(
+        _request = build_get_dictionary_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4757,7 +4758,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[{str}]", pipeline_response.http_response)
 
@@ -4770,7 +4771,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [].
 
-        :return: list of dict mapping str to str
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4787,7 +4788,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_dictionary_empty_request(
+        _request = build_get_dictionary_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4803,7 +4804,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[{str}]", pipeline_response.http_response)
 
@@ -4817,7 +4818,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :return: list of dict mapping str to str
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4834,7 +4835,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_dictionary_item_null_request(
+        _request = build_get_dictionary_item_null_request(
             headers=_headers,
             params=_params,
         )
@@ -4850,7 +4851,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[{str}]", pipeline_response.http_response)
 
@@ -4864,7 +4865,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :return: list of dict mapping str to str
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4881,7 +4882,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_dictionary_item_empty_request(
+        _request = build_get_dictionary_item_empty_request(
             headers=_headers,
             params=_params,
         )
@@ -4897,7 +4898,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[{str}]", pipeline_response.http_response)
 
@@ -4911,7 +4912,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
-        :return: list of dict mapping str to str
+        :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4928,7 +4929,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
 
-        _request = build_array_get_dictionary_valid_request(
+        _request = build_get_dictionary_valid_request(
             headers=_headers,
             params=_params,
         )
@@ -4944,7 +4945,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         deserialized = self._deserialize("[{str}]", pipeline_response.http_response)
 
@@ -4965,7 +4966,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4982,7 +4983,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -4996,7 +4997,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
         :param array_body: Is either a [{str: str}] type or a IO[bytes] type. Required.
         :type array_body: list[dict[str, str]] or IO[bytes]
-        :return: None
+        :return: None or the result of cls(response)
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
         """
@@ -5022,7 +5023,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         else:
             _json = self._serialize.body(array_body, "[{str}]")
 
-        _request = build_array_put_dictionary_valid_request(
+        _request = build_put_dictionary_valid_request(
             content_type=content_type,
             json=_json,
             content=_content,
@@ -5041,7 +5042,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         if response.status_code not in [200]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = self._deserialize.failsafe_deserialize(_models.Error, pipeline_response)
-            raise HttpResponseError(response=response, model=error)
+            raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
