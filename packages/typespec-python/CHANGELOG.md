@@ -1,5 +1,17 @@
 # Release
 
+## 0.38.2
+
+### Bug Fixes
+
+- [#3011](https://github.com/Azure/autorest.python/pull/3011) Fix spelling mistakes by running cspell in pipelines
+- [#3029](https://github.com/Azure/autorest.python/pull/3029) Fix for scenario that output folder is different with namespace
+- [#3029](https://github.com/Azure/autorest.python/pull/3029) Improve XML serialization information in generated models
+- [#3025](https://github.com/Azure/autorest.python/pull/3025) Fix sphinx typing for raising documentation
+- [#3025](https://github.com/Azure/autorest.python/pull/3025) fix typing for class methods in _serialization.py
+- [#3015](https://github.com/Azure/autorest.python/pull/3015) Order keyword-only args overload first in generated operations
+
+
 ## 0.38.1
 
 ### Bug Fixes
