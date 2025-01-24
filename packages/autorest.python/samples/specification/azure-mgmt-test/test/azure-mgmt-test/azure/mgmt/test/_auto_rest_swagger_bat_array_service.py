@@ -15,27 +15,28 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
-from ._configuration import AutoRestHeadTestServiceConfiguration
+from . import models as _models
+from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HttpSuccessOperations
+from .operations import ArrayOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
-    """Test Infrastructure for AutoRest.
+class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-version-keyword
+    """Test Infrastructure for AutoRest Swagger BAT.
 
-    :ivar http_success: HttpSuccessOperations operations
-    :vartype http_success: azure.mgmt.test.operations.HttpSuccessOperations
+    :ivar array: ArrayOperations operations
+    :vartype array: azure.mgmt.test.operations.ArrayOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL. Default value is "http://localhost:3000".
-    :type endpoint: str
+    :param base_url: Service URL. Default value is "http://localhost:3000".
+    :type base_url: str
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
+    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+        self._config = AutoRestSwaggerBATArrayServiceConfiguration(credential=credential, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -54,20 +55,21 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
-        self._serialize = Serializer()
-        self._deserialize = Deserializer()
+        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        self._serialize = Serializer(client_models)
+        self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = client.send_request(request)
+        >>> response = client._send_request(request)
         <HttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request

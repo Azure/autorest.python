@@ -10,6 +10,7 @@
 - [#3025](https://github.com/Azure/autorest.python/pull/3025) Fix sphinx typing for raising documentation
 - [#3025](https://github.com/Azure/autorest.python/pull/3025) fix typing for class methods in _serialization.py
 - [#3015](https://github.com/Azure/autorest.python/pull/3015) Order keyword-only args overload first in generated operations
+- [#3030](https://github.com/Azure/autorest.python/pull/3030) Fix output folder of models when output folder is different with namespace in configuration
 
 
 ## 0.38.1

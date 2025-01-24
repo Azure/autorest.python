@@ -13,8 +13,8 @@ from azure.core.pipeline import policies
 VERSION = "unknown"
 
 
-class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
-    """Configuration for AutoRestHeadTestService.
+class AutoRestSwaggerBATArrayServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
+    """Configuration for AutoRestSwaggerBATArrayService.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.

@@ -12,14 +12,27 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._array_operations import ArrayOperations  # type: ignore
 
+from ._models_py3 import (  # type: ignore
+    Error,
+    Product,
+)
+
+from ._auto_rest_swagger_bat_array_service_enums import (  # type: ignore
+    Enum0,
+    Enum1,
+    FooEnum,
+)
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ArrayOperations",
+    "Error",
+    "Product",
+    "Enum0",
+    "Enum1",
+    "FooEnum",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

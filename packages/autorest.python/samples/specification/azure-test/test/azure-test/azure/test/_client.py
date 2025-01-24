@@ -6,8 +6,8 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from ._generated._client import AutoRestHeadTestService
+from ._generated._client import AutoRestSwaggerBATArrayService
 
 
-class CustomizeClient(AutoRestHeadTestService):
+class CustomizeClient(AutoRestSwaggerBATArrayService):
     pass
