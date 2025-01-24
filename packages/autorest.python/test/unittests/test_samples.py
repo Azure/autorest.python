@@ -17,5 +17,5 @@ def test_azure_test_import():
     from azure.test._generated import AutoRestSwaggerBATArrayService
     from azure.test._generated import models
     from azure.test._generated import operations
-    
+
     from azure.test import CustomizeClient
