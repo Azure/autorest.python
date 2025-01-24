@@ -21,11 +21,16 @@ class ModelWithArrayOfModel(_model_base.Model):
 
 
     :ivar items_property: Required.
-    :vartype items_property: list[~payload.xml.models.SimpleModel]
+    :vartype items_property: ~payload.xml.models.SimpleModel
     """
 
-    items_property: List["_models.SimpleModel"] = rest_field(name="items")
+    items_property: List["_models.SimpleModel"] = rest_field(
+        name="items",
+        xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithArrayOfModel", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -57,12 +62,14 @@ class ModelWithAttributes(_model_base.Model):
     :vartype enabled: bool
     """
 
-    id1: int = rest_field(xml={"attribute": True})
+    id1: int = rest_field(xml={"attribute": True, "name": "id1", "text": False, "unwrapped": False})
     """Required."""
-    id2: str = rest_field(xml={"attribute": True})
+    id2: str = rest_field(xml={"attribute": True, "name": "id2", "text": False, "unwrapped": False})
     """Required."""
-    enabled: bool = rest_field()
+    enabled: bool = rest_field(xml={"attribute": False, "name": "enabled", "text": False, "unwrapped": False})
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithAttributes", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -92,8 +99,12 @@ class ModelWithDictionary(_model_base.Model):
     :vartype metadata: dict[str, str]
     """
 
-    metadata: Dict[str, str] = rest_field()
+    metadata: Dict[str, str] = rest_field(
+        xml={"attribute": False, "name": "metadata", "text": False, "unwrapped": False}
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithDictionary", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -118,11 +129,16 @@ class ModelWithEmptyArray(_model_base.Model):
 
 
     :ivar items_property: Required.
-    :vartype items_property: list[~payload.xml.models.SimpleModel]
+    :vartype items_property: ~payload.xml.models.SimpleModel
     """
 
-    items_property: List["_models.SimpleModel"] = rest_field(name="items")
+    items_property: List["_models.SimpleModel"] = rest_field(
+        name="items",
+        xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithEmptyArray", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -152,12 +168,16 @@ class ModelWithEncodedNames(_model_base.Model):
     :vartype colors: list[str]
     """
 
-    model_data: "_models.SimpleModel" = rest_field(name="modelData", xml={"name": "SimpleModelData"})
+    model_data: "_models.SimpleModel" = rest_field(
+        name="modelData", xml={"attribute": False, "name": "SimpleModelData", "text": False, "unwrapped": False}
+    )
     """Required."""
-    colors: List[str] = rest_field(xml={"itemsName": "string", "name": "PossibleColors"})
+    colors: List[str] = rest_field(
+        xml={"attribute": False, "itemsName": "string", "name": "PossibleColors", "text": False, "unwrapped": False}
+    )
     """Required."""
 
-    _xml = {"name": "ModelWithEncodedNamesSrc"}
+    _xml = {"attribute": False, "name": "ModelWithEncodedNamesSrc", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -188,9 +208,11 @@ class ModelWithOptionalField(_model_base.Model):
     :vartype value: int
     """
 
-    item: str = rest_field()
+    item: str = rest_field(xml={"attribute": False, "name": "item", "text": False, "unwrapped": False})
     """Required."""
-    value: Optional[int] = rest_field()
+    value: Optional[int] = rest_field(xml={"attribute": False, "name": "value", "text": False, "unwrapped": False})
+
+    _xml = {"attribute": False, "name": "ModelWithOptionalField", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -222,10 +244,16 @@ class ModelWithRenamedArrays(_model_base.Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(xml={"name": "Colors", "unwrapped": True})
+    colors: List[str] = rest_field(
+        xml={"attribute": False, "itemsName": "Colors", "name": "Colors", "text": False, "unwrapped": True}
+    )
     """Required."""
-    counts: List[int] = rest_field(xml={"itemsName": "int32", "name": "Counts"})
+    counts: List[int] = rest_field(
+        xml={"attribute": False, "itemsName": "int32", "name": "Counts", "text": False, "unwrapped": False}
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedArrays", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -256,12 +284,16 @@ class ModelWithRenamedFields(_model_base.Model):
     :vartype output_data: ~payload.xml.models.SimpleModel
     """
 
-    input_data: "_models.SimpleModel" = rest_field(name="inputData", xml={"name": "InputData"})
+    input_data: "_models.SimpleModel" = rest_field(
+        name="inputData", xml={"attribute": False, "name": "InputData", "text": False, "unwrapped": False}
+    )
     """Required."""
-    output_data: "_models.SimpleModel" = rest_field(name="outputData", xml={"name": "OutputData"})
+    output_data: "_models.SimpleModel" = rest_field(
+        name="outputData", xml={"attribute": False, "name": "OutputData", "text": False, "unwrapped": False}
+    )
     """Required."""
 
-    _xml = {"name": "ModelWithRenamedFieldsSrc"}
+    _xml = {"attribute": False, "name": "ModelWithRenamedFieldsSrc", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -292,10 +324,16 @@ class ModelWithSimpleArrays(_model_base.Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(xml={"itemsName": "string"})
+    colors: List[str] = rest_field(
+        xml={"attribute": False, "itemsName": "string", "name": "colors", "text": False, "unwrapped": False}
+    )
     """Required."""
-    counts: List[int] = rest_field(xml={"itemsName": "int32"})
+    counts: List[int] = rest_field(
+        xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False}
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithSimpleArrays", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -326,10 +364,12 @@ class ModelWithText(_model_base.Model):
     :vartype content: str
     """
 
-    language: str = rest_field(xml={"attribute": True})
+    language: str = rest_field(xml={"attribute": True, "name": "language", "text": False, "unwrapped": False})
     """Required."""
-    content: str = rest_field(xml={"text": True})
+    content: str = rest_field(xml={"attribute": False, "name": "content", "text": True, "unwrapped": False})
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithText", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -360,10 +400,16 @@ class ModelWithUnwrappedArray(_model_base.Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(xml={"unwrapped": True})
+    colors: List[str] = rest_field(
+        xml={"attribute": False, "itemsName": "colors", "name": "colors", "text": False, "unwrapped": True}
+    )
     """Required."""
-    counts: List[int] = rest_field(xml={"itemsName": "int32"})
+    counts: List[int] = rest_field(
+        xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False}
+    )
     """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithUnwrappedArray", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
@@ -394,10 +440,12 @@ class SimpleModel(_model_base.Model):
     :vartype age: int
     """
 
-    name: str = rest_field()
+    name: str = rest_field(xml={"attribute": False, "name": "name", "text": False, "unwrapped": False})
     """Required."""
-    age: int = rest_field()
+    age: int = rest_field(xml={"attribute": False, "name": "age", "text": False, "unwrapped": False})
     """Required."""
+
+    _xml = {"attribute": False, "name": "SimpleModel", "text": False, "unwrapped": False}
 
     @overload
     def __init__(
