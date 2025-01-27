@@ -18,12 +18,12 @@ class SameAsModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar same_as_model: Required.
-    :vartype same_as_model: str
+     :ivar same_as_model: Required.
+     :vartype same_as_model: str
     """
 
     same_as_model: str = rest_field(name="SameAsModel")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

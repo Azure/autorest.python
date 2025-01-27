@@ -23,17 +23,17 @@ class Fish(_model_base.Model):
     Salmon, Shark
 
 
-    :ivar kind: Discriminator property for Fish. Required. Default value is None.
-    :vartype kind: str
-    :ivar age: Required.
-    :vartype age: int
+     :ivar kind: Discriminator property for Fish. Required. Default value is None.
+     :vartype kind: str
+     :ivar age: Required.
+     :vartype age: int
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Discriminator property for Fish. Required. Default value is None."""
+    """ Discriminator property for Fish. Required. Default value is None."""
     age: int = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -62,19 +62,19 @@ class Shark(Fish, discriminator="shark"):
     GoblinShark, SawShark
 
 
-    :ivar age: Required.
-    :vartype age: int
-    :ivar kind: Required. Default value is "shark".
-    :vartype kind: str
-    :ivar sharktype: Required. Default value is None.
-    :vartype sharktype: str
+     :ivar age: Required.
+     :vartype age: int
+     :ivar kind: Required. Default value is "shark".
+     :vartype kind: str
+     :ivar sharktype: Required. Default value is None.
+     :vartype sharktype: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: Literal["shark"] = rest_discriminator(name="kind")  # type: ignore
-    """Required. Default value is \"shark\"."""
+    """ Required. Default value is \"shark\"."""
     sharktype: str = rest_discriminator(name="sharktype")
-    """Required. Default value is None."""
+    """ Required. Default value is None."""
 
     @overload
     def __init__(
@@ -109,7 +109,7 @@ class GoblinShark(Shark, discriminator="goblin"):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     sharktype: Literal["goblin"] = rest_discriminator(name="sharktype")  # type: ignore
-    """Required. Default value is \"goblin\"."""
+    """ Required. Default value is \"goblin\"."""
 
     @overload
     def __init__(
@@ -134,20 +134,20 @@ class Salmon(Fish, discriminator="salmon"):
     other polymorphic instances.
 
 
-    :ivar age: Required.
-    :vartype age: int
-    :ivar kind: Required. Default value is "salmon".
-    :vartype kind: str
-    :ivar friends:
-    :vartype friends: list[~typetest.model.nesteddiscriminator.models.Fish]
-    :ivar hate:
-    :vartype hate: dict[str, ~typetest.model.nesteddiscriminator.models.Fish]
-    :ivar partner:
-    :vartype partner: ~typetest.model.nesteddiscriminator.models.Fish
+     :ivar age: Required.
+     :vartype age: int
+     :ivar kind: Required. Default value is "salmon".
+     :vartype kind: str
+     :ivar friends:
+     :vartype friends: list[~typetest.model.nesteddiscriminator.models.Fish]
+     :ivar hate:
+     :vartype hate: dict[str, ~typetest.model.nesteddiscriminator.models.Fish]
+     :ivar partner:
+     :vartype partner: ~typetest.model.nesteddiscriminator.models.Fish
     """
 
     kind: Literal["salmon"] = rest_discriminator(name="kind")  # type: ignore
-    """Required. Default value is \"salmon\"."""
+    """ Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field()
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field()
     partner: Optional["_models.Fish"] = rest_field()
@@ -187,7 +187,7 @@ class SawShark(Shark, discriminator="saw"):
 
     __mapping__: Dict[str, _model_base.Model] = {}
     sharktype: Literal["saw"] = rest_discriminator(name="sharktype")  # type: ignore
-    """Required. Default value is \"saw\"."""
+    """ Required. Default value is \"saw\"."""
 
     @overload
     def __init__(

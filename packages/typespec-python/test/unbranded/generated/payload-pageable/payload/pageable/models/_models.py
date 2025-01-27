@@ -24,9 +24,9 @@ class Pet(_model_base.Model):
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

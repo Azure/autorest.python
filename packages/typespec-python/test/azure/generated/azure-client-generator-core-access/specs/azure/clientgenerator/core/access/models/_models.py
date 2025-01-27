@@ -23,17 +23,17 @@ class AbstractModel(_model_base.Model):
     RealModel
 
 
-    :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
-    :vartype kind: str
-    :ivar name: Required.
-    :vartype name: str
+     :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
+     :vartype kind: str
+     :ivar name: Required.
+     :vartype name: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """Discriminator property for AbstractModel. Required. Default value is None."""
+    """ Discriminator property for AbstractModel. Required. Default value is None."""
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -63,7 +63,7 @@ class BaseModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -92,7 +92,7 @@ class InnerModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -121,7 +121,7 @@ class InternalDecoratorModelInInternal(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -150,7 +150,7 @@ class NoDecoratorModelInInternal(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -179,7 +179,7 @@ class NoDecoratorModelInPublic(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -210,7 +210,7 @@ class OuterModel(BaseModel):
     """
 
     inner: "_models._models.InnerModel" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -240,7 +240,7 @@ class PublicDecoratorModelInInternal(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -269,7 +269,7 @@ class PublicDecoratorModelInPublic(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -300,7 +300,7 @@ class RealModel(AbstractModel, discriminator="real"):
     """
 
     kind: Literal["real"] = rest_discriminator(name="kind")  # type: ignore
-    """Required. Default value is \"real\"."""
+    """ Required. Default value is \"real\"."""
 
     @overload
     def __init__(
@@ -329,7 +329,7 @@ class SharedModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

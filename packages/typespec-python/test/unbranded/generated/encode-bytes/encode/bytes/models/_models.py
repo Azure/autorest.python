@@ -22,7 +22,7 @@ class Base64BytesProperty(_model_base.Model):
     """
 
     value: bytes = rest_field(format="base64")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -51,7 +51,7 @@ class Base64urlArrayBytesProperty(_model_base.Model):
     """
 
     value: List[bytes] = rest_field(format="base64url")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -80,7 +80,7 @@ class Base64urlBytesProperty(_model_base.Model):
     """
 
     value: bytes = rest_field(format="base64url")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -109,7 +109,7 @@ class DefaultBytesProperty(_model_base.Model):
     """
 
     value: bytes = rest_field(format="base64")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

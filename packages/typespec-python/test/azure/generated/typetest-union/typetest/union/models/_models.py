@@ -25,7 +25,7 @@ class Cat(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -54,7 +54,7 @@ class Dog(_model_base.Model):
     """
 
     bark: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -87,11 +87,11 @@ class EnumsOnlyCases(_model_base.Model):
     """
 
     lr: Literal["left", "right", "up", "down"] = rest_field()
-    """This should be receive/send the left variant. Required. Is one of the following types:
-     Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
+    """ This should be receive/send the left variant. Required. Is one of the following types:
+      Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
     ud: Literal["up", "down"] = rest_field()
-    """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
-     Literal[\"down\"] type."""
+    """ This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
+      Literal[\"down\"] type."""
 
     @overload
     def __init__(
@@ -121,7 +121,7 @@ class GetResponse(_model_base.Model):
     """
 
     prop: "_models.MixedTypesCases" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -150,7 +150,7 @@ class GetResponse1(_model_base.Model):
     """
 
     prop: "_models.MixedLiteralsCases" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -179,7 +179,7 @@ class GetResponse2(_model_base.Model):
     """
 
     prop: "_models.StringAndArrayCases" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -208,7 +208,7 @@ class GetResponse3(_model_base.Model):
     """
 
     prop: "_models.EnumsOnlyCases" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -237,7 +237,7 @@ class GetResponse4(_model_base.Model):
     """
 
     prop: Union["_models.Cat", "_models.Dog"] = rest_field()
-    """Required. Is either a Cat type or a Dog type."""
+    """ Required. Is either a Cat type or a Dog type."""
 
     @overload
     def __init__(
@@ -266,7 +266,7 @@ class GetResponse5(_model_base.Model):
     """
 
     prop: float = rest_field()
-    """Required. Is one of the following types: float"""
+    """ Required. Is one of the following types: float"""
 
     @overload
     def __init__(
@@ -295,7 +295,7 @@ class GetResponse6(_model_base.Model):
     """
 
     prop: Literal[1, 2, 3] = rest_field()
-    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
+    """ Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
 
     @overload
     def __init__(
@@ -324,7 +324,7 @@ class GetResponse7(_model_base.Model):
     """
 
     prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field()
-    """Required. Known values are: \"b\" and \"c\"."""
+    """ Required. Known values are: \"b\" and \"c\"."""
 
     @overload
     def __init__(
@@ -353,7 +353,7 @@ class GetResponse8(_model_base.Model):
     """
 
     prop: Union[Literal["b"], Literal["c"], str] = rest_field()
-    """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
+    """ Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
     def __init__(
@@ -382,7 +382,7 @@ class GetResponse9(_model_base.Model):
     """
 
     prop: Literal["a", "b", "c"] = rest_field()
-    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
+    """ Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
     def __init__(
@@ -421,17 +421,17 @@ class MixedLiteralsCases(_model_base.Model):
     """
 
     string_literal: Literal["a", 2, True] = rest_field(name="stringLiteral")
-    """This should be receive/send the \"a\" variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+    """ This should be receive/send the \"a\" variant. Required. Is one of the following types:
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
     int_literal: Literal["a", 2, True] = rest_field(name="intLiteral")
-    """This should be receive/send the 2 variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+    """ This should be receive/send the 2 variant. Required. Is one of the following types:
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
     float_literal: Literal["a", 2, True] = rest_field(name="floatLiteral")
-    """This should be receive/send the 3.3 variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+    """ This should be receive/send the 3.3 variant. Required. Is one of the following types:
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
     boolean_literal: Literal["a", 2, True] = rest_field(name="booleanLiteral")
-    """This should be receive/send the true variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+    """ This should be receive/send the true variant. Required. Is one of the following types:
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
     @overload
     def __init__(
@@ -475,19 +475,19 @@ class MixedTypesCases(_model_base.Model):
     """
 
     model: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+    """ This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
+      Literal[\"a\"], int, bool"""
     literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+    """ This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
+      Literal[\"a\"], int, bool"""
     int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(name="int")
-    """This should be receive/send the int variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+    """ This should be receive/send the int variant. Required. Is one of the following types: Cat,
+      Literal[\"a\"], int, bool"""
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
-    """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+    """ This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
+      Literal[\"a\"], int, bool"""
     array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field()
-    """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
+    """ This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
 
     @overload
     def __init__(
@@ -524,9 +524,9 @@ class StringAndArrayCases(_model_base.Model):
     """
 
     string: Union[str, List[str]] = rest_field()
-    """This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
+    """ This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
     array: Union[str, List[str]] = rest_field()
-    """This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
+    """ This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
 
     @overload
     def __init__(

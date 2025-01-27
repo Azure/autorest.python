@@ -22,7 +22,7 @@ class AzureLocationModel(_model_base.Model):
     """
 
     location: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

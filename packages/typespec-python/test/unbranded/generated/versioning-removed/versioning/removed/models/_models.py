@@ -29,11 +29,11 @@ class ModelV2(_model_base.Model):
     """
 
     prop: str = rest_field()
-    """Required."""
+    """ Required."""
     enum_prop: Union[str, "_models.EnumV2"] = rest_field(name="enumProp")
-    """Required. \"enumMemberV2\""""
+    """ Required. \"enumMemberV2\""""
     union_prop: "_types.UnionV2" = rest_field(name="unionProp")
-    """Required. Is either a str type or a float type."""
+    """ Required. Is either a str type or a float type."""
 
     @overload
     def __init__(
@@ -66,9 +66,9 @@ class ModelV3(_model_base.Model):
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     enum_prop: Union[str, "_models.EnumV3"] = rest_field(name="enumProp")
-    """Required. Known values are: \"enumMemberV1\" and \"enumMemberV2Preview\"."""
+    """ Required. Known values are: \"enumMemberV1\" and \"enumMemberV2Preview\"."""
 
     @overload
     def __init__(

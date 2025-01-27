@@ -27,9 +27,9 @@ class ChildFlattenModel(_model_base.Model):
     """
 
     summary: str = rest_field()
-    """Required."""
+    """ Required."""
     properties: "_models.ChildModel" = rest_field()
-    """Required."""
+    """ Required."""
 
     __flattened_items = ["description", "age"]
 
@@ -81,9 +81,9 @@ class ChildModel(_model_base.Model):
     """
 
     description: str = rest_field()
-    """Required."""
+    """ Required."""
     age: int = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -115,9 +115,9 @@ class FlattenModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
     properties: "_models.ChildModel" = rest_field()
-    """Required."""
+    """ Required."""
 
     __flattened_items = ["description", "age"]
 
@@ -169,9 +169,9 @@ class NestedFlattenModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
     properties: "_models.ChildFlattenModel" = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

@@ -54,7 +54,7 @@ class Extension(Element):
     """
 
     level: int = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

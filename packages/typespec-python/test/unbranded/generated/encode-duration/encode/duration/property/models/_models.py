@@ -23,7 +23,7 @@ class DefaultDurationProperty(_model_base.Model):
     """
 
     value: datetime.timedelta = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -52,7 +52,7 @@ class Float64SecondsDurationProperty(_model_base.Model):
     """
 
     value: float = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -81,7 +81,7 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
     """
 
     value: List[float] = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -110,7 +110,7 @@ class FloatSecondsDurationProperty(_model_base.Model):
     """
 
     value: float = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -139,7 +139,7 @@ class Int32SecondsDurationProperty(_model_base.Model):
     """
 
     value: int = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -168,7 +168,7 @@ class ISO8601DurationProperty(_model_base.Model):
     """
 
     value: datetime.timedelta = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

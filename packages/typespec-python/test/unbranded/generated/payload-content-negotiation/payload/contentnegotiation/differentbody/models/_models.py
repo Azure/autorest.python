@@ -22,7 +22,7 @@ class PngImageAsJson(_model_base.Model):
     """
 
     content: bytes = rest_field(format="base64")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

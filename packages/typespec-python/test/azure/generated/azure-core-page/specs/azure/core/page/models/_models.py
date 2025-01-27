@@ -22,12 +22,12 @@ class FirstItem(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: The id of the item. Required.
-    :vartype id: int
+     :ivar id: The id of the item. Required.
+     :vartype id: int
     """
 
     id: int = rest_field(visibility=["read"])
-    """The id of the item. Required."""
+    """ The id of the item. Required."""
 
 
 class ListItemInputBody(_model_base.Model):
@@ -35,12 +35,12 @@ class ListItemInputBody(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar input_name: The name of the input. Required.
-    :vartype input_name: str
+     :ivar input_name: The name of the input. Required.
+     :vartype input_name: str
     """
 
     input_name: str = rest_field(name="inputName")
-    """The name of the input. Required."""
+    """ The name of the input. Required."""
 
     @overload
     def __init__(
@@ -66,12 +66,12 @@ class SecondItem(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar name: The name of the item. Required.
-    :vartype name: str
+     :ivar name: The name of the item. Required.
+     :vartype name: str
     """
 
     name: str = rest_field(visibility=["read"])
-    """The name of the item. Required."""
+    """ The name of the item. Required."""
 
 
 class User(_model_base.Model):
@@ -80,24 +80,24 @@ class User(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: The user's id. Required.
-    :vartype id: int
-    :ivar name: The user's name. Required.
-    :vartype name: str
-    :ivar orders: The user's order list.
-    :vartype orders: list[~specs.azure.core.page.models.UserOrder]
-    :ivar etag: The entity tag for this resource. Required.
-    :vartype etag: str
+     :ivar id: The user's id. Required.
+     :vartype id: int
+     :ivar name: The user's name. Required.
+     :vartype name: str
+     :ivar orders: The user's order list.
+     :vartype orders: list[~specs.azure.core.page.models.UserOrder]
+     :ivar etag: The entity tag for this resource. Required.
+     :vartype etag: str
     """
 
     id: int = rest_field(visibility=["read"])
-    """The user's id. Required."""
+    """ The user's id. Required."""
     name: str = rest_field()
-    """The user's name. Required."""
+    """ The user's name. Required."""
     orders: Optional[List["_models.UserOrder"]] = rest_field()
-    """The user's order list."""
+    """ The user's order list."""
     etag: str = rest_field(visibility=["read"])
-    """The entity tag for this resource. Required."""
+    """ The entity tag for this resource. Required."""
 
     @overload
     def __init__(
@@ -124,20 +124,20 @@ class UserOrder(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: The user's id. Required.
-    :vartype id: int
-    :ivar user_id: The user's id. Required.
-    :vartype user_id: int
-    :ivar detail: The user's order detail. Required.
-    :vartype detail: str
+     :ivar id: The user's id. Required.
+     :vartype id: int
+     :ivar user_id: The user's id. Required.
+     :vartype user_id: int
+     :ivar detail: The user's order detail. Required.
+     :vartype detail: str
     """
 
     id: int = rest_field(visibility=["read"])
-    """The user's id. Required."""
+    """ The user's id. Required."""
     user_id: int = rest_field(name="userId")
-    """The user's id. Required."""
+    """ The user's id. Required."""
     detail: str = rest_field()
-    """The user's order detail. Required."""
+    """ The user's order detail. Required."""
 
     @overload
     def __init__(

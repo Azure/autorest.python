@@ -18,12 +18,12 @@ class BodyParameter(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
+     :ivar name: Required.
+     :vartype name: str
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

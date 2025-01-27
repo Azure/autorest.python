@@ -25,7 +25,7 @@ class InputModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -51,12 +51,12 @@ class OrphanModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
+     :ivar name: Required.
+     :vartype name: str
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -85,7 +85,7 @@ class OutputModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -114,7 +114,7 @@ class ResultModel(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -140,9 +140,9 @@ class RoundTripModel(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar result: Required.
-    :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel
+     :ivar result: Required.
+     :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel
     """
 
     result: "_models.ResultModel" = rest_field(visibility=["read"])
-    """Required."""
+    """ Required."""

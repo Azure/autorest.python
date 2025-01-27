@@ -25,7 +25,7 @@ class BooleanLiteralProperty(_model_base.Model):
     """
 
     property: Optional[Literal[True]] = rest_field()
-    """Property. Default value is True."""
+    """ Property. Default value is True."""
 
     @overload
     def __init__(
@@ -49,12 +49,12 @@ class BytesProperty(_model_base.Model):
     """Template type for testing models with optional property. Pass in the type of the property you
     are looking for.
 
-    :ivar property: Property.
-    :vartype property: bytes
+     :ivar property: Property.
+     :vartype property: bytes
     """
 
     property: Optional[bytes] = rest_field(format="base64")
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -82,7 +82,7 @@ class CollectionsByteProperty(_model_base.Model):
     """
 
     property: Optional[List[bytes]] = rest_field(format="base64")
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -110,7 +110,7 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     property: Optional[List["_models.StringProperty"]] = rest_field()
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -138,7 +138,7 @@ class DatetimeProperty(_model_base.Model):
     """
 
     property: Optional[datetime.datetime] = rest_field(format="rfc3339")
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -166,7 +166,7 @@ class DurationProperty(_model_base.Model):
     """
 
     property: Optional[datetime.timedelta] = rest_field()
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -194,7 +194,7 @@ class FloatLiteralProperty(_model_base.Model):
     """
 
     property: Optional[float] = rest_field()
-    """Property. Default value is 1.25."""
+    """ Property. Default value is 1.25."""
 
     @overload
     def __init__(
@@ -222,7 +222,7 @@ class IntLiteralProperty(_model_base.Model):
     """
 
     property: Optional[Literal[1]] = rest_field()
-    """Property. Default value is 1."""
+    """ Property. Default value is 1."""
 
     @overload
     def __init__(
@@ -250,7 +250,7 @@ class PlainDateProperty(_model_base.Model):
     """
 
     property: Optional[datetime.date] = rest_field()
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -278,7 +278,7 @@ class PlainTimeProperty(_model_base.Model):
     """
 
     property: Optional[datetime.time] = rest_field()
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -309,9 +309,9 @@ class RequiredAndOptionalProperty(_model_base.Model):
     """
 
     optional_property: Optional[str] = rest_field(name="optionalProperty")
-    """optional string property."""
+    """ optional string property."""
     required_property: int = rest_field(name="requiredProperty")
-    """required int property. Required."""
+    """ required int property. Required."""
 
     @overload
     def __init__(
@@ -340,7 +340,7 @@ class StringLiteralProperty(_model_base.Model):
     """
 
     property: Optional[Literal["hello"]] = rest_field()
-    """Property. Default value is \"hello\"."""
+    """ Property. Default value is \"hello\"."""
 
     @overload
     def __init__(
@@ -364,12 +364,12 @@ class StringProperty(_model_base.Model):
     """Template type for testing models with optional property. Pass in the type of the property you
     are looking for.
 
-    :ivar property: Property.
-    :vartype property: str
+     :ivar property: Property.
+     :vartype property: str
     """
 
     property: Optional[str] = rest_field()
-    """Property."""
+    """ Property."""
 
     @overload
     def __init__(
@@ -397,7 +397,7 @@ class UnionFloatLiteralProperty(_model_base.Model):
     """
 
     property: Optional[float] = rest_field()
-    """Property. Is one of the following types: float"""
+    """ Property. Is one of the following types: float"""
 
     @overload
     def __init__(
@@ -425,7 +425,7 @@ class UnionIntLiteralProperty(_model_base.Model):
     """
 
     property: Optional[Literal[1, 2]] = rest_field()
-    """Property. Is either a Literal[1] type or a Literal[2] type."""
+    """ Property. Is either a Literal[1] type or a Literal[2] type."""
 
     @overload
     def __init__(
@@ -453,7 +453,7 @@ class UnionStringLiteralProperty(_model_base.Model):
     """
 
     property: Optional[Literal["hello", "world"]] = rest_field()
-    """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
+    """ Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(

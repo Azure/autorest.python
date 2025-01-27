@@ -22,12 +22,12 @@ class Address(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar city: Required.
-    :vartype city: str
+     :ivar city: Required.
+     :vartype city: str
     """
 
     city: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -52,16 +52,16 @@ class BinaryArrayPartsRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: str
-    :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+     :ivar id: Required.
+     :vartype id: str
+     :ivar pictures: Required.
+     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     pictures: List[FileType] = rest_field(is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -87,28 +87,28 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: str
-    :ivar address: Required.
-    :vartype address: ~payload.multipart.models.Address
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
-    :ivar previous_addresses: Required.
-    :vartype previous_addresses: list[~payload.multipart.models.Address]
-    :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+     :ivar id: Required.
+     :vartype id: str
+     :ivar address: Required.
+     :vartype address: ~payload.multipart.models.Address
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar previous_addresses: Required.
+     :vartype previous_addresses: list[~payload.multipart.models.Address]
+     :ivar pictures: Required.
+     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     address: "_models.Address" = rest_field()
-    """Required."""
+    """ Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
     previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
-    """Required."""
+    """ Required."""
     pictures: List[FileType] = rest_field(is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -137,24 +137,24 @@ class ComplexPartsRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: str
-    :ivar address: Required.
-    :vartype address: ~payload.multipart.models.Address
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
-    :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+     :ivar id: Required.
+     :vartype id: str
+     :ivar address: Required.
+     :vartype address: ~payload.multipart.models.Address
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar pictures: Required.
+     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     address: "_models.Address" = rest_field()
-    """Required."""
+    """ Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
     pictures: List[FileType] = rest_field(is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -182,12 +182,12 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
 
     All required parameters must be populated in order to send to server.
 
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -212,12 +212,12 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
 
     All required parameters must be populated in order to send to server.
 
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -242,12 +242,12 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
 
     All required parameters must be populated in order to send to server.
 
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -272,16 +272,16 @@ class JsonPartRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar address: Required.
-    :vartype address: ~payload.multipart.models.Address
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar address: Required.
+     :vartype address: ~payload.multipart.models.Address
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     address: "_models.Address" = rest_field()
-    """Required."""
+    """ Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -307,14 +307,14 @@ class MultiBinaryPartsRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
-    :ivar picture:
-    :vartype picture: ~payload.multipart._vendor.FileType
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar picture:
+     :vartype picture: ~payload.multipart._vendor.FileType
     """
 
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
     picture: Optional[FileType] = rest_field(is_multipart_file_input=True)
 
     @overload
@@ -341,16 +341,16 @@ class MultiPartRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: str
-    :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+     :ivar id: Required.
+     :vartype id: str
+     :ivar profile_image: Required.
+     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
     id: str = rest_field()
-    """Required."""
+    """ Required."""
     profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

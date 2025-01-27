@@ -23,7 +23,7 @@ class DefaultDatetimeProperty(_model_base.Model):
     """
 
     value: datetime.datetime = rest_field(format="rfc3339")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -52,7 +52,7 @@ class Rfc3339DatetimeProperty(_model_base.Model):
     """
 
     value: datetime.datetime = rest_field(format="rfc3339")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -81,7 +81,7 @@ class Rfc7231DatetimeProperty(_model_base.Model):
     """
 
     value: datetime.datetime = rest_field(format="rfc7231")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -110,7 +110,7 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
     """
 
     value: List[datetime.datetime] = rest_field(format="unix-timestamp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -139,7 +139,7 @@ class UnixTimestampDatetimeProperty(_model_base.Model):
     """
 
     value: datetime.datetime = rest_field(format="unix-timestamp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

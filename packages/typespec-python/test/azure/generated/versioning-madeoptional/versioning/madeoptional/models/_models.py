@@ -24,7 +24,7 @@ class TestModel(_model_base.Model):
     """
 
     prop: str = rest_field()
-    """Required."""
+    """ Required."""
     changed_prop: Optional[str] = rest_field(name="changedProp")
 
     @overload

@@ -22,16 +22,16 @@ class BytesProperty(_model_base.Model):
     are looking for.
 
 
-    :ivar required_property: Required property. Required.
-    :vartype required_property: str
-    :ivar nullable_property: Property. Required.
-    :vartype nullable_property: bytes
+     :ivar required_property: Required property. Required.
+     :vartype required_property: str
+     :ivar nullable_property: Property. Required.
+     :vartype nullable_property: bytes
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: bytes = rest_field(name="nullableProperty", format="base64")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -63,9 +63,9 @@ class CollectionsByteProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: List[bytes] = rest_field(name="nullableProperty", format="base64")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -97,9 +97,9 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: List["_models.InnerModel"] = rest_field(name="nullableProperty")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -131,9 +131,9 @@ class CollectionsStringProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: List[str] = rest_field(name="nullableProperty")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -165,9 +165,9 @@ class DatetimeProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: datetime.datetime = rest_field(name="nullableProperty", format="rfc3339")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -199,9 +199,9 @@ class DurationProperty(_model_base.Model):
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: datetime.timedelta = rest_field(name="nullableProperty")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -231,7 +231,7 @@ class InnerModel(_model_base.Model):
     """
 
     property: str = rest_field()
-    """Inner model property. Required."""
+    """ Inner model property. Required."""
 
     @overload
     def __init__(
@@ -256,16 +256,16 @@ class StringProperty(_model_base.Model):
     are looking for.
 
 
-    :ivar required_property: Required property. Required.
-    :vartype required_property: str
-    :ivar nullable_property: Property. Required.
-    :vartype nullable_property: str
+     :ivar required_property: Required property. Required.
+     :vartype required_property: str
+     :ivar nullable_property: Property. Required.
+     :vartype nullable_property: str
     """
 
     required_property: str = rest_field(name="requiredProperty")
-    """Required property. Required."""
+    """ Required property. Required."""
     nullable_property: str = rest_field(name="nullableProperty")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(

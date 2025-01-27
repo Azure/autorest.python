@@ -21,17 +21,17 @@ class Snake(_model_base.Model):
     Cobra
 
 
-    :ivar kind: discriminator property. Required. "cobra"
-    :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
-    :ivar length: Length of the snake. Required.
-    :vartype length: int
+     :ivar kind: discriminator property. Required. "cobra"
+     :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
+     :ivar length: Length of the snake. Required.
+     :vartype length: int
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """discriminator property. Required. \"cobra\""""
+    """ discriminator property. Required. \"cobra\""""
     length: int = rest_field()
-    """Length of the snake. Required."""
+    """ Length of the snake. Required."""
 
     @overload
     def __init__(
@@ -63,7 +63,7 @@ class Cobra(Snake, discriminator="cobra"):
     """
 
     kind: Literal[SnakeKind.COBRA] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Species cobra"""
+    """ discriminator property. Required. Species cobra"""
 
     @overload
     def __init__(
@@ -90,17 +90,17 @@ class Dog(_model_base.Model):
     Golden
 
 
-    :ivar kind: discriminator property. Required. "golden"
-    :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
-    :ivar weight: Weight of the dog. Required.
-    :vartype weight: int
+     :ivar kind: discriminator property. Required. "golden"
+     :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
+     :ivar weight: Weight of the dog. Required.
+     :vartype weight: int
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
-    """discriminator property. Required. \"golden\""""
+    """ discriminator property. Required. \"golden\""""
     weight: int = rest_field()
-    """Weight of the dog. Required."""
+    """ Weight of the dog. Required."""
 
     @overload
     def __init__(
@@ -132,7 +132,7 @@ class Golden(Dog, discriminator="golden"):
     """
 
     kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind")  # type: ignore
-    """discriminator property. Required. Species golden"""
+    """ discriminator property. Required. Species golden"""
 
     @overload
     def __init__(

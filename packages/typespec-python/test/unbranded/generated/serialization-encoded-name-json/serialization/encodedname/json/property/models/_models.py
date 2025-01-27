@@ -22,7 +22,7 @@ class JsonEncodedNameModel(_model_base.Model):
     """
 
     default_name: bool = rest_field(name="wireName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(

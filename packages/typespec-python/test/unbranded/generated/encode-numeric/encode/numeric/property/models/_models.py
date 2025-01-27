@@ -22,7 +22,7 @@ class SafeintAsStringProperty(_model_base.Model):
     """
 
     value: int = rest_field(format="str")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -78,7 +78,7 @@ class Uint8AsStringProperty(_model_base.Model):
     """
 
     value: int = rest_field(format="str")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

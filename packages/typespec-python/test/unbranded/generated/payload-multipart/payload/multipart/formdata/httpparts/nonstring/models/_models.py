@@ -18,12 +18,12 @@ class FloatRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar temperature: Required.
-    :vartype temperature: float
+     :ivar temperature: Required.
+     :vartype temperature: float
     """
 
     temperature: float = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

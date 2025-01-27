@@ -22,7 +22,7 @@ class User(_model_base.Model):
     """
 
     name: str = rest_field()
-    """User name. Required."""
+    """ User name. Required."""
 
     @overload
     def __init__(

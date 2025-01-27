@@ -27,7 +27,7 @@ class DifferentSpreadFloatRecord(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The id property. Required."""
+    """ The id property. Required."""
 
     @overload
     def __init__(
@@ -52,14 +52,14 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
     property type.
 
 
-    :ivar name: The id property. Required.
-    :vartype name: str
-    :ivar derived_prop: The index property. Required.
-    :vartype derived_prop: float
+     :ivar name: The id property. Required.
+     :vartype name: str
+     :ivar derived_prop: The index property. Required.
+     :vartype derived_prop: float
     """
 
     derived_prop: float = rest_field(name="derivedProp")
-    """The index property. Required."""
+    """ The index property. Required."""
 
     @overload
     def __init__(
@@ -89,7 +89,7 @@ class DifferentSpreadModelArrayRecord(_model_base.Model):
     """
 
     known_prop: str = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -114,14 +114,14 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     property type.
 
 
-    :ivar known_prop: Required.
-    :vartype known_prop: str
-    :ivar derived_prop: The index property. Required.
-    :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
+     :ivar known_prop: Required.
+     :vartype known_prop: str
+     :ivar derived_prop: The index property. Required.
+     :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
     derived_prop: List["_models.ModelForRecord"] = rest_field(name="derivedProp")
-    """The index property. Required."""
+    """ The index property. Required."""
 
     @overload
     def __init__(
@@ -151,7 +151,7 @@ class DifferentSpreadModelRecord(_model_base.Model):
     """
 
     known_prop: str = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -176,14 +176,14 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
     known property type.
 
 
-    :ivar known_prop: Required.
-    :vartype known_prop: str
-    :ivar derived_prop: The index property. Required.
-    :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
+     :ivar known_prop: Required.
+     :vartype known_prop: str
+     :ivar derived_prop: The index property. Required.
+     :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
 
     derived_prop: "_models.ModelForRecord" = rest_field(name="derivedProp")
-    """The index property. Required."""
+    """ The index property. Required."""
 
     @overload
     def __init__(
@@ -213,7 +213,7 @@ class DifferentSpreadStringRecord(_model_base.Model):
     """
 
     id: float = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -238,14 +238,14 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
     property type.
 
 
-    :ivar id: The name property. Required.
-    :vartype id: float
-    :ivar derived_prop: The index property. Required.
-    :vartype derived_prop: str
+     :ivar id: The name property. Required.
+     :vartype id: float
+     :ivar derived_prop: The index property. Required.
+     :vartype derived_prop: str
     """
 
     derived_prop: str = rest_field(name="derivedProp")
-    """The index property. Required."""
+    """ The index property. Required."""
 
     @overload
     def __init__(
@@ -275,7 +275,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
     """
 
     id: float = rest_field()
-    """The id property. Required."""
+    """ The id property. Required."""
 
     @overload
     def __init__(
@@ -304,7 +304,7 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
     """
 
     known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -333,7 +333,7 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
     """
 
     known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -362,7 +362,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -391,7 +391,7 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -424,9 +424,9 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
     """
 
     index: int = rest_field()
-    """The index property. Required."""
+    """ The index property. Required."""
     age: Optional[float] = rest_field()
-    """The age property."""
+    """ The age property."""
 
     @overload
     def __init__(
@@ -455,17 +455,17 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
     ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
 
 
-    :ivar name: The name property. Required.
-    :vartype name: str
-    :ivar kind: The discriminator. Required. Default value is None.
-    :vartype kind: str
+     :ivar name: The name property. Required.
+     :vartype name: str
+     :ivar kind: The discriminator. Required. Default value is None.
+     :vartype kind: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
     kind: str = rest_discriminator(name="kind")
-    """The discriminator. Required. Default value is None."""
+    """ The discriminator. Required. Default value is None."""
 
     @overload
     def __init__(
@@ -503,11 +503,11 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
     """
 
     kind: Literal["derived"] = rest_discriminator(name="kind")  # type: ignore
-    """Required. Default value is \"derived\"."""
+    """ Required. Default value is \"derived\"."""
     index: int = rest_field()
-    """The index property. Required."""
+    """ The index property. Required."""
     age: Optional[float] = rest_field()
-    """The age property."""
+    """ The age property."""
 
     @overload
     def __init__(
@@ -538,7 +538,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
     """
 
     id: float = rest_field()
-    """The id property. Required."""
+    """ The id property. Required."""
 
     @overload
     def __init__(
@@ -567,7 +567,7 @@ class IsModelAdditionalProperties(_model_base.Model):
     """
 
     known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -596,7 +596,7 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
     """
 
     known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -625,7 +625,7 @@ class IsStringAdditionalProperties(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -654,7 +654,7 @@ class IsUnknownAdditionalProperties(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -687,9 +687,9 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
     """
 
     index: int = rest_field()
-    """The index property. Required."""
+    """ The index property. Required."""
     age: Optional[float] = rest_field()
-    """The age property."""
+    """ The age property."""
 
     @overload
     def __init__(
@@ -718,17 +718,17 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
     IsUnknownAdditionalPropertiesDiscriminatedDerived
 
 
-    :ivar name: The name property. Required.
-    :vartype name: str
-    :ivar kind: The discriminator. Required. Default value is None.
-    :vartype kind: str
+     :ivar name: The name property. Required.
+     :vartype name: str
+     :ivar kind: The discriminator. Required. Default value is None.
+     :vartype kind: str
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
     kind: str = rest_discriminator(name="kind")
-    """The discriminator. Required. Default value is None."""
+    """ The discriminator. Required. Default value is None."""
 
     @overload
     def __init__(
@@ -766,11 +766,11 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
     """
 
     kind: Literal["derived"] = rest_discriminator(name="kind")  # type: ignore
-    """Required. Default value is \"derived\"."""
+    """ Required. Default value is \"derived\"."""
     index: int = rest_field()
-    """The index property. Required."""
+    """ The index property. Required."""
     age: Optional[float] = rest_field()
-    """The age property."""
+    """ The age property."""
 
     @overload
     def __init__(
@@ -801,7 +801,7 @@ class ModelForRecord(_model_base.Model):
     """
 
     state: str = rest_field()
-    """The state property. Required."""
+    """ The state property. Required."""
 
     @overload
     def __init__(
@@ -830,7 +830,7 @@ class MultipleSpreadRecord(_model_base.Model):
     """
 
     flag: bool = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -859,7 +859,7 @@ class SpreadFloatRecord(_model_base.Model):
     """
 
     id: float = rest_field()
-    """The id property. Required."""
+    """ The id property. Required."""
 
     @overload
     def __init__(
@@ -888,7 +888,7 @@ class SpreadModelArrayRecord(_model_base.Model):
     """
 
     known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -917,7 +917,7 @@ class SpreadModelRecord(_model_base.Model):
     """
 
     known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -946,7 +946,7 @@ class SpreadRecordForDiscriminatedUnion(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -975,7 +975,7 @@ class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -1004,7 +1004,7 @@ class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -1033,7 +1033,7 @@ class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -1062,7 +1062,7 @@ class SpreadRecordForUnion(_model_base.Model):
     """
 
     flag: bool = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -1091,7 +1091,7 @@ class SpreadStringRecord(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name property. Required."""
+    """ The name property. Required."""
 
     @overload
     def __init__(
@@ -1117,16 +1117,16 @@ class WidgetData0(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar kind: Required. Default value is "kind0".
-    :vartype kind: str
-    :ivar foo_prop: Required.
-    :vartype foo_prop: str
+     :ivar kind: Required. Default value is "kind0".
+     :vartype kind: str
+     :ivar foo_prop: Required.
+     :vartype foo_prop: str
     """
 
     kind: Literal["kind0"] = rest_field()
-    """Required. Default value is \"kind0\"."""
+    """ Required. Default value is \"kind0\"."""
     foo_prop: str = rest_field(name="fooProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -1153,18 +1153,18 @@ class WidgetData1(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar kind: Required. Default value is "kind1".
-    :vartype kind: str
-    :ivar start: Required.
-    :vartype start: ~datetime.datetime
-    :ivar end:
-    :vartype end: ~datetime.datetime
+     :ivar kind: Required. Default value is "kind1".
+     :vartype kind: str
+     :ivar start: Required.
+     :vartype start: ~datetime.datetime
+     :ivar end:
+     :vartype end: ~datetime.datetime
     """
 
     kind: Literal["kind1"] = rest_field()
-    """Required. Default value is \"kind1\"."""
+    """ Required. Default value is \"kind1\"."""
     start: datetime.datetime = rest_field(format="rfc3339")
-    """Required."""
+    """ Required."""
     end: Optional[datetime.datetime] = rest_field(format="rfc3339")
 
     @overload
@@ -1193,16 +1193,16 @@ class WidgetData2(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar kind: Required. Default value is "kind1".
-    :vartype kind: str
-    :ivar start: Required.
-    :vartype start: str
+     :ivar kind: Required. Default value is "kind1".
+     :vartype kind: str
+     :ivar start: Required.
+     :vartype start: str
     """
 
     kind: Literal["kind1"] = rest_field()
-    """Required. Default value is \"kind1\"."""
+    """ Required. Default value is \"kind1\"."""
     start: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

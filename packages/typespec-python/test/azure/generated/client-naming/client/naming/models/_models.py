@@ -18,12 +18,12 @@ class ClientModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar default_name: Pass in true. Required.
-    :vartype default_name: bool
+     :ivar default_name: Pass in true. Required.
+     :vartype default_name: bool
     """
 
     default_name: bool = rest_field(name="defaultName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(
@@ -48,12 +48,12 @@ class ClientNameAndJsonEncodedNameModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar client_name: Pass in true. Required.
-    :vartype client_name: bool
+     :ivar client_name: Pass in true. Required.
+     :vartype client_name: bool
     """
 
     client_name: bool = rest_field(name="wireName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(
@@ -78,12 +78,12 @@ class ClientNameModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar client_name: Pass in true. Required.
-    :vartype client_name: bool
+     :ivar client_name: Pass in true. Required.
+     :vartype client_name: bool
     """
 
     client_name: bool = rest_field(name="defaultName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(
@@ -108,12 +108,12 @@ class LanguageClientNameModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar python_name: Pass in true. Required.
-    :vartype python_name: bool
+     :ivar python_name: Pass in true. Required.
+     :vartype python_name: bool
     """
 
     python_name: bool = rest_field(name="defaultName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(
@@ -138,12 +138,12 @@ class PythonModel(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar default_name: Pass in true. Required.
-    :vartype default_name: bool
+     :ivar default_name: Pass in true. Required.
+     :vartype default_name: bool
     """
 
     default_name: bool = rest_field(name="defaultName")
-    """Pass in true. Required."""
+    """ Pass in true. Required."""
 
     @overload
     def __init__(

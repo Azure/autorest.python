@@ -24,9 +24,9 @@ class ExportedUser(_model_base.Model):
     """
 
     name: str = rest_field()
-    """The name of user. Required."""
+    """ The name of user. Required."""
     resource_uri: str = rest_field(name="resourceUri")
-    """The exported URI. Required."""
+    """ The exported URI. Required."""
 
     @overload
     def __init__(
@@ -53,16 +53,16 @@ class User(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar name: The name of user. Required.
-    :vartype name: str
-    :ivar role: The role of user. Required.
-    :vartype role: str
+     :ivar name: The name of user. Required.
+     :vartype name: str
+     :ivar role: The role of user. Required.
+     :vartype role: str
     """
 
     name: str = rest_field(visibility=["read"])
-    """The name of user. Required."""
+    """ The name of user. Required."""
     role: str = rest_field()
-    """The role of user. Required."""
+    """ The role of user. Required."""
 
     @overload
     def __init__(

@@ -29,11 +29,11 @@ class NewModel(_model_base.Model):
     """
 
     new_prop: str = rest_field(name="newProp")
-    """Required."""
+    """ Required."""
     enum_prop: Union[str, "_models.NewEnum"] = rest_field(name="enumProp")
-    """Required. \"newEnumMember\""""
+    """ Required. \"newEnumMember\""""
     union_prop: "_types.NewUnion" = rest_field(name="unionProp")
-    """Required. Is either a str type or a int type."""
+    """ Required. Is either a str type or a int type."""
 
     @overload
     def __init__(

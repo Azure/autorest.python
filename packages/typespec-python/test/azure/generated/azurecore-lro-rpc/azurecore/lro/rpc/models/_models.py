@@ -18,12 +18,12 @@ class GenerationOptions(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar prompt: Prompt. Required.
-    :vartype prompt: str
+     :ivar prompt: Prompt. Required.
+     :vartype prompt: str
     """
 
     prompt: str = rest_field()
-    """Prompt. Required."""
+    """ Prompt. Required."""
 
     @overload
     def __init__(
@@ -52,7 +52,7 @@ class GenerationResult(_model_base.Model):
     """
 
     data: str = rest_field()
-    """The data. Required."""
+    """ The data. Required."""
 
     @overload
     def __init__(

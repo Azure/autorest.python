@@ -27,9 +27,9 @@ class CheckNameAvailabilityRequest(_model_base.Model):
     """
 
     name: Optional[str] = rest_field()
-    """The name of the resource for which availability needs to be checked."""
+    """ The name of the resource for which availability needs to be checked."""
     type: Optional[str] = rest_field()
-    """The resource type."""
+    """ The resource type."""
 
     @overload
     def __init__(
@@ -64,12 +64,12 @@ class CheckNameAvailabilityResponse(_model_base.Model):
     """
 
     name_available: Optional[bool] = rest_field(name="nameAvailable")
-    """Indicates if the resource name is available."""
+    """ Indicates if the resource name is available."""
     reason: Optional[Union[str, "_models.CheckNameAvailabilityReason"]] = rest_field()
-    """The reason why the given name is not available. Known values are: \"Invalid\" and
-     \"AlreadyExists\"."""
+    """ The reason why the given name is not available. Known values are: \"Invalid\" and
+      \"AlreadyExists\"."""
     message: Optional[str] = rest_field()
-    """Detailed reason why the given name is not available."""
+    """ Detailed reason why the given name is not available."""
 
     @overload
     def __init__(
@@ -96,16 +96,16 @@ class ErrorAdditionalInfo(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar type: The additional info type.
-    :vartype type: str
-    :ivar info: The additional info.
-    :vartype info: any
+     :ivar type: The additional info type.
+     :vartype type: str
+     :ivar info: The additional info.
+     :vartype info: any
     """
 
     type: Optional[str] = rest_field(visibility=["read"])
-    """The additional info type."""
+    """ The additional info type."""
     info: Optional[Any] = rest_field(visibility=["read"])
-    """The additional info."""
+    """ The additional info."""
 
 
 class ErrorDetail(_model_base.Model):
@@ -113,43 +113,43 @@ class ErrorDetail(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar code: The error code.
-    :vartype code: str
-    :ivar message: The error message.
-    :vartype message: str
-    :ivar target: The error target.
-    :vartype target: str
-    :ivar details: The error details.
-    :vartype details: list[~azure.resourcemanager.operationtemplates.models.ErrorDetail]
-    :ivar additional_info: The error additional info.
-    :vartype additional_info:
-     list[~azure.resourcemanager.operationtemplates.models.ErrorAdditionalInfo]
+     :ivar code: The error code.
+     :vartype code: str
+     :ivar message: The error message.
+     :vartype message: str
+     :ivar target: The error target.
+     :vartype target: str
+     :ivar details: The error details.
+     :vartype details: list[~azure.resourcemanager.operationtemplates.models.ErrorDetail]
+     :ivar additional_info: The error additional info.
+     :vartype additional_info:
+      list[~azure.resourcemanager.operationtemplates.models.ErrorAdditionalInfo]
     """
 
     code: Optional[str] = rest_field(visibility=["read"])
-    """The error code."""
+    """ The error code."""
     message: Optional[str] = rest_field(visibility=["read"])
-    """The error message."""
+    """ The error message."""
     target: Optional[str] = rest_field(visibility=["read"])
-    """The error target."""
+    """ The error target."""
     details: Optional[List["_models.ErrorDetail"]] = rest_field(visibility=["read"])
-    """The error details."""
+    """ The error details."""
     additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )
-    """The error additional info."""
+    """ The error additional info."""
 
 
 class ErrorResponse(_model_base.Model):
     """Common error response for all Azure Resource Manager APIs to return error details for failed
     operations.
 
-    :ivar error: The error object.
-    :vartype error: ~azure.resourcemanager.operationtemplates.models.ErrorDetail
+     :ivar error: The error object.
+     :vartype error: ~azure.resourcemanager.operationtemplates.models.ErrorDetail
     """
 
     error: Optional["_models.ErrorDetail"] = rest_field()
-    """The error object."""
+    """ The error object."""
 
     @overload
     def __init__(
@@ -174,12 +174,12 @@ class ExportRequest(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar format: Format of the exported order. Required.
-    :vartype format: str
+     :ivar format: Format of the exported order. Required.
+     :vartype format: str
     """
 
     format: str = rest_field()
-    """Format of the exported order. Required."""
+    """ Format of the exported order. Required."""
 
     @overload
     def __init__(
@@ -204,39 +204,39 @@ class Operation(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar name: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
-     "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
-    :vartype name: str
-    :ivar is_data_action: Whether the operation applies to data-plane. This is "true" for
-     data-plane operations and "false" for Azure Resource Manager/control-plane operations.
-    :vartype is_data_action: bool
-    :ivar display: Localized display information for this particular operation.
-    :vartype display: ~azure.resourcemanager.operationtemplates.models.OperationDisplay
-    :ivar origin: The intended executor of the operation; as in Resource Based Access Control
-     (RBAC) and audit logs UX. Default value is "user,system". Known values are: "user", "system",
-     and "user,system".
-    :vartype origin: str or ~azure.resourcemanager.operationtemplates.models.Origin
-    :ivar action_type: Extensible enum. Indicates the action type. "Internal" refers to actions
-     that are for internal only APIs. "Internal"
-    :vartype action_type: str or ~azure.resourcemanager.operationtemplates.models.ActionType
+     :ivar name: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
+     :vartype name: str
+     :ivar is_data_action: Whether the operation applies to data-plane. This is "true" for
+      data-plane operations and "false" for Azure Resource Manager/control-plane operations.
+     :vartype is_data_action: bool
+     :ivar display: Localized display information for this particular operation.
+     :vartype display: ~azure.resourcemanager.operationtemplates.models.OperationDisplay
+     :ivar origin: The intended executor of the operation; as in Resource Based Access Control
+      (RBAC) and audit logs UX. Default value is "user,system". Known values are: "user", "system",
+      and "user,system".
+     :vartype origin: str or ~azure.resourcemanager.operationtemplates.models.Origin
+     :ivar action_type: Extensible enum. Indicates the action type. "Internal" refers to actions
+      that are for internal only APIs. "Internal"
+     :vartype action_type: str or ~azure.resourcemanager.operationtemplates.models.ActionType
     """
 
     name: Optional[str] = rest_field(visibility=["read"])
-    """The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
-     \"Microsoft.Compute/virtualMachines/write\",
-     \"Microsoft.Compute/virtualMachines/capture/action\"."""
+    """ The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
+      \"Microsoft.Compute/virtualMachines/write\",
+      \"Microsoft.Compute/virtualMachines/capture/action\"."""
     is_data_action: Optional[bool] = rest_field(name="isDataAction", visibility=["read"])
-    """Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
-     \"false\" for Azure Resource Manager/control-plane operations."""
+    """ Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
+      \"false\" for Azure Resource Manager/control-plane operations."""
     display: Optional["_models.OperationDisplay"] = rest_field()
-    """Localized display information for this particular operation."""
+    """ Localized display information for this particular operation."""
     origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
-    """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
-     logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
-     \"user,system\"."""
+    """ The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
+      logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
+      \"user,system\"."""
     action_type: Optional[Union[str, "_models.ActionType"]] = rest_field(name="actionType", visibility=["read"])
-    """Extensible enum. Indicates the action type. \"Internal\" refers to actions that are for
-     internal only APIs. \"Internal\""""
+    """ Extensible enum. Indicates the action type. \"Internal\" refers to actions that are for
+      internal only APIs. \"Internal\""""
 
     @overload
     def __init__(
@@ -261,32 +261,32 @@ class OperationDisplay(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar provider: The localized friendly form of the resource provider name, e.g. "Microsoft
-     Monitoring Insights" or "Microsoft Compute".
-    :vartype provider: str
-    :ivar resource: The localized friendly name of the resource type related to this operation.
-     E.g. "Virtual Machines" or "Job Schedule Collections".
-    :vartype resource: str
-    :ivar operation: The concise, localized friendly name for the operation; suitable for
-     dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine".
-    :vartype operation: str
-    :ivar description: The short, localized friendly description of the operation; suitable for
-     tool tips and detailed views.
-    :vartype description: str
+     :ivar provider: The localized friendly form of the resource provider name, e.g. "Microsoft
+      Monitoring Insights" or "Microsoft Compute".
+     :vartype provider: str
+     :ivar resource: The localized friendly name of the resource type related to this operation.
+      E.g. "Virtual Machines" or "Job Schedule Collections".
+     :vartype resource: str
+     :ivar operation: The concise, localized friendly name for the operation; suitable for
+      dropdowns. E.g. "Create or Update Virtual Machine", "Restart Virtual Machine".
+     :vartype operation: str
+     :ivar description: The short, localized friendly description of the operation; suitable for
+      tool tips and detailed views.
+     :vartype description: str
     """
 
     provider: Optional[str] = rest_field(visibility=["read"])
-    """The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring
-     Insights\" or \"Microsoft Compute\"."""
+    """ The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring
+      Insights\" or \"Microsoft Compute\"."""
     resource: Optional[str] = rest_field(visibility=["read"])
-    """The localized friendly name of the resource type related to this operation. E.g. \"Virtual
-     Machines\" or \"Job Schedule Collections\"."""
+    """ The localized friendly name of the resource type related to this operation. E.g. \"Virtual
+      Machines\" or \"Job Schedule Collections\"."""
     operation: Optional[str] = rest_field(visibility=["read"])
-    """The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create
-     or Update Virtual Machine\", \"Restart Virtual Machine\"."""
+    """ The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create
+      or Update Virtual Machine\", \"Restart Virtual Machine\"."""
     description: Optional[str] = rest_field(visibility=["read"])
-    """The short, localized friendly description of the operation; suitable for tool tips and detailed
-     views."""
+    """ The short, localized friendly description of the operation; suitable for tool tips and detailed
+      views."""
 
 
 class Resource(_model_base.Model):
@@ -294,29 +294,29 @@ class Resource(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-    :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
+     :ivar id: Fully qualified resource ID for the resource. Ex -
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     :vartype id: str
+     :ivar name: The name of the resource.
+     :vartype name: str
+     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+      "Microsoft.Storage/storageAccounts".
+     :vartype type: str
+     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+      information.
+     :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
     """
 
     id: Optional[str] = rest_field(visibility=["read"])
-    """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long"""
+    """ Fully qualified resource ID for the resource. Ex -
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long"""
     name: Optional[str] = rest_field(visibility=["read"])
-    """The name of the resource."""
+    """ The name of the resource."""
     type: Optional[str] = rest_field(visibility=["read"])
-    """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\"."""
+    """ The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
+      \"Microsoft.Storage/storageAccounts\"."""
     system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
-    """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
+    """ Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
 
 class TrackedResource(Resource):
@@ -326,27 +326,27 @@ class TrackedResource(Resource):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-    :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
+     :ivar id: Fully qualified resource ID for the resource. Ex -
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     :vartype id: str
+     :ivar name: The name of the resource.
+     :vartype name: str
+     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+      "Microsoft.Storage/storageAccounts".
+     :vartype type: str
+     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+      information.
+     :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
+     :ivar location: The geo-location where the resource lives. Required.
+     :vartype location: str
     """
 
     tags: Optional[Dict[str, str]] = rest_field()
-    """Resource tags."""
+    """ Resource tags."""
     location: str = rest_field(visibility=["read", "create"])
-    """The geo-location where the resource lives. Required."""
+    """ The geo-location where the resource lives. Required."""
 
     @overload
     def __init__(
@@ -374,27 +374,27 @@ class Order(TrackedResource):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
-    :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    :ivar properties: The resource-specific properties for this resource.
-    :vartype properties: ~azure.resourcemanager.operationtemplates.models.OrderProperties
+     :ivar id: Fully qualified resource ID for the resource. Ex -
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     :vartype id: str
+     :ivar name: The name of the resource.
+     :vartype name: str
+     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+      "Microsoft.Storage/storageAccounts".
+     :vartype type: str
+     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+      information.
+     :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
+     :ivar location: The geo-location where the resource lives. Required.
+     :vartype location: str
+     :ivar properties: The resource-specific properties for this resource.
+     :vartype properties: ~azure.resourcemanager.operationtemplates.models.OrderProperties
     """
 
     properties: Optional["_models.OrderProperties"] = rest_field()
-    """The resource-specific properties for this resource."""
+    """ The resource-specific properties for this resource."""
 
     @overload
     def __init__(
@@ -422,20 +422,20 @@ class OrderProperties(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar product_id: The product ID of the order. Required.
-    :vartype product_id: str
-    :ivar amount: Amount of the product. Required.
-    :vartype amount: int
-    :ivar provisioning_state: The provisioning state of the product.
-    :vartype provisioning_state: str
+     :ivar product_id: The product ID of the order. Required.
+     :vartype product_id: str
+     :ivar amount: Amount of the product. Required.
+     :vartype amount: int
+     :ivar provisioning_state: The provisioning state of the product.
+     :vartype provisioning_state: str
     """
 
     product_id: str = rest_field(name="productId")
-    """The product ID of the order. Required."""
+    """ The product ID of the order. Required."""
     amount: int = rest_field()
-    """Amount of the product. Required."""
+    """ Amount of the product. Required."""
     provisioning_state: Optional[str] = rest_field(name="provisioningState", visibility=["read"])
-    """The provisioning state of the product."""
+    """ The provisioning state of the product."""
 
     @overload
     def __init__(
@@ -477,19 +477,19 @@ class SystemData(_model_base.Model):
     """
 
     created_by: Optional[str] = rest_field(name="createdBy")
-    """The identity that created the resource."""
+    """ The identity that created the resource."""
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="createdByType")
-    """The type of identity that created the resource. Known values are: \"User\", \"Application\",
-     \"ManagedIdentity\", and \"Key\"."""
+    """ The type of identity that created the resource. Known values are: \"User\", \"Application\",
+      \"ManagedIdentity\", and \"Key\"."""
     created_at: Optional[datetime.datetime] = rest_field(name="createdAt", format="rfc3339")
-    """The timestamp of resource creation (UTC)."""
+    """ The timestamp of resource creation (UTC)."""
     last_modified_by: Optional[str] = rest_field(name="lastModifiedBy")
-    """The identity that last modified the resource."""
+    """ The identity that last modified the resource."""
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="lastModifiedByType")
-    """The type of identity that last modified the resource. Known values are: \"User\",
-     \"Application\", \"ManagedIdentity\", and \"Key\"."""
+    """ The type of identity that last modified the resource. Known values are: \"User\",
+      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.datetime] = rest_field(name="lastModifiedAt", format="rfc3339")
-    """The timestamp of resource last modification (UTC)."""
+    """ The timestamp of resource last modification (UTC)."""
 
     @overload
     def __init__(

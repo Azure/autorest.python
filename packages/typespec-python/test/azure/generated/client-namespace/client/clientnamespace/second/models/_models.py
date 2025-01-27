@@ -25,7 +25,7 @@ class SecondClientResult(_model_base.Model):
     """
 
     type: Union[str, "_sub_models2.SecondClientEnumType"] = rest_field()
-    """Required. \"second\""""
+    """ Required. \"second\""""
 
     @overload
     def __init__(

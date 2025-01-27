@@ -19,16 +19,16 @@ class User(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar id: The user's id. Required.
-    :vartype id: int
-    :ivar name: The user's name.
-    :vartype name: str
+     :ivar id: The user's id. Required.
+     :vartype id: int
+     :ivar name: The user's name.
+     :vartype name: str
     """
 
     id: int = rest_field(visibility=["read"])
-    """The user's id. Required."""
+    """ The user's id. Required."""
     name: Optional[str] = rest_field()
-    """The user's name."""
+    """ The user's name."""
 
     @overload
     def __init__(
@@ -53,12 +53,12 @@ class UserActionParam(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar user_action_value: User action value. Required.
-    :vartype user_action_value: str
+     :ivar user_action_value: User action value. Required.
+     :vartype user_action_value: str
     """
 
     user_action_value: str = rest_field(name="userActionValue")
-    """User action value. Required."""
+    """ User action value. Required."""
 
     @overload
     def __init__(
@@ -87,7 +87,7 @@ class UserActionResponse(_model_base.Model):
     """
 
     user_action_result: str = rest_field(name="userActionResult")
-    """User action result. Required."""
+    """ User action result. Required."""
 
     @overload
     def __init__(

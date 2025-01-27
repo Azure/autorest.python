@@ -18,16 +18,16 @@ class ReadOnlyModel(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar optional_nullable_int_list: Optional readonly nullable int list.
-    :vartype optional_nullable_int_list: list[int]
-    :ivar optional_string_record: Optional readonly string dictionary.
-    :vartype optional_string_record: dict[str, str]
+     :ivar optional_nullable_int_list: Optional readonly nullable int list.
+     :vartype optional_nullable_int_list: list[int]
+     :ivar optional_string_record: Optional readonly string dictionary.
+     :vartype optional_string_record: dict[str, str]
     """
 
     optional_nullable_int_list: Optional[List[int]] = rest_field(name="optionalNullableIntList", visibility=["read"])
-    """Optional readonly nullable int list."""
+    """ Optional readonly nullable int list."""
     optional_string_record: Optional[Dict[str, str]] = rest_field(name="optionalStringRecord", visibility=["read"])
-    """Optional readonly string dictionary."""
+    """ Optional readonly string dictionary."""
 
 
 class VisibilityModel(_model_base.Model):
@@ -36,28 +36,28 @@ class VisibilityModel(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar read_prop: Required string, illustrating a readonly property. Required.
-    :vartype read_prop: str
-    :ivar query_prop: Required int32, illustrating a query property. Required.
-    :vartype query_prop: int
-    :ivar create_prop: Required string[], illustrating a create property. Required.
-    :vartype create_prop: list[str]
-    :ivar update_prop: Required int32[], illustrating a update property. Required.
-    :vartype update_prop: list[int]
-    :ivar delete_prop: Required bool, illustrating a delete property. Required.
-    :vartype delete_prop: bool
+     :ivar read_prop: Required string, illustrating a readonly property. Required.
+     :vartype read_prop: str
+     :ivar query_prop: Required int32, illustrating a query property. Required.
+     :vartype query_prop: int
+     :ivar create_prop: Required string[], illustrating a create property. Required.
+     :vartype create_prop: list[str]
+     :ivar update_prop: Required int32[], illustrating a update property. Required.
+     :vartype update_prop: list[int]
+     :ivar delete_prop: Required bool, illustrating a delete property. Required.
+     :vartype delete_prop: bool
     """
 
     read_prop: str = rest_field(name="readProp", visibility=["read"])
-    """Required string, illustrating a readonly property. Required."""
+    """ Required string, illustrating a readonly property. Required."""
     query_prop: int = rest_field(name="queryProp", visibility=["query"])
-    """Required int32, illustrating a query property. Required."""
+    """ Required int32, illustrating a query property. Required."""
     create_prop: List[str] = rest_field(name="createProp", visibility=["create"])
-    """Required string[], illustrating a create property. Required."""
+    """ Required string[], illustrating a create property. Required."""
     update_prop: List[int] = rest_field(name="updateProp", visibility=["update"])
-    """Required int32[], illustrating a update property. Required."""
+    """ Required int32[], illustrating a update property. Required."""
     delete_prop: bool = rest_field(name="deleteProp", visibility=["delete"])
-    """Required bool, illustrating a delete property. Required."""
+    """ Required bool, illustrating a delete property. Required."""
 
     @overload
     def __init__(

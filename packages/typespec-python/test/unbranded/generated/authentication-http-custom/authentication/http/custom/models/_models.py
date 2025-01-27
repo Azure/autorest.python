@@ -18,12 +18,12 @@ class InvalidAuth(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar error: Required.
-    :vartype error: str
+     :ivar error: Required.
+     :vartype error: str
     """
 
     error: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

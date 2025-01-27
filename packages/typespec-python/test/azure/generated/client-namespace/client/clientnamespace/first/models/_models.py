@@ -22,7 +22,7 @@ class FirstClientResult(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

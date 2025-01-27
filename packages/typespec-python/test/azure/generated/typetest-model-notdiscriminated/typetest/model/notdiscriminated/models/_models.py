@@ -22,7 +22,7 @@ class Pet(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -53,7 +53,7 @@ class Cat(Pet):
     """
 
     age: int = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -87,7 +87,7 @@ class Siamese(Cat):
     """
 
     smart: bool = rest_field()
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

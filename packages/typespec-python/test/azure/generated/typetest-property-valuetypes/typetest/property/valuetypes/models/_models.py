@@ -25,12 +25,12 @@ class BooleanLiteralProperty(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar property: Property. Required. Default value is True.
-    :vartype property: bool
+     :ivar property: Property. Required. Default value is True.
+     :vartype property: bool
     """
 
     property: Literal[True] = rest_field()
-    """Property. Required. Default value is True."""
+    """ Property. Required. Default value is True."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -46,7 +46,7 @@ class BooleanProperty(_model_base.Model):
     """
 
     property: bool = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -75,7 +75,7 @@ class BytesProperty(_model_base.Model):
     """
 
     property: bytes = rest_field(format="base64")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -104,7 +104,7 @@ class CollectionsIntProperty(_model_base.Model):
     """
 
     property: List[int] = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -133,7 +133,7 @@ class CollectionsModelProperty(_model_base.Model):
     """
 
     property: List["_models.InnerModel"] = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -162,7 +162,7 @@ class CollectionsStringProperty(_model_base.Model):
     """
 
     property: List[str] = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -191,7 +191,7 @@ class DatetimeProperty(_model_base.Model):
     """
 
     property: datetime.datetime = rest_field(format="rfc3339")
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -220,7 +220,7 @@ class Decimal128Property(_model_base.Model):
     """
 
     property: decimal.Decimal = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -249,7 +249,7 @@ class DecimalProperty(_model_base.Model):
     """
 
     property: decimal.Decimal = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -278,7 +278,7 @@ class DictionaryStringProperty(_model_base.Model):
     """
 
     property: Dict[str, str] = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -307,7 +307,7 @@ class DurationProperty(_model_base.Model):
     """
 
     property: datetime.timedelta = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -336,7 +336,7 @@ class EnumProperty(_model_base.Model):
     """
 
     property: Union[str, "_models.FixedInnerEnum"] = rest_field()
-    """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
+    """ Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
@@ -365,7 +365,7 @@ class ExtensibleEnumProperty(_model_base.Model):
     """
 
     property: Union[str, "_models.InnerEnum"] = rest_field()
-    """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
+    """ Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
     def __init__(
@@ -391,12 +391,12 @@ class FloatLiteralProperty(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar property: Property. Required. Default value is 43.125.
-    :vartype property: float
+     :ivar property: Property. Required. Default value is 43.125.
+     :vartype property: float
     """
 
     property: float = rest_field()
-    """Property. Required. Default value is 43.125."""
+    """ Property. Required. Default value is 43.125."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -412,7 +412,7 @@ class FloatProperty(_model_base.Model):
     """
 
     property: float = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -441,7 +441,7 @@ class InnerModel(_model_base.Model):
     """
 
     property: str = rest_field()
-    """Required string property. Required."""
+    """ Required string property. Required."""
 
     @overload
     def __init__(
@@ -467,12 +467,12 @@ class IntLiteralProperty(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar property: Property. Required. Default value is 42.
-    :vartype property: int
+     :ivar property: Property. Required. Default value is 42.
+     :vartype property: int
     """
 
     property: Literal[42] = rest_field()
-    """Property. Required. Default value is 42."""
+    """ Property. Required. Default value is 42."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -488,7 +488,7 @@ class IntProperty(_model_base.Model):
     """
 
     property: int = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -517,7 +517,7 @@ class ModelProperty(_model_base.Model):
     """
 
     property: "_models.InnerModel" = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -547,12 +547,12 @@ class StringLiteralProperty(_model_base.Model):
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
 
-    :ivar property: Property. Required. Default value is "hello".
-    :vartype property: str
+     :ivar property: Property. Required. Default value is "hello".
+     :vartype property: str
     """
 
     property: Literal["hello"] = rest_field()
-    """Property. Required. Default value is \"hello\"."""
+    """ Property. Required. Default value is \"hello\"."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -568,7 +568,7 @@ class StringProperty(_model_base.Model):
     """
 
     property: str = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -593,12 +593,12 @@ class UnionEnumValueProperty(_model_base.Model):
     are looking for.
 
 
-    :ivar property: Property. Required.
-    :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
+     :ivar property: Property. Required.
+     :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
     """
 
     property: Literal[ExtendedEnum.ENUM_VALUE2] = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -627,7 +627,7 @@ class UnionFloatLiteralProperty(_model_base.Model):
     """
 
     property: float = rest_field()
-    """Property. Required. Is one of the following types: float"""
+    """ Property. Required. Is one of the following types: float"""
 
     @overload
     def __init__(
@@ -656,7 +656,7 @@ class UnionIntLiteralProperty(_model_base.Model):
     """
 
     property: Literal[42, 43] = rest_field()
-    """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
+    """ Property. Required. Is either a Literal[42] type or a Literal[43] type."""
 
     @overload
     def __init__(
@@ -686,7 +686,7 @@ class UnionStringLiteralProperty(_model_base.Model):
     """
 
     property: Literal["hello", "world"] = rest_field()
-    """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
+    """ Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
@@ -715,7 +715,7 @@ class UnknownArrayProperty(_model_base.Model):
     """
 
     property: Any = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -744,7 +744,7 @@ class UnknownDictProperty(_model_base.Model):
     """
 
     property: Any = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -773,7 +773,7 @@ class UnknownIntProperty(_model_base.Model):
     """
 
     property: Any = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(
@@ -802,7 +802,7 @@ class UnknownStringProperty(_model_base.Model):
     """
 
     property: Any = rest_field()
-    """Property. Required."""
+    """ Property. Required."""
 
     @overload
     def __init__(

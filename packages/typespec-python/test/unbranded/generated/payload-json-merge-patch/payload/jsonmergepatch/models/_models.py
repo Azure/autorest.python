@@ -70,7 +70,7 @@ class Resource(_model_base.Model):
     """
 
     name: str = rest_field()
-    """Required."""
+    """ Required."""
     description: Optional[str] = rest_field()
     map: Optional[Dict[str, "_models.InnerModel"]] = rest_field()
     array: Optional[List["_models.InnerModel"]] = rest_field()

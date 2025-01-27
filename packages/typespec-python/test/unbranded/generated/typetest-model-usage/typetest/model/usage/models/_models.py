@@ -22,7 +22,7 @@ class InputOutputRecord(_model_base.Model):
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -47,12 +47,12 @@ class InputRecord(_model_base.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar required_prop: Required.
-    :vartype required_prop: str
+     :ivar required_prop: Required.
+     :vartype required_prop: str
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
@@ -81,7 +81,7 @@ class OutputRecord(_model_base.Model):
     """
 
     required_prop: str = rest_field(name="requiredProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(

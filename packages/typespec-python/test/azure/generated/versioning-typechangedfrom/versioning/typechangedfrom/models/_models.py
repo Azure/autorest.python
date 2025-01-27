@@ -24,9 +24,9 @@ class TestModel(_model_base.Model):
     """
 
     prop: str = rest_field()
-    """Required."""
+    """ Required."""
     changed_prop: str = rest_field(name="changedProp")
-    """Required."""
+    """ Required."""
 
     @overload
     def __init__(
