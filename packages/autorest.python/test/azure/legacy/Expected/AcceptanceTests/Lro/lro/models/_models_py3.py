@@ -80,16 +80,16 @@ class Resource(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :ivar tags: Dictionary of :code:`<string>`.
-    :vartype tags: dict[str, str]
-    :ivar location: Resource Location.
-    :vartype location: str
-    :ivar name: Resource Name.
-    :vartype name: str
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar type: Resource Type.
+     :vartype type: str
+     :ivar tags: Dictionary of :code:`<string>`.
+     :vartype tags: dict[str, str]
+     :ivar location: Resource Location.
+     :vartype location: str
+     :ivar name: Resource Name.
+     :vartype name: str
     """
 
     _validation = {
@@ -126,21 +126,21 @@ class Product(Resource):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :ivar tags: Dictionary of :code:`<string>`.
-    :vartype tags: dict[str, str]
-    :ivar location: Resource Location.
-    :vartype location: str
-    :ivar name: Resource Name.
-    :vartype name: str
-    :ivar provisioning_state:
-    :vartype provisioning_state: str
-    :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-    :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar type: Resource Type.
+     :vartype type: str
+     :ivar tags: Dictionary of :code:`<string>`.
+     :vartype tags: dict[str, str]
+     :ivar location: Resource Location.
+     :vartype location: str
+     :ivar name: Resource Name.
+     :vartype name: str
+     :ivar provisioning_state:
+     :vartype provisioning_state: str
+     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
+      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
     _validation = {
@@ -218,8 +218,8 @@ class SubResource(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Sub Resource Id.
-    :vartype id: str
+     :ivar id: Sub Resource Id.
+     :vartype id: str
     """
 
     _validation = {
@@ -241,14 +241,14 @@ class SubProduct(SubResource):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Sub Resource Id.
-    :vartype id: str
-    :ivar provisioning_state:
-    :vartype provisioning_state: str
-    :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-    :vartype provisioning_state_values: str or
-     ~lro.models.SubProductPropertiesProvisioningStateValues
+     :ivar id: Sub Resource Id.
+     :vartype id: str
+     :ivar provisioning_state:
+     :vartype provisioning_state: str
+     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
+      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+     :vartype provisioning_state_values: str or
+      ~lro.models.SubProductPropertiesProvisioningStateValues
     """
 
     _validation = {

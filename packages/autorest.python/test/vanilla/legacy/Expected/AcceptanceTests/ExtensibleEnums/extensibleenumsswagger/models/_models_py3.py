@@ -19,13 +19,13 @@ class Pet(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: name.
-    :vartype name: str
-    :ivar days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
-     "Thursday", "Friday", "Saturday", and "Sunday".
-    :vartype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
-    :ivar int_enum: Required. Known values are: "1", "2", and "3".
-    :vartype int_enum: str or ~extensibleenumsswagger.models.IntEnum
+     :ivar name: name.
+     :vartype name: str
+     :ivar days_of_week: Type of Pet. Known values are: "Monday", "Tuesday", "Wednesday",
+      "Thursday", "Friday", "Saturday", and "Sunday".
+     :vartype days_of_week: str or ~extensibleenumsswagger.models.DaysOfWeekExtensibleEnum
+     :ivar int_enum: Required. Known values are: "1", "2", and "3".
+     :vartype int_enum: str or ~extensibleenumsswagger.models.IntEnum
     """
 
     _validation = {

@@ -21,12 +21,12 @@ class AccessPolicy(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar start: the date-time the policy is active. Required.
-    :vartype start: ~datetime.datetime
-    :ivar expiry: the date-time the policy expires. Required.
-    :vartype expiry: ~datetime.datetime
-    :ivar permission: the permissions for the acl policy. Required.
-    :vartype permission: str
+     :ivar start: the date-time the policy is active. Required.
+     :vartype start: ~datetime.datetime
+     :ivar expiry: the date-time the policy expires. Required.
+     :vartype expiry: ~datetime.datetime
+     :ivar permission: the permissions for the acl policy. Required.
+     :vartype permission: str
     """
 
     _validation = {
@@ -129,16 +129,16 @@ class Blob(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
-    :ivar deleted: Required.
-    :vartype deleted: bool
-    :ivar snapshot: Required.
-    :vartype snapshot: str
-    :ivar properties: Properties of a blob. Required.
-    :vartype properties: ~xmlserviceversiontolerant.models.BlobProperties
-    :ivar metadata: Dictionary of :code:`<string>`.
-    :vartype metadata: dict[str, str]
+     :ivar name: Required.
+     :vartype name: str
+     :ivar deleted: Required.
+     :vartype deleted: bool
+     :ivar snapshot: Required.
+     :vartype snapshot: str
+     :ivar properties: Properties of a blob. Required.
+     :vartype properties: ~xmlserviceversiontolerant.models.BlobProperties
+     :ivar metadata: Dictionary of :code:`<string>`.
+     :vartype metadata: dict[str, str]
     """
 
     _validation = {
@@ -192,8 +192,8 @@ class BlobPrefix(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
+     :ivar name: Required.
+     :vartype name: str
     """
 
     _validation = {
@@ -218,65 +218,65 @@ class BlobProperties(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar last_modified: Required.
-    :vartype last_modified: ~datetime.datetime
-    :ivar etag: Required.
-    :vartype etag: str
-    :ivar content_length: Size in bytes.
-    :vartype content_length: int
-    :ivar content_type:
-    :vartype content_type: str
-    :ivar content_encoding:
-    :vartype content_encoding: str
-    :ivar content_language:
-    :vartype content_language: str
-    :ivar content_md5:
-    :vartype content_md5: str
-    :ivar content_disposition:
-    :vartype content_disposition: str
-    :ivar cache_control:
-    :vartype cache_control: str
-    :ivar blob_sequence_number:
-    :vartype blob_sequence_number: int
-    :ivar blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
-    :vartype blob_type: str or ~xmlserviceversiontolerant.models.BlobType
-    :ivar lease_status: Known values are: "locked" and "unlocked".
-    :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
-    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
-     "broken".
-    :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
-    :ivar lease_duration: Known values are: "infinite" and "fixed".
-    :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
-    :ivar copy_id:
-    :vartype copy_id: str
-    :ivar copy_status: Known values are: "pending", "success", "aborted", and "failed".
-    :vartype copy_status: str or ~xmlserviceversiontolerant.models.CopyStatusType
-    :ivar copy_source:
-    :vartype copy_source: str
-    :ivar copy_progress:
-    :vartype copy_progress: str
-    :ivar copy_completion_time:
-    :vartype copy_completion_time: ~datetime.datetime
-    :ivar copy_status_description:
-    :vartype copy_status_description: str
-    :ivar server_encrypted:
-    :vartype server_encrypted: bool
-    :ivar incremental_copy:
-    :vartype incremental_copy: bool
-    :ivar destination_snapshot:
-    :vartype destination_snapshot: str
-    :ivar deleted_time:
-    :vartype deleted_time: ~datetime.datetime
-    :ivar remaining_retention_days:
-    :vartype remaining_retention_days: int
-    :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-     "Cool", and "Archive".
-    :vartype access_tier: str or ~xmlserviceversiontolerant.models.AccessTier
-    :ivar access_tier_inferred:
-    :vartype access_tier_inferred: bool
-    :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
-     "rehydrate-pending-to-cool".
-    :vartype archive_status: str or ~xmlserviceversiontolerant.models.ArchiveStatus
+     :ivar last_modified: Required.
+     :vartype last_modified: ~datetime.datetime
+     :ivar etag: Required.
+     :vartype etag: str
+     :ivar content_length: Size in bytes.
+     :vartype content_length: int
+     :ivar content_type:
+     :vartype content_type: str
+     :ivar content_encoding:
+     :vartype content_encoding: str
+     :ivar content_language:
+     :vartype content_language: str
+     :ivar content_md5:
+     :vartype content_md5: str
+     :ivar content_disposition:
+     :vartype content_disposition: str
+     :ivar cache_control:
+     :vartype cache_control: str
+     :ivar blob_sequence_number:
+     :vartype blob_sequence_number: int
+     :ivar blob_type: Known values are: "BlockBlob", "PageBlob", and "AppendBlob".
+     :vartype blob_type: str or ~xmlserviceversiontolerant.models.BlobType
+     :ivar lease_status: Known values are: "locked" and "unlocked".
+     :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
+     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
+      "broken".
+     :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
+     :ivar lease_duration: Known values are: "infinite" and "fixed".
+     :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
+     :ivar copy_id:
+     :vartype copy_id: str
+     :ivar copy_status: Known values are: "pending", "success", "aborted", and "failed".
+     :vartype copy_status: str or ~xmlserviceversiontolerant.models.CopyStatusType
+     :ivar copy_source:
+     :vartype copy_source: str
+     :ivar copy_progress:
+     :vartype copy_progress: str
+     :ivar copy_completion_time:
+     :vartype copy_completion_time: ~datetime.datetime
+     :ivar copy_status_description:
+     :vartype copy_status_description: str
+     :ivar server_encrypted:
+     :vartype server_encrypted: bool
+     :ivar incremental_copy:
+     :vartype incremental_copy: bool
+     :ivar destination_snapshot:
+     :vartype destination_snapshot: str
+     :ivar deleted_time:
+     :vartype deleted_time: ~datetime.datetime
+     :ivar remaining_retention_days:
+     :vartype remaining_retention_days: int
+     :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
+      "Cool", and "Archive".
+     :vartype access_tier: str or ~xmlserviceversiontolerant.models.AccessTier
+     :ivar access_tier_inferred:
+     :vartype access_tier_inferred: bool
+     :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
+      "rehydrate-pending-to-cool".
+     :vartype archive_status: str or ~xmlserviceversiontolerant.models.ArchiveStatus
     """
 
     _validation = {
@@ -518,12 +518,12 @@ class Container(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
-    :ivar properties: Properties of a container. Required.
-    :vartype properties: ~xmlserviceversiontolerant.models.ContainerProperties
-    :ivar metadata: Dictionary of :code:`<string>`.
-    :vartype metadata: dict[str, str]
+     :ivar name: Required.
+     :vartype name: str
+     :ivar properties: Properties of a container. Required.
+     :vartype properties: ~xmlserviceversiontolerant.models.ContainerProperties
+     :ivar metadata: Dictionary of :code:`<string>`.
+     :vartype metadata: dict[str, str]
     """
 
     _validation = {
@@ -564,19 +564,19 @@ class ContainerProperties(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar last_modified: Required.
-    :vartype last_modified: ~datetime.datetime
-    :ivar etag: Required.
-    :vartype etag: str
-    :ivar lease_status: Known values are: "locked" and "unlocked".
-    :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
-    :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
-     "broken".
-    :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
-    :ivar lease_duration: Known values are: "infinite" and "fixed".
-    :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
-    :ivar public_access: Known values are: "container" and "blob".
-    :vartype public_access: str or ~xmlserviceversiontolerant.models.PublicAccessType
+     :ivar last_modified: Required.
+     :vartype last_modified: ~datetime.datetime
+     :ivar etag: Required.
+     :vartype etag: str
+     :ivar lease_status: Known values are: "locked" and "unlocked".
+     :vartype lease_status: str or ~xmlserviceversiontolerant.models.LeaseStatusType
+     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
+      "broken".
+     :vartype lease_state: str or ~xmlserviceversiontolerant.models.LeaseStateType
+     :ivar lease_duration: Known values are: "infinite" and "fixed".
+     :vartype lease_duration: str or ~xmlserviceversiontolerant.models.LeaseDurationType
+     :ivar public_access: Known values are: "container" and "blob".
+     :vartype public_access: str or ~xmlserviceversiontolerant.models.PublicAccessType
     """
 
     _validation = {
@@ -636,24 +636,24 @@ class CorsRule(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar allowed_origins: The origin domains that are permitted to make a request against the
-     storage service via CORS. The origin domain is the domain from which the request originates.
-     Note that the origin must be an exact case-sensitive match with the origin that the user age
-     sends to the service. You can also use the wildcard character '*' to allow all origin domains
-     to make requests via CORS. Required.
-    :vartype allowed_origins: str
-    :ivar allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
-     CORS request. (comma separated). Required.
-    :vartype allowed_methods: str
-    :ivar allowed_headers: the request headers that the origin domain may specify on the CORS
-     request. Required.
-    :vartype allowed_headers: str
-    :ivar exposed_headers: The response headers that may be sent in the response to the CORS
-     request and exposed by the browser to the request issuer. Required.
-    :vartype exposed_headers: str
-    :ivar max_age_in_seconds: The maximum amount time that a browser should cache the preflight
-     OPTIONS request. Required.
-    :vartype max_age_in_seconds: int
+     :ivar allowed_origins: The origin domains that are permitted to make a request against the
+      storage service via CORS. The origin domain is the domain from which the request originates.
+      Note that the origin must be an exact case-sensitive match with the origin that the user age
+      sends to the service. You can also use the wildcard character '*' to allow all origin domains
+      to make requests via CORS. Required.
+     :vartype allowed_origins: str
+     :ivar allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
+      CORS request. (comma separated). Required.
+     :vartype allowed_methods: str
+     :ivar allowed_headers: the request headers that the origin domain may specify on the CORS
+      request. Required.
+     :vartype allowed_headers: str
+     :ivar exposed_headers: The response headers that may be sent in the response to the CORS
+      request and exposed by the browser to the request issuer. Required.
+     :vartype exposed_headers: str
+     :ivar max_age_in_seconds: The maximum amount time that a browser should cache the preflight
+      OPTIONS request. Required.
+     :vartype max_age_in_seconds: int
     """
 
     _validation = {
@@ -782,22 +782,22 @@ class ListBlobsResponse(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar service_endpoint:
-    :vartype service_endpoint: str
-    :ivar container_name: Required.
-    :vartype container_name: str
-    :ivar prefix: Required.
-    :vartype prefix: str
-    :ivar marker: Required.
-    :vartype marker: str
-    :ivar max_results: Required.
-    :vartype max_results: int
-    :ivar delimiter: Required.
-    :vartype delimiter: str
-    :ivar blobs: Required.
-    :vartype blobs: ~xmlserviceversiontolerant.models.Blobs
-    :ivar next_marker: Required.
-    :vartype next_marker: str
+     :ivar service_endpoint:
+     :vartype service_endpoint: str
+     :ivar container_name: Required.
+     :vartype container_name: str
+     :ivar prefix: Required.
+     :vartype prefix: str
+     :ivar marker: Required.
+     :vartype marker: str
+     :ivar max_results: Required.
+     :vartype max_results: int
+     :ivar delimiter: Required.
+     :vartype delimiter: str
+     :ivar blobs: Required.
+     :vartype blobs: ~xmlserviceversiontolerant.models.Blobs
+     :ivar next_marker: Required.
+     :vartype next_marker: str
     """
 
     _validation = {
@@ -869,18 +869,18 @@ class ListContainersResponse(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar service_endpoint: Required.
-    :vartype service_endpoint: str
-    :ivar prefix: Required.
-    :vartype prefix: str
-    :ivar marker:
-    :vartype marker: str
-    :ivar max_results: Required.
-    :vartype max_results: int
-    :ivar containers:
-    :vartype containers: list[~xmlserviceversiontolerant.models.Container]
-    :ivar next_marker: Required.
-    :vartype next_marker: str
+     :ivar service_endpoint: Required.
+     :vartype service_endpoint: str
+     :ivar prefix: Required.
+     :vartype prefix: str
+     :ivar marker:
+     :vartype marker: str
+     :ivar max_results: Required.
+     :vartype max_results: int
+     :ivar containers:
+     :vartype containers: list[~xmlserviceversiontolerant.models.Container]
+     :ivar next_marker: Required.
+     :vartype next_marker: str
     """
 
     _validation = {
@@ -939,16 +939,16 @@ class Logging(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar version: The version of Storage Analytics to configure. Required.
-    :vartype version: str
-    :ivar delete: Indicates whether all delete requests should be logged. Required.
-    :vartype delete: bool
-    :ivar read: Indicates whether all read requests should be logged. Required.
-    :vartype read: bool
-    :ivar write: Indicates whether all write requests should be logged. Required.
-    :vartype write: bool
-    :ivar retention_policy: the retention policy. Required.
-    :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
+     :ivar version: The version of Storage Analytics to configure. Required.
+     :vartype version: str
+     :ivar delete: Indicates whether all delete requests should be logged. Required.
+     :vartype delete: bool
+     :ivar read: Indicates whether all read requests should be logged. Required.
+     :vartype read: bool
+     :ivar write: Indicates whether all write requests should be logged. Required.
+     :vartype write: bool
+     :ivar retention_policy: the retention policy. Required.
+     :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
     """
 
     _validation = {
@@ -1002,15 +1002,15 @@ class Metrics(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar version: The version of Storage Analytics to configure.
-    :vartype version: str
-    :ivar enabled: Indicates whether metrics are enabled for the Blob service. Required.
-    :vartype enabled: bool
-    :ivar include_apis: Indicates whether metrics should generate summary statistics for called API
-     operations.
-    :vartype include_apis: bool
-    :ivar retention_policy: the retention policy.
-    :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
+     :ivar version: The version of Storage Analytics to configure.
+     :vartype version: str
+     :ivar enabled: Indicates whether metrics are enabled for the Blob service. Required.
+     :vartype enabled: bool
+     :ivar include_apis: Indicates whether metrics should generate summary statistics for called API
+      operations.
+     :vartype include_apis: bool
+     :ivar retention_policy: the retention policy.
+     :vartype retention_policy: ~xmlserviceversiontolerant.models.RetentionPolicy
     """
 
     _validation = {
@@ -1123,12 +1123,12 @@ class RetentionPolicy(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
-     Required.
-    :vartype enabled: bool
-    :ivar days: Indicates the number of days that metrics or logging or soft-deleted data should be
-     retained. All data older than this value will be deleted.
-    :vartype days: int
+     :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
+      Required.
+     :vartype enabled: bool
+     :ivar days: Indicates the number of days that metrics or logging or soft-deleted data should be
+      retained. All data older than this value will be deleted.
+     :vartype days: int
     """
 
     _validation = {
@@ -1224,10 +1224,10 @@ class SignedIdentifier(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: a unique id. Required.
-    :vartype id: str
-    :ivar access_policy: The access policy. Required.
-    :vartype access_policy: ~xmlserviceversiontolerant.models.AccessPolicy
+     :ivar id: a unique id. Required.
+     :vartype id: str
+     :ivar access_policy: The access policy. Required.
+     :vartype access_policy: ~xmlserviceversiontolerant.models.AccessPolicy
     """
 
     _validation = {

@@ -19,8 +19,8 @@ class Input(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar hello: Required.
-    :vartype hello: str
+     :ivar hello: Required.
+     :vartype hello: str
     """
 
     _validation = {
@@ -45,8 +45,8 @@ class Product(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar received: Required. Known values are: "raw" and "model".
-    :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
+     :ivar received: Required. Known values are: "raw" and "model".
+     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
     """
 
     _validation = {
@@ -71,10 +71,10 @@ class LROProduct(Product):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar received: Required. Known values are: "raw" and "model".
-    :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
-    :ivar provisioning_state: Required.
-    :vartype provisioning_state: str
+     :ivar received: Required. Known values are: "raw" and "model".
+     :vartype received: str or ~dpgtestmodelsversiontolerant.models.ProductReceived
+     :ivar provisioning_state: Required.
+     :vartype provisioning_state: str
     """
 
     _validation = {

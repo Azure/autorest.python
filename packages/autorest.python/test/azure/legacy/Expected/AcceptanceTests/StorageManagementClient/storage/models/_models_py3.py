@@ -190,16 +190,16 @@ class Resource(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar name: Resource name.
-    :vartype name: str
-    :ivar type: Resource type.
-    :vartype type: str
-    :ivar location: Resource location. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar name: Resource name.
+     :vartype name: str
+     :ivar type: Resource type.
+     :vartype type: str
+     :ivar location: Resource location. Required.
+     :vartype location: str
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
     """
 
     _validation = {
@@ -239,51 +239,51 @@ class StorageAccount(Resource):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar name: Resource name.
-    :vartype name: str
-    :ivar type: Resource type.
-    :vartype type: str
-    :ivar location: Resource location. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar provisioning_state: Gets the status of the storage account at the time the operation was
-     called. Known values are: "Creating", "ResolvingDNS", and "Succeeded".
-    :vartype provisioning_state: str or ~storage.models.ProvisioningState
-    :ivar account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
-     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
-    :vartype account_type: str or ~storage.models.AccountType
-    :ivar primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
-     queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
-     endpoint.
-    :vartype primary_endpoints: ~storage.models.Endpoints
-    :ivar primary_location: Gets the location of the primary for the storage account.
-    :vartype primary_location: str
-    :ivar status_of_primary: Gets the status indicating whether the primary location of the storage
-     account is available or unavailable. Known values are: "Available" and "Unavailable".
-    :vartype status_of_primary: str or ~storage.models.AccountStatus
-    :ivar last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
-     the secondary location. Only the most recent timestamp is retained. This element is not
-     returned if there has never been a failover instance. Only available if the accountType is
-     StandardGRS or StandardRAGRS.
-    :vartype last_geo_failover_time: ~datetime.datetime
-    :ivar secondary_location: Gets the location of the geo replicated secondary for the storage
-     account. Only available if the accountType is StandardGRS or StandardRAGRS.
-    :vartype secondary_location: str
-    :ivar status_of_secondary: Gets the status indicating whether the secondary location of the
-     storage account is available or unavailable. Only available if the accountType is StandardGRS
-     or StandardRAGRS. Known values are: "Available" and "Unavailable".
-    :vartype status_of_secondary: str or ~storage.models.AccountStatus
-    :ivar creation_time: Gets the creation date and time of the storage account in UTC.
-    :vartype creation_time: ~datetime.datetime
-    :ivar custom_domain: Gets the user assigned custom domain assigned to this storage account.
-    :vartype custom_domain: ~storage.models.CustomDomain
-    :ivar secondary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
-     queue or table object from the secondary location of the storage account. Only available if the
-     accountType is StandardRAGRS.
-    :vartype secondary_endpoints: ~storage.models.Endpoints
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar name: Resource name.
+     :vartype name: str
+     :ivar type: Resource type.
+     :vartype type: str
+     :ivar location: Resource location. Required.
+     :vartype location: str
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
+     :ivar provisioning_state: Gets the status of the storage account at the time the operation was
+      called. Known values are: "Creating", "ResolvingDNS", and "Succeeded".
+     :vartype provisioning_state: str or ~storage.models.ProvisioningState
+     :ivar account_type: Gets the type of the storage account. Known values are: "Standard_LRS",
+      "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
+     :vartype account_type: str or ~storage.models.AccountType
+     :ivar primary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
+      queue or table object.Note that StandardZRS and PremiumLRS accounts only return the blob
+      endpoint.
+     :vartype primary_endpoints: ~storage.models.Endpoints
+     :ivar primary_location: Gets the location of the primary for the storage account.
+     :vartype primary_location: str
+     :ivar status_of_primary: Gets the status indicating whether the primary location of the storage
+      account is available or unavailable. Known values are: "Available" and "Unavailable".
+     :vartype status_of_primary: str or ~storage.models.AccountStatus
+     :ivar last_geo_failover_time: Gets the timestamp of the most recent instance of a failover to
+      the secondary location. Only the most recent timestamp is retained. This element is not
+      returned if there has never been a failover instance. Only available if the accountType is
+      StandardGRS or StandardRAGRS.
+     :vartype last_geo_failover_time: ~datetime.datetime
+     :ivar secondary_location: Gets the location of the geo replicated secondary for the storage
+      account. Only available if the accountType is StandardGRS or StandardRAGRS.
+     :vartype secondary_location: str
+     :ivar status_of_secondary: Gets the status indicating whether the secondary location of the
+      storage account is available or unavailable. Only available if the accountType is StandardGRS
+      or StandardRAGRS. Known values are: "Available" and "Unavailable".
+     :vartype status_of_secondary: str or ~storage.models.AccountStatus
+     :ivar creation_time: Gets the creation date and time of the storage account in UTC.
+     :vartype creation_time: ~datetime.datetime
+     :ivar custom_domain: Gets the user assigned custom domain assigned to this storage account.
+     :vartype custom_domain: ~storage.models.CustomDomain
+     :ivar secondary_endpoints: Gets the URLs that are used to perform a retrieval of a public blob,
+      queue or table object from the secondary location of the storage account. Only available if the
+      accountType is StandardRAGRS.
+     :vartype secondary_endpoints: ~storage.models.Endpoints
     """
 
     _validation = {
@@ -390,10 +390,10 @@ class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):  # py
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
-    :ivar type:
-    :vartype type: str
+     :ivar name: Required.
+     :vartype name: str
+     :ivar type:
+     :vartype type: str
     """
 
     _validation = {
@@ -424,19 +424,19 @@ class StorageAccountCreateParameters(Resource):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar name: Resource name.
-    :vartype name: str
-    :ivar type: Resource type.
-    :vartype type: str
-    :ivar location: Resource location. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar account_type: Gets or sets the account type. Known values are: "Standard_LRS",
-     "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
-    :vartype account_type: str or ~storage.models.AccountType
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar name: Resource name.
+     :vartype name: str
+     :ivar type: Resource type.
+     :vartype type: str
+     :ivar location: Resource location. Required.
+     :vartype location: str
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
+     :ivar account_type: Gets or sets the account type. Known values are: "Standard_LRS",
+      "Standard_ZRS", "Standard_GRS", "Standard_RAGRS", and "Premium_LRS".
+     :vartype account_type: str or ~storage.models.AccountType
     """
 
     _validation = {
@@ -559,25 +559,25 @@ class StorageAccountUpdateParameters(Resource):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar name: Resource name.
-    :vartype name: str
-    :ivar type: Resource type.
-    :vartype type: str
-    :ivar location: Resource location. Required.
-    :vartype location: str
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
-     accounts cannot be changed to other account types, and other account types cannot be changed to
-     StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
-     "Standard_RAGRS", and "Premium_LRS".
-    :vartype account_type: str or ~storage.models.AccountType
-    :ivar custom_domain: User domain assigned to the storage account. Name is the CNAME source.
-     Only one custom domain is supported per storage account at this time. To clear the existing
-     custom domain, use an empty string for the custom domain name property.
-    :vartype custom_domain: ~storage.models.CustomDomain
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar name: Resource name.
+     :vartype name: str
+     :ivar type: Resource type.
+     :vartype type: str
+     :ivar location: Resource location. Required.
+     :vartype location: str
+     :ivar tags: Resource tags.
+     :vartype tags: dict[str, str]
+     :ivar account_type: Gets or sets the account type. Note that StandardZRS and PremiumLRS
+      accounts cannot be changed to other account types, and other account types cannot be changed to
+      StandardZRS or PremiumLRS. Known values are: "Standard_LRS", "Standard_ZRS", "Standard_GRS",
+      "Standard_RAGRS", and "Premium_LRS".
+     :vartype account_type: str or ~storage.models.AccountType
+     :ivar custom_domain: User domain assigned to the storage account. Name is the CNAME source.
+      Only one custom domain is supported per storage account at this time. To clear the existing
+      custom domain, use an empty string for the custom domain name property.
+     :vartype custom_domain: ~storage.models.CustomDomain
     """
 
     _validation = {

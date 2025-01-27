@@ -21,18 +21,18 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
 
     All required parameters must be populated in order to send to server.
 
-    :ivar pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
-     "cat", and "fish".
-    :vartype pet_type: str or ~bodyformurlencodeddata.models.PetType
-    :ivar pet_food: Can take a value of meat, or fish, or plant. Required. Known values are:
-     "meat", "fish", and "plant".
-    :vartype pet_food: str or ~bodyformurlencodeddata.models.PetFood
-    :ivar pet_age: How many years is it old?. Required.
-    :vartype pet_age: int
-    :ivar name: Updated name of the pet.
-    :vartype name: str
-    :ivar status: Updated status of the pet.
-    :vartype status: str
+     :ivar pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
+      "cat", and "fish".
+     :vartype pet_type: str or ~bodyformurlencodeddata.models.PetType
+     :ivar pet_food: Can take a value of meat, or fish, or plant. Required. Known values are:
+      "meat", "fish", and "plant".
+     :vartype pet_food: str or ~bodyformurlencodeddata.models.PetFood
+     :ivar pet_age: How many years is it old?. Required.
+     :vartype pet_age: int
+     :ivar name: Updated name of the pet.
+     :vartype name: str
+     :ivar status: Updated status of the pet.
+     :vartype status: str
     """
 
     _validation = {
@@ -90,13 +90,13 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     All required parameters must be populated in order to send to server.
 
-    :ivar grant_type: Constant part of a formdata body. Required. Default value is "access_token".
-    :vartype grant_type: str
-    :ivar service: Indicates the name of your Azure container registry. Required.
-    :vartype service: str
-    :ivar aad_access_token: AAD access token, mandatory when grant_type is
-     access_token_refresh_token or access_token. Required.
-    :vartype aad_access_token: str
+     :ivar grant_type: Constant part of a formdata body. Required. Default value is "access_token".
+     :vartype grant_type: str
+     :ivar service: Indicates the name of your Azure container registry. Required.
+     :vartype service: str
+     :ivar aad_access_token: AAD access token, mandatory when grant_type is
+      access_token_refresh_token or access_token. Required.
+     :vartype aad_access_token: str
     """
 
     _validation = {

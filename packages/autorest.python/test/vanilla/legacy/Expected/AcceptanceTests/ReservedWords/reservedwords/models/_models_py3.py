@@ -18,10 +18,10 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 
     All required parameters must be populated in order to send to server.
 
-    :ivar data: Pass in 'hello'. Required.
-    :vartype data: str
-    :ivar world: Pass in 'world'. Required.
-    :vartype world: str
+     :ivar data: Pass in 'hello'. Required.
+     :vartype data: str
+     :ivar world: Pass in 'world'. Required.
+     :vartype world: str
     """
 
     _validation = {
@@ -53,10 +53,10 @@ class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to server.
 
-    :ivar files: Files to upload. Pass in list of input streams. Required.
-    :vartype files: IO[bytes]
-    :ivar file_name: File name to upload. Pass in 'my.txt'. Required.
-    :vartype file_name: str
+     :ivar files: Files to upload. Pass in list of input streams. Required.
+     :vartype files: IO[bytes]
+     :ivar file_name: File name to upload. Pass in 'my.txt'. Required.
+     :vartype file_name: str
     """
 
     _validation = {

@@ -19,12 +19,12 @@ class BaseProduct(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar product_id: Unique identifier representing a specific product for a given latitude &
-     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-     Los Angeles. Required.
-    :vartype product_id: str
-    :ivar description: Description of product.
-    :vartype description: str
+     :ivar product_id: Unique identifier representing a specific product for a given latitude &
+      longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+      Los Angeles. Required.
+     :vartype product_id: str
+     :ivar description: Description of product.
+     :vartype description: str
     """
 
     _validation = {
@@ -94,16 +94,16 @@ class Resource(_serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :ivar tags: Dictionary of :code:`<string>`.
-    :vartype tags: dict[str, str]
-    :ivar location: Resource Location.
-    :vartype location: str
-    :ivar name: Resource Name.
-    :vartype name: str
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar type: Resource Type.
+     :vartype type: str
+     :ivar tags: Dictionary of :code:`<string>`.
+     :vartype tags: dict[str, str]
+     :ivar location: Resource Location.
+     :vartype location: str
+     :ivar name: Resource Name.
+     :vartype name: str
     """
 
     _validation = {
@@ -140,26 +140,26 @@ class FlattenedProduct(Resource):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id: Resource Id.
-    :vartype id: str
-    :ivar type: Resource Type.
-    :vartype type: str
-    :ivar tags: Dictionary of :code:`<string>`.
-    :vartype tags: dict[str, str]
-    :ivar location: Resource Location.
-    :vartype location: str
-    :ivar name: Resource Name.
-    :vartype name: str
-    :ivar p_name:
-    :vartype p_name: str
-    :ivar type_properties_type:
-    :vartype type_properties_type: str
-    :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
-    :vartype provisioning_state_values: str or
-     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
-    :ivar provisioning_state:
-    :vartype provisioning_state: str
+     :ivar id: Resource Id.
+     :vartype id: str
+     :ivar type: Resource Type.
+     :vartype type: str
+     :ivar tags: Dictionary of :code:`<string>`.
+     :vartype tags: dict[str, str]
+     :ivar location: Resource Location.
+     :vartype location: str
+     :ivar name: Resource Name.
+     :vartype name: str
+     :ivar p_name:
+     :vartype p_name: str
+     :ivar type_properties_type:
+     :vartype type_properties_type: str
+     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
+      "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+     :vartype provisioning_state_values: str or
+      ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+     :ivar provisioning_state:
+     :vartype provisioning_state: str
     """
 
     _validation = {
@@ -217,24 +217,24 @@ class FlattenParameterGroup(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Product name with value 'groupproduct'. Required.
-    :vartype name: str
-    :ivar simple_body_product: Simple body product to put.
-    :vartype simple_body_product: ~modelflattening.models.SimpleProduct
-    :ivar product_id: Unique identifier representing a specific product for a given latitude &
-     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-     Los Angeles. Required.
-    :vartype product_id: str
-    :ivar description: Description of product.
-    :vartype description: str
-    :ivar max_product_display_name: Display name of product.
-    :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
-    :vartype capacity: str
-    :ivar generic_value: Generic URL value.
-    :vartype generic_value: str
-    :ivar odata_value: URL value.
-    :vartype odata_value: str
+     :ivar name: Product name with value 'groupproduct'. Required.
+     :vartype name: str
+     :ivar simple_body_product: Simple body product to put.
+     :vartype simple_body_product: ~modelflattening.models.SimpleProduct
+     :ivar product_id: Unique identifier representing a specific product for a given latitude &
+      longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+      Los Angeles. Required.
+     :vartype product_id: str
+     :ivar description: Description of product.
+     :vartype description: str
+     :ivar max_product_display_name: Display name of product.
+     :vartype max_product_display_name: str
+     :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
+     :vartype capacity: str
+     :ivar generic_value: Generic URL value.
+     :vartype generic_value: str
+     :ivar odata_value: URL value.
+     :vartype odata_value: str
     """
 
     _validation = {
@@ -408,20 +408,20 @@ class SimpleProduct(BaseProduct):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar product_id: Unique identifier representing a specific product for a given latitude &
-     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-     Los Angeles. Required.
-    :vartype product_id: str
-    :ivar description: Description of product.
-    :vartype description: str
-    :ivar max_product_display_name: Display name of product.
-    :vartype max_product_display_name: str
-    :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
-    :vartype capacity: str
-    :ivar generic_value: Generic URL value.
-    :vartype generic_value: str
-    :ivar odata_value: URL value.
-    :vartype odata_value: str
+     :ivar product_id: Unique identifier representing a specific product for a given latitude &
+      longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+      Los Angeles. Required.
+     :vartype product_id: str
+     :ivar description: Description of product.
+     :vartype description: str
+     :ivar max_product_display_name: Display name of product.
+     :vartype max_product_display_name: str
+     :ivar capacity: Capacity of product. For example, 4 people. Default value is "Large".
+     :vartype capacity: str
+     :ivar generic_value: Generic URL value.
+     :vartype generic_value: str
+     :ivar odata_value: URL value.
+     :vartype odata_value: str
     """
 
     _validation = {

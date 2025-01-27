@@ -207,14 +207,14 @@ class Fish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
     """
 
     _validation = {
@@ -262,18 +262,18 @@ class Shark(Fish):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar age:
-    :vartype age: int
-    :ivar birthday: Required.
-    :vartype birthday: ~datetime.datetime
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar age:
+     :vartype age: int
+     :ivar birthday: Required.
+     :vartype birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -328,18 +328,18 @@ class Cookiecuttershark(Shark):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar age:
-    :vartype age: int
-    :ivar birthday: Required.
-    :vartype birthday: ~datetime.datetime
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar age:
+     :vartype age: int
+     :ivar birthday: Required.
+     :vartype birthday: ~datetime.datetime
     """
 
     _validation = {
@@ -532,10 +532,10 @@ class DotFish(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fish_type: Required.
-    :vartype fish_type: str
-    :ivar species:
-    :vartype species: str
+     :ivar fish_type: Required.
+     :vartype fish_type: str
+     :ivar species:
+     :vartype species: str
     """
 
     _validation = {
@@ -610,14 +610,14 @@ class DotSalmon(DotFish):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fish_type: Required.
-    :vartype fish_type: str
-    :ivar species:
-    :vartype species: str
-    :ivar location:
-    :vartype location: str
-    :ivar iswild:
-    :vartype iswild: bool
+     :ivar fish_type: Required.
+     :vartype fish_type: str
+     :ivar species:
+     :vartype species: str
+     :ivar location:
+     :vartype location: str
+     :ivar iswild:
+     :vartype iswild: bool
     """
 
     _validation = {
@@ -775,22 +775,22 @@ class Goblinshark(Shark):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar age:
-    :vartype age: int
-    :ivar birthday: Required.
-    :vartype birthday: ~datetime.datetime
-    :ivar jawsize:
-    :vartype jawsize: int
-    :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
-    :vartype color: str or ~bodycomplex.models.GoblinSharkColor
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar age:
+     :vartype age: int
+     :ivar birthday: Required.
+     :vartype birthday: ~datetime.datetime
+     :ivar jawsize:
+     :vartype jawsize: int
+     :ivar color: Colors possible. Known values are: "pink", "gray", "brown", "RED", and "red".
+     :vartype color: str or ~bodycomplex.models.GoblinSharkColor
     """
 
     _validation = {
@@ -904,12 +904,12 @@ class MyBaseType(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar kind: Required. "Kind1"
-    :vartype kind: str or ~bodycomplex.models.MyKind
-    :ivar prop_b1:
-    :vartype prop_b1: str
-    :ivar prop_bh1:
-    :vartype prop_bh1: str
+     :ivar kind: Required. "Kind1"
+     :vartype kind: str or ~bodycomplex.models.MyKind
+     :ivar prop_b1:
+     :vartype prop_b1: str
+     :ivar prop_bh1:
+     :vartype prop_bh1: str
     """
 
     _validation = {
@@ -942,14 +942,14 @@ class MyDerivedType(MyBaseType):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar kind: Required. "Kind1"
-    :vartype kind: str or ~bodycomplex.models.MyKind
-    :ivar prop_b1:
-    :vartype prop_b1: str
-    :ivar prop_bh1:
-    :vartype prop_bh1: str
-    :ivar prop_d1:
-    :vartype prop_d1: str
+     :ivar kind: Required. "Kind1"
+     :vartype kind: str or ~bodycomplex.models.MyKind
+     :ivar prop_b1:
+     :vartype prop_b1: str
+     :ivar prop_bh1:
+     :vartype prop_bh1: str
+     :ivar prop_d1:
+     :vartype prop_d1: str
     """
 
     _validation = {
@@ -989,10 +989,10 @@ class ReadonlyObj(msrest.serialization.Model):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar id:
-    :vartype id: str
-    :ivar size:
-    :vartype size: int
+     :ivar id:
+     :vartype id: str
+     :ivar size:
+     :vartype size: int
     """
 
     _validation = {
@@ -1022,18 +1022,18 @@ class Salmon(Fish):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar location:
-    :vartype location: str
-    :ivar iswild:
-    :vartype iswild: bool
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar location:
+     :vartype location: str
+     :ivar iswild:
+     :vartype iswild: bool
     """
 
     _validation = {
@@ -1085,20 +1085,20 @@ class Sawshark(Shark):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar age:
-    :vartype age: int
-    :ivar birthday: Required.
-    :vartype birthday: ~datetime.datetime
-    :ivar picture:
-    :vartype picture: bytes
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar age:
+     :vartype age: int
+     :ivar birthday: Required.
+     :vartype birthday: ~datetime.datetime
+     :ivar picture:
+     :vartype picture: bytes
     """
 
     _validation = {
@@ -1201,23 +1201,23 @@ class SmartSalmon(Salmon):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar fishtype: Required.
-    :vartype fishtype: str
-    :ivar species:
-    :vartype species: str
-    :ivar length: Required.
-    :vartype length: float
-    :ivar siblings:
-    :vartype siblings: list[~bodycomplex.models.Fish]
-    :ivar location:
-    :vartype location: str
-    :ivar iswild:
-    :vartype iswild: bool
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar college_degree:
-    :vartype college_degree: str
+     :ivar fishtype: Required.
+     :vartype fishtype: str
+     :ivar species:
+     :vartype species: str
+     :ivar length: Required.
+     :vartype length: float
+     :ivar siblings:
+     :vartype siblings: list[~bodycomplex.models.Fish]
+     :ivar location:
+     :vartype location: str
+     :ivar iswild:
+     :vartype iswild: bool
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar college_degree:
+     :vartype college_degree: str
     """
 
     _validation = {

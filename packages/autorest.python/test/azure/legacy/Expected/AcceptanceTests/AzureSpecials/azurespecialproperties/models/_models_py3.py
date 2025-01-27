@@ -18,12 +18,12 @@ class Error(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar status:
-    :vartype status: int
-    :ivar constant_id: Required. Default value is 1.
-    :vartype constant_id: int
-    :ivar message:
-    :vartype message: str
+     :ivar status:
+     :vartype status: int
+     :ivar constant_id: Required. Default value is 1.
+     :vartype constant_id: int
+     :ivar message:
+     :vartype message: str
     """
 
     _validation = {
@@ -55,8 +55,8 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(msrest.serialization.Mod
 
     All required parameters must be populated in order to send to server.
 
-    :ivar foo_client_request_id: The fooRequestId. Required.
-    :vartype foo_client_request_id: str
+     :ivar foo_client_request_id: The fooRequestId. Required.
+     :vartype foo_client_request_id: str
     """
 
     _validation = {

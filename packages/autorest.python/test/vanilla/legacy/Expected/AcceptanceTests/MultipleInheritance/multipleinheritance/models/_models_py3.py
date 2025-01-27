@@ -42,8 +42,8 @@ class Pet(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
+     :ivar name: Required.
+     :vartype name: str
     """
 
     _validation = {
@@ -68,14 +68,14 @@ class Cat(Pet, Feline):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar meows:
-    :vartype meows: bool
-    :ivar hisses:
-    :vartype hisses: bool
-    :ivar name: Required.
-    :vartype name: str
-    :ivar likes_milk:
-    :vartype likes_milk: bool
+     :ivar meows:
+     :vartype meows: bool
+     :ivar hisses:
+     :vartype hisses: bool
+     :ivar name: Required.
+     :vartype name: str
+     :ivar likes_milk:
+     :vartype likes_milk: bool
     """
 
     _validation = {
@@ -146,10 +146,10 @@ class Horse(Pet):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar name: Required.
-    :vartype name: str
-    :ivar is_a_show_horse:
-    :vartype is_a_show_horse: bool
+     :ivar name: Required.
+     :vartype name: str
+     :ivar is_a_show_horse:
+     :vartype is_a_show_horse: bool
     """
 
     _validation = {
@@ -177,16 +177,16 @@ class Kitten(Cat):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar meows:
-    :vartype meows: bool
-    :ivar hisses:
-    :vartype hisses: bool
-    :ivar name: Required.
-    :vartype name: str
-    :ivar likes_milk:
-    :vartype likes_milk: bool
-    :ivar eats_mice_yet:
-    :vartype eats_mice_yet: bool
+     :ivar meows:
+     :vartype meows: bool
+     :ivar hisses:
+     :vartype hisses: bool
+     :ivar name: Required.
+     :vartype name: str
+     :ivar likes_milk:
+     :vartype likes_milk: bool
+     :ivar eats_mice_yet:
+     :vartype eats_mice_yet: bool
     """
 
     _validation = {

@@ -21,10 +21,10 @@ class ChildProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar const_property: Constant string. Required. Default value is "constant".
-    :vartype const_property: str
-    :ivar count: Count.
-    :vartype count: int
+     :ivar const_property: Constant string. Required. Default value is "constant".
+     :vartype const_property: str
+     :ivar count: Count.
+     :vartype count: int
     """
 
     _validation = {
@@ -54,10 +54,10 @@ class ConstantProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar const_property: Constant string. Required. Default value is "constant".
-    :vartype const_property: str
-    :ivar const_property2: Constant string2. Required. Default value is "constant2".
-    :vartype const_property2: str
+     :ivar const_property: Constant string. Required. Default value is "constant".
+     :vartype const_property: str
+     :ivar const_property2: Constant string2. Required. Default value is "constant2".
+     :vartype const_property2: str
     """
 
     _validation = {
@@ -119,23 +119,23 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar display_names: Non required array of unique items from 0 to 6 elements.
-    :vartype display_names: list[str]
-    :ivar capacity: Non required int betwen 0 and 100 exclusive.
-    :vartype capacity: int
-    :ivar image: Image URL representing the product.
-    :vartype image: str
-    :ivar child: The product documentation. Required.
-    :vartype child: ~validation.models.ChildProduct
-    :ivar const_child: The product documentation. Required.
-    :vartype const_child: ~validation.models.ConstantProduct
-    :ivar const_int: Constant int. Required. Default value is 0.
-    :vartype const_int: int
-    :ivar const_string: Constant string. Required. Default value is "constant".
-    :vartype const_string: str
-    :ivar const_string_as_enum: Constant string as Enum. Default value is
-     "constant_string_as_enum".
-    :vartype const_string_as_enum: str
+     :ivar display_names: Non required array of unique items from 0 to 6 elements.
+     :vartype display_names: list[str]
+     :ivar capacity: Non required int betwen 0 and 100 exclusive.
+     :vartype capacity: int
+     :ivar image: Image URL representing the product.
+     :vartype image: str
+     :ivar child: The product documentation. Required.
+     :vartype child: ~validation.models.ChildProduct
+     :ivar const_child: The product documentation. Required.
+     :vartype const_child: ~validation.models.ConstantProduct
+     :ivar const_int: Constant int. Required. Default value is 0.
+     :vartype const_int: int
+     :ivar const_string: Constant string. Required. Default value is "constant".
+     :vartype const_string: str
+     :ivar const_string_as_enum: Constant string as Enum. Default value is
+      "constant_string_as_enum".
+     :vartype const_string_as_enum: str
     """
 
     _validation = {

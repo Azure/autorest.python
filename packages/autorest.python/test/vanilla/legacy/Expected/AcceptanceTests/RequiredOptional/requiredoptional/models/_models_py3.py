@@ -39,8 +39,8 @@ class ArrayWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar value: Required.
-    :vartype value: list[str]
+     :ivar value: Required.
+     :vartype value: list[str]
     """
 
     _validation = {
@@ -85,8 +85,8 @@ class ClassWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar value: Required.
-    :vartype value: ~requiredoptional.models.Product
+     :ivar value: Required.
+     :vartype value: ~requiredoptional.models.Product
     """
 
     _validation = {
@@ -157,8 +157,8 @@ class IntWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar value: Required.
-    :vartype value: int
+     :ivar value: Required.
+     :vartype value: int
     """
 
     _validation = {
@@ -183,10 +183,10 @@ class Product(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
     """
 
     _validation = {
@@ -237,8 +237,8 @@ class StringWrapper(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar value: Required.
-    :vartype value: str
+     :ivar value: Required.
+     :vartype value: str
     """
 
     _validation = {

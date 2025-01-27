@@ -59,12 +59,12 @@ class NotFoundErrorBase(BaseError):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar some_base_prop:
-    :vartype some_base_prop: str
-    :ivar reason:
-    :vartype reason: str
-    :ivar what_not_found: Required.
-    :vartype what_not_found: str
+     :ivar some_base_prop:
+     :vartype some_base_prop: str
+     :ivar reason:
+     :vartype reason: str
+     :ivar what_not_found: Required.
+     :vartype what_not_found: str
     """
 
     _validation = {
@@ -96,14 +96,14 @@ class AnimalNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar some_base_prop:
-    :vartype some_base_prop: str
-    :ivar reason:
-    :vartype reason: str
-    :ivar what_not_found: Required.
-    :vartype what_not_found: str
-    :ivar name:
-    :vartype name: str
+     :ivar some_base_prop:
+     :vartype some_base_prop: str
+     :ivar reason:
+     :vartype reason: str
+     :ivar what_not_found: Required.
+     :vartype what_not_found: str
+     :ivar name:
+     :vartype name: str
     """
 
     _validation = {
@@ -143,14 +143,14 @@ class LinkNotFound(NotFoundErrorBase):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar some_base_prop:
-    :vartype some_base_prop: str
-    :ivar reason:
-    :vartype reason: str
-    :ivar what_not_found: Required.
-    :vartype what_not_found: str
-    :ivar what_sub_address:
-    :vartype what_sub_address: str
+     :ivar some_base_prop:
+     :vartype some_base_prop: str
+     :ivar reason:
+     :vartype reason: str
+     :ivar what_not_found: Required.
+     :vartype what_not_found: str
+     :ivar what_sub_address:
+     :vartype what_sub_address: str
     """
 
     _validation = {
@@ -190,10 +190,10 @@ class Pet(Animal):
 
     Variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar ani_type:
-    :vartype ani_type: str
-    :ivar name: Gets the Pet by id.
-    :vartype name: str
+     :ivar ani_type:
+     :vartype ani_type: str
+     :ivar name: Gets the Pet by id.
+     :vartype name: str
     """
 
     _validation = {
@@ -242,12 +242,12 @@ class PetActionError(PetAction):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar action_response: action feedback.
-    :vartype action_response: str
-    :ivar error_type: Required.
-    :vartype error_type: str
-    :ivar error_message: the error message.
-    :vartype error_message: str
+     :ivar action_response: action feedback.
+     :vartype action_response: str
+     :ivar error_type: Required.
+     :vartype error_type: str
+     :ivar error_message: the error message.
+     :vartype error_message: str
     """
 
     _validation = {
@@ -284,14 +284,14 @@ class PetSadError(PetActionError):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar action_response: action feedback.
-    :vartype action_response: str
-    :ivar error_type: Required.
-    :vartype error_type: str
-    :ivar error_message: the error message.
-    :vartype error_message: str
-    :ivar reason: why is the pet sad.
-    :vartype reason: str
+     :ivar action_response: action feedback.
+     :vartype action_response: str
+     :ivar error_type: Required.
+     :vartype error_type: str
+     :ivar error_message: the error message.
+     :vartype error_message: str
+     :ivar reason: why is the pet sad.
+     :vartype reason: str
     """
 
     _validation = {
@@ -333,16 +333,16 @@ class PetHungryOrThirstyError(PetSadError):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar action_response: action feedback.
-    :vartype action_response: str
-    :ivar error_type: Required.
-    :vartype error_type: str
-    :ivar error_message: the error message.
-    :vartype error_message: str
-    :ivar reason: why is the pet sad.
-    :vartype reason: str
-    :ivar hungry_or_thirsty: is the pet hungry or thirsty or both.
-    :vartype hungry_or_thirsty: str
+     :ivar action_response: action feedback.
+     :vartype action_response: str
+     :ivar error_type: Required.
+     :vartype error_type: str
+     :ivar error_message: the error message.
+     :vartype error_message: str
+     :ivar reason: why is the pet sad.
+     :vartype reason: str
+     :ivar hungry_or_thirsty: is the pet hungry or thirsty or both.
+     :vartype hungry_or_thirsty: str
     """
 
     _validation = {

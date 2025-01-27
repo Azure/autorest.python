@@ -39,10 +39,10 @@ class CustomParameterGroup(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar api_version: Sets the api version to use. Required.
-    :vartype api_version: str
-    :ivar tenant: Sets the tenant to use. Required.
-    :vartype tenant: str
+     :ivar api_version: Sets the api version to use. Required.
+     :vartype api_version: str
+     :ivar tenant: Sets the tenant to use. Required.
+     :vartype tenant: str
     """
 
     _validation = {
@@ -179,13 +179,13 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar maxresults: Sets the maximum number of items to return in the response.
-    :vartype maxresults: int
-    :ivar offset: Offset of return value. Required.
-    :vartype offset: int
-    :ivar timeout: Sets the maximum time that the server can spend processing the request, in
-     seconds. The default is 30 seconds.
-    :vartype timeout: int
+     :ivar maxresults: Sets the maximum number of items to return in the response.
+     :vartype maxresults: int
+     :ivar offset: Offset of return value. Required.
+     :vartype offset: int
+     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
+      seconds. The default is 30 seconds.
+     :vartype timeout: int
     """
 
     _validation = {

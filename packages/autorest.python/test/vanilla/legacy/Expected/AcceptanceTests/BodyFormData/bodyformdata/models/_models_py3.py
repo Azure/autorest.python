@@ -44,10 +44,10 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
     All required parameters must be populated in order to send to server.
 
-    :ivar file_content: File to upload. Required.
-    :vartype file_content: IO[bytes]
-    :ivar file_name: File name to upload. Name has to be spelled exactly as written here. Required.
-    :vartype file_name: str
+     :ivar file_content: File to upload. Required.
+     :vartype file_content: IO[bytes]
+     :ivar file_name: File name to upload. Name has to be spelled exactly as written here. Required.
+     :vartype file_name: str
     """
 
     _validation = {
@@ -80,8 +80,8 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
 
     All required parameters must be populated in order to send to server.
 
-    :ivar file_content: Files to upload. Required.
-    :vartype file_content: list[IO[bytes]]
+     :ivar file_content: Files to upload. Required.
+     :vartype file_content: list[IO[bytes]]
     """
 
     _validation = {

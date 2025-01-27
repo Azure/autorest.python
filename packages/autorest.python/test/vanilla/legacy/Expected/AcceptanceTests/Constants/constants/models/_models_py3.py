@@ -113,8 +113,8 @@ class ModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: "value1"
-    :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
+     :ivar parameter: "value1"
+     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueDefaultEnum
     """
 
     _validation = {
@@ -141,8 +141,8 @@ class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Required. "value1"
-    :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
+     :ivar parameter: Required. "value1"
+     :vartype parameter: str or ~constants.models.ModelAsStringRequiredOneValueNoDefaultEnum
     """
 
     _validation = {
@@ -169,8 +169,8 @@ class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Known values are: "value1" and "value2".
-    :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
+     :ivar parameter: Known values are: "value1" and "value2".
+     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -197,8 +197,8 @@ class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Required. Known values are: "value1" and "value2".
-    :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
+     :ivar parameter: Required. Known values are: "value1" and "value2".
+     :vartype parameter: str or ~constants.models.ModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {
@@ -314,8 +314,8 @@ class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Default value is "value1".
-    :vartype parameter: str
+     :ivar parameter: Default value is "value1".
+     :vartype parameter: str
     """
 
     _validation = {
@@ -340,8 +340,8 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Required. Default value is "value1".
-    :vartype parameter: str
+     :ivar parameter: Required. Default value is "value1".
+     :vartype parameter: str
     """
 
     _validation = {
@@ -364,8 +364,8 @@ class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Known values are: "value1" and "value2".
-    :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
+     :ivar parameter: Known values are: "value1" and "value2".
+     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueDefaultEnum
     """
 
     _validation = {
@@ -392,8 +392,8 @@ class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Required. Known values are: "value1" and "value2".
-    :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
+     :ivar parameter: Required. Known values are: "value1" and "value2".
+     :vartype parameter: str or ~constants.models.NoModelAsStringRequiredTwoValueNoDefaultEnum
     """
 
     _validation = {

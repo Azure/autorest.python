@@ -19,21 +19,21 @@ class Error(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar code: One of a server-defined set of error codes. Required. Known values are:
-     "BadParameter" and "Unauthorized".
-    :vartype code: str or ~errorwithsecrets.models.ErrorCode
-    :ivar message: A human-readable representation of the error. Required.
-    :vartype message: str
-    :ivar target: The target of the error.
-    :vartype target: str
-    :ivar details: An array of details about specific errors that led to this reported error.
-    :vartype details: list[~errorwithsecrets.models.Error]
-    :ivar innererror: An object containing more specific information than the current object about
-     the error.
-    :vartype innererror: ~errorwithsecrets.models.InnerError
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar code: One of a server-defined set of error codes. Required. Known values are:
+      "BadParameter" and "Unauthorized".
+     :vartype code: str or ~errorwithsecrets.models.ErrorCode
+     :ivar message: A human-readable representation of the error. Required.
+     :vartype message: str
+     :ivar target: The target of the error.
+     :vartype target: str
+     :ivar details: An array of details about specific errors that led to this reported error.
+     :vartype details: list[~errorwithsecrets.models.Error]
+     :ivar innererror: An object containing more specific information than the current object about
+      the error.
+     :vartype innererror: ~errorwithsecrets.models.InnerError
     """
 
     _validation = {
@@ -92,11 +92,11 @@ class ErrorResponse(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar error: The error object. Required.
-    :vartype error: ~errorwithsecrets.models.Error
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar error: The error object. Required.
+     :vartype error: ~errorwithsecrets.models.Error
     """
 
     _validation = {
@@ -130,17 +130,17 @@ class InnerError(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar code: One of a server-defined set of error codes. Required. Known values are:
-     "MissingSharedKey" and "UnauthorizedSharedKey".
-    :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
-    :ivar message: Error message. Required.
-    :vartype message: str
-    :ivar innererror: An object containing more specific information than the current object about
-     the error.
-    :vartype innererror: ~errorwithsecrets.models.InnerError
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar code: One of a server-defined set of error codes. Required. Known values are:
+      "MissingSharedKey" and "UnauthorizedSharedKey".
+     :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
+     :ivar message: Error message. Required.
+     :vartype message: str
+     :ivar innererror: An object containing more specific information than the current object about
+      the error.
+     :vartype innererror: ~errorwithsecrets.models.InnerError
     """
 
     _validation = {
@@ -189,10 +189,10 @@ class SecretResponse(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar key: The secret key. Required.
-    :vartype key: str
-    :ivar value: The secret value. Required.
-    :vartype value: str
+     :ivar key: The secret key. Required.
+     :vartype key: str
+     :ivar value: The secret value. Required.
+     :vartype value: str
     """
 
     _validation = {

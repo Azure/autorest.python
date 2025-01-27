@@ -154,14 +154,14 @@ class ParameterGroupingPostRequiredParameters(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar custom_header:
-    :vartype custom_header: str
-    :ivar query: Query parameter with default.
-    :vartype query: int
-    :ivar path: Path parameter. Required.
-    :vartype path: str
-    :ivar body: Required.
-    :vartype body: int
+     :ivar custom_header:
+     :vartype custom_header: str
+     :ivar query: Query parameter with default.
+     :vartype query: int
+     :ivar path: Path parameter. Required.
+     :vartype path: str
+     :ivar body: Required.
+     :vartype body: int
     """
 
     _validation = {

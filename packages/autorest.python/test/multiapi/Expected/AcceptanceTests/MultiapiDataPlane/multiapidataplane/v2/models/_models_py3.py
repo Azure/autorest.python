@@ -42,10 +42,10 @@ class ModelTwo(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: int
-    :ivar message:
-    :vartype message: str
+     :ivar id: Required.
+     :vartype id: int
+     :ivar message:
+     :vartype message: str
     """
 
     _validation = {

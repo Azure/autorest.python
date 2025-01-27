@@ -18,15 +18,15 @@ class PetAPTrue(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
     """
 
     _validation = {
@@ -72,17 +72,17 @@ class CatAPTrue(PetAPTrue):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
-    :ivar friendly:
-    :vartype friendly: bool
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
+     :ivar friendly:
+     :vartype friendly: bool
     """
 
     _validation = {
@@ -155,14 +155,14 @@ class PetAPInProperties(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
-    :ivar additional_properties: Dictionary of :code:`<number>`.
-    :vartype additional_properties: dict[str, float]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
+     :ivar additional_properties: Dictionary of :code:`<number>`.
+     :vartype additional_properties: dict[str, float]
     """
 
     _validation = {
@@ -207,19 +207,19 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, str]
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
-    :ivar odata_location: Required.
-    :vartype odata_location: str
-    :ivar additional_properties1: Dictionary of :code:`<number>`.
-    :vartype additional_properties1: dict[str, float]
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, str]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
+     :ivar odata_location: Required.
+     :vartype odata_location: str
+     :ivar additional_properties1: Dictionary of :code:`<number>`.
+     :vartype additional_properties1: dict[str, float]
     """
 
     _validation = {
@@ -276,15 +276,15 @@ class PetAPObject(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, any]
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, any]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
     """
 
     _validation = {
@@ -330,15 +330,15 @@ class PetAPString(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
-    :vartype additional_properties: dict[str, str]
-    :ivar id: Required.
-    :vartype id: int
-    :ivar name:
-    :vartype name: str
-    :ivar status:
-    :vartype status: bool
+     :ivar additional_properties: Unmatched properties from the message are deserialized to this
+      collection.
+     :vartype additional_properties: dict[str, str]
+     :ivar id: Required.
+     :vartype id: int
+     :ivar name:
+     :vartype name: str
+     :ivar status:
+     :vartype status: bool
     """
 
     _validation = {
