@@ -1,1 +1,1 @@
--r ./node_modules/@typespec/http-client-python/generator/dev_requirements.txt
+-r ../node_modules/@typespec/http-client-python/generator/dev_requirements.txt

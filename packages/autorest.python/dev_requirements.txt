@@ -1,4 +1,4 @@
 -e .
 -e ./generator
--r ./node_modules/@typespec/http-client-python/generator/dev_requirements.txt
+-r ../node_modules/@typespec/http-client-python/generator/dev_requirements.txt
 invoke==2.2.0
