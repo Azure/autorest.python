@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "authentication-http-custom"
-PACKAGE_PPRINT_NAME = "Authentication Http Custom"
+PACKAGE_PPRINT_NAME = "Authentication Http Custom Service"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
