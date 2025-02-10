@@ -18,6 +18,7 @@ def __init__(
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set a_prefix = "a" if async_mode else "" %}
 {% set await = "await " if async_mode else "" %}
+{% set credential_scopes = "credential_scopes=credential_scopes, " if code_model.config.credential_scopes is not none else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -88,7 +89,14 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
         {% endif %}
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
+        {% if code_model.config.credential_scopes is not none %}
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud
+        _endpoints = get_arm_endpoints(_cloud)
+        if not base_url:
+            base_url = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
+        {% endif %}
+        self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}{{ credential_scopes }}**kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
