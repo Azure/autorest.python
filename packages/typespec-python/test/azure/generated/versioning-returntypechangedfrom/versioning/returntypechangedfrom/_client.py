@@ -37,6 +37,7 @@ class ReturnTypeChangedFromClient(
     ) -> None:
         _endpoint = "{endpoint}/versioning/return-type-changed-from/api-version:{version}"
         self._config = ReturnTypeChangedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

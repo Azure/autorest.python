@@ -42,6 +42,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = UnionClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

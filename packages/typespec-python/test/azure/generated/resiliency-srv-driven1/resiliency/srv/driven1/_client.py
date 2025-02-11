@@ -42,6 +42,7 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
         self._config = ResiliencyServiceDrivenClientConfiguration(
             endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

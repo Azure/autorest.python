@@ -52,6 +52,7 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-ma
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ScalarClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

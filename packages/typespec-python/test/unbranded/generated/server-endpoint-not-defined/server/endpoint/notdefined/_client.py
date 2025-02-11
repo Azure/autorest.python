@@ -31,6 +31,7 @@ class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=clie
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotDefinedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

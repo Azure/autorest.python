@@ -30,6 +30,7 @@ class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = EmptyClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

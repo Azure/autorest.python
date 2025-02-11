@@ -37,6 +37,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     ) -> None:
         _endpoint = "{endpoint}/versioning/added/api-version:{version}"
         self._config = AddedClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

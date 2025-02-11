@@ -30,6 +30,7 @@ class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = SingleClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

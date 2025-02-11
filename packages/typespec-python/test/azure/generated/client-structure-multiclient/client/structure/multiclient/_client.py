@@ -36,6 +36,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientAClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -113,6 +114,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientBClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
