@@ -12,8 +12,10 @@ from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.settings import settings
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
+from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
@@ -30,7 +32,7 @@ class AutoRestPagingTestService:
     :vartype paging: custompollerpagerversiontolerant.operations.PagingOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :param endpoint: Service URL. Required. Default value is "".
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.
@@ -39,8 +41,16 @@ class AutoRestPagingTestService:
      Retry-After header is present.
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestPagingTestServiceConfiguration(credential=credential, **kwargs)
+    def __init__(self, credential: "TokenCredential", endpoint: str = "", **kwargs: Any) -> None:
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not base_url:
+            base_url = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
+        self._config = AutoRestPagingTestServiceConfiguration(
+            credential=credential, credential_scopes=credential_scopes, **kwargs
+        )
+
         kwargs["request_id_header_name"] = "client-request-id"
         _policies = kwargs.pop("policies", None)
         if _policies is None:

@@ -32,6 +32,7 @@ class PetStoreInc:  # pylint: disable=client-accepts-api-version-keyword
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = PetStoreIncConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

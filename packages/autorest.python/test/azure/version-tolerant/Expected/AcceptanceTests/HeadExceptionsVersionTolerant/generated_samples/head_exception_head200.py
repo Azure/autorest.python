@@ -27,6 +27,7 @@ from headexceptionsversiontolerant import AutoRestHeadExceptionTestService
 def main():
     client = AutoRestHeadExceptionTestService(
         credential=DefaultAzureCredential(),
+        endpoint="ENDPOINT",
     )
 
     response = client.head_exception.head200()

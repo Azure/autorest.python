@@ -35,6 +35,7 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
         self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityAadConfiguration(credential=credential, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
