@@ -27,7 +27,6 @@ from headversiontolerant import AutoRestHeadTestService
 def main():
     client = AutoRestHeadTestService(
         credential=DefaultAzureCredential(),
-        endpoint="ENDPOINT",
     )
 
     response = client.http_success.head200()

@@ -27,7 +27,6 @@ from head import AutoRestHeadTestService
 def main():
     client = AutoRestHeadTestService(
         credential=DefaultAzureCredential(),
-        base_url="BASE_URL",
     )
 
     response = client.http_success.head204()
