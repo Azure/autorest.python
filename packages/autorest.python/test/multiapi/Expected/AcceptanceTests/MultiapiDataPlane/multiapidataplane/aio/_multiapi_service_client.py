@@ -76,12 +76,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
     ) -> None:
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
-        _endpoints = get_arm_endpoints(_cloud)
-        if not base_url:
-            base_url = _endpoints["resource_manager"]
-        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
-        self._config = MultiapiServiceClientConfiguration(credential, credential_scopes=credential_scopes, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

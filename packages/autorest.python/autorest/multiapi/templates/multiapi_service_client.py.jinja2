@@ -18,7 +18,7 @@ def __init__(
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set a_prefix = "a" if async_mode else "" %}
 {% set await = "await " if async_mode else "" %}
-{% set credential_scopes = "credential_scopes=credential_scopes, " if code_model.config.credential_scopes is not none else "" %}
+{% set credential_scopes = "credential_scopes=credential_scopes, " if code_model.config.credential_scopes is not none and code_model.azure_arm else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -89,7 +89,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
         {% endif %}
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        {% if code_model.config.credential_scopes is not none %}
+        {% if credential_scopes %}
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:
