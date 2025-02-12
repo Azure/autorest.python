@@ -31,11 +31,17 @@ class ActionRequest(_model_base.Model):
     :vartype record_property: dict[str, str]
     """
 
-    string_property: str = rest_field(name="stringProperty")
+    string_property: str = rest_field(name="stringProperty", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    model_property: Optional["_models.Model"] = rest_field(name="modelProperty")
-    array_property: Optional[List[str]] = rest_field(name="arrayProperty")
-    record_property: Optional[Dict[str, str]] = rest_field(name="recordProperty")
+    model_property: Optional["_models.Model"] = rest_field(
+        name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
+    array_property: Optional[List[str]] = rest_field(
+        name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
+    record_property: Optional[Dict[str, str]] = rest_field(
+        name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(
@@ -72,11 +78,17 @@ class ActionResponse(_model_base.Model):
     :vartype record_property: dict[str, str]
     """
 
-    string_property: str = rest_field(name="stringProperty")
+    string_property: str = rest_field(name="stringProperty", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    model_property: Optional["_models.Model"] = rest_field(name="modelProperty")
-    array_property: Optional[List[str]] = rest_field(name="arrayProperty")
-    record_property: Optional[Dict[str, str]] = rest_field(name="recordProperty")
+    model_property: Optional["_models.Model"] = rest_field(
+        name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
+    array_property: Optional[List[str]] = rest_field(
+        name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
+    record_property: Optional[Dict[str, str]] = rest_field(
+        name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(
@@ -110,9 +122,15 @@ class Model(_model_base.Model):
     :vartype enum_property: str or ~specs.azure.example.basic.models.EnumEnum
     """
 
-    int32_property: Optional[int] = rest_field(name="int32Property")
-    float32_property: Optional[float] = rest_field(name="float32Property")
-    enum_property: Optional[Union[str, "_models.EnumEnum"]] = rest_field(name="enumProperty")
+    int32_property: Optional[int] = rest_field(
+        name="int32Property", visibility=["read", "create", "update", "delete", "query"]
+    )
+    float32_property: Optional[float] = rest_field(
+        name="float32Property", visibility=["read", "create", "update", "delete", "query"]
+    )
+    enum_property: Optional[Union[str, "_models.EnumEnum"]] = rest_field(
+        name="enumProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """\"EnumValue1\""""
 
     @overload

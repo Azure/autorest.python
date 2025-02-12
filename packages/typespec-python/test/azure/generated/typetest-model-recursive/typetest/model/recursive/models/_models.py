@@ -23,7 +23,9 @@ class Element(_model_base.Model):
     :vartype extension: list[~typetest.model.recursive.models.Extension]
     """
 
-    extension: Optional[List["_models.Extension"]] = rest_field()
+    extension: Optional[List["_models.Extension"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(
@@ -53,7 +55,7 @@ class Extension(Element):
     :vartype level: int
     """
 
-    level: int = rest_field()
+    level: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

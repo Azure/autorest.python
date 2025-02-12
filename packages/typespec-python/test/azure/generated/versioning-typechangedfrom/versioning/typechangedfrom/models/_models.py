@@ -23,9 +23,9 @@ class TestModel(_model_base.Model):
     :vartype changed_prop: str
     """
 
-    prop: str = rest_field()
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    changed_prop: str = rest_field(name="changedProp")
+    changed_prop: str = rest_field(name="changedProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

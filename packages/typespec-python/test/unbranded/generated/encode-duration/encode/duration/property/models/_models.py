@@ -22,7 +22,7 @@ class DefaultDurationProperty(_model_base.Model):
     :vartype value: ~datetime.timedelta
     """
 
-    value: datetime.timedelta = rest_field()
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -51,7 +51,7 @@ class Float64SecondsDurationProperty(_model_base.Model):
     :vartype value: float
     """
 
-    value: float = rest_field()
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -80,7 +80,7 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
     :vartype value: list[float]
     """
 
-    value: List[float] = rest_field()
+    value: List[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -109,7 +109,7 @@ class FloatSecondsDurationProperty(_model_base.Model):
     :vartype value: float
     """
 
-    value: float = rest_field()
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -138,7 +138,7 @@ class Int32SecondsDurationProperty(_model_base.Model):
     :vartype value: int
     """
 
-    value: int = rest_field()
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -167,7 +167,7 @@ class ISO8601DurationProperty(_model_base.Model):
     :vartype value: ~datetime.timedelta
     """
 
-    value: datetime.timedelta = rest_field()
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

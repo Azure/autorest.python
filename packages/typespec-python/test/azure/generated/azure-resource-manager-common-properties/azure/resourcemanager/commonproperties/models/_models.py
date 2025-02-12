@@ -74,7 +74,7 @@ class ErrorResponse(_model_base.Model):
     :vartype error: ~azure.resourcemanager.commonproperties.models.ErrorDetail
     """
 
-    error: Optional["_models.ErrorDetail"] = rest_field()
+    error: Optional["_models.ErrorDetail"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error object."""
 
     @overload
@@ -149,7 +149,7 @@ class TrackedResource(Resource):
     :vartype location: str
     """
 
-    tags: Optional[Dict[str, str]] = rest_field()
+    tags: Optional[Dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
@@ -202,9 +202,13 @@ class ManagedIdentityTrackedResource(TrackedResource):
     :vartype identity: ~azure.resourcemanager.commonproperties.models.ManagedServiceIdentity
     """
 
-    properties: Optional["_models.ManagedIdentityTrackedResourceProperties"] = rest_field()
+    properties: Optional["_models.ManagedIdentityTrackedResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
-    identity: Optional["_models.ManagedServiceIdentity"] = rest_field()
+    identity: Optional["_models.ManagedServiceIdentity"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The managed service identities assigned to this resource."""
 
     @overload
@@ -268,11 +272,13 @@ class ManagedServiceIdentity(_model_base.Model):
     tenant_id: Optional[str] = rest_field(name="tenantId", visibility=["read"])
     """The tenant ID of the system assigned identity. This property will only be provided for a system
      assigned identity."""
-    type: Union[str, "_models.ManagedServiceIdentityType"] = rest_field()
+    type: Union[str, "_models.ManagedServiceIdentityType"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of managed identity assigned to this resource. Required. Known values are: \"None\",
      \"SystemAssigned\", \"UserAssigned\", and \"SystemAssigned,UserAssigned\"."""
     user_assigned_identities: Optional[Dict[str, "_models.UserAssignedIdentity"]] = rest_field(
-        name="userAssignedIdentities"
+        name="userAssignedIdentities", visibility=["read", "create", "update", "delete", "query"]
     )
     """The identities assigned to this resource by the user."""
 
@@ -315,19 +321,29 @@ class SystemData(_model_base.Model):
     :vartype last_modified_at: ~datetime.datetime
     """
 
-    created_by: Optional[str] = rest_field(name="createdBy")
+    created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="createdByType")
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="createdByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
-    created_at: Optional[datetime.datetime] = rest_field(name="createdAt", format="rfc3339")
+    created_at: Optional[datetime.datetime] = rest_field(
+        name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource creation (UTC)."""
-    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy")
+    last_modified_by: Optional[str] = rest_field(
+        name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="lastModifiedByType")
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
-    last_modified_at: Optional[datetime.datetime] = rest_field(name="lastModifiedAt", format="rfc3339")
+    last_modified_at: Optional[datetime.datetime] = rest_field(
+        name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource last modification (UTC)."""
 
     @overload
@@ -358,13 +374,13 @@ class UserAssignedIdentity(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-    :ivar principal_id: The principal ID of the assigned identity.
-    :vartype principal_id: str
     :ivar client_id: The client ID of the assigned identity.
     :vartype client_id: str
+    :ivar principal_id: The principal ID of the assigned identity.
+    :vartype principal_id: str
     """
 
-    principal_id: Optional[str] = rest_field(name="principalId", visibility=["read"])
-    """The principal ID of the assigned identity."""
     client_id: Optional[str] = rest_field(name="clientId", visibility=["read"])
     """The client ID of the assigned identity."""
+    principal_id: Optional[str] = rest_field(name="principalId", visibility=["read"])
+    """The principal ID of the assigned identity."""

@@ -26,7 +26,7 @@ class Address(_model_base.Model):
     :vartype city: str
     """
 
-    city: str = rest_field()
+    city: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -58,9 +58,11 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -99,15 +101,21 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    previous_addresses: List["_models.Address"] = rest_field(
+        name="previousAddresses", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -147,13 +155,17 @@ class ComplexPartsRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -186,7 +198,9 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -216,7 +230,9 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -246,7 +262,9 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -278,9 +296,11 @@ class JsonPartRequest(_model_base.Model):
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -313,9 +333,13 @@ class MultiBinaryPartsRequest(_model_base.Model):
     :vartype picture: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    picture: Optional[FileType] = rest_field(is_multipart_file_input=True)
+    picture: Optional[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
 
     @overload
     def __init__(
@@ -347,9 +371,11 @@ class MultiPartRequest(_model_base.Model):
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload

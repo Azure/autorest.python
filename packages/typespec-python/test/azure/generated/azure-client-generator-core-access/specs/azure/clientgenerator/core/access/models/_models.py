@@ -32,7 +32,7 @@ class AbstractModel(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for AbstractModel. Required. Default value is None."""
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -62,7 +62,7 @@ class BaseModel(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -91,7 +91,7 @@ class InnerModel(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -120,7 +120,7 @@ class InternalDecoratorModelInInternal(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -149,7 +149,7 @@ class NoDecoratorModelInInternal(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -178,7 +178,7 @@ class NoDecoratorModelInPublic(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -209,7 +209,7 @@ class OuterModel(BaseModel):
     :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
     """
 
-    inner: "_models._models.InnerModel" = rest_field()
+    inner: "_models._models.InnerModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -239,7 +239,7 @@ class PublicDecoratorModelInInternal(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -268,7 +268,7 @@ class PublicDecoratorModelInPublic(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -299,7 +299,7 @@ class RealModel(AbstractModel, discriminator="real"):
     :vartype kind: str
     """
 
-    kind: Literal["real"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
     """Required. Default value is \"real\"."""
 
     @overload
@@ -328,7 +328,7 @@ class SharedModel(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

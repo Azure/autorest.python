@@ -21,7 +21,7 @@ class FirstClientResult(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

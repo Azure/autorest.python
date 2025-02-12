@@ -22,7 +22,7 @@ class InvalidAuth(_model_base.Model):
     :vartype error: str
     """
 
-    error: str = rest_field()
+    error: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

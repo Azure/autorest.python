@@ -21,7 +21,7 @@ class AzureEmbeddingModel(_model_base.Model):
     :vartype embedding: list[int]
     """
 
-    embedding: List[int] = rest_field()
+    embedding: List[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

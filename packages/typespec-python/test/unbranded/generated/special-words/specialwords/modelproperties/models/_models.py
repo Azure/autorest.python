@@ -22,7 +22,7 @@ class SameAsModel(_model_base.Model):
     :vartype same_as_model: str
     """
 
-    same_as_model: str = rest_field(name="SameAsModel")
+    same_as_model: str = rest_field(name="SameAsModel", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

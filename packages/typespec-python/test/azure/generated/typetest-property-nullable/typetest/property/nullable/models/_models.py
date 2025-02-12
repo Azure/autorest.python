@@ -28,9 +28,13 @@ class BytesProperty(_model_base.Model):
     :vartype nullable_property: bytes
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: bytes = rest_field(name="nullableProperty", format="base64")
+    nullable_property: bytes = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
+    )
     """Property. Required."""
 
     @overload
@@ -62,9 +66,13 @@ class CollectionsByteProperty(_model_base.Model):
     :vartype nullable_property: list[bytes]
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: List[bytes] = rest_field(name="nullableProperty", format="base64")
+    nullable_property: List[bytes] = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
+    )
     """Property. Required."""
 
     @overload
@@ -96,9 +104,13 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype nullable_property: list[~typetest.property.nullable.models.InnerModel]
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: List["_models.InnerModel"] = rest_field(name="nullableProperty")
+    nullable_property: List["_models.InnerModel"] = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Required."""
 
     @overload
@@ -130,9 +142,13 @@ class CollectionsStringProperty(_model_base.Model):
     :vartype nullable_property: list[str]
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: List[str] = rest_field(name="nullableProperty")
+    nullable_property: List[str] = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Required."""
 
     @overload
@@ -164,9 +180,13 @@ class DatetimeProperty(_model_base.Model):
     :vartype nullable_property: ~datetime.datetime
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: datetime.datetime = rest_field(name="nullableProperty", format="rfc3339")
+    nullable_property: datetime.datetime = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """Property. Required."""
 
     @overload
@@ -198,9 +218,13 @@ class DurationProperty(_model_base.Model):
     :vartype nullable_property: ~datetime.timedelta
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: datetime.timedelta = rest_field(name="nullableProperty")
+    nullable_property: datetime.timedelta = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Required."""
 
     @overload
@@ -230,7 +254,7 @@ class InnerModel(_model_base.Model):
     :vartype property: str
     """
 
-    property: str = rest_field()
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Inner model property. Required."""
 
     @overload
@@ -262,9 +286,13 @@ class StringProperty(_model_base.Model):
     :vartype nullable_property: str
     """
 
-    required_property: str = rest_field(name="requiredProperty")
+    required_property: str = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required property. Required."""
-    nullable_property: str = rest_field(name="nullableProperty")
+    nullable_property: str = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Required."""
 
     @overload

@@ -21,7 +21,7 @@ class InputOutputRecord(_model_base.Model):
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -51,7 +51,7 @@ class InputRecord(_model_base.Model):
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -80,7 +80,7 @@ class OutputRecord(_model_base.Model):
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

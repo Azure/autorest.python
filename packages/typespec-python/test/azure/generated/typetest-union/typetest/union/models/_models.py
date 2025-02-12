@@ -24,7 +24,7 @@ class Cat(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -53,7 +53,7 @@ class Dog(_model_base.Model):
     :vartype bark: str
     """
 
-    bark: str = rest_field()
+    bark: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -86,10 +86,10 @@ class EnumsOnlyCases(_model_base.Model):
     :vartype ud: str or str
     """
 
-    lr: Literal["left", "right", "up", "down"] = rest_field()
+    lr: Literal["left", "right", "up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the left variant. Required. Is one of the following types:
      Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
-    ud: Literal["up", "down"] = rest_field()
+    ud: Literal["up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
      Literal[\"down\"] type."""
 
@@ -120,7 +120,7 @@ class GetResponse(_model_base.Model):
     :vartype prop: ~typetest.union.models.MixedTypesCases
     """
 
-    prop: "_models.MixedTypesCases" = rest_field()
+    prop: "_models.MixedTypesCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -149,7 +149,7 @@ class GetResponse1(_model_base.Model):
     :vartype prop: ~typetest.union.models.MixedLiteralsCases
     """
 
-    prop: "_models.MixedLiteralsCases" = rest_field()
+    prop: "_models.MixedLiteralsCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -178,7 +178,7 @@ class GetResponse2(_model_base.Model):
     :vartype prop: ~typetest.union.models.StringAndArrayCases
     """
 
-    prop: "_models.StringAndArrayCases" = rest_field()
+    prop: "_models.StringAndArrayCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -207,7 +207,7 @@ class GetResponse3(_model_base.Model):
     :vartype prop: ~typetest.union.models.EnumsOnlyCases
     """
 
-    prop: "_models.EnumsOnlyCases" = rest_field()
+    prop: "_models.EnumsOnlyCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -236,7 +236,7 @@ class GetResponse4(_model_base.Model):
     :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
     """
 
-    prop: Union["_models.Cat", "_models.Dog"] = rest_field()
+    prop: Union["_models.Cat", "_models.Dog"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is either a Cat type or a Dog type."""
 
     @overload
@@ -265,7 +265,7 @@ class GetResponse5(_model_base.Model):
     :vartype prop: float or float or float
     """
 
-    prop: float = rest_field()
+    prop: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: float"""
 
     @overload
@@ -294,7 +294,7 @@ class GetResponse6(_model_base.Model):
     :vartype prop: int or int or int
     """
 
-    prop: Literal[1, 2, 3] = rest_field()
+    prop: Literal[1, 2, 3] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
 
     @overload
@@ -323,7 +323,9 @@ class GetResponse7(_model_base.Model):
     :vartype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
     """
 
-    prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field()
+    prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Known values are: \"b\" and \"c\"."""
 
     @overload
@@ -352,7 +354,9 @@ class GetResponse8(_model_base.Model):
     :vartype prop: str or str or str
     """
 
-    prop: Union[Literal["b"], Literal["c"], str] = rest_field()
+    prop: Union[Literal["b"], Literal["c"], str] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
@@ -381,7 +385,7 @@ class GetResponse9(_model_base.Model):
     :vartype prop: str or str or str
     """
 
-    prop: Literal["a", "b", "c"] = rest_field()
+    prop: Literal["a", "b", "c"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
@@ -420,16 +424,24 @@ class MixedLiteralsCases(_model_base.Model):
     :vartype boolean_literal: str or int or float or bool
     """
 
-    string_literal: Literal["a", 2, True] = rest_field(name="stringLiteral")
+    string_literal: Literal["a", 2, True] = rest_field(
+        name="stringLiteral", visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the \"a\" variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    int_literal: Literal["a", 2, True] = rest_field(name="intLiteral")
+    int_literal: Literal["a", 2, True] = rest_field(
+        name="intLiteral", visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the 2 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    float_literal: Literal["a", 2, True] = rest_field(name="floatLiteral")
+    float_literal: Literal["a", 2, True] = rest_field(
+        name="floatLiteral", visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the 3.3 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    boolean_literal: Literal["a", 2, True] = rest_field(name="booleanLiteral")
+    boolean_literal: Literal["a", 2, True] = rest_field(
+        name="booleanLiteral", visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the true variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
@@ -474,19 +486,29 @@ class MixedTypesCases(_model_base.Model):
     :vartype array: list[~typetest.union.models.Cat or str or int or bool]
     """
 
-    model: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
+    model: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
+    literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(name="int")
+    int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
+        name="int", visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the int variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field()
+    boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field()
+    array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
 
     @overload
@@ -523,9 +545,9 @@ class StringAndArrayCases(_model_base.Model):
     :vartype array: str or list[str]
     """
 
-    string: Union[str, List[str]] = rest_field()
+    string: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
-    array: Union[str, List[str]] = rest_field()
+    array: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
 
     @overload

@@ -39,7 +39,7 @@ class ListItemInputBody(_model_base.Model):
     :vartype input_name: str
     """
 
-    input_name: str = rest_field(name="inputName")
+    input_name: str = rest_field(name="inputName", visibility=["read", "create", "update", "delete", "query"])
     """The name of the input. Required."""
 
     @overload
@@ -92,9 +92,9 @@ class User(_model_base.Model):
 
     id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's name. Required."""
-    orders: Optional[List["_models.UserOrder"]] = rest_field()
+    orders: Optional[List["_models.UserOrder"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's order list."""
     etag: str = rest_field(visibility=["read"])
     """The entity tag for this resource. Required."""
@@ -134,9 +134,9 @@ class UserOrder(_model_base.Model):
 
     id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
-    user_id: int = rest_field(name="userId")
+    user_id: int = rest_field(name="userId", visibility=["read", "create", "update", "delete", "query"])
     """The user's id. Required."""
-    detail: str = rest_field()
+    detail: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's order detail. Required."""
 
     @overload

@@ -21,7 +21,7 @@ class JsonEncodedNameModel(_model_base.Model):
     :vartype default_name: bool
     """
 
-    default_name: bool = rest_field(name="wireName")
+    default_name: bool = rest_field(name="wireName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload

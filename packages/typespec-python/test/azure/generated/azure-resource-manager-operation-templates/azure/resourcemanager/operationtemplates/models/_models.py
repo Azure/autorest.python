@@ -26,9 +26,9 @@ class CheckNameAvailabilityRequest(_model_base.Model):
     :vartype type: str
     """
 
-    name: Optional[str] = rest_field()
+    name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name of the resource for which availability needs to be checked."""
-    type: Optional[str] = rest_field()
+    type: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The resource type."""
 
     @overload
@@ -63,12 +63,16 @@ class CheckNameAvailabilityResponse(_model_base.Model):
     :vartype message: str
     """
 
-    name_available: Optional[bool] = rest_field(name="nameAvailable")
+    name_available: Optional[bool] = rest_field(
+        name="nameAvailable", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Indicates if the resource name is available."""
-    reason: Optional[Union[str, "_models.CheckNameAvailabilityReason"]] = rest_field()
+    reason: Optional[Union[str, "_models.CheckNameAvailabilityReason"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The reason why the given name is not available. Known values are: \"Invalid\" and
      \"AlreadyExists\"."""
-    message: Optional[str] = rest_field()
+    message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Detailed reason why the given name is not available."""
 
     @overload
@@ -148,7 +152,7 @@ class ErrorResponse(_model_base.Model):
     :vartype error: ~azure.resourcemanager.operationtemplates.models.ErrorDetail
     """
 
-    error: Optional["_models.ErrorDetail"] = rest_field()
+    error: Optional["_models.ErrorDetail"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error object."""
 
     @overload
@@ -178,7 +182,7 @@ class ExportRequest(_model_base.Model):
     :vartype format: str
     """
 
-    format: str = rest_field()
+    format: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Format of the exported order. Required."""
 
     @overload
@@ -228,7 +232,9 @@ class Operation(_model_base.Model):
     is_data_action: Optional[bool] = rest_field(name="isDataAction", visibility=["read"])
     """Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
      \"false\" for Azure Resource Manager/control-plane operations."""
-    display: Optional["_models.OperationDisplay"] = rest_field()
+    display: Optional["_models.OperationDisplay"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Localized display information for this particular operation."""
     origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
     """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
@@ -343,7 +349,7 @@ class TrackedResource(Resource):
     :vartype location: str
     """
 
-    tags: Optional[Dict[str, str]] = rest_field()
+    tags: Optional[Dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
@@ -393,7 +399,9 @@ class Order(TrackedResource):
     :vartype properties: ~azure.resourcemanager.operationtemplates.models.OrderProperties
     """
 
-    properties: Optional["_models.OrderProperties"] = rest_field()
+    properties: Optional["_models.OrderProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -430,9 +438,9 @@ class OrderProperties(_model_base.Model):
     :vartype provisioning_state: str
     """
 
-    product_id: str = rest_field(name="productId")
+    product_id: str = rest_field(name="productId", visibility=["read", "create", "update", "delete", "query"])
     """The product ID of the order. Required."""
-    amount: int = rest_field()
+    amount: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Amount of the product. Required."""
     provisioning_state: Optional[str] = rest_field(name="provisioningState", visibility=["read"])
     """The provisioning state of the product."""
@@ -476,19 +484,29 @@ class SystemData(_model_base.Model):
     :vartype last_modified_at: ~datetime.datetime
     """
 
-    created_by: Optional[str] = rest_field(name="createdBy")
+    created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="createdByType")
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="createdByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
-    created_at: Optional[datetime.datetime] = rest_field(name="createdAt", format="rfc3339")
+    created_at: Optional[datetime.datetime] = rest_field(
+        name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource creation (UTC)."""
-    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy")
+    last_modified_by: Optional[str] = rest_field(
+        name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="lastModifiedByType")
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
-    last_modified_at: Optional[datetime.datetime] = rest_field(name="lastModifiedAt", format="rfc3339")
+    last_modified_at: Optional[datetime.datetime] = rest_field(
+        name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource last modification (UTC)."""
 
     @overload
