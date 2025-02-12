@@ -41,6 +41,7 @@ async def client(credential, authentication_policy):
         credential,
         valid_subscription,
         authentication_policy=authentication_policy,
+        endpoint="http://localhost:3000"
     ) as client:
         await yield_(client)
 
@@ -54,6 +55,7 @@ async def client_no_request_id(credential, authentication_policy):
         valid_subscription,
         auto_request_id=False,
         authentication_policy=authentication_policy,
+        endpoint="http://localhost:3000"
     ) as client:
         await yield_(client)
 

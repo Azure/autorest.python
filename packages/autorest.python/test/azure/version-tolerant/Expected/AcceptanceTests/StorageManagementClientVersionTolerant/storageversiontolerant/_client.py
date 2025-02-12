@@ -49,8 +49,8 @@ class StorageManagementClient:
     def __init__(self, credential: "TokenCredential", subscription_id: str, endpoint: str = "", **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
-        if not base_url:
-            base_url = _endpoints["resource_manager"]
+        if not endpoint:
+            endpoint = _endpoints["resource_manager"]
         credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
         self._config = StorageManagementClientConfiguration(
             credential=credential, subscription_id=subscription_id, credential_scopes=credential_scopes, **kwargs

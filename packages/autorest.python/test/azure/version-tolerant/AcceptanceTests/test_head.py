@@ -33,7 +33,7 @@ import pytest
 
 def test_head(credential, authentication_policy):
 
-    with AutoRestHeadTestService(credential, authentication_policy=authentication_policy) as client:
+    with AutoRestHeadTestService(credential, authentication_policy=authentication_policy, endpoint="http://localhost:3000") as client:
 
         assert client.http_success.head200()
         assert client.http_success.head204()
@@ -42,7 +42,7 @@ def test_head(credential, authentication_policy):
 
 def test_head_exception(credential, authentication_policy):
 
-    with AutoRestHeadExceptionTestService(credential, authentication_policy=authentication_policy) as client:
+    with AutoRestHeadExceptionTestService(credential, authentication_policy=authentication_policy, endpoint="http://localhost:3000") as client:
 
         client.head_exception.head200()
         client.head_exception.head204()

@@ -31,7 +31,7 @@ import pytest
 
 @pytest.fixture
 def client(credential, authentication_policy):
-    with AutoRestPagingTestService(credential, authentication_policy=authentication_policy) as client:
+    with AutoRestPagingTestService(credential, authentication_policy=authentication_policy, endpoint="http://localhost:3000") as client:
         yield client
 
 
