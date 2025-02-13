@@ -54,13 +54,13 @@
     "@azure-tools/typespec-azure-resource-manager": ">=0.51.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.51.0 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.51.0 <3.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.51.0 <1.0.0"
+    "@azure-tools/typespec-client-generator-core": ">=0.51.1 <1.0.0"
   },
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDU1NTg1Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.6.11.tgz",
+    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDU1OTgyNS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.6.11.tgz",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -73,7 +73,7 @@
     "@azure-tools/typespec-azure-core": "~0.51.0",
     "@azure-tools/typespec-azure-rulesets": "~0.51.0",
     "@azure-tools/typespec-autorest": "~0.51.0",
-    "@azure-tools/typespec-client-generator-core": "~0.51.0",
+    "@azure-tools/typespec-client-generator-core": "~0.51.1",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.6",
     "@typespec/http-specs": "0.1.0-alpha.9",
     "@types/js-yaml": "~4.0.5",
