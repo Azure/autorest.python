@@ -27,6 +27,7 @@ def get_code_model():
             "builders_visibility": "public",
             "show_operations": True,
             "models_mode": "dpg",
+            "azure_arm": False,
         },
     )
 

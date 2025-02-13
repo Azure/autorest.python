@@ -35,6 +35,7 @@ class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}/versioning/type-changed-from/api-version:{version}"
         self._config = TypeChangedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

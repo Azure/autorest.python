@@ -33,6 +33,7 @@ class AutoRestSwaggerBATXMLService:  # pylint: disable=client-accepts-api-versio
         self, base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestSwaggerBATXMLServiceConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

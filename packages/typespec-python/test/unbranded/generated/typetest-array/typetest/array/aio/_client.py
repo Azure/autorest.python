@@ -73,6 +73,7 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ArrayClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

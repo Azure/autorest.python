@@ -31,6 +31,7 @@ class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotVersionedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -34,6 +34,7 @@ class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/versioning/removed/api-version:{version}"
         self._config = RemovedClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

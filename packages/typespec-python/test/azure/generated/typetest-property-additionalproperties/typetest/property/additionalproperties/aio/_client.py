@@ -160,6 +160,7 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = AdditionalPropertiesClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

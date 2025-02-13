@@ -37,6 +37,7 @@ class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=cl
     ) -> None:
         _endpoint = "{endpoint}/versioning/renamed-from/api-version:{version}"
         self._config = RenamedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
