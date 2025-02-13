@@ -31,13 +31,17 @@ class TestMultiClient(object):
 
     def test_head(self, credential, authentication_policy):
 
-        with HeadClient(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        with HeadClient(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
             assert client.http_success.head200()
             assert client.http_success.head204()
             assert not client.http_success.head404()
 
     def test_paging(self, credential, authentication_policy):
-        with PagingClient(credential, base_url="http://localhost:3000", authentication_policy=authentication_policy) as client:
+        with PagingClient(
+            credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
+        ) as client:
             pages = client.paging.get_no_item_name_pages()
             items = [i for i in pages]
             assert len(items) == 1
