@@ -25,7 +25,7 @@ class Element(_model_base.Model):
 
     extension: Optional[List["_models.Extension"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(

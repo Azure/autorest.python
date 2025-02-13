@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -299,7 +300,7 @@ class RealModel(AbstractModel, discriminator="real"):
     :vartype kind: str
     """
 
-    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long,useless-suppression
+    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"real\"."""
 
     @overload

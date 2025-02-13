@@ -179,7 +179,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
             if response.status_code == 404:
                 error = _failsafe_deserialize(_models.NotFoundError, response.json())
                 raise ResourceNotFoundError(response=response, model=error)
-            elif 400 <= response.status_code <= 499:
+            if 400 <= response.status_code <= 499:
                 error = _failsafe_deserialize(_models.Standard4XXError, response.json())
             raise HttpResponseError(response=response, model=error)
 

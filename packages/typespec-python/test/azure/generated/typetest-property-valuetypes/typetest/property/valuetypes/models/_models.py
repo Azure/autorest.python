@@ -192,7 +192,7 @@ class DatetimeProperty(_model_base.Model):
 
     property: datetime.datetime = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )  # pylint: disable=line-too-long
+    )
     """Property. Required."""
 
     @overload
@@ -339,7 +339,7 @@ class EnumProperty(_model_base.Model):
 
     property: Union[str, "_models.FixedInnerEnum"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload

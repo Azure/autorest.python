@@ -32,11 +32,11 @@ class ModelV1(_model_base.Model):
     """Required."""
     enum_prop: Union[str, "_models.EnumV1"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required. Known values are: \"enumMemberV1\" and \"enumMemberV2\"."""
     union_prop: "_types.UnionV1" = rest_field(
         name="unionProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required. Is either a str type or a int type."""
 
     @overload
@@ -75,11 +75,11 @@ class ModelV2(_model_base.Model):
     """Required."""
     enum_prop: Union[str, "_models.EnumV2"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required. \"enumMember\""""
     union_prop: "_types.UnionV2" = rest_field(
         name="unionProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required. Is either a str type or a int type."""
 
     @overload

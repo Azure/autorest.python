@@ -35,13 +35,13 @@ class ActionRequest(_model_base.Model):
     """Required."""
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     array_property: Optional[List[str]] = rest_field(
         name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     record_property: Optional[Dict[str, str]] = rest_field(
         name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(
@@ -82,13 +82,13 @@ class ActionResponse(_model_base.Model):
     """Required."""
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     array_property: Optional[List[str]] = rest_field(
         name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     record_property: Optional[Dict[str, str]] = rest_field(
         name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(
@@ -124,13 +124,13 @@ class Model(_model_base.Model):
 
     int32_property: Optional[int] = rest_field(
         name="int32Property", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     float32_property: Optional[float] = rest_field(
         name="float32Property", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     enum_property: Optional[Union[str, "_models.EnumEnum"]] = rest_field(
         name="enumProperty", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """\"EnumValue1\""""
 
     @overload

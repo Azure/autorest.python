@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -122,7 +122,7 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
 
     derived_prop: List["_models.ModelForRecord"] = rest_field(
         name="derivedProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """The index property. Required."""
 
     @overload
@@ -186,7 +186,7 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
 
     derived_prop: "_models.ModelForRecord" = rest_field(
         name="derivedProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """The index property. Required."""
 
     @overload
@@ -309,7 +309,7 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
 
     known_prop: "_models.ModelForRecord" = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -340,7 +340,7 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
 
     known_prop: List["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -510,7 +510,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
@@ -576,7 +576,7 @@ class IsModelAdditionalProperties(_model_base.Model):
 
     known_prop: "_models.ModelForRecord" = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -607,7 +607,7 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
 
     known_prop: List["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -777,7 +777,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
@@ -901,7 +901,7 @@ class SpreadModelArrayRecord(_model_base.Model):
 
     known_prop: List["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -932,7 +932,7 @@ class SpreadModelRecord(_model_base.Model):
 
     known_prop: "_models.ModelForRecord" = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -1183,7 +1183,7 @@ class WidgetData1(_model_base.Model):
     """Required."""
     end: Optional[datetime.datetime] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(

@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -71,7 +72,7 @@ class Shark(Fish, discriminator="shark"):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long,useless-suppression
+    kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"shark\"."""
     sharktype: str = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
@@ -108,7 +109,7 @@ class GoblinShark(Shark, discriminator="goblin"):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"goblin\"."""
 
     @overload
@@ -146,7 +147,7 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~typetest.model.nesteddiscriminator.models.Fish
     """
 
-    kind: Literal["salmon"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["salmon"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"salmon\"."""
     friends: Optional[List["_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[Dict[str, "_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -186,7 +187,7 @@ class SawShark(Shark, discriminator="saw"):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    sharktype: Literal["saw"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    sharktype: Literal["saw"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"saw\"."""
 
     @overload

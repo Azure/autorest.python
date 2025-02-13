@@ -111,7 +111,7 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
 
     value: List[datetime.datetime] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="unix-timestamp"
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload
@@ -142,7 +142,7 @@ class UnixTimestampDatetimeProperty(_model_base.Model):
 
     value: datetime.datetime = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="unix-timestamp"
-    )  # pylint: disable=line-too-long
+    )
     """Required."""
 
     @overload

@@ -74,18 +74,18 @@ class Resource(_model_base.Model):
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
     float_value: Optional[float] = rest_field(
         name="floatValue", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     inner_model: Optional["_models.InnerModel"] = rest_field(
         name="innerModel", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     int_array: Optional[List[int]] = rest_field(
         name="intArray", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(
@@ -134,18 +134,18 @@ class ResourcePatch(_model_base.Model):
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
     float_value: Optional[float] = rest_field(
         name="floatValue", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     inner_model: Optional["_models.InnerModel"] = rest_field(
         name="innerModel", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     int_array: Optional[List[int]] = rest_field(
         name="intArray", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(

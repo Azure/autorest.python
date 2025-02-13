@@ -26,7 +26,7 @@ class SecondClientResult(_model_base.Model):
 
     type: Union[str, "_sub_models2.SecondClientEnumType"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """Required. \"second\""""
 
     @overload

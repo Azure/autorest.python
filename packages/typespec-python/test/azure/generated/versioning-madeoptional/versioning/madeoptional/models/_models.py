@@ -27,7 +27,7 @@ class TestModel(_model_base.Model):
     """Required."""
     changed_prop: Optional[str] = rest_field(
         name="changedProp", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
 
     @overload
     def __init__(

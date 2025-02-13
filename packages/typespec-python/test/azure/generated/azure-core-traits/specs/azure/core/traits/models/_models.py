@@ -59,7 +59,7 @@ class UserActionParam(_model_base.Model):
 
     user_action_value: str = rest_field(
         name="userActionValue", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """User action value. Required."""
 
     @overload
@@ -90,7 +90,7 @@ class UserActionResponse(_model_base.Model):
 
     user_action_result: str = rest_field(
         name="userActionResult", visibility=["read", "create", "update", "delete", "query"]
-    )  # pylint: disable=line-too-long
+    )
     """User action result. Required."""
 
     @overload
