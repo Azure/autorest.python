@@ -61,7 +61,7 @@ class ErrorDetail(_model_base.Model):
     """The error details."""
     additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The error additional info."""
 
 
@@ -166,7 +166,7 @@ class ExtensionsResource(ExtensionResource):
 
     properties: Optional["_models.ExtensionsResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -203,7 +203,7 @@ class ExtensionsResourceProperties(_model_base.Model):
     """The description of the resource."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
@@ -268,7 +268,7 @@ class LocationResource(ProxyResource):
 
     properties: Optional["_models.LocationResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -305,7 +305,7 @@ class LocationResourceProperties(_model_base.Model):
     """The description of the resource."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
@@ -349,7 +349,7 @@ class NestedProxyResource(ProxyResource):
 
     properties: Optional["_models.NestedProxyResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -384,7 +384,7 @@ class NestedProxyResourceProperties(_model_base.Model):
 
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """Provisioning State of the nested child Resource. Known values are: \"Succeeded\", \"Failed\",
      \"Canceled\", \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -519,7 +519,7 @@ class SingletonTrackedResource(TrackedResource):
 
     properties: Optional["_models.SingletonTrackedResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -556,7 +556,7 @@ class SingletonTrackedResourceProperties(_model_base.Model):
 
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -603,25 +603,25 @@ class SystemData(_model_base.Model):
     """The identity that created the resource."""
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource creation (UTC)."""
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The identity that last modified the resource."""
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource last modification (UTC)."""
 
     @overload
@@ -675,7 +675,7 @@ class TopLevelTrackedResource(TrackedResource):
 
     properties: Optional["_models.TopLevelTrackedResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -712,7 +712,7 @@ class TopLevelTrackedResourceProperties(_model_base.Model):
 
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])

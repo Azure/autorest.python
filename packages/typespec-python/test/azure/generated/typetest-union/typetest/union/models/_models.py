@@ -325,7 +325,7 @@ class GetResponse7(_model_base.Model):
 
     prop: Union[str, "_models.StringExtensibleNamedUnion"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required. Known values are: \"b\" and \"c\"."""
 
     @overload
@@ -356,7 +356,7 @@ class GetResponse8(_model_base.Model):
 
     prop: Union[Literal["b"], Literal["c"], str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
@@ -426,22 +426,22 @@ class MixedLiteralsCases(_model_base.Model):
 
     string_literal: Literal["a", 2, True] = rest_field(
         name="stringLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the \"a\" variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
     int_literal: Literal["a", 2, True] = rest_field(
         name="intLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the 2 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
     float_literal: Literal["a", 2, True] = rest_field(
         name="floatLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the 3.3 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
     boolean_literal: Literal["a", 2, True] = rest_field(
         name="booleanLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the true variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
@@ -488,27 +488,27 @@ class MixedTypesCases(_model_base.Model):
 
     model: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         name="int", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the int variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
 
     @overload

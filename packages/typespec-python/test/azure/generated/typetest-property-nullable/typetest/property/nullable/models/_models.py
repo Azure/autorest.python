@@ -30,11 +30,11 @@ class BytesProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: bytes = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -68,11 +68,11 @@ class CollectionsByteProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: List[bytes] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -106,11 +106,11 @@ class CollectionsModelProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: List["_models.InnerModel"] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -144,11 +144,11 @@ class CollectionsStringProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: List[str] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -182,11 +182,11 @@ class DatetimeProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: datetime.datetime = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -220,11 +220,11 @@ class DurationProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: datetime.timedelta = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload
@@ -288,11 +288,11 @@ class StringProperty(_model_base.Model):
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required property. Required."""
     nullable_property: str = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property. Required."""
 
     @overload

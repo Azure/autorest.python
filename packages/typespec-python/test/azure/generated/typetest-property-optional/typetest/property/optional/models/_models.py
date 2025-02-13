@@ -83,7 +83,7 @@ class CollectionsByteProperty(_model_base.Model):
 
     property: Optional[List[bytes]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="base64"
-    )
+    )  # pylint: disable=line-too-long
     """Property."""
 
     @overload
@@ -113,7 +113,7 @@ class CollectionsModelProperty(_model_base.Model):
 
     property: Optional[List["_models.StringProperty"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property."""
 
     @overload
@@ -143,7 +143,7 @@ class DatetimeProperty(_model_base.Model):
 
     property: Optional[datetime.datetime] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """Property."""
 
     @overload
@@ -316,11 +316,11 @@ class RequiredAndOptionalProperty(_model_base.Model):
 
     optional_property: Optional[str] = rest_field(
         name="optionalProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """optional string property."""
     required_property: int = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """required int property. Required."""
 
     @overload
@@ -464,7 +464,7 @@ class UnionStringLiteralProperty(_model_base.Model):
 
     property: Optional[Literal["hello", "world"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload

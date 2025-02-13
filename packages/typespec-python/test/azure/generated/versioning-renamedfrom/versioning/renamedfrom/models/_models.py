@@ -32,11 +32,11 @@ class NewModel(_model_base.Model):
     """Required."""
     enum_prop: Union[str, "_models.NewEnum"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required. \"newEnumMember\""""
     union_prop: "_types.NewUnion" = rest_field(
         name="unionProp", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Required. Is either a str type or a int type."""
 
     @overload

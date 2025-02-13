@@ -110,7 +110,7 @@ class Eagle(Bird, discriminator="eagle"):
     :vartype partner: ~typetest.model.singlediscriminator.models.Bird
     """
 
-    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long,useless-suppression
     """Required. Default value is \"eagle\"."""
     friends: Optional[List["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[Dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -147,7 +147,7 @@ class Goose(Bird, discriminator="goose"):
     :vartype kind: str
     """
 
-    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long,useless-suppression
     """Required. Default value is \"goose\"."""
 
     @overload
@@ -178,7 +178,7 @@ class SeaGull(Bird, discriminator="seagull"):
     :vartype kind: str
     """
 
-    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
     """Required. Default value is \"seagull\"."""
 
     @overload
@@ -209,7 +209,7 @@ class Sparrow(Bird, discriminator="sparrow"):
     :vartype kind: str
     """
 
-    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
     """Required. Default value is \"sparrow\"."""
 
     @overload
@@ -240,7 +240,7 @@ class TRex(Dinosaur, discriminator="t-rex"):
     :vartype kind: str
     """
 
-    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long
+    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore # pylint: disable=line-too-long,useless-suppression
     """Required. Default value is \"t-rex\"."""
 
     @overload

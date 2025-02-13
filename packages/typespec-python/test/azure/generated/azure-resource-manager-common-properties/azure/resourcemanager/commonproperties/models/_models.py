@@ -62,7 +62,7 @@ class ErrorDetail(_model_base.Model):
     """The error details."""
     additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The error additional info."""
 
 
@@ -204,11 +204,11 @@ class ManagedIdentityTrackedResource(TrackedResource):
 
     properties: Optional["_models.ManagedIdentityTrackedResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
     identity: Optional["_models.ManagedServiceIdentity"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The managed service identities assigned to this resource."""
 
     @overload
@@ -274,12 +274,12 @@ class ManagedServiceIdentity(_model_base.Model):
      assigned identity."""
     type: Union[str, "_models.ManagedServiceIdentityType"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of managed identity assigned to this resource. Required. Known values are: \"None\",
      \"SystemAssigned\", \"UserAssigned\", and \"SystemAssigned,UserAssigned\"."""
     user_assigned_identities: Optional[Dict[str, "_models.UserAssignedIdentity"]] = rest_field(
         name="userAssignedIdentities", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The identities assigned to this resource by the user."""
 
     @overload
@@ -325,25 +325,25 @@ class SystemData(_model_base.Model):
     """The identity that created the resource."""
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource creation (UTC)."""
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The identity that last modified the resource."""
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource last modification (UTC)."""
 
     @overload

@@ -65,11 +65,11 @@ class CheckNameAvailabilityResponse(_model_base.Model):
 
     name_available: Optional[bool] = rest_field(
         name="nameAvailable", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Indicates if the resource name is available."""
     reason: Optional[Union[str, "_models.CheckNameAvailabilityReason"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The reason why the given name is not available. Known values are: \"Invalid\" and
      \"AlreadyExists\"."""
     message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -140,7 +140,7 @@ class ErrorDetail(_model_base.Model):
     """The error details."""
     additional_info: Optional[List["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
-    )
+    )  # pylint: disable=line-too-long
     """The error additional info."""
 
 
@@ -234,7 +234,7 @@ class Operation(_model_base.Model):
      \"false\" for Azure Resource Manager/control-plane operations."""
     display: Optional["_models.OperationDisplay"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """Localized display information for this particular operation."""
     origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
     """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
@@ -401,7 +401,7 @@ class Order(TrackedResource):
 
     properties: Optional["_models.OrderProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The resource-specific properties for this resource."""
 
     @overload
@@ -488,25 +488,25 @@ class SystemData(_model_base.Model):
     """The identity that created the resource."""
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource creation (UTC)."""
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The identity that last modified the resource."""
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    )  # pylint: disable=line-too-long
     """The timestamp of resource last modification (UTC)."""
 
     @overload

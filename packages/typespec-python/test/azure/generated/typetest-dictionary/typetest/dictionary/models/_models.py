@@ -30,7 +30,7 @@ class InnerModel(_model_base.Model):
     """Required string property. Required."""
     children: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
-    )
+    )  # pylint: disable=line-too-long
 
     @overload
     def __init__(
