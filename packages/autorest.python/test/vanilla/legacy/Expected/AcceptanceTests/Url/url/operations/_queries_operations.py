@@ -357,7 +357,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop(
         "template_url", "/queries/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend"
-    )  # pylint: disable=line-too-long
+    )
 
     # Construct parameters
     _params["stringQuery"] = _SERIALIZER.query("string_query", string_query, "str")

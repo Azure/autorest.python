@@ -27,7 +27,7 @@ class User(_model_base.Model):
 
     id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
-    name: Optional[str] = rest_field()
+    name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's name."""
 
     @overload
@@ -57,7 +57,9 @@ class UserActionParam(_model_base.Model):
     :vartype user_action_value: str
     """
 
-    user_action_value: str = rest_field(name="userActionValue")
+    user_action_value: str = rest_field(
+        name="userActionValue", visibility=["read", "create", "update", "delete", "query"]
+    )
     """User action value. Required."""
 
     @overload
@@ -86,7 +88,9 @@ class UserActionResponse(_model_base.Model):
     :vartype user_action_result: str
     """
 
-    user_action_result: str = rest_field(name="userActionResult")
+    user_action_result: str = rest_field(
+        name="userActionResult", visibility=["read", "create", "update", "delete", "query"]
+    )
     """User action result. Required."""
 
     @overload

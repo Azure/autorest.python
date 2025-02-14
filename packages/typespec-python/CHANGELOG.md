@@ -1,5 +1,9 @@
 # Release
 
+## 0.38.4
+
+No changes, version bump only.
+
 ## 0.38.3
 
 - [#3038](https://github.com/Azure/autorest.python/pull/3038) Fix crash when value of `--package-pprint-name` contains space

@@ -1,5 +1,9 @@
 # Release
 
+## 6.28.4
+
+No changes, version bump only.
+
 ## 6.28.3
 
 No changes, version bump only.

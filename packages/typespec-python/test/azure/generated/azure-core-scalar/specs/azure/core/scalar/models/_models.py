@@ -21,7 +21,7 @@ class AzureLocationModel(_model_base.Model):
     :vartype location: str
     """
 
-    location: str = rest_field()
+    location: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

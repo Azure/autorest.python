@@ -22,7 +22,7 @@ class FloatRequest(_model_base.Model):
     :vartype temperature: float
     """
 
-    temperature: float = rest_field()
+    temperature: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

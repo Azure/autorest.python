@@ -268,7 +268,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop(
         "template_url", "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -542,7 +542,7 @@ def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> Htt
     _url = kwargs.pop(
         "template_url",
         "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }

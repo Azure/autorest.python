@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -56,7 +57,7 @@ def build_get_all_with_values_request(
     _url = kwargs.pop(
         "template_url",
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -98,7 +99,7 @@ def build_get_global_query_null_request(
     _url = kwargs.pop(
         "template_url",
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -140,7 +141,7 @@ def build_get_global_and_local_query_null_request(  # pylint: disable=name-too-l
     _url = kwargs.pop(
         "template_url",
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -182,7 +183,7 @@ def build_get_local_path_item_query_null_request(  # pylint: disable=name-too-lo
     _url = kwargs.pop(
         "template_url",
         "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),

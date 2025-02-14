@@ -22,7 +22,7 @@ class GenerationOptions(_model_base.Model):
     :vartype prompt: str
     """
 
-    prompt: str = rest_field()
+    prompt: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Prompt. Required."""
 
     @overload
@@ -51,7 +51,7 @@ class GenerationResult(_model_base.Model):
     :vartype data: str
     """
 
-    data: str = rest_field()
+    data: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The data. Required."""
 
     @overload

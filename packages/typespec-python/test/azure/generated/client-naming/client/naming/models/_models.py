@@ -22,7 +22,7 @@ class ClientModel(_model_base.Model):
     :vartype default_name: bool
     """
 
-    default_name: bool = rest_field(name="defaultName")
+    default_name: bool = rest_field(name="defaultName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload
@@ -52,7 +52,7 @@ class ClientNameAndJsonEncodedNameModel(_model_base.Model):
     :vartype client_name: bool
     """
 
-    client_name: bool = rest_field(name="wireName")
+    client_name: bool = rest_field(name="wireName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload
@@ -82,7 +82,7 @@ class ClientNameModel(_model_base.Model):
     :vartype client_name: bool
     """
 
-    client_name: bool = rest_field(name="defaultName")
+    client_name: bool = rest_field(name="defaultName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload
@@ -112,7 +112,7 @@ class LanguageClientNameModel(_model_base.Model):
     :vartype python_name: bool
     """
 
-    python_name: bool = rest_field(name="defaultName")
+    python_name: bool = rest_field(name="defaultName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload
@@ -142,7 +142,7 @@ class PythonModel(_model_base.Model):
     :vartype default_name: bool
     """
 
-    default_name: bool = rest_field(name="defaultName")
+    default_name: bool = rest_field(name="defaultName", visibility=["read", "create", "update", "delete", "query"])
     """Pass in true. Required."""
 
     @overload

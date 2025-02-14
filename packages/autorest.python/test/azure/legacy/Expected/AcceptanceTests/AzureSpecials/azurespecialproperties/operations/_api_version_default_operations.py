@@ -67,7 +67,7 @@ def build_get_method_global_not_provided_valid_request(**kwargs: Any) -> HttpReq
     # Construct URL
     _url = kwargs.pop(
         "template_url", "/azurespecials/apiVersion/method/string/none/query/globalNotProvided/2015-07-01-preview"
-    )  # pylint: disable=line-too-long
+    )
 
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")

@@ -21,7 +21,7 @@ class Pet(_model_base.Model):
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -52,7 +52,7 @@ class Cat(Pet):
     :vartype age: int
     """
 
-    age: int = rest_field()
+    age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -86,7 +86,7 @@ class Siamese(Cat):
     :vartype smart: bool
     """
 
-    smart: bool = rest_field()
+    smart: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

@@ -26,9 +26,11 @@ class InnerModel(_model_base.Model):
     :vartype children: list[~typetest.array.models.InnerModel]
     """
 
-    property: str = rest_field()
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required string property. Required."""
-    children: Optional[List["_models.InnerModel"]] = rest_field()
+    children: Optional[List["_models.InnerModel"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(

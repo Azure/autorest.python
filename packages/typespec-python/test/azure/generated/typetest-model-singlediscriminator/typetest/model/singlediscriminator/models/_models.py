@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -30,9 +31,9 @@ class Bird(_model_base.Model):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: str = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
-    wingspan: int = rest_field()
+    wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -71,7 +72,7 @@ class Dinosaur(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
-    size: int = rest_field()
+    size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -110,11 +111,11 @@ class Eagle(Bird, discriminator="eagle"):
     :vartype partner: ~typetest.model.singlediscriminator.models.Bird
     """
 
-    kind: Literal["eagle"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"eagle\"."""
-    friends: Optional[List["_models.Bird"]] = rest_field()
-    hate: Optional[Dict[str, "_models.Bird"]] = rest_field()
-    partner: Optional["_models.Bird"] = rest_field()
+    friends: Optional[List["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    hate: Optional[Dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    partner: Optional["_models.Bird"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
 
     @overload
     def __init__(
@@ -147,7 +148,7 @@ class Goose(Bird, discriminator="goose"):
     :vartype kind: str
     """
 
-    kind: Literal["goose"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"goose\"."""
 
     @overload
@@ -178,7 +179,7 @@ class SeaGull(Bird, discriminator="seagull"):
     :vartype kind: str
     """
 
-    kind: Literal["seagull"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"seagull\"."""
 
     @overload
@@ -209,7 +210,7 @@ class Sparrow(Bird, discriminator="sparrow"):
     :vartype kind: str
     """
 
-    kind: Literal["sparrow"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"sparrow\"."""
 
     @overload
@@ -240,7 +241,7 @@ class TRex(Dinosaur, discriminator="t-rex"):
     :vartype kind: str
     """
 
-    kind: Literal["t-rex"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"t-rex\"."""
 
     @overload
