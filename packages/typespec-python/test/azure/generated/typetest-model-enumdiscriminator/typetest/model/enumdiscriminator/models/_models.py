@@ -21,7 +21,6 @@ class Snake(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Cobra
 
-
     :ivar kind: discriminator property. Required. "cobra"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
     :ivar length: Length of the snake. Required.
@@ -56,7 +55,6 @@ class Snake(_model_base.Model):
 class Cobra(Snake, discriminator="cobra"):
     """Cobra model.
 
-
     :ivar length: Length of the snake. Required.
     :vartype length: int
     :ivar kind: discriminator property. Required. Species cobra
@@ -89,7 +87,6 @@ class Dog(_model_base.Model):
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Golden
-
 
     :ivar kind: discriminator property. Required. "golden"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
@@ -124,7 +121,6 @@ class Dog(_model_base.Model):
 
 class Golden(Dog, discriminator="golden"):
     """Golden dog model.
-
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int

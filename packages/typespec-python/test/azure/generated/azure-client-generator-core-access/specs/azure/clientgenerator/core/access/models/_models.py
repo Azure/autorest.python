@@ -23,7 +23,6 @@ class AbstractModel(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     RealModel
 
-
     :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
     :vartype kind: str
     :ivar name: Required.
@@ -58,7 +57,6 @@ class AbstractModel(_model_base.Model):
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -86,7 +84,6 @@ class BaseModel(_model_base.Model):
 
 class InnerModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
-
 
     :ivar name: Required.
     :vartype name: str
@@ -116,7 +113,6 @@ class InnerModel(_model_base.Model):
 class InternalDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -144,7 +140,6 @@ class InternalDecoratorModelInInternal(_model_base.Model):
 
 class NoDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
-
 
     :ivar name: Required.
     :vartype name: str
@@ -174,7 +169,6 @@ class NoDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -202,7 +196,6 @@ class NoDecoratorModelInPublic(_model_base.Model):
 
 class OuterModel(BaseModel):
     """Used in internal operations, should be generated but not exported.
-
 
     :ivar name: Required.
     :vartype name: str
@@ -235,7 +228,6 @@ class OuterModel(BaseModel):
 class PublicDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation but with public decorator, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -264,7 +256,6 @@ class PublicDecoratorModelInInternal(_model_base.Model):
 class PublicDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -292,7 +283,6 @@ class PublicDecoratorModelInPublic(_model_base.Model):
 
 class RealModel(AbstractModel, discriminator="real"):
     """Used in internal operations, should be generated but not exported.
-
 
     :ivar name: Required.
     :vartype name: str
@@ -323,7 +313,6 @@ class RealModel(AbstractModel, discriminator="real"):
 
 class SharedModel(_model_base.Model):
     """Used by both public and internal operation. It should be generated and exported.
-
 
     :ivar name: Required.
     :vartype name: str
