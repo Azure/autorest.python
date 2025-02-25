@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class ModelWithArrayOfModel(_model_base.Model):
     """Contains an array of models.
 
-
     :ivar items_property: Required.
     :vartype items_property: ~payload.xml.models.SimpleModel
     """
@@ -53,7 +52,6 @@ class ModelWithArrayOfModel(_model_base.Model):
 
 class ModelWithAttributes(_model_base.Model):
     """Contains fields that are XML attributes.
-
 
     :ivar id1: Required.
     :vartype id1: int
@@ -104,7 +102,6 @@ class ModelWithAttributes(_model_base.Model):
 class ModelWithDictionary(_model_base.Model):
     """Contains a dictionary of key value pairs.
 
-
     :ivar metadata: Required.
     :vartype metadata: dict[str, str]
     """
@@ -137,7 +134,6 @@ class ModelWithDictionary(_model_base.Model):
 
 class ModelWithEmptyArray(_model_base.Model):
     """Contains an array of models that's supposed to be sent/received as an empty XML element.
-
 
     :ivar items_property: Required.
     :vartype items_property: ~payload.xml.models.SimpleModel
@@ -172,7 +168,6 @@ class ModelWithEmptyArray(_model_base.Model):
 
 class ModelWithEncodedNames(_model_base.Model):
     """Uses encodedName instead of Xml.Name which is functionally equivalent.
-
 
     :ivar model_data: Required.
     :vartype model_data: ~payload.xml.models.SimpleModel
@@ -216,7 +211,6 @@ class ModelWithEncodedNames(_model_base.Model):
 class ModelWithOptionalField(_model_base.Model):
     """Contains an optional field.
 
-
     :ivar item: Required.
     :vartype item: str
     :ivar value:
@@ -258,7 +252,6 @@ class ModelWithRenamedArrays(_model_base.Model):
     """Contains fields of wrapped and unwrapped arrays of primitive types that have different XML
     representations.
 
-
     :ivar colors: Required.
     :vartype colors: list[str]
     :ivar counts: Required.
@@ -299,7 +292,6 @@ class ModelWithRenamedArrays(_model_base.Model):
 
 class ModelWithRenamedFields(_model_base.Model):
     """Contains fields of the same type that have different XML representation.
-
 
     :ivar input_data: Required.
     :vartype input_data: ~payload.xml.models.SimpleModel
@@ -344,7 +336,6 @@ class ModelWithRenamedFields(_model_base.Model):
 class ModelWithSimpleArrays(_model_base.Model):
     """Contains fields of arrays of primitive types.
 
-
     :ivar colors: Required.
     :vartype colors: list[str]
     :ivar counts: Required.
@@ -385,7 +376,6 @@ class ModelWithSimpleArrays(_model_base.Model):
 
 class ModelWithText(_model_base.Model):
     """Contains an attribute and text.
-
 
     :ivar language: Required.
     :vartype language: str
@@ -428,7 +418,6 @@ class ModelWithText(_model_base.Model):
 class ModelWithUnwrappedArray(_model_base.Model):
     """Contains fields of wrapped and unwrapped arrays of primitive types.
 
-
     :ivar colors: Required.
     :vartype colors: list[str]
     :ivar counts: Required.
@@ -469,7 +458,6 @@ class ModelWithUnwrappedArray(_model_base.Model):
 
 class SimpleModel(_model_base.Model):
     """Contains fields of primitive types.
-
 
     :ivar name: Required.
     :vartype name: str

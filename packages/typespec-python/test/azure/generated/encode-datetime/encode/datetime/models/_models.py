@@ -17,7 +17,6 @@ from .._model_base import rest_field
 class DefaultDatetimeProperty(_model_base.Model):
     """DefaultDatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
@@ -45,7 +44,6 @@ class DefaultDatetimeProperty(_model_base.Model):
 
 class Rfc3339DatetimeProperty(_model_base.Model):
     """Rfc3339DatetimeProperty.
-
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime
@@ -75,7 +73,6 @@ class Rfc3339DatetimeProperty(_model_base.Model):
 class Rfc7231DatetimeProperty(_model_base.Model):
     """Rfc7231DatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
@@ -103,7 +100,6 @@ class Rfc7231DatetimeProperty(_model_base.Model):
 
 class UnixTimestampArrayDatetimeProperty(_model_base.Model):
     """UnixTimestampArrayDatetimeProperty.
-
 
     :ivar value: Required.
     :vartype value: list[~datetime.datetime]
@@ -134,7 +130,6 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
 
 class UnixTimestampDatetimeProperty(_model_base.Model):
     """UnixTimestampDatetimeProperty.
-
 
     :ivar value: Required.
     :vartype value: ~datetime.datetime

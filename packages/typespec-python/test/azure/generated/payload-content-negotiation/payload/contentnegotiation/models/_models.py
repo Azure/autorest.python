@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class PngImageAsJson(_model_base.Model):
     """PngImageAsJson.
 
-
     :ivar content: Required.
     :vartype content: bytes
     """

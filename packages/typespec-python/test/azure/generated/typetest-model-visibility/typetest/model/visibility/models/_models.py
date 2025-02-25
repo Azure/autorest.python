@@ -35,7 +35,6 @@ class VisibilityModel(_model_base.Model):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-
     :ivar read_prop: Required string, illustrating a readonly property. Required.
     :vartype read_prop: str
     :ivar query_prop: Required int32, illustrating a query property. Required.
