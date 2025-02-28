@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-from pygen.m2r import M2R
+from ...autorest.m2r import M2R
 
 
 _MD_LINK = "[inline link](https://github.com/Azure/autorest.python)"
