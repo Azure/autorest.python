@@ -11,7 +11,7 @@
     "url": "git+https://github.com/Azure/autorest.python.git"
   },
   "bugs": {
-    "url": "https://github.com/Azure/autorest.python/issues"
+    "url": "https://github.com/microsoft/typespec/issues"
   },
   "keywords": [
     "typespec"
