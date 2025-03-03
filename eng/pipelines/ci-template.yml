@@ -114,16 +114,9 @@ steps:
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
     - script: |
-        rm -rf test/azure/generated
-        npm run regenerate --flavor=azure
-      displayName: "Regenerate Code for azure(typespec)"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
-
-    - script: |
-        rm -rf test/unbranded/generated
-        npm run regenerate --flavor=unbranded
-      displayName: "Regenerate Code for unbranded(typespec)"
+        rm -rf test/azure/generated test/unbranded/generated
+        npm run regenerate
+      displayName: "Regenerate Code(typespec)"
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
       condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
 
