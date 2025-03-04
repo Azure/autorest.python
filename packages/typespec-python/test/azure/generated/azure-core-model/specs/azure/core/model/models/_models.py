@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class AzureEmbeddingModel(_model_base.Model):
     """AzureEmbeddingModel.
 
-
     :ivar embedding: Required.
     :vartype embedding: list[int]
     """

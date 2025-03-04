@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class ExportedUser(_model_base.Model):
     """The exported user data.
 
-
     :ivar name: The name of user. Required.
     :vartype name: str
     :ivar resource_uri: The exported URI. Required.
@@ -51,7 +50,6 @@ class User(_model_base.Model):
     """Details about a user.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar name: The name of user. Required.
     :vartype name: str

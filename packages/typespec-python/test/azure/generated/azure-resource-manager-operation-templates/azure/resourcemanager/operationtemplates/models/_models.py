@@ -177,8 +177,6 @@ class ErrorResponse(_model_base.Model):
 class ExportRequest(_model_base.Model):
     """ExportRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar format: Format of the exported order. Required.
     :vartype format: str
     """
@@ -332,7 +330,6 @@ class TrackedResource(Resource):
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
 
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -379,7 +376,6 @@ class Order(TrackedResource):
     type.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -429,7 +425,6 @@ class OrderProperties(_model_base.Model):
     """OrderProperties.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar product_id: The product ID of the order. Required.
     :vartype product_id: str

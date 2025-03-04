@@ -16,7 +16,6 @@ from ..._model_base import rest_field
 class FirstClientResult(_model_base.Model):
     """FirstClientResult.
 
-
     :ivar name: Required.
     :vartype name: str
     """

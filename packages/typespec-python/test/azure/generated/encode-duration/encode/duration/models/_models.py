@@ -17,7 +17,6 @@ from .._model_base import rest_field
 class DefaultDurationProperty(_model_base.Model):
     """DefaultDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.timedelta
     """
@@ -45,7 +44,6 @@ class DefaultDurationProperty(_model_base.Model):
 
 class Float64SecondsDurationProperty(_model_base.Model):
     """Float64SecondsDurationProperty.
-
 
     :ivar value: Required.
     :vartype value: float
@@ -75,7 +73,6 @@ class Float64SecondsDurationProperty(_model_base.Model):
 class FloatSecondsDurationArrayProperty(_model_base.Model):
     """FloatSecondsDurationArrayProperty.
 
-
     :ivar value: Required.
     :vartype value: list[float]
     """
@@ -103,7 +100,6 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
 
 class FloatSecondsDurationProperty(_model_base.Model):
     """FloatSecondsDurationProperty.
-
 
     :ivar value: Required.
     :vartype value: float
@@ -133,7 +129,6 @@ class FloatSecondsDurationProperty(_model_base.Model):
 class Int32SecondsDurationProperty(_model_base.Model):
     """Int32SecondsDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: int
     """
@@ -161,7 +156,6 @@ class Int32SecondsDurationProperty(_model_base.Model):
 
 class ISO8601DurationProperty(_model_base.Model):
     """ISO8601DurationProperty.
-
 
     :ivar value: Required.
     :vartype value: ~datetime.timedelta

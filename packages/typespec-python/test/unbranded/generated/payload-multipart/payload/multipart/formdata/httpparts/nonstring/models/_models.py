@@ -16,8 +16,6 @@ from ....._model_base import rest_field
 class FloatRequest(_model_base.Model):
     """FloatRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar temperature: Required.
     :vartype temperature: float
     """

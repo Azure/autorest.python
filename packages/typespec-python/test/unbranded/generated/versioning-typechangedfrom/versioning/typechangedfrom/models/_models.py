@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class TestModel(_model_base.Model):
     """TestModel.
 
-
     :ivar prop: Required.
     :vartype prop: str
     :ivar changed_prop: Required.

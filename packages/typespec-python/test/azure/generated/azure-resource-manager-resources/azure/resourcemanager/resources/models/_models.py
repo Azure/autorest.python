@@ -412,8 +412,6 @@ class NestedProxyResourceProperties(_model_base.Model):
 class NotificationDetails(_model_base.Model):
     """The details of a user notification.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar message: The notification message. Required.
     :vartype message: str
     :ivar urgent: If true, the notification is urgent. Required.
@@ -449,7 +447,6 @@ class TrackedResource(Resource):
     has 'tags' and a 'location'.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -497,7 +494,6 @@ class SingletonTrackedResource(TrackedResource):
     type.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -653,7 +649,6 @@ class TopLevelTrackedResource(TrackedResource):
     type.
 
     Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.

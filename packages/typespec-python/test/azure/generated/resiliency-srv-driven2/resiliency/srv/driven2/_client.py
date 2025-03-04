@@ -25,24 +25,23 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
 
     There are three concepts that should be clarified:
 
-
-    #. Client spec version: refers to the spec that the client is generated from. 'v1' is a client
+    1. Client spec version: refers to the spec that the client is generated from. 'v1' is a client
     generated from old.tsp and 'v2' is a client generated from main.tsp.
-    #. Service deployment version: refers to a deployment version of the service. 'v1' represents
+    2. Service deployment version: refers to a deployment version of the service. 'v1' represents
     the initial deployment of the service with a single api version. 'v2' represents the new
     deployment of a service with multiple api versions
-    #. Api version: The initial deployment of the service only supports api version 'v1'. The new
+    3. Api version: The initial deployment of the service only supports api version 'v1'. The new
     deployment of the service supports api versions 'v1' and 'v2'.
 
     We test the following configurations from this service spec:
-
 
     * A client generated from the second service spec can call the second deployment of a service
     with api version v1
     * A client generated from the second service spec can call the second deployment of a service
     with api version v2.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api

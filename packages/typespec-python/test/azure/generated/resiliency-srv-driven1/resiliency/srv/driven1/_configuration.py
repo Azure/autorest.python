@@ -19,7 +19,8 @@ class ResiliencyServiceDrivenClientConfiguration:  # pylint: disable=too-many-in
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api

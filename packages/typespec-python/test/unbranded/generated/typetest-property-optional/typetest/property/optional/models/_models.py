@@ -307,7 +307,6 @@ class PlainTimeProperty(_model_base.Model):
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
-
     :ivar optional_property: optional string property.
     :vartype optional_property: str
     :ivar required_property: required int property. Required.
