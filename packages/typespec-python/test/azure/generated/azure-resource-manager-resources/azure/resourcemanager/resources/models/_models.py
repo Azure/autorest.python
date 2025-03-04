@@ -21,8 +21,6 @@ if TYPE_CHECKING:
 class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar type: The additional info type.
     :vartype type: str
     :ivar info: The additional info.
@@ -37,8 +35,6 @@ class ErrorAdditionalInfo(_model_base.Model):
 
 class ErrorDetail(_model_base.Model):
     """The error detail.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -98,8 +94,6 @@ class ErrorResponse(_model_base.Model):
 class Resource(_model_base.Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -128,8 +122,6 @@ class Resource(_model_base.Model):
 class ExtensionResource(Resource):
     """The base extension resource.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -147,8 +139,6 @@ class ExtensionResource(Resource):
 class ExtensionsResource(ExtensionResource):
     """Concrete extension resource types can be created by aliasing this type using a specific
     property type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -191,8 +181,6 @@ class ExtensionsResource(ExtensionResource):
 class ExtensionsResourceProperties(_model_base.Model):
     """ExtensionsResource properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -230,8 +218,6 @@ class ProxyResource(Resource):
     """The resource model definition for a Azure Resource Manager proxy resource. It will not have
     tags and a location.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -249,8 +235,6 @@ class ProxyResource(Resource):
 class LocationResource(ProxyResource):
     """Concrete proxy resource types can be created by aliasing this type using a specific property
     type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -293,8 +277,6 @@ class LocationResource(ProxyResource):
 class LocationResourceProperties(_model_base.Model):
     """Location resource properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -330,8 +312,6 @@ class LocationResourceProperties(_model_base.Model):
 
 class NestedProxyResource(ProxyResource):
     """Nested child of Top Level Tracked Resource.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -374,8 +354,6 @@ class NestedProxyResource(ProxyResource):
 class NestedProxyResourceProperties(_model_base.Model):
     """Nested Proxy Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar provisioning_state: Provisioning State of the nested child Resource. Known values are:
      "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
@@ -412,8 +390,6 @@ class NestedProxyResourceProperties(_model_base.Model):
 class NotificationDetails(_model_base.Model):
     """The details of a user notification.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar message: The notification message. Required.
     :vartype message: str
     :ivar urgent: If true, the notification is urgent. Required.
@@ -447,9 +423,6 @@ class NotificationDetails(_model_base.Model):
 class TrackedResource(Resource):
     """The resource model definition for an Azure Resource Manager tracked top level resource which
     has 'tags' and a 'location'.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -495,9 +468,6 @@ class TrackedResource(Resource):
 class SingletonTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -545,8 +515,6 @@ class SingletonTrackedResource(TrackedResource):
 
 class SingletonTrackedResourceProperties(_model_base.Model):
     """Singleton Arm Resource Properties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
@@ -652,9 +620,6 @@ class TopLevelTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -701,8 +666,6 @@ class TopLevelTrackedResource(TrackedResource):
 
 class TopLevelTrackedResourceProperties(_model_base.Model):
     """Top Level Arm Resource Properties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".

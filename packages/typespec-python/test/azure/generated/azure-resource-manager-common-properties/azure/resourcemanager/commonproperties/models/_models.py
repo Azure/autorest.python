@@ -21,8 +21,6 @@ if TYPE_CHECKING:
 class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar type: The additional info type.
     :vartype type: str
     :ivar info: The additional info.
@@ -37,8 +35,6 @@ class ErrorAdditionalInfo(_model_base.Model):
 
 class ErrorDetail(_model_base.Model):
     """The error detail.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -99,8 +95,6 @@ class ErrorResponse(_model_base.Model):
 class Resource(_model_base.Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -129,9 +123,6 @@ class Resource(_model_base.Model):
 class TrackedResource(Resource):
     """The resource model definition for an Azure Resource Manager tracked top level resource which
     has 'tags' and a 'location'.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -177,9 +168,6 @@ class TrackedResource(Resource):
 class ManagedIdentityTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -236,9 +224,6 @@ class ManagedIdentityTrackedResource(TrackedResource):
 class ManagedIdentityTrackedResourceProperties(_model_base.Model):
     """Managed Identity Arm Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar provisioning_state: The status of the last operation. Required.
     :vartype provisioning_state: str
     """
@@ -249,9 +234,6 @@ class ManagedIdentityTrackedResourceProperties(_model_base.Model):
 
 class ManagedServiceIdentity(_model_base.Model):
     """Managed service identity (system assigned and/or user assigned identities).
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar principal_id: The service principal ID of the system assigned identity. This property
      will only be provided for a system assigned identity.
@@ -372,8 +354,6 @@ class SystemData(_model_base.Model):
 
 class UserAssignedIdentity(_model_base.Model):
     """User assigned identity properties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar client_id: The client ID of the assigned identity.
     :vartype client_id: str

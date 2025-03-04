@@ -16,7 +16,6 @@ from ..._model_base import rest_field
 class JsonEncodedNameModel(_model_base.Model):
     """JsonEncodedNameModel.
 
-
     :ivar default_name: Pass in true. Required.
     :vartype default_name: bool
     """

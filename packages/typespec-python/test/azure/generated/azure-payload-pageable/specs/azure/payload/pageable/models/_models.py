@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class User(_model_base.Model):
     """User model.
 
-
     :ivar name: User name. Required.
     :vartype name: str
     """

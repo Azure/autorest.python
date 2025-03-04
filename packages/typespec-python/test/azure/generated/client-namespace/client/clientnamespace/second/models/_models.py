@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class SecondClientResult(_model_base.Model):
     """SecondClientResult.
 
-
     :ivar type: Required. "second"
     :vartype type: str or ~client.clientnamespace.models.SecondClientEnumType
     """

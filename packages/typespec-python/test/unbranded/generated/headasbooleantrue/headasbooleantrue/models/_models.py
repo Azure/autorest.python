@@ -16,8 +16,6 @@ from .._model_base import rest_field
 class ReadOnlyModel(_model_base.Model):
     """RoundTrip model with readonly optional properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar optional_nullable_int_list: Optional readonly nullable int list.
     :vartype optional_nullable_int_list: list[int]
     :ivar optional_string_record: Optional readonly string dictionary.
@@ -32,9 +30,6 @@ class ReadOnlyModel(_model_base.Model):
 
 class VisibilityModel(_model_base.Model):
     """Output model with visibility properties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar read_prop: Required string, illustrating a readonly property. Required.
     :vartype read_prop: str

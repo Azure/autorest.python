@@ -21,7 +21,6 @@ class BytesProperty(_model_base.Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
     are looking for.
 
-
     :ivar required_property: Required property. Required.
     :vartype required_property: str
     :ivar nullable_property: Property. Required.
@@ -58,7 +57,6 @@ class BytesProperty(_model_base.Model):
 
 class CollectionsByteProperty(_model_base.Model):
     """Model with collection bytes properties.
-
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str
@@ -97,7 +95,6 @@ class CollectionsByteProperty(_model_base.Model):
 class CollectionsModelProperty(_model_base.Model):
     """Model with collection models properties.
 
-
     :ivar required_property: Required property. Required.
     :vartype required_property: str
     :ivar nullable_property: Property. Required.
@@ -134,7 +131,6 @@ class CollectionsModelProperty(_model_base.Model):
 
 class CollectionsStringProperty(_model_base.Model):
     """Model with collection string properties.
-
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str
@@ -173,7 +169,6 @@ class CollectionsStringProperty(_model_base.Model):
 class DatetimeProperty(_model_base.Model):
     """Model with a datetime property.
 
-
     :ivar required_property: Required property. Required.
     :vartype required_property: str
     :ivar nullable_property: Property. Required.
@@ -210,7 +205,6 @@ class DatetimeProperty(_model_base.Model):
 
 class DurationProperty(_model_base.Model):
     """Model with a duration property.
-
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str
@@ -249,7 +243,6 @@ class DurationProperty(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Inner model used in collections model property.
 
-
     :ivar property: Inner model property. Required.
     :vartype property: str
     """
@@ -278,7 +271,6 @@ class InnerModel(_model_base.Model):
 class StringProperty(_model_base.Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
     are looking for.
-
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str

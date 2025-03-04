@@ -21,3 +21,39 @@ class TestPageableServerDrivenPaginationOperationsAsync(PageableClientTestBaseAs
         result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
+
+    @PageablePreparer()
+    @recorded_by_proxy_async
+    async def test_server_driven_pagination_continuation_token_request_query_response_body(self, pageable_endpoint):
+        client = self.create_async_client(endpoint=pageable_endpoint)
+        response = client.server_driven_pagination.continuation_token.request_query_response_body()
+        result = [r async for r in response]
+        # please add some check logic here by yourself
+        # ...
+
+    @PageablePreparer()
+    @recorded_by_proxy_async
+    async def test_server_driven_pagination_continuation_token_request_header_response_body(self, pageable_endpoint):
+        client = self.create_async_client(endpoint=pageable_endpoint)
+        response = client.server_driven_pagination.continuation_token.request_header_response_body()
+        result = [r async for r in response]
+        # please add some check logic here by yourself
+        # ...
+
+    @PageablePreparer()
+    @recorded_by_proxy_async
+    async def test_server_driven_pagination_continuation_token_request_query_response_header(self, pageable_endpoint):
+        client = self.create_async_client(endpoint=pageable_endpoint)
+        response = client.server_driven_pagination.continuation_token.request_query_response_header()
+        result = [r async for r in response]
+        # please add some check logic here by yourself
+        # ...
+
+    @PageablePreparer()
+    @recorded_by_proxy_async
+    async def test_server_driven_pagination_continuation_token_request_header_response_header(self, pageable_endpoint):
+        client = self.create_async_client(endpoint=pageable_endpoint)
+        response = client.server_driven_pagination.continuation_token.request_header_response_header()
+        result = [r async for r in response]
+        # please add some check logic here by yourself
+        # ...

@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class Pet(_model_base.Model):
     """Pet.
 
-
     :ivar id: Required.
     :vartype id: str
     :ivar name: Required.

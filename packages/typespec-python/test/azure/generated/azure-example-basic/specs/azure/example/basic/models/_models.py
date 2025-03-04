@@ -19,8 +19,6 @@ if TYPE_CHECKING:
 class ActionRequest(_model_base.Model):
     """ActionRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar string_property: Required.
     :vartype string_property: str
     :ivar model_property:
@@ -66,7 +64,6 @@ class ActionRequest(_model_base.Model):
 
 class ActionResponse(_model_base.Model):
     """ActionResponse.
-
 
     :ivar string_property: Required.
     :vartype string_property: str

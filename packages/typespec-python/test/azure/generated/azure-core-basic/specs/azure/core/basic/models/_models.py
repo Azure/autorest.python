@@ -19,9 +19,6 @@ if TYPE_CHECKING:
 class User(_model_base.Model):
     """Details about a user.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: The user's id. Required.
     :vartype id: int
     :ivar name: The user's name. Required.
@@ -63,7 +60,6 @@ class User(_model_base.Model):
 class UserList(_model_base.Model):
     """UserList.
 
-
     :ivar users: Required.
     :vartype users: list[~specs.azure.core.basic.models.User]
     """
@@ -91,9 +87,6 @@ class UserList(_model_base.Model):
 
 class UserOrder(_model_base.Model):
     """UserOrder for testing list with expand.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: The user's id. Required.
     :vartype id: int

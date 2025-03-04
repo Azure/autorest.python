@@ -551,7 +551,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
     def add_paging_information(self, group_name: str, operation: Dict[str, Any], yaml_data: Dict[str, Any]) -> None:
         operation["discriminator"] = "paging"
         operation["itemName"] = yaml_data["extensions"]["x-ms-pageable"].get("itemName", "value")
-        operation["continuationTokenName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
+        operation["nextLinkName"] = yaml_data["extensions"]["x-ms-pageable"].get("nextLinkName")
         returned_response_object = (
             operation["nextOperation"]["responses"][0] if operation.get("nextOperation") else operation["responses"][0]
         )
