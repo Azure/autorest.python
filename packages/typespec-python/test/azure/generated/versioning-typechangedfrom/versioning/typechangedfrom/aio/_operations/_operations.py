@@ -163,7 +163,7 @@ class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.TestModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.TestModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -92,7 +92,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Literal[204], response.json().get("", {}))
+            deserialized = _deserialize(Literal[204], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -150,7 +150,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Literal[204], response.json().get("", {}))
+            deserialized = _deserialize(Literal[204], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

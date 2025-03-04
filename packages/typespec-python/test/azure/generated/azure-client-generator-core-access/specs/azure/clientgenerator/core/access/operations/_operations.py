@@ -290,7 +290,7 @@ class PublicOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NoDecoratorModelInPublic, response.json().get("", {}))
+            deserialized = _deserialize(_models.NoDecoratorModelInPublic, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -350,7 +350,7 @@ class PublicOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PublicDecoratorModelInPublic, response.json().get("", {}))
+            deserialized = _deserialize(_models.PublicDecoratorModelInPublic, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -429,8 +429,7 @@ class InternalOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.NoDecoratorModelInInternal,  # pylint: disable=protected-access
-                response.json().get("", {}),
+                _models._models.NoDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
             )
 
         if cls:
@@ -495,8 +494,7 @@ class InternalOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.InternalDecoratorModelInInternal,  # pylint: disable=protected-access
-                response.json().get("", {}),
+                _models._models.InternalDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
             )
 
         if cls:
@@ -557,7 +555,7 @@ class InternalOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PublicDecoratorModelInInternal, response.json().get("", {}))
+            deserialized = _deserialize(_models.PublicDecoratorModelInInternal, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -634,7 +632,7 @@ class SharedModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SharedModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.SharedModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -693,7 +691,7 @@ class SharedModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SharedModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.SharedModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -781,9 +779,7 @@ class RelativeModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(
-                _models._models.OuterModel, response.json().get("", {})  # pylint: disable=protected-access
-            )
+            deserialized = _deserialize(_models._models.OuterModel, response.json())  # pylint: disable=protected-access
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -851,7 +847,7 @@ class RelativeModelInOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.AbstractModel, response.json().get("", {})  # pylint: disable=protected-access
+                _models._models.AbstractModel, response.json()  # pylint: disable=protected-access
             )
 
         if cls:

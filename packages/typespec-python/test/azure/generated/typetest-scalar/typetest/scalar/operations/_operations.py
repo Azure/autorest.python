@@ -325,7 +325,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json().get("", {}))
+            deserialized = _deserialize(str, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -450,7 +450,7 @@ class BooleanOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bool, response.json().get("", {}))
+            deserialized = _deserialize(bool, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -575,7 +575,7 @@ class UnknownOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Any, response.json().get("", {}))
+            deserialized = _deserialize(Any, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -700,7 +700,7 @@ class DecimalTypeOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(decimal.Decimal, response.json().get("", {}))
+            deserialized = _deserialize(decimal.Decimal, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -876,7 +876,7 @@ class Decimal128TypeOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(decimal.Decimal, response.json().get("", {}))
+            deserialized = _deserialize(decimal.Decimal, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1052,7 +1052,7 @@ class DecimalVerifyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[decimal.Decimal], response.json().get("", {}))
+            deserialized = _deserialize(List[decimal.Decimal], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1177,7 +1177,7 @@ class Decimal128VerifyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[decimal.Decimal], response.json().get("", {}))
+            deserialized = _deserialize(List[decimal.Decimal], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

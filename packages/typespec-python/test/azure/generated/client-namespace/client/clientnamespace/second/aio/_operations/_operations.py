@@ -87,7 +87,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.SecondClientResult, response.json().get("", {}))
+            deserialized = _deserialize(_models2.SecondClientResult, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

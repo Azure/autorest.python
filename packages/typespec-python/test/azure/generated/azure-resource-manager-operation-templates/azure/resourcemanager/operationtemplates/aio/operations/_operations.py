@@ -294,7 +294,7 @@ class CheckNameAvailabilityOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json().get("", {}))
+            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -435,7 +435,7 @@ class CheckNameAvailabilityOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json().get("", {}))
+            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -660,7 +660,7 @@ class LroOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Order, response.json().get("", {}))
+            deserialized = _deserialize(_models.Order, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

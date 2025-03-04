@@ -133,7 +133,7 @@ class SimpleModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.SimpleModel, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.SimpleModel, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -261,7 +261,7 @@ class ModelWithSimpleArraysValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithSimpleArrays, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithSimpleArrays, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -389,7 +389,7 @@ class ModelWithArrayOfModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithArrayOfModel, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithArrayOfModel, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -517,7 +517,7 @@ class ModelWithOptionalFieldValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithOptionalField, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithOptionalField, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -645,7 +645,7 @@ class ModelWithAttributesValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithAttributes, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithAttributes, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -773,7 +773,7 @@ class ModelWithUnwrappedArrayValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithUnwrappedArray, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithUnwrappedArray, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -901,7 +901,7 @@ class ModelWithRenamedArraysValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithRenamedArrays, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithRenamedArrays, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1029,7 +1029,7 @@ class ModelWithRenamedFieldsValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithRenamedFields, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithRenamedFields, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1157,7 +1157,7 @@ class ModelWithEmptyArrayValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithEmptyArray, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithEmptyArray, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1285,7 +1285,7 @@ class ModelWithTextValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithText, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithText, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1413,7 +1413,7 @@ class ModelWithDictionaryValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithDictionary, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithDictionary, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -1541,7 +1541,7 @@ class ModelWithEncodedNamesValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize_xml(_models.ModelWithEncodedNames, response.text().get("", {}))
+            deserialized = _deserialize_xml(_models.ModelWithEncodedNames, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

@@ -157,7 +157,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FlattenModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.FlattenModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -276,7 +276,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NestedFlattenModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.NestedFlattenModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

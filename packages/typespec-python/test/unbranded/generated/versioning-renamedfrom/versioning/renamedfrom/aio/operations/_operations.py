@@ -170,7 +170,7 @@ class NewInterfaceOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NewModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.NewModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -300,7 +300,7 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NewModel, response.json().get("", {}))
+            deserialized = _deserialize(_models.NewModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

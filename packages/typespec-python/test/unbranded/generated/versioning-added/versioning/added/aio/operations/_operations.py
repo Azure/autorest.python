@@ -174,7 +174,7 @@ class InterfaceV2Operations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelV2, response.json().get("", {}))
+            deserialized = _deserialize(_models.ModelV2, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -307,7 +307,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelV1, response.json().get("", {}))
+            deserialized = _deserialize(_models.ModelV1, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -423,7 +423,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelV2, response.json().get("", {}))
+            deserialized = _deserialize(_models.ModelV2, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

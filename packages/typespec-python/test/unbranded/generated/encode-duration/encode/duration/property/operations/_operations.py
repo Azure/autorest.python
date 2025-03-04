@@ -269,7 +269,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.DefaultDurationProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.DefaultDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -384,7 +384,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.ISO8601DurationProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.ISO8601DurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -504,7 +504,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.Int32SecondsDurationProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.Int32SecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -624,7 +624,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.FloatSecondsDurationProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.FloatSecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -744,7 +744,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.Float64SecondsDurationProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.Float64SecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -864,7 +864,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.FloatSecondsDurationArrayProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models1.FloatSecondsDurationArrayProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

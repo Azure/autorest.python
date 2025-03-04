@@ -195,7 +195,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Siamese, response.json().get("", {}))
+            deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -309,7 +309,7 @@ class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Siamese, response.json().get("", {}))
+            deserialized = _deserialize(_models.Siamese, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

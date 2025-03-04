@@ -235,7 +235,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.DefaultBytesProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models2.DefaultBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -350,7 +350,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.Base64BytesProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models2.Base64BytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -465,7 +465,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.Base64urlBytesProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models2.Base64urlBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -585,7 +585,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.Base64urlArrayBytesProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models2.Base64urlArrayBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

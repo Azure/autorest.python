@@ -87,7 +87,7 @@ class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinA
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_first_models3.FirstClientResult, response.json().get("", {}))
+            deserialized = _deserialize(_first_models3.FirstClientResult, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -185,7 +185,7 @@ class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Extension, response.json().get("", {}))
+            deserialized = _deserialize(_models.Extension, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

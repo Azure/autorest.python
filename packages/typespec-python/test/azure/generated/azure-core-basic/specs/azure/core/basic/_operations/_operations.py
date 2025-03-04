@@ -364,7 +364,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json().get("", {}))
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -499,7 +499,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json().get("", {}))
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -561,7 +561,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json().get("", {}))
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -792,7 +792,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json().get("", {}))
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -854,7 +854,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UserList, response.json().get("", {}))
+            deserialized = _deserialize(_models.UserList, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

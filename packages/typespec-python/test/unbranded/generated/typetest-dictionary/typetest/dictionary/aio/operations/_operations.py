@@ -127,7 +127,7 @@ class Int32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, int], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -279,7 +279,7 @@ class Int64ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, int], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -431,7 +431,7 @@ class BooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, bool], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -583,7 +583,7 @@ class StringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, str], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -735,7 +735,7 @@ class Float32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -887,7 +887,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, datetime.datetime], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1041,7 +1041,7 @@ class DurationValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, datetime.timedelta], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1195,7 +1195,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Any], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1347,7 +1347,7 @@ class ModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1501,7 +1501,7 @@ class RecursiveModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1655,7 +1655,7 @@ class NullableFloatValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json().get("", {}))
+            deserialized = _deserialize(Dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

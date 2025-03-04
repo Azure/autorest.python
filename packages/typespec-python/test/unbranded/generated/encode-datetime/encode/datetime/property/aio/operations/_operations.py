@@ -171,7 +171,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.DefaultDatetimeProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models3.DefaultDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -286,7 +286,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.Rfc3339DatetimeProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models3.Rfc3339DatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -401,7 +401,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.Rfc7231DatetimeProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models3.Rfc7231DatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -521,7 +521,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.UnixTimestampDatetimeProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models3.UnixTimestampDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -645,7 +645,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.UnixTimestampArrayDatetimeProperty, response.json().get("", {}))
+            deserialized = _deserialize(_models3.UnixTimestampArrayDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

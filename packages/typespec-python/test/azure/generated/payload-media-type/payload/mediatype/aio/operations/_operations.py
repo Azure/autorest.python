@@ -163,7 +163,7 @@ class StringBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.text().get("", {}))
+            deserialized = _deserialize(str, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -273,7 +273,7 @@ class StringBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json().get("", {}))
+            deserialized = _deserialize(str, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

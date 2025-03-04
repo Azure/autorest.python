@@ -238,7 +238,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.OutputRecord, response.json().get("", {}))
+            deserialized = _deserialize(_models.OutputRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -356,7 +356,7 @@ class UsageClientOperationsMixin(UsageClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.InputOutputRecord, response.json().get("", {}))
+            deserialized = _deserialize(_models.InputOutputRecord, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
