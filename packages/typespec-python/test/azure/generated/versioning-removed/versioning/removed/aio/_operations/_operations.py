@@ -148,7 +148,7 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelV2, response.json())
+            deserialized = _deserialize(_models.ModelV2, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -267,7 +267,7 @@ class RemovedClientOperationsMixin(RemovedClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelV3, response.json())
+            deserialized = _deserialize(_models.ModelV3, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

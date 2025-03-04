@@ -16,7 +16,6 @@ from .._model_base import rest_field
 class SafeintAsStringProperty(_model_base.Model):
     """SafeintAsStringProperty.
 
-
     :ivar value: Required.
     :vartype value: int
     """
@@ -71,7 +70,6 @@ class Uint32AsStringProperty(_model_base.Model):
 
 class Uint8AsStringProperty(_model_base.Model):
     """Uint8AsStringProperty.
-
 
     :ivar value: Required.
     :vartype value: int

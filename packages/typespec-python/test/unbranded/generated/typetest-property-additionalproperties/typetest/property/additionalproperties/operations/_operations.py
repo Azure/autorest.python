@@ -1021,7 +1021,7 @@ class ExtendsUnknownOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsUnknownAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.ExtendsUnknownAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1197,7 +1197,7 @@ class ExtendsUnknownDerivedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsUnknownAdditionalPropertiesDerived, response.json())
+            deserialized = _deserialize(_models.ExtendsUnknownAdditionalPropertiesDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1379,7 +1379,9 @@ class ExtendsUnknownDiscriminatedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsUnknownAdditionalPropertiesDiscriminated, response.json())
+            deserialized = _deserialize(
+                _models.ExtendsUnknownAdditionalPropertiesDiscriminated, response.json().get("", {})
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1560,7 +1562,7 @@ class IsUnknownOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsUnknownAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.IsUnknownAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1735,7 +1737,7 @@ class IsUnknownDerivedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDerived, response.json())
+            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1915,7 +1917,7 @@ class IsUnknownDiscriminatedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDiscriminated, response.json())
+            deserialized = _deserialize(_models.IsUnknownAdditionalPropertiesDiscriminated, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2096,7 +2098,7 @@ class ExtendsStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsStringAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.ExtendsStringAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2271,7 +2273,7 @@ class IsStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsStringAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.IsStringAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2445,7 +2447,7 @@ class SpreadStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadStringRecord, response.json())
+            deserialized = _deserialize(_models.SpreadStringRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2617,7 +2619,7 @@ class ExtendsFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsFloatAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.ExtendsFloatAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2792,7 +2794,7 @@ class IsFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsFloatAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.IsFloatAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2966,7 +2968,7 @@ class SpreadFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadFloatRecord, response.json())
+            deserialized = _deserialize(_models.SpreadFloatRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3138,7 +3140,7 @@ class ExtendsModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsModelAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.ExtendsModelAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3313,7 +3315,7 @@ class IsModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsModelAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.IsModelAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3487,7 +3489,7 @@ class SpreadModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadModelRecord, response.json())
+            deserialized = _deserialize(_models.SpreadModelRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3659,7 +3661,7 @@ class ExtendsModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtendsModelArrayAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.ExtendsModelArrayAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3840,7 +3842,7 @@ class IsModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IsModelArrayAdditionalProperties, response.json())
+            deserialized = _deserialize(_models.IsModelArrayAdditionalProperties, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4014,7 +4016,7 @@ class SpreadModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadModelArrayRecord, response.json())
+            deserialized = _deserialize(_models.SpreadModelArrayRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4189,7 +4191,7 @@ class SpreadDifferentStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadStringRecord, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadStringRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4364,7 +4366,7 @@ class SpreadDifferentFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadFloatRecord, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadFloatRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4539,7 +4541,7 @@ class SpreadDifferentModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadModelRecord, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4714,7 +4716,7 @@ class SpreadDifferentModelArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadModelArrayRecord, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelArrayRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4889,7 +4891,7 @@ class ExtendsDifferentSpreadStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadStringDerived, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadStringDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5064,7 +5066,7 @@ class ExtendsDifferentSpreadFloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadFloatDerived, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadFloatDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5239,7 +5241,7 @@ class ExtendsDifferentSpreadModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadModelDerived, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5414,7 +5416,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DifferentSpreadModelArrayDerived, response.json())
+            deserialized = _deserialize(_models.DifferentSpreadModelArrayDerived, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5588,7 +5590,7 @@ class MultipleSpreadOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.MultipleSpreadRecord, response.json())
+            deserialized = _deserialize(_models.MultipleSpreadRecord, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5760,7 +5762,7 @@ class SpreadRecordUnionOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadRecordForUnion, response.json())
+            deserialized = _deserialize(_models.SpreadRecordForUnion, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5933,7 +5935,7 @@ class SpreadRecordDiscriminatedUnionOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadRecordForDiscriminatedUnion, response.json())
+            deserialized = _deserialize(_models.SpreadRecordForDiscriminatedUnion, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6108,7 +6110,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion, response.json())
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6287,7 +6289,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion2, response.json())
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion2, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -6468,7 +6470,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion3, response.json())
+            deserialized = _deserialize(_models.SpreadRecordForNonDiscriminatedUnion3, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

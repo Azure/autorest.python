@@ -97,7 +97,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Dog, response.json())
+            deserialized = _deserialize(_models.Dog, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -255,7 +255,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Dog, response.json())
+            deserialized = _deserialize(_models.Dog, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -310,7 +310,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Dog, response.json())
+            deserialized = _deserialize(_models.Dog, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -365,7 +365,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Snake, response.json())
+            deserialized = _deserialize(_models.Snake, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -519,7 +519,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Snake, response.json())
+            deserialized = _deserialize(_models.Snake, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -574,7 +574,7 @@ class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Snake, response.json())
+            deserialized = _deserialize(_models.Snake, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -143,7 +143,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Union[str, _models.DaysOfWeekEnum], response.json())
+            deserialized = _deserialize(Union[str, _models.DaysOfWeekEnum], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

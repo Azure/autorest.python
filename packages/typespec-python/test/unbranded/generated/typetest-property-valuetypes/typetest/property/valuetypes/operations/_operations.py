@@ -918,7 +918,7 @@ class BooleanOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.BooleanProperty, response.json())
+            deserialized = _deserialize(_models.BooleanProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1086,7 +1086,7 @@ class StringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.StringProperty, response.json())
+            deserialized = _deserialize(_models.StringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1254,7 +1254,7 @@ class BytesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.BytesProperty, response.json())
+            deserialized = _deserialize(_models.BytesProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1422,7 +1422,7 @@ class IntOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IntProperty, response.json())
+            deserialized = _deserialize(_models.IntProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1590,7 +1590,7 @@ class FloatOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FloatProperty, response.json())
+            deserialized = _deserialize(_models.FloatProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1758,7 +1758,7 @@ class DecimalOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DecimalProperty, response.json())
+            deserialized = _deserialize(_models.DecimalProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1926,7 +1926,7 @@ class Decimal128Operations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Decimal128Property, response.json())
+            deserialized = _deserialize(_models.Decimal128Property, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2094,7 +2094,7 @@ class DatetimeOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DatetimeProperty, response.json())
+            deserialized = _deserialize(_models.DatetimeProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2262,7 +2262,7 @@ class DurationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DurationProperty, response.json())
+            deserialized = _deserialize(_models.DurationProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2430,7 +2430,7 @@ class EnumOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.EnumProperty, response.json())
+            deserialized = _deserialize(_models.EnumProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2598,7 +2598,7 @@ class ExtensibleEnumOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ExtensibleEnumProperty, response.json())
+            deserialized = _deserialize(_models.ExtensibleEnumProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2769,7 +2769,7 @@ class ModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ModelProperty, response.json())
+            deserialized = _deserialize(_models.ModelProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2938,7 +2938,7 @@ class CollectionsStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CollectionsStringProperty, response.json())
+            deserialized = _deserialize(_models.CollectionsStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3109,7 +3109,7 @@ class CollectionsIntOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CollectionsIntProperty, response.json())
+            deserialized = _deserialize(_models.CollectionsIntProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3281,7 +3281,7 @@ class CollectionsModelOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CollectionsModelProperty, response.json())
+            deserialized = _deserialize(_models.CollectionsModelProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3453,7 +3453,7 @@ class DictionaryStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DictionaryStringProperty, response.json())
+            deserialized = _deserialize(_models.DictionaryStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3624,7 +3624,7 @@ class NeverOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NeverProperty, response.json())
+            deserialized = _deserialize(_models.NeverProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3792,7 +3792,7 @@ class UnknownStringOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnknownStringProperty, response.json())
+            deserialized = _deserialize(_models.UnknownStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -3963,7 +3963,7 @@ class UnknownIntOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnknownIntProperty, response.json())
+            deserialized = _deserialize(_models.UnknownIntProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4131,7 +4131,7 @@ class UnknownDictOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnknownDictProperty, response.json())
+            deserialized = _deserialize(_models.UnknownDictProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4300,7 +4300,7 @@ class UnknownArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnknownArrayProperty, response.json())
+            deserialized = _deserialize(_models.UnknownArrayProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4469,7 +4469,7 @@ class StringLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.StringLiteralProperty, response.json())
+            deserialized = _deserialize(_models.StringLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4640,7 +4640,7 @@ class IntLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.IntLiteralProperty, response.json())
+            deserialized = _deserialize(_models.IntLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4808,7 +4808,7 @@ class FloatLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FloatLiteralProperty, response.json())
+            deserialized = _deserialize(_models.FloatLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -4977,7 +4977,7 @@ class BooleanLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.BooleanLiteralProperty, response.json())
+            deserialized = _deserialize(_models.BooleanLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5149,7 +5149,7 @@ class UnionStringLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnionStringLiteralProperty, response.json())
+            deserialized = _deserialize(_models.UnionStringLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5321,7 +5321,7 @@ class UnionIntLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnionIntLiteralProperty, response.json())
+            deserialized = _deserialize(_models.UnionIntLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5493,7 +5493,7 @@ class UnionFloatLiteralOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnionFloatLiteralProperty, response.json())
+            deserialized = _deserialize(_models.UnionFloatLiteralProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -5664,7 +5664,7 @@ class UnionEnumValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UnionEnumValueProperty, response.json())
+            deserialized = _deserialize(_models.UnionEnumValueProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

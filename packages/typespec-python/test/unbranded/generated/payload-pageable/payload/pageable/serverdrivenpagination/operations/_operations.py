@@ -26,6 +26,7 @@ from ... import models as _models2
 from ..._configuration import PageableClientConfiguration
 from ..._model_base import _deserialize
 from ..._serialization import Deserializer, Serializer
+from ..continuationtoken.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -68,6 +69,10 @@ class ServerDrivenPaginationOperations:
         self._config: PageableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+        self.continuation_token = ServerDrivenPaginationContinuationTokenOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def link(self, **kwargs: Any) -> Iterable["_models2.Pet"]:
         """link.
@@ -116,7 +121,7 @@ class ServerDrivenPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models2.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models2.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, iter(list_of_elem)

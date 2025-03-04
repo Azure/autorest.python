@@ -16,8 +16,6 @@ from ..._model_base import rest_field
 class SameAsModel(_model_base.Model):
     """SameAsModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar same_as_model: Required.
     :vartype same_as_model: str
     """

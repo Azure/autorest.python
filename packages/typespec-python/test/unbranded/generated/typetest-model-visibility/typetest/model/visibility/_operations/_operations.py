@@ -255,7 +255,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.VisibilityModel, response.json())
+            deserialized = _deserialize(_models.VisibilityModel, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -864,7 +864,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ReadOnlyModel, response.json())
+            deserialized = _deserialize(_models.ReadOnlyModel, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

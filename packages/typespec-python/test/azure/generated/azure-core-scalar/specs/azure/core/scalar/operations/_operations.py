@@ -181,7 +181,7 @@ class AzureLocationScalarOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(str, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -348,7 +348,7 @@ class AzureLocationScalarOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.AzureLocationModel, response.json())
+            deserialized = _deserialize(_models.AzureLocationModel, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

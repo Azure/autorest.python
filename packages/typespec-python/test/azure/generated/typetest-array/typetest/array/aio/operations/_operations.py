@@ -137,7 +137,7 @@ class Int32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(List[int], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -295,7 +295,7 @@ class Int64ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(List[int], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -453,7 +453,7 @@ class BooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[bool], response.json())
+            deserialized = _deserialize(List[bool], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -611,7 +611,7 @@ class StringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[str], response.json())
+            deserialized = _deserialize(List[str], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -769,7 +769,7 @@ class Float32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[float], response.json())
+            deserialized = _deserialize(List[float], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -927,7 +927,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[datetime.datetime], response.json())
+            deserialized = _deserialize(List[datetime.datetime], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1087,7 +1087,7 @@ class DurationValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[datetime.timedelta], response.json())
+            deserialized = _deserialize(List[datetime.timedelta], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1247,7 +1247,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[Any], response.json())
+            deserialized = _deserialize(List[Any], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1405,7 +1405,7 @@ class ModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[_models.InnerModel], response.json())
+            deserialized = _deserialize(List[_models.InnerModel], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1565,7 +1565,7 @@ class NullableFloatValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[float], response.json())
+            deserialized = _deserialize(List[float], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1723,7 +1723,7 @@ class NullableInt32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(List[int], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1881,7 +1881,7 @@ class NullableBooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[bool], response.json())
+            deserialized = _deserialize(List[bool], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2039,7 +2039,7 @@ class NullableStringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[str], response.json())
+            deserialized = _deserialize(List[str], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2197,7 +2197,7 @@ class NullableModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[_models.InnerModel], response.json())
+            deserialized = _deserialize(List[_models.InnerModel], response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

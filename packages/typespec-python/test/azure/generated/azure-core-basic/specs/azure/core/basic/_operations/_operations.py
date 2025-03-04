@@ -364,7 +364,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(_models.User, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -499,7 +499,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(_models.User, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -561,7 +561,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(_models.User, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -662,7 +662,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.User], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -792,7 +792,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(_models.User, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -854,7 +854,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UserList, response.json())
+            deserialized = _deserialize(_models.UserList, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

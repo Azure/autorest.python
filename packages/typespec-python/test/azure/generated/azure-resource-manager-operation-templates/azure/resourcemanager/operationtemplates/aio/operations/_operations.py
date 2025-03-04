@@ -133,7 +133,7 @@ class Operations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Operation], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.Operation], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -294,7 +294,7 @@ class CheckNameAvailabilityOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json())
+            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -435,7 +435,7 @@ class CheckNameAvailabilityOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json())
+            deserialized = _deserialize(_models.CheckNameAvailabilityResponse, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -660,7 +660,7 @@ class LroOperations:
 
         def get_long_running_output(pipeline_response):
             response = pipeline_response.http_response
-            deserialized = _deserialize(_models.Order, response.json())
+            deserialized = _deserialize(_models.Order, response.json().get("", {}))
             if cls:
                 return cls(pipeline_response, deserialized, {})  # type: ignore
             return deserialized

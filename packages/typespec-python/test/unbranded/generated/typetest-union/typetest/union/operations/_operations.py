@@ -387,7 +387,7 @@ class StringsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse9, response.json())
+            deserialized = _deserialize(_models.GetResponse9, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -564,7 +564,7 @@ class StringExtensibleOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse8, response.json())
+            deserialized = _deserialize(_models.GetResponse8, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -745,7 +745,7 @@ class StringExtensibleNamedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse7, response.json())
+            deserialized = _deserialize(_models.GetResponse7, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -930,7 +930,7 @@ class IntsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse6, response.json())
+            deserialized = _deserialize(_models.GetResponse6, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1105,7 +1105,7 @@ class FloatsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse5, response.json())
+            deserialized = _deserialize(_models.GetResponse5, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1280,7 +1280,7 @@ class ModelsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse4, response.json())
+            deserialized = _deserialize(_models.GetResponse4, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1457,7 +1457,7 @@ class EnumsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse3, response.json())
+            deserialized = _deserialize(_models.GetResponse3, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1632,7 +1632,7 @@ class StringAndArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse2, response.json())
+            deserialized = _deserialize(_models.GetResponse2, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1807,7 +1807,7 @@ class MixedLiteralsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse1, response.json())
+            deserialized = _deserialize(_models.GetResponse1, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1982,7 +1982,7 @@ class MixedTypesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse, response.json())
+            deserialized = _deserialize(_models.GetResponse, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

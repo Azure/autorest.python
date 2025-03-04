@@ -679,7 +679,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DefaultBytesProperty, response.json())
+            deserialized = _deserialize(_models.DefaultBytesProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -797,7 +797,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64BytesProperty, response.json())
+            deserialized = _deserialize(_models.Base64BytesProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -915,7 +915,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64urlBytesProperty, response.json())
+            deserialized = _deserialize(_models.Base64urlBytesProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1038,7 +1038,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64urlArrayBytesProperty, response.json())
+            deserialized = _deserialize(_models.Base64urlArrayBytesProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1595,7 +1595,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+            deserialized = _deserialize(bytes, response.json().get("", {}), format="base64")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1763,7 +1763,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+            deserialized = _deserialize(bytes, response.json().get("", {}), format="base64")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1819,7 +1819,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64url")
+            deserialized = _deserialize(bytes, response.json().get("", {}), format="base64url")
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

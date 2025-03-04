@@ -139,7 +139,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.User, response.json())
+            deserialized = _deserialize(_models.User, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -273,7 +273,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.UserActionResponse, response.json())
+            deserialized = _deserialize(_models.UserActionResponse, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

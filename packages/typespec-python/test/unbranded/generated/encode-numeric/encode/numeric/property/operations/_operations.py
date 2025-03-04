@@ -218,7 +218,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.SafeintAsStringProperty, response.json())
+            deserialized = _deserialize(_models1.SafeintAsStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -333,7 +333,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.Uint32AsStringProperty, response.json())
+            deserialized = _deserialize(_models1.Uint32AsStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -448,7 +448,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.Uint8AsStringProperty, response.json())
+            deserialized = _deserialize(_models1.Uint8AsStringProperty, response.json().get("", {}))
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
