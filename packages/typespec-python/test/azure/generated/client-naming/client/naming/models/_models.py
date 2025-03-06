@@ -16,8 +16,6 @@ from .._model_base import rest_field
 class ClientModel(_model_base.Model):
     """ClientModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar default_name: Pass in true. Required.
     :vartype default_name: bool
     """
@@ -45,8 +43,6 @@ class ClientModel(_model_base.Model):
 
 class ClientNameAndJsonEncodedNameModel(_model_base.Model):
     """ClientNameAndJsonEncodedNameModel.
-
-    All required parameters must be populated in order to send to server.
 
     :ivar client_name: Pass in true. Required.
     :vartype client_name: bool
@@ -76,8 +72,6 @@ class ClientNameAndJsonEncodedNameModel(_model_base.Model):
 class ClientNameModel(_model_base.Model):
     """ClientNameModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar client_name: Pass in true. Required.
     :vartype client_name: bool
     """
@@ -106,8 +100,6 @@ class ClientNameModel(_model_base.Model):
 class LanguageClientNameModel(_model_base.Model):
     """LanguageClientNameModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar python_name: Pass in true. Required.
     :vartype python_name: bool
     """
@@ -135,8 +127,6 @@ class LanguageClientNameModel(_model_base.Model):
 
 class PythonModel(_model_base.Model):
     """PythonModel.
-
-    All required parameters must be populated in order to send to server.
 
     :ivar default_name: Pass in true. Required.
     :vartype default_name: bool

@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class ModelV1(_model_base.Model):
     """ModelV1.
 
-
     :ivar prop: Required.
     :vartype prop: str
     :ivar enum_prop: Required. Known values are: "enumMemberV1" and "enumMemberV2".
@@ -61,7 +60,6 @@ class ModelV1(_model_base.Model):
 
 class ModelV2(_model_base.Model):
     """ModelV2.
-
 
     :ivar prop: Required.
     :vartype prop: str

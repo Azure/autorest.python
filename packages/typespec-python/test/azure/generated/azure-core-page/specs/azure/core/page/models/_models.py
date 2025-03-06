@@ -19,9 +19,6 @@ if TYPE_CHECKING:
 class FirstItem(_model_base.Model):
     """First item.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: The id of the item. Required.
     :vartype id: int
     """
@@ -32,8 +29,6 @@ class FirstItem(_model_base.Model):
 
 class ListItemInputBody(_model_base.Model):
     """The body of the input.
-
-    All required parameters must be populated in order to send to server.
 
     :ivar input_name: The name of the input. Required.
     :vartype input_name: str
@@ -63,9 +58,6 @@ class ListItemInputBody(_model_base.Model):
 class SecondItem(_model_base.Model):
     """Second item.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar name: The name of the item. Required.
     :vartype name: str
     """
@@ -76,9 +68,6 @@ class SecondItem(_model_base.Model):
 
 class User(_model_base.Model):
     """Details about a user.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: The user's id. Required.
     :vartype id: int
@@ -120,9 +109,6 @@ class User(_model_base.Model):
 
 class UserOrder(_model_base.Model):
     """UserOrder for testing list with expand.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: The user's id. Required.
     :vartype id: int

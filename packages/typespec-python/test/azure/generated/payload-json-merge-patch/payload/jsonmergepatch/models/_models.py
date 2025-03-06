@@ -50,7 +50,6 @@ class InnerModel(_model_base.Model):
 class Resource(_model_base.Model):
     """Details about a resource.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar description:
