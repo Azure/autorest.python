@@ -25,6 +25,7 @@ from .... import models as _models3
 from ...._model_base import _deserialize
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
+from ...continuationtoken.aio.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 from ...operations._operations import build_server_driven_pagination_link_request
 
 if sys.version_info >= (3, 9):
@@ -51,6 +52,10 @@ class ServerDrivenPaginationOperations:
         self._config: PageableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+        self.continuation_token = ServerDrivenPaginationContinuationTokenOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def link(self, **kwargs: Any) -> AsyncIterable["_models3.Pet"]:
         """link.

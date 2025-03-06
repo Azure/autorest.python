@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class NewModel(_model_base.Model):
     """NewModel.
 
-
     :ivar new_prop: Required.
     :vartype new_prop: str
     :ivar enum_prop: Required. "newEnumMember"
