@@ -1,5 +1,18 @@
 # Release
 
+## 0.39.0
+
+### Bug Fixes
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Fix sphinx syntax for raising `DeserializationError` in serialization file
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) remove useless docstring for models
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Don't throw error directly when emitter crash
+
+### Features
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Report TCGC diagnostics after create SDK context.
+
+
 ## 0.38.4
 
 No changes, version bump only.
