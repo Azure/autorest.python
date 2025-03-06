@@ -58,6 +58,7 @@ class M2R(YamlUpdatePlugin):
         except Exception:  # pylint: disable=broad-except
             return string_to_convert
 
+
 class M2RAutorest(YamlUpdatePluginAutorest, M2R):
     def get_options(self) -> Dict[str, Any]:
         return {}
