@@ -36,6 +36,7 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
+_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -85,43 +86,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_next_token=_Unset):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
+                token=token if _next_token is _Unset else _next_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_next_token=_Unset):
+            _request = prepare_request(_next_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -163,43 +151,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_next_token=_Unset):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
+                token=token if _next_token is _Unset else _next_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_next_token=_Unset):
+            _request = prepare_request(_next_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -241,43 +216,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_next_token=_Unset):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
+                token=token if _next_token is _Unset else _next_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_next_token=_Unset):
+            _request = prepare_request(_next_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -319,43 +281,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_next_token=_Unset):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
+                token=token if _next_token is _Unset else _next_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_next_token=_Unset):
+            _request = prepare_request(_next_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)

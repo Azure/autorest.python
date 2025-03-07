@@ -1575,7 +1575,7 @@ class TopLevelOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.TopLevelTrackedResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.TopLevelTrackedResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -1660,7 +1660,7 @@ class TopLevelOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.TopLevelTrackedResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.TopLevelTrackedResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -2631,7 +2631,7 @@ class NestedOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.NestedProxyResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.NestedProxyResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -3164,7 +3164,7 @@ class SingletonOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.SingletonTrackedResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.SingletonTrackedResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -3791,7 +3791,7 @@ class ExtensionsResourcesOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.ExtensionsResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.ExtensionsResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -4340,7 +4340,7 @@ class LocationResourcesOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.LocationResource], deserialized["value"])
+            list_of_elem = _deserialize(List[_models.LocationResource], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
