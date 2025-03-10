@@ -32,7 +32,6 @@ if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
-_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -185,10 +184,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(_next_token=_Unset):
+        def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                token=token if _next_token is _Unset else _next_token,
+                token=token if _continuation_token is None else _continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -207,8 +206,8 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextToken") or None, iter(list_of_elem)
 
-        def get_next(_next_token=_Unset):
-            _request = prepare_request(_next_token)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -250,10 +249,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(_next_token=_Unset):
+        def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                token=token if _next_token is _Unset else _next_token,
+                token=token if _continuation_token is None else _continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -272,8 +271,8 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextToken") or None, iter(list_of_elem)
 
-        def get_next(_next_token=_Unset):
-            _request = prepare_request(_next_token)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -315,10 +314,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(_next_token=_Unset):
+        def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                token=token if _next_token is _Unset else _next_token,
+                token=token if _continuation_token is None else _continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -337,8 +336,8 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
 
-        def get_next(_next_token=_Unset):
-            _request = prepare_request(_next_token)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -380,10 +379,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(_next_token=_Unset):
+        def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
-                token=token if _next_token is _Unset else _next_token,
+                token=token if _continuation_token is None else _continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -402,8 +401,8 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
 
-        def get_next(_next_token=_Unset):
-            _request = prepare_request(_next_token)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
