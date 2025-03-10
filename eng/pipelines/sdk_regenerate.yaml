@@ -39,9 +39,9 @@ jobs:
   - checkout: azure-sdk-for-python
 
   - task: NodeTool@0
-    displayName: 'Install Node.js 18.x'
+    displayName: 'Install Node.js 20.x'
     inputs:
-      versionSpec: '18.x'
+      versionSpec: '20.x'
 
   - script: npm install -g pnpm@9.5.0
     displayName: Install pnpm 9.5.0
