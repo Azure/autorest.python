@@ -23,17 +23,6 @@ jobs:
   timeoutInMinutes: 120
 
   steps:
-      - task: NodeTool@0
-        displayName: "Install Node.js 20.x"
-        inputs:
-            versionSpec: "20.x"
-
-      - script: npm install -g @typespec/compiler@next
-        displayName: Install @typespec/compiler@next
-
-      - script: npm install -g @azure-tools/typespec-bump-deps
-        displayName: Install pnpm @azure-tools/typespec-bump-deps
-
       - template: ci-template.yml
         parameters:
           installCadlRanch: true
