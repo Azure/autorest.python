@@ -17,9 +17,9 @@ steps:
           TestProxy: true
           templateRoot: azure-sdk-tools
     - task: NodeTool@0
-      displayName: "Install Node.js 18.x"
+      displayName: "Install Node.js 20.x"
       inputs:
-          versionSpec: "18.x"
+          versionSpec: "20.x"
 
     - task: UsePythonVersion@0
       displayName: "Use Python $(PythonVersion)"
@@ -36,6 +36,14 @@ steps:
     - script: npm install -g @typespec/compiler
       displayName: Install TypeSpec
       condition: and(succeeded(), ${{ parameters.installTypeSpec }})
+
+    - script: npm install -g @typespec/compiler@next
+      displayName: Install TypeSpec Next
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+
+    - script: npm install -g @azure-tools/typespec-bump-deps@0.9.6
+      displayName: Install @azure-tools/typespec-bump-deps
+      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
     - script: npx @azure-tools/typespec-bump-deps package.json packages/typespec-python/package.json
       displayName: Update typespec packages to latest dev version
