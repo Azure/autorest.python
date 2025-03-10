@@ -41,7 +41,7 @@ steps:
       displayName: Install TypeSpec Next
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npm install -g @azure-tools/typespec-bump-deps
+    - script: npm install @azure-tools/typespec-bump-deps
       displayName: Install @azure-tools/typespec-bump-deps
       condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
