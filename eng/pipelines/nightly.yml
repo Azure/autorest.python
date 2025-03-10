@@ -23,6 +23,11 @@ jobs:
   timeoutInMinutes: 120
 
   steps:
+      - task: NodeTool@0
+        displayName: "Install Node.js 20.x"
+        inputs:
+            versionSpec: "20.x"
+
       - script: npm install -g @typespec/compiler@next
         displayName: Install @typespec/compiler@next
   
