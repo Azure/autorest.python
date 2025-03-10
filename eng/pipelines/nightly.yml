@@ -30,7 +30,10 @@ jobs:
 
       - script: npm install -g @typespec/compiler@next
         displayName: Install @typespec/compiler@next
-  
+
+      - script: npm install -g @azure-tools/typespec-bump-deps
+        displayName: Install pnpm @azure-tools/typespec-bump-deps
+
       - template: ci-template.yml
         parameters:
           installCadlRanch: true
