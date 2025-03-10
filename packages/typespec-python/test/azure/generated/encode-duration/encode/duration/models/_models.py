@@ -17,12 +17,11 @@ from .._model_base import rest_field
 class DefaultDurationProperty(_model_base.Model):
     """DefaultDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.timedelta
     """
 
-    value: datetime.timedelta = rest_field()
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -46,12 +45,11 @@ class DefaultDurationProperty(_model_base.Model):
 class Float64SecondsDurationProperty(_model_base.Model):
     """Float64SecondsDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: float
     """
 
-    value: float = rest_field()
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -75,12 +73,11 @@ class Float64SecondsDurationProperty(_model_base.Model):
 class FloatSecondsDurationArrayProperty(_model_base.Model):
     """FloatSecondsDurationArrayProperty.
 
-
     :ivar value: Required.
     :vartype value: list[float]
     """
 
-    value: List[float] = rest_field()
+    value: List[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -104,12 +101,11 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
 class FloatSecondsDurationProperty(_model_base.Model):
     """FloatSecondsDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: float
     """
 
-    value: float = rest_field()
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -133,12 +129,11 @@ class FloatSecondsDurationProperty(_model_base.Model):
 class Int32SecondsDurationProperty(_model_base.Model):
     """Int32SecondsDurationProperty.
 
-
     :ivar value: Required.
     :vartype value: int
     """
 
-    value: int = rest_field()
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -162,12 +157,11 @@ class Int32SecondsDurationProperty(_model_base.Model):
 class ISO8601DurationProperty(_model_base.Model):
     """ISO8601DurationProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.timedelta
     """
 
-    value: datetime.timedelta = rest_field()
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,6 +11,7 @@ import sys
 from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -30,7 +31,8 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
-from .._serialization import Serializer
+from .._configuration import StorageManagementClientConfiguration
+from .._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -84,7 +86,7 @@ def build_storage_accounts_create_request(
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -111,7 +113,7 @@ def build_storage_accounts_delete_request(
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2015-05-01-preview"))
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -136,7 +138,7 @@ def build_storage_accounts_get_properties_request(  # pylint: disable=name-too-l
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -165,7 +167,7 @@ def build_storage_accounts_update_request(
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -195,7 +197,7 @@ def build_storage_accounts_list_keys_request(
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/listKeys"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -277,7 +279,7 @@ def build_storage_accounts_regenerate_key_request(  # pylint: disable=name-too-l
     accept = _headers.pop("Accept", "application/json, text/json")
 
     # Construct URL
-    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"  # pylint: disable=line-too-long
+    _url = "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/regenerateKey"
     path_format_arguments = {
         "resourceGroupName": _SERIALIZER.url("resource_group_name", resource_group_name, "str"),
         "accountName": _SERIALIZER.url("account_name", account_name, "str"),
@@ -333,10 +335,10 @@ class StorageAccountsOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StorageManagementClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
     def check_name_availability(
@@ -1861,10 +1863,10 @@ class UsageOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: StorageManagementClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def list(self, **kwargs: Any) -> JSON:

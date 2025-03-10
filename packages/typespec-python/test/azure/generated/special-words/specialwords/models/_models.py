@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -17,13 +16,11 @@ from .._model_base import rest_field
 class AndModel(_model_base.Model):
     """AndModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -47,13 +44,11 @@ class AndModel(_model_base.Model):
 class AsModel(_model_base.Model):
     """AsModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -77,13 +72,11 @@ class AsModel(_model_base.Model):
 class AssertModel(_model_base.Model):
     """AssertModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -107,13 +100,11 @@ class AssertModel(_model_base.Model):
 class AsyncModel(_model_base.Model):
     """AsyncModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -137,13 +128,11 @@ class AsyncModel(_model_base.Model):
 class AwaitModel(_model_base.Model):
     """AwaitModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -167,13 +156,11 @@ class AwaitModel(_model_base.Model):
 class BreakModel(_model_base.Model):
     """BreakModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -197,13 +184,11 @@ class BreakModel(_model_base.Model):
 class ClassModel(_model_base.Model):
     """ClassModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -227,13 +212,11 @@ class ClassModel(_model_base.Model):
 class Constructor(_model_base.Model):
     """Constructor.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -257,13 +240,11 @@ class Constructor(_model_base.Model):
 class ContinueModel(_model_base.Model):
     """ContinueModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -287,13 +268,11 @@ class ContinueModel(_model_base.Model):
 class DefModel(_model_base.Model):
     """DefModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -317,13 +296,11 @@ class DefModel(_model_base.Model):
 class DelModel(_model_base.Model):
     """DelModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -347,13 +324,11 @@ class DelModel(_model_base.Model):
 class ElifModel(_model_base.Model):
     """ElifModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -377,13 +352,11 @@ class ElifModel(_model_base.Model):
 class ElseModel(_model_base.Model):
     """ElseModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -407,13 +380,11 @@ class ElseModel(_model_base.Model):
 class ExceptModel(_model_base.Model):
     """ExceptModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -437,13 +408,11 @@ class ExceptModel(_model_base.Model):
 class ExecModel(_model_base.Model):
     """ExecModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -467,13 +436,11 @@ class ExecModel(_model_base.Model):
 class FinallyModel(_model_base.Model):
     """FinallyModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -497,13 +464,11 @@ class FinallyModel(_model_base.Model):
 class ForModel(_model_base.Model):
     """ForModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -527,13 +492,11 @@ class ForModel(_model_base.Model):
 class FromModel(_model_base.Model):
     """FromModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -557,13 +520,11 @@ class FromModel(_model_base.Model):
 class GlobalModel(_model_base.Model):
     """GlobalModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -587,13 +548,11 @@ class GlobalModel(_model_base.Model):
 class IfModel(_model_base.Model):
     """IfModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -617,13 +576,11 @@ class IfModel(_model_base.Model):
 class ImportModel(_model_base.Model):
     """ImportModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -647,13 +604,11 @@ class ImportModel(_model_base.Model):
 class InModel(_model_base.Model):
     """InModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -677,13 +632,11 @@ class InModel(_model_base.Model):
 class IsModel(_model_base.Model):
     """IsModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -707,13 +660,11 @@ class IsModel(_model_base.Model):
 class LambdaModel(_model_base.Model):
     """LambdaModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -737,13 +688,11 @@ class LambdaModel(_model_base.Model):
 class NotModel(_model_base.Model):
     """NotModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -767,13 +716,11 @@ class NotModel(_model_base.Model):
 class OrModel(_model_base.Model):
     """OrModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -797,13 +744,11 @@ class OrModel(_model_base.Model):
 class PassModel(_model_base.Model):
     """PassModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -827,13 +772,11 @@ class PassModel(_model_base.Model):
 class RaiseModel(_model_base.Model):
     """RaiseModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -857,13 +800,11 @@ class RaiseModel(_model_base.Model):
 class ReturnModel(_model_base.Model):
     """ReturnModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -887,13 +828,11 @@ class ReturnModel(_model_base.Model):
 class SameAsModel(_model_base.Model):
     """SameAsModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar same_as_model: Required.
     :vartype same_as_model: str
     """
 
-    same_as_model: str = rest_field(name="SameAsModel")
+    same_as_model: str = rest_field(name="SameAsModel", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -917,13 +856,11 @@ class SameAsModel(_model_base.Model):
 class TryModel(_model_base.Model):
     """TryModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -947,13 +884,11 @@ class TryModel(_model_base.Model):
 class WhileModel(_model_base.Model):
     """WhileModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -977,13 +912,11 @@ class WhileModel(_model_base.Model):
 class WithModel(_model_base.Model):
     """WithModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -1007,13 +940,11 @@ class WithModel(_model_base.Model):
 class YieldModel(_model_base.Model):
     """YieldModel.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

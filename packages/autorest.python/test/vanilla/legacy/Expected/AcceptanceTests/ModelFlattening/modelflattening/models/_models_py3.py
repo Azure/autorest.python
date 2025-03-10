@@ -128,11 +128,11 @@ class Resource(_serialization.Model):
         :paramtype location: str
         """
         super().__init__(**kwargs)
-        self.id = None
-        self.type = None
+        self.id: Optional[str] = None
+        self.type: Optional[str] = None
         self.tags = tags
         self.location = location
-        self.name = None
+        self.name: Optional[str] = None
 
 
 class FlattenedProduct(Resource):
@@ -206,7 +206,9 @@ class FlattenedProduct(Resource):
         super().__init__(tags=tags, location=location, **kwargs)
         self.p_name = p_name
         self.type_properties_type = type_properties_type
-        self.provisioning_state_values = None
+        self.provisioning_state_values: Optional[
+            Union[str, "_models.FlattenedProductPropertiesProvisioningStateValues"]
+        ] = None
         self.provisioning_state = provisioning_state
 
 

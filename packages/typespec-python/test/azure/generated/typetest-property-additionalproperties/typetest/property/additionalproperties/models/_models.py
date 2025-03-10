@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -21,12 +21,11 @@ if TYPE_CHECKING:
 class DifferentSpreadFloatRecord(_model_base.Model):
     """The model spread Record\\ :code:`<float32>` with the different known property type.
 
-
     :ivar name: The id property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The id property. Required."""
 
     @overload
@@ -51,14 +50,13 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
     """The model extends from a model that spread Record\\ :code:`<float32>` with the different known
     property type.
 
-
     :ivar name: The id property. Required.
     :vartype name: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: float
     """
 
-    derived_prop: float = rest_field(name="derivedProp")
+    derived_prop: float = rest_field(name="derivedProp", visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
 
     @overload
@@ -83,12 +81,11 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
 class DifferentSpreadModelArrayRecord(_model_base.Model):
     """The model spread Record<ModelForRecord[]> with the different known property type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: str
     """
 
-    known_prop: str = rest_field(name="knownProp")
+    known_prop: str = rest_field(name="knownProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -113,14 +110,15 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     """The model extends from a model that spread Record<ModelForRecord[]> with the different known
     property type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    derived_prop: List["_models.ModelForRecord"] = rest_field(name="derivedProp")
+    derived_prop: List["_models.ModelForRecord"] = rest_field(
+        name="derivedProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The index property. Required."""
 
     @overload
@@ -145,12 +143,11 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
 class DifferentSpreadModelRecord(_model_base.Model):
     """The model spread Record\\ :code:`<ModelForRecord>` with the different known property type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: str
     """
 
-    known_prop: str = rest_field(name="knownProp")
+    known_prop: str = rest_field(name="knownProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -175,14 +172,15 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
     """The model extends from a model that spread Record\\ :code:`<ModelForRecord>` with the different
     known property type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
 
-    derived_prop: "_models.ModelForRecord" = rest_field(name="derivedProp")
+    derived_prop: "_models.ModelForRecord" = rest_field(
+        name="derivedProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The index property. Required."""
 
     @overload
@@ -207,12 +205,11 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
 class DifferentSpreadStringRecord(_model_base.Model):
     """The model spread Record\\ :code:`<string>` with the different known property type.
 
-
     :ivar id: The name property. Required.
     :vartype id: float
     """
 
-    id: float = rest_field()
+    id: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -237,14 +234,13 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
     """The model extends from a model that spread Record\\ :code:`<string>` with the different known
     property type.
 
-
     :ivar id: The name property. Required.
     :vartype id: float
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: str
     """
 
-    derived_prop: str = rest_field(name="derivedProp")
+    derived_prop: str = rest_field(name="derivedProp", visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
 
     @overload
@@ -269,12 +265,11 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
 class ExtendsFloatAdditionalProperties(_model_base.Model):
     """The model extends from Record\\ :code:`<float32>` type.
 
-
     :ivar id: The id property. Required.
     :vartype id: float
     """
 
-    id: float = rest_field()
+    id: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The id property. Required."""
 
     @overload
@@ -298,12 +293,13 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
 class ExtendsModelAdditionalProperties(_model_base.Model):
     """The model extends from Record\\ :code:`<ModelForRecord>` type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
 
-    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    known_prop: "_models.ModelForRecord" = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -327,12 +323,13 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
 class ExtendsModelArrayAdditionalProperties(_model_base.Model):
     """The model extends from Record<ModelForRecord[]> type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    known_prop: List["_models.ModelForRecord"] = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -356,12 +353,11 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
 class ExtendsStringAdditionalProperties(_model_base.Model):
     """The model extends from Record\\ :code:`<string>` type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -385,12 +381,11 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
 class ExtendsUnknownAdditionalProperties(_model_base.Model):
     """The model extends from Record\\ :code:`<unknown>` type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -414,7 +409,6 @@ class ExtendsUnknownAdditionalProperties(_model_base.Model):
 class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperties):  # pylint: disable=name-too-long
     """The model extends from a type that extends from Record\\ :code:`<unknown>`.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar index: The index property. Required.
@@ -423,9 +417,9 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
     :vartype age: float
     """
 
-    index: int = rest_field()
+    index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
-    age: Optional[float] = rest_field()
+    age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
     @overload
@@ -454,7 +448,6 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar kind: The discriminator. Required. Default value is None.
@@ -462,9 +455,9 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pyl
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
-    kind: str = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The discriminator. Required. Default value is None."""
 
     @overload
@@ -491,7 +484,6 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 ):  # pylint: disable=name-too-long
     """The derived discriminated type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar kind: Required. Default value is "derived".
@@ -502,11 +494,11 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
-    index: int = rest_field()
+    index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
-    age: Optional[float] = rest_field()
+    age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
     @overload
@@ -532,12 +524,11 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 class IsFloatAdditionalProperties(_model_base.Model):
     """The model is from Record\\ :code:`<float32>` type.
 
-
     :ivar id: The id property. Required.
     :vartype id: float
     """
 
-    id: float = rest_field()
+    id: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The id property. Required."""
 
     @overload
@@ -561,12 +552,13 @@ class IsFloatAdditionalProperties(_model_base.Model):
 class IsModelAdditionalProperties(_model_base.Model):
     """The model is from Record\\ :code:`<ModelForRecord>` type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
 
-    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    known_prop: "_models.ModelForRecord" = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -590,12 +582,13 @@ class IsModelAdditionalProperties(_model_base.Model):
 class IsModelArrayAdditionalProperties(_model_base.Model):
     """The model is from Record<ModelForRecord[]> type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    known_prop: List["_models.ModelForRecord"] = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -619,12 +612,11 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
 class IsStringAdditionalProperties(_model_base.Model):
     """The model is from Record\\ :code:`<string>` type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -648,12 +640,11 @@ class IsStringAdditionalProperties(_model_base.Model):
 class IsUnknownAdditionalProperties(_model_base.Model):
     """The model is from Record\\ :code:`<unknown>` type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -677,7 +668,6 @@ class IsUnknownAdditionalProperties(_model_base.Model):
 class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
     """The model extends from a type that is Record\\ :code:`<unknown>` type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar index: The index property. Required.
@@ -686,9 +676,9 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
     :vartype age: float
     """
 
-    index: int = rest_field()
+    index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
-    age: Optional[float] = rest_field()
+    age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
     @overload
@@ -717,7 +707,6 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     IsUnknownAdditionalPropertiesDiscriminatedDerived
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar kind: The discriminator. Required. Default value is None.
@@ -725,9 +714,9 @@ class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: 
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
-    kind: str = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The discriminator. Required. Default value is None."""
 
     @overload
@@ -754,7 +743,6 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 ):  # pylint: disable=name-too-long
     """The derived discriminated type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     :ivar kind: Required. Default value is "derived".
@@ -765,11 +753,11 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
-    index: int = rest_field()
+    index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
-    age: Optional[float] = rest_field()
+    age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
     @overload
@@ -795,12 +783,11 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 class ModelForRecord(_model_base.Model):
     """model for record.
 
-
     :ivar state: The state property. Required.
     :vartype state: str
     """
 
-    state: str = rest_field()
+    state: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The state property. Required."""
 
     @overload
@@ -824,12 +811,11 @@ class ModelForRecord(_model_base.Model):
 class MultipleSpreadRecord(_model_base.Model):
     """The model spread Record\\ :code:`<string>` and Record\\ :code:`<float32>`.
 
-
     :ivar flag: The name property. Required.
     :vartype flag: bool
     """
 
-    flag: bool = rest_field()
+    flag: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -853,12 +839,11 @@ class MultipleSpreadRecord(_model_base.Model):
 class SpreadFloatRecord(_model_base.Model):
     """The model spread Record\\ :code:`<float32>` with the same known property type.
 
-
     :ivar id: The id property. Required.
     :vartype id: float
     """
 
-    id: float = rest_field()
+    id: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The id property. Required."""
 
     @overload
@@ -882,12 +867,13 @@ class SpreadFloatRecord(_model_base.Model):
 class SpreadModelArrayRecord(_model_base.Model):
     """SpreadModelArrayRecord.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(name="knownProp")
+    known_prop: List["_models.ModelForRecord"] = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -911,12 +897,13 @@ class SpreadModelArrayRecord(_model_base.Model):
 class SpreadModelRecord(_model_base.Model):
     """The model spread Record\\ :code:`<ModelForRecord>` with the same known property type.
 
-
     :ivar known_prop: Required.
     :vartype known_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
 
-    known_prop: "_models.ModelForRecord" = rest_field(name="knownProp")
+    known_prop: "_models.ModelForRecord" = rest_field(
+        name="knownProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
 
     @overload
@@ -940,12 +927,11 @@ class SpreadModelRecord(_model_base.Model):
 class SpreadRecordForDiscriminatedUnion(_model_base.Model):
     """The model spread Record\\ :code:`<WidgetData>`.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -969,12 +955,11 @@ class SpreadRecordForDiscriminatedUnion(_model_base.Model):
 class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
     """The model spread Record<WidgetData0 | WidgetData1>.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -998,12 +983,11 @@ class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
 class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
     """The model spread Record<WidgetData2 | WidgetData1>.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -1027,12 +1011,11 @@ class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
 class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
     """The model spread Record<WidgetData2[] | WidgetData1>.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -1056,12 +1039,11 @@ class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
 class SpreadRecordForUnion(_model_base.Model):
     """The model spread Record<string | float32>.
 
-
     :ivar flag: The name property. Required.
     :vartype flag: bool
     """
 
-    flag: bool = rest_field()
+    flag: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -1085,12 +1067,11 @@ class SpreadRecordForUnion(_model_base.Model):
 class SpreadStringRecord(_model_base.Model):
     """The model spread Record\\ :code:`<string>` with the same known property type.
 
-
     :ivar name: The name property. Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
 
     @overload
@@ -1114,18 +1095,15 @@ class SpreadStringRecord(_model_base.Model):
 class WidgetData0(_model_base.Model):
     """WidgetData0.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar kind: Required. Default value is "kind0".
     :vartype kind: str
     :ivar foo_prop: Required.
     :vartype foo_prop: str
     """
 
-    kind: Literal["kind0"] = rest_field()
+    kind: Literal["kind0"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind0\"."""
-    foo_prop: str = rest_field(name="fooProp")
+    foo_prop: str = rest_field(name="fooProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -1150,9 +1128,6 @@ class WidgetData0(_model_base.Model):
 class WidgetData1(_model_base.Model):
     """WidgetData1.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar kind: Required. Default value is "kind1".
     :vartype kind: str
     :ivar start: Required.
@@ -1161,11 +1136,13 @@ class WidgetData1(_model_base.Model):
     :vartype end: ~datetime.datetime
     """
 
-    kind: Literal["kind1"] = rest_field()
+    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind1\"."""
-    start: datetime.datetime = rest_field(format="rfc3339")
+    start: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
     """Required."""
-    end: Optional[datetime.datetime] = rest_field(format="rfc3339")
+    end: Optional[datetime.datetime] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
 
     @overload
     def __init__(
@@ -1190,18 +1167,15 @@ class WidgetData1(_model_base.Model):
 class WidgetData2(_model_base.Model):
     """WidgetData2.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar kind: Required. Default value is "kind1".
     :vartype kind: str
     :ivar start: Required.
     :vartype start: str
     """
 
-    kind: Literal["kind1"] = rest_field()
+    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind1\"."""
-    start: str = rest_field()
+    start: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

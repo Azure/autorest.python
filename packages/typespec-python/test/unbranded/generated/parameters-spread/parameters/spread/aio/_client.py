@@ -14,8 +14,9 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..alias.aio.operations import AliasOperations
+from ..model.aio.operations import ModelOperations
 from ._configuration import SpreadClientConfiguration
-from .operations import AliasOperations, ModelOperations
 
 
 class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword

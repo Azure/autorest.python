@@ -25,7 +25,7 @@ from ._operations_mixin import MultiapiServiceClientOperationsMixin
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):
-        """This is a fake class to support current implemetation of MultiApiClientMixin."
+        """This is a fake class to support current implementation of MultiApiClientMixin."
         Will be removed in final version of multiapi azure-core based client
         """
         pass

@@ -25,7 +25,7 @@ def code_model():
         {
             "clients": [
                 {
-                    "name": "cient",
+                    "name": "client",
                     "namespace": "blah",
                     "moduleName": "blah",
                     "parameters": [],
@@ -49,7 +49,7 @@ def code_model():
 def client(code_model):
     return Client(
         {
-            "name": "cient",
+            "name": "client",
             "namespace": "blah",
             "moduleName": "blah",
             "parameters": [],

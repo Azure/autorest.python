@@ -11,6 +11,7 @@ import json
 import sys
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,8 +26,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._configuration import SpreadClientConfiguration
 from .._model_base import SdkJSONEncoder
-from .._serialization import Serializer
+from .._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -248,17 +250,17 @@ class ModelOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpreadClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -268,11 +270,11 @@ class ModelOperations:
         """
 
     @overload
-    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
+    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -650,26 +652,6 @@ class ModelOperations:
 
     @overload
     def spread_composite_request_mix(
-        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_composite_request_mix.
-
-        :param name: Required.
-        :type name: str
-        :param body: Required.
-        :type body: JSON
-        :keyword test_header: Required.
-        :paramtype test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_composite_request_mix(
         self, name: str, *, test_header: str, prop: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_mix.
@@ -680,6 +662,26 @@ class ModelOperations:
         :paramtype test_header: str
         :keyword prop: Required.
         :paramtype prop: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_composite_request_mix(
+        self, name: str, body: JSON, *, test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_composite_request_mix.
+
+        :param name: Required.
+        :type name: str
+        :param body: Required.
+        :type body: JSON
+        :keyword test_header: Required.
+        :paramtype test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -792,17 +794,17 @@ class AliasOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: SpreadClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
-        :param body: Required.
-        :type body: JSON
+        :keyword name: Required.
+        :paramtype name: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -812,11 +814,11 @@ class AliasOperations:
         """
 
     @overload
-    def spread_as_request_body(self, *, name: str, content_type: str = "application/json", **kwargs: Any) -> None:
+    def spread_as_request_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """spread_as_request_body.
 
-        :keyword name: Required.
-        :paramtype name: str
+        :param body: Required.
+        :type body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -906,26 +908,6 @@ class AliasOperations:
 
     @overload
     def spread_parameter_with_inner_model(
-        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_parameter_with_inner_model.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: JSON
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_parameter_with_inner_model(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_parameter_with_inner_model.
@@ -936,6 +918,26 @@ class AliasOperations:
         :paramtype x_ms_test_header: str
         :keyword name: Required.
         :paramtype name: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_parameter_with_inner_model(
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_parameter_with_inner_model.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1043,26 +1045,6 @@ class AliasOperations:
 
     @overload
     def spread_as_request_parameter(
-        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_as_request_parameter.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: JSON
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_as_request_parameter(
         self, id: str, *, x_ms_test_header: str, name: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_as_request_parameter.
@@ -1073,6 +1055,26 @@ class AliasOperations:
         :paramtype x_ms_test_header: str
         :keyword name: Required.
         :paramtype name: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_as_request_parameter(
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_as_request_parameter.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1180,26 +1182,6 @@ class AliasOperations:
 
     @overload
     def spread_with_multiple_parameters(
-        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread_with_multiple_parameters.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: JSON
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_with_multiple_parameters(
         self,
         id: str,
         *,
@@ -1228,6 +1210,26 @@ class AliasOperations:
         :paramtype optional_int: int
         :keyword optional_string_list: optional string. Default value is None.
         :paramtype optional_string_list: list[str]
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_with_multiple_parameters(
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread_with_multiple_parameters.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1348,26 +1350,6 @@ class AliasOperations:
 
     @overload
     def spread_parameter_with_inner_alias(
-        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
-        """spread an alias with contains another alias property as body.
-
-        :param id: Required.
-        :type id: str
-        :param body: Required.
-        :type body: JSON
-        :keyword x_ms_test_header: Required.
-        :paramtype x_ms_test_header: str
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    def spread_parameter_with_inner_alias(
         self,
         id: str,
         *,
@@ -1387,6 +1369,26 @@ class AliasOperations:
         :paramtype name: str
         :keyword age: age of the Thing. Required.
         :paramtype age: int
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def spread_parameter_with_inner_alias(
+        self, id: str, body: JSON, *, x_ms_test_header: str, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
+        """spread an alias with contains another alias property as body.
+
+        :param id: Required.
+        :type id: str
+        :param body: Required.
+        :type body: JSON
+        :keyword x_ms_test_header: Required.
+        :paramtype x_ms_test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str

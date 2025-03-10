@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Unbranded Corporation. All rights reserved.
@@ -22,7 +23,6 @@ class Bird(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Eagle, Goose, SeaGull, Sparrow
 
-
     :ivar kind: Required. Default value is None.
     :vartype kind: str
     :ivar wingspan: Required.
@@ -30,9 +30,9 @@ class Bird(_model_base.Model):
     """
 
     __mapping__: Dict[str, _model_base.Model] = {}
-    kind: str = rest_discriminator(name="kind")
+    kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
-    wingspan: int = rest_field()
+    wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -61,7 +61,6 @@ class Dinosaur(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     TRex
 
-
     :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
     :vartype kind: str
     :ivar size: Required.
@@ -71,7 +70,7 @@ class Dinosaur(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
-    size: int = rest_field()
+    size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -97,7 +96,6 @@ class Eagle(Bird, discriminator="eagle"):
     """The second level model in polymorphic single levels inheritance which contains references to
     other polymorphic instances.
 
-
     :ivar wingspan: Required.
     :vartype wingspan: int
     :ivar kind: Required. Default value is "eagle".
@@ -110,11 +108,11 @@ class Eagle(Bird, discriminator="eagle"):
     :vartype partner: ~typetest.model.singlediscriminator.models.Bird
     """
 
-    kind: Literal["eagle"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"eagle\"."""
-    friends: Optional[List["_models.Bird"]] = rest_field()
-    hate: Optional[Dict[str, "_models.Bird"]] = rest_field()
-    partner: Optional["_models.Bird"] = rest_field()
+    friends: Optional[List["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    hate: Optional[Dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    partner: Optional["_models.Bird"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
 
     @overload
     def __init__(
@@ -140,14 +138,13 @@ class Eagle(Bird, discriminator="eagle"):
 class Goose(Bird, discriminator="goose"):
     """The second level model in polymorphic single level inheritance.
 
-
     :ivar wingspan: Required.
     :vartype wingspan: int
     :ivar kind: Required. Default value is "goose".
     :vartype kind: str
     """
 
-    kind: Literal["goose"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"goose\"."""
 
     @overload
@@ -171,14 +168,13 @@ class Goose(Bird, discriminator="goose"):
 class SeaGull(Bird, discriminator="seagull"):
     """The second level model in polymorphic single level inheritance.
 
-
     :ivar wingspan: Required.
     :vartype wingspan: int
     :ivar kind: Required. Default value is "seagull".
     :vartype kind: str
     """
 
-    kind: Literal["seagull"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"seagull\"."""
 
     @overload
@@ -202,14 +198,13 @@ class SeaGull(Bird, discriminator="seagull"):
 class Sparrow(Bird, discriminator="sparrow"):
     """The second level model in polymorphic single level inheritance.
 
-
     :ivar wingspan: Required.
     :vartype wingspan: int
     :ivar kind: Required. Default value is "sparrow".
     :vartype kind: str
     """
 
-    kind: Literal["sparrow"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"sparrow\"."""
 
     @overload
@@ -233,14 +228,13 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
-
     :ivar size: Required.
     :vartype size: int
     :ivar kind: Required. Default value is "t-rex".
     :vartype kind: str
     """
 
-    kind: Literal["t-rex"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"t-rex\"."""
 
     @overload

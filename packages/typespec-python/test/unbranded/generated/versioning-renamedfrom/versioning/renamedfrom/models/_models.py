@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class NewModel(_model_base.Model):
     """NewModel.
 
-
     :ivar new_prop: Required.
     :vartype new_prop: str
     :ivar enum_prop: Required. "newEnumMember"
@@ -28,11 +27,15 @@ class NewModel(_model_base.Model):
     :vartype union_prop: str or int
     """
 
-    new_prop: str = rest_field(name="newProp")
+    new_prop: str = rest_field(name="newProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    enum_prop: Union[str, "_models.NewEnum"] = rest_field(name="enumProp")
+    enum_prop: Union[str, "_models.NewEnum"] = rest_field(
+        name="enumProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. \"newEnumMember\""""
-    union_prop: "_types.NewUnion" = rest_field(name="unionProp")
+    union_prop: "_types.NewUnion" = rest_field(
+        name="unionProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Is either a str type or a int type."""
 
     @overload

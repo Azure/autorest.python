@@ -8,8 +8,9 @@
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from msrest import Serializer
+from msrest import Deserializer, Serializer
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,6 +26,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
+from .._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -45,7 +47,7 @@ def build_post_method_global_valid_request(subscription_id: str, **kwargs: Any) 
     _url = kwargs.pop(
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -92,7 +94,7 @@ def build_post_method_global_not_provided_valid_request(  # pylint: disable=name
     _url = kwargs.pop(
         "template_url",
         "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -117,7 +119,7 @@ def build_post_path_global_valid_request(subscription_id: str, **kwargs: Any) ->
     _url = kwargs.pop(
         "template_url",
         "/azurespecials/subscriptionId/path/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -139,7 +141,7 @@ def build_post_swagger_global_valid_request(subscription_id: str, **kwargs: Any)
     _url = kwargs.pop(
         "template_url",
         "/azurespecials/subscriptionId/swagger/string/none/path/global/1234-5678-9012-3456/{subscriptionId}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }
@@ -166,10 +168,12 @@ class SubscriptionInCredentialsOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

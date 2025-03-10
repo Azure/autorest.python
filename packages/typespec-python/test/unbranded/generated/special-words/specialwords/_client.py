@@ -15,7 +15,9 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import SpecialWordsClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
+from .modelproperties.operations import ModelPropertiesOperations
+from .models.operations import ModelsOperations
+from .operations import Operations, ParametersOperations
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword

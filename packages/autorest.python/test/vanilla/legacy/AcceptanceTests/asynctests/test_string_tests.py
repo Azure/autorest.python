@@ -124,7 +124,7 @@ class TestString(object):
             await client.enum.put_not_expandable("not a colour")
 
     @pytest.mark.asyncio
-    async def test_get_base64_encdoded(self, client):
+    async def test_get_base64_encoded(self, client):
         assert (await client.string.get_base64_encoded()) == "a string that gets encoded with base64".encode()
 
     @pytest.mark.asyncio

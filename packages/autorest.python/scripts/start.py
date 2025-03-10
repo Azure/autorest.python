@@ -20,9 +20,9 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 def main():
     venv_path = _ROOT_DIR / "venv"
-    venv_prexists = venv_path.exists()
+    venv_preexists = venv_path.exists()
 
-    assert venv_prexists  # Otherwise install was not done
+    assert venv_preexists  # Otherwise install was not done
 
     if sys.version_info < (3, 9, 0):
         env_builder = venv.EnvBuilder(with_pip=True)

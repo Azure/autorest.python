@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -10,6 +10,7 @@ import datetime
 import sys
 from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,7 +24,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
+from .._configuration import AutoRestUrlTestServiceConfiguration
+from .._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -1271,7 +1273,7 @@ def build_path_items_get_all_with_values_request(  # pylint: disable=name-too-lo
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/pathItemStringQuery/localStringQuery"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1310,7 +1312,7 @@ def build_path_items_get_global_query_null_request(  # pylint: disable=name-too-
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"  # pylint: disable=line-too-long
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/localStringQuery"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1349,7 +1351,7 @@ def build_path_items_get_global_and_local_query_null_request(  # pylint: disable
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"  # pylint: disable=line-too-long
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/null/pathItemStringQuery/null"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1388,7 +1390,7 @@ def build_path_items_get_local_path_item_query_null_request(  # pylint: disable=
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"  # pylint: disable=line-too-long
+    _url = "/pathitem/nullable/globalStringPath/{globalStringPath}/pathItemStringPath/{pathItemStringPath}/localStringPath/{localStringPath}/globalStringQuery/null/null"
     path_format_arguments = {
         "pathItemStringPath": _SERIALIZER.url("path_item_string_path", path_item_string_path, "str"),
         "globalStringPath": _SERIALIZER.url("global_string_path", global_string_path, "str"),
@@ -1423,10 +1425,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestUrlTestServiceConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -2631,10 +2633,10 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestUrlTestServiceConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -4231,10 +4233,10 @@ class PathItemsOperations:
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestUrlTestServiceConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_all_with_values(  # pylint: disable=inconsistent-return-statements

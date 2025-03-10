@@ -16,13 +16,11 @@ from .._model_base import rest_field
 class GenerationOptions(_model_base.Model):
     """Options for the generation.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar prompt: Prompt. Required.
     :vartype prompt: str
     """
 
-    prompt: str = rest_field()
+    prompt: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Prompt. Required."""
 
     @overload
@@ -46,12 +44,11 @@ class GenerationOptions(_model_base.Model):
 class GenerationResult(_model_base.Model):
     """Result of the generation.
 
-
     :ivar data: The data. Required.
     :vartype data: str
     """
 
-    data: str = rest_field()
+    data: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The data. Required."""
 
     @overload

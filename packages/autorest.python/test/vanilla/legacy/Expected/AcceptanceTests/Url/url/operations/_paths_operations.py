@@ -10,8 +10,9 @@ import datetime
 import sys
 from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
 
-from msrest import Serializer
+from msrest import Deserializer, Serializer
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,6 +27,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
+from .._configuration import AutoRestUrlTestServiceConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -266,7 +268,7 @@ def build_string_url_encoded_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = kwargs.pop(
         "template_url", "/paths/string/begin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend/{stringPath}"
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "stringPath": _SERIALIZER.url("string_path", string_path, "str"),
     }
@@ -540,7 +542,7 @@ def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> Htt
     _url = kwargs.pop(
         "template_url",
         "/paths/array/ArrayPath1%2cbegin%21%2A%27%28%29%3B%3A%40%20%26%3D%2B%24%2C%2F%3F%23%5B%5Dend%2c%2c/{arrayPath}",
-    )  # pylint: disable=line-too-long
+    )
     path_format_arguments = {
         "arrayPath": _SERIALIZER.url("array_path", array_path, "[str]", div=","),
     }
@@ -586,10 +588,10 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs):
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestUrlTestServiceConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
     def get_boolean_true(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

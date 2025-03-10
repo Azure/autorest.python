@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -22,7 +23,6 @@ class AbstractModel(_model_base.Model):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     RealModel
 
-
     :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
     :vartype kind: str
     :ivar name: Required.
@@ -32,7 +32,7 @@ class AbstractModel(_model_base.Model):
     __mapping__: Dict[str, _model_base.Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for AbstractModel. Required. Default value is None."""
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -57,12 +57,11 @@ class AbstractModel(_model_base.Model):
 class BaseModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -86,12 +85,11 @@ class BaseModel(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Used in internal operations, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -115,12 +113,11 @@ class InnerModel(_model_base.Model):
 class InternalDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -144,12 +141,11 @@ class InternalDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -173,12 +169,11 @@ class NoDecoratorModelInInternal(_model_base.Model):
 class NoDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -202,14 +197,13 @@ class NoDecoratorModelInPublic(_model_base.Model):
 class OuterModel(BaseModel):
     """Used in internal operations, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar inner: Required.
     :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
     """
 
-    inner: "_models._models.InnerModel" = rest_field()
+    inner: "_models._models.InnerModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -234,12 +228,11 @@ class OuterModel(BaseModel):
 class PublicDecoratorModelInInternal(_model_base.Model):
     """Used in an internal operation but with public decorator, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -263,12 +256,11 @@ class PublicDecoratorModelInInternal(_model_base.Model):
 class PublicDecoratorModelInPublic(_model_base.Model):
     """Used in a public operation, should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -292,14 +284,13 @@ class PublicDecoratorModelInPublic(_model_base.Model):
 class RealModel(AbstractModel, discriminator="real"):
     """Used in internal operations, should be generated but not exported.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar kind: Required. Default value is "real".
     :vartype kind: str
     """
 
-    kind: Literal["real"] = rest_discriminator(name="kind")  # type: ignore
+    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"real\"."""
 
     @overload
@@ -323,12 +314,11 @@ class RealModel(AbstractModel, discriminator="real"):
 class SharedModel(_model_base.Model):
     """Used by both public and internal operation. It should be generated and exported.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

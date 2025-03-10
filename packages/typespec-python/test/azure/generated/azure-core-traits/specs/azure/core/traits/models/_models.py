@@ -16,9 +16,6 @@ from .._model_base import rest_field
 class User(_model_base.Model):
     """Sample Model.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: The user's id. Required.
     :vartype id: int
     :ivar name: The user's name.
@@ -27,7 +24,7 @@ class User(_model_base.Model):
 
     id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
-    name: Optional[str] = rest_field()
+    name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's name."""
 
     @overload
@@ -51,13 +48,13 @@ class User(_model_base.Model):
 class UserActionParam(_model_base.Model):
     """User action param.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar user_action_value: User action value. Required.
     :vartype user_action_value: str
     """
 
-    user_action_value: str = rest_field(name="userActionValue")
+    user_action_value: str = rest_field(
+        name="userActionValue", visibility=["read", "create", "update", "delete", "query"]
+    )
     """User action value. Required."""
 
     @overload
@@ -81,12 +78,13 @@ class UserActionParam(_model_base.Model):
 class UserActionResponse(_model_base.Model):
     """User action response.
 
-
     :ivar user_action_result: User action result. Required.
     :vartype user_action_result: str
     """
 
-    user_action_result: str = rest_field(name="userActionResult")
+    user_action_result: str = rest_field(
+        name="userActionResult", visibility=["read", "create", "update", "delete", "query"]
+    )
     """User action result. Required."""
 
     @overload

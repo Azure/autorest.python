@@ -139,11 +139,11 @@ def test_post_required_class(client):
     assert "Not Found" in str(ex.value)
 
 
-def test_explict_put_optional_binary_body(client):
+def test_explicit_put_optional_binary_body(client):
     client.explicit.put_optional_binary_body()
 
 
-def test_explict_put_required_binary_body(client):
+def test_explicit_put_required_binary_body(client):
     test_string = "Upload file test case"
     test_bytes = bytearray(test_string, encoding="utf-8")
     with io.BytesIO(test_bytes) as stream_data:

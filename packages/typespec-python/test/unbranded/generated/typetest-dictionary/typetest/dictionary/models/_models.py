@@ -19,16 +19,17 @@ if TYPE_CHECKING:
 class InnerModel(_model_base.Model):
     """Dictionary inner model.
 
-
     :ivar property: Required string property. Required.
     :vartype property: str
     :ivar children:
     :vartype children: dict[str, ~typetest.dictionary.models.InnerModel]
     """
 
-    property: str = rest_field()
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required string property. Required."""
-    children: Optional[Dict[str, "_models.InnerModel"]] = rest_field()
+    children: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(

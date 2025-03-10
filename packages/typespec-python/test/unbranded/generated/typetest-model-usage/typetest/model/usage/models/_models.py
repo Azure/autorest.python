@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class InputOutputRecord(_model_base.Model):
     """Record used both as operation parameter and return type.
 
-
     :ivar required_prop: Required.
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -45,13 +44,11 @@ class InputOutputRecord(_model_base.Model):
 class InputRecord(_model_base.Model):
     """Record used in operation parameters.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar required_prop: Required.
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -75,12 +72,11 @@ class InputRecord(_model_base.Model):
 class OutputRecord(_model_base.Model):
     """Record used in operation return type.
 
-
     :ivar required_prop: Required.
     :vartype required_prop: str
     """
 
-    required_prop: str = rest_field(name="requiredProp")
+    required_prop: str = rest_field(name="requiredProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

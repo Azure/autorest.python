@@ -1,5 +1,51 @@
 # Release
 
+## 0.39.0
+
+### Bug Fixes
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Fix sphinx syntax for raising `DeserializationError` in serialization file
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) remove useless docstring for models
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Don't throw error directly when emitter crash
+
+### Features
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Report TCGC diagnostics after create SDK context.
+
+
+## 0.38.4
+
+No changes, version bump only.
+
+## 0.38.3
+
+- [#3038](https://github.com/Azure/autorest.python/pull/3038) Fix crash when value of `--package-pprint-name` contains space
+
+## 0.38.2
+
+### Bug Fixes
+
+- [#3011](https://github.com/Azure/autorest.python/pull/3011) Fix spelling mistakes by running cspell in pipelines
+- [#3029](https://github.com/Azure/autorest.python/pull/3029) Fix for scenario that output folder is different with namespace
+- [#3029](https://github.com/Azure/autorest.python/pull/3029) Improve XML serialization information in generated models
+- [#3025](https://github.com/Azure/autorest.python/pull/3025) Fix sphinx typing for raising documentation
+- [#3025](https://github.com/Azure/autorest.python/pull/3025) fix typing for class methods in _serialization.py
+- [#3015](https://github.com/Azure/autorest.python/pull/3015) Order keyword-only args overload first in generated operations
+- [#3030](https://github.com/Azure/autorest.python/pull/3030) Fix output folder of models when output folder is different with namespace in configuration
+
+
+## 0.38.1
+
+### Bug Fixes
+
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Fix import issues for typespec namespace
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Only import helpers for serialization if input body is not binary
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Unify descriptions for credentials in documentation
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Add type annotations for initialized properties in msrest model inits
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Add mypy typing to operation group inits
+- [#3007](https://github.com/Azure/autorest.python/pull/3007) Remove Python2 specific datetime logic from internal serialization.
+
+
 ## 0.38.0
 
 ### Bug Fixes

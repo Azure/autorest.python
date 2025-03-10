@@ -19,16 +19,15 @@ if TYPE_CHECKING:
 class ChildFlattenModel(_model_base.Model):
     """This is the child model to be flattened. And it has flattened property as well.
 
-
     :ivar summary: Required.
     :vartype summary: str
     :ivar properties: Required.
     :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
-    summary: str = rest_field()
+    summary: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    properties: "_models.ChildModel" = rest_field()
+    properties: "_models.ChildModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     __flattened_items = ["description", "age"]
@@ -73,16 +72,15 @@ class ChildFlattenModel(_model_base.Model):
 class ChildModel(_model_base.Model):
     """This is the child model to be flattened.
 
-
     :ivar description: Required.
     :vartype description: str
     :ivar age: Required.
     :vartype age: int
     """
 
-    description: str = rest_field()
+    description: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    age: int = rest_field()
+    age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -107,16 +105,15 @@ class ChildModel(_model_base.Model):
 class FlattenModel(_model_base.Model):
     """This is the model with one level of flattening.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
     :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    properties: "_models.ChildModel" = rest_field()
+    properties: "_models.ChildModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     __flattened_items = ["description", "age"]
@@ -161,16 +158,15 @@ class FlattenModel(_model_base.Model):
 class NestedFlattenModel(_model_base.Model):
     """This is the model with two levels of flattening.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
     :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    properties: "_models.ChildFlattenModel" = rest_field()
+    properties: "_models.ChildFlattenModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

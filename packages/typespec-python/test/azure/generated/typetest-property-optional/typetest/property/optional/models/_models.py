@@ -24,7 +24,7 @@ class BooleanLiteralProperty(_model_base.Model):
     :vartype property: bool
     """
 
-    property: Optional[Literal[True]] = rest_field()
+    property: Optional[Literal[True]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Default value is True."""
 
     @overload
@@ -53,7 +53,7 @@ class BytesProperty(_model_base.Model):
     :vartype property: bytes
     """
 
-    property: Optional[bytes] = rest_field(format="base64")
+    property: Optional[bytes] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64")
     """Property."""
 
     @overload
@@ -81,7 +81,9 @@ class CollectionsByteProperty(_model_base.Model):
     :vartype property: list[bytes]
     """
 
-    property: Optional[List[bytes]] = rest_field(format="base64")
+    property: Optional[List[bytes]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="base64"
+    )
     """Property."""
 
     @overload
@@ -109,7 +111,9 @@ class CollectionsModelProperty(_model_base.Model):
     :vartype property: list[~typetest.property.optional.models.StringProperty]
     """
 
-    property: Optional[List["_models.StringProperty"]] = rest_field()
+    property: Optional[List["_models.StringProperty"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property."""
 
     @overload
@@ -137,7 +141,9 @@ class DatetimeProperty(_model_base.Model):
     :vartype property: ~datetime.datetime
     """
 
-    property: Optional[datetime.datetime] = rest_field(format="rfc3339")
+    property: Optional[datetime.datetime] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """Property."""
 
     @overload
@@ -165,7 +171,7 @@ class DurationProperty(_model_base.Model):
     :vartype property: ~datetime.timedelta
     """
 
-    property: Optional[datetime.timedelta] = rest_field()
+    property: Optional[datetime.timedelta] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property."""
 
     @overload
@@ -193,7 +199,7 @@ class FloatLiteralProperty(_model_base.Model):
     :vartype property: float
     """
 
-    property: Optional[float] = rest_field()
+    property: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Default value is 1.25."""
 
     @overload
@@ -221,7 +227,7 @@ class IntLiteralProperty(_model_base.Model):
     :vartype property: int
     """
 
-    property: Optional[Literal[1]] = rest_field()
+    property: Optional[Literal[1]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Default value is 1."""
 
     @overload
@@ -249,7 +255,7 @@ class PlainDateProperty(_model_base.Model):
     :vartype property: ~datetime.date
     """
 
-    property: Optional[datetime.date] = rest_field()
+    property: Optional[datetime.date] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property."""
 
     @overload
@@ -277,7 +283,7 @@ class PlainTimeProperty(_model_base.Model):
     :vartype property: ~datetime.time
     """
 
-    property: Optional[datetime.time] = rest_field()
+    property: Optional[datetime.time] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property."""
 
     @overload
@@ -301,16 +307,19 @@ class PlainTimeProperty(_model_base.Model):
 class RequiredAndOptionalProperty(_model_base.Model):
     """Model with required and optional properties.
 
-
     :ivar optional_property: optional string property.
     :vartype optional_property: str
     :ivar required_property: required int property. Required.
     :vartype required_property: int
     """
 
-    optional_property: Optional[str] = rest_field(name="optionalProperty")
+    optional_property: Optional[str] = rest_field(
+        name="optionalProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """optional string property."""
-    required_property: int = rest_field(name="requiredProperty")
+    required_property: int = rest_field(
+        name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
+    )
     """required int property. Required."""
 
     @overload
@@ -339,7 +348,7 @@ class StringLiteralProperty(_model_base.Model):
     :vartype property: str
     """
 
-    property: Optional[Literal["hello"]] = rest_field()
+    property: Optional[Literal["hello"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Default value is \"hello\"."""
 
     @overload
@@ -368,7 +377,7 @@ class StringProperty(_model_base.Model):
     :vartype property: str
     """
 
-    property: Optional[str] = rest_field()
+    property: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property."""
 
     @overload
@@ -392,12 +401,12 @@ class StringProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with union of float literal property.
 
-    :ivar property: Property. Is either a float type or a float type.
+    :ivar property: Property. Is one of the following types: float
     :vartype property: float or float
     """
 
-    property: Optional[float] = rest_field()
-    """Property. Is either a float type or a float type."""
+    property: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Property. Is one of the following types: float"""
 
     @overload
     def __init__(
@@ -424,7 +433,7 @@ class UnionIntLiteralProperty(_model_base.Model):
     :vartype property: int or int
     """
 
-    property: Optional[Literal[1, 2]] = rest_field()
+    property: Optional[Literal[1, 2]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Is either a Literal[1] type or a Literal[2] type."""
 
     @overload
@@ -452,7 +461,9 @@ class UnionStringLiteralProperty(_model_base.Model):
     :vartype property: str or str
     """
 
-    property: Optional[Literal["hello", "world"]] = rest_field()
+    property: Optional[Literal["hello", "world"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload

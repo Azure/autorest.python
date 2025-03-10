@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class ModelV2(_model_base.Model):
     """ModelV2.
 
-
     :ivar prop: Required.
     :vartype prop: str
     :ivar enum_prop: Required. "enumMemberV2"
@@ -28,11 +27,15 @@ class ModelV2(_model_base.Model):
     :vartype union_prop: str or float
     """
 
-    prop: str = rest_field()
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    enum_prop: Union[str, "_models.EnumV2"] = rest_field(name="enumProp")
+    enum_prop: Union[str, "_models.EnumV2"] = rest_field(
+        name="enumProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. \"enumMemberV2\""""
-    union_prop: "_types.UnionV2" = rest_field(name="unionProp")
+    union_prop: "_types.UnionV2" = rest_field(
+        name="unionProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Is either a str type or a float type."""
 
     @overload
@@ -58,16 +61,17 @@ class ModelV2(_model_base.Model):
 class ModelV3(_model_base.Model):
     """ModelV3.
 
-
     :ivar id: Required.
     :vartype id: str
     :ivar enum_prop: Required. Known values are: "enumMemberV1" and "enumMemberV2Preview".
     :vartype enum_prop: str or ~versioning.removed.models.EnumV3
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    enum_prop: Union[str, "_models.EnumV3"] = rest_field(name="enumProp")
+    enum_prop: Union[str, "_models.EnumV3"] = rest_field(
+        name="enumProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Known values are: \"enumMemberV1\" and \"enumMemberV2Preview\"."""
 
     @overload

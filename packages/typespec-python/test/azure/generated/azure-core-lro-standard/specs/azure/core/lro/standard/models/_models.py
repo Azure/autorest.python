@@ -16,16 +16,15 @@ from .._model_base import rest_field
 class ExportedUser(_model_base.Model):
     """The exported user data.
 
-
     :ivar name: The name of user. Required.
     :vartype name: str
     :ivar resource_uri: The exported URI. Required.
     :vartype resource_uri: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name of user. Required."""
-    resource_uri: str = rest_field(name="resourceUri")
+    resource_uri: str = rest_field(name="resourceUri", visibility=["read", "create", "update", "delete", "query"])
     """The exported URI. Required."""
 
     @overload
@@ -50,9 +49,6 @@ class ExportedUser(_model_base.Model):
 class User(_model_base.Model):
     """Details about a user.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar name: The name of user. Required.
     :vartype name: str
     :ivar role: The role of user. Required.
@@ -61,7 +57,7 @@ class User(_model_base.Model):
 
     name: str = rest_field(visibility=["read"])
     """The name of user. Required."""
-    role: str = rest_field()
+    role: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The role of user. Required."""
 
     @overload

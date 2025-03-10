@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class Base64BytesProperty(_model_base.Model):
     """Base64BytesProperty.
 
-
     :ivar value: Required.
     :vartype value: bytes
     """
 
-    value: bytes = rest_field(format="base64")
+    value: bytes = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64")
     """Required."""
 
     @overload
@@ -45,12 +44,11 @@ class Base64BytesProperty(_model_base.Model):
 class Base64urlArrayBytesProperty(_model_base.Model):
     """Base64urlArrayBytesProperty.
 
-
     :ivar value: Required.
     :vartype value: list[bytes]
     """
 
-    value: List[bytes] = rest_field(format="base64url")
+    value: List[bytes] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64url")
     """Required."""
 
     @overload
@@ -74,12 +72,11 @@ class Base64urlArrayBytesProperty(_model_base.Model):
 class Base64urlBytesProperty(_model_base.Model):
     """Base64urlBytesProperty.
 
-
     :ivar value: Required.
     :vartype value: bytes
     """
 
-    value: bytes = rest_field(format="base64url")
+    value: bytes = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64url")
     """Required."""
 
     @overload
@@ -103,12 +100,11 @@ class Base64urlBytesProperty(_model_base.Model):
 class DefaultBytesProperty(_model_base.Model):
     """DefaultBytesProperty.
 
-
     :ivar value: Required.
     :vartype value: bytes
     """
 
-    value: bytes = rest_field(format="base64")
+    value: bytes = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64")
     """Required."""
 
     @overload

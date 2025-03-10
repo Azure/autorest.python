@@ -10,6 +10,7 @@ import datetime
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,6 +23,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_header_custom_request_id_request,
     build_header_param_bool_request,
@@ -53,6 +55,7 @@ from ...operations._operations import (
     build_header_response_protected_key_request,
     build_header_response_string_request,
 )
+from .._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
@@ -74,10 +77,12 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: AutoRestSwaggerBATHeaderServiceConfiguration = (
+            input_args.pop(0) if input_args else kwargs.pop("config")
+        )
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
     async def param_existing_key(self, *, user_agent_parameter: str, **kwargs: Any) -> None:

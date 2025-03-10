@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class SafeintAsStringProperty(_model_base.Model):
     """SafeintAsStringProperty.
 
-
     :ivar value: Required.
     :vartype value: int
     """
 
-    value: int = rest_field(format="str")
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"], format="str")
     """Required."""
 
     @overload
@@ -49,7 +48,7 @@ class Uint32AsStringProperty(_model_base.Model):
     :vartype value: int
     """
 
-    value: Optional[int] = rest_field(format="str")
+    value: Optional[int] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="str")
 
     @overload
     def __init__(
@@ -72,12 +71,11 @@ class Uint32AsStringProperty(_model_base.Model):
 class Uint8AsStringProperty(_model_base.Model):
     """Uint8AsStringProperty.
 
-
     :ivar value: Required.
     :vartype value: int
     """
 
-    value: int = rest_field(format="str")
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"], format="str")
     """Required."""
 
     @overload

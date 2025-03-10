@@ -379,7 +379,7 @@ async def test_redirect_to_302(client):
 
 
 @pytest.mark.asyncio
-async def test_redicret_to_303(client):
+async def test_redirect_to_303(client):
     await assert_status(200, client.http_redirects.post303)
 
 

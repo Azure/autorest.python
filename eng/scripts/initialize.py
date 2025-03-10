@@ -32,7 +32,7 @@ def main(update_to_latest_typespec: bool, build_artifacts_path: Path) -> None:
         # copy package.json and pnpm-lock.yaml from build artifacts
         lock_files_dir = Path(build_artifacts_path) / "lock-files"
         if lock_files_dir.exists():
-            print(f"Copying package.json and pnmp-lock.yaml from {lock_files_dir}")
+            print(f"Copying package.json and pnpm-lock.yaml from {lock_files_dir}")
             copy(lock_files_dir / "package.json", root_dir)
             copy(lock_files_dir / "pnpm-lock.yaml", root_dir)
             copy(

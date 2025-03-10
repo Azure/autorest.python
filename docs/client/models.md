@@ -9,12 +9,12 @@ snippet
 from azure.pets.models import Dog
 ```
 
-Enums are also listed in the `models` namespace, so say you have enum class `DogTypes`. To access the `DALMATION` enum, your code would look like
+Enums are also listed in the `models` namespace, so say you have enum class `DogTypes`. To access the `DALMATIAN` enum, your code would look like
 
 ```
 from azure.pets.models import DogTypes
 
-my_dog_type = DogTypes.DALMATION
+my_dog_type = DogTypes.DALMATIAN
 ```
 
 ## Multi API

@@ -14,8 +14,11 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._serialization import Deserializer, Serializer
+from ..header.aio.operations import HeaderOperations
+from ..property.aio.operations import PropertyOperations
+from ..query.aio.operations import QueryOperations
+from ..responseheader.aio.operations import ResponseHeaderOperations
 from ._configuration import DatetimeClientConfiguration
-from .operations import HeaderOperations, PropertyOperations, QueryOperations, ResponseHeaderOperations
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword

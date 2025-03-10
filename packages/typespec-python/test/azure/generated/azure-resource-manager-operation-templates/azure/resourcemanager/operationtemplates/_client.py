@@ -17,7 +17,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import OperationTemplatesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import LroOperations
+from .operations import CheckNameAvailabilityOperations, LroOperations, Operations
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
@@ -26,6 +26,11 @@ if TYPE_CHECKING:
 class OperationTemplatesClient:
     """Arm Resource Provider management API.
 
+    :ivar operations: Operations operations
+    :vartype operations: azure.resourcemanager.operationtemplates.operations.Operations
+    :ivar check_name_availability: CheckNameAvailabilityOperations operations
+    :vartype check_name_availability:
+     azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations
     :ivar lro: LroOperations operations
     :vartype lro: azure.resourcemanager.operationtemplates.operations.LroOperations
     :param credential: Credential used to authenticate requests to the service. Required.
@@ -76,6 +81,10 @@ class OperationTemplatesClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.check_name_availability = CheckNameAvailabilityOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.lro = LroOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:

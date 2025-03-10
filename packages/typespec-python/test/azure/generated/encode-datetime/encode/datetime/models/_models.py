@@ -17,12 +17,11 @@ from .._model_base import rest_field
 class DefaultDatetimeProperty(_model_base.Model):
     """DefaultDatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc3339")
+    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
     """Required."""
 
     @overload
@@ -46,12 +45,11 @@ class DefaultDatetimeProperty(_model_base.Model):
 class Rfc3339DatetimeProperty(_model_base.Model):
     """Rfc3339DatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc3339")
+    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
     """Required."""
 
     @overload
@@ -75,12 +73,11 @@ class Rfc3339DatetimeProperty(_model_base.Model):
 class Rfc7231DatetimeProperty(_model_base.Model):
     """Rfc7231DatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="rfc7231")
+    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc7231")
     """Required."""
 
     @overload
@@ -104,12 +101,13 @@ class Rfc7231DatetimeProperty(_model_base.Model):
 class UnixTimestampArrayDatetimeProperty(_model_base.Model):
     """UnixTimestampArrayDatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: list[~datetime.datetime]
     """
 
-    value: List[datetime.datetime] = rest_field(format="unix-timestamp")
+    value: List[datetime.datetime] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="unix-timestamp"
+    )
     """Required."""
 
     @overload
@@ -133,12 +131,13 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
 class UnixTimestampDatetimeProperty(_model_base.Model):
     """UnixTimestampDatetimeProperty.
 
-
     :ivar value: Required.
     :vartype value: ~datetime.datetime
     """
 
-    value: datetime.datetime = rest_field(format="unix-timestamp")
+    value: datetime.datetime = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="unix-timestamp"
+    )
     """Required."""
 
     @overload
