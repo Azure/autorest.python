@@ -19,7 +19,7 @@ extends:
                 os: linux
 
             variables:
-                NodeVersion: "14.x"
+                NodeVersion: "20.x"
                 AutorestTestFolder: "$(Build.SourcesDirectory)/packages/autorest.python/test/"
 
             steps:
