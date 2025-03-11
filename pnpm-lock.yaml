@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.7.0
-        version: 0.7.0(okmb572npleddk7eu2wecik6ue)
+        specifier: ~0.7.1
+        version: 0.7.1(okmb572npleddk7eu2wecik6ue)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.7.0
-        version: 0.7.0(phqovtct7xb2vaqtokn2tbhedm)
+        specifier: ~0.7.1
+        version: 0.7.1(phqovtct7xb2vaqtokn2tbhedm)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1613,8 +1613,8 @@ packages:
     engines: {node: '>=18.0.0'}
     hasBin: true
 
-  '@typespec/http-client-python@0.7.0':
-    resolution: {integrity: sha512-iDpFxtmgm1MSSbHpY2C1dqtZLt3poedbLasLUn/ZEAriZDjo+Fg8DugyNFCYSszElFImGP/vqQBfrLRb58xtDg==}
+  '@typespec/http-client-python@0.7.1':
+    resolution: {integrity: sha512-inuY6Fp1oJXZMMc+qlCHqrAiy/DKm1olFDjplBhnaGZKUb3pgkj22CdNbYoPje3U7o1LDq7vxKZi90PAB4ftVw==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.52.0 <1.0.0'
@@ -3194,6 +3194,11 @@ packages:
   make-fetch-happen@14.0.3:
     resolution: {integrity: sha512-QMjGbFTP0blj97EeidG5hk/QhKQ3T4ICckQGLgz38QF7Vgbk6e6FTARN8KhKxyBbWn8R0HU+bnw8aSoFPD4qtQ==}
     engines: {node: ^18.17.0 || >=20.5.0}
+
+  marked@15.0.7:
+    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
+    engines: {node: '>= 18'}
+    hasBin: true
 
   mdurl@1.0.1:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
@@ -6435,7 +6440,7 @@ snapshots:
       - bluebird
       - supports-color
 
-  '@typespec/http-client-python@0.7.0(okmb572npleddk7eu2wecik6ue)':
+  '@typespec/http-client-python@0.7.1(okmb572npleddk7eu2wecik6ue)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.52.0(6uu33tjguzoy44vb3pkhjaszly)
       '@azure-tools/typespec-azure-core': 0.52.0(@typespec/compiler@0.66.0(@types/node@22.10.10))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10)))(@typespec/rest@0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10))))
@@ -6448,6 +6453,7 @@ snapshots:
       '@typespec/rest': 0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10)))
       '@typespec/versioning': 0.66.0(@typespec/compiler@0.66.0(@types/node@22.10.10))
       js-yaml: 4.1.0
+      marked: 15.0.7
       pyodide: 0.26.2
       semver: 7.6.3
       tsx: 4.19.2
@@ -6455,7 +6461,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-client-python@0.7.0(phqovtct7xb2vaqtokn2tbhedm)':
+  '@typespec/http-client-python@0.7.1(phqovtct7xb2vaqtokn2tbhedm)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.52.0(3rl4rvlhrau42sgbqnofgdnzru)
       '@azure-tools/typespec-azure-core': 0.52.0(@typespec/compiler@0.66.0(@types/node@22.5.5))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5)))(@typespec/rest@0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5))))
@@ -6468,6 +6474,7 @@ snapshots:
       '@typespec/rest': 0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5))(@typespec/http@0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5)))
       '@typespec/versioning': 0.66.0(@typespec/compiler@0.66.0(@types/node@22.5.5))
       js-yaml: 4.1.0
+      marked: 15.0.7
       pyodide: 0.26.2
       semver: 7.6.3
       tsx: 4.19.2
@@ -8400,6 +8407,8 @@ snapshots:
       ssri: 12.0.0
     transitivePeerDependencies:
       - supports-color
+
+  marked@15.0.7: {}
 
   mdurl@1.0.1: {}
 

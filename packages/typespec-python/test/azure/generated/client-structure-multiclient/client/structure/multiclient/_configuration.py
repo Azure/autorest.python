@@ -20,7 +20,8 @@ class ClientAClientConfiguration:  # pylint: disable=too-many-instance-attribute
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
@@ -58,7 +59,8 @@ class ClientBClientConfiguration:  # pylint: disable=too-many-instance-attribute
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
