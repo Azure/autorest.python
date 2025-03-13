@@ -265,12 +265,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_query_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models.Pet"]:
         """request_query_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -295,7 +293,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                token=token if _continuation_token is None else _continuation_token,
+                token=_continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -333,12 +331,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_header_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models.Pet"]:
         """request_header_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -363,7 +359,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                token=token if _continuation_token is None else _continuation_token,
+                token=_continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -401,12 +397,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_query_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models.Pet"]:
         """request_query_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -431,7 +425,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                token=token if _continuation_token is None else _continuation_token,
+                token=_continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
@@ -469,12 +463,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_header_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models.Pet"]:
         """request_header_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -499,7 +491,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         def prepare_request(_continuation_token=None):
 
             _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
-                token=token if _continuation_token is None else _continuation_token,
+                token=_continuation_token,
                 foo=foo,
                 bar=bar,
                 headers=_headers,
