@@ -22,7 +22,8 @@ from ._operations import RemovedClientOperationsMixin
 class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@removed`` decorator.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1', 'v2preview' or 'v2' in client. Known values are: "v1",
      "v2preview", and "v2". Required.

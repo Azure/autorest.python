@@ -19,7 +19,8 @@ class VersionedClientConfiguration:
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :keyword api_version: Default value is "2022-12-01-preview". Note that overriding this default
      value may result in unsupported behavior.
