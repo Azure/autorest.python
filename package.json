@@ -33,18 +33,18 @@
   "devDependencies": {
     "@actions/github": "6.0.0",
     "@chronus/chronus": "^0.12.1",
-    "@chronus/github": "^0.4.4",
-    "@eslint/js": "^9.11.1",
+    "@chronus/github": "^0.4.9",
+    "@eslint/js": "^9.22.0",
     "autorest": "~3.7.1",
     "cross-env": "^7.0.3",
-    "eslint": "^9.11.1",
-    "eslint-plugin-import": "^2.30.0",
+    "cspell": "^7.3.9",
+    "eslint": "^9.22.0",
+    "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-unicorn": "^55.0.0",
     "prettier": "~3.3.3",
-    "syncpack": "^13.0.0",
-    "typescript": "~5.6.2",
-    "typescript-eslint": "^8.7.0",
-    "cspell": "^7.0.0"
+    "syncpack": "^13.0.3",
+    "typescript": "~5.6.3",
+    "typescript-eslint": "^8.26.1"
   },
   "syncpack": {
     "dependencyTypes": [
