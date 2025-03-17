@@ -23,7 +23,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models2
+from ... import models as _models
 from ...._model_base import SdkJSONEncoder
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import SpreadClientConfiguration
@@ -172,7 +172,7 @@ class ModelOperations:
 
     @overload
     async def spread_composite_request_only_with_body(
-        self, body: _models2.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
 
@@ -219,7 +219,7 @@ class ModelOperations:
         """
 
     async def spread_composite_request_only_with_body(
-        self, body: Union[_models2.BodyParameter, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
 
@@ -324,7 +324,7 @@ class ModelOperations:
     async def spread_composite_request(
         self,
         name: str,
-        body: _models2.BodyParameter,
+        body: _models.BodyParameter,
         *,
         test_header: str,
         content_type: str = "application/json",
@@ -387,7 +387,7 @@ class ModelOperations:
         """
 
     async def spread_composite_request(
-        self, name: str, body: Union[_models2.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
+        self, name: str, body: Union[_models.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
     ) -> None:
         """spread_composite_request.
 

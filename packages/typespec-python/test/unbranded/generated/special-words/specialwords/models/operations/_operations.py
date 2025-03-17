@@ -24,7 +24,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models1
+from .. import models as _models
 from ..._configuration import SpecialWordsClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -521,7 +521,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def with_and(self, body: _models1.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_and(self, body: _models.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_and.
 
         :param body: Required.
@@ -563,7 +563,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_and(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.AndModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.AndModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_and.
 
@@ -618,7 +618,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_as(self, body: _models1.AsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_as(self, body: _models.AsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_as.
 
         :param body: Required.
@@ -660,7 +660,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_as(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.AsModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.AsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_as.
 
@@ -715,7 +715,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_assert(self, body: _models1.AssertModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_assert(self, body: _models.AssertModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_assert.
 
         :param body: Required.
@@ -757,7 +757,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_assert(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.AssertModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.AssertModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_assert.
 
@@ -812,7 +812,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_async(self, body: _models1.AsyncModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_async(self, body: _models.AsyncModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_async.
 
         :param body: Required.
@@ -854,7 +854,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_async(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.AsyncModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.AsyncModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_async.
 
@@ -909,7 +909,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_await(self, body: _models1.AwaitModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_await(self, body: _models.AwaitModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_await.
 
         :param body: Required.
@@ -951,7 +951,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_await(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.AwaitModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.AwaitModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_await.
 
@@ -1006,7 +1006,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_break(self, body: _models1.BreakModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_break(self, body: _models.BreakModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_break.
 
         :param body: Required.
@@ -1048,7 +1048,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_break(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.BreakModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.BreakModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_break.
 
@@ -1103,7 +1103,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_class(self, body: _models1.ClassModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_class(self, body: _models.ClassModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_class.
 
         :param body: Required.
@@ -1145,7 +1145,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_class(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ClassModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ClassModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_class.
 
@@ -1201,7 +1201,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_constructor(
-        self, body: _models1.Constructor, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.Constructor, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_constructor.
 
@@ -1244,7 +1244,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_constructor(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.Constructor, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.Constructor, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_constructor.
 
@@ -1300,7 +1300,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_continue(
-        self, body: _models1.ContinueModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.ContinueModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_continue.
 
@@ -1343,7 +1343,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_continue(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ContinueModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ContinueModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_continue.
 
@@ -1398,7 +1398,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_def(self, body: _models1.DefModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_def(self, body: _models.DefModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_def.
 
         :param body: Required.
@@ -1440,7 +1440,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_def(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.DefModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DefModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_def.
 
@@ -1495,7 +1495,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_del(self, body: _models1.DelModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_del(self, body: _models.DelModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_del.
 
         :param body: Required.
@@ -1537,7 +1537,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_del(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.DelModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DelModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_del.
 
@@ -1592,7 +1592,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_elif(self, body: _models1.ElifModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_elif(self, body: _models.ElifModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_elif.
 
         :param body: Required.
@@ -1634,7 +1634,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_elif(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ElifModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ElifModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_elif.
 
@@ -1689,7 +1689,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_else(self, body: _models1.ElseModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_else(self, body: _models.ElseModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_else.
 
         :param body: Required.
@@ -1731,7 +1731,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_else(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ElseModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ElseModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_else.
 
@@ -1786,7 +1786,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_except(self, body: _models1.ExceptModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_except(self, body: _models.ExceptModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_except.
 
         :param body: Required.
@@ -1828,7 +1828,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_except(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ExceptModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ExceptModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_except.
 
@@ -1883,7 +1883,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_exec(self, body: _models1.ExecModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_exec(self, body: _models.ExecModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_exec.
 
         :param body: Required.
@@ -1925,7 +1925,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_exec(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ExecModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ExecModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_exec.
 
@@ -1981,7 +1981,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def with_finally(
-        self, body: _models1.FinallyModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.FinallyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_finally.
 
@@ -2024,7 +2024,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_finally(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.FinallyModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.FinallyModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_finally.
 
@@ -2079,7 +2079,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_for(self, body: _models1.ForModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_for(self, body: _models.ForModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_for.
 
         :param body: Required.
@@ -2121,7 +2121,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_for(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ForModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ForModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_for.
 
@@ -2176,7 +2176,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_from(self, body: _models1.FromModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_from(self, body: _models.FromModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_from.
 
         :param body: Required.
@@ -2218,7 +2218,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_from(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.FromModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.FromModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_from.
 
@@ -2273,7 +2273,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_global(self, body: _models1.GlobalModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_global(self, body: _models.GlobalModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_global.
 
         :param body: Required.
@@ -2315,7 +2315,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_global(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.GlobalModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.GlobalModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_global.
 
@@ -2370,7 +2370,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_if(self, body: _models1.IfModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_if(self, body: _models.IfModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_if.
 
         :param body: Required.
@@ -2412,7 +2412,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_if(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.IfModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.IfModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_if.
 
@@ -2467,7 +2467,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_import(self, body: _models1.ImportModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_import(self, body: _models.ImportModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_import.
 
         :param body: Required.
@@ -2509,7 +2509,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_import(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ImportModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ImportModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_import.
 
@@ -2564,7 +2564,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_in(self, body: _models1.InModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_in(self, body: _models.InModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_in.
 
         :param body: Required.
@@ -2606,7 +2606,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_in(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.InModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.InModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_in.
 
@@ -2661,7 +2661,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_is(self, body: _models1.IsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_is(self, body: _models.IsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_is.
 
         :param body: Required.
@@ -2703,7 +2703,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_is(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.IsModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.IsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_is.
 
@@ -2758,7 +2758,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_lambda(self, body: _models1.LambdaModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_lambda(self, body: _models.LambdaModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_lambda.
 
         :param body: Required.
@@ -2800,7 +2800,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_lambda(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.LambdaModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.LambdaModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_lambda.
 
@@ -2855,7 +2855,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_not(self, body: _models1.NotModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_not(self, body: _models.NotModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_not.
 
         :param body: Required.
@@ -2897,7 +2897,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_not(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.NotModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.NotModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_not.
 
@@ -2952,7 +2952,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_or(self, body: _models1.OrModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_or(self, body: _models.OrModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_or.
 
         :param body: Required.
@@ -2994,7 +2994,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_or(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.OrModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.OrModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_or.
 
@@ -3049,7 +3049,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_pass(self, body: _models1.PassModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_pass(self, body: _models.PassModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_pass.
 
         :param body: Required.
@@ -3091,7 +3091,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_pass(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.PassModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.PassModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_pass.
 
@@ -3146,7 +3146,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_raise(self, body: _models1.RaiseModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_raise(self, body: _models.RaiseModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_raise.
 
         :param body: Required.
@@ -3188,7 +3188,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_raise(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.RaiseModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.RaiseModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_raise.
 
@@ -3243,7 +3243,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_return(self, body: _models1.ReturnModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_return(self, body: _models.ReturnModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_return.
 
         :param body: Required.
@@ -3285,7 +3285,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_return(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.ReturnModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.ReturnModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_return.
 
@@ -3340,7 +3340,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_try(self, body: _models1.TryModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_try(self, body: _models.TryModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_try.
 
         :param body: Required.
@@ -3382,7 +3382,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_try(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.TryModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.TryModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_try.
 
@@ -3437,7 +3437,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_while(self, body: _models1.WhileModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_while(self, body: _models.WhileModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_while.
 
         :param body: Required.
@@ -3479,7 +3479,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_while(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.WhileModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.WhileModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_while.
 
@@ -3534,7 +3534,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_with(self, body: _models1.WithModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_with(self, body: _models.WithModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_with.
 
         :param body: Required.
@@ -3576,7 +3576,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_with(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.WithModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.WithModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_with.
 
@@ -3631,7 +3631,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def with_yield(self, body: _models1.YieldModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_yield(self, body: _models.YieldModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_yield.
 
         :param body: Required.
@@ -3673,7 +3673,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """
 
     def with_yield(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.YieldModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.YieldModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """with_yield.
 

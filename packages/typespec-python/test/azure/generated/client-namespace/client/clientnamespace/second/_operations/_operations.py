@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models1
+from .. import models as _models
 from ..._model_base import _deserialize
 from ..._serialization import Serializer
 from .._vendor import ClientNamespaceSecondClientMixinABC
@@ -56,7 +56,7 @@ def build_client_namespace_second_get_second_request(**kwargs: Any) -> HttpReque
 class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixinABC):  # pylint: disable=name-too-long
 
     @distributed_trace
-    def get_second(self, **kwargs: Any) -> _models1.SecondClientResult:
+    def get_second(self, **kwargs: Any) -> _models.SecondClientResult:
         """get_second.
 
         :return: SecondClientResult. The SecondClientResult is compatible with MutableMapping
@@ -74,7 +74,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models1.SecondClientResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SecondClientResult] = kwargs.pop("cls", None)
 
         _request = build_client_namespace_second_get_second_request(
             headers=_headers,
@@ -104,7 +104,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.SecondClientResult, response.json())
+            deserialized = _deserialize(_models.SecondClientResult, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

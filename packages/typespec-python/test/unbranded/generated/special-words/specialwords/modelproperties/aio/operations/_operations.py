@@ -23,7 +23,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models2
+from ... import models as _models
 from ...._model_base import SdkJSONEncoder
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import SpecialWordsClientConfiguration
@@ -57,7 +57,7 @@ class ModelPropertiesOperations:
 
     @overload
     async def same_as_model(
-        self, body: _models2.SameAsModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.SameAsModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """same_as_model.
 
@@ -99,7 +99,7 @@ class ModelPropertiesOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def same_as_model(self, body: Union[_models2.SameAsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def same_as_model(self, body: Union[_models.SameAsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """same_as_model.
 
         :param body: Is one of the following types: SameAsModel, JSON, IO[bytes] Required.

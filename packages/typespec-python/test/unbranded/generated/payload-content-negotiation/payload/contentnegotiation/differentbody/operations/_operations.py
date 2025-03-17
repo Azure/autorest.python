@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models1
+from .. import models as _models
 from ..._configuration import ContentNegotiationClientConfiguration
 from ..._model_base import _deserialize
 from ..._serialization import Deserializer, Serializer
@@ -137,7 +137,7 @@ class DifferentBodyOperations:
 
         return deserialized  # type: ignore
 
-    def get_avatar_as_json(self, **kwargs: Any) -> _models1.PngImageAsJson:
+    def get_avatar_as_json(self, **kwargs: Any) -> _models.PngImageAsJson:
         """get_avatar_as_json.
 
         :return: PngImageAsJson. The PngImageAsJson is compatible with MutableMapping
@@ -156,7 +156,7 @@ class DifferentBodyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
-        cls: ClsType[_models1.PngImageAsJson] = kwargs.pop("cls", None)
+        cls: ClsType[_models.PngImageAsJson] = kwargs.pop("cls", None)
 
         _request = build_different_body_get_avatar_as_json_request(
             accept=accept,
@@ -188,7 +188,7 @@ class DifferentBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models1.PngImageAsJson, response.json())
+            deserialized = _deserialize(_models.PngImageAsJson, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

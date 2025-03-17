@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .... import models as _models3
+from .... import models as _models
 from ...._configuration import PageableClientConfiguration
 from ...._model_base import _deserialize
 from ...._serialization import Deserializer, Serializer
@@ -158,7 +158,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_body(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> Iterable["_models.Pet"]:
         """request_query_response_body.
 
         :keyword token: Default value is None.
@@ -174,7 +174,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -214,7 +214,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)
@@ -236,7 +236,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_body(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> Iterable["_models.Pet"]:
         """request_header_response_body.
 
         :keyword token: Default value is None.
@@ -252,7 +252,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -292,7 +292,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)
@@ -314,7 +314,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_header(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> Iterable["_models.Pet"]:
         """request_query_response_header.
 
         :keyword token: Default value is None.
@@ -330,7 +330,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -370,7 +370,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)
@@ -392,7 +392,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_header(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> Iterable["_models.Pet"]:
         """request_header_response_header.
 
         :keyword token: Default value is None.
@@ -408,7 +408,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -448,7 +448,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)

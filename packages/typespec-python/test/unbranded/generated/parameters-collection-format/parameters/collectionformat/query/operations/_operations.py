@@ -54,7 +54,7 @@ def build_query_ssv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
     _url = "/parameters/collection-format/query/ssv"
 
     # Construct parameters
-    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div=" ")
+    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -66,7 +66,7 @@ def build_query_tsv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
     _url = "/parameters/collection-format/query/tsv"
 
     # Construct parameters
-    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div="	")
+    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
@@ -78,7 +78,7 @@ def build_query_pipes_request(*, colors: List[str], **kwargs: Any) -> HttpReques
     _url = "/parameters/collection-format/query/pipes"
 
     # Construct parameters
-    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div="|")
+    _params["colors"] = _SERIALIZER.query("colors", colors, "[str]", div=",")
 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 

@@ -16,7 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ContentNegotiationClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import DifferentBodyOperations, SameBodyOperations
+from .differentbody.operations import DifferentBodyOperations
+from .samebody.operations import SameBodyOperations
 
 
 class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword

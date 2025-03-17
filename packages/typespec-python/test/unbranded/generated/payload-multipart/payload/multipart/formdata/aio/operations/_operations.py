@@ -20,7 +20,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from .... import _model_base, models as _models3
+from .... import _model_base, models as _models
 from ...._serialization import Deserializer, Serializer
 from ...._vendor import FileType, prepare_multipart_form_data
 from ....aio._configuration import MultiPartClientConfiguration
@@ -65,7 +65,7 @@ class FormDataOperations:
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
-    async def basic(self, body: _models3.MultiPartRequest, **kwargs: Any) -> None:
+    async def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -86,7 +86,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def basic(self, body: Union[_models3.MultiPartRequest, JSON], **kwargs: Any) -> None:
+    async def basic(self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Is either a MultiPartRequest type or a JSON type. Required.
@@ -137,7 +137,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def file_array_and_basic(self, body: _models3.ComplexPartsRequest, **kwargs: Any) -> None:
+    async def file_array_and_basic(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -158,7 +158,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def file_array_and_basic(self, body: Union[_models3.ComplexPartsRequest, JSON], **kwargs: Any) -> None:
+    async def file_array_and_basic(self, body: Union[_models.ComplexPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Is either a ComplexPartsRequest type or a JSON type. Required.
@@ -209,7 +209,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def json_part(self, body: _models3.JsonPartRequest, **kwargs: Any) -> None:
+    async def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -230,7 +230,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def json_part(self, body: Union[_models3.JsonPartRequest, JSON], **kwargs: Any) -> None:
+    async def json_part(self, body: Union[_models.JsonPartRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Is either a JsonPartRequest type or a JSON type. Required.
@@ -281,7 +281,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def binary_array_parts(self, body: _models3.BinaryArrayPartsRequest, **kwargs: Any) -> None:
+    async def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -302,7 +302,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def binary_array_parts(self, body: Union[_models3.BinaryArrayPartsRequest, JSON], **kwargs: Any) -> None:
+    async def binary_array_parts(self, body: Union[_models.BinaryArrayPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Is either a BinaryArrayPartsRequest type or a JSON type. Required.
@@ -353,7 +353,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def multi_binary_parts(self, body: _models3.MultiBinaryPartsRequest, **kwargs: Any) -> None:
+    async def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -374,7 +374,7 @@ class FormDataOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def multi_binary_parts(self, body: Union[_models3.MultiBinaryPartsRequest, JSON], **kwargs: Any) -> None:
+    async def multi_binary_parts(self, body: Union[_models.MultiBinaryPartsRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Is either a MultiBinaryPartsRequest type or a JSON type. Required.
@@ -425,7 +425,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def check_file_name_and_content_type(self, body: _models3.MultiPartRequest, **kwargs: Any) -> None:
+    async def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -447,7 +447,7 @@ class FormDataOperations:
         """
 
     async def check_file_name_and_content_type(
-        self, body: Union[_models3.MultiPartRequest, JSON], **kwargs: Any
+        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 

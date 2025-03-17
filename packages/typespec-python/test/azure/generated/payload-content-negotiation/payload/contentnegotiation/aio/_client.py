@@ -15,8 +15,9 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..differentbody.aio.operations import DifferentBodyOperations
+from ..samebody.aio.operations import SameBodyOperations
 from ._configuration import ContentNegotiationClientConfiguration
-from .operations import DifferentBodyOperations, SameBodyOperations
 
 
 class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword

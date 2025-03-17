@@ -20,7 +20,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ... import models as _models2
+from ... import models as _models
 from ...... import _model_base
 from ......_serialization import Deserializer, Serializer
 from ......_vendor import prepare_multipart_form_data
@@ -54,7 +54,7 @@ class FormDataHttpPartsNonStringOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def float(self, body: _models2.FloatRequest, **kwargs: Any) -> None:
+    async def float(self, body: _models.FloatRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -75,7 +75,7 @@ class FormDataHttpPartsNonStringOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def float(self, body: Union[_models2.FloatRequest, JSON], **kwargs: Any) -> None:
+    async def float(self, body: Union[_models.FloatRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Is either a FloatRequest type or a JSON type. Required.

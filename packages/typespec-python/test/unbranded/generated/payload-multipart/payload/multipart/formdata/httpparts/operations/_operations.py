@@ -21,7 +21,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .... import _model_base, models as _models3
+from .... import _model_base, models as _models
 from ...._configuration import MultiPartClientConfiguration
 from ...._serialization import Deserializer, Serializer
 from ...._vendor import prepare_multipart_form_data
@@ -76,7 +76,7 @@ class FormDataHttpPartsOperations:
         )
 
     @overload
-    def json_array_and_file_array(self, body: _models3.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
+    def json_array_and_file_array(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -98,7 +98,7 @@ class FormDataHttpPartsOperations:
         """
 
     def json_array_and_file_array(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models3.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
+        self, body: Union[_models.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 

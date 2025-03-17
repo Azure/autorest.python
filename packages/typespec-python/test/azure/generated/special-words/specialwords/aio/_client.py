@@ -15,8 +15,10 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..modelproperties.aio.operations import ModelPropertiesOperations
+from ..models.aio.operations import ModelsOperations
 from ._configuration import SpecialWordsClientConfiguration
-from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
+from .operations import Operations, ParametersOperations
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword

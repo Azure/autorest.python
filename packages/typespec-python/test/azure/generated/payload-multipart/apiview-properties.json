@@ -8,7 +8,7 @@
         "payload.multipart.models.FileWithHttpPartOptionalContentTypeRequest": "Payload.MultiPart.FileWithHttpPartOptionalContentTypeRequest",
         "payload.multipart.models.FileWithHttpPartRequiredContentTypeRequest": "Payload.MultiPart.FileWithHttpPartRequiredContentTypeRequest",
         "payload.multipart.models.FileWithHttpPartSpecificContentTypeRequest": "Payload.MultiPart.FileWithHttpPartSpecificContentTypeRequest",
-        "payload.multipart.models.FloatRequest": "Payload.MultiPart.FormData.HttpParts.NonString.float.Request.anonymous",
+        "payload.multipart.formdata.httpparts.nonstring.models.FloatRequest": "Payload.MultiPart.FormData.HttpParts.NonString.float.Request.anonymous",
         "payload.multipart.models.JsonPartRequest": "Payload.MultiPart.JsonPartRequest",
         "payload.multipart.models.MultiBinaryPartsRequest": "Payload.MultiPart.MultiBinaryPartsRequest",
         "payload.multipart.models.MultiPartRequest": "Payload.MultiPart.MultiPartRequest",

@@ -13,10 +13,11 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "resiliency-srv-driven1"
+PACKAGE_NAMESPACE = "resiliency.srv.driven1"
 PACKAGE_PPRINT_NAME = "ResiliencySrvDriven1"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
@@ -24,8 +25,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,

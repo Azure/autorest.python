@@ -22,7 +22,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models1
+from .. import models as _models
 from .._model_base import SdkJSONEncoder
 from .._serialization import Serializer
 from .._vendor import BodyOptionalityClientMixinABC
@@ -72,7 +72,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     def required_explicit(
-        self, body: _models1.BodyModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_explicit.
 
@@ -115,7 +115,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     def required_explicit(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.BodyModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.BodyModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """required_explicit.
 

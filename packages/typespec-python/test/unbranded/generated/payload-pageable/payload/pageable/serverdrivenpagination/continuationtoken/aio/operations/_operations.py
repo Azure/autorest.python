@@ -21,7 +21,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ..... import models as _models4
+from ..... import models as _models
 from ....._model_base import _deserialize
 from ....._serialization import Deserializer, Serializer
 from .....aio._configuration import PageableClientConfiguration
@@ -59,7 +59,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_body(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncIterable["_models.Pet"]:
         """request_query_response_body.
 
         :keyword token: Default value is None.
@@ -75,7 +75,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -115,7 +115,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
@@ -137,7 +137,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_body(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncIterable["_models.Pet"]:
         """request_header_response_body.
 
         :keyword token: Default value is None.
@@ -153,7 +153,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -193,7 +193,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
@@ -215,7 +215,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_header(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncIterable["_models.Pet"]:
         """request_query_response_header.
 
         :keyword token: Default value is None.
@@ -231,7 +231,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -271,7 +271,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
@@ -293,7 +293,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_header(
         self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncIterable["_models.Pet"]:
         """request_header_response_header.
 
         :keyword token: Default value is None.
@@ -309,7 +309,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -349,7 +349,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models4.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)

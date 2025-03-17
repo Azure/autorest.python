@@ -16,12 +16,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AccessClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import (
-    InternalOperationOperations,
-    PublicOperationOperations,
-    RelativeModelInOperationOperations,
-    SharedModelInOperationOperations,
-)
+from .internaloperation.operations import InternalOperationOperations
+from .publicoperation.operations import PublicOperationOperations
+from .relativemodelinoperation.operations import RelativeModelInOperationOperations
+from .sharedmodelinoperation.operations import SharedModelInOperationOperations
 
 
 class AccessClient:  # pylint: disable=client-accepts-api-version-keyword

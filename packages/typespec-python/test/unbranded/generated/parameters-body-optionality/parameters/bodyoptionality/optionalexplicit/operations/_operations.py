@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models2
+from ... import models as _models
 from ..._configuration import BodyOptionalityClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -87,7 +87,7 @@ class OptionalExplicitOperations:
 
     @overload
     def set(
-        self, body: Optional[_models2.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """set.
 
@@ -130,7 +130,7 @@ class OptionalExplicitOperations:
         """
 
     def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models2.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """set.
 
@@ -189,7 +189,7 @@ class OptionalExplicitOperations:
 
     @overload
     def omit(
-        self, body: Optional[_models2.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """omit.
 
@@ -232,7 +232,7 @@ class OptionalExplicitOperations:
         """
 
     def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models2.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
+        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """omit.
 

@@ -23,7 +23,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import models as _models2
+from ... import models as _models
 from ...._model_base import _deserialize
 from ..._operations._operations import build_client_namespace_second_get_second_request
 from .._vendor import ClientNamespaceSecondClientMixinABC
@@ -39,7 +39,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixinABC):  # pylint: disable=name-too-long
 
     @distributed_trace_async
-    async def get_second(self, **kwargs: Any) -> _models2.SecondClientResult:
+    async def get_second(self, **kwargs: Any) -> _models.SecondClientResult:
         """get_second.
 
         :return: SecondClientResult. The SecondClientResult is compatible with MutableMapping
@@ -57,7 +57,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models2.SecondClientResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SecondClientResult] = kwargs.pop("cls", None)
 
         _request = build_client_namespace_second_get_second_request(
             headers=_headers,
@@ -87,7 +87,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models2.SecondClientResult, response.json())
+            deserialized = _deserialize(_models.SecondClientResult, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

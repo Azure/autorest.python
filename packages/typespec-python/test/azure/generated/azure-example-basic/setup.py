@@ -12,11 +12,12 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-example-basic"
-PACKAGE_PPRINT_NAME = "Specs Azure Example Basic"
+PACKAGE_NAME = "azureexamplebasicclient"
+PACKAGE_NAMESPACE = "azureexamplebasicclient"
+PACKAGE_PPRINT_NAME = "Azureexamplebasicclient"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
@@ -24,8 +25,6 @@ with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:
 
 if not version:
     raise RuntimeError("Cannot find version information")
-
-
 setup(
     name=PACKAGE_NAME,
     version=version,
@@ -53,15 +52,11 @@ setup(
     packages=find_packages(
         exclude=[
             "tests",
-            # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.example",
         ]
     ),
     include_package_data=True,
     package_data={
-        "specs.azure.example.basic": ["py.typed"],
+        "azureexamplebasicclient": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

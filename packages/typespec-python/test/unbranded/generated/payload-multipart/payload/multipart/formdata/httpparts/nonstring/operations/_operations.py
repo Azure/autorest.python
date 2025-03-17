@@ -21,7 +21,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models1
+from .. import models as _models
 from ..... import _model_base
 from ....._configuration import MultiPartClientConfiguration
 from ....._serialization import Deserializer, Serializer
@@ -66,7 +66,7 @@ class FormDataHttpPartsNonStringOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def float(self, body: _models1.FloatRequest, **kwargs: Any) -> None:
+    def float(self, body: _models.FloatRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -88,7 +88,7 @@ class FormDataHttpPartsNonStringOperations:
         """
 
     def float(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models1.FloatRequest, JSON], **kwargs: Any
+        self, body: Union[_models.FloatRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for non string.
 

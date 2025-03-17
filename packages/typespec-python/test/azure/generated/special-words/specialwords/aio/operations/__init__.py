@@ -12,8 +12,6 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ModelsOperations  # type: ignore
-from ._operations import ModelPropertiesOperations  # type: ignore
 from ._operations import Operations  # type: ignore
 from ._operations import ParametersOperations  # type: ignore
 
@@ -22,8 +20,6 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ModelsOperations",
-    "ModelPropertiesOperations",
     "Operations",
     "ParametersOperations",
 ]

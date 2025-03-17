@@ -25,7 +25,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .... import models as _models3
+from .... import models as _models
 from ...._model_base import SdkJSONEncoder, _deserialize
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
@@ -65,8 +65,8 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: _models3.DefaultDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.DefaultDatetimeProperty:
+        self, body: _models.DefaultDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Required.
@@ -82,7 +82,7 @@ class PropertyOperations:
     @overload
     async def default(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.DefaultDatetimeProperty:
+    ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Required.
@@ -98,7 +98,7 @@ class PropertyOperations:
     @overload
     async def default(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.DefaultDatetimeProperty:
+    ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Required.
@@ -112,8 +112,8 @@ class PropertyOperations:
         """
 
     async def default(
-        self, body: Union[_models3.DefaultDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models3.DefaultDatetimeProperty:
+        self, body: Union[_models.DefaultDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.DefaultDatetimeProperty:
         """default.
 
         :param body: Is one of the following types: DefaultDatetimeProperty, JSON, IO[bytes] Required.
@@ -134,7 +134,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models3.DefaultDatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.DefaultDatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -171,7 +171,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.DefaultDatetimeProperty, response.json())
+            deserialized = _deserialize(_models.DefaultDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -180,8 +180,8 @@ class PropertyOperations:
 
     @overload
     async def rfc3339(
-        self, body: _models3.Rfc3339DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc3339DatetimeProperty:
+        self, body: _models.Rfc3339DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Required.
@@ -197,7 +197,7 @@ class PropertyOperations:
     @overload
     async def rfc3339(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc3339DatetimeProperty:
+    ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Required.
@@ -213,7 +213,7 @@ class PropertyOperations:
     @overload
     async def rfc3339(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc3339DatetimeProperty:
+    ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Required.
@@ -227,8 +227,8 @@ class PropertyOperations:
         """
 
     async def rfc3339(
-        self, body: Union[_models3.Rfc3339DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models3.Rfc3339DatetimeProperty:
+        self, body: Union[_models.Rfc3339DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Rfc3339DatetimeProperty:
         """rfc3339.
 
         :param body: Is one of the following types: Rfc3339DatetimeProperty, JSON, IO[bytes] Required.
@@ -249,7 +249,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models3.Rfc3339DatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Rfc3339DatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -286,7 +286,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.Rfc3339DatetimeProperty, response.json())
+            deserialized = _deserialize(_models.Rfc3339DatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -295,8 +295,8 @@ class PropertyOperations:
 
     @overload
     async def rfc7231(
-        self, body: _models3.Rfc7231DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc7231DatetimeProperty:
+        self, body: _models.Rfc7231DatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Required.
@@ -312,7 +312,7 @@ class PropertyOperations:
     @overload
     async def rfc7231(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc7231DatetimeProperty:
+    ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Required.
@@ -328,7 +328,7 @@ class PropertyOperations:
     @overload
     async def rfc7231(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.Rfc7231DatetimeProperty:
+    ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Required.
@@ -342,8 +342,8 @@ class PropertyOperations:
         """
 
     async def rfc7231(
-        self, body: Union[_models3.Rfc7231DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models3.Rfc7231DatetimeProperty:
+        self, body: Union[_models.Rfc7231DatetimeProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Rfc7231DatetimeProperty:
         """rfc7231.
 
         :param body: Is one of the following types: Rfc7231DatetimeProperty, JSON, IO[bytes] Required.
@@ -364,7 +364,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models3.Rfc7231DatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.Rfc7231DatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -401,7 +401,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.Rfc7231DatetimeProperty, response.json())
+            deserialized = _deserialize(_models.Rfc7231DatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -410,8 +410,8 @@ class PropertyOperations:
 
     @overload
     async def unix_timestamp(
-        self, body: _models3.UnixTimestampDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.UnixTimestampDatetimeProperty:
+        self, body: _models.UnixTimestampDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Required.
@@ -428,7 +428,7 @@ class PropertyOperations:
     @overload
     async def unix_timestamp(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.UnixTimestampDatetimeProperty:
+    ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Required.
@@ -445,7 +445,7 @@ class PropertyOperations:
     @overload
     async def unix_timestamp(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.UnixTimestampDatetimeProperty:
+    ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Required.
@@ -460,8 +460,8 @@ class PropertyOperations:
         """
 
     async def unix_timestamp(
-        self, body: Union[_models3.UnixTimestampDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models3.UnixTimestampDatetimeProperty:
+        self, body: Union[_models.UnixTimestampDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.UnixTimestampDatetimeProperty:
         """unix_timestamp.
 
         :param body: Is one of the following types: UnixTimestampDatetimeProperty, JSON, IO[bytes]
@@ -484,7 +484,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models3.UnixTimestampDatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.UnixTimestampDatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -521,7 +521,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.UnixTimestampDatetimeProperty, response.json())
+            deserialized = _deserialize(_models.UnixTimestampDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -530,12 +530,8 @@ class PropertyOperations:
 
     @overload
     async def unix_timestamp_array(
-        self,
-        body: _models3.UnixTimestampArrayDatetimeProperty,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _models3.UnixTimestampArrayDatetimeProperty:
+        self, body: _models.UnixTimestampArrayDatetimeProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Required.
@@ -552,7 +548,7 @@ class PropertyOperations:
     @overload
     async def unix_timestamp_array(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.UnixTimestampArrayDatetimeProperty:
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Required.
@@ -569,7 +565,7 @@ class PropertyOperations:
     @overload
     async def unix_timestamp_array(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models3.UnixTimestampArrayDatetimeProperty:
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Required.
@@ -584,8 +580,8 @@ class PropertyOperations:
         """
 
     async def unix_timestamp_array(
-        self, body: Union[_models3.UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models3.UnixTimestampArrayDatetimeProperty:
+        self, body: Union[_models.UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.UnixTimestampArrayDatetimeProperty:
         """unix_timestamp_array.
 
         :param body: Is one of the following types: UnixTimestampArrayDatetimeProperty, JSON, IO[bytes]
@@ -608,7 +604,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models3.UnixTimestampArrayDatetimeProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models.UnixTimestampArrayDatetimeProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -645,7 +641,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models3.UnixTimestampArrayDatetimeProperty, response.json())
+            deserialized = _deserialize(_models.UnixTimestampArrayDatetimeProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
