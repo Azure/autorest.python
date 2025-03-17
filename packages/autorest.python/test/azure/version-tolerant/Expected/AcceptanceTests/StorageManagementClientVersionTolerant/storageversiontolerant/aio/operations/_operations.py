@@ -1260,7 +1260,7 @@ class StorageAccountsOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["value"]
+            list_of_elem = deserialized.get("value", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
@@ -1388,7 +1388,7 @@ class StorageAccountsOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["value"]
+            list_of_elem = deserialized.get("value", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)

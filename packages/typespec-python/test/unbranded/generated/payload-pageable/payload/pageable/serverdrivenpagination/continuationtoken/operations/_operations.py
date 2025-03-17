@@ -157,12 +157,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def request_query_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models3.Pet"]:
         """request_query_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -184,43 +182,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, iter(list_of_elem)
+            return deserialized.get("nextToken") or None, iter(list_of_elem)
 
-        def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -235,12 +220,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         return ItemPaged(get_next, extract_data)
 
     def request_header_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models3.Pet"]:
         """request_header_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -262,43 +245,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, iter(list_of_elem)
+            return deserialized.get("nextToken") or None, iter(list_of_elem)
 
-        def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -313,12 +283,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         return ItemPaged(get_next, extract_data)
 
     def request_query_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models3.Pet"]:
         """request_query_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -340,43 +308,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, iter(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
 
-        def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
@@ -391,12 +346,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         return ItemPaged(get_next, extract_data)
 
     def request_header_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
     ) -> Iterable["_models3.Pet"]:
         """request_header_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -418,43 +371,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, iter(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
 
-        def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
