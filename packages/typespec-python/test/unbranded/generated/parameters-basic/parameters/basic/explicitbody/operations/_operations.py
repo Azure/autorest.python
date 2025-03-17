@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import models as _models1
 from ..._configuration import BasicClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -72,7 +72,7 @@ class ExplicitBodyOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    def simple(self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def simple(self, body: _models1.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -114,7 +114,7 @@ class ExplicitBodyOperations:
         """
 
     def simple(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models1.User, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """simple.
 

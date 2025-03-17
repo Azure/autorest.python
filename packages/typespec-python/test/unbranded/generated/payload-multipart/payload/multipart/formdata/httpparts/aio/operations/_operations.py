@@ -20,7 +20,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ..... import _model_base, models as _models
+from ..... import _model_base, models as _models4
 from ....._serialization import Deserializer, Serializer
 from ....._vendor import prepare_multipart_form_data
 from .....aio._configuration import MultiPartClientConfiguration
@@ -62,7 +62,7 @@ class FormDataHttpPartsOperations:
         )
 
     @overload
-    async def json_array_and_file_array(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
+    async def json_array_and_file_array(self, body: _models4.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -84,7 +84,7 @@ class FormDataHttpPartsOperations:
         """
 
     async def json_array_and_file_array(
-        self, body: Union[_models.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
+        self, body: Union[_models4.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 

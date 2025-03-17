@@ -23,7 +23,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ...._model_base import SdkJSONEncoder
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import BasicClientConfiguration
@@ -56,7 +56,7 @@ class ExplicitBodyOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def simple(self, body: _models.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def simple(self, body: _models2.User, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """simple.
 
         :param body: Required.
@@ -97,7 +97,7 @@ class ExplicitBodyOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def simple(self, body: Union[_models.User, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def simple(self, body: Union[_models2.User, JSON, IO[bytes]], **kwargs: Any) -> None:
         """simple.
 
         :param body: Is one of the following types: User, JSON, IO[bytes] Required.

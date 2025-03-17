@@ -25,7 +25,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ...._model_base import SdkJSONEncoder, _deserialize
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import JsonClientConfiguration
@@ -59,7 +59,7 @@ class PropertyOperations:
 
     @overload
     async def send(
-        self, body: _models.JsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.JsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """send.
 
@@ -101,7 +101,7 @@ class PropertyOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def send(self, body: Union[_models.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def send(self, body: Union[_models2.JsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """send.
 
         :param body: Is one of the following types: JsonEncodedNameModel, JSON, IO[bytes] Required.
@@ -154,7 +154,7 @@ class PropertyOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def get(self, **kwargs: Any) -> _models.JsonEncodedNameModel:
+    async def get(self, **kwargs: Any) -> _models2.JsonEncodedNameModel:
         """get.
 
         :return: JsonEncodedNameModel. The JsonEncodedNameModel is compatible with MutableMapping
@@ -172,7 +172,7 @@ class PropertyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.JsonEncodedNameModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models2.JsonEncodedNameModel] = kwargs.pop("cls", None)
 
         _request = build_property_get_request(
             headers=_headers,
@@ -200,7 +200,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.JsonEncodedNameModel, response.json())
+            deserialized = _deserialize(_models2.JsonEncodedNameModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

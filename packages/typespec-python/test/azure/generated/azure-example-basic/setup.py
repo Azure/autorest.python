@@ -12,9 +12,9 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "azureexamplebasicclient"
-PACKAGE_NAMESPACE = "azureexamplebasicclient"
-PACKAGE_PPRINT_NAME = "Azureexamplebasicclient"
+PACKAGE_NAME = "specs-azure-example-basic"
+PACKAGE_NAMESPACE = "specs.azure.example.basic"
+PACKAGE_PPRINT_NAME = "Specs Azure Example Basic"
 
 # a.b.c => a/b/c
 package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
@@ -52,11 +52,15 @@ setup(
     packages=find_packages(
         exclude=[
             "tests",
+            # Exclude packages that will be covered by PEP420 or nspkg
+            "specs",
+            "specs.azure",
+            "specs.azure.example",
         ]
     ),
     include_package_data=True,
     package_data={
-        "azureexamplebasicclient": ["py.typed"],
+        "specs.azure.example.basic": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import models as _models1
 from ..._configuration import SpecialWordsClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -73,7 +73,7 @@ class ModelPropertiesOperations:
 
     @overload
     def same_as_model(
-        self, body: _models.SameAsModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models1.SameAsModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """same_as_model.
 
@@ -116,7 +116,7 @@ class ModelPropertiesOperations:
         """
 
     def same_as_model(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.SameAsModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models1.SameAsModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """same_as_model.
 

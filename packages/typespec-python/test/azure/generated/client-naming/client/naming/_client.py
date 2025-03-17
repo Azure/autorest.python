@@ -15,10 +15,8 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NamingClientConfiguration
-from ._operations import NamingClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .model.operations import ClientModelOperations
-from .unionenum.operations import UnionEnumOperations
+from .operations import ClientModelOperations, NamingClientOperationsMixin, UnionEnumOperations
 
 
 class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

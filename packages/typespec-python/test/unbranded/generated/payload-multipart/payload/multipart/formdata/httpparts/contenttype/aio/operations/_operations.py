@@ -20,7 +20,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ...... import _model_base, models as _models
+from ...... import _model_base, models as _models5
 from ......_serialization import Deserializer, Serializer
 from ......_vendor import prepare_multipart_form_data
 from ......aio._configuration import MultiPartClientConfiguration
@@ -58,7 +58,7 @@ class FormDataHttpPartsContentTypeOperations:
 
     @overload
     async def image_jpeg_content_type(
-        self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
+        self, body: _models5.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -81,7 +81,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     async def image_jpeg_content_type(
-        self, body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
+        self, body: Union[_models5.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -135,7 +135,7 @@ class FormDataHttpPartsContentTypeOperations:
 
     @overload
     async def required_content_type(
-        self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
+        self, body: _models5.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -158,7 +158,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     async def required_content_type(
-        self, body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
+        self, body: Union[_models5.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -212,7 +212,7 @@ class FormDataHttpPartsContentTypeOperations:
 
     @overload
     async def optional_content_type(
-        self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
+        self, body: _models5.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
@@ -235,7 +235,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     async def optional_content_type(
-        self, body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
+        self, body: Union[_models5.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
 

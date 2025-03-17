@@ -23,7 +23,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import models as _models1
 from ..._configuration import SpreadClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -257,7 +257,7 @@ class ModelOperations:
 
     @overload
     def spread_composite_request_only_with_body(
-        self, body: _models.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models1.BodyParameter, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
 
@@ -304,7 +304,7 @@ class ModelOperations:
         """
 
     def spread_composite_request_only_with_body(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BodyParameter, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models1.BodyParameter, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """spread_composite_request_only_with_body.
 
@@ -411,7 +411,7 @@ class ModelOperations:
     def spread_composite_request(
         self,
         name: str,
-        body: _models.BodyParameter,
+        body: _models1.BodyParameter,
         *,
         test_header: str,
         content_type: str = "application/json",
@@ -474,7 +474,7 @@ class ModelOperations:
         """
 
     def spread_composite_request(  # pylint: disable=inconsistent-return-statements
-        self, name: str, body: Union[_models.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
+        self, name: str, body: Union[_models1.BodyParameter, JSON, IO[bytes]], *, test_header: str, **kwargs: Any
     ) -> None:
         """spread_composite_request.
 

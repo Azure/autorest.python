@@ -24,7 +24,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ...._model_base import SdkJSONEncoder
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import SpecialWordsClientConfiguration
@@ -91,7 +91,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def with_and(self, body: _models.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_and(self, body: _models2.AndModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_and.
 
         :param body: Required.
@@ -132,7 +132,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_and(self, body: Union[_models.AndModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_and(self, body: Union[_models2.AndModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_and.
 
         :param body: Is one of the following types: AndModel, JSON, IO[bytes] Required.
@@ -186,7 +186,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_as(self, body: _models.AsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_as(self, body: _models2.AsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_as.
 
         :param body: Required.
@@ -227,7 +227,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_as(self, body: Union[_models.AsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_as(self, body: Union[_models2.AsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_as.
 
         :param body: Is one of the following types: AsModel, JSON, IO[bytes] Required.
@@ -282,7 +282,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_assert(
-        self, body: _models.AssertModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.AssertModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_assert.
 
@@ -324,7 +324,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_assert(self, body: Union[_models.AssertModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_assert(self, body: Union[_models2.AssertModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_assert.
 
         :param body: Is one of the following types: AssertModel, JSON, IO[bytes] Required.
@@ -379,7 +379,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_async(
-        self, body: _models.AsyncModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.AsyncModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_async.
 
@@ -421,7 +421,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_async(self, body: Union[_models.AsyncModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_async(self, body: Union[_models2.AsyncModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_async.
 
         :param body: Is one of the following types: AsyncModel, JSON, IO[bytes] Required.
@@ -476,7 +476,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_await(
-        self, body: _models.AwaitModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.AwaitModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_await.
 
@@ -518,7 +518,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_await(self, body: Union[_models.AwaitModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_await(self, body: Union[_models2.AwaitModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_await.
 
         :param body: Is one of the following types: AwaitModel, JSON, IO[bytes] Required.
@@ -573,7 +573,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_break(
-        self, body: _models.BreakModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.BreakModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_break.
 
@@ -615,7 +615,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_break(self, body: Union[_models.BreakModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_break(self, body: Union[_models2.BreakModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_break.
 
         :param body: Is one of the following types: BreakModel, JSON, IO[bytes] Required.
@@ -670,7 +670,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_class(
-        self, body: _models.ClassModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ClassModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_class.
 
@@ -712,7 +712,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_class(self, body: Union[_models.ClassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_class(self, body: Union[_models2.ClassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_class.
 
         :param body: Is one of the following types: ClassModel, JSON, IO[bytes] Required.
@@ -767,7 +767,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_constructor(
-        self, body: _models.Constructor, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.Constructor, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_constructor.
 
@@ -809,7 +809,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_constructor(self, body: Union[_models.Constructor, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_constructor(self, body: Union[_models2.Constructor, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_constructor.
 
         :param body: Is one of the following types: Constructor, JSON, IO[bytes] Required.
@@ -864,7 +864,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_continue(
-        self, body: _models.ContinueModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ContinueModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_continue.
 
@@ -906,7 +906,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_continue(self, body: Union[_models.ContinueModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_continue(self, body: Union[_models2.ContinueModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_continue.
 
         :param body: Is one of the following types: ContinueModel, JSON, IO[bytes] Required.
@@ -960,7 +960,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_def(self, body: _models.DefModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_def(self, body: _models2.DefModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_def.
 
         :param body: Required.
@@ -1001,7 +1001,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_def(self, body: Union[_models.DefModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_def(self, body: Union[_models2.DefModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_def.
 
         :param body: Is one of the following types: DefModel, JSON, IO[bytes] Required.
@@ -1055,7 +1055,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_del(self, body: _models.DelModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_del(self, body: _models2.DelModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_del.
 
         :param body: Required.
@@ -1096,7 +1096,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_del(self, body: Union[_models.DelModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_del(self, body: Union[_models2.DelModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_del.
 
         :param body: Is one of the following types: DelModel, JSON, IO[bytes] Required.
@@ -1151,7 +1151,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_elif(
-        self, body: _models.ElifModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ElifModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_elif.
 
@@ -1193,7 +1193,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_elif(self, body: Union[_models.ElifModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_elif(self, body: Union[_models2.ElifModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_elif.
 
         :param body: Is one of the following types: ElifModel, JSON, IO[bytes] Required.
@@ -1248,7 +1248,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_else(
-        self, body: _models.ElseModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ElseModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_else.
 
@@ -1290,7 +1290,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_else(self, body: Union[_models.ElseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_else(self, body: Union[_models2.ElseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_else.
 
         :param body: Is one of the following types: ElseModel, JSON, IO[bytes] Required.
@@ -1345,7 +1345,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_except(
-        self, body: _models.ExceptModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ExceptModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_except.
 
@@ -1387,7 +1387,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_except(self, body: Union[_models.ExceptModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_except(self, body: Union[_models2.ExceptModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_except.
 
         :param body: Is one of the following types: ExceptModel, JSON, IO[bytes] Required.
@@ -1442,7 +1442,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_exec(
-        self, body: _models.ExecModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ExecModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_exec.
 
@@ -1484,7 +1484,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_exec(self, body: Union[_models.ExecModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_exec(self, body: Union[_models2.ExecModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_exec.
 
         :param body: Is one of the following types: ExecModel, JSON, IO[bytes] Required.
@@ -1539,7 +1539,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_finally(
-        self, body: _models.FinallyModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.FinallyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_finally.
 
@@ -1581,7 +1581,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_finally(self, body: Union[_models.FinallyModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_finally(self, body: Union[_models2.FinallyModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_finally.
 
         :param body: Is one of the following types: FinallyModel, JSON, IO[bytes] Required.
@@ -1635,7 +1635,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_for(self, body: _models.ForModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_for(self, body: _models2.ForModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_for.
 
         :param body: Required.
@@ -1676,7 +1676,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_for(self, body: Union[_models.ForModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_for(self, body: Union[_models2.ForModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_for.
 
         :param body: Is one of the following types: ForModel, JSON, IO[bytes] Required.
@@ -1731,7 +1731,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_from(
-        self, body: _models.FromModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.FromModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_from.
 
@@ -1773,7 +1773,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_from(self, body: Union[_models.FromModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_from(self, body: Union[_models2.FromModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_from.
 
         :param body: Is one of the following types: FromModel, JSON, IO[bytes] Required.
@@ -1828,7 +1828,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_global(
-        self, body: _models.GlobalModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.GlobalModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_global.
 
@@ -1870,7 +1870,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_global(self, body: Union[_models.GlobalModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_global(self, body: Union[_models2.GlobalModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_global.
 
         :param body: Is one of the following types: GlobalModel, JSON, IO[bytes] Required.
@@ -1924,7 +1924,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_if(self, body: _models.IfModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_if(self, body: _models2.IfModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_if.
 
         :param body: Required.
@@ -1965,7 +1965,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_if(self, body: Union[_models.IfModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_if(self, body: Union[_models2.IfModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_if.
 
         :param body: Is one of the following types: IfModel, JSON, IO[bytes] Required.
@@ -2020,7 +2020,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_import(
-        self, body: _models.ImportModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ImportModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_import.
 
@@ -2062,7 +2062,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_import(self, body: Union[_models.ImportModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_import(self, body: Union[_models2.ImportModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_import.
 
         :param body: Is one of the following types: ImportModel, JSON, IO[bytes] Required.
@@ -2116,7 +2116,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_in(self, body: _models.InModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_in(self, body: _models2.InModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_in.
 
         :param body: Required.
@@ -2157,7 +2157,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_in(self, body: Union[_models.InModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_in(self, body: Union[_models2.InModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_in.
 
         :param body: Is one of the following types: InModel, JSON, IO[bytes] Required.
@@ -2211,7 +2211,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_is(self, body: _models.IsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_is(self, body: _models2.IsModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_is.
 
         :param body: Required.
@@ -2252,7 +2252,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_is(self, body: Union[_models.IsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_is(self, body: Union[_models2.IsModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_is.
 
         :param body: Is one of the following types: IsModel, JSON, IO[bytes] Required.
@@ -2307,7 +2307,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_lambda(
-        self, body: _models.LambdaModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.LambdaModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_lambda.
 
@@ -2349,7 +2349,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_lambda(self, body: Union[_models.LambdaModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_lambda(self, body: Union[_models2.LambdaModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_lambda.
 
         :param body: Is one of the following types: LambdaModel, JSON, IO[bytes] Required.
@@ -2403,7 +2403,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_not(self, body: _models.NotModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_not(self, body: _models2.NotModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_not.
 
         :param body: Required.
@@ -2444,7 +2444,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_not(self, body: Union[_models.NotModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_not(self, body: Union[_models2.NotModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_not.
 
         :param body: Is one of the following types: NotModel, JSON, IO[bytes] Required.
@@ -2498,7 +2498,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_or(self, body: _models.OrModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_or(self, body: _models2.OrModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_or.
 
         :param body: Required.
@@ -2539,7 +2539,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_or(self, body: Union[_models.OrModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_or(self, body: Union[_models2.OrModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_or.
 
         :param body: Is one of the following types: OrModel, JSON, IO[bytes] Required.
@@ -2594,7 +2594,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_pass(
-        self, body: _models.PassModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.PassModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_pass.
 
@@ -2636,7 +2636,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_pass(self, body: Union[_models.PassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_pass(self, body: Union[_models2.PassModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_pass.
 
         :param body: Is one of the following types: PassModel, JSON, IO[bytes] Required.
@@ -2691,7 +2691,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_raise(
-        self, body: _models.RaiseModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.RaiseModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_raise.
 
@@ -2733,7 +2733,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_raise(self, body: Union[_models.RaiseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_raise(self, body: Union[_models2.RaiseModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_raise.
 
         :param body: Is one of the following types: RaiseModel, JSON, IO[bytes] Required.
@@ -2788,7 +2788,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_return(
-        self, body: _models.ReturnModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.ReturnModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_return.
 
@@ -2830,7 +2830,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_return(self, body: Union[_models.ReturnModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_return(self, body: Union[_models2.ReturnModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_return.
 
         :param body: Is one of the following types: ReturnModel, JSON, IO[bytes] Required.
@@ -2884,7 +2884,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_try(self, body: _models.TryModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def with_try(self, body: _models2.TryModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_try.
 
         :param body: Required.
@@ -2925,7 +2925,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_try(self, body: Union[_models.TryModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_try(self, body: Union[_models2.TryModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_try.
 
         :param body: Is one of the following types: TryModel, JSON, IO[bytes] Required.
@@ -2980,7 +2980,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_while(
-        self, body: _models.WhileModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.WhileModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_while.
 
@@ -3022,7 +3022,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_while(self, body: Union[_models.WhileModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_while(self, body: Union[_models2.WhileModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_while.
 
         :param body: Is one of the following types: WhileModel, JSON, IO[bytes] Required.
@@ -3077,7 +3077,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_with(
-        self, body: _models.WithModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.WithModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_with.
 
@@ -3119,7 +3119,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_with(self, body: Union[_models.WithModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_with(self, body: Union[_models2.WithModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_with.
 
         :param body: Is one of the following types: WithModel, JSON, IO[bytes] Required.
@@ -3174,7 +3174,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def with_yield(
-        self, body: _models.YieldModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.YieldModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_yield.
 
@@ -3216,7 +3216,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def with_yield(self, body: Union[_models.YieldModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def with_yield(self, body: Union[_models2.YieldModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """with_yield.
 
         :param body: Is one of the following types: YieldModel, JSON, IO[bytes] Required.

@@ -26,7 +26,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .... import models as _models
+from .... import models as _models3
 from ...._model_base import SdkJSONEncoder, _deserialize
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
@@ -65,8 +65,8 @@ class PropertyOperations:
 
     @overload
     async def default(
-        self, body: _models.DefaultBytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultBytesProperty:
+        self, body: _models3.DefaultBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models3.DefaultBytesProperty:
         """default.
 
         :param body: Required.
@@ -82,7 +82,7 @@ class PropertyOperations:
     @overload
     async def default(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultBytesProperty:
+    ) -> _models3.DefaultBytesProperty:
         """default.
 
         :param body: Required.
@@ -98,7 +98,7 @@ class PropertyOperations:
     @overload
     async def default(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultBytesProperty:
+    ) -> _models3.DefaultBytesProperty:
         """default.
 
         :param body: Required.
@@ -113,8 +113,8 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def default(
-        self, body: Union[_models.DefaultBytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.DefaultBytesProperty:
+        self, body: Union[_models3.DefaultBytesProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models3.DefaultBytesProperty:
         """default.
 
         :param body: Is one of the following types: DefaultBytesProperty, JSON, IO[bytes] Required.
@@ -135,7 +135,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DefaultBytesProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models3.DefaultBytesProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -174,7 +174,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DefaultBytesProperty, response.json())
+            deserialized = _deserialize(_models3.DefaultBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -183,8 +183,8 @@ class PropertyOperations:
 
     @overload
     async def base64(
-        self, body: _models.Base64BytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64BytesProperty:
+        self, body: _models3.Base64BytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models3.Base64BytesProperty:
         """base64.
 
         :param body: Required.
@@ -200,7 +200,7 @@ class PropertyOperations:
     @overload
     async def base64(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64BytesProperty:
+    ) -> _models3.Base64BytesProperty:
         """base64.
 
         :param body: Required.
@@ -216,7 +216,7 @@ class PropertyOperations:
     @overload
     async def base64(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64BytesProperty:
+    ) -> _models3.Base64BytesProperty:
         """base64.
 
         :param body: Required.
@@ -231,8 +231,8 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64(
-        self, body: Union[_models.Base64BytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Base64BytesProperty:
+        self, body: Union[_models3.Base64BytesProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models3.Base64BytesProperty:
         """base64.
 
         :param body: Is one of the following types: Base64BytesProperty, JSON, IO[bytes] Required.
@@ -253,7 +253,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Base64BytesProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models3.Base64BytesProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -292,7 +292,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64BytesProperty, response.json())
+            deserialized = _deserialize(_models3.Base64BytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -301,8 +301,8 @@ class PropertyOperations:
 
     @overload
     async def base64_url(
-        self, body: _models.Base64urlBytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlBytesProperty:
+        self, body: _models3.Base64urlBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models3.Base64urlBytesProperty:
         """base64_url.
 
         :param body: Required.
@@ -318,7 +318,7 @@ class PropertyOperations:
     @overload
     async def base64_url(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlBytesProperty:
+    ) -> _models3.Base64urlBytesProperty:
         """base64_url.
 
         :param body: Required.
@@ -334,7 +334,7 @@ class PropertyOperations:
     @overload
     async def base64_url(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlBytesProperty:
+    ) -> _models3.Base64urlBytesProperty:
         """base64_url.
 
         :param body: Required.
@@ -349,8 +349,8 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64_url(
-        self, body: Union[_models.Base64urlBytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Base64urlBytesProperty:
+        self, body: Union[_models3.Base64urlBytesProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models3.Base64urlBytesProperty:
         """base64_url.
 
         :param body: Is one of the following types: Base64urlBytesProperty, JSON, IO[bytes] Required.
@@ -371,7 +371,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Base64urlBytesProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models3.Base64urlBytesProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -410,7 +410,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64urlBytesProperty, response.json())
+            deserialized = _deserialize(_models3.Base64urlBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -419,8 +419,8 @@ class PropertyOperations:
 
     @overload
     async def base64_url_array(
-        self, body: _models.Base64urlArrayBytesProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlArrayBytesProperty:
+        self, body: _models3.Base64urlArrayBytesProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models3.Base64urlArrayBytesProperty:
         """base64_url_array.
 
         :param body: Required.
@@ -437,7 +437,7 @@ class PropertyOperations:
     @overload
     async def base64_url_array(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlArrayBytesProperty:
+    ) -> _models3.Base64urlArrayBytesProperty:
         """base64_url_array.
 
         :param body: Required.
@@ -454,7 +454,7 @@ class PropertyOperations:
     @overload
     async def base64_url_array(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Base64urlArrayBytesProperty:
+    ) -> _models3.Base64urlArrayBytesProperty:
         """base64_url_array.
 
         :param body: Required.
@@ -470,8 +470,8 @@ class PropertyOperations:
 
     @distributed_trace_async
     async def base64_url_array(
-        self, body: Union[_models.Base64urlArrayBytesProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Base64urlArrayBytesProperty:
+        self, body: Union[_models3.Base64urlArrayBytesProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models3.Base64urlArrayBytesProperty:
         """base64_url_array.
 
         :param body: Is one of the following types: Base64urlArrayBytesProperty, JSON, IO[bytes]
@@ -494,7 +494,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Base64urlArrayBytesProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models3.Base64urlArrayBytesProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -533,7 +533,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Base64urlArrayBytesProperty, response.json())
+            deserialized = _deserialize(_models3.Base64urlArrayBytesProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

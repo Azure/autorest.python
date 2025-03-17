@@ -22,7 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from ..... import models as _models
+from ..... import models as _models4
 from ....._model_base import _deserialize
 from ....._serialization import Deserializer, Serializer
 from .....aio._configuration import PageableClientConfiguration
@@ -60,12 +60,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_query_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models.Pet"]:
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+    ) -> AsyncIterable["_models4.Pet"]:
         """request_query_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -77,7 +75,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -87,43 +85,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -141,12 +126,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_header_response_body(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models.Pet"]:
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+    ) -> AsyncIterable["_models4.Pet"]:
         """request_header_response_body.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -158,7 +141,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -168,43 +151,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -222,12 +192,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_query_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models.Pet"]:
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+    ) -> AsyncIterable["_models4.Pet"]:
         """request_query_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -239,7 +207,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -249,43 +217,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
@@ -303,12 +258,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     @distributed_trace
     def request_header_response_header(
-        self, *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models.Pet"]:
+        self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
+    ) -> AsyncIterable["_models4.Pet"]:
         """request_header_response_header.
 
-        :keyword token: Default value is None.
-        :paramtype token: str
         :keyword foo: Default value is None.
         :paramtype foo: str
         :keyword bar: Default value is None.
@@ -320,7 +273,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models4.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -330,43 +283,30 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         }
         error_map.update(kwargs.pop("error_map", {}) or {})
 
-        def prepare_request(next_link=None):
-            if not next_link:
+        def prepare_request(_continuation_token=None):
 
-                _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
-                    token=token,
-                    foo=foo,
-                    bar=bar,
-                    headers=_headers,
-                    params=_params,
-                )
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
-            else:
-                _request = HttpRequest("GET", next_link)
-                path_format_arguments = {
-                    "endpoint": self._serialize.url(
-                        "self._config.endpoint", self._config.endpoint, "str", skip_quote=True
-                    ),
-                }
-                _request.url = self._client.format_url(_request.url, **path_format_arguments)
-
+            _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
+                token=_continuation_token,
+                foo=foo,
+                bar=bar,
+                headers=_headers,
+                params=_params,
+            )
+            path_format_arguments = {
+                "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            }
+            _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models4.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return None, AsyncList(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        async def get_next(next_link=None):
-            _request = prepare_request(next_link)
+        async def get_next(_continuation_token=None):
+            _request = prepare_request(_continuation_token)
 
             _stream = False
             pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access

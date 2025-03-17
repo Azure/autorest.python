@@ -9,8 +9,8 @@
 
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from ......azureexamplebasicclient import _model_base
-from ......azureexamplebasicclient._model_base import rest_field
+from .. import _model_base
+from .._model_base import rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -22,7 +22,7 @@ class ActionRequest(_model_base.Model):
     :ivar string_property: Required.
     :vartype string_property: str
     :ivar model_property:
-    :vartype model_property: ~azureexamplebasicclient.models.Model
+    :vartype model_property: ~specs.azure.example.basic.models.Model
     :ivar array_property:
     :vartype array_property: list[str]
     :ivar record_property:
@@ -68,7 +68,7 @@ class ActionResponse(_model_base.Model):
     :ivar string_property: Required.
     :vartype string_property: str
     :ivar model_property:
-    :vartype model_property: ~azureexamplebasicclient.models.Model
+    :vartype model_property: ~specs.azure.example.basic.models.Model
     :ivar array_property:
     :vartype array_property: list[str]
     :ivar record_property:
@@ -116,7 +116,7 @@ class Model(_model_base.Model):
     :ivar float32_property:
     :vartype float32_property: float
     :ivar enum_property: "EnumValue1"
-    :vartype enum_property: str or ~azureexamplebasicclient.models.EnumEnum
+    :vartype enum_property: str or ~specs.azure.example.basic.models.EnumEnum
     """
 
     int32_property: Optional[int] = rest_field(

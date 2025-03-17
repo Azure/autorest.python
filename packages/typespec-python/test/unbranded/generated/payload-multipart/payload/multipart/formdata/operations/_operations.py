@@ -21,7 +21,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import _model_base, models as _models
+from ... import _model_base, models as _models2
 from ..._configuration import MultiPartClientConfiguration
 from ..._serialization import Deserializer, Serializer
 from ..._vendor import FileType, prepare_multipart_form_data
@@ -125,7 +125,7 @@ class FormDataOperations:
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
-    def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
+    def basic(self, body: _models2.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -147,7 +147,7 @@ class FormDataOperations:
         """
 
     def basic(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -199,7 +199,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_array_and_basic(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
+    def file_array_and_basic(self, body: _models2.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -221,7 +221,7 @@ class FormDataOperations:
         """
 
     def file_array_and_basic(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.ComplexPartsRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.ComplexPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
@@ -273,7 +273,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
+    def json_part(self, body: _models2.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -295,7 +295,7 @@ class FormDataOperations:
         """
 
     def json_part(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.JsonPartRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.JsonPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
@@ -347,7 +347,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
+    def binary_array_parts(self, body: _models2.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -369,7 +369,7 @@ class FormDataOperations:
         """
 
     def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.BinaryArrayPartsRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.BinaryArrayPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
@@ -421,7 +421,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
+    def multi_binary_parts(self, body: _models2.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -443,7 +443,7 @@ class FormDataOperations:
         """
 
     def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultiBinaryPartsRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.MultiBinaryPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
@@ -495,7 +495,7 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
+    def check_file_name_and_content_type(self, body: _models2.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -517,7 +517,7 @@ class FormDataOperations:
         """
 
     def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
+        self, body: Union[_models2.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 

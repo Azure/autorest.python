@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._model_base import _deserialize
 from ..._operations._operations import build_client_namespace_first_get_first_request
-from ...first import models as _models
+from ...first import models as _first_models3
 from .._vendor import ClientNamespaceFirstClientMixinABC
 
 if sys.version_info >= (3, 9):
@@ -39,7 +39,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinABC):  # pylint: disable=name-too-long
 
     @distributed_trace_async
-    async def get_first(self, **kwargs: Any) -> _models.FirstClientResult:
+    async def get_first(self, **kwargs: Any) -> _first_models3.FirstClientResult:
         """get_first.
 
         :return: FirstClientResult. The FirstClientResult is compatible with MutableMapping
@@ -57,7 +57,7 @@ class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinA
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.FirstClientResult] = kwargs.pop("cls", None)
+        cls: ClsType[_first_models3.FirstClientResult] = kwargs.pop("cls", None)
 
         _request = build_client_namespace_first_get_first_request(
             headers=_headers,
@@ -87,7 +87,7 @@ class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinA
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FirstClientResult, response.json())
+            deserialized = _deserialize(_first_models3.FirstClientResult, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

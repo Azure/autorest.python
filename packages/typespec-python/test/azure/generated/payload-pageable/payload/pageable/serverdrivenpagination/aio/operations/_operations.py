@@ -22,7 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from .... import models as _models
+from .... import models as _models3
 from ...._model_base import _deserialize
 from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
@@ -59,7 +59,7 @@ class ServerDrivenPaginationOperations:
         )
 
     @distributed_trace
-    def link(self, **kwargs: Any) -> AsyncIterable["_models.Pet"]:
+    def link(self, **kwargs: Any) -> AsyncIterable["_models3.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet
@@ -69,7 +69,7 @@ class ServerDrivenPaginationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -106,7 +106,7 @@ class ServerDrivenPaginationOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, AsyncList(list_of_elem)

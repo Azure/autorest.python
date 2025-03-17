@@ -25,7 +25,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import models as _models1
 from ..._configuration import DurationClientConfiguration
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._serialization import Deserializer, Serializer
@@ -163,8 +163,8 @@ class PropertyOperations:
 
     @overload
     def default(
-        self, body: _models.DefaultDurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultDurationProperty:
+        self, body: _models1.DefaultDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.DefaultDurationProperty:
         """default.
 
         :param body: Required.
@@ -180,7 +180,7 @@ class PropertyOperations:
     @overload
     def default(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultDurationProperty:
+    ) -> _models1.DefaultDurationProperty:
         """default.
 
         :param body: Required.
@@ -196,7 +196,7 @@ class PropertyOperations:
     @overload
     def default(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.DefaultDurationProperty:
+    ) -> _models1.DefaultDurationProperty:
         """default.
 
         :param body: Required.
@@ -210,8 +210,8 @@ class PropertyOperations:
         """
 
     def default(
-        self, body: Union[_models.DefaultDurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.DefaultDurationProperty:
+        self, body: Union[_models1.DefaultDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.DefaultDurationProperty:
         """default.
 
         :param body: Is one of the following types: DefaultDurationProperty, JSON, IO[bytes] Required.
@@ -232,7 +232,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.DefaultDurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.DefaultDurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -269,7 +269,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.DefaultDurationProperty, response.json())
+            deserialized = _deserialize(_models1.DefaultDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -278,8 +278,8 @@ class PropertyOperations:
 
     @overload
     def iso8601(
-        self, body: _models.ISO8601DurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+        self, body: _models1.ISO8601DurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.ISO8601DurationProperty:
         """iso8601.
 
         :param body: Required.
@@ -295,7 +295,7 @@ class PropertyOperations:
     @overload
     def iso8601(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+    ) -> _models1.ISO8601DurationProperty:
         """iso8601.
 
         :param body: Required.
@@ -311,7 +311,7 @@ class PropertyOperations:
     @overload
     def iso8601(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+    ) -> _models1.ISO8601DurationProperty:
         """iso8601.
 
         :param body: Required.
@@ -325,8 +325,8 @@ class PropertyOperations:
         """
 
     def iso8601(
-        self, body: Union[_models.ISO8601DurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.ISO8601DurationProperty:
+        self, body: Union[_models1.ISO8601DurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.ISO8601DurationProperty:
         """iso8601.
 
         :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO[bytes] Required.
@@ -347,7 +347,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.ISO8601DurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.ISO8601DurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -384,7 +384,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.ISO8601DurationProperty, response.json())
+            deserialized = _deserialize(_models1.ISO8601DurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -393,8 +393,8 @@ class PropertyOperations:
 
     @overload
     def int32_seconds(
-        self, body: _models.Int32SecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Int32SecondsDurationProperty:
+        self, body: _models1.Int32SecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.Int32SecondsDurationProperty:
         """int32_seconds.
 
         :param body: Required.
@@ -411,7 +411,7 @@ class PropertyOperations:
     @overload
     def int32_seconds(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Int32SecondsDurationProperty:
+    ) -> _models1.Int32SecondsDurationProperty:
         """int32_seconds.
 
         :param body: Required.
@@ -428,7 +428,7 @@ class PropertyOperations:
     @overload
     def int32_seconds(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Int32SecondsDurationProperty:
+    ) -> _models1.Int32SecondsDurationProperty:
         """int32_seconds.
 
         :param body: Required.
@@ -443,8 +443,8 @@ class PropertyOperations:
         """
 
     def int32_seconds(
-        self, body: Union[_models.Int32SecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Int32SecondsDurationProperty:
+        self, body: Union[_models1.Int32SecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.Int32SecondsDurationProperty:
         """int32_seconds.
 
         :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO[bytes]
@@ -467,7 +467,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Int32SecondsDurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.Int32SecondsDurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -504,7 +504,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Int32SecondsDurationProperty, response.json())
+            deserialized = _deserialize(_models1.Int32SecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -513,8 +513,8 @@ class PropertyOperations:
 
     @overload
     def float_seconds(
-        self, body: _models.FloatSecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationProperty:
+        self, body: _models1.FloatSecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.FloatSecondsDurationProperty:
         """float_seconds.
 
         :param body: Required.
@@ -531,7 +531,7 @@ class PropertyOperations:
     @overload
     def float_seconds(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationProperty:
+    ) -> _models1.FloatSecondsDurationProperty:
         """float_seconds.
 
         :param body: Required.
@@ -548,7 +548,7 @@ class PropertyOperations:
     @overload
     def float_seconds(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationProperty:
+    ) -> _models1.FloatSecondsDurationProperty:
         """float_seconds.
 
         :param body: Required.
@@ -563,8 +563,8 @@ class PropertyOperations:
         """
 
     def float_seconds(
-        self, body: Union[_models.FloatSecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.FloatSecondsDurationProperty:
+        self, body: Union[_models1.FloatSecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.FloatSecondsDurationProperty:
         """float_seconds.
 
         :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO[bytes]
@@ -587,7 +587,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.FloatSecondsDurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.FloatSecondsDurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -624,7 +624,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FloatSecondsDurationProperty, response.json())
+            deserialized = _deserialize(_models1.FloatSecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -633,8 +633,8 @@ class PropertyOperations:
 
     @overload
     def float64_seconds(
-        self, body: _models.Float64SecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Float64SecondsDurationProperty:
+        self, body: _models1.Float64SecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.Float64SecondsDurationProperty:
         """float64_seconds.
 
         :param body: Required.
@@ -651,7 +651,7 @@ class PropertyOperations:
     @overload
     def float64_seconds(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Float64SecondsDurationProperty:
+    ) -> _models1.Float64SecondsDurationProperty:
         """float64_seconds.
 
         :param body: Required.
@@ -668,7 +668,7 @@ class PropertyOperations:
     @overload
     def float64_seconds(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Float64SecondsDurationProperty:
+    ) -> _models1.Float64SecondsDurationProperty:
         """float64_seconds.
 
         :param body: Required.
@@ -683,8 +683,8 @@ class PropertyOperations:
         """
 
     def float64_seconds(
-        self, body: Union[_models.Float64SecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Float64SecondsDurationProperty:
+        self, body: Union[_models1.Float64SecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.Float64SecondsDurationProperty:
         """float64_seconds.
 
         :param body: Is one of the following types: Float64SecondsDurationProperty, JSON, IO[bytes]
@@ -707,7 +707,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Float64SecondsDurationProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.Float64SecondsDurationProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -744,7 +744,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Float64SecondsDurationProperty, response.json())
+            deserialized = _deserialize(_models1.Float64SecondsDurationProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -753,8 +753,8 @@ class PropertyOperations:
 
     @overload
     def float_seconds_array(
-        self, body: _models.FloatSecondsDurationArrayProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationArrayProperty:
+        self, body: _models1.FloatSecondsDurationArrayProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
         :param body: Required.
@@ -771,7 +771,7 @@ class PropertyOperations:
     @overload
     def float_seconds_array(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationArrayProperty:
+    ) -> _models1.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
         :param body: Required.
@@ -788,7 +788,7 @@ class PropertyOperations:
     @overload
     def float_seconds_array(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.FloatSecondsDurationArrayProperty:
+    ) -> _models1.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
         :param body: Required.
@@ -803,8 +803,8 @@ class PropertyOperations:
         """
 
     def float_seconds_array(
-        self, body: Union[_models.FloatSecondsDurationArrayProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.FloatSecondsDurationArrayProperty:
+        self, body: Union[_models1.FloatSecondsDurationArrayProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.FloatSecondsDurationArrayProperty:
         """float_seconds_array.
 
         :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO[bytes]
@@ -827,7 +827,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.FloatSecondsDurationArrayProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.FloatSecondsDurationArrayProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -864,7 +864,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.FloatSecondsDurationArrayProperty, response.json())
+            deserialized = _deserialize(_models1.FloatSecondsDurationArrayProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

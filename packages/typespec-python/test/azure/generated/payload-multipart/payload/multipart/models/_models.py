@@ -271,6 +271,34 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
+class FloatRequest(_model_base.Model):
+    """FloatRequest.
+
+    :ivar temperature: Required.
+    :vartype temperature: float
+    """
+
+    temperature: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        temperature: float,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class JsonPartRequest(_model_base.Model):
     """JsonPartRequest.
 

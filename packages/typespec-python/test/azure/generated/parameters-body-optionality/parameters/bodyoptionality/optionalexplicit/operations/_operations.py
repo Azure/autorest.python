@@ -24,7 +24,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ..._configuration import BodyOptionalityClientConfiguration
 from ..._model_base import SdkJSONEncoder
 from ..._serialization import Deserializer, Serializer
@@ -88,7 +88,7 @@ class OptionalExplicitOperations:
 
     @overload
     def set(
-        self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[_models2.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """set.
 
@@ -132,7 +132,7 @@ class OptionalExplicitOperations:
 
     @distributed_trace
     def set(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
+        self, body: Optional[Union[_models2.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """set.
 
@@ -193,7 +193,7 @@ class OptionalExplicitOperations:
 
     @overload
     def omit(
-        self, body: Optional[_models.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body: Optional[_models2.BodyModel] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """omit.
 
@@ -237,7 +237,7 @@ class OptionalExplicitOperations:
 
     @distributed_trace
     def omit(  # pylint: disable=inconsistent-return-statements
-        self, body: Optional[Union[_models.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
+        self, body: Optional[Union[_models2.BodyModel, JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """omit.
 

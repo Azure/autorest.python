@@ -19,6 +19,64 @@ interface TspCommand {
     command: string;
 }
 
+const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
+    "azure/example/basic": {
+        namespace: "specs.azure.example.basic",
+    },
+    "azure/client-generator-core/access": {
+        namespace: "specs.azure.clientgenerator.core.access",
+    },
+    "azure/client-generator-core/usage": {
+        namespace: "specs.azure.clientgenerator.core.usage",
+    },
+    "azure/core/lro/rpc": {
+        "package-name": "azurecore-lro-rpc",
+        "namespace": "azurecore.lro.rpc",
+    },
+    "client/structure/default": {
+        namespace: "client.structure.service",
+    },
+    "client/structure/multi-client": {
+        "package-name": "client-structure-multiclient",
+        "namespace": "client.structure.multiclient",
+    },
+    "client/structure/renamed-operation": {
+        "package-name": "client-structure-renamedoperation",
+        "namespace": "client.structure.renamedoperation",
+    },
+    "client/structure/two-operation-group": {
+        "package-name": "client-structure-twooperationgroup",
+        "namespace": "client.structure.twooperationgroup",
+    },
+    "client/naming": {
+        namespace: "client.naming",
+    },
+    "encode/duration": {
+        namespace: "encode.duration",
+    },
+    "encode/numeric": {
+        namespace: "encode.numeric",
+    },
+    "parameters/basic": {
+        namespace: "parameters.basic",
+    },
+    "parameters/spread": {
+        namespace: "parameters.spread",
+    },
+    "payload/content-negotiation": {
+        namespace: "payload.contentnegotiation",
+    },
+    "payload/multipart": {
+        namespace: "payload.multipart",
+    },
+    "serialization/encoded-name/json": {
+        namespace: "serialization.encodedname.json",
+    },
+    "special-words": {
+        namespace: "specialwords",
+    },
+};
+
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
@@ -153,7 +211,7 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
     const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
     const relativeSpec = toPosix(relative(specDir, spec));
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
-    const emitter_options = EMITTER_OPTIONS[key] || [{}];
+    const emitter_options = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
     const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
 
     function updateOptions(options: Record<string, string>): void {

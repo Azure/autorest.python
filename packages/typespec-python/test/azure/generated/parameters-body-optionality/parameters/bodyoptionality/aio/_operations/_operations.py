@@ -24,7 +24,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ..._model_base import SdkJSONEncoder
 from ..._operations._operations import (
     build_body_optionality_required_explicit_request,
@@ -46,7 +46,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
 
     @overload
     async def required_explicit(
-        self, body: _models.BodyModel, *, content_type: str = "application/json", **kwargs: Any
+        self, body: _models2.BodyModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """required_explicit.
 
@@ -91,7 +91,7 @@ class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
         """
 
     @distributed_trace_async
-    async def required_explicit(self, body: Union[_models.BodyModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def required_explicit(self, body: Union[_models2.BodyModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """required_explicit.
 
         :param body: Is one of the following types: BodyModel, JSON, IO[bytes] Required.

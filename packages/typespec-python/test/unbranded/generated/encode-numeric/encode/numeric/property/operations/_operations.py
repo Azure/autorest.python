@@ -25,7 +25,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .. import models as _models
+from .. import models as _models1
 from ..._configuration import NumericClientConfiguration
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._serialization import Deserializer, Serializer
@@ -112,8 +112,8 @@ class PropertyOperations:
 
     @overload
     def safeint_as_string(
-        self, value: _models.SafeintAsStringProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.SafeintAsStringProperty:
+        self, value: _models1.SafeintAsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.SafeintAsStringProperty:
         """safeint_as_string.
 
         :param value: Required.
@@ -129,7 +129,7 @@ class PropertyOperations:
     @overload
     def safeint_as_string(
         self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.SafeintAsStringProperty:
+    ) -> _models1.SafeintAsStringProperty:
         """safeint_as_string.
 
         :param value: Required.
@@ -145,7 +145,7 @@ class PropertyOperations:
     @overload
     def safeint_as_string(
         self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.SafeintAsStringProperty:
+    ) -> _models1.SafeintAsStringProperty:
         """safeint_as_string.
 
         :param value: Required.
@@ -159,8 +159,8 @@ class PropertyOperations:
         """
 
     def safeint_as_string(
-        self, value: Union[_models.SafeintAsStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.SafeintAsStringProperty:
+        self, value: Union[_models1.SafeintAsStringProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.SafeintAsStringProperty:
         """safeint_as_string.
 
         :param value: Is one of the following types: SafeintAsStringProperty, JSON, IO[bytes] Required.
@@ -181,7 +181,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.SafeintAsStringProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.SafeintAsStringProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -218,7 +218,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SafeintAsStringProperty, response.json())
+            deserialized = _deserialize(_models1.SafeintAsStringProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -227,8 +227,8 @@ class PropertyOperations:
 
     @overload
     def uint32_as_string_optional(
-        self, value: _models.Uint32AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint32AsStringProperty:
+        self, value: _models1.Uint32AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
         :param value: Required.
@@ -244,7 +244,7 @@ class PropertyOperations:
     @overload
     def uint32_as_string_optional(
         self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint32AsStringProperty:
+    ) -> _models1.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
         :param value: Required.
@@ -260,7 +260,7 @@ class PropertyOperations:
     @overload
     def uint32_as_string_optional(
         self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint32AsStringProperty:
+    ) -> _models1.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
         :param value: Required.
@@ -274,8 +274,8 @@ class PropertyOperations:
         """
 
     def uint32_as_string_optional(
-        self, value: Union[_models.Uint32AsStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Uint32AsStringProperty:
+        self, value: Union[_models1.Uint32AsStringProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.Uint32AsStringProperty:
         """uint32_as_string_optional.
 
         :param value: Is one of the following types: Uint32AsStringProperty, JSON, IO[bytes] Required.
@@ -296,7 +296,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Uint32AsStringProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.Uint32AsStringProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -333,7 +333,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Uint32AsStringProperty, response.json())
+            deserialized = _deserialize(_models1.Uint32AsStringProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -342,8 +342,8 @@ class PropertyOperations:
 
     @overload
     def uint8_as_string(
-        self, value: _models.Uint8AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint8AsStringProperty:
+        self, value: _models1.Uint8AsStringProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.Uint8AsStringProperty:
         """uint8_as_string.
 
         :param value: Required.
@@ -359,7 +359,7 @@ class PropertyOperations:
     @overload
     def uint8_as_string(
         self, value: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint8AsStringProperty:
+    ) -> _models1.Uint8AsStringProperty:
         """uint8_as_string.
 
         :param value: Required.
@@ -375,7 +375,7 @@ class PropertyOperations:
     @overload
     def uint8_as_string(
         self, value: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.Uint8AsStringProperty:
+    ) -> _models1.Uint8AsStringProperty:
         """uint8_as_string.
 
         :param value: Required.
@@ -389,8 +389,8 @@ class PropertyOperations:
         """
 
     def uint8_as_string(
-        self, value: Union[_models.Uint8AsStringProperty, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.Uint8AsStringProperty:
+        self, value: Union[_models1.Uint8AsStringProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.Uint8AsStringProperty:
         """uint8_as_string.
 
         :param value: Is one of the following types: Uint8AsStringProperty, JSON, IO[bytes] Required.
@@ -411,7 +411,7 @@ class PropertyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.Uint8AsStringProperty] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.Uint8AsStringProperty] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -448,7 +448,7 @@ class PropertyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Uint8AsStringProperty, response.json())
+            deserialized = _deserialize(_models1.Uint8AsStringProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

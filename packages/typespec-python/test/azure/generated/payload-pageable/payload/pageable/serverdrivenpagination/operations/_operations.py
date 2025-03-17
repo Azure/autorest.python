@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
+from ... import models as _models2
 from ..._configuration import PageableClientConfiguration
 from ..._model_base import _deserialize
 from ..._serialization import Deserializer, Serializer
@@ -76,7 +76,7 @@ class ServerDrivenPaginationOperations:
         )
 
     @distributed_trace
-    def link(self, **kwargs: Any) -> Iterable["_models.Pet"]:
+    def link(self, **kwargs: Any) -> Iterable["_models2.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet
@@ -86,7 +86,7 @@ class ServerDrivenPaginationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models2.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -123,7 +123,7 @@ class ServerDrivenPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.Pet], deserialized["pets"])
+            list_of_elem = _deserialize(List[_models2.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, iter(list_of_elem)

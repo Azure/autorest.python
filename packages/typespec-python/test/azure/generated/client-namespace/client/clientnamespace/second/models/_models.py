@@ -13,7 +13,7 @@ from ... import _model_base
 from ..._model_base import rest_field
 
 if TYPE_CHECKING:
-    from ..sub import models as _models
+    from ..sub import models as _sub_models2
 
 
 class SecondClientResult(_model_base.Model):
@@ -23,7 +23,7 @@ class SecondClientResult(_model_base.Model):
     :vartype type: str or ~client.clientnamespace.models.SecondClientEnumType
     """
 
-    type: Union[str, "_models.SecondClientEnumType"] = rest_field(
+    type: Union[str, "_sub_models2.SecondClientEnumType"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. \"second\""""
@@ -32,7 +32,7 @@ class SecondClientResult(_model_base.Model):
     def __init__(
         self,
         *,
-        type: Union[str, "_models.SecondClientEnumType"],
+        type: Union[str, "_sub_models2.SecondClientEnumType"],
     ) -> None: ...
 
     @overload
