@@ -3,6 +3,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
+
 """Customize generated code here.
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
@@ -35,9 +36,11 @@ def build_body_three_types_request(**kwargs: Any) -> HttpRequest:
     accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
+
     _url = "/mediatypes/bodyThreeTypes"
 
     # Construct headers
+
     if content_type is not None:
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")

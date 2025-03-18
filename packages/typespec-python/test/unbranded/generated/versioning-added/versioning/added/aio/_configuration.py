@@ -20,7 +20,8 @@ class AddedClientConfiguration:
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
      Required.

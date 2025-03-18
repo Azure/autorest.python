@@ -1,5 +1,12 @@
 # Release
 
+## 0.39.1
+
+### Bug Fixes
+
+- [#3047](https://github.com/Azure/autorest.python/pull/3047) Pass combined types to python generator
+- [#3047](https://github.com/Azure/autorest.python/pull/3047) Remove m2r dependency in favor of internally converting md to rst.
+
 ## 0.39.0
 
 ### Bug Fixes
