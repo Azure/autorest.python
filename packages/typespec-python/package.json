@@ -24,7 +24,7 @@
   },
   "tspMain": "dist/src/index.js",
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
