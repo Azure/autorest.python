@@ -57,7 +57,7 @@
     "@typespec/versioning": ">=0.66.0 <1.0.0"
   },
   "dependencies": {
-    "@typespec/http-client-python": "file:/workspaces/typespec/packages/http-client-python/typespec-http-client-python-0.7.1.tgz",
+    "@typespec/http-client-python": "file:/workspaces/typespec/packages/http-client-python/typespec-http-client-python-0.8.0.tgz",
     "fs-extra": "~11.2.0",
     "js-yaml": "~4.1.0",
     "semver": "~7.6.3",
