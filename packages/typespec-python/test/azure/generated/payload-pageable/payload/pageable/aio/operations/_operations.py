@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -7,9 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -18,143 +18,43 @@ from azure.core.exceptions import (
     ResourceNotModifiedError,
     map_error,
 )
-from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
-from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
-from azure.core.utils import case_insensitive_dict
 
-from .... import models as _models3
-from ...._configuration import PageableClientConfiguration
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ... import models as _models
+from ..._model_base import _deserialize
+from ..._serialization import Deserializer, Serializer
+from ...operations._operations import (
+    build_server_driven_pagination_continuation_token_request_header_response_body_request,
+    build_server_driven_pagination_continuation_token_request_header_response_header_request,
+    build_server_driven_pagination_continuation_token_request_query_response_body_request,
+    build_server_driven_pagination_continuation_token_request_query_response_header_request,
+    build_server_driven_pagination_link_request,
+)
+from .._configuration import PageableClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping
 else:
     from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
-
-_SERIALIZER = Serializer()
-_SERIALIZER.client_side_validation = False
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-def build_server_driven_pagination_continuation_token_request_query_response_body_request(  # pylint: disable=name-too-long
-    *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-body"
-
-    # Construct parameters
-    if token is not None:
-        _params["token"] = _SERIALIZER.query("token", token, "str")
-    if bar is not None:
-        _params["bar"] = _SERIALIZER.query("bar", bar, "str")
-
-    # Construct headers
-    if foo is not None:
-        _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-def build_server_driven_pagination_continuation_token_request_header_response_body_request(  # pylint: disable=name-too-long
-    *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-body"
-
-    # Construct parameters
-    if bar is not None:
-        _params["bar"] = _SERIALIZER.query("bar", bar, "str")
-
-    # Construct headers
-    if token is not None:
-        _headers["token"] = _SERIALIZER.header("token", token, "str")
-    if foo is not None:
-        _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-def build_server_driven_pagination_continuation_token_request_query_response_header_request(  # pylint: disable=name-too-long
-    *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/payload/pageable/server-driven-pagination/continuationtoken/request-query-response-header"
-
-    # Construct parameters
-    if token is not None:
-        _params["token"] = _SERIALIZER.query("token", token, "str")
-    if bar is not None:
-        _params["bar"] = _SERIALIZER.query("bar", bar, "str")
-
-    # Construct headers
-    if foo is not None:
-        _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-def build_server_driven_pagination_continuation_token_request_header_response_header_request(  # pylint: disable=name-too-long
-    *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
-    # Construct URL
-    _url = "/payload/pageable/server-driven-pagination/continuationtoken/request-header-response-header"
-
-    # Construct parameters
-    if bar is not None:
-        _params["bar"] = _SERIALIZER.query("bar", bar, "str")
-
-    # Construct headers
-    if token is not None:
-        _headers["token"] = _SERIALIZER.header("token", token, "str")
-    if foo is not None:
-        _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
-
-
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-=======
 class ServerDrivenPaginationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~payload.pageable.PageableClient`'s
+        :class:`~payload.pageable.aio.PageableClient`'s
         :attr:`server_driven_pagination` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: PageableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
@@ -164,11 +64,11 @@ class ServerDrivenPaginationOperations:
         )
 
     @distributed_trace
-    def link(self, **kwargs: Any) -> Iterable["_models.Pet"]:
+    def link(self, **kwargs: Any) -> AsyncIterable["_models.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet
-        :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.Pet]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.Pet]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -209,18 +109,18 @@ class ServerDrivenPaginationOperations:
 
             return _request
 
-        def extract_data(pipeline_response):
+        async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
             list_of_elem = _deserialize(List[_models.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("next") or None, iter(list_of_elem)
+            return deserialized.get("next") or None, AsyncList(list_of_elem)
 
-        def get_next(next_link=None):
+        async def get_next(next_link=None):
             _request = prepare_request(next_link)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -231,23 +131,22 @@ class ServerDrivenPaginationOperations:
 
             return pipeline_response
 
-        return ItemPaged(get_next, extract_data)
+        return AsyncItemPaged(get_next, extract_data)
 
 
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
 class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~payload.pageable.PageableClient`'s
+        :class:`~payload.pageable.aio.PageableClient`'s
         :attr:`continuation_token` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: PageableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
@@ -255,11 +154,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
     @distributed_trace
     def request_query_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-    ) -> Iterable["_models3.Pet"]:
-=======
-    ) -> Iterable["_models.Pet"]:
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
+    ) -> AsyncIterable["_models.Pet"]:
         """request_query_response_body.
 
         :keyword foo: Default value is None.
@@ -267,13 +162,13 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         :keyword bar: Default value is None.
         :paramtype bar: str
         :return: An iterator like instance of Pet
-        :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.Pet]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.Pet]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -298,22 +193,18 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
-        def extract_data(pipeline_response):
+        async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
-=======
             list_of_elem = _deserialize(List[_models.Pet], deserialized.get("pets", []))
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextToken") or None, iter(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        def get_next(_continuation_token=None):
+        async def get_next(_continuation_token=None):
             _request = prepare_request(_continuation_token)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -324,16 +215,12 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
             return pipeline_response
 
-        return ItemPaged(get_next, extract_data)
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def request_header_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-    ) -> Iterable["_models3.Pet"]:
-=======
-    ) -> Iterable["_models.Pet"]:
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
+    ) -> AsyncIterable["_models.Pet"]:
         """request_header_response_body.
 
         :keyword foo: Default value is None.
@@ -341,13 +228,13 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         :keyword bar: Default value is None.
         :paramtype bar: str
         :return: An iterator like instance of Pet
-        :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.Pet]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.Pet]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -372,22 +259,18 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
-        def extract_data(pipeline_response):
+        async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
-=======
             list_of_elem = _deserialize(List[_models.Pet], deserialized.get("pets", []))
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nextToken") or None, iter(list_of_elem)
+            return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
 
-        def get_next(_continuation_token=None):
+        async def get_next(_continuation_token=None):
             _request = prepare_request(_continuation_token)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -398,16 +281,12 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
             return pipeline_response
 
-        return ItemPaged(get_next, extract_data)
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def request_query_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-    ) -> Iterable["_models3.Pet"]:
-=======
-    ) -> Iterable["_models.Pet"]:
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
+    ) -> AsyncIterable["_models.Pet"]:
         """request_query_response_header.
 
         :keyword foo: Default value is None.
@@ -415,13 +294,13 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         :keyword bar: Default value is None.
         :paramtype bar: str
         :return: An iterator like instance of Pet
-        :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.Pet]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.Pet]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -446,22 +325,18 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
-        def extract_data(pipeline_response):
+        async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
-=======
             list_of_elem = _deserialize(List[_models.Pet], deserialized.get("pets", []))
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        def get_next(_continuation_token=None):
+        async def get_next(_continuation_token=None):
             _request = prepare_request(_continuation_token)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -472,16 +347,12 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
             return pipeline_response
 
-        return ItemPaged(get_next, extract_data)
+        return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
     def request_header_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-    ) -> Iterable["_models3.Pet"]:
-=======
-    ) -> Iterable["_models.Pet"]:
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
+    ) -> AsyncIterable["_models.Pet"]:
         """request_header_response_header.
 
         :keyword foo: Default value is None.
@@ -489,13 +360,13 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
         :keyword bar: Default value is None.
         :paramtype bar: str
         :return: An iterator like instance of Pet
-        :rtype: ~azure.core.paging.ItemPaged[~payload.pageable.models.Pet]
+        :rtype: ~azure.core.async_paging.AsyncItemPaged[~payload.pageable.models.Pet]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models3.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -520,22 +391,18 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             _request.url = self._client.format_url(_request.url, **path_format_arguments)
             return _request
 
-        def extract_data(pipeline_response):
+        async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-<<<<<<< HEAD:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/serverdrivenpagination/continuationtoken/operations/_operations.py
-            list_of_elem = _deserialize(List[_models3.Pet], deserialized.get("pets", []))
-=======
             list_of_elem = _deserialize(List[_models.Pet], deserialized.get("pets", []))
->>>>>>> f1fc2c72143c7b0577f28cbe8e76f33e5390d02c:packages/typespec-python/test/azure/generated/payload-pageable/payload/pageable/operations/_operations.py
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return pipeline_response.http_response.headers.get("next-token") or None, iter(list_of_elem)
+            return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
 
-        def get_next(_continuation_token=None):
+        async def get_next(_continuation_token=None):
             _request = prepare_request(_continuation_token)
 
             _stream = False
-            pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
                 _request, stream=_stream, **kwargs
             )
             response = pipeline_response.http_response
@@ -546,4 +413,4 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
             return pipeline_response
 
-        return ItemPaged(get_next, extract_data)
+        return AsyncItemPaged(get_next, extract_data)

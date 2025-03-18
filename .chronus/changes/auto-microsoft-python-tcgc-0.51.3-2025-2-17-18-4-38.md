@@ -1,0 +1,8 @@
+---
+changeKind: feature
+packages:
+  - "@autorest/python"
+  - "@azure-tools/typespec-python"
+---
+
+Support continuation token for paging
