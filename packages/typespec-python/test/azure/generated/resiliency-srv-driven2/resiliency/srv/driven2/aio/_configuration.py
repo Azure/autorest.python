@@ -26,15 +26,12 @@ class ResiliencyServiceDrivenClientConfiguration:  # pylint: disable=too-many-in
      the service deployment in history. 'v1' is for the deployment when the service had only one api
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
-    :keyword api_version: Pass in either 'v1' or 'v2'. This represents the API version of a
-     service. Known values are "v2" and None. Default value is "v2". Note that overriding this
-     default value may result in unsupported behavior.
-    :paramtype api_version: str
+    :param api_version: Pass in either 'v1' or 'v2'. This represents the API version of a service.
+     Default value is "v2".
+    :type api_version: str
     """
 
-    def __init__(self, endpoint: str, service_deployment_version: str, **kwargs: Any) -> None:
-        api_version: str = kwargs.pop("api_version", "v2")
-
+    def __init__(self, endpoint: str, service_deployment_version: str, api_version: str = "v2", **kwargs: Any) -> None:
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
         if service_deployment_version is None:

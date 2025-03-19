@@ -69,8 +69,8 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_rpc_long_running_rpc_request(
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,

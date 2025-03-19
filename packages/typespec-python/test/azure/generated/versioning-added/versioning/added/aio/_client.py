@@ -85,7 +85,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str"),
+            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

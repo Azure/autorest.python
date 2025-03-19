@@ -74,8 +74,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
         _request = build_standard_create_or_replace_request(
             name=name,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,

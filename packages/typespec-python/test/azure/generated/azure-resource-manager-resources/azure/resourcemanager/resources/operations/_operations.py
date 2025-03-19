@@ -50,12 +50,16 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_top_level_get_request(
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -80,13 +84,17 @@ def build_top_level_get_request(
 
 
 def build_top_level_create_or_replace_request(  # pylint: disable=name-too-long
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -113,13 +121,17 @@ def build_top_level_create_or_replace_request(  # pylint: disable=name-too-long
 
 
 def build_top_level_update_request(
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -146,12 +158,16 @@ def build_top_level_update_request(
 
 
 def build_top_level_delete_request(
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -176,12 +192,11 @@ def build_top_level_delete_request(
 
 
 def build_top_level_list_by_resource_group_request(  # pylint: disable=name-too-long
-    resource_group_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -203,12 +218,11 @@ def build_top_level_list_by_resource_group_request(  # pylint: disable=name-too-
 
 
 def build_top_level_list_by_subscription_request(  # pylint: disable=name-too-long
-    subscription_id: str, **kwargs: Any
+    subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -229,13 +243,17 @@ def build_top_level_list_by_subscription_request(  # pylint: disable=name-too-lo
 
 
 def build_top_level_action_sync_request(
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -266,12 +284,13 @@ def build_nested_get_request(
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
     subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -301,13 +320,14 @@ def build_nested_create_or_replace_request(
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
     subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -339,13 +359,14 @@ def build_nested_update_request(
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
     subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -377,12 +398,13 @@ def build_nested_delete_request(
     top_level_tracked_resource_name: str,
     nexted_proxy_resource_name: str,
     subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -408,12 +430,16 @@ def build_nested_delete_request(
 
 
 def build_nested_list_by_top_level_tracked_resource_request(  # pylint: disable=name-too-long
-    resource_group_name: str, top_level_tracked_resource_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str,
+    top_level_tracked_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -438,12 +464,11 @@ def build_nested_list_by_top_level_tracked_resource_request(  # pylint: disable=
 
 
 def build_singleton_get_by_resource_group_request(  # pylint: disable=name-too-long
-    resource_group_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -465,13 +490,12 @@ def build_singleton_get_by_resource_group_request(  # pylint: disable=name-too-l
 
 
 def build_singleton_create_or_update_request(
-    resource_group_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -494,12 +518,13 @@ def build_singleton_create_or_update_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_singleton_update_request(resource_group_name: str, subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_singleton_update_request(
+    resource_group_name: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -523,12 +548,11 @@ def build_singleton_update_request(resource_group_name: str, subscription_id: st
 
 
 def build_singleton_list_by_resource_group_request(  # pylint: disable=name-too-long
-    resource_group_name: str, subscription_id: str, **kwargs: Any
+    resource_group_name: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -550,12 +574,11 @@ def build_singleton_list_by_resource_group_request(  # pylint: disable=name-too-
 
 
 def build_extensions_resources_get_request(
-    resource_uri: str, extensions_resource_name: str, **kwargs: Any
+    resource_uri: str, extensions_resource_name: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -577,13 +600,12 @@ def build_extensions_resources_get_request(
 
 
 def build_extensions_resources_create_or_update_request(  # pylint: disable=name-too-long
-    resource_uri: str, extensions_resource_name: str, **kwargs: Any
+    resource_uri: str, extensions_resource_name: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -607,13 +629,12 @@ def build_extensions_resources_create_or_update_request(  # pylint: disable=name
 
 
 def build_extensions_resources_update_request(  # pylint: disable=name-too-long
-    resource_uri: str, extensions_resource_name: str, **kwargs: Any
+    resource_uri: str, extensions_resource_name: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -637,12 +658,11 @@ def build_extensions_resources_update_request(  # pylint: disable=name-too-long
 
 
 def build_extensions_resources_delete_request(  # pylint: disable=name-too-long
-    resource_uri: str, extensions_resource_name: str, **kwargs: Any
+    resource_uri: str, extensions_resource_name: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -664,12 +684,11 @@ def build_extensions_resources_delete_request(  # pylint: disable=name-too-long
 
 
 def build_extensions_resources_list_by_scope_request(  # pylint: disable=name-too-long
-    resource_uri: str, **kwargs: Any
+    resource_uri: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -690,12 +709,16 @@ def build_extensions_resources_list_by_scope_request(  # pylint: disable=name-to
 
 
 def build_location_resources_get_request(
-    location: str, location_resource_name: str, subscription_id: str, **kwargs: Any
+    location: str,
+    location_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -718,13 +741,17 @@ def build_location_resources_get_request(
 
 
 def build_location_resources_create_or_update_request(  # pylint: disable=name-too-long
-    location: str, location_resource_name: str, subscription_id: str, **kwargs: Any
+    location: str,
+    location_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -749,13 +776,17 @@ def build_location_resources_create_or_update_request(  # pylint: disable=name-t
 
 
 def build_location_resources_update_request(
-    location: str, location_resource_name: str, subscription_id: str, **kwargs: Any
+    location: str,
+    location_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -780,12 +811,16 @@ def build_location_resources_update_request(
 
 
 def build_location_resources_delete_request(
-    location: str, location_resource_name: str, subscription_id: str, **kwargs: Any
+    location: str,
+    location_resource_name: str,
+    subscription_id: str,
+    *,
+    api_version: str = "2023-12-01-preview",
+    **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -808,12 +843,11 @@ def build_location_resources_delete_request(
 
 
 def build_location_resources_list_by_location_request(  # pylint: disable=name-too-long
-    location: str, subscription_id: str, **kwargs: Any
+    location: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -951,8 +985,8 @@ class TopLevelOperations:
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -1188,8 +1222,8 @@ class TopLevelOperations:
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -1811,8 +1845,8 @@ class TopLevelOperations:
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -1964,8 +1998,8 @@ class NestedOperations:
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -2216,8 +2250,8 @@ class NestedOperations:
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -2766,8 +2800,8 @@ class SingletonOperations:
         _request = build_singleton_create_or_update_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3058,8 +3092,8 @@ class SingletonOperations:
         _request = build_singleton_update_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3301,8 +3335,8 @@ class ExtensionsResourcesOperations:
         _request = build_extensions_resources_create_or_update_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -3633,8 +3667,8 @@ class ExtensionsResourcesOperations:
         _request = build_extensions_resources_update_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -4021,8 +4055,8 @@ class LocationResourcesOperations:
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -4183,8 +4217,8 @@ class LocationResourcesOperations:
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,

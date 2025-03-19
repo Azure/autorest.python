@@ -154,8 +154,8 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         _request = build_azure_example_basic_action_request(
             query_param=query_param,
             header_param=header_param,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,

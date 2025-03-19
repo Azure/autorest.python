@@ -19,7 +19,9 @@ from ._operations import ResiliencyServiceDrivenClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):
+class ResiliencyServiceDrivenClient(
+    ResiliencyServiceDrivenClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 
@@ -31,19 +33,18 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in 'v1'. This represents the API version of the service. Will grow
-     up in the next deployment to be both 'v1' and 'v2'. Known values are "v1" and None. Default
-     value is "v1". Note that overriding this default value may result in unsupported behavior.
+     up in the next deployment to be both 'v1' and 'v2'. Default value is "v1".
     :paramtype api_version: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, service_deployment_version: str, **kwargs: Any
+        self, endpoint: str, service_deployment_version: str, *, api_version: str = "v1", **kwargs: Any
     ) -> None:
         _endpoint = (
             "{endpoint}/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"
         )
         self._config = ResiliencyServiceDrivenClientConfiguration(
-            endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
+            endpoint=endpoint, service_deployment_version=service_deployment_version, api_version=api_version, **kwargs
         )
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -90,9 +91,14 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
             "serviceDeploymentVersion": self._serialize.url(
-                "self._config.service_deployment_version", self._config.service_deployment_version, "str"
+                "self._config.service_deployment_version",
+                self._config.service_deployment_version,
+                "str",
+                skip_quote=True,
             ),
-            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
+            "apiVersion": self._serialize.url(
+                "self._config.api_version", self._config.api_version, "str", skip_quote=True
+            ),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

@@ -42,12 +42,13 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_azure_example_basic_action_request(*, query_param: str, header_param: str, **kwargs: Any) -> HttpRequest:
+def build_azure_example_basic_action_request(
+    *, query_param: str, header_param: str, api_version: str = "2022-12-01-preview", **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -180,8 +181,8 @@ class AzureExampleClientOperationsMixin(AzureExampleClientMixinABC):
         _request = build_azure_example_basic_action_request(
             query_param=query_param,
             header_param=header_param,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,

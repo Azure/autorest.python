@@ -153,8 +153,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         _request = build_basic_create_or_update_request(
             id=id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
@@ -290,8 +290,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         _request = build_basic_create_or_replace_request(
             id=id,
-            content_type=content_type,
             api_version=self._config.api_version,
+            content_type=content_type,
             content=_content,
             headers=_headers,
             params=_params,
