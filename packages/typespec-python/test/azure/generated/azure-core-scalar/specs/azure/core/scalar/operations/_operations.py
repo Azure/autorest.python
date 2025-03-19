@@ -46,7 +46,7 @@ _SERIALIZER.client_side_validation = False
 def build_azure_location_scalar_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/azure/core/scalar/azureLocation"
@@ -181,7 +181,7 @@ class AzureLocationScalarOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(str, response.json())
+            deserialized = _deserialize(str, response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -209,10 +209,10 @@ class AzureLocationScalarOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = body
 
         _request = build_azure_location_scalar_put_request(
             content_type=content_type,

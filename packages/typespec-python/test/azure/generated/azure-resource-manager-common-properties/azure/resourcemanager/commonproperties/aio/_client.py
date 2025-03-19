@@ -17,7 +17,7 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import CommonPropertiesClientConfiguration
-from .operations import ManagedIdentityOperations
+from .operations import ErrorOperations, ManagedIdentityOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
@@ -29,6 +29,8 @@ class CommonPropertiesClient:
     :ivar managed_identity: ManagedIdentityOperations operations
     :vartype managed_identity:
      azure.resourcemanager.commonproperties.aio.operations.ManagedIdentityOperations
+    :ivar error: ErrorOperations operations
+    :vartype error: azure.resourcemanager.commonproperties.aio.operations.ErrorOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -78,6 +80,7 @@ class CommonPropertiesClient:
         self.managed_identity = ManagedIdentityOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.error = ErrorOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

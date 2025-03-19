@@ -14,9 +14,15 @@ if TYPE_CHECKING:
 
 
 from ._models import (  # type: ignore
+    ApiError,
+    ApiErrorBase,
+    CloudError,
+    ConfidentialResource,
+    ConfidentialResourceProperties,
     ErrorAdditionalInfo,
     ErrorDetail,
     ErrorResponse,
+    InnerError,
     ManagedIdentityTrackedResource,
     ManagedIdentityTrackedResourceProperties,
     ManagedServiceIdentity,
@@ -35,9 +41,15 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "ApiError",
+    "ApiErrorBase",
+    "CloudError",
+    "ConfidentialResource",
+    "ConfidentialResourceProperties",
     "ErrorAdditionalInfo",
     "ErrorDetail",
     "ErrorResponse",
+    "InnerError",
     "ManagedIdentityTrackedResource",
     "ManagedIdentityTrackedResourceProperties",
     "ManagedServiceIdentity",

@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": "Streaming.Jsonl",
+    "CrossLanguageDefinitionId": {
+        "streaming.jsonl.JsonlClient.basic.send": "Streaming.Jsonl.Basic.send",
+        "streaming.jsonl.JsonlClient.basic.receive": "Streaming.Jsonl.Basic.receive"
+    }
+}

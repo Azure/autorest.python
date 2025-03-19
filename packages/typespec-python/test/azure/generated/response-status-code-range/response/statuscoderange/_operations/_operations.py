@@ -44,7 +44,7 @@ def build_status_code_range_error_response_status_code_in_range_request(  # pyli
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-in-range"
@@ -60,7 +60,7 @@ def build_status_code_range_error_response_status_code404_request(  # pylint: di
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "text/plain")
 
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-404"
@@ -127,7 +127,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Literal[204], response.json())
+            deserialized = _deserialize(Literal[204], response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -186,7 +186,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Literal[204], response.json())
+            deserialized = _deserialize(Literal[204], response.text())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
