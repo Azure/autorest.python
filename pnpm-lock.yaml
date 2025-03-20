@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(xyfohv7glp6msr4ipudj2mb5ju)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(xyfohv7glp6msr4ipudj2mb5ju)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(z4b5mqrksjtjtkrtw4eaa2rjea)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(z4b5mqrksjtjtkrtw4eaa2rjea)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -95,8 +95,8 @@ importers:
         version: 4.19.3
     devDependencies:
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.9
-        version: 0.1.0-alpha.9(hxmxu44wsiwmqbpvyuomrsmujq)
+        specifier: 0.1.0-alpha.10
+        version: 0.1.0-alpha.10(hxmxu44wsiwmqbpvyuomrsmujq)
       '@azure-tools/typespec-autorest':
         specifier: ~0.53.0
         version: 0.53.0(vsru7ipd7qt42slknz5aanwsou)
@@ -134,8 +134,8 @@ importers:
         specifier: ~0.67.0
         version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))
       '@typespec/http-specs':
-        specifier: 0.1.0-alpha.13
-        version: 0.1.0-alpha.13(@types/node@22.5.5)(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/versioning@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/xml@0.59.0(@typespec/compiler@0.67.1(@types/node@22.5.5)))
+        specifier: 0.1.0-alpha.15-dev.3
+        version: 0.1.0-alpha.15-dev.3(@types/node@22.5.5)(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/versioning@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/xml@0.59.0(@typespec/compiler@0.67.1(@types/node@22.5.5)))
       '@typespec/openapi':
         specifier: ~0.67.0
         version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))
@@ -179,16 +179,16 @@ packages:
     resolution: {integrity: sha512-T21naRb6JDdjjn2s/zwr9iCIv/9jviL/PRtiWAhi+3UA2WKH2wrId2VqJa4uVD7iEV8BLkuGgFmMkaMBG26hFw==}
     engines: {node: '>=12.0.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.9':
-    resolution: {integrity: sha512-eygzmoU/MnbhUB54C/fgRX3/98j3we6MYmrLhHSeLtLxVKG3upBxS7gHF0l7jnCE8+jMoaQ1o1WL7xLZuVEifg==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.10':
+    resolution: {integrity: sha512-BhWKqX6EMx16jMylLQG1m+Ncl5xoycqOTgxmaUkWNlFT0xT4AZqq1P5l15DgS77imJqHqI9VDOqt/vzN0LCJAQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.53.0
-      '@typespec/compiler': ^0.67.0
-      '@typespec/http': ^0.67.0
-      '@typespec/rest': ^0.67.0
-      '@typespec/versioning': ^0.67.0
-      '@typespec/xml': ^0.67.0
+      '@typespec/compiler': ^0.67.1
+      '@typespec/http': ^0.67.1
+      '@typespec/rest': ^0.67.1
+      '@typespec/versioning': ^0.67.1
+      '@typespec/xml': ^0.67.1
 
   '@azure-tools/typespec-autorest@0.53.0':
     resolution: {integrity: sha512-9eAOTU/so8QOigMcy9YKA43jtMxccSP22wa7Is0ZiX59YTcaUDGlpI+6cFfmGH0tATGCOm5TvjyOkdrhNyKrPw==}
@@ -1535,8 +1535,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^0.67.1
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz}
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz':
+    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz}
     version: 0.8.1
     engines: {node: '>=18.0.0'}
     peerDependencies:
@@ -1551,15 +1551,15 @@ packages:
       '@typespec/rest': '>=0.67.0 <1.0.0'
       '@typespec/versioning': '>=0.67.0 <1.0.0'
 
-  '@typespec/http-specs@0.1.0-alpha.13':
-    resolution: {integrity: sha512-QBJNnXWCYShI5PSt89oCvSwFsXV/9kYBXSxWaPHYk0qa6CjUdMEbwZrSbV1BDhcyqbFE3e2LLCjX8dTjWJ6Fuw==}
+  '@typespec/http-specs@0.1.0-alpha.15-dev.3':
+    resolution: {integrity: sha512-pWrtceHjixwFv6SX1nkSu5WG7odm83FqnKLVzmO5Y29MD4DCgu1AhqtDM7UJ1GZgfHPbZS0zh9gj/01vxEhkdQ==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^0.67.0
-      '@typespec/http': ^0.67.0
-      '@typespec/rest': ^0.67.0
-      '@typespec/versioning': ^0.67.0
-      '@typespec/xml': ^0.67.0
+      '@typespec/compiler': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/http': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/rest': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/versioning': ^0.67.1 || >=0.68.0-dev <0.68.0
+      '@typespec/xml': ^0.67.1 || >=0.68.0-dev <0.68.0
 
   '@typespec/http@0.67.1':
     resolution: {integrity: sha512-pkLFdKLA5ObCptUuwL8mhiy6EqVbqmtvHK89zqiTfYYGw2qm76+EUHaK0P/g2aAmjcwlrDGhJ0EhzbVp87H0mg==}
@@ -2248,10 +2248,6 @@ packages:
     resolution: {integrity: sha512-e+HfNH61Bj1X9/jLc5v1owaLYuHdeHHSQlkhCBiTK8rBvKaULl/beGMxwrMXjpYrv4pz22BlY570vVePA2ho4A==}
     engines: {node: '>= 0.4'}
 
-  es-define-property@1.0.0:
-    resolution: {integrity: sha512-jxayLKShrEqqzJ0eumQbVhTYQM27CfT1T35+gCgDFoL82JLsXqTJ76zv6A0YLOgEnLUMvLzsDsGIrl8NFpT2gQ==}
-    engines: {node: '>= 0.4'}
-
   es-define-property@1.0.1:
     resolution: {integrity: sha512-e3nRfgfUZ4rNGL232gUgX06QNyyez04KdjFrF+LTRoOXmrOgFKDg4BCdsjW8EnT69eqdYGmRpJwiPVYNrCaW3g==}
     engines: {node: '>= 0.4'}
@@ -2272,10 +2268,6 @@ packages:
 
   es-object-atoms@1.1.1:
     resolution: {integrity: sha512-FGgH2h8zKNim9ljj7dankFPcICIK9Cp5bm+c2gQSYePhpaG5+esrLODihIorn+Pe6FGJzWhXQotPv73jTaldXA==}
-    engines: {node: '>= 0.4'}
-
-  es-set-tostringtag@2.0.3:
-    resolution: {integrity: sha512-3T8uNMC3OQTHkFUsFq8r/BwAXLHvU/9O9mE0fBc/MY5iq/8H7ncvO947LmYA6ldWw9Uh8Yhf25zu6n7nML5QWQ==}
     engines: {node: '>= 0.4'}
 
   es-set-tostringtag@2.1.0:
@@ -2681,9 +2673,6 @@ packages:
   globby@14.1.0:
     resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
     engines: {node: '>=18'}
-
-  gopd@1.0.1:
-    resolution: {integrity: sha512-d65bNlIadxvpb/A2abVdlqKqV563juRnZ1Wtk6s1sIR8uNsXR70xqIzVqxVf1eTqDunwT2MkczEeaezCKTZhwA==}
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -4521,7 +4510,7 @@ snapshots:
       command-exists: 1.2.9
       semver: 7.6.3
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.9(hxmxu44wsiwmqbpvyuomrsmujq)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.10(hxmxu44wsiwmqbpvyuomrsmujq)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))
       '@typespec/compiler': 0.67.1(@types/node@22.5.5)
@@ -6155,7 +6144,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.67.1(@types/node@22.5.5)
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(xyfohv7glp6msr4ipudj2mb5ju)':
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(xyfohv7glp6msr4ipudj2mb5ju)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(nzqsibdudqbld3r7bpinzdupvm)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10)))))
@@ -6176,7 +6165,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY2Njg2My9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(z4b5mqrksjtjtkrtw4eaa2rjea)':
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDY3MTc2OS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.1.tgz(z4b5mqrksjtjtkrtw4eaa2rjea)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(vsru7ipd7qt42slknz5aanwsou)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))
@@ -6197,7 +6186,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-specs@0.1.0-alpha.13(@types/node@22.5.5)(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/versioning@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/xml@0.59.0(@typespec/compiler@0.67.1(@types/node@22.5.5)))':
+  '@typespec/http-specs@0.1.0-alpha.15-dev.3(@types/node@22.5.5)(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/versioning@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/xml@0.59.0(@typespec/compiler@0.67.1(@types/node@22.5.5)))':
     dependencies:
       '@typespec/compiler': 0.67.1(@types/node@22.5.5)
       '@typespec/http': 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))
@@ -6493,7 +6482,7 @@ snapshots:
       define-properties: 1.2.1
       es-abstract: 1.23.3
       es-errors: 1.3.0
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
       is-array-buffer: 3.0.4
       is-shared-array-buffer: 1.0.3
 
@@ -6620,10 +6609,10 @@ snapshots:
 
   call-bind@1.0.7:
     dependencies:
-      es-define-property: 1.0.0
+      es-define-property: 1.0.1
       es-errors: 1.3.0
       function-bind: 1.1.2
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
       set-function-length: 1.2.2
 
   callsites@3.1.0: {}
@@ -6966,9 +6955,9 @@ snapshots:
 
   define-data-property@1.1.4:
     dependencies:
-      es-define-property: 1.0.0
+      es-define-property: 1.0.1
       es-errors: 1.3.0
-      gopd: 1.0.1
+      gopd: 1.2.0
 
   define-lazy-prop@3.0.0: {}
 
@@ -7055,19 +7044,19 @@ snapshots:
       data-view-buffer: 1.0.1
       data-view-byte-length: 1.0.1
       data-view-byte-offset: 1.0.0
-      es-define-property: 1.0.0
+      es-define-property: 1.0.1
       es-errors: 1.3.0
-      es-object-atoms: 1.0.0
-      es-set-tostringtag: 2.0.3
+      es-object-atoms: 1.1.1
+      es-set-tostringtag: 2.1.0
       es-to-primitive: 1.2.1
       function.prototype.name: 1.1.6
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
       get-symbol-description: 1.0.2
       globalthis: 1.0.4
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-property-descriptors: 1.0.2
       has-proto: 1.0.3
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
       hasown: 2.0.2
       internal-slot: 1.0.7
       is-array-buffer: 3.0.4
@@ -7095,10 +7084,6 @@ snapshots:
       unbox-primitive: 1.0.2
       which-typed-array: 1.1.15
 
-  es-define-property@1.0.0:
-    dependencies:
-      get-intrinsic: 1.2.4
-
   es-define-property@1.0.1: {}
 
   es-errors@1.3.0: {}
@@ -7106,8 +7091,8 @@ snapshots:
   es-get-iterator@1.1.3:
     dependencies:
       call-bind: 1.0.7
-      get-intrinsic: 1.2.4
-      has-symbols: 1.0.3
+      get-intrinsic: 1.3.0
+      has-symbols: 1.1.0
       is-arguments: 1.1.1
       is-map: 2.0.3
       is-set: 2.0.3
@@ -7124,12 +7109,6 @@ snapshots:
   es-object-atoms@1.1.1:
     dependencies:
       es-errors: 1.3.0
-
-  es-set-tostringtag@2.0.3:
-    dependencies:
-      get-intrinsic: 1.2.4
-      has-tostringtag: 1.0.2
-      hasown: 2.0.2
 
   es-set-tostringtag@2.1.0:
     dependencies:
@@ -7623,7 +7602,7 @@ snapshots:
       es-errors: 1.3.0
       function-bind: 1.1.2
       has-proto: 1.0.3
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
       hasown: 2.0.2
 
   get-intrinsic@1.3.0:
@@ -7650,7 +7629,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       es-errors: 1.3.0
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
 
   get-tsconfig@4.8.1:
     dependencies:
@@ -7710,7 +7689,7 @@ snapshots:
   globalthis@1.0.4:
     dependencies:
       define-properties: 1.2.1
-      gopd: 1.0.1
+      gopd: 1.2.0
 
   globby@14.0.2:
     dependencies:
@@ -7730,10 +7709,6 @@ snapshots:
       slash: 5.1.0
       unicorn-magic: 0.3.0
 
-  gopd@1.0.1:
-    dependencies:
-      get-intrinsic: 1.2.4
-
   gopd@1.2.0: {}
 
   graceful-fs@4.2.11: {}
@@ -7750,7 +7725,7 @@ snapshots:
 
   has-property-descriptors@1.0.2:
     dependencies:
-      es-define-property: 1.0.0
+      es-define-property: 1.0.1
 
   has-proto@1.0.3: {}
 
@@ -7858,7 +7833,7 @@ snapshots:
   is-array-buffer@3.0.4:
     dependencies:
       call-bind: 1.0.7
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
 
   is-arrayish@0.2.1: {}
 
@@ -7944,7 +7919,7 @@ snapshots:
 
   is-symbol@1.0.4:
     dependencies:
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
 
   is-typed-array@1.1.13:
     dependencies:
@@ -7965,7 +7940,7 @@ snapshots:
   is-weakset@2.0.3:
     dependencies:
       call-bind: 1.0.7
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
 
   is-wsl@3.1.0:
     dependencies:
@@ -8421,7 +8396,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       define-properties: 1.2.1
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
       object-keys: 1.1.1
 
   object.fromentries@2.0.8:
@@ -8803,8 +8778,8 @@ snapshots:
   safe-array-concat@1.1.2:
     dependencies:
       call-bind: 1.0.7
-      get-intrinsic: 1.2.4
-      has-symbols: 1.0.3
+      get-intrinsic: 1.3.0
+      has-symbols: 1.1.0
       isarray: 2.0.5
 
   safe-buffer@5.1.2: {}
@@ -8863,8 +8838,8 @@ snapshots:
       define-data-property: 1.1.4
       es-errors: 1.3.0
       function-bind: 1.1.2
-      get-intrinsic: 1.2.4
-      gopd: 1.0.1
+      get-intrinsic: 1.3.0
+      gopd: 1.2.0
       has-property-descriptors: 1.0.2
 
   set-function-name@2.0.2:
@@ -8886,7 +8861,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       es-errors: 1.3.0
-      get-intrinsic: 1.2.4
+      get-intrinsic: 1.3.0
       object-inspect: 1.13.2
 
   siginfo@2.0.0: {}
@@ -9003,19 +8978,19 @@ snapshots:
       call-bind: 1.0.7
       define-properties: 1.2.1
       es-abstract: 1.23.3
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.1
 
   string.prototype.trimend@1.0.8:
     dependencies:
       call-bind: 1.0.7
       define-properties: 1.2.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.1
 
   string.prototype.trimstart@1.0.8:
     dependencies:
       call-bind: 1.0.7
       define-properties: 1.2.1
-      es-object-atoms: 1.0.0
+      es-object-atoms: 1.1.1
 
   string_decoder@1.1.1:
     dependencies:
@@ -9201,7 +9176,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-proto: 1.0.3
       is-typed-array: 1.1.13
 
@@ -9210,7 +9185,7 @@ snapshots:
       available-typed-arrays: 1.0.7
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-proto: 1.0.3
       is-typed-array: 1.1.13
 
@@ -9218,7 +9193,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-proto: 1.0.3
       is-typed-array: 1.1.13
       possible-typed-array-names: 1.0.0
@@ -9260,7 +9235,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.7
       has-bigints: 1.0.2
-      has-symbols: 1.0.3
+      has-symbols: 1.1.0
       which-boxed-primitive: 1.0.2
 
   underscore@1.13.7: {}
@@ -9438,7 +9413,7 @@ snapshots:
       available-typed-arrays: 1.0.7
       call-bind: 1.0.7
       for-each: 0.3.3
-      gopd: 1.0.1
+      gopd: 1.2.0
       has-tostringtag: 1.0.2
 
   which@2.0.2:
