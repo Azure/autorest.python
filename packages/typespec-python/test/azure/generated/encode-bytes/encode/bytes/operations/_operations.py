@@ -255,7 +255,7 @@ def build_request_body_base64_request(**kwargs: Any) -> HttpRequest:
     _url = "/encode/bytes/body/request/base64"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -268,7 +268,7 @@ def build_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     _url = "/encode/bytes/body/request/base64url"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -276,7 +276,7 @@ def build_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:
 def build_response_body_default_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/json")
+    accept = _headers.pop("Accept", "application/octet-stream")
 
     # Construct URL
     _url = "/encode/bytes/body/response/default"
@@ -1292,10 +1292,10 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
+        _content = value
 
         _request = build_request_body_default_request(
             content_type=content_type,
@@ -1447,7 +1447,7 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
@@ -1498,7 +1498,7 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
@@ -1547,11 +1547,11 @@ class ResponseBodyOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def default(self, **kwargs: Any) -> bytes:
+    def default(self, **kwargs: Any) -> Iterator[bytes]:
         """default.
 
-        :return: bytes
-        :rtype: bytes
+        :return: Iterator[bytes]
+        :rtype: Iterator[bytes]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1565,7 +1565,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[bytes] = kwargs.pop("cls", None)
+        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
         _request = build_response_body_default_request(
             headers=_headers,
@@ -1576,7 +1576,7 @@ class ResponseBodyOperations:
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = kwargs.pop("stream", True)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
@@ -1592,10 +1592,7 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+        deserialized = response.iter_bytes()
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1760,13 +1757,16 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -1816,12 +1816,15 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64url")
+            deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore

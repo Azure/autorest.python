@@ -1,5 +1,16 @@
 # Release
 
+## 6.30.0
+
+### Bump dependencies
+
+- [#3058](https://github.com/Azure/autorest.python/pull/3058) Bump `@typespec/*` 0.67
+
+### Features
+
+- [#3050](https://github.com/Azure/autorest.python/pull/3050) Support continuation token for paging
+
+
 ## 6.29.1
 
 No changes, version bump only.

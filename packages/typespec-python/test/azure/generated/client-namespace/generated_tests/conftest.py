@@ -21,19 +21,6 @@ load_dotenv()
 # For security, please avoid record sensitive identity information in recordings
 @pytest.fixture(scope="session", autouse=True)
 def add_sanitizers(test_proxy):
-    namespacesecond_subscription_id = os.environ.get(
-        "NAMESPACESECOND_SUBSCRIPTION_ID", "00000000-0000-0000-0000-000000000000"
-    )
-    namespacesecond_tenant_id = os.environ.get("NAMESPACESECOND_TENANT_ID", "00000000-0000-0000-0000-000000000000")
-    namespacesecond_client_id = os.environ.get("NAMESPACESECOND_CLIENT_ID", "00000000-0000-0000-0000-000000000000")
-    namespacesecond_client_secret = os.environ.get(
-        "NAMESPACESECOND_CLIENT_SECRET", "00000000-0000-0000-0000-000000000000"
-    )
-    add_general_regex_sanitizer(regex=namespacesecond_subscription_id, value="00000000-0000-0000-0000-000000000000")
-    add_general_regex_sanitizer(regex=namespacesecond_tenant_id, value="00000000-0000-0000-0000-000000000000")
-    add_general_regex_sanitizer(regex=namespacesecond_client_id, value="00000000-0000-0000-0000-000000000000")
-    add_general_regex_sanitizer(regex=namespacesecond_client_secret, value="00000000-0000-0000-0000-000000000000")
-
     namespacefirst_subscription_id = os.environ.get(
         "NAMESPACEFIRST_SUBSCRIPTION_ID", "00000000-0000-0000-0000-000000000000"
     )
@@ -46,6 +33,19 @@ def add_sanitizers(test_proxy):
     add_general_regex_sanitizer(regex=namespacefirst_tenant_id, value="00000000-0000-0000-0000-000000000000")
     add_general_regex_sanitizer(regex=namespacefirst_client_id, value="00000000-0000-0000-0000-000000000000")
     add_general_regex_sanitizer(regex=namespacefirst_client_secret, value="00000000-0000-0000-0000-000000000000")
+
+    namespacesecond_subscription_id = os.environ.get(
+        "NAMESPACESECOND_SUBSCRIPTION_ID", "00000000-0000-0000-0000-000000000000"
+    )
+    namespacesecond_tenant_id = os.environ.get("NAMESPACESECOND_TENANT_ID", "00000000-0000-0000-0000-000000000000")
+    namespacesecond_client_id = os.environ.get("NAMESPACESECOND_CLIENT_ID", "00000000-0000-0000-0000-000000000000")
+    namespacesecond_client_secret = os.environ.get(
+        "NAMESPACESECOND_CLIENT_SECRET", "00000000-0000-0000-0000-000000000000"
+    )
+    add_general_regex_sanitizer(regex=namespacesecond_subscription_id, value="00000000-0000-0000-0000-000000000000")
+    add_general_regex_sanitizer(regex=namespacesecond_tenant_id, value="00000000-0000-0000-0000-000000000000")
+    add_general_regex_sanitizer(regex=namespacesecond_client_id, value="00000000-0000-0000-0000-000000000000")
+    add_general_regex_sanitizer(regex=namespacesecond_client_secret, value="00000000-0000-0000-0000-000000000000")
 
     add_header_regex_sanitizer(key="Set-Cookie", value="[set-cookie;]")
     add_header_regex_sanitizer(key="Cookie", value="cookie;")

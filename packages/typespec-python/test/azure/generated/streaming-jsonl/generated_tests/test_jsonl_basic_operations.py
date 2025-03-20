@@ -7,27 +7,28 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import AdditionalPropertiesClientTestBase, AdditionalPropertiesPreparer
+from testpreparer import JsonlClientTestBase, JsonlPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestAdditionalPropertiesSpreadRecordDiscriminatedUnionOperations(AdditionalPropertiesClientTestBase):
-    @AdditionalPropertiesPreparer()
+class TestJsonlBasicOperations(JsonlClientTestBase):
+    @JsonlPreparer()
     @recorded_by_proxy
-    def test_spread_record_discriminated_union_get(self, additionalproperties_endpoint):
-        client = self.create_client(endpoint=additionalproperties_endpoint)
-        response = client.spread_record_discriminated_union.get()
+    def test_basic_send(self, jsonl_endpoint):
+        client = self.create_client(endpoint=jsonl_endpoint)
+        response = client.basic.send(
+            body=bytes("bytes", encoding="utf-8"),
+            content_type="str",
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @AdditionalPropertiesPreparer()
+    @JsonlPreparer()
     @recorded_by_proxy
-    def test_spread_record_discriminated_union_put(self, additionalproperties_endpoint):
-        client = self.create_client(endpoint=additionalproperties_endpoint)
-        response = client.spread_record_discriminated_union.put(
-            body={"name": "str"},
-        )
+    def test_basic_receive(self, jsonl_endpoint):
+        client = self.create_client(endpoint=jsonl_endpoint)
+        response = client.basic.receive()
 
         # please add some check logic here by yourself
         # ...

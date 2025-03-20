@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import sys
-from typing import Any, Callable, Dict, Literal, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -14,15 +14,13 @@ from corehttp.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
-    StreamClosedError,
-    StreamConsumedError,
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import models as _models
-from ..._model_base import _deserialize, _failsafe_deserialize
+from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import (
     build_status_code_range_error_response_status_code404_request,
     build_status_code_range_error_response_status_code_in_range_request,
@@ -39,11 +37,11 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
 
-    async def error_response_status_code_in_range(self, **kwargs: Any) -> Literal[204]:
+    async def error_response_status_code_in_range(self, **kwargs: Any) -> None:
         """error_response_status_code_in_range.
 
-        :return: constant
-        :rtype: int
+        :return: None
+        :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -57,7 +55,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Literal[204]] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_status_code_range_error_response_status_code_in_range_request(
             headers=_headers,
@@ -68,19 +66,14 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
-            if _stream:
-                try:
-                    await response.read()  # Load the body in memory and close the socket
-                except (StreamConsumedError, StreamClosedError):
-                    pass
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if 494 <= response.status_code <= 499:
@@ -89,21 +82,14 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
                 error = _failsafe_deserialize(_models.DefaultError, response.json())
             raise HttpResponseError(response=response, model=error)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(Literal[204], response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, None, {})  # type: ignore
 
-        return deserialized  # type: ignore
-
-    async def error_response_status_code404(self, **kwargs: Any) -> Literal[204]:
+    async def error_response_status_code404(self, **kwargs: Any) -> None:
         """error_response_status_code404.
 
-        :return: constant
-        :rtype: int
+        :return: None
+        :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -114,7 +100,7 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Literal[204]] = kwargs.pop("cls", None)
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_status_code_range_error_response_status_code404_request(
             headers=_headers,
@@ -125,19 +111,14 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", False)
+        _stream = False
         pipeline_response: PipelineResponse = await self._client.pipeline.run(  # type: ignore
             _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
 
-        if response.status_code not in [200]:
-            if _stream:
-                try:
-                    await response.read()  # Load the body in memory and close the socket
-                except (StreamConsumedError, StreamClosedError):
-                    pass
+        if response.status_code not in [204]:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 404:
@@ -147,12 +128,5 @@ class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
                 error = _failsafe_deserialize(_models.Standard4XXError, response.json())
             raise HttpResponseError(response=response, model=error)
 
-        if _stream:
-            deserialized = response.iter_bytes()
-        else:
-            deserialized = _deserialize(Literal[204], response.json())
-
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
-
-        return deserialized  # type: ignore
+            return cls(pipeline_response, None, {})  # type: ignore

@@ -78,10 +78,10 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
+        _content = value
 
         _request = build_request_body_default_request(
             content_type=content_type,
@@ -222,7 +222,7 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
@@ -270,7 +270,7 @@ class RequestBodyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore

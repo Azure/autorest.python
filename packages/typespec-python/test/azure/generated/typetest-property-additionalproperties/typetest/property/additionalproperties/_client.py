@@ -43,7 +43,6 @@ from .operations import (
     SpreadFloatOperations,
     SpreadModelArrayOperations,
     SpreadModelOperations,
-    SpreadRecordDiscriminatedUnionOperations,
     SpreadRecordNonDiscriminatedUnion2Operations,
     SpreadRecordNonDiscriminatedUnion3Operations,
     SpreadRecordNonDiscriminatedUnionOperations,
@@ -134,9 +133,6 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     :ivar spread_record_union: SpreadRecordUnionOperations operations
     :vartype spread_record_union:
      typetest.property.additionalproperties.operations.SpreadRecordUnionOperations
-    :ivar spread_record_discriminated_union: SpreadRecordDiscriminatedUnionOperations operations
-    :vartype spread_record_discriminated_union:
-     typetest.property.additionalproperties.operations.SpreadRecordDiscriminatedUnionOperations
     :ivar spread_record_non_discriminated_union: SpreadRecordNonDiscriminatedUnionOperations
      operations
     :vartype spread_record_non_discriminated_union:
@@ -236,9 +232,6 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         )
         self.multiple_spread = MultipleSpreadOperations(self._client, self._config, self._serialize, self._deserialize)
         self.spread_record_union = SpreadRecordUnionOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.spread_record_discriminated_union = SpreadRecordDiscriminatedUnionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.spread_record_non_discriminated_union = SpreadRecordNonDiscriminatedUnionOperations(

@@ -19,7 +19,7 @@ from ._configuration import JsonClientConfiguration
 
 
 class JsonClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Projection.
+    """Encoded names.
 
     :ivar property: PropertyOperations operations
     :vartype property: serialization.encodedname.json.aio.operations.PropertyOperations
