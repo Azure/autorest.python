@@ -45,11 +45,12 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_two_models_as_page_item_list_first_item_request(  # pylint: disable=name-too-long
-    *, api_version: str = "2022-12-01-preview", **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -65,11 +66,12 @@ def build_two_models_as_page_item_list_first_item_request(  # pylint: disable=na
 
 
 def build_two_models_as_page_item_list_second_item_request(  # pylint: disable=name-too-long
-    *, api_version: str = "2022-12-01-preview", **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -84,10 +86,11 @@ def build_two_models_as_page_item_list_second_item_request(  # pylint: disable=n
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_page_list_with_page_request(*, api_version: str = "2022-12-01-preview", **kwargs: Any) -> HttpRequest:
+def build_page_list_with_page_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -103,15 +106,13 @@ def build_page_list_with_page_request(*, api_version: str = "2022-12-01-preview"
 
 
 def build_page_list_with_parameters_request(
-    *,
-    another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
-    api_version: str = "2022-12-01-preview",
-    **kwargs: Any
+    *, another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -130,12 +131,11 @@ def build_page_list_with_parameters_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_page_list_with_custom_page_model_request(  # pylint: disable=name-too-long
-    *, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_page_list_with_custom_page_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -425,7 +425,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -449,7 +449,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -473,7 +473,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -496,7 +496,7 @@ class PageClientOperationsMixin(PageClientMixinABC):
         body_input: Union[_models.ListItemInputBody, JSON, IO[bytes]],
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterable["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
@@ -535,8 +535,8 @@ class PageClientOperationsMixin(PageClientMixinABC):
 
                 _request = build_page_list_with_parameters_request(
                     another=another,
-                    api_version=self._config.api_version,
                     content_type=content_type,
+                    api_version=self._config.api_version,
                     content=_content,
                     headers=_headers,
                     params=_params,

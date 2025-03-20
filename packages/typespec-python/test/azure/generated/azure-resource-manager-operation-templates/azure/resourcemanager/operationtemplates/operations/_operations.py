@@ -49,10 +49,11 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operations_list_request(*, api_version: str = "2023-12-01-preview", **kwargs: Any) -> HttpRequest:
+def build_operations_list_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -68,12 +69,13 @@ def build_operations_list_request(*, api_version: str = "2023-12-01-preview", **
 
 
 def build_check_name_availability_check_global_request(  # pylint: disable=name-too-long
-    subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
+    subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -96,12 +98,13 @@ def build_check_name_availability_check_global_request(  # pylint: disable=name-
 
 
 def build_check_name_availability_check_local_request(  # pylint: disable=name-too-long
-    location: str, subscription_id: str, *, api_version: str = "2023-12-01-preview", **kwargs: Any
+    location: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -125,17 +128,13 @@ def build_check_name_availability_check_local_request(  # pylint: disable=name-t
 
 
 def build_lro_create_or_replace_request(
-    resource_group_name: str,
-    order_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -160,17 +159,13 @@ def build_lro_create_or_replace_request(
 
 
 def build_lro_export_request(
-    resource_group_name: str,
-    order_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -195,16 +190,12 @@ def build_lro_export_request(
 
 
 def build_lro_delete_request(
-    resource_group_name: str,
-    order_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -434,8 +425,8 @@ class CheckNameAvailabilityOperations:
 
         _request = build_check_name_availability_check_global_request(
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -575,8 +566,8 @@ class CheckNameAvailabilityOperations:
         _request = build_check_name_availability_check_local_request(
             location=location,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -659,8 +650,8 @@ class LroOperations:
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -887,8 +878,8 @@ class LroOperations:
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,

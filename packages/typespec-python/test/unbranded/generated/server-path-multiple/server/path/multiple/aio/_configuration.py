@@ -6,11 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Union
+from typing import Any
 
 from corehttp.runtime import policies
 
-from .. import models as _models
 from .._version import VERSION
 
 
@@ -23,11 +22,14 @@ class MultipleClientConfiguration:
     :param endpoint: Pass in `http://localhost:3000 <http://localhost:3000>`_ for endpoint.
      Required.
     :type endpoint: str
-    :param api_version: Pass in v1.0 for API version. "v1.0" Default value is "v1.0".
-    :type api_version: str or ~server.path.multiple.models.Versions
+    :keyword api_version: Pass in v1.0 for API version. Known values are "v1.0" and None. Default
+     value is "v1.0". Note that overriding this default value may result in unsupported behavior.
+    :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 
-    def __init__(self, endpoint: str, api_version: Union[str, _models.Versions] = "v1.0", **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
+        api_version: str = kwargs.pop("api_version", "v1.0")
+
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
 

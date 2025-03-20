@@ -7,33 +7,33 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Union
+from typing import Any
 from typing_extensions import Self
 
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
-from . import models as _models
 from ._configuration import MultipleClientConfiguration
 from ._operations import MultipleClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 
-class MultipleClient(MultipleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MultipleClient(MultipleClientOperationsMixin):
     """MultipleClient.
 
     :param endpoint: Pass in `http://localhost:3000 <http://localhost:3000>`_ for endpoint.
      Required.
     :type endpoint: str
-    :keyword api_version: Pass in v1.0 for API version. "v1.0" Default value is "v1.0".
+    :keyword api_version: Pass in v1.0 for API version. Known values are "v1.0" and None. Default
+     value is "v1.0". Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str or ~server.path.multiple.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, *, api_version: Union[str, _models.Versions] = "v1.0", **kwargs: Any
+        self, endpoint: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/server/path/multiple/{apiVersion}"
-        self._config = MultipleClientConfiguration(endpoint=endpoint, api_version=api_version, **kwargs)
+        self._config = MultipleClientConfiguration(endpoint=endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

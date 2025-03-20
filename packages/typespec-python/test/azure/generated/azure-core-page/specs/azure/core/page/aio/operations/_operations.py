@@ -434,8 +434,8 @@ class PageClientOperationsMixin(PageClientMixinABC):
 
                 _request = build_page_list_with_parameters_request(
                     another=another,
-                    api_version=self._config.api_version,
                     content_type=content_type,
+                    api_version=self._config.api_version,
                     content=_content,
                     headers=_headers,
                     params=_params,

@@ -19,9 +19,7 @@ from ._configuration import ResiliencyServiceDrivenClientConfiguration
 from ._operations import ResiliencyServiceDrivenClientOperationsMixin
 
 
-class ResiliencyServiceDrivenClient(
-    ResiliencyServiceDrivenClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 
@@ -50,18 +48,19 @@ class ResiliencyServiceDrivenClient(
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in either 'v1' or 'v2'. This represents the API version of a
-     service. Default value is "v2".
+     service. Known values are "v2" and None. Default value is "v2". Note that overriding this
+     default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, service_deployment_version: str, *, api_version: str = "v2", **kwargs: Any
+        self, endpoint: str, service_deployment_version: str, **kwargs: Any
     ) -> None:
         _endpoint = (
             "{endpoint}/resiliency/service-driven/client:v2/service:{serviceDeploymentVersion}/api-version:{apiVersion}"
         )
         self._config = ResiliencyServiceDrivenClientConfiguration(
-            endpoint=endpoint, service_deployment_version=service_deployment_version, api_version=api_version, **kwargs
+            endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )
         _policies = kwargs.pop("policies", None)
         if _policies is None:

@@ -54,12 +54,12 @@ def build_traits_smoke_test_request(
     if_modified_since: Optional[datetime.datetime] = None,
     etag: Optional[str] = None,
     match_condition: Optional[MatchConditions] = None,
-    api_version: str = "2022-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -90,13 +90,12 @@ def build_traits_smoke_test_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_traits_repeatable_action_request(
-    id: int, *, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -319,8 +318,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         _request = build_traits_repeatable_action_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,

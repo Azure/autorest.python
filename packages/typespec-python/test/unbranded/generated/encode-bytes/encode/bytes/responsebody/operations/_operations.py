@@ -24,6 +24,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ..._configuration import BytesClientConfiguration
+from ..._model_base import _deserialize
 from ..._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
@@ -82,7 +83,7 @@ def build_response_body_custom_content_type_request(**kwargs: Any) -> HttpReques
 def build_response_body_base64_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "application/octet-stream")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/encode/bytes/body/response/base64"
@@ -96,7 +97,7 @@ def build_response_body_base64_request(**kwargs: Any) -> HttpRequest:
 def build_response_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
-    accept = _headers.pop("Accept", "text/plain")
+    accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
     _url = "/encode/bytes/body/response/base64url"
@@ -280,11 +281,11 @@ class ResponseBodyOperations:
 
         return deserialized  # type: ignore
 
-    def base64(self, **kwargs: Any) -> Iterator[bytes]:
+    def base64(self, **kwargs: Any) -> bytes:
         """base64.
 
-        :return: Iterator[bytes]
-        :rtype: Iterator[bytes]
+        :return: bytes
+        :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -298,7 +299,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         _request = build_response_body_base64_request(
             headers=_headers,
@@ -309,7 +310,7 @@ class ResponseBodyOperations:
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", True)
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
@@ -323,18 +324,24 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.iter_bytes()
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
-    def base64_url(self, **kwargs: Any) -> Iterator[bytes]:
+    def base64_url(self, **kwargs: Any) -> bytes:
         """base64_url.
 
-        :return: Iterator[bytes]
-        :rtype: Iterator[bytes]
+        :return: bytes
+        :rtype: bytes
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -348,7 +355,7 @@ class ResponseBodyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[bytes] = kwargs.pop("cls", None)
 
         _request = build_response_body_base64_url_request(
             headers=_headers,
@@ -359,7 +366,7 @@ class ResponseBodyOperations:
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
-        _stream = kwargs.pop("stream", True)
+        _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
         response = pipeline_response.http_response
@@ -373,9 +380,15 @@ class ResponseBodyOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
-        deserialized = response.iter_bytes()
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(bytes, response.json(), format="base64")
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore

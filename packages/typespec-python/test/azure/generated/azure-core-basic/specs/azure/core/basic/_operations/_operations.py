@@ -44,13 +44,12 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_basic_create_or_update_request(
-    id: int, *, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_basic_create_or_update_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -72,13 +71,12 @@ def build_basic_create_or_update_request(
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_basic_create_or_replace_request(
-    id: int, *, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_basic_create_or_replace_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -100,10 +98,11 @@ def build_basic_create_or_replace_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_basic_get_request(id: int, *, api_version: str = "2022-12-01-preview", **kwargs: Any) -> HttpRequest:
+def build_basic_get_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -132,12 +131,12 @@ def build_basic_list_request(
     filter: Optional[str] = None,
     select: Optional[List[str]] = None,
     expand: Optional[List[str]] = None,
-    api_version: str = "2022-12-01-preview",
     **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -166,10 +165,11 @@ def build_basic_list_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_basic_delete_request(id: int, *, api_version: str = "2022-12-01-preview", **kwargs: Any) -> HttpRequest:
+def build_basic_delete_request(id: int, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -189,12 +189,11 @@ def build_basic_delete_request(id: int, *, api_version: str = "2022-12-01-previe
     return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_basic_export_request(
-    id: int, *, format: str, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_basic_export_request(id: int, *, format: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -215,12 +214,11 @@ def build_basic_export_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_basic_export_all_users_request(
-    *, format: str, api_version: str = "2022-12-01-preview", **kwargs: Any
-) -> HttpRequest:
+def build_basic_export_all_users_request(*, format: str, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -336,8 +334,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         _request = build_basic_create_or_update_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -471,8 +469,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         _request = build_basic_create_or_replace_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,

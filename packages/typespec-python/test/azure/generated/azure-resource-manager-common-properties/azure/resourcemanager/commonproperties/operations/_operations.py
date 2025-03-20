@@ -46,16 +46,12 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_managed_identity_get_request(
-    resource_group_name: str,
-    managed_identity_tracked_resource_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -80,17 +76,13 @@ def build_managed_identity_get_request(
 
 
 def build_managed_identity_create_with_system_assigned_request(  # pylint: disable=name-too-long
-    resource_group_name: str,
-    managed_identity_tracked_resource_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -117,17 +109,13 @@ def build_managed_identity_create_with_system_assigned_request(  # pylint: disab
 
 
 def build_managed_identity_update_with_user_assigned_and_system_assigned_request(  # pylint: disable=name-too-long
-    resource_group_name: str,
-    managed_identity_tracked_resource_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -154,16 +142,12 @@ def build_managed_identity_update_with_user_assigned_and_system_assigned_request
 
 
 def build_error_get_for_predefined_error_request(  # pylint: disable=name-too-long
-    resource_group_name: str,
-    confidential_resource_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, confidential_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -186,17 +170,13 @@ def build_error_get_for_predefined_error_request(  # pylint: disable=name-too-lo
 
 
 def build_error_create_for_user_defined_error_request(  # pylint: disable=name-too-long
-    resource_group_name: str,
-    confidential_resource_name: str,
-    subscription_id: str,
-    *,
-    api_version: str = "2023-12-01-preview",
-    **kwargs: Any
+    resource_group_name: str, confidential_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2023-12-01-preview"))
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
@@ -439,8 +419,8 @@ class ManagedIdentityOperations:
             resource_group_name=resource_group_name,
             managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -610,8 +590,8 @@ class ManagedIdentityOperations:
             resource_group_name=resource_group_name,
             managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -863,8 +843,8 @@ class ErrorOperations:
             resource_group_name=resource_group_name,
             confidential_resource_name=confidential_resource_name,
             subscription_id=self._config.subscription_id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,

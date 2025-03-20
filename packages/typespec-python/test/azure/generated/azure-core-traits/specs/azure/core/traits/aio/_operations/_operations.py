@@ -238,8 +238,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
         _request = build_traits_repeatable_action_request(
             id=id,
-            api_version=self._config.api_version,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
