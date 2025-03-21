@@ -64,7 +64,7 @@ def build_string_put_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/string"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -91,7 +91,7 @@ def build_boolean_put_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/boolean"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -118,7 +118,7 @@ def build_unknown_put_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/unknown"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -145,7 +145,7 @@ def build_decimal_type_request_body_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/decimal/resquest_body"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -186,7 +186,7 @@ def build_decimal128_type_request_body_request(**kwargs: Any) -> HttpRequest:  #
     _url = "/type/scalar/decimal128/resquest_body"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -227,7 +227,7 @@ def build_decimal_verify_verify_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/decimal/verify"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -254,7 +254,7 @@ def build_decimal128_verify_verify_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/scalar/decimal128/verify"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -322,13 +322,16 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(str, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -353,7 +356,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -447,13 +450,16 @@ class BooleanOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(bool, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -478,7 +484,7 @@ class BooleanOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -572,13 +578,16 @@ class UnknownOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(Any, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -603,7 +612,7 @@ class UnknownOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -697,13 +706,16 @@ class DecimalTypeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(decimal.Decimal, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -730,7 +742,7 @@ class DecimalTypeOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -873,13 +885,16 @@ class Decimal128TypeOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(decimal.Decimal, response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -906,7 +921,7 @@ class Decimal128TypeOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -1080,7 +1095,7 @@ class DecimalVerifyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -1205,7 +1220,7 @@ class Decimal128VerifyOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore

@@ -122,7 +122,7 @@ class GroupOperations:
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -167,7 +167,7 @@ class GroupOperations:
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -212,7 +212,7 @@ class GroupOperations:
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -260,7 +260,7 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -305,7 +305,7 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -350,7 +350,7 @@ class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "client": self._serialize.url("self._config.client", self._config.client, "str"),
+            "client": self._serialize.url("self._config.client", self._config.client, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

@@ -40,7 +40,6 @@ from ._operations import ExtendsDifferentSpreadModelOperations  # type: ignore
 from ._operations import ExtendsDifferentSpreadModelArrayOperations  # type: ignore
 from ._operations import MultipleSpreadOperations  # type: ignore
 from ._operations import SpreadRecordUnionOperations  # type: ignore
-from ._operations import SpreadRecordDiscriminatedUnionOperations  # type: ignore
 from ._operations import SpreadRecordNonDiscriminatedUnionOperations  # type: ignore
 from ._operations import SpreadRecordNonDiscriminatedUnion2Operations  # type: ignore
 from ._operations import SpreadRecordNonDiscriminatedUnion3Operations  # type: ignore
@@ -78,7 +77,6 @@ __all__ = [
     "ExtendsDifferentSpreadModelArrayOperations",
     "MultipleSpreadOperations",
     "SpreadRecordUnionOperations",
-    "SpreadRecordDiscriminatedUnionOperations",
     "SpreadRecordNonDiscriminatedUnionOperations",
     "SpreadRecordNonDiscriminatedUnion2Operations",
     "SpreadRecordNonDiscriminatedUnion3Operations",

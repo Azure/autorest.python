@@ -924,34 +924,6 @@ class SpreadModelRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadRecordForDiscriminatedUnion(_model_base.Model):
-    """The model spread Record<WidgetData>.
-
-    :ivar name: The name property. Required.
-    :vartype name: str
-    """
-
-    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """The name property. Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        name: str,
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
 class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
     """The model spread Record<WidgetData0 | WidgetData1>.
 

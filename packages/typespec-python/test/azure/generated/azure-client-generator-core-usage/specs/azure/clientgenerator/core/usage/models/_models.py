@@ -48,18 +48,23 @@ class OrphanModel(_model_base.Model):
     """Not used anywhere, but access is override to public so still need to be generated and exported
     with serialization.
 
-    :ivar name: Required.
-    :vartype name: str
+    :ivar model_name: Required.
+    :vartype model_name: str
+    :ivar description: Required.
+    :vartype description: str
     """
 
-    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    model_name: str = rest_field(name="modelName", visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+    description: str = rest_field(name="desc", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        name: str,
+        model_name: str,
+        description: str,
     ) -> None: ...
 
     @overload
