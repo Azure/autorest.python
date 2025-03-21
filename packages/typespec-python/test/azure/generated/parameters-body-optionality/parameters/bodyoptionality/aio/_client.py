@@ -15,8 +15,9 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..optionalexplicit.aio.operations import OptionalExplicitOperations
 from ._configuration import BodyOptionalityClientConfiguration
-from .operations import BodyOptionalityClientOperationsMixin, OptionalExplicitOperations
+from ._operations import BodyOptionalityClientOperationsMixin
 
 
 class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

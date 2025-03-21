@@ -16,7 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import CollectionFormatClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import HeaderOperations, QueryOperations
+from .header.operations import HeaderOperations
+from .query.operations import QueryOperations
 
 
 class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyword
