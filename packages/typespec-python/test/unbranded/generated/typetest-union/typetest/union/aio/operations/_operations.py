@@ -80,11 +80,11 @@ class StringsOnlyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse:
+    async def get(self, **kwargs: Any) -> _models.GetResponse9:
         """get.
 
-        :return: GetResponse. The GetResponse is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse
+        :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse9
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -98,7 +98,7 @@ class StringsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse9] = kwargs.pop("cls", None)
 
         _request = build_strings_only_get_request(
             headers=_headers,
@@ -126,7 +126,7 @@ class StringsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse, response.json())
+            deserialized = _deserialize(_models.GetResponse9, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -259,11 +259,11 @@ class StringExtensibleOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse1:
+    async def get(self, **kwargs: Any) -> _models.GetResponse8:
         """get.
 
-        :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse1
+        :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse8
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -277,7 +277,7 @@ class StringExtensibleOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse1] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse8] = kwargs.pop("cls", None)
 
         _request = build_string_extensible_get_request(
             headers=_headers,
@@ -305,7 +305,7 @@ class StringExtensibleOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse1, response.json())
+            deserialized = _deserialize(_models.GetResponse8, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -440,11 +440,11 @@ class StringExtensibleNamedOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse2:
+    async def get(self, **kwargs: Any) -> _models.GetResponse7:
         """get.
 
-        :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse2
+        :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse7
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -458,7 +458,7 @@ class StringExtensibleNamedOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse2] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse7] = kwargs.pop("cls", None)
 
         _request = build_string_extensible_named_get_request(
             headers=_headers,
@@ -486,7 +486,7 @@ class StringExtensibleNamedOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse2, response.json())
+            deserialized = _deserialize(_models.GetResponse7, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -625,11 +625,11 @@ class IntsOnlyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse3:
+    async def get(self, **kwargs: Any) -> _models.GetResponse6:
         """get.
 
-        :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse3
+        :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse6
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -643,7 +643,7 @@ class IntsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse3] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse6] = kwargs.pop("cls", None)
 
         _request = build_ints_only_get_request(
             headers=_headers,
@@ -671,7 +671,7 @@ class IntsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse3, response.json())
+            deserialized = _deserialize(_models.GetResponse6, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -800,11 +800,11 @@ class FloatsOnlyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse4:
+    async def get(self, **kwargs: Any) -> _models.GetResponse5:
         """get.
 
-        :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse4
+        :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse5
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -818,7 +818,7 @@ class FloatsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse4] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse5] = kwargs.pop("cls", None)
 
         _request = build_floats_only_get_request(
             headers=_headers,
@@ -846,7 +846,7 @@ class FloatsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse4, response.json())
+            deserialized = _deserialize(_models.GetResponse5, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -973,11 +973,11 @@ class ModelsOnlyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse5:
+    async def get(self, **kwargs: Any) -> _models.GetResponse4:
         """get.
 
-        :return: GetResponse5. The GetResponse5 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse5
+        :return: GetResponse4. The GetResponse4 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse4
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -991,7 +991,7 @@ class ModelsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse5] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse4] = kwargs.pop("cls", None)
 
         _request = build_models_only_get_request(
             headers=_headers,
@@ -1019,7 +1019,7 @@ class ModelsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse5, response.json())
+            deserialized = _deserialize(_models.GetResponse4, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1150,11 +1150,11 @@ class EnumsOnlyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse6:
+    async def get(self, **kwargs: Any) -> _models.GetResponse3:
         """get.
 
-        :return: GetResponse6. The GetResponse6 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse6
+        :return: GetResponse3. The GetResponse3 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse3
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1168,7 +1168,7 @@ class EnumsOnlyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse6] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse3] = kwargs.pop("cls", None)
 
         _request = build_enums_only_get_request(
             headers=_headers,
@@ -1196,7 +1196,7 @@ class EnumsOnlyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse6, response.json())
+            deserialized = _deserialize(_models.GetResponse3, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1327,11 +1327,11 @@ class StringAndArrayOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse7:
+    async def get(self, **kwargs: Any) -> _models.GetResponse2:
         """get.
 
-        :return: GetResponse7. The GetResponse7 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse7
+        :return: GetResponse2. The GetResponse2 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse2
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1345,7 +1345,7 @@ class StringAndArrayOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse7] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse2] = kwargs.pop("cls", None)
 
         _request = build_string_and_array_get_request(
             headers=_headers,
@@ -1373,7 +1373,7 @@ class StringAndArrayOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse7, response.json())
+            deserialized = _deserialize(_models.GetResponse2, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1504,11 +1504,11 @@ class MixedLiteralsOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse8:
+    async def get(self, **kwargs: Any) -> _models.GetResponse1:
         """get.
 
-        :return: GetResponse8. The GetResponse8 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse8
+        :return: GetResponse1. The GetResponse1 is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse1
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1522,7 +1522,7 @@ class MixedLiteralsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse8] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse1] = kwargs.pop("cls", None)
 
         _request = build_mixed_literals_get_request(
             headers=_headers,
@@ -1550,7 +1550,7 @@ class MixedLiteralsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse8, response.json())
+            deserialized = _deserialize(_models.GetResponse1, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1681,11 +1681,11 @@ class MixedTypesOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> _models.GetResponse9:
+    async def get(self, **kwargs: Any) -> _models.GetResponse:
         """get.
 
-        :return: GetResponse9. The GetResponse9 is compatible with MutableMapping
-        :rtype: ~typetest.union.models.GetResponse9
+        :return: GetResponse. The GetResponse is compatible with MutableMapping
+        :rtype: ~typetest.union.models.GetResponse
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1699,7 +1699,7 @@ class MixedTypesOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.GetResponse9] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GetResponse] = kwargs.pop("cls", None)
 
         _request = build_mixed_types_get_request(
             headers=_headers,
@@ -1727,7 +1727,7 @@ class MixedTypesOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.GetResponse9, response.json())
+            deserialized = _deserialize(_models.GetResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

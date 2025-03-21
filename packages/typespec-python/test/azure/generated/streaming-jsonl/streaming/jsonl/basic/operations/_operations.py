@@ -24,8 +24,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._configuration import JsonlClientConfiguration
-from .._serialization import Deserializer, Serializer
+from ..._configuration import JsonlClientConfiguration
+from ..._serialization import Deserializer, Serializer
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

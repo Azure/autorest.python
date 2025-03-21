@@ -24,9 +24,9 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Deserializer, Serializer
+from ...._serialization import Deserializer, Serializer
+from ....aio._configuration import JsonlClientConfiguration
 from ...operations._operations import build_basic_receive_request, build_basic_send_request
-from .._configuration import JsonlClientConfiguration
 
 if sys.version_info >= (3, 9):
     from collections.abc import MutableMapping

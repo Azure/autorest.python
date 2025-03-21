@@ -112,18 +112,18 @@ class EnumsOnlyCases(_model_base.Model):
 class GetResponse(_model_base.Model):
     """GetResponse.
 
-    :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
-    :vartype prop: str or str or str
+    :ivar prop: Required.
+    :vartype prop: ~typetest.union.models.MixedTypesCases
     """
 
-    prop: Literal["a", "b", "c"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
+    prop: "_models.MixedTypesCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Literal["a", "b", "c"],
+        prop: "_models.MixedTypesCases",
     ) -> None: ...
 
     @overload
@@ -140,20 +140,18 @@ class GetResponse(_model_base.Model):
 class GetResponse1(_model_base.Model):
     """GetResponse1.
 
-    :ivar prop: Required. Is one of the following types: Literal["b"], Literal["c"], str
-    :vartype prop: str or str or str
+    :ivar prop: Required.
+    :vartype prop: ~typetest.union.models.MixedLiteralsCases
     """
 
-    prop: Union[Literal["b"], Literal["c"], str] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
-    """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
+    prop: "_models.MixedLiteralsCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[Literal["b"], Literal["c"], str],
+        prop: "_models.MixedLiteralsCases",
     ) -> None: ...
 
     @overload
@@ -169,6 +167,146 @@ class GetResponse1(_model_base.Model):
 
 class GetResponse2(_model_base.Model):
     """GetResponse2.
+
+    :ivar prop: Required.
+    :vartype prop: ~typetest.union.models.StringAndArrayCases
+    """
+
+    prop: "_models.StringAndArrayCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        prop: "_models.StringAndArrayCases",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class GetResponse3(_model_base.Model):
+    """GetResponse3.
+
+    :ivar prop: Required.
+    :vartype prop: ~typetest.union.models.EnumsOnlyCases
+    """
+
+    prop: "_models.EnumsOnlyCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        prop: "_models.EnumsOnlyCases",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class GetResponse4(_model_base.Model):
+    """GetResponse4.
+
+    :ivar prop: Required. Is either a Cat type or a Dog type.
+    :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
+    """
+
+    prop: Union["_models.Cat", "_models.Dog"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Is either a Cat type or a Dog type."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        prop: Union["_models.Cat", "_models.Dog"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class GetResponse5(_model_base.Model):
+    """GetResponse5.
+
+    :ivar prop: Required. Is one of the following types: float
+    :vartype prop: float or float or float
+    """
+
+    prop: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Is one of the following types: float"""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        prop: float,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class GetResponse6(_model_base.Model):
+    """GetResponse6.
+
+    :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
+    :vartype prop: int or int or int
+    """
+
+    prop: Literal[1, 2, 3] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        prop: Literal[1, 2, 3],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class GetResponse7(_model_base.Model):
+    """GetResponse7.
 
     :ivar prop: Required. Known values are: "b" and "c".
     :vartype prop: str or ~typetest.union.models.StringExtensibleNamedUnion
@@ -197,161 +335,23 @@ class GetResponse2(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse3(_model_base.Model):
-    """GetResponse3.
-
-    :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
-    :vartype prop: int or int or int
-    """
-
-    prop: Literal[1, 2, 3] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Literal[1, 2, 3],
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
-class GetResponse4(_model_base.Model):
-    """GetResponse4.
-
-    :ivar prop: Required. Is one of the following types: float
-    :vartype prop: float or float or float
-    """
-
-    prop: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Is one of the following types: float"""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: float,
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
-class GetResponse5(_model_base.Model):
-    """GetResponse5.
-
-    :ivar prop: Required. Is either a Cat type or a Dog type.
-    :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
-    """
-
-    prop: Union["_models.Cat", "_models.Dog"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Is either a Cat type or a Dog type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: Union["_models.Cat", "_models.Dog"],
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
-class GetResponse6(_model_base.Model):
-    """GetResponse6.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.EnumsOnlyCases
-    """
-
-    prop: "_models.EnumsOnlyCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_models.EnumsOnlyCases",
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
-class GetResponse7(_model_base.Model):
-    """GetResponse7.
-
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.StringAndArrayCases
-    """
-
-    prop: "_models.StringAndArrayCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        prop: "_models.StringAndArrayCases",
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-
-
 class GetResponse8(_model_base.Model):
     """GetResponse8.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedLiteralsCases
+    :ivar prop: Required. Is one of the following types: Literal["b"], Literal["c"], str
+    :vartype prop: str or str or str
     """
 
-    prop: "_models.MixedLiteralsCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
+    prop: Union[Literal["b"], Literal["c"], str] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.MixedLiteralsCases",
+        prop: Union[Literal["b"], Literal["c"], str],
     ) -> None: ...
 
     @overload
@@ -368,18 +368,18 @@ class GetResponse8(_model_base.Model):
 class GetResponse9(_model_base.Model):
     """GetResponse9.
 
-    :ivar prop: Required.
-    :vartype prop: ~typetest.union.models.MixedTypesCases
+    :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
+    :vartype prop: str or str or str
     """
 
-    prop: "_models.MixedTypesCases" = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
+    prop: Literal["a", "b", "c"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: "_models.MixedTypesCases",
+        prop: Literal["a", "b", "c"],
     ) -> None: ...
 
     @overload
