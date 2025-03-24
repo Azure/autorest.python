@@ -3,6 +3,8 @@ import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 import { PythonEmitterOptions, PythonEmitterOptionsSchema } from "@typespec/http-client-python";
 
 export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
+    flavor?: "azure";
+    "models-mode"?: string;
     "generate-sample"?: boolean;
     "generate-test"?: boolean;
 }
@@ -16,6 +18,18 @@ const PythonAzureEmitterOptionsSchema: JSONSchemaType<PythonAzureEmitterOptions>
     type: "object",
     additionalProperties: true,
     properties: {
+        flavor: {
+            type: "string",
+            nullable: true,
+            description: "The flavor of the SDK.",
+        },
+        "models-mode": {
+            type: "string",
+            nullable: true,
+            enum: ["dpg", "none"],
+            description:
+                "What kind of models to generate. If you pass in `none`, we won't generate models. `dpg` models are the default models we generate.",
+        },
         "generate-sample": {
             type: "boolean",
             nullable: true,
