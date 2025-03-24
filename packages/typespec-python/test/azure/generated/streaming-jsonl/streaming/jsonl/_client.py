@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import JsonlClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import BasicOperations
+from .basic.operations import BasicOperations
 
 
 class JsonlClient:  # pylint: disable=client-accepts-api-version-keyword
