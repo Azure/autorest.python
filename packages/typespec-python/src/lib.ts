@@ -3,7 +3,7 @@ import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 import { PythonEmitterOptions, PythonEmitterOptionsSchema } from "@typespec/http-client-python";
 
 export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
-    flavor?: "azure";
+    "flavor"?: "azure";
     "models-mode"?: string;
     "generate-sample"?: boolean;
     "generate-test"?: boolean;
@@ -18,7 +18,7 @@ const PythonAzureEmitterOptionsSchema: JSONSchemaType<PythonAzureEmitterOptions>
     type: "object",
     additionalProperties: true,
     properties: {
-        flavor: {
+        "flavor": {
             type: "string",
             nullable: true,
             description: "The flavor of the SDK.",
