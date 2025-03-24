@@ -4,8 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from azurecore.lro.rpc.aio import RpcClient
-from azurecore.lro.rpc import models
+from specs.azurecore.lro.rpc.aio import RpcClient
+from specs.azurecore.lro.rpc import models
 
 
 @pytest.fixture
