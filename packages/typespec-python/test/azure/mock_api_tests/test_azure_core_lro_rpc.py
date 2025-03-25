@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from specs.azurecore.lro.rpc import RpcClient, models
+from specs.azure.core.lro.rpc import RpcClient, models
 
 
 @pytest.fixture
