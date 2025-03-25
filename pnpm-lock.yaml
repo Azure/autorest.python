@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.9.0-dev.1
-        version: 0.9.0-dev.1(na5sqrbfiqe26rpjh3d3zww5om)
+        specifier: ~0.8.2
+        version: 0.8.2(na5sqrbfiqe26rpjh3d3zww5om)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.9.0-dev.1
-        version: 0.9.0-dev.1(tbepisicnniwwh5yfhvlwsftvu)
+        specifier: ~0.8.2
+        version: 0.8.2(tbepisicnniwwh5yfhvlwsftvu)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -556,6 +556,7 @@ packages:
 
   '@effect/schema@0.71.1':
     resolution: {integrity: sha512-XvFttkuBUL3s4ofZ+OVE4Pagb4wsPG8laSS8iO5lVI9Yt1zIM49uxlYIA2BJ45jjS3MdplUepC0NilotKnjU2A==}
+    deprecated: this package has been merged into the main effect package
     peerDependencies:
       effect: ^3.6.5
 
@@ -1535,8 +1536,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^0.67.1
 
-  '@typespec/http-client-python@0.9.0-dev.1':
-    resolution: {integrity: sha512-Bch/zdt2wol6e4sBHbfruXVexubKfp1oM9jY8GXDGBvXKoSgMVDwVahExrf58JSrMeLFN2rcEL+BH2BTLJCd/w==}
+  '@typespec/http-client-python@0.8.2':
+    resolution: {integrity: sha512-ex/bBbEv3q6/5g4OGFlJ1CpAwVRN57lFCEfZTcCWdzdgtBxR7XUwBricBuiOqdrWqsJl81ilKoIgMD0qf6KqhA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.53.0 <1.0.0'
@@ -6143,7 +6144,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.67.1(@types/node@22.5.5)
 
-  '@typespec/http-client-python@0.9.0-dev.1(na5sqrbfiqe26rpjh3d3zww5om)':
+  '@typespec/http-client-python@0.8.2(na5sqrbfiqe26rpjh3d3zww5om)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(wjegnqrrlroq36cedwihs7fwdy)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10)))))
@@ -6164,7 +6165,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-client-python@0.9.0-dev.1(tbepisicnniwwh5yfhvlwsftvu)':
+  '@typespec/http-client-python@0.8.2(tbepisicnniwwh5yfhvlwsftvu)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(e3cfoxkazmlklhsfsyiqwpleoq)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))

@@ -1,5 +1,13 @@
 # Release
 
+## 0.41.0
+
+### Features
+
+- [#3057](https://github.com/Azure/autorest.python/pull/3057) Always respect namespace from TCGC
+- [#3060](https://github.com/Azure/autorest.python/pull/3060) Refine emitter options
+
+
 ## 0.40.0
 
 ### Bump dependencies

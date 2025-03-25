@@ -10,7 +10,7 @@ from typing import Any
 
 from azure.core.pipeline import policies
 
-from ._version import VERSION
+from .._version import VERSION
 
 
 class RpcClientConfiguration:  # pylint: disable=too-many-instance-attributes
@@ -32,7 +32,7 @@ class RpcClientConfiguration:  # pylint: disable=too-many-instance-attributes
 
         self.endpoint = endpoint
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "azurecore-lro-rpc/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-core-lro-rpc/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
@@ -43,6 +43,6 @@ class RpcClientConfiguration:  # pylint: disable=too-many-instance-attributes
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
+        self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
