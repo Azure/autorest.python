@@ -1,52 +1,48 @@
 import { SdkContext, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
 import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
+import { PythonEmitterOptions, PythonEmitterOptionsSchema } from "@typespec/http-client-python";
 
-export interface PythonEmitterOptions {
-    "package-version"?: string;
-    "package-name"?: string;
-    "output-dir"?: string;
-    "generate-packaging-files"?: boolean;
-    "packaging-files-dir"?: string;
-    "packaging-files-config"?: object;
-    "package-pprint-name"?: string;
-    "head-as-boolean"?: boolean;
-    "models-mode"?: string;
-    "tracing"?: boolean;
-    "company-name"?: string;
-    "generate-test"?: boolean;
-    "debug"?: boolean;
+export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
     "flavor"?: "azure";
-    "examples-dir"?: string;
-    // If true, package namespace will respect the typespec namespace. Otherwise,
-    // package namespace is always aligned with package name.
-    "enable-typespec-namespace"?: boolean;
+    "models-mode"?: string;
+    "generate-sample"?: boolean;
+    "generate-test"?: boolean;
 }
 
 export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
-    extends SdkContext<PythonEmitterOptions, TServiceOperation> {
+    extends SdkContext<PythonAzureEmitterOptions, TServiceOperation> {
     __endpointPathParameters: Record<string, any>[];
 }
 
-const EmitterOptionsSchema: JSONSchemaType<PythonEmitterOptions> = {
+const PythonAzureEmitterOptionsSchema: JSONSchemaType<PythonAzureEmitterOptions> = {
     type: "object",
     additionalProperties: true,
     properties: {
-        "package-version": { type: "string", nullable: true },
-        "package-name": { type: "string", nullable: true },
-        "output-dir": { type: "string", nullable: true },
-        "generate-packaging-files": { type: "boolean", nullable: true },
-        "packaging-files-dir": { type: "string", nullable: true },
-        "packaging-files-config": { type: "object", nullable: true },
-        "package-pprint-name": { type: "string", nullable: true },
-        "head-as-boolean": { type: "boolean", nullable: true },
-        "models-mode": { type: "string", nullable: true },
-        "tracing": { type: "boolean", nullable: true },
-        "company-name": { type: "string", nullable: true },
-        "generate-test": { type: "boolean", nullable: true },
-        "debug": { type: "boolean", nullable: true },
-        "flavor": { type: "string", nullable: true },
-        "examples-dir": { type: "string", nullable: true, format: "absolute-path" },
-        "enable-typespec-namespace": { type: "boolean", nullable: true },
+        "flavor": {
+            type: "string",
+            nullable: true,
+            description: "The flavor of the SDK.",
+        },
+        "models-mode": {
+            type: "string",
+            nullable: true,
+            enum: ["dpg", "none"],
+            description:
+                "What kind of models to generate. If you pass in `none`, we won't generate models. `dpg` models are the default models we generate.",
+        },
+        "generate-sample": {
+            type: "boolean",
+            nullable: true,
+            description:
+                "Whether to generate sample files, for basic samples of your generated sdks. Defaults to `false`.",
+        },
+        "generate-test": {
+            type: "boolean",
+            nullable: true,
+            description:
+                "Whether to generate test files, for basic testing of your generated sdks. Defaults to `false`.",
+        },
+        ...PythonEmitterOptionsSchema.properties,
     },
     required: [],
 };
@@ -55,7 +51,7 @@ const libDef = {
     name: "@azure-tools/typespec-python",
     diagnostics: {},
     emitter: {
-        options: EmitterOptionsSchema as JSONSchemaType<PythonEmitterOptions>,
+        options: PythonAzureEmitterOptionsSchema,
     },
 } as const;
 

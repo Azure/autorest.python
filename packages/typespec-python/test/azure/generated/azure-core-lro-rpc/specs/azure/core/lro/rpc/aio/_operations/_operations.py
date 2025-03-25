@@ -114,13 +114,13 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         Generate data.
 
         :param body: The body parameter. Required.
-        :type body: ~azurecore.lro.rpc.models.GenerationOptions
+        :type body: ~specs.azure.core.lro.rpc.models.GenerationOptions
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -139,7 +139,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -158,7 +158,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         :paramtype content_type: str
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -172,10 +172,10 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
         :param body: The body parameter. Is one of the following types: GenerationOptions, JSON,
          IO[bytes] Required.
-        :type body: ~azurecore.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
+        :type body: ~specs.azure.core.lro.rpc.models.GenerationOptions or JSON or IO[bytes]
         :return: An instance of AsyncLROPoller that returns GenerationResult. The GenerationResult is
          compatible with MutableMapping
-        :rtype: ~azure.core.polling.AsyncLROPoller[~azurecore.lro.rpc.models.GenerationResult]
+        :rtype: ~azure.core.polling.AsyncLROPoller[~specs.azure.core.lro.rpc.models.GenerationResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})

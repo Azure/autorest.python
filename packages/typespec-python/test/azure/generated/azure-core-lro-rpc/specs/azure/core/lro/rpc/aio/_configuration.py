@@ -32,7 +32,7 @@ class RpcClientConfiguration:  # pylint: disable=too-many-instance-attributes
 
         self.endpoint = endpoint
         self.api_version = api_version
-        kwargs.setdefault("sdk_moniker", "azurecore-lro-rpc/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-core-lro-rpc/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
