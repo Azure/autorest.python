@@ -50,5 +50,14 @@ class OAuth2ClientConfiguration:
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(
-                self.credential, *self.credential_scopes, **kwargs
+                self.credential,
+                *self.credential_scopes,
+                [
+                    {
+                        "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+                        "scopes": [{"value": "https://security.microsoft.com/.default"}],
+                        "type": "implicit",
+                    }
+                ],
+                **kwargs
             )
