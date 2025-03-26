@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 from encode.datetime import DatetimeClient
 import functools

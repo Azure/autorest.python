@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from client.structure.multiclient import ClientAClient, ClientBClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

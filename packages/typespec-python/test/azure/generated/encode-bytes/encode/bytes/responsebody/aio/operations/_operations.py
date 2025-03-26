@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 import sys
 from typing import Any, AsyncIterator, Callable, Dict, Optional, TypeVar
 

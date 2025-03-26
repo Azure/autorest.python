@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 from encode.bytes import BytesClient
 import functools

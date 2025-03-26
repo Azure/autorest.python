@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from client.clientnamespace import ClientNamespaceFirstClient
 from client.clientnamespace.second import ClientNamespaceSecondClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer

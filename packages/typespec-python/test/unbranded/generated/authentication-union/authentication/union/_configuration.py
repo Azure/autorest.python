@@ -1,5 +1,6 @@
 # coding=utf-8
 
+
 from typing import Any, TYPE_CHECKING, Union
 
 from corehttp.credentials import ServiceKeyCredential

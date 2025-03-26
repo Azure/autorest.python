@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from client.structure.twooperationgroup import TwoOperationGroupClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

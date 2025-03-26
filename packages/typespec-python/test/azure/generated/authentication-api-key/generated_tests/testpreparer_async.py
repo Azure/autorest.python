@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.apikey.aio import ApiKeyClient
 from devtools_testutils import AzureRecordedTestCase
 

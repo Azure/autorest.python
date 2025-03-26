@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from azure.core import AsyncPipelineClient
 
 from ....._serialization import Deserializer, Serializer

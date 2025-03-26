@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.union.aio import UnionClient
 from devtools_testutils import AzureRecordedTestCase
 

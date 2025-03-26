@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 
 from specs.azure.example.basic import AzureExampleClient
 

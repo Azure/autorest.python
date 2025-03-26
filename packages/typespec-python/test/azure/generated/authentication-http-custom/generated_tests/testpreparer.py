@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.http.custom import CustomClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 # pylint: disable=useless-super-delegation
 
 from typing import Any, Dict, Mapping, Optional, TYPE_CHECKING, overload

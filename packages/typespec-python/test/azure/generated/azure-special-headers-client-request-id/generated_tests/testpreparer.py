@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from azure.specialheaders.xmsclientrequestid import XmsClientRequestIdClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

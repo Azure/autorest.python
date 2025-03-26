@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from client.structure.service.aio import ServiceClient
 from devtools_testutils import AzureRecordedTestCase
 

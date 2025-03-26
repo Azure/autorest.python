@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from client.structure.renamedoperation import RenamedOperationClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

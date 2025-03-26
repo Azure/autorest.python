@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.oauth2 import OAuth2Client
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

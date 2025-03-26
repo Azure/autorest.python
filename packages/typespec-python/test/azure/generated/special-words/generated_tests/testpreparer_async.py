@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from devtools_testutils import AzureRecordedTestCase
 from specialwords.aio import SpecialWordsClient
 

@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.union import UnionClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

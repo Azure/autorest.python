@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from authentication.oauth2.aio import OAuth2Client
 from devtools_testutils import AzureRecordedTestCase
 

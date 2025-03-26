@@ -1,5 +1,6 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
+
 import decimal
 import json
 import sys

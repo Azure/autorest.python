@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from devtools_testutils import AzureRecordedTestCase
 from specs.azure.clientgenerator.core.access.aio import AccessClient
 

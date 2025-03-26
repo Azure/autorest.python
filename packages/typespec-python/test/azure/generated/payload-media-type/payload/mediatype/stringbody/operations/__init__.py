@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 # pylint: disable=wrong-import-position
 
 from typing import TYPE_CHECKING

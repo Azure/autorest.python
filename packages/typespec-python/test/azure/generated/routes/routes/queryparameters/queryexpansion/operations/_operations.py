@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from azure.core import PipelineClient
 
 from ...._configuration import RoutesClientConfiguration

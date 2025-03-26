@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 from devtools_testutils import AzureRecordedTestCase
 from specs.azure.core.lro.rpc.aio import RpcClient
 

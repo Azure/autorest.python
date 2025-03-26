@@ -1,5 +1,6 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
+None
 # pylint: disable=useless-super-delegation
 
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload

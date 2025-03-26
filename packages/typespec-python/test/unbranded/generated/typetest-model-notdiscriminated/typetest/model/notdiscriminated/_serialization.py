@@ -1,6 +1,7 @@
 # pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 
+
 # pyright: reportUnnecessaryTypeIgnoreComment=false
 
 from base64 import b64decode, b64encode

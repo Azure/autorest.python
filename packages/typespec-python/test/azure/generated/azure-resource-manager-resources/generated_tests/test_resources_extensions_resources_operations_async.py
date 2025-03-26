@@ -1,4 +1,5 @@
 # coding=utf-8
+None
 import pytest
 from azure.resourcemanager.resources.aio import ResourcesClient
 
