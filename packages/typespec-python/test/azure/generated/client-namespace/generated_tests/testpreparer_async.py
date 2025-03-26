@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.clientnamespace.aio import ClientNamespaceFirstClient
 from client.clientnamespace.second.aio import ClientNamespaceSecondClient
 from devtools_testutils import AzureRecordedTestCase

@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.structure.service import ServiceClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

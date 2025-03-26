@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 # pylint: disable=useless-super-delegation
 
 import datetime

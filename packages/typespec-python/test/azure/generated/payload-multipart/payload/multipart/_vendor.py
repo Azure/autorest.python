@@ -1,5 +1,3 @@
-None
-
 import json
 from typing import Any, Dict, IO, List, Mapping, Optional, Tuple, Union
 

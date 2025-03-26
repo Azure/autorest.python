@@ -1,6 +1,5 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
-None
 import datetime
 from io import IOBase
 import json

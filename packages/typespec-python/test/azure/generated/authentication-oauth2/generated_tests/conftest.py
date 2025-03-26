@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 import os
 import pytest
 from dotenv import load_dotenv

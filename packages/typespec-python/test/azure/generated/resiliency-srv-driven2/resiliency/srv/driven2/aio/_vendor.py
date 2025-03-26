@@ -1,5 +1,3 @@
-None
-
 from abc import ABC
 from typing import TYPE_CHECKING
 

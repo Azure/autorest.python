@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from authentication.apikey import ApiKeyClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

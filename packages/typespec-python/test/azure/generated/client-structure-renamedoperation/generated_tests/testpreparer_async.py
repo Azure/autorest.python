@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.structure.renamedoperation.aio import RenamedOperationClient
 from devtools_testutils import AzureRecordedTestCase
 

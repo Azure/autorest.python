@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 
 from copy import deepcopy
 from typing import Any, TYPE_CHECKING, Union

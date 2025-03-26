@@ -1,4 +1,3 @@
-None
 import functools
 
 

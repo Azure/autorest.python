@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 
 from typing import Any, TYPE_CHECKING, Union
 

@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 import pytest
 from azure.resourcemanager.operationtemplates import OperationTemplatesClient
 

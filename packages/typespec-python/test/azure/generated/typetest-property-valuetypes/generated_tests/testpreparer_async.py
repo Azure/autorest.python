@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from devtools_testutils import AzureRecordedTestCase
 from typetest.property.valuetypes.aio import ValueTypesClient
 

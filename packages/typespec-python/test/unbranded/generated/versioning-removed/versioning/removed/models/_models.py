@@ -1,5 +1,4 @@
 # coding=utf-8
-
 # pylint: disable=useless-super-delegation
 
 from typing import Any, Mapping, TYPE_CHECKING, Union, overload

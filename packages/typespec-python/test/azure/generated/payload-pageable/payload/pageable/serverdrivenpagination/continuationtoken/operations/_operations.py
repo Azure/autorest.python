@@ -1,6 +1,5 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
-None
 import sys
 from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
 

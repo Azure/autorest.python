@@ -1,6 +1,5 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
-None
 from io import IOBase
 import json
 import sys

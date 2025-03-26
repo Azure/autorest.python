@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 import datetime
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar

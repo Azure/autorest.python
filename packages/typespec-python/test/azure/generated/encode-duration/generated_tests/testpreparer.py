@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 from encode.duration import DurationClient
 import functools

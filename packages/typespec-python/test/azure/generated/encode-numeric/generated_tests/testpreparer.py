@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 from encode.numeric import NumericClient
 import functools

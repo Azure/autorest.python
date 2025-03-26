@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 import pytest
 from devtools_testutils.aio import recorded_by_proxy_async
 from testpreparer import NotVersionedPreparer

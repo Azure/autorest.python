@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 
 from .. import _model_base
 

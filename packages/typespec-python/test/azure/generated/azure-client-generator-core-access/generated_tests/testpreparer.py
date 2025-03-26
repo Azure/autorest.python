@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
 from specs.azure.clientgenerator.core.access import AccessClient

@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from devtools_testutils import AzureRecordedTestCase
 from specs.azure.core.lro.standard.aio import StandardClient
 

@@ -1,5 +1,4 @@
 # coding=utf-8
-
 import json
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar

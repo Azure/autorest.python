@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.naming import NamingClient
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools

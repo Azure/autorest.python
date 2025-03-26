@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.structure.twooperationgroup.aio import TwoOperationGroupClient
 from devtools_testutils import AzureRecordedTestCase
 

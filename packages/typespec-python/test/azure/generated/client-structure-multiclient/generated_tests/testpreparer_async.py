@@ -1,5 +1,4 @@
 # coding=utf-8
-None
 from client.structure.multiclient.aio import ClientAClient, ClientBClient
 from devtools_testutils import AzureRecordedTestCase
 

@@ -1,6 +1,5 @@
 # coding=utf-8
 
-
 from typing import Any, TYPE_CHECKING
 
 from corehttp.runtime import policies

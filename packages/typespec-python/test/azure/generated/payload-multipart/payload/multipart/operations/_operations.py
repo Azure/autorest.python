@@ -1,6 +1,5 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
-None
 import sys
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
