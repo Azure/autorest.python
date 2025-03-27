@@ -44,7 +44,7 @@ class OAuth2ClientConfiguration:
             self.authentication_policy = policies.BearerTokenCredentialPolicy(
                 self.credential,
                 *self.credential_scopes,
-                [
+                auth_flows=[
                     {
                         "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
                         "scopes": [{"value": "https://security.microsoft.com/.default"}],

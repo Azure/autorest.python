@@ -48,7 +48,7 @@ class UnionClientConfiguration:
             return policies.AsyncBearerTokenCredentialPolicy(
                 self.credential,
                 *self.credential_scopes,
-                [
+                auth_flows=[
                     {
                         "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
                         "scopes": [{"value": "https://security.microsoft.com/.default"}],
