@@ -1,7 +1,5 @@
-# ------------------------------------
-# Copyright (c) Unbranded Corporation.
-# Licensed under the MIT License.
-# ------------------------------------
+# coding=utf-8
+
 """Customize generated code here.
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
