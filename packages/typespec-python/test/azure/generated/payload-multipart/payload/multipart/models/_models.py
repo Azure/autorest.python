@@ -39,6 +39,36 @@ class Address(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class AnonymousModelRequest(_model_base.Model):
+    """AnonymousModelRequest.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: ~payload.multipart._vendor.FileType
+    """
+
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: FileType,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class BinaryArrayPartsRequest(_model_base.Model):
     """BinaryArrayPartsRequest.
 

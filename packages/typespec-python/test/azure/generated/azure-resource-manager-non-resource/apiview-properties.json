@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": "Azure.ResourceManager.NonResource",
+    "CrossLanguageDefinitionId": {
+        "azure.resourcemanager.nonresource.models.ErrorAdditionalInfo": "Azure.ResourceManager.CommonTypes.ErrorAdditionalInfo",
+        "azure.resourcemanager.nonresource.models.ErrorDetail": "Azure.ResourceManager.CommonTypes.ErrorDetail",
+        "azure.resourcemanager.nonresource.models.ErrorResponse": "Azure.ResourceManager.CommonTypes.ErrorResponse",
+        "azure.resourcemanager.nonresource.models.NonResource": "Azure.ResourceManager.NonResource.NonResource",
+        "azure.resourcemanager.nonresource.NonResourceClient.non_resource_operations.get": "Azure.ResourceManager.NonResource.NonResourceOperations.get",
+        "azure.resourcemanager.nonresource.NonResourceClient.non_resource_operations.create": "Azure.ResourceManager.NonResource.NonResourceOperations.create"
+    }
+}

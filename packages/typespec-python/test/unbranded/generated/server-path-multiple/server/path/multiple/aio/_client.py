@@ -67,7 +67,7 @@ class MultipleClient(MultipleClientOperationsMixin):
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str"),
             "apiVersion": self._serialize.url(
                 "self._config.api_version", self._config.api_version, "str", skip_quote=True
             ),

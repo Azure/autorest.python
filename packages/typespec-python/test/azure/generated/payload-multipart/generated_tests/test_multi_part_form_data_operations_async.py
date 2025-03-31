@@ -79,7 +79,6 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
         client = self.create_async_client(endpoint=multipart_endpoint)
         response = await client.form_data.anonymous_model(
             body={"profileImage": "filetype"},
-            profile_image="filetype",
         )
 
         # please add some check logic here by yourself

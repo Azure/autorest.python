@@ -122,7 +122,7 @@ def build_page_list_with_parameters_request(
         _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
 
-    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_page_list_with_custom_page_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long

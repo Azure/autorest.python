@@ -1,5 +1,6 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
+import json
 import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
@@ -18,7 +19,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._model_base import _deserialize
+from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_return_type_changed_from_test_request
 from .._vendor import ReturnTypeChangedFromClientMixinABC
 
@@ -53,10 +54,10 @@ class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixi
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = body
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_return_type_changed_from_test_request(
             content_type=content_type,
@@ -65,7 +66,7 @@ class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixi
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str"),
             "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
