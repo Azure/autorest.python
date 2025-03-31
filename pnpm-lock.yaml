@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz(c25h2yeksuorzcqz3v4sac5zy4)
+        specifier: ~0.8.3-dev.2
+        version: 0.8.3-dev.2(c25h2yeksuorzcqz3v4sac5zy4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz
-        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz(kvm224o5qzo556uchxhfoioziu)
+        specifier: ~0.8.3-dev.2
+        version: 0.8.3-dev.2(kvm224o5qzo556uchxhfoioziu)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -130,6 +130,9 @@ importers:
       '@typespec/compiler':
         specifier: ~0.67.0
         version: 0.67.1(@types/node@22.5.5)
+      '@typespec/events':
+        specifier: ~0.67.0
+        version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))
       '@typespec/http':
         specifier: ~0.67.0
         version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))
@@ -142,6 +145,12 @@ importers:
       '@typespec/rest':
         specifier: ~0.67.0
         version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))
+      '@typespec/sse':
+        specifier: ~0.67.0
+        version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/events@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))
+      '@typespec/streams':
+        specifier: ~0.67.0
+        version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))
       '@typespec/versioning':
         specifier: ~0.67.0
         version: 0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))
@@ -1536,9 +1545,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^0.67.1
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz':
-    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz}
-    version: 0.8.2
+  '@typespec/http-client-python@0.8.3-dev.2':
+    resolution: {integrity: sha512-XN5H5N4qZzsUHoM0cH97tHZ6DBYROWDD/L5YFjRykLy/6UwcE/PRNID8KmQocFlTXjCLExs1qtw4fcxizfgEsQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.53.0 <1.0.0'
@@ -6148,7 +6156,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 0.67.1(@types/node@22.5.5)
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz(c25h2yeksuorzcqz3v4sac5zy4)':
+  '@typespec/http-client-python@0.8.3-dev.2(c25h2yeksuorzcqz3v4sac5zy4)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(wjegnqrrlroq36cedwihs7fwdy)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.13.10)))))
@@ -6172,7 +6180,7 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNDcwNDQxNC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.8.2.tgz(kvm224o5qzo556uchxhfoioziu)':
+  '@typespec/http-client-python@0.8.3-dev.2(kvm224o5qzo556uchxhfoioziu)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.53.0(e3cfoxkazmlklhsfsyiqwpleoq)
       '@azure-tools/typespec-azure-core': 0.53.0(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))))(@typespec/rest@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/http@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5))(@typespec/streams@0.67.1(@typespec/compiler@0.67.1(@types/node@22.5.5)))))

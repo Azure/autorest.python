@@ -2,7 +2,6 @@ aiohttp;python_full_version>="3.5.2"
 requests==2.32.2
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
-corehttp==1.0.0b3
 
 # common test case
 -e ./generated/authentication-api-key
@@ -21,6 +20,7 @@ corehttp==1.0.0b3
 -e ./generated/server-versions-versioned
 -e ./generated/server-versions-not-versioned
 -e ./generated/special-words
+-e ./generated/streaming-jsonl
 -e ./generated/typetest-array
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
