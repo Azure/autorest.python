@@ -45,7 +45,18 @@ class UnionClientConfiguration:
         if isinstance(self.credential, ServiceKeyCredential):
             return policies.ServiceKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
         if hasattr(self.credential, "get_token"):
-            return policies.AsyncBearerTokenCredentialPolicy(self.credential, *self.credential_scopes, **kwargs)
+            return policies.AsyncBearerTokenCredentialPolicy(
+                self.credential,
+                *self.credential_scopes,
+                auth_flows=[
+                    {
+                        "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize",
+                        "scopes": [{"value": "https://security.microsoft.com/.default"}],
+                        "type": "implicit",
+                    }
+                ],
+                **kwargs,
+            )
         raise TypeError(f"Unsupported credential: {self.credential}")
 
     def _configure(self, **kwargs: Any) -> None:

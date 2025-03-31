@@ -50,6 +50,9 @@
     "@typespec/rest": ">=0.67.0 <1.0.0",
     "@typespec/versioning": ">=0.67.0 <1.0.0",
     "@typespec/openapi": ">=0.67.0 <1.0.0",
+    "@typespec/events": ">=0.67.0 <1.0.0",
+    "@typespec/sse": ">=0.67.0 <1.0.0",
+    "@typespec/streams": ">=0.67.0 <1.0.0",
     "@azure-tools/typespec-azure-core": ">=0.53.0 <1.0.0",
     "@azure-tools/typespec-azure-resource-manager": ">=0.53.0 <1.0.0",
     "@azure-tools/typespec-autorest": ">=0.53.0 <1.0.0",
@@ -60,7 +63,7 @@
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.8.3-dev.1",
+    "@typespec/http-client-python": "~0.8.3-dev.2",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -69,6 +72,9 @@
     "@typespec/rest": "~0.67.0",
     "@typespec/versioning": "~0.67.0",
     "@typespec/openapi": "~0.67.0",
+    "@typespec/events": "~0.67.0",
+    "@typespec/sse": "~0.67.0",
+    "@typespec/streams": "~0.67.0",
     "@azure-tools/typespec-azure-resource-manager": "~0.53.0",
     "@azure-tools/typespec-azure-core": "~0.53.0",
     "@azure-tools/typespec-azure-rulesets": "~0.53.0",
