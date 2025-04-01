@@ -4,7 +4,7 @@ import { PythonEmitterOptions, PythonEmitterOptionsSchema } from "@typespec/http
 
 export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
     "examples-dir"?: string;
-    namespace?: string;
+    "namespace"?: string;
 
     "flavor"?: "azure";
     "models-mode"?: string;
