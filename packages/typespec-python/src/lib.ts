@@ -1,8 +1,11 @@
-import { SdkContext, SdkServiceOperation } from "@azure-tools/typespec-client-generator-core";
+import { SdkContext, SdkServiceOperation, BrandedSdkEmitterOptions } from "@azure-tools/typespec-client-generator-core";
 import { createTypeSpecLibrary, JSONSchemaType } from "@typespec/compiler";
 import { PythonEmitterOptions, PythonEmitterOptionsSchema } from "@typespec/http-client-python";
 
 export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
+    "examples-dir"?: string;
+    namespace?: string;
+
     "flavor"?: "azure";
     "models-mode"?: string;
     "generate-sample"?: boolean;
@@ -16,8 +19,11 @@ export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
 
 const PythonAzureEmitterOptionsSchema: JSONSchemaType<PythonAzureEmitterOptions> = {
     type: "object",
-    additionalProperties: true,
+    additionalProperties: false,
     properties: {
+        ...BrandedSdkEmitterOptions["examples-dir"],
+        ...BrandedSdkEmitterOptions["namespace"],
+
         "flavor": {
             type: "string",
             nullable: true,
