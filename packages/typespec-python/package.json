@@ -82,6 +82,8 @@
     "@azure-tools/typespec-client-generator-core": "~0.54.0-dev.19",
     "@azure-tools/azure-http-specs": "0.1.0-alpha.13-dev.1",
     "@typespec/http-specs": "0.1.0-alpha.17-dev.1",
+    "@typespec/spec-api": "0.1.0-alpha.4-dev.0",
+    "@typespec/spector": "0.1.0-alpha.11-dev.2",
     "@types/js-yaml": "~4.0.5",
     "@types/node": "~22.5.4",
     "@types/yargs": "~17.0.33",
