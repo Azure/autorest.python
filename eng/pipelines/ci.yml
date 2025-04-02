@@ -44,27 +44,27 @@ jobs:
 
     strategy:
       matrix:
-        Linux_Python38:
+        Linux_Python3.9:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu18.04"
           PythonVersion: "3.9"
-        Windows_Python38:
+        Windows_Python3.9:
           OSName: "Windows"
           OSVmImage: "MMS2020"
           PythonVersion: "3.9"      
-        Linux_Python310:
+        Linux_Python3.10:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu20.04"
           PythonVersion: "3.10"
-        Linux_Python311:
+        Linux_Python3.11:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.11"
-        Linux_Python312:
+        Linux_Python3.12:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu22.04"
           PythonVersion: "3.12"
-        Windows_Python312:
+        Windows_Python3.12:
           OSName: "Windows"
           OSVmImage: "MMS2023"
           PythonVersion: "3.12"
@@ -137,11 +137,11 @@ jobs:
 
     strategy:
       matrix:
-        Linux_Python38:
+        Linux_Python3.9:
           OSName: "Linux"
           OSVmImage: "MMSUbuntu18.04"
           PythonVersion: "3.9"
-        Windows_Python38:
+        Windows_Python3.9:
           OSName: "Windows"
           OSVmImage: "MMS2020"
           PythonVersion: "3.9"
