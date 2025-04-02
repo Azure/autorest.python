@@ -4,7 +4,7 @@
 
 -   Node 20+
 -   pnpm 9+
--   Python 3.8+
+-   Python 3.9+
 
 ## Develop
 

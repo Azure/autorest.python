@@ -38,7 +38,7 @@ def _single_dir_pylint(mod):
                 "--load-plugins=pylint_guidelines_checker",
                 "--output-format=parseable",
                 "--recursive=y",
-                "--py-version=3.8",
+                "--py-version=3.9",
                 str(inner_class.absolute()),
             ]
         )
@@ -49,7 +49,7 @@ def _single_dir_pylint(mod):
 
 
 if __name__ == "__main__":
-    if sys.version_info >= (3, 9, 0):
-        # only run pylint with python 3.8
+    if sys.version_info >= (3, 10, 0):
+        # only run pylint with python 3.9
         sys.exit(0)
     run_check("pylint", _single_dir_pylint, "Pylint")
