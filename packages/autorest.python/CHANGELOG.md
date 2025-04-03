@@ -1,5 +1,28 @@
 # Release
 
+## 6.31.0
+
+### Features
+
+- [#3057](https://github.com/Azure/autorest.python/pull/3057) Always respect namespace from TCGC
+- [#3060](https://github.com/Azure/autorest.python/pull/3060) Refine emitter options
+
+
+## 6.30.0
+
+### Bump dependencies
+
+- [#3058](https://github.com/Azure/autorest.python/pull/3058) Bump `@typespec/*` 0.67
+
+### Features
+
+- [#3050](https://github.com/Azure/autorest.python/pull/3050) Support continuation token for paging
+
+
+## 6.29.1
+
+No changes, version bump only.
+
 ## 6.29.0
 
 ### Bug Fixes

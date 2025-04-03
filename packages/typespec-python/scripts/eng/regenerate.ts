@@ -19,94 +19,177 @@ interface TspCommand {
     command: string;
 }
 
+const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
+    "azure/example/basic": {
+        namespace: "specs.azure.example.basic",
+    },
+    "azure/client-generator-core/access": {
+        namespace: "specs.azure.clientgenerator.core.access",
+    },
+    "azure/client-generator-core/usage": {
+        namespace: "specs.azure.clientgenerator.core.usage",
+    },
+    "client/structure/default": {
+        namespace: "client.structure.service",
+    },
+    "client/structure/multi-client": {
+        "package-name": "client-structure-multiclient",
+        "namespace": "client.structure.multiclient",
+    },
+    "client/structure/renamed-operation": {
+        "package-name": "client-structure-renamedoperation",
+        "namespace": "client.structure.renamedoperation",
+    },
+    "client/structure/two-operation-group": {
+        "package-name": "client-structure-twooperationgroup",
+        "namespace": "client.structure.twooperationgroup",
+    },
+    "client/naming": {
+        namespace: "client.naming",
+    },
+    "encode/duration": {
+        namespace: "encode.duration",
+    },
+    "encode/numeric": {
+        namespace: "encode.numeric",
+    },
+    "parameters/basic": {
+        namespace: "parameters.basic",
+    },
+    "parameters/spread": {
+        namespace: "parameters.spread",
+    },
+    "payload/content-negotiation": {
+        namespace: "payload.contentnegotiation",
+    },
+    "payload/multipart": {
+        namespace: "payload.multipart",
+    },
+    "serialization/encoded-name/json": {
+        namespace: "serialization.encodedname.json",
+    },
+    "special-words": {
+        namespace: "specialwords",
+    },
+};
+
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
+        "namespace": "resiliency.srv.driven1",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
+        "namespace": "resiliency.srv.driven2",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
-        "package-pprint-name": "Authentication Http Custom Service",
+        "namespace": "authentication.http.custom",
+        "package-pprint-name": "Authentication Http Custom",
     },
     "authentication/union": {
         "package-name": "authentication-union",
+        "namespace": "authentication.union",
     },
     "type/array": {
         "package-name": "typetest-array",
+        "namespace": "typetest.array",
     },
     "type/dictionary": {
         "package-name": "typetest-dictionary",
+        "namespace": "typetest.dictionary",
     },
     "type/enum/extensible": {
         "package-name": "typetest-enum-extensible",
+        "namespace": "typetest.enum.extensible",
     },
     "type/enum/fixed": {
         "package-name": "typetest-enum-fixed",
+        "namespace": "typetest.enum.fixed",
     },
     "type/model/empty": {
         "package-name": "typetest-model-empty",
+        "namespace": "typetest.model.empty",
     },
     "type/model/inheritance/enum-discriminator": {
         "package-name": "typetest-model-enumdiscriminator",
+        "namespace": "typetest.model.enumdiscriminator",
     },
     "type/model/inheritance/nested-discriminator": {
         "package-name": "typetest-model-nesteddiscriminator",
+        "namespace": "typetest.model.nesteddiscriminator",
     },
     "type/model/inheritance/not-discriminated": {
         "package-name": "typetest-model-notdiscriminated",
+        "namespace": "typetest.model.notdiscriminated",
     },
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
+        "namespace": "typetest.model.singlediscriminator",
     },
     "type/model/inheritance/recursive": {
         "package-name": "typetest-model-recursive",
+        "namespace": "typetest.model.recursive",
     },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
+        "namespace": "typetest.model.usage",
     },
     "type/model/visibility": [
-        { "package-name": "typetest-model-visibility" },
-        { "package-name": "headasbooleantrue", "head-as-boolean": "true" },
-        { "package-name": "headasbooleanfalse", "head-as-boolean": "false" },
+        {
+            "package-name": "typetest-model-visibility",
+            "namespace": "typetest.model.visibility",
+        },
+        {
+            "package-name": "headasbooleantrue",
+            "namespace": "headasbooleantrue",
+            "head-as-boolean": "true",
+        },
+        {
+            "package-name": "headasbooleanfalse",
+            "namespace": "headasbooleanfalse",
+            "head-as-boolean": "false",
+        },
     ],
     "type/property/nullable": {
         "package-name": "typetest-property-nullable",
+        "namespace": "typetest.property.nullable",
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
+        "namespace": "typetest.property.optional",
     },
     "type/property/additional-properties": {
         "package-name": "typetest-property-additionalproperties",
+        "namespace": "typetest.property.additionalproperties",
     },
     "type/scalar": {
         "package-name": "typetest-scalar",
+        "namespace": "typetest.scalar",
     },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
+        "namespace": "typetest.property.valuetypes",
     },
     "type/union": {
         "package-name": "typetest-union",
-    },
-    "azure/core/lro/rpc": {
-        "package-name": "azurecore-lro-rpc",
+        "namespace": "typetest.union",
     },
     "client/structure/multi-client": {
         "package-name": "client-structure-multiclient",
+        "namespace": "client.structure.multiclient",
     },
     "client/structure/renamed-operation": {
         "package-name": "client-structure-renamedoperation",
+        "namespace": "client.structure.renamedoperation",
     },
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
-    },
-    "client/namespace": {
-        "enable-typespec-namespace": "true",
+        "namespace": "client.structure.twooperationgroup",
     },
 };
 
@@ -118,7 +201,7 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
     const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
     const relativeSpec = toPosix(relative(specDir, spec));
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
-    const emitter_options = EMITTER_OPTIONS[key] || [{}];
+    const emitter_options = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
     const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
 
     function updateOptions(options: Record<string, string>): void {
@@ -257,9 +340,6 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         }
         if (flags.debug) {
             options["debug"] = "true";
-        }
-        if (flags.flavor === "unbranded") {
-            options["company-name"] = "Unbranded";
         }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
         const configs = Object.entries(options).flatMap(([k, v]) => {

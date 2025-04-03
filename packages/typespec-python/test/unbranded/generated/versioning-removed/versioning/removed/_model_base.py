@@ -1,10 +1,5 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
-# --------------------------------------------------------------------------
-# Copyright (c) Unbranded Corporation. All rights reserved.
-# Licensed under the MIT License. See License.txt in the project root for
-# license information.
-# --------------------------------------------------------------------------
 # pylint: disable=protected-access, broad-except
 
 import copy

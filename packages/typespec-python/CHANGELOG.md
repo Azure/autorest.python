@@ -1,5 +1,31 @@
 # Release
 
+## 0.41.0
+
+### Features
+
+- [#3057](https://github.com/Azure/autorest.python/pull/3057) Always respect namespace from TCGC
+- [#3060](https://github.com/Azure/autorest.python/pull/3060) Refine emitter options
+
+
+## 0.40.0
+
+### Bump dependencies
+
+- [#3058](https://github.com/Azure/autorest.python/pull/3058) Bump `@typespec/*` 0.67
+
+### Features
+
+- [#3050](https://github.com/Azure/autorest.python/pull/3050) Support continuation token for paging
+
+
+## 0.39.1
+
+### Bug Fixes
+
+- [#3047](https://github.com/Azure/autorest.python/pull/3047) Pass combined types to python generator
+- [#3047](https://github.com/Azure/autorest.python/pull/3047) Remove m2r dependency in favor of internally converting md to rst.
+
 ## 0.39.0
 
 ### Bug Fixes

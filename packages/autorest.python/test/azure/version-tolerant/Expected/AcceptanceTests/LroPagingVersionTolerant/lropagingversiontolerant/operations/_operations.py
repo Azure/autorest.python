@@ -270,7 +270,7 @@ class QuestionAnsweringProjectsOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["value"]
+            list_of_elem = deserialized.get("value", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -701,7 +701,7 @@ class QuestionAnsweringProjectsOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = deserialized["value"]
+            list_of_elem = deserialized.get("value", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
