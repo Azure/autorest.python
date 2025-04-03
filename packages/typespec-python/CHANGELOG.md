@@ -1,5 +1,9 @@
 # Release
 
+## 0.42.2
+
+No changes, version bump only.
+
 ## 0.42.1
 
 ### Bug Fixes
