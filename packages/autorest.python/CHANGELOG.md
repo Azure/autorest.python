@@ -1,5 +1,13 @@
 # Release
 
+## 6.32.1
+
+### Bug Fixes
+
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Fix crash when configure `license` in tspconfig.yaml`
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Keep license header for legacy SDK
+
+
 ## 6.32.0
 
 ### Features
