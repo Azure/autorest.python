@@ -76,9 +76,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -125,9 +123,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

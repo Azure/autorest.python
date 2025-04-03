@@ -18,7 +18,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import _model_base, models as _models
 from ..._serialization import Deserializer, Serializer
-from ..._vendor import FileType, prepare_multipart_form_data
+from ..._vendor import prepare_multipart_form_data
 from ...operations._operations import (
     build_form_data_anonymous_model_request,
     build_form_data_basic_request,
@@ -40,7 +40,6 @@ if sys.version_info >= (3, 9):
 else:
     from typing import MutableMapping  # type: ignore
 JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-_Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -517,11 +516,11 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
+    async def anonymous_model(self, body: _models.AnonymousModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
-        :keyword profile_image: Required.
-        :paramtype profile_image: ~payload.multipart._vendor.FileType
+        :param body: Required.
+        :type body: ~payload.multipart.models.AnonymousModelRequest
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -539,13 +538,11 @@ class FormDataOperations:
         """
 
     @distributed_trace_async
-    async def anonymous_model(self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any) -> None:
+    async def anonymous_model(self, body: Union[_models.AnonymousModelRequest, JSON], **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
-        :param body: Is one of the following types: JSON Required.
-        :type body: JSON
-        :keyword profile_image: Required.
-        :paramtype profile_image: ~payload.multipart._vendor.FileType
+        :param body: Is either a AnonymousModelRequest type or a JSON type. Required.
+        :type body: ~payload.multipart.models.AnonymousModelRequest or JSON
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -563,11 +560,6 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body is _Unset:
-            if profile_image is _Unset:
-                raise TypeError("missing required argument: profile_image")
-            body = {"profileImage": profile_image}
-            body = {k: v for k, v in body.items() if v is not None}
         _body = body.as_dict() if isinstance(body, _model_base.Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
