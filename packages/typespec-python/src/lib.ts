@@ -19,7 +19,7 @@ export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
 
 const PythonAzureEmitterOptionsSchema: JSONSchemaType<PythonAzureEmitterOptions> = {
     type: "object",
-    additionalProperties: false,
+    additionalProperties: true,
     properties: {
         ...BrandedSdkEmitterOptions["examples-dir"],
         ...BrandedSdkEmitterOptions["namespace"],
