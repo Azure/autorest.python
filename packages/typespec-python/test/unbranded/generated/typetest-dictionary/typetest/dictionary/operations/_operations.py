@@ -1,9 +1,9 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
+from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -26,10 +26,6 @@ from .._configuration import DictionaryClientConfiguration
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Deserializer, Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

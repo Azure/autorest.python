@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -17,10 +17,6 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ...._configuration import RoutesClientConfiguration
 from ...._serialization import Deserializer, Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

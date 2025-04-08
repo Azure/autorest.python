@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -24,11 +24,7 @@ from ...operations._operations import (
     build_form_data_http_parts_content_type_required_content_type_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

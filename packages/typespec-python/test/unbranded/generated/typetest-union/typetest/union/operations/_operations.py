@@ -1,8 +1,8 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -25,11 +25,7 @@ from .._configuration import UnionClientConfiguration
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Deserializer, Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
