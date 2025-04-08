@@ -24,6 +24,7 @@ class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = StatusCodeRangeClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

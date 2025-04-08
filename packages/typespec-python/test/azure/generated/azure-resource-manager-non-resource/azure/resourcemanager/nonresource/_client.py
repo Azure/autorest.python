@@ -12,8 +12,10 @@ from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.settings import settings
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
+from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import NonResourceClientConfiguration
 from ._serialization import Deserializer, Serializer
@@ -33,7 +35,7 @@ class NonResourceClient:
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :param base_url: Service host. Default value is "https://management.azure.com".
+    :param base_url: Service host. Default value is "".
     :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
@@ -41,17 +43,21 @@ class NonResourceClient:
     :paramtype api_version: str
     """
 
-    def __init__(
-        self,
-        credential: "TokenCredential",
-        subscription_id: str,
-        base_url: str = "https://management.azure.com",
-        **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "TokenCredential", subscription_id: str, base_url: str = "", **kwargs: Any) -> None:
         _endpoint = "{endpoint}"
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not base_url:
+            base_url = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
         self._config = NonResourceClientConfiguration(
-            credential=credential, subscription_id=subscription_id, base_url=base_url, **kwargs
+            credential=credential,
+            subscription_id=subscription_id,
+            base_url=base_url,
+            credential_scopes=credential_scopes,
+            **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
