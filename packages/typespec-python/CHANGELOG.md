@@ -1,5 +1,25 @@
 # Release
 
+## 0.42.2
+
+No changes, version bump only.
+
+## 0.42.1
+
+### Bug Fixes
+
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Fix crash when configure `license` in tspconfig.yaml`
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Keep license header for legacy SDK
+
+
+## 0.42.0
+
+### Features
+
+- [#3062](https://github.com/Azure/autorest.python/pull/3062) Pass authentication flows info into credential policy for unbranded
+- [#3061](https://github.com/Azure/autorest.python/pull/3061) support typespec license config
+
+
 ## 0.41.0
 
 ### Features
