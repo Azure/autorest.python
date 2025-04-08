@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class PngImageAsJson(_model_base.Model):
     """PngImageAsJson.
 
-
     :ivar content: Required.
     :vartype content: bytes
     """
 
-    content: bytes = rest_field(format="base64")
+    content: bytes = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64")
     """Required."""
 
     @overload

@@ -77,7 +77,7 @@ def build_string_put_known_value_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/enum/extensible/string/known-value"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -90,7 +90,7 @@ def build_string_put_unknown_value_request(**kwargs: Any) -> HttpRequest:
     _url = "/type/enum/extensible/string/unknown-value"
 
     # Construct headers
-    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
@@ -158,13 +158,16 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -214,13 +217,16 @@ class StringOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             raise HttpResponseError(response=response)
 
+        response_headers = {}
+        response_headers["content-type"] = self._deserialize("str", response.headers.get("content-type"))
+
         if _stream:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(Union[str, _models.DaysOfWeekExtensibleEnum], response.json())
 
         if cls:
-            return cls(pipeline_response, deserialized, {})  # type: ignore
+            return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
 
@@ -248,7 +254,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -302,7 +308,7 @@ class StringOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore

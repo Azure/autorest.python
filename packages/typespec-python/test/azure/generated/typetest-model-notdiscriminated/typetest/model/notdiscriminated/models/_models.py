@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class Pet(_model_base.Model):
     """This is base model for not-discriminated normal multiple levels inheritance.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -45,14 +44,13 @@ class Pet(_model_base.Model):
 class Cat(Pet):
     """The second level model in the normal multiple levels inheritance.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar age: Required.
     :vartype age: int
     """
 
-    age: int = rest_field()
+    age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -77,7 +75,6 @@ class Cat(Pet):
 class Siamese(Cat):
     """The third level model in the normal multiple levels inheritance.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar age: Required.
@@ -86,7 +83,7 @@ class Siamese(Cat):
     :vartype smart: bool
     """
 
-    smart: bool = rest_field()
+    smart: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

@@ -22,14 +22,11 @@ if TYPE_CHECKING:
 class BooleanLiteralProperty(_model_base.Model):
     """Model with a boolean literal property.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar property: Property. Required. Default value is True.
     :vartype property: bool
     """
 
-    property: Literal[True] = rest_field()
+    property: Literal[True] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Default value is True."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -40,12 +37,11 @@ class BooleanLiteralProperty(_model_base.Model):
 class BooleanProperty(_model_base.Model):
     """Model with a boolean property.
 
-
     :ivar property: Property. Required.
     :vartype property: bool
     """
 
-    property: bool = rest_field()
+    property: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -69,12 +65,11 @@ class BooleanProperty(_model_base.Model):
 class BytesProperty(_model_base.Model):
     """Model with a bytes property.
 
-
     :ivar property: Property. Required.
     :vartype property: bytes
     """
 
-    property: bytes = rest_field(format="base64")
+    property: bytes = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64")
     """Property. Required."""
 
     @overload
@@ -98,12 +93,11 @@ class BytesProperty(_model_base.Model):
 class CollectionsIntProperty(_model_base.Model):
     """Model with collection int properties.
 
-
     :ivar property: Property. Required.
     :vartype property: list[int]
     """
 
-    property: List[int] = rest_field()
+    property: List[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -127,12 +121,11 @@ class CollectionsIntProperty(_model_base.Model):
 class CollectionsModelProperty(_model_base.Model):
     """Model with collection model properties.
 
-
     :ivar property: Property. Required.
     :vartype property: list[~typetest.property.valuetypes.models.InnerModel]
     """
 
-    property: List["_models.InnerModel"] = rest_field()
+    property: List["_models.InnerModel"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -156,12 +149,11 @@ class CollectionsModelProperty(_model_base.Model):
 class CollectionsStringProperty(_model_base.Model):
     """Model with collection string properties.
 
-
     :ivar property: Property. Required.
     :vartype property: list[str]
     """
 
-    property: List[str] = rest_field()
+    property: List[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -185,12 +177,13 @@ class CollectionsStringProperty(_model_base.Model):
 class DatetimeProperty(_model_base.Model):
     """Model with a datetime property.
 
-
     :ivar property: Property. Required.
     :vartype property: ~datetime.datetime
     """
 
-    property: datetime.datetime = rest_field(format="rfc3339")
+    property: datetime.datetime = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """Property. Required."""
 
     @overload
@@ -214,12 +207,11 @@ class DatetimeProperty(_model_base.Model):
 class Decimal128Property(_model_base.Model):
     """Model with a decimal128 property.
 
-
     :ivar property: Property. Required.
     :vartype property: ~decimal.Decimal
     """
 
-    property: decimal.Decimal = rest_field()
+    property: decimal.Decimal = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -243,12 +235,11 @@ class Decimal128Property(_model_base.Model):
 class DecimalProperty(_model_base.Model):
     """Model with a decimal property.
 
-
     :ivar property: Property. Required.
     :vartype property: ~decimal.Decimal
     """
 
-    property: decimal.Decimal = rest_field()
+    property: decimal.Decimal = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -272,12 +263,11 @@ class DecimalProperty(_model_base.Model):
 class DictionaryStringProperty(_model_base.Model):
     """Model with dictionary string properties.
 
-
     :ivar property: Property. Required.
     :vartype property: dict[str, str]
     """
 
-    property: Dict[str, str] = rest_field()
+    property: Dict[str, str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -301,12 +291,11 @@ class DictionaryStringProperty(_model_base.Model):
 class DurationProperty(_model_base.Model):
     """Model with a duration property.
 
-
     :ivar property: Property. Required.
     :vartype property: ~datetime.timedelta
     """
 
-    property: datetime.timedelta = rest_field()
+    property: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -330,12 +319,13 @@ class DurationProperty(_model_base.Model):
 class EnumProperty(_model_base.Model):
     """Model with enum properties.
 
-
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
     :vartype property: str or ~typetest.property.valuetypes.models.FixedInnerEnum
     """
 
-    property: Union[str, "_models.FixedInnerEnum"] = rest_field()
+    property: Union[str, "_models.FixedInnerEnum"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
@@ -359,12 +349,11 @@ class EnumProperty(_model_base.Model):
 class ExtensibleEnumProperty(_model_base.Model):
     """Model with extensible enum properties.
 
-
     :ivar property: Property. Required. Known values are: "ValueOne" and "ValueTwo".
     :vartype property: str or ~typetest.property.valuetypes.models.InnerEnum
     """
 
-    property: Union[str, "_models.InnerEnum"] = rest_field()
+    property: Union[str, "_models.InnerEnum"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Known values are: \"ValueOne\" and \"ValueTwo\"."""
 
     @overload
@@ -388,14 +377,11 @@ class ExtensibleEnumProperty(_model_base.Model):
 class FloatLiteralProperty(_model_base.Model):
     """Model with a float literal property.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar property: Property. Required. Default value is 43.125.
     :vartype property: float
     """
 
-    property: float = rest_field()
+    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Default value is 43.125."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -406,12 +392,11 @@ class FloatLiteralProperty(_model_base.Model):
 class FloatProperty(_model_base.Model):
     """Model with a float property.
 
-
     :ivar property: Property. Required.
     :vartype property: float
     """
 
-    property: float = rest_field()
+    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -435,12 +420,11 @@ class FloatProperty(_model_base.Model):
 class InnerModel(_model_base.Model):
     """Inner model. Will be a property type for ModelWithModelProperties.
 
-
     :ivar property: Required string property. Required.
     :vartype property: str
     """
 
-    property: str = rest_field()
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required string property. Required."""
 
     @overload
@@ -464,14 +448,11 @@ class InnerModel(_model_base.Model):
 class IntLiteralProperty(_model_base.Model):
     """Model with a int literal property.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar property: Property. Required. Default value is 42.
     :vartype property: int
     """
 
-    property: Literal[42] = rest_field()
+    property: Literal[42] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Default value is 42."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -482,12 +463,11 @@ class IntLiteralProperty(_model_base.Model):
 class IntProperty(_model_base.Model):
     """Model with a int property.
 
-
     :ivar property: Property. Required.
     :vartype property: int
     """
 
-    property: int = rest_field()
+    property: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -511,12 +491,11 @@ class IntProperty(_model_base.Model):
 class ModelProperty(_model_base.Model):
     """Model with model properties.
 
-
     :ivar property: Property. Required.
     :vartype property: ~typetest.property.valuetypes.models.InnerModel
     """
 
-    property: "_models.InnerModel" = rest_field()
+    property: "_models.InnerModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -544,14 +523,11 @@ class NeverProperty(_model_base.Model):
 class StringLiteralProperty(_model_base.Model):
     """Model with a string literal property.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar property: Property. Required. Default value is "hello".
     :vartype property: str
     """
 
-    property: Literal["hello"] = rest_field()
+    property: Literal["hello"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Default value is \"hello\"."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -562,12 +538,11 @@ class StringLiteralProperty(_model_base.Model):
 class StringProperty(_model_base.Model):
     """Model with a string property.
 
-
     :ivar property: Property. Required.
     :vartype property: str
     """
 
-    property: str = rest_field()
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -592,12 +567,11 @@ class UnionEnumValueProperty(_model_base.Model):
     """Template type for testing models with specific properties. Pass in the type of the property you
     are looking for.
 
-
     :ivar property: Property. Required.
     :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
     """
 
-    property: Literal[ExtendedEnum.ENUM_VALUE2] = rest_field()
+    property: Literal[ExtendedEnum.ENUM_VALUE2] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -621,12 +595,11 @@ class UnionEnumValueProperty(_model_base.Model):
 class UnionFloatLiteralProperty(_model_base.Model):
     """Model with a union of float literal as property.
 
-
     :ivar property: Property. Required. Is one of the following types: float
     :vartype property: float or float
     """
 
-    property: float = rest_field()
+    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Is one of the following types: float"""
 
     @overload
@@ -650,12 +623,11 @@ class UnionFloatLiteralProperty(_model_base.Model):
 class UnionIntLiteralProperty(_model_base.Model):
     """Model with a union of int literal as property.
 
-
     :ivar property: Property. Required. Is either a Literal[42] type or a Literal[43] type.
     :vartype property: int or int
     """
 
-    property: Literal[42, 43] = rest_field()
+    property: Literal[42, 43] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Is either a Literal[42] type or a Literal[43] type."""
 
     @overload
@@ -679,13 +651,12 @@ class UnionIntLiteralProperty(_model_base.Model):
 class UnionStringLiteralProperty(_model_base.Model):
     """Model with a union of string literal as property.
 
-
     :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
      type.
     :vartype property: str or str
     """
 
-    property: Literal["hello", "world"] = rest_field()
+    property: Literal["hello", "world"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
@@ -709,12 +680,11 @@ class UnionStringLiteralProperty(_model_base.Model):
 class UnknownArrayProperty(_model_base.Model):
     """Model with a property unknown, and the data is an array.
 
-
     :ivar property: Property. Required.
     :vartype property: any
     """
 
-    property: Any = rest_field()
+    property: Any = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -738,12 +708,11 @@ class UnknownArrayProperty(_model_base.Model):
 class UnknownDictProperty(_model_base.Model):
     """Model with a property unknown, and the data is a dictionnary.
 
-
     :ivar property: Property. Required.
     :vartype property: any
     """
 
-    property: Any = rest_field()
+    property: Any = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -767,12 +736,11 @@ class UnknownDictProperty(_model_base.Model):
 class UnknownIntProperty(_model_base.Model):
     """Model with a property unknown, and the data is a int32.
 
-
     :ivar property: Property. Required.
     :vartype property: any
     """
 
-    property: Any = rest_field()
+    property: Any = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
@@ -796,12 +764,11 @@ class UnknownIntProperty(_model_base.Model):
 class UnknownStringProperty(_model_base.Model):
     """Model with a property unknown, and the data is a string.
 
-
     :ivar property: Property. Required.
     :vartype property: any
     """
 
-    property: Any = rest_field()
+    property: Any = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload

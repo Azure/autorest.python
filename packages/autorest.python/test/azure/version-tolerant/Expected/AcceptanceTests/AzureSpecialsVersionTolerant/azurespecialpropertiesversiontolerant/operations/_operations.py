@@ -111,7 +111,9 @@ def build_subscription_in_credentials_post_method_global_not_provided_valid_requ
     accept = _headers.pop("Accept", "application/json")
 
     # Construct URL
-    _url = "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"  # pylint: disable=line-too-long
+    _url = (
+        "/azurespecials/subscriptionId/method/string/none/path/globalNotProvided/1234-5678-9012-3456/{subscriptionId}"
+    )
     path_format_arguments = {
         "subscriptionId": _SERIALIZER.url("subscription_id", subscription_id, "str"),
     }

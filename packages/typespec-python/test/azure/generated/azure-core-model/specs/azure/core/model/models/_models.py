@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class AzureEmbeddingModel(_model_base.Model):
     """AzureEmbeddingModel.
 
-
     :ivar embedding: Required.
     :vartype embedding: list[int]
     """
 
-    embedding: List[int] = rest_field()
+    embedding: List[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -20,8 +21,6 @@ if TYPE_CHECKING:
 class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar type: The additional info type.
     :vartype type: str
     :ivar info: The additional info.
@@ -36,8 +35,6 @@ class ErrorAdditionalInfo(_model_base.Model):
 
 class ErrorDetail(_model_base.Model):
     """The error detail.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -73,7 +70,7 @@ class ErrorResponse(_model_base.Model):
     :vartype error: ~azure.resourcemanager.resources.models.ErrorDetail
     """
 
-    error: Optional["_models.ErrorDetail"] = rest_field()
+    error: Optional["_models.ErrorDetail"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error object."""
 
     @overload
@@ -97,10 +94,8 @@ class ErrorResponse(_model_base.Model):
 class Resource(_model_base.Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -114,7 +109,7 @@ class Resource(_model_base.Model):
 
     id: Optional[str] = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long"""
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
     name: Optional[str] = rest_field(visibility=["read"])
     """The name of the resource."""
     type: Optional[str] = rest_field(visibility=["read"])
@@ -127,10 +122,8 @@ class Resource(_model_base.Model):
 class ExtensionResource(Resource):
     """The base extension resource.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -147,10 +140,8 @@ class ExtensionsResource(ExtensionResource):
     """Concrete extension resource types can be created by aliasing this type using a specific
     property type.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -164,7 +155,9 @@ class ExtensionsResource(ExtensionResource):
     :vartype properties: ~azure.resourcemanager.resources.models.ExtensionsResourceProperties
     """
 
-    properties: Optional["_models.ExtensionsResourceProperties"] = rest_field()
+    properties: Optional["_models.ExtensionsResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -188,8 +181,6 @@ class ExtensionsResource(ExtensionResource):
 class ExtensionsResourceProperties(_model_base.Model):
     """ExtensionsResource properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -197,7 +188,7 @@ class ExtensionsResourceProperties(_model_base.Model):
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     """
 
-    description: Optional[str] = rest_field()
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
@@ -227,10 +218,8 @@ class ProxyResource(Resource):
     """The resource model definition for a Azure Resource Manager proxy resource. It will not have
     tags and a location.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -247,10 +236,8 @@ class LocationResource(ProxyResource):
     """Concrete proxy resource types can be created by aliasing this type using a specific property
     type.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -264,7 +251,9 @@ class LocationResource(ProxyResource):
     :vartype properties: ~azure.resourcemanager.resources.models.LocationResourceProperties
     """
 
-    properties: Optional["_models.LocationResourceProperties"] = rest_field()
+    properties: Optional["_models.LocationResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -288,8 +277,6 @@ class LocationResource(ProxyResource):
 class LocationResourceProperties(_model_base.Model):
     """Location resource properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -297,7 +284,7 @@ class LocationResourceProperties(_model_base.Model):
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     """
 
-    description: Optional[str] = rest_field()
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
@@ -326,10 +313,8 @@ class LocationResourceProperties(_model_base.Model):
 class NestedProxyResource(ProxyResource):
     """Nested child of Top Level Tracked Resource.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -343,7 +328,9 @@ class NestedProxyResource(ProxyResource):
     :vartype properties: ~azure.resourcemanager.resources.models.NestedProxyResourceProperties
     """
 
-    properties: Optional["_models.NestedProxyResourceProperties"] = rest_field()
+    properties: Optional["_models.NestedProxyResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -367,8 +354,6 @@ class NestedProxyResource(ProxyResource):
 class NestedProxyResourceProperties(_model_base.Model):
     """Nested Proxy Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar provisioning_state: Provisioning State of the nested child Resource. Known values are:
      "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
@@ -381,7 +366,7 @@ class NestedProxyResourceProperties(_model_base.Model):
     )
     """Provisioning State of the nested child Resource. Known values are: \"Succeeded\", \"Failed\",
      \"Canceled\", \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
-    description: Optional[str] = rest_field()
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Nested resource description."""
 
     @overload
@@ -405,17 +390,15 @@ class NestedProxyResourceProperties(_model_base.Model):
 class NotificationDetails(_model_base.Model):
     """The details of a user notification.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar message: The notification message. Required.
     :vartype message: str
     :ivar urgent: If true, the notification is urgent. Required.
     :vartype urgent: bool
     """
 
-    message: str = rest_field()
+    message: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The notification message. Required."""
-    urgent: bool = rest_field()
+    urgent: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """If true, the notification is urgent. Required."""
 
     @overload
@@ -441,11 +424,8 @@ class TrackedResource(Resource):
     """The resource model definition for an Azure Resource Manager tracked top level resource which
     has 'tags' and a 'location'.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -461,7 +441,7 @@ class TrackedResource(Resource):
     :vartype location: str
     """
 
-    tags: Optional[Dict[str, str]] = rest_field()
+    tags: Optional[Dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
@@ -489,11 +469,8 @@ class SingletonTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -511,7 +488,9 @@ class SingletonTrackedResource(TrackedResource):
     :vartype properties: ~azure.resourcemanager.resources.models.SingletonTrackedResourceProperties
     """
 
-    properties: Optional["_models.SingletonTrackedResourceProperties"] = rest_field()
+    properties: Optional["_models.SingletonTrackedResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -537,8 +516,6 @@ class SingletonTrackedResource(TrackedResource):
 class SingletonTrackedResourceProperties(_model_base.Model):
     """Singleton Arm Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
@@ -551,7 +528,7 @@ class SingletonTrackedResourceProperties(_model_base.Model):
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
-    description: Optional[str] = rest_field()
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
 
     @overload
@@ -591,19 +568,29 @@ class SystemData(_model_base.Model):
     :vartype last_modified_at: ~datetime.datetime
     """
 
-    created_by: Optional[str] = rest_field(name="createdBy")
+    created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
-    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="createdByType")
+    created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="createdByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
-    created_at: Optional[datetime.datetime] = rest_field(name="createdAt", format="rfc3339")
+    created_at: Optional[datetime.datetime] = rest_field(
+        name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource creation (UTC)."""
-    last_modified_by: Optional[str] = rest_field(name="lastModifiedBy")
+    last_modified_by: Optional[str] = rest_field(
+        name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The identity that last modified the resource."""
-    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(name="lastModifiedByType")
+    last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
+        name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
+    )
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
-    last_modified_at: Optional[datetime.datetime] = rest_field(name="lastModifiedAt", format="rfc3339")
+    last_modified_at: Optional[datetime.datetime] = rest_field(
+        name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource last modification (UTC)."""
 
     @overload
@@ -633,11 +620,8 @@ class TopLevelTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.  # pylint: disable=line-too-long
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
@@ -655,7 +639,9 @@ class TopLevelTrackedResource(TrackedResource):
     :vartype properties: ~azure.resourcemanager.resources.models.TopLevelTrackedResourceProperties
     """
 
-    properties: Optional["_models.TopLevelTrackedResourceProperties"] = rest_field()
+    properties: Optional["_models.TopLevelTrackedResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """The resource-specific properties for this resource."""
 
     @overload
@@ -681,8 +667,6 @@ class TopLevelTrackedResource(TrackedResource):
 class TopLevelTrackedResourceProperties(_model_base.Model):
     """Top Level Arm Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
      "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
@@ -695,7 +679,7 @@ class TopLevelTrackedResourceProperties(_model_base.Model):
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
-    description: Optional[str] = rest_field()
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
 
     @overload

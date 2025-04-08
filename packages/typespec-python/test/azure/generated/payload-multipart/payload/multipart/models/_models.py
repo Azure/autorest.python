@@ -20,13 +20,11 @@ if TYPE_CHECKING:
 class Address(_model_base.Model):
     """Address.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar city: Required.
     :vartype city: str
     """
 
-    city: str = rest_field()
+    city: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -47,10 +45,38 @@ class Address(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class AnonymousModelRequest(_model_base.Model):
+    """AnonymousModelRequest.
+
+    :ivar profile_image: Required.
+    :vartype profile_image: ~payload.multipart._vendor.FileType
+    """
+
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        profile_image: FileType,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class BinaryArrayPartsRequest(_model_base.Model):
     """BinaryArrayPartsRequest.
-
-    All required parameters must be populated in order to send to server.
 
     :ivar id: Required.
     :vartype id: str
@@ -58,9 +84,11 @@ class BinaryArrayPartsRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -85,8 +113,6 @@ class BinaryArrayPartsRequest(_model_base.Model):
 class ComplexHttpPartsModelRequest(_model_base.Model):
     """ComplexHttpPartsModelRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Required.
     :vartype id: str
     :ivar address: Required.
@@ -99,15 +125,21 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(name="previousAddresses")
+    previous_addresses: List["_models.Address"] = rest_field(
+        name="previousAddresses", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -135,8 +167,6 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
 class ComplexPartsRequest(_model_base.Model):
     """ComplexPartsRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Required.
     :vartype id: str
     :ivar address: Required.
@@ -147,13 +177,17 @@ class ComplexPartsRequest(_model_base.Model):
     :vartype pictures: list[~payload.multipart._vendor.FileType]
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    pictures: List[FileType] = rest_field(is_multipart_file_input=True)
+    pictures: List[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -180,13 +214,13 @@ class ComplexPartsRequest(_model_base.Model):
 class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
     """FileWithHttpPartOptionalContentTypeRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -210,13 +244,13 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
 class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
     """FileWithHttpPartRequiredContentTypeRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -240,13 +274,13 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
 class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
     """FileWithHttpPartSpecificContentTypeRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -270,13 +304,11 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
 class FloatRequest(_model_base.Model):
     """FloatRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar temperature: Required.
     :vartype temperature: float
     """
 
-    temperature: float = rest_field()
+    temperature: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -300,17 +332,17 @@ class FloatRequest(_model_base.Model):
 class JsonPartRequest(_model_base.Model):
     """JsonPartRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    address: "_models.Address" = rest_field()
+    address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload
@@ -335,17 +367,19 @@ class JsonPartRequest(_model_base.Model):
 class MultiBinaryPartsRequest(_model_base.Model):
     """MultiBinaryPartsRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     :ivar picture:
     :vartype picture: ~payload.multipart._vendor.FileType
     """
 
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
-    picture: Optional[FileType] = rest_field(is_multipart_file_input=True)
+    picture: Optional[FileType] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
 
     @overload
     def __init__(
@@ -369,17 +403,17 @@ class MultiBinaryPartsRequest(_model_base.Model):
 class MultiPartRequest(_model_base.Model):
     """MultiPartRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar id: Required.
     :vartype id: str
     :ivar profile_image: Required.
     :vartype profile_image: ~payload.multipart._vendor.FileType
     """
 
-    id: str = rest_field()
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    profile_image: FileType = rest_field(name="profileImage", is_multipart_file_input=True)
+    profile_image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
     """Required."""
 
     @overload

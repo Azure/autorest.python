@@ -16,12 +16,11 @@ from ..._model_base import rest_field
 class FirstClientResult(_model_base.Model):
     """FirstClientResult.
 
-
     :ivar name: Required.
     :vartype name: str
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

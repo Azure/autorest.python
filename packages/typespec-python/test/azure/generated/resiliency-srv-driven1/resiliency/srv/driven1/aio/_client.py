@@ -23,7 +23,8 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
      the service deployment in history. 'v1' is for the deployment when the service had only one api
@@ -38,7 +39,9 @@ class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
         self, endpoint: str, service_deployment_version: str, **kwargs: Any
     ) -> None:
-        _endpoint = "{endpoint}/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"  # pylint: disable=line-too-long
+        _endpoint = (
+            "{endpoint}/resiliency/service-driven/client:v1/service:{serviceDeploymentVersion}/api-version:{apiVersion}"
+        )
         self._config = ResiliencyServiceDrivenClientConfiguration(
             endpoint=endpoint, service_deployment_version=service_deployment_version, **kwargs
         )

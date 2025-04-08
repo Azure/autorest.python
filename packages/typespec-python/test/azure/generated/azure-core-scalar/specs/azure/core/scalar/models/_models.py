@@ -16,12 +16,11 @@ from .._model_base import rest_field
 class AzureLocationModel(_model_base.Model):
     """AzureLocationModel.
 
-
     :ivar location: Required.
     :vartype location: str
     """
 
-    location: str = rest_field()
+    location: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload

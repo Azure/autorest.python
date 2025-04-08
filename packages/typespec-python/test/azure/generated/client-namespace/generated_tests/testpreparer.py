@@ -11,22 +11,6 @@ from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
 
 
-class ClientNamespaceSecondClientTestBase(AzureRecordedTestCase):
-
-    def create_client(self, endpoint):
-        credential = self.get_credential(ClientNamespaceSecondClient)
-        return self.create_client_from_credential(
-            ClientNamespaceSecondClient,
-            credential=credential,
-            endpoint=endpoint,
-        )
-
-
-NamespaceSecondPreparer = functools.partial(
-    PowerShellPreparer, "namespacesecond", namespacesecond_endpoint="https://fake_namespacesecond_endpoint.com"
-)
-
-
 class ClientNamespaceFirstClientTestBase(AzureRecordedTestCase):
 
     def create_client(self, endpoint):
@@ -40,4 +24,20 @@ class ClientNamespaceFirstClientTestBase(AzureRecordedTestCase):
 
 NamespaceFirstPreparer = functools.partial(
     PowerShellPreparer, "namespacefirst", namespacefirst_endpoint="https://fake_namespacefirst_endpoint.com"
+)
+
+
+class ClientNamespaceSecondClientTestBase(AzureRecordedTestCase):
+
+    def create_client(self, endpoint):
+        credential = self.get_credential(ClientNamespaceSecondClient)
+        return self.create_client_from_credential(
+            ClientNamespaceSecondClient,
+            credential=credential,
+            endpoint=endpoint,
+        )
+
+
+NamespaceSecondPreparer = functools.partial(
+    PowerShellPreparer, "namespacesecond", namespacesecond_endpoint="https://fake_namespacesecond_endpoint.com"
 )

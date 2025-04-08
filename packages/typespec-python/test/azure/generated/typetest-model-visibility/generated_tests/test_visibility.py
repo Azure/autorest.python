@@ -17,7 +17,8 @@ class TestVisibility(VisibilityClientTestBase):
     def test_get_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.get_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
+            query_prop=0,
         )
 
         # please add some check logic here by yourself
@@ -28,7 +29,8 @@ class TestVisibility(VisibilityClientTestBase):
     def test_head_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.head_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
+            query_prop=0,
         )
 
         # please add some check logic here by yourself
@@ -39,7 +41,7 @@ class TestVisibility(VisibilityClientTestBase):
     def test_put_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.put_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -50,7 +52,7 @@ class TestVisibility(VisibilityClientTestBase):
     def test_patch_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.patch_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -61,7 +63,7 @@ class TestVisibility(VisibilityClientTestBase):
     def test_post_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.post_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -72,7 +74,7 @@ class TestVisibility(VisibilityClientTestBase):
     def test_delete_model(self, visibility_endpoint):
         client = self.create_client(endpoint=visibility_endpoint)
         response = client.delete_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself

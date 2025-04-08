@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -436,7 +437,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_models.ExportedUser, response.json().get("result"))
+            deserialized = _deserialize(_models.ExportedUser, response.json().get("result", {}))
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized

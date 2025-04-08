@@ -19,12 +19,13 @@ if TYPE_CHECKING:
 class SecondClientResult(_model_base.Model):
     """SecondClientResult.
 
-
     :ivar type: Required. "second"
     :vartype type: str or ~client.clientnamespace.models.SecondClientEnumType
     """
 
-    type: Union[str, "_sub_models2.SecondClientEnumType"] = rest_field()
+    type: Union[str, "_sub_models2.SecondClientEnumType"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. \"second\""""
 
     @overload

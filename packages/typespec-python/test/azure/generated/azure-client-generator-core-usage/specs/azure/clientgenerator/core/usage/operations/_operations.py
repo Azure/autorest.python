@@ -94,6 +94,21 @@ def build_model_in_operation_model_in_read_only_property_request(  # pylint: dis
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
+def build_model_in_operation_orphan_model_serializable_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: str = kwargs.pop("content_type")
+    # Construct URL
+    _url = "/azure/client-generator-core/usage/orphanModelSerializable"
+
+    # Construct headers
+    _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
+
+
 class ModelInOperationOperations:
     """
     .. warning::
@@ -484,3 +499,65 @@ class ModelInOperationOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+
+    @distributed_trace
+    def orphan_model_serializable(  # pylint: disable=inconsistent-return-statements
+        self, body: Any, **kwargs: Any
+    ) -> None:
+        """Serialize the 'OrphanModel' as request body.
+
+        Expected body parameter:
+
+        .. code-block:: json
+
+           {
+             "name": "name",
+             "desc": "desc"
+           }.
+
+        :param body: Required.
+        :type body: any
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_model_in_operation_orphan_model_serializable_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore

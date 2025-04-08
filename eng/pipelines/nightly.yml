@@ -23,9 +23,6 @@ jobs:
   timeoutInMinutes: 120
 
   steps:
-      - script: npm install -g @typespec/compiler@next
-        displayName: Install @typespec/compiler@next
-  
       - template: ci-template.yml
         parameters:
           installCadlRanch: true

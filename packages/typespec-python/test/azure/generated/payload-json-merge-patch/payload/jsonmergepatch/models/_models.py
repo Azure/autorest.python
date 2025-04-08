@@ -25,8 +25,8 @@ class InnerModel(_model_base.Model):
     :vartype description: str
     """
 
-    name: Optional[str] = rest_field()
-    description: Optional[str] = rest_field()
+    name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
 
     @overload
     def __init__(
@@ -50,7 +50,6 @@ class InnerModel(_model_base.Model):
 class Resource(_model_base.Model):
     """Details about a resource.
 
-
     :ivar name: Required.
     :vartype name: str
     :ivar description:
@@ -69,15 +68,23 @@ class Resource(_model_base.Model):
     :vartype int_array: list[int]
     """
 
-    name: str = rest_field()
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    description: Optional[str] = rest_field()
-    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field()
-    array: Optional[List["_models.InnerModel"]] = rest_field()
-    int_value: Optional[int] = rest_field(name="intValue")
-    float_value: Optional[float] = rest_field(name="floatValue")
-    inner_model: Optional["_models.InnerModel"] = rest_field(name="innerModel")
-    int_array: Optional[List[int]] = rest_field(name="intArray")
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
+    float_value: Optional[float] = rest_field(
+        name="floatValue", visibility=["read", "create", "update", "delete", "query"]
+    )
+    inner_model: Optional["_models.InnerModel"] = rest_field(
+        name="innerModel", visibility=["read", "create", "update", "delete", "query"]
+    )
+    int_array: Optional[List[int]] = rest_field(
+        name="intArray", visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(
@@ -123,13 +130,21 @@ class ResourcePatch(_model_base.Model):
     :vartype int_array: list[int]
     """
 
-    description: Optional[str] = rest_field()
-    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field()
-    array: Optional[List["_models.InnerModel"]] = rest_field()
-    int_value: Optional[int] = rest_field(name="intValue")
-    float_value: Optional[float] = rest_field(name="floatValue")
-    inner_model: Optional["_models.InnerModel"] = rest_field(name="innerModel")
-    int_array: Optional[List[int]] = rest_field(name="intArray")
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
+    float_value: Optional[float] = rest_field(
+        name="floatValue", visibility=["read", "create", "update", "delete", "query"]
+    )
+    inner_model: Optional["_models.InnerModel"] = rest_field(
+        name="innerModel", visibility=["read", "create", "update", "delete", "query"]
+    )
+    int_array: Optional[List[int]] = rest_field(
+        name="intArray", visibility=["read", "create", "update", "delete", "query"]
+    )
 
     @overload
     def __init__(

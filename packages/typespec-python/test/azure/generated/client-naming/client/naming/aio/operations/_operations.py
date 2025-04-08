@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -306,7 +307,7 @@ class UnionEnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
@@ -357,7 +358,7 @@ class UnionEnumOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
