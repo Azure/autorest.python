@@ -16,17 +16,13 @@ import email.utils
 from datetime import datetime, date, time, timedelta, timezone
 from json import JSONEncoder
 import xml.etree.ElementTree as ET
+from collections.abc import MutableMapping
 from typing_extensions import Self
 import isodate
 from corehttp.exceptions import DeserializationError
 from corehttp.utils import CaseInsensitiveEnumMeta
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.serialization import _Null
-
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -342,7 +338,7 @@ def _get_model(module_name: str, model_name: str):
 _UNSET = object()
 
 
-class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=unsubscriptable-object
+class _MyMutableMapping(MutableMapping[str, typing.Any]):
     def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
         self._data = data
 
@@ -402,13 +398,13 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
             return default
 
     @typing.overload
-    def pop(self, key: str) -> typing.Any: ...
+    def pop(self, key: str) -> typing.Any: ...  # pylint: disable=arguments-differ
 
     @typing.overload
-    def pop(self, key: str, default: _T) -> _T: ...
+    def pop(self, key: str, default: _T) -> _T: ...  # pylint: disable=signature-differs
 
     @typing.overload
-    def pop(self, key: str, default: typing.Any) -> typing.Any: ...
+    def pop(self, key: str, default: typing.Any) -> typing.Any: ...  # pylint: disable=signature-differs
 
     def pop(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         """
@@ -438,7 +434,7 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
         """
         self._data.clear()
 
-    def update(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def update(self, *args: typing.Any, **kwargs: typing.Any) -> None:  # pylint: disable=arguments-differ
         """
         Updates D from mapping/iterable E and F.
         :param any args: Either a mapping object or an iterable of key-value pairs.
@@ -449,7 +445,7 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):  # pylint: disable=uns
     def setdefault(self, key: str, default: None = None) -> None: ...
 
     @typing.overload
-    def setdefault(self, key: str, default: typing.Any) -> typing.Any: ...
+    def setdefault(self, key: str, default: typing.Any) -> typing.Any: ...  # pylint: disable=signature-differs
 
     def setdefault(self, key: str, default: typing.Any = _UNSET) -> typing.Any:
         """
@@ -639,7 +635,7 @@ class Model(_MyMutableMapping):
             cls._attr_to_rest_field: typing.Dict[str, _RestField] = dict(attr_to_rest_field.items())
             cls._calculated.add(f"{cls.__module__}.{cls.__qualname__}")
 
-        return super().__new__(cls)  # pylint: disable=no-value-for-parameter
+        return super().__new__(cls)
 
     def __init_subclass__(cls, discriminator: typing.Optional[str] = None) -> None:
         for base in cls.__bases__:
@@ -675,7 +671,7 @@ class Model(_MyMutableMapping):
                 discriminator_value = data.find(xml_name).text  # pyright: ignore
         else:
             discriminator_value = data.get(discriminator._rest_name)
-        mapped_cls = cls.__mapping__.get(discriminator_value, cls)  # pyright: ignore
+        mapped_cls = cls.__mapping__.get(discriminator_value, cls)  # pyright: ignore # pylint: disable=no-member
         return mapped_cls._deserialize(data, exist_discriminators)
 
     def as_dict(self, *, exclude_readonly: bool = False) -> typing.Dict[str, typing.Any]:
