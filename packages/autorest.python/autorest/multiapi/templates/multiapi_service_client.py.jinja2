@@ -78,6 +78,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
     )
 
     {{ method_signature()|indent }}
+        {% if not code_model.azure_arm %}
         {% if not code_model.client.host_value %}
         {% for parameterized_host_template, api_versions in code_model.client.parameterized_host_template_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
@@ -86,6 +87,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
         {% endfor %}
         else:
             raise ValueError("API version {} is not available".format(api_version))
+        {% endif %}
         {% endif %}
         if api_version:
             kwargs.setdefault('api_version', api_version)
