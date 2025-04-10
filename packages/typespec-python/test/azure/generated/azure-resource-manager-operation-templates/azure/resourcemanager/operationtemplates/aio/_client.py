@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -39,7 +39,7 @@ class OperationTemplatesClient:
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
     :type subscription_id: str
-    :param base_url: Service host. Default value is "".
+    :param base_url: Service host. Default value is None.
     :type base_url: str
     :keyword api_version: The API version to use for this operation. Default value is
      "2023-12-01-preview". Note that overriding this default value may result in unsupported
@@ -50,7 +50,7 @@ class OperationTemplatesClient:
     """
 
     def __init__(
-        self, credential: "AsyncTokenCredential", subscription_id: str, base_url: str = "", **kwargs: Any
+        self, credential: "AsyncTokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
@@ -61,7 +61,7 @@ class OperationTemplatesClient:
         self._config = OperationTemplatesClientConfiguration(
             credential=credential,
             subscription_id=subscription_id,
-            base_url=base_url,
+            base_url=cast(str, base_url),
             credential_scopes=credential_scopes,
             **kwargs
         )
