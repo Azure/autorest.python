@@ -1,6 +1,6 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 import datetime
-import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp import MatchConditions
@@ -20,10 +20,6 @@ from corehttp.utils import case_insensitive_dict
 from .._serialization import Serializer
 from .._vendor import ConditionalRequestClientMixinABC, prep_if_match, prep_if_none_match
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
