@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -33,11 +33,11 @@ class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-vers
     :vartype array: azure.mgmt.test.aio.operations.ArrayOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param base_url: Service URL. Required. Default value is "".
+    :param base_url: Service URL. Required.
     :type base_url: str
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", base_url: str = "", **kwargs: Any) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", base_url: str, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:

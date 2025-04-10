@@ -9,7 +9,7 @@
 # regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -77,7 +77,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential: "TokenCredential",
         api_version: Optional[str] = None,
-        base_url: str = "",
+        base_url: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs: Any
     ):

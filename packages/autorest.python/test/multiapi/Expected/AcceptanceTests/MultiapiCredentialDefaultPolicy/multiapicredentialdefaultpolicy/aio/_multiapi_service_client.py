@@ -68,7 +68,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential: AzureKeyCredential,
         api_version: Optional[str] = None,
-        base_url: str = "http://localhost:3000",
+        base_url: Optional[str]=None,
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs: Any
     ) -> None:

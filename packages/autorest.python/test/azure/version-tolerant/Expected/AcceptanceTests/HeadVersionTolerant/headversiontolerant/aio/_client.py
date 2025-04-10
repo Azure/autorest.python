@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -32,11 +32,11 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     :vartype http_success: headversiontolerant.aio.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param endpoint: Service URL. Required. Default value is "".
+    :param endpoint: Service URL. Required.
     :type endpoint: str
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", endpoint: str = "", **kwargs: Any) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", endpoint: str, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -32,11 +32,11 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
     :vartype head_exception: headexceptionsversiontolerant.operations.HeadExceptionOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL. Required. Default value is "".
+    :param endpoint: Service URL. Required.
     :type endpoint: str
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str = "", **kwargs: Any) -> None:
+    def __init__(self, credential: "TokenCredential", endpoint: str, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:

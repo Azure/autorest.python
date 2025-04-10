@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from msrest import Deserializer, Serializer
@@ -62,14 +62,14 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
-    :param base_url: Service URL. Required. Default value is "".
+    :param base_url: Service URL. Required.
     :type base_url: str
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "TokenCredential", subscription_id: str, base_url: str = "", **kwargs: Any) -> None:
+    def __init__(self, credential: "TokenCredential", subscription_id: str, base_url: str, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:

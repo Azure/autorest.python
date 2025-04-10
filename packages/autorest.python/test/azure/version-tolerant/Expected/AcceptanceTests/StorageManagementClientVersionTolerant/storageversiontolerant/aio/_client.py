@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -37,7 +37,7 @@ class StorageManagementClient:
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :param endpoint: Service URL. Required. Default value is "".
+    :param endpoint: Service URL. Required.
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
      this default value may result in unsupported behavior.
@@ -46,9 +46,7 @@ class StorageManagementClient:
      Retry-After header is present.
     """
 
-    def __init__(
-        self, credential: "AsyncTokenCredential", subscription_id: str, endpoint: str = "", **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: "AsyncTokenCredential", subscription_id: str, endpoint: str, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
