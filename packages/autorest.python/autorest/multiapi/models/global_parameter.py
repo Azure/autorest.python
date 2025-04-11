@@ -25,8 +25,6 @@ class GlobalParameter:
         return self.global_parameter_metadata_sync
 
     def signature(self, async_mode: bool) -> str:
-        if self.name == "base_url":
-            return "base_url: Optional[str]=None,"
         return self._global_parameter_metadata(async_mode)["signature"]
 
     def description(self, async_mode: bool) -> str:
