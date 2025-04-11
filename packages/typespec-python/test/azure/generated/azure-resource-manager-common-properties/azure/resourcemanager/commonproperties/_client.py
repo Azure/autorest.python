@@ -80,7 +80,7 @@ class CommonPropertiesClient:
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=cast(str, _endpoint), policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
