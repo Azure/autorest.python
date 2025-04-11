@@ -73,7 +73,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential: "AsyncTokenCredential",
         api_version: Optional[str] = None,
-        base_url: Optional[str]=None,
+        base_url: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
         **kwargs: Any
     ) -> None:

@@ -67,7 +67,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         self,
         credential: "TokenCredential",
         api_version: Optional[str]=None,
-        base_url: Optional[str]=None,
+        base_url: str = "http://localhost:3000",
         profile: KnownProfiles=KnownProfiles.default,
         **kwargs: Any
     ):
