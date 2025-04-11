@@ -34,9 +34,7 @@ import pytest
 def client(credential, authentication_policy):
     valid_subscription = "1234-5678-9012-3456"
     with AutoRestAzureSpecialParametersTestClient(
-        credential,
-        valid_subscription,
-        authentication_policy=authentication_policy,
+        credential, valid_subscription, authentication_policy=authentication_policy, endpoint="http://localhost:3000"
     ) as client:
         yield client
 
@@ -49,6 +47,7 @@ def client_no_request_id(credential, authentication_policy):
         valid_subscription,
         auto_request_id=False,
         authentication_policy=authentication_policy,
+        endpoint="http://localhost:3000",
     ) as client:
         yield client
 

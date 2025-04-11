@@ -35,6 +35,7 @@ class VersionedClient(VersionedClientOperationsMixin):
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = VersionedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

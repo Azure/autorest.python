@@ -24,6 +24,7 @@ class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disabl
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = RepeatabilityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

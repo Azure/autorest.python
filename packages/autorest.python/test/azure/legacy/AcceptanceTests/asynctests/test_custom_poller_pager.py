@@ -34,7 +34,7 @@ import pytest
 @async_generator
 async def client(credential, authentication_policy):
     async with AutoRestPagingTestService(
-        credential, host="host:3000", authentication_policy=authentication_policy
+        credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
         await yield_(client)
 
@@ -42,7 +42,7 @@ async def client(credential, authentication_policy):
 @pytest.fixture
 def custom_url_client(credential, authentication_policy):
     with AutoRestParameterizedHostTestPagingClient(
-        credential, host="host:3000", authentication_policy=authentication_policy
+        credential, base_url="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
         yield client
 

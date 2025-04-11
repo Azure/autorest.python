@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""The preprocessing autorest plugin.
-"""
+"""The preprocessing autorest plugin."""
 from typing import Dict, Any
 from pygen.preprocess import PreProcessPlugin
 from . import YamlUpdatePluginAutorest

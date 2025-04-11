@@ -39,6 +39,7 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

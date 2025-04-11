@@ -36,6 +36,7 @@ class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=
     ) -> None:
         _endpoint = "{endpoint}/versioning/made-optional/api-version:{version}"
         self._config = MadeOptionalClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -123,9 +123,14 @@ class FileImport:
             ],
             convert_list_to_tuple(name_import),
         )
-        self._imports.setdefault(typing_section, {}).setdefault(import_type, {}).setdefault(from_section, set()).add(
-            name_input
+        target_values = (
+            self._imports.setdefault(typing_section, {}).setdefault(import_type, {}).setdefault(from_section, set())
         )
+        if isinstance(target_values, list):
+            if name_input not in target_values:
+                target_values.append(name_input)
+        else:
+            target_values.add(name_input)
 
     def add_submodule_import(
         self,

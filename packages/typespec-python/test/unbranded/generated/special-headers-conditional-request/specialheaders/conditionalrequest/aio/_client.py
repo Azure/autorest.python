@@ -26,6 +26,7 @@ class ConditionalRequestClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ConditionalRequestClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -41,6 +41,7 @@ class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-key
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = TwoOperationGroupClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

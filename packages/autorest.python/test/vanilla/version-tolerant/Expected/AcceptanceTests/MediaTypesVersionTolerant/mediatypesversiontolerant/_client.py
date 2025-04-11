@@ -31,6 +31,7 @@ class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=clie
     ) -> None:
         super().__init__()
         self._config = MediaTypesClientConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

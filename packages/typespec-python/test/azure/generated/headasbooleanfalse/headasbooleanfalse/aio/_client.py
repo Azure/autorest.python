@@ -31,6 +31,7 @@ class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=clie
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = VisibilityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

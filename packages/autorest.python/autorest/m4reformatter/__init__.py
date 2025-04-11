@@ -4,8 +4,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""The modelerfour reformatter autorest plugin.
-"""
+"""The modelerfour reformatter autorest plugin."""
 import re
 import copy
 import logging

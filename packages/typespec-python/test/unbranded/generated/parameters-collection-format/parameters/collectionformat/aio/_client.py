@@ -29,6 +29,7 @@ class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyw
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = CollectionFormatClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

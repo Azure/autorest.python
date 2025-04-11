@@ -7,13 +7,15 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.settings import settings
 from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
+from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from ._serialization import Deserializer, Serializer
@@ -36,14 +38,22 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
     :vartype lr_os_custom_header: lroversiontolerant.operations.LROsCustomHeaderOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestLongRunningOperationTestServiceConfiguration(credential=credential, **kwargs)
+    def __init__(self, credential: "TokenCredential", endpoint: Optional[str] = None, **kwargs: Any) -> None:
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not endpoint:
+            endpoint = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
+        self._config = AutoRestLongRunningOperationTestServiceConfiguration(
+            credential=credential, credential_scopes=credential_scopes, **kwargs
+        )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -62,7 +72,7 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=cast(str, endpoint), policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

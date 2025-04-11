@@ -7,13 +7,15 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Dict, TYPE_CHECKING
+from typing import Any, Awaitable, Dict, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.settings import settings
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
+from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import HeadClientConfiguration
@@ -30,14 +32,18 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype http_success: azure.packagemode.batch.head.aio.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param base_url: Service URL. Default value is "http://localhost:3000".
+    :param base_url: Service URL. Default value is None.
     :type base_url: str
     """
 
-    def __init__(
-        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
-    ) -> None:
-        self._config = HeadClientConfiguration(credential=credential, **kwargs)
+    def __init__(self, credential: "AsyncTokenCredential", base_url: Optional[str] = None, **kwargs: Any) -> None:
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not base_url:
+            base_url = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
+        self._config = HeadClientConfiguration(credential=credential, credential_scopes=credential_scopes, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -56,7 +62,9 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
+            base_url=cast(str, base_url), policies=_policies, **kwargs
+        )
 
         client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)

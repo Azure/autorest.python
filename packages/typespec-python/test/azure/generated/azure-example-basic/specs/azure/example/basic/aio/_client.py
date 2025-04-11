@@ -35,6 +35,7 @@ class AzureExampleClient(AzureExampleClientOperationsMixin):
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = AzureExampleClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

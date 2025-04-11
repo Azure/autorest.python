@@ -35,6 +35,7 @@ class MultipleClient(MultipleClientOperationsMixin):
     ) -> None:
         _endpoint = "{endpoint}/server/path/multiple/{apiVersion}"
         self._config = MultipleClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

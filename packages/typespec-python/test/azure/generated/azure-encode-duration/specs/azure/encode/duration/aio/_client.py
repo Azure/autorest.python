@@ -31,6 +31,7 @@ class DurationClient(DurationClientOperationsMixin):  # pylint: disable=client-a
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = DurationClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

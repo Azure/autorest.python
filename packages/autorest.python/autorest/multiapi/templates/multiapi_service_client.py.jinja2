@@ -18,6 +18,7 @@ def __init__(
 {% set async_prefix = "Async" if async_mode else "" %}
 {% set a_prefix = "a" if async_mode else "" %}
 {% set await = "await " if async_mode else "" %}
+{% set credential_scopes = "credential_scopes=credential_scopes, " if code_model.config.credential_scopes is not none and code_model.azure_arm else "" %}
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -77,6 +78,7 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
     )
 
     {{ method_signature()|indent }}
+        {% if not code_model.azure_arm %}
         {% if not code_model.client.host_value %}
         {% for parameterized_host_template, api_versions in code_model.client.parameterized_host_template_to_api_version|dictsort %}
         {% set if_statement = "if" if loop.first else "elif" %}
@@ -86,9 +88,17 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
         else:
             raise ValueError("API version {} is not available".format(api_version))
         {% endif %}
+        {% endif %}
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}**kwargs)
+        {% if credential_scopes %}
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not base_url:
+            base_url = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
+        {% endif %}
+        self._config = {{ code_model.client.name }}Configuration({{ code_model.global_parameters.call }}{{ ", " if code_model.global_parameters.call }}{{ credential_scopes }}**kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -96,7 +106,8 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
                 {{ p }},
                 {% endfor %}
             ]
-        self._client: {{ async_prefix }}{{ code_model.client.pipeline_client }} = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ code_model.host_variable_name }}, policies=_policies, **kwargs)
+        {% set host_variable_name = "cast(str, " + code_model.host_variable_name + ")" if credential_scopes else code_model.host_variable_name %}
+        self._client: {{ async_prefix }}{{ code_model.client.pipeline_client }} = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ host_variable_name }}, policies=_policies, **kwargs)
         super({{ code_model.client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
