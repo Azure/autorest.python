@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING, cast
+from typing import Any, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -32,11 +32,11 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     :vartype http_success: headversiontolerant.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
-    :param endpoint: Service URL. Required.
+    :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     """
 
-    def __init__(self, credential: "TokenCredential", endpoint: str, **kwargs: Any) -> None:
+    def __init__(self, credential: "TokenCredential", endpoint: Optional[str] = None, **kwargs: Any) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
@@ -64,7 +64,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=cast(str, endpoint), policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

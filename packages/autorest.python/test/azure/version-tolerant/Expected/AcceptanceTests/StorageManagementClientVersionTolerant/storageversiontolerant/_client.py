@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, TYPE_CHECKING, cast
+from typing import Any, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -37,7 +37,7 @@ class StorageManagementClient:
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
-    :param endpoint: Service URL. Required.
+    :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
      this default value may result in unsupported behavior.
@@ -46,7 +46,9 @@ class StorageManagementClient:
      Retry-After header is present.
     """
 
-    def __init__(self, credential: "TokenCredential", subscription_id: str, endpoint: str, **kwargs: Any) -> None:
+    def __init__(
+        self, credential: "TokenCredential", subscription_id: str, endpoint: Optional[str] = None, **kwargs: Any
+    ) -> None:
         _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
@@ -74,7 +76,7 @@ class StorageManagementClient:
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: ARMPipelineClient = ARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: ARMPipelineClient = ARMPipelineClient(base_url=cast(str, endpoint), policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
