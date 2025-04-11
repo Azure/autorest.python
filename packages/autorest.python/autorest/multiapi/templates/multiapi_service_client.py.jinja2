@@ -106,7 +106,8 @@ class {{ code_model.client.name }}({% if code_model.operation_mixin_group.mixin_
                 {{ p }},
                 {% endfor %}
             ]
-        self._client: {{ async_prefix }}{{ code_model.client.pipeline_client }} = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ code_model.host_variable_name }}, policies=_policies, **kwargs)
+        {% set host_variable_name = "cast(str, " + code_model.host_variable_name + ")" if credential_scopes else code_model.host_variable_name %}
+        self._client: {{ async_prefix }}{{ code_model.client.pipeline_client }} = {{ async_prefix }}{{ code_model.client.pipeline_client }}(base_url={{ host_variable_name }}, policies=_policies, **kwargs)
         super({{ code_model.client.name }}, self).__init__(
             api_version=api_version,
             profile=profile
