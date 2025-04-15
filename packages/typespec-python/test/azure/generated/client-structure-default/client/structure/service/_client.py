@@ -17,7 +17,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import ServiceClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
+from .baz.operations import BazOperations
+from .operations import BarOperations, FooOperations, ServiceClientOperationsMixin
+from .qux.operations import QuxOperations
 
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

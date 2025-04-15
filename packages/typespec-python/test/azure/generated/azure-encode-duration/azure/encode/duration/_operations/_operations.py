@@ -23,7 +23,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .....specs.azure.encode.duration import models as _specs_azure_encode_duration_models8
+from .. import models as _models
 from .._model_base import SdkJSONEncoder
 from .._serialization import Serializer
 from .._vendor import DurationClientMixinABC
@@ -54,11 +54,7 @@ class DurationClientOperationsMixin(DurationClientMixinABC):
 
     @overload
     def duration_constant(
-        self,
-        body: _specs_azure_encode_duration_models8.DurationModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.DurationModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test duration with azure specific encoding.
 
@@ -102,7 +98,7 @@ class DurationClientOperationsMixin(DurationClientMixinABC):
 
     @distributed_trace
     def duration_constant(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[_specs_azure_encode_duration_models8.DurationModel, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.DurationModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Test duration with azure specific encoding.
 

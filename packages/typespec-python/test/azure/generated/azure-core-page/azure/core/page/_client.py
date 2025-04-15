@@ -14,10 +14,9 @@ from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ....specs.azure.core.page.operations import TwoModelsAsPageItemOperations
 from ._configuration import PageClientConfiguration
-from ._operations import PageClientOperationsMixin
 from ._serialization import Deserializer, Serializer
+from .operations import PageClientOperationsMixin, TwoModelsAsPageItemOperations
 
 
 class PageClient(PageClientOperationsMixin):

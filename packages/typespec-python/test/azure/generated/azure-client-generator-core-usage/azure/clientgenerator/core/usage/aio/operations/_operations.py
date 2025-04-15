@@ -26,7 +26,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .......specs.azure.clientgenerator.core.usage import models as _specs_azure_clientgenerator_core_usage_models11
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._serialization import Deserializer, Serializer
 from ...operations._operations import (
@@ -61,11 +61,7 @@ class ModelInOperationOperations:
 
     @overload
     async def input_to_input_output(
-        self,
-        body: _specs_azure_clientgenerator_core_usage_models11.InputModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.InputModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
 
@@ -128,9 +124,7 @@ class ModelInOperationOperations:
         """
 
     @distributed_trace_async
-    async def input_to_input_output(
-        self, body: Union[_specs_azure_clientgenerator_core_usage_models11.InputModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def input_to_input_output(self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Expected body parameter:
 
         .. code-block:: json
@@ -192,9 +186,7 @@ class ModelInOperationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def output_to_input_output(
-        self, **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_usage_models11.OutputModel:
+    async def output_to_input_output(self, **kwargs: Any) -> _models.OutputModel:
         """Expected response body:
 
         .. code-block:: json
@@ -218,7 +210,7 @@ class ModelInOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_clientgenerator_core_usage_models11.OutputModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models.OutputModel] = kwargs.pop("cls", None)
 
         _request = build_model_in_operation_output_to_input_output_request(
             headers=_headers,
@@ -248,7 +240,7 @@ class ModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_clientgenerator_core_usage_models11.OutputModel, response.json())
+            deserialized = _deserialize(_models.OutputModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -257,12 +249,8 @@ class ModelInOperationOperations:
 
     @overload
     async def model_in_read_only_property(
-        self,
-        body: _specs_azure_clientgenerator_core_usage_models11.RoundTripModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_usage_models11.RoundTripModel:
+        self, body: _models.RoundTripModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
 
         Expected body parameter:
@@ -295,7 +283,7 @@ class ModelInOperationOperations:
     @overload
     async def model_in_read_only_property(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_usage_models11.RoundTripModel:
+    ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
 
         Expected body parameter:
@@ -328,7 +316,7 @@ class ModelInOperationOperations:
     @overload
     async def model_in_read_only_property(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_usage_models11.RoundTripModel:
+    ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
 
         Expected body parameter:
@@ -360,10 +348,8 @@ class ModelInOperationOperations:
 
     @distributed_trace_async
     async def model_in_read_only_property(
-        self,
-        body: Union[_specs_azure_clientgenerator_core_usage_models11.RoundTripModel, JSON, IO[bytes]],
-        **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_usage_models11.RoundTripModel:
+        self, body: Union[_models.RoundTripModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
 
         Expected body parameter:
@@ -401,7 +387,7 @@ class ModelInOperationOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_clientgenerator_core_usage_models11.RoundTripModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models.RoundTripModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -440,9 +426,7 @@ class ModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(
-                _specs_azure_clientgenerator_core_usage_models11.RoundTripModel, response.json()
-            )
+            deserialized = _deserialize(_models.RoundTripModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

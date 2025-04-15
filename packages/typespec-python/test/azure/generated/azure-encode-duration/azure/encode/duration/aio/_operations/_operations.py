@@ -24,7 +24,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ......specs.azure.encode.duration import models as _specs_azure_encode_duration_models9
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder
 from ..._operations._operations import build_duration_duration_constant_request
 from .._vendor import DurationClientMixinABC
@@ -38,11 +38,7 @@ class DurationClientOperationsMixin(DurationClientMixinABC):
 
     @overload
     async def duration_constant(
-        self,
-        body: _specs_azure_encode_duration_models9.DurationModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
+        self, body: _models.DurationModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test duration with azure specific encoding.
 
@@ -87,9 +83,7 @@ class DurationClientOperationsMixin(DurationClientMixinABC):
         """
 
     @distributed_trace_async
-    async def duration_constant(
-        self, body: Union[_specs_azure_encode_duration_models9.DurationModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> None:
+    async def duration_constant(self, body: Union[_models.DurationModel, JSON, IO[bytes]], **kwargs: Any) -> None:
         """Test duration with azure specific encoding.
 
         :param body: Is one of the following types: DurationModel, JSON, IO[bytes] Required.

@@ -29,7 +29,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .....specs.azure.core.traits import models as _specs_azure_core_traits_models8
+from .. import models as _models
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import TraitsClientMixinABC, prep_if_match, prep_if_none_match
@@ -132,7 +132,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         etag: Optional[str] = None,
         match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
-    ) -> _specs_azure_core_traits_models8.User:
+    ) -> _models.User:
         """Get a resource, sending and receiving headers.
 
         :param id: The user's id. Required.
@@ -171,7 +171,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_core_traits_models8.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _request = build_traits_smoke_test_request(
             id=id,
@@ -215,7 +215,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_traits_models8.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
@@ -224,13 +224,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @overload
     def repeatable_action(
-        self,
-        id: int,
-        body: _specs_azure_core_traits_models8.UserActionParam,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _specs_azure_core_traits_models8.UserActionResponse:
+        self, id: int, body: _models.UserActionParam, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
@@ -248,7 +243,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
     @overload
     def repeatable_action(
         self, id: int, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_core_traits_models8.UserActionResponse:
+    ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
@@ -266,7 +261,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
     @overload
     def repeatable_action(
         self, id: int, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_core_traits_models8.UserActionResponse:
+    ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
@@ -283,8 +278,8 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
 
     @distributed_trace
     def repeatable_action(
-        self, id: int, body: Union[_specs_azure_core_traits_models8.UserActionParam, JSON, IO[bytes]], **kwargs: Any
-    ) -> _specs_azure_core_traits_models8.UserActionResponse:
+        self, id: int, body: Union[_models.UserActionParam, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.UserActionResponse:
         """Test for repeatable requests.
 
         :param id: The user's id. Required.
@@ -308,7 +303,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_core_traits_models8.UserActionResponse] = kwargs.pop("cls", None)
+        cls: ClsType[_models.UserActionResponse] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -354,7 +349,7 @@ class TraitsClientOperationsMixin(TraitsClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_traits_models8.UserActionResponse, response.json())
+            deserialized = _deserialize(_models.UserActionResponse, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

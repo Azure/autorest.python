@@ -14,10 +14,12 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models as _models
+from .. import models as _models1
 from .._serialization import Deserializer, Serializer
+from ..baz.aio.operations import BazOperations
+from ..qux.aio.operations import QuxOperations
 from ._configuration import ServiceClientConfiguration
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
+from .operations import BarOperations, FooOperations, ServiceClientOperationsMixin
 
 
 class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -49,7 +51,7 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, client: Union[str, _models.ClientType], **kwargs: Any
+        self, endpoint: str, client: Union[str, _models1.ClientType], **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ServiceClientConfiguration(endpoint=endpoint, client=client, **kwargs)

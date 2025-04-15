@@ -28,7 +28,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .......specs.azure.core.lro.standard import models as _specs_azure_core_lro_standard_models11
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_standard_create_or_replace_request,
@@ -45,7 +45,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class StandardClientOperationsMixin(StandardClientMixinABC):
 
     async def _create_or_replace_initial(
-        self, name: str, resource: Union[_specs_azure_core_lro_standard_models11.User, JSON, IO[bytes]], **kwargs: Any
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncIterator[bytes]:
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -108,13 +108,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @overload
     async def begin_create_or_replace(
-        self,
-        name: str,
-        resource: _specs_azure_core_lro_standard_models11.User,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_standard_models11.User]:
+        self, name: str, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -135,7 +130,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
     @overload
     async def begin_create_or_replace(
         self, name: str, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_standard_models11.User]:
+    ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -156,7 +151,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
     @overload
     async def begin_create_or_replace(
         self, name: str, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_standard_models11.User]:
+    ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -176,8 +171,8 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
 
     @distributed_trace_async
     async def begin_create_or_replace(
-        self, name: str, resource: Union[_specs_azure_core_lro_standard_models11.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_standard_models11.User]:
+        self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> AsyncLROPoller[_models.User]:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -196,7 +191,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_core_lro_standard_models11.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -220,7 +215,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(_specs_azure_core_lro_standard_models11.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -239,13 +234,13 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_specs_azure_core_lro_standard_models9.User].from_continuation_token(
+            return AsyncLROPoller[_models.User].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_specs_azure_core_lro_standard_models9.User](
+        return AsyncLROPoller[_models.User](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
@@ -403,9 +398,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def begin_export(
-        self, name: str, *, format: str, **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_standard_models11.ExportedUser]:
+    async def begin_export(self, name: str, *, format: str, **kwargs: Any) -> AsyncLROPoller[_models.ExportedUser]:
         """Exports a user.
 
         Exports a User.
@@ -422,7 +415,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_core_lro_standard_models11.ExportedUser] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportedUser] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -440,9 +433,7 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(
-                _specs_azure_core_lro_standard_models11.ExportedUser, response.json().get("result", {})
-            )
+            deserialized = _deserialize(_models.ExportedUser, response.json().get("result", {}))
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -461,12 +452,12 @@ class StandardClientOperationsMixin(StandardClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_specs_azure_core_lro_standard_models9.ExportedUser].from_continuation_token(
+            return AsyncLROPoller[_models.ExportedUser].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_specs_azure_core_lro_standard_models9.ExportedUser](
+        return AsyncLROPoller[_models.ExportedUser](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )

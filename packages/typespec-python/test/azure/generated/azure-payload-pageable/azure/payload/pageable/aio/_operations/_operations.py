@@ -22,7 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
-from ......specs.azure.payload.pageable import models as _specs_azure_payload_pageable_models9
+from ... import models as _models
 from ..._model_base import _deserialize
 from ..._operations._operations import build_pageable_list_request
 from ..._validation import api_version_validation
@@ -38,7 +38,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
     @api_version_validation(
         params_added_on={"1.0-preview.1": ["maxpagesize"]},
     )
-    def list(self, **kwargs: Any) -> AsyncIterable["_specs_azure_payload_pageable_models9.User"]:
+    def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
         """List users.
 
         :return: An iterator like instance of User
@@ -49,7 +49,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_specs_azure_payload_pageable_models9.User]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -87,7 +87,7 @@ class PageableClientOperationsMixin(PageableClientMixinABC):
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_specs_azure_payload_pageable_models9.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)

@@ -14,9 +14,9 @@ from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ....specs.azure.core.model.operations import AzureCoreEmbeddingVectorOperations
 from ._configuration import ModelClientConfiguration
 from ._serialization import Deserializer, Serializer
+from .operations import AzureCoreEmbeddingVectorOperations
 
 
 class ModelClient:  # pylint: disable=client-accepts-api-version-keyword

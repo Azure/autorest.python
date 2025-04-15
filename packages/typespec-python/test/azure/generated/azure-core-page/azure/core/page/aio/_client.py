@@ -14,10 +14,9 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .....specs.azure.core.page.aio.operations import TwoModelsAsPageItemOperations
 from .._serialization import Deserializer, Serializer
 from ._configuration import PageClientConfiguration
-from ._operations import PageClientOperationsMixin
+from .operations import PageClientOperationsMixin, TwoModelsAsPageItemOperations
 
 
 class PageClient(PageClientOperationsMixin):

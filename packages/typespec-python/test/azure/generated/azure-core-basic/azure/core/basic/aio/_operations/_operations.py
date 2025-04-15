@@ -29,7 +29,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ......specs.azure.core.basic import models as _specs_azure_core_basic_models9
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_basic_create_or_replace_request,
@@ -51,13 +51,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_update(
-        self,
-        id: int,
-        resource: _specs_azure_core_basic_models9.User,
-        *,
-        content_type: str = "application/merge-patch+json",
-        **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+        self, id: int, resource: _models.User, *, content_type: str = "application/merge-patch+json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -77,7 +72,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
     async def create_or_update(
         self, id: int, resource: JSON, *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -97,7 +92,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
     async def create_or_update(
         self, id: int, resource: IO[bytes], *, content_type: str = "application/merge-patch+json", **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -116,8 +111,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @distributed_trace_async
     async def create_or_update(
-        self, id: int, resource: Union[_specs_azure_core_basic_models9.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or updates a user's fields.
 
         Creates or updates a User.
@@ -143,7 +138,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_core_basic_models9.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/merge-patch+json"
         _content = None
@@ -184,7 +179,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_basic_models9.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -193,13 +188,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @overload
     async def create_or_replace(
-        self,
-        id: int,
-        resource: _specs_azure_core_basic_models9.User,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+        self, id: int, resource: _models.User, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -219,7 +209,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
     async def create_or_replace(
         self, id: int, resource: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -239,7 +229,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
     @overload
     async def create_or_replace(
         self, id: int, resource: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -258,8 +248,8 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
     @distributed_trace_async
     async def create_or_replace(
-        self, id: int, resource: Union[_specs_azure_core_basic_models9.User, JSON, IO[bytes]], **kwargs: Any
-    ) -> _specs_azure_core_basic_models9.User:
+        self, id: int, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.User:
         """Adds a user or replaces a user's fields.
 
         Creates or replaces a User.
@@ -285,7 +275,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_core_basic_models9.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -326,7 +316,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_basic_models9.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -334,7 +324,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get(self, id: int, **kwargs: Any) -> _specs_azure_core_basic_models9.User:
+    async def get(self, id: int, **kwargs: Any) -> _models.User:
         """Gets a user.
 
         Gets a User.
@@ -356,7 +346,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_core_basic_models9.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _request = build_basic_get_request(
             id=id,
@@ -388,7 +378,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_basic_models9.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -406,7 +396,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         select: Optional[List[str]] = None,
         expand: Optional[List[str]] = None,
         **kwargs: Any
-    ) -> AsyncIterable["_specs_azure_core_basic_models9.User"]:
+    ) -> AsyncIterable["_models.User"]:
         """Lists all users.
 
         Lists all Users.
@@ -433,7 +423,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_specs_azure_core_basic_models9.User]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -489,7 +479,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_specs_azure_core_basic_models9.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -562,7 +552,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def export(self, id: int, *, format: str, **kwargs: Any) -> _specs_azure_core_basic_models9.User:
+    async def export(self, id: int, *, format: str, **kwargs: Any) -> _models.User:
         """Exports a user.
 
         Exports a User.
@@ -586,7 +576,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_core_basic_models9.User] = kwargs.pop("cls", None)
+        cls: ClsType[_models.User] = kwargs.pop("cls", None)
 
         _request = build_basic_export_request(
             id=id,
@@ -619,7 +609,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_basic_models9.User, response.json())
+            deserialized = _deserialize(_models.User, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -627,7 +617,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def export_all_users(self, *, format: str, **kwargs: Any) -> _specs_azure_core_basic_models9.UserList:
+    async def export_all_users(self, *, format: str, **kwargs: Any) -> _models.UserList:
         """Exports all users.
 
         Exports all users.
@@ -649,7 +639,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_specs_azure_core_basic_models9.UserList] = kwargs.pop("cls", None)
+        cls: ClsType[_models.UserList] = kwargs.pop("cls", None)
 
         _request = build_basic_export_all_users_request(
             format=format,
@@ -681,7 +671,7 @@ class BasicClientOperationsMixin(BasicClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_specs_azure_core_basic_models9.UserList, response.json())
+            deserialized = _deserialize(_models.UserList, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

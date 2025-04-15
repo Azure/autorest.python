@@ -28,7 +28,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from .......specs.azure.core.lro.rpc import models as _specs_azure_core_lro_rpc_models11
+from ... import models as _models
 from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_rpc_long_running_rpc_request
 from .._vendor import RpcClientMixinABC
@@ -41,7 +41,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 class RpcClientOperationsMixin(RpcClientMixinABC):
 
     async def _long_running_rpc_initial(
-        self, body: Union[_specs_azure_core_lro_rpc_models11.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
+        self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncIterator[bytes]:
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -103,12 +103,8 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
     @overload
     async def begin_long_running_rpc(
-        self,
-        body: _specs_azure_core_lro_rpc_models11.GenerationOptions,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_rpc_models11.GenerationResult]:
+        self, body: _models.GenerationOptions, *, content_type: str = "application/json", **kwargs: Any
+    ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
@@ -127,7 +123,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
     @overload
     async def begin_long_running_rpc(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_rpc_models11.GenerationResult]:
+    ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
@@ -146,7 +142,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
     @overload
     async def begin_long_running_rpc(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_rpc_models11.GenerationResult]:
+    ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
@@ -164,8 +160,8 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
 
     @distributed_trace_async
     async def begin_long_running_rpc(
-        self, body: Union[_specs_azure_core_lro_rpc_models11.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
-    ) -> AsyncLROPoller[_specs_azure_core_lro_rpc_models11.GenerationResult]:
+        self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any
+    ) -> AsyncLROPoller[_models.GenerationResult]:
         """Generate data.
 
         Generate data.
@@ -182,7 +178,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_core_lro_rpc_models11.GenerationResult] = kwargs.pop("cls", None)
+        cls: ClsType[_models.GenerationResult] = kwargs.pop("cls", None)
         polling: Union[bool, AsyncPollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -200,9 +196,7 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
                 "str", response.headers.get("Operation-Location")
             )
 
-            deserialized = _deserialize(
-                _specs_azure_core_lro_rpc_models11.GenerationResult, response.json().get("result", {})
-            )
+            deserialized = _deserialize(_models.GenerationResult, response.json().get("result", {}))
             if cls:
                 return cls(pipeline_response, deserialized, response_headers)  # type: ignore
             return deserialized
@@ -221,12 +215,12 @@ class RpcClientOperationsMixin(RpcClientMixinABC):
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[_specs_azure_core_lro_rpc_models9.GenerationResult].from_continuation_token(
+            return AsyncLROPoller[_models.GenerationResult].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[_specs_azure_core_lro_rpc_models9.GenerationResult](
+        return AsyncLROPoller[_models.GenerationResult](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )

@@ -14,14 +14,14 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from ......specs.azure.clientgenerator.core.access.aio.operations import (
+from .._serialization import Deserializer, Serializer
+from ._configuration import AccessClientConfiguration
+from .operations import (
     InternalOperationOperations,
     PublicOperationOperations,
     RelativeModelInOperationOperations,
     SharedModelInOperationOperations,
 )
-from .._serialization import Deserializer, Serializer
-from ._configuration import AccessClientConfiguration
 
 
 class AccessClient:  # pylint: disable=client-accepts-api-version-keyword

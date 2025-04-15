@@ -25,9 +25,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ......specs.azure.clientgenerator.core.flattenproperty import (
-    models as _specs_azure_clientgenerator_core_flattenproperty_models10,
-)
+from .. import models as _models
 from .._model_base import SdkJSONEncoder, _deserialize
 from .._serialization import Serializer
 from .._vendor import FlattenPropertyClientMixinABC
@@ -80,12 +78,8 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
 
     @overload
     def put_flatten_model(
-        self,
-        input: _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any,
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel:
+        self, input: _models.FlattenModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FlattenModel:
         """put_flatten_model.
 
         :param input: Required.
@@ -101,7 +95,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
     @overload
     def put_flatten_model(
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel:
+    ) -> _models.FlattenModel:
         """put_flatten_model.
 
         :param input: Required.
@@ -117,7 +111,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
     @overload
     def put_flatten_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel:
+    ) -> _models.FlattenModel:
         """put_flatten_model.
 
         :param input: Required.
@@ -132,10 +126,8 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
 
     @distributed_trace
     def put_flatten_model(
-        self,
-        input: Union[_specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel, JSON, IO[bytes]],
-        **kwargs: Any,
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel:
+        self, input: Union[_models.FlattenModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.FlattenModel:
         """put_flatten_model.
 
         :param input: Is one of the following types: FlattenModel, JSON, IO[bytes] Required.
@@ -157,7 +149,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models.FlattenModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -196,9 +188,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(
-                _specs_azure_clientgenerator_core_flattenproperty_models10.FlattenModel, response.json()
-            )
+            deserialized = _deserialize(_models.FlattenModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -207,12 +197,8 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
 
     @overload
     def put_nested_flatten_model(
-        self,
-        input: _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel,
-        *,
-        content_type: str = "application/json",
-        **kwargs: Any,
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel:
+        self, input: _models.NestedFlattenModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.NestedFlattenModel:
         """put_nested_flatten_model.
 
         :param input: Required.
@@ -228,7 +214,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
     @overload
     def put_nested_flatten_model(
         self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel:
+    ) -> _models.NestedFlattenModel:
         """put_nested_flatten_model.
 
         :param input: Required.
@@ -244,7 +230,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
     @overload
     def put_nested_flatten_model(
         self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel:
+    ) -> _models.NestedFlattenModel:
         """put_nested_flatten_model.
 
         :param input: Required.
@@ -259,10 +245,8 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
 
     @distributed_trace
     def put_nested_flatten_model(
-        self,
-        input: Union[_specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel, JSON, IO[bytes]],
-        **kwargs: Any,
-    ) -> _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel:
+        self, input: Union[_models.NestedFlattenModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.NestedFlattenModel:
         """put_nested_flatten_model.
 
         :param input: Is one of the following types: NestedFlattenModel, JSON, IO[bytes] Required.
@@ -284,9 +268,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel] = kwargs.pop(
-            "cls", None
-        )
+        cls: ClsType[_models.NestedFlattenModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -325,9 +307,7 @@ class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(
-                _specs_azure_clientgenerator_core_flattenproperty_models10.NestedFlattenModel, response.json()
-            )
+            deserialized = _deserialize(_models.NestedFlattenModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

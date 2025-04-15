@@ -1,7 +1,7 @@
 {
     "CrossLanguagePackageId": "_Specs_.Azure.Core.Model",
     "CrossLanguageDefinitionId": {
-        "specs.azure.core.model.models.AzureEmbeddingModel": "_Specs_.Azure.Core.Model.AzureEmbeddingModel",
+        "azure.core.model.models.AzureEmbeddingModel": "_Specs_.Azure.Core.Model.AzureEmbeddingModel",
         "azure.core.model.ModelClient.azure_core_embedding_vector.get": "_Specs_.Azure.Core.Model.AzureCoreEmbeddingVector.get",
         "azure.core.model.ModelClient.azure_core_embedding_vector.put": "_Specs_.Azure.Core.Model.AzureCoreEmbeddingVector.put",
         "azure.core.model.ModelClient.azure_core_embedding_vector.post": "_Specs_.Azure.Core.Model.AzureCoreEmbeddingVector.post"

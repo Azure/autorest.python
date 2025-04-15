@@ -6,11 +6,11 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from specs.azure.example.basic import AzureExampleClient
+from azure.example.basic import AzureExampleClient
 
 """
 # PREREQUISITES
-    pip install specs-azure-example-basic
+    pip install azure-example-basic
 # USAGE
     python basic.py
 """

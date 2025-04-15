@@ -14,9 +14,9 @@ from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ....specs.azure.core.scalar.operations import AzureLocationScalarOperations
 from ._configuration import ScalarClientConfiguration
 from ._serialization import Deserializer, Serializer
+from .operations import AzureLocationScalarOperations
 
 
 class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword

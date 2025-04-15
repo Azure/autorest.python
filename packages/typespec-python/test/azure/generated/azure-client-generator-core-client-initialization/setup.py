@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-clientgenerator-core-clientinitialization"
-PACKAGE_PPRINT_NAME = "Specs Azure Clientgenerator Core Clientinitialization"
+PACKAGE_NAME = "azure-clientgenerator-core-clientinitialization"
+PACKAGE_PPRINT_NAME = "Azure Clientgenerator Core Clientinitialization"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -53,15 +53,14 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.clientgenerator",
-            "specs.azure.clientgenerator.core",
+            "azure",
+            "azure.clientgenerator",
+            "azure.clientgenerator.core",
         ]
     ),
     include_package_data=True,
     package_data={
-        "specs.azure.clientgenerator.core.clientinitialization": ["py.typed"],
+        "azure.clientgenerator.core.clientinitialization": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

@@ -1,4 +1,4 @@
-# Specs Azure Example Basic client library for Python
+# Azure Example Basic client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-example-basic
+python -m pip install azure-example-basic
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Example Basic instance.
+- An existing Azure Example Basic instance.
 
 
 ## Contributing
