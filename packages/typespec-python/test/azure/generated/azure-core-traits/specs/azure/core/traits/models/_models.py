@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.core.traits import _model_base
+from ......azure.core.traits._model_base import rest_field
 
 
 class User(_model_base.Model):

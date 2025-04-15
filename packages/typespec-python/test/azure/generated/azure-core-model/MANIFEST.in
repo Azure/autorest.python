@@ -1,8 +1,7 @@
 include *.md
 include LICENSE
-include specs/azure/core/model/py.typed
+include azure/core/model/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
-include specs/__init__.py
-include specs/azure/__init__.py
-include specs/azure/core/__init__.py
+include azure/__init__.py
+include azure/core/__init__.py

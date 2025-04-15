@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .......azure.clientgenerator.core.flattenproperty import _model_base
+from .......azure.clientgenerator.core.flattenproperty._model_base import rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -22,7 +22,7 @@ class ChildFlattenModel(_model_base.Model):
     :ivar summary: Required.
     :vartype summary: str
     :ivar properties: Required.
-    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
+    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
     summary: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -108,7 +108,7 @@ class FlattenModel(_model_base.Model):
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
-    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildModel
+    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildModel
     """
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -161,7 +161,7 @@ class NestedFlattenModel(_model_base.Model):
     :ivar name: Required.
     :vartype name: str
     :ivar properties: Required.
-    :vartype properties: ~specs.azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel
+    :vartype properties: ~azure.clientgenerator.core.flattenproperty.models.ChildFlattenModel
     """
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])

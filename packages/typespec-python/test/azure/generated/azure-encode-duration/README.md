@@ -1,4 +1,4 @@
-# Specs Azure Encode Duration client library for Python
+# Azure Encode Duration client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-encode-duration
+python -m pip install azure-encode-duration
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Encode Duration instance.
+- An existing Azure Encode Duration instance.
 
 
 ## Contributing

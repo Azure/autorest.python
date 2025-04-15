@@ -9,8 +9,8 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.core.page import _model_base
+from ......azure.core.page._model_base import rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -74,7 +74,7 @@ class User(_model_base.Model):
     :ivar name: The user's name. Required.
     :vartype name: str
     :ivar orders: The user's order list.
-    :vartype orders: list[~specs.azure.core.page.models.UserOrder]
+    :vartype orders: list[~azure.core.page.models.UserOrder]
     :ivar etag: The entity tag for this resource. Required.
     :vartype etag: str
     """

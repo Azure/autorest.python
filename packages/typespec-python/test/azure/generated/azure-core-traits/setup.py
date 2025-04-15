@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-core-traits"
-PACKAGE_PPRINT_NAME = "Specs Azure Core Traits"
+PACKAGE_NAME = "azure-core-traits"
+PACKAGE_PPRINT_NAME = "Azure Core Traits"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -53,14 +53,13 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.core",
+            "azure",
+            "azure.core",
         ]
     ),
     include_package_data=True,
     package_data={
-        "specs.azure.core.traits": ["py.typed"],
+        "azure.core.traits": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

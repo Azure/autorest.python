@@ -9,8 +9,8 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.core.basic import _model_base
+from ......azure.core.basic._model_base import rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -24,7 +24,7 @@ class User(_model_base.Model):
     :ivar name: The user's name. Required.
     :vartype name: str
     :ivar orders: The user's order list.
-    :vartype orders: list[~specs.azure.core.basic.models.UserOrder]
+    :vartype orders: list[~azure.core.basic.models.UserOrder]
     :ivar etag: The entity tag for this resource. Required.
     :vartype etag: str
     """
@@ -61,7 +61,7 @@ class UserList(_model_base.Model):
     """UserList.
 
     :ivar users: Required.
-    :vartype users: list[~specs.azure.core.basic.models.User]
+    :vartype users: list[~azure.core.basic.models.User]
     """
 
     users: List["_models.User"] = rest_field(visibility=["read", "create", "update", "delete", "query"])

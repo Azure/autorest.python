@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-payload-pageable"
-PACKAGE_PPRINT_NAME = "Specs Azure Payload Pageable"
+PACKAGE_NAME = "azure-payload-pageable"
+PACKAGE_PPRINT_NAME = "Azure Payload Pageable"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -53,14 +53,13 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.payload",
+            "azure",
+            "azure.payload",
         ]
     ),
     include_package_data=True,
     package_data={
-        "specs.azure.payload.pageable": ["py.typed"],
+        "azure.payload.pageable": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

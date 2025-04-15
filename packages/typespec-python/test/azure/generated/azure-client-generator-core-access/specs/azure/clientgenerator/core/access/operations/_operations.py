@@ -24,10 +24,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
-from .._configuration import AccessClientConfiguration
-from .._model_base import _deserialize
-from .._serialization import Deserializer, Serializer
+from .. import models as _models1
+from .......azure.clientgenerator.core.access._configuration import AccessClientConfiguration
+from .......azure.clientgenerator.core.access._model_base import _deserialize
+from .......azure.clientgenerator.core.access._serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -222,7 +222,7 @@ class PublicOperationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~specs.azure.clientgenerator.core.access.AccessClient`'s
+        :class:`~azure.clientgenerator.core.access.AccessClient`'s
         :attr:`public_operation` attribute.
     """
 
@@ -234,14 +234,14 @@ class PublicOperationOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def no_decorator_in_public(self, *, name: str, **kwargs: Any) -> _models.NoDecoratorModelInPublic:
+    def no_decorator_in_public(self, *, name: str, **kwargs: Any) -> _models1.NoDecoratorModelInPublic:
         """no_decorator_in_public.
 
         :keyword name: Required.
         :paramtype name: str
         :return: NoDecoratorModelInPublic. The NoDecoratorModelInPublic is compatible with
          MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.NoDecoratorModelInPublic
+        :rtype: ~azure.clientgenerator.core.access.models.NoDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -255,7 +255,7 @@ class PublicOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.NoDecoratorModelInPublic] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.NoDecoratorModelInPublic] = kwargs.pop("cls", None)
 
         _request = build_public_operation_no_decorator_in_public_request(
             name=name,
@@ -286,7 +286,7 @@ class PublicOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.NoDecoratorModelInPublic, response.json())
+            deserialized = _deserialize(_models1.NoDecoratorModelInPublic, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -294,14 +294,14 @@ class PublicOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def public_decorator_in_public(self, *, name: str, **kwargs: Any) -> _models.PublicDecoratorModelInPublic:
+    def public_decorator_in_public(self, *, name: str, **kwargs: Any) -> _models1.PublicDecoratorModelInPublic:
         """public_decorator_in_public.
 
         :keyword name: Required.
         :paramtype name: str
         :return: PublicDecoratorModelInPublic. The PublicDecoratorModelInPublic is compatible with
          MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic
+        :rtype: ~azure.clientgenerator.core.access.models.PublicDecoratorModelInPublic
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -315,7 +315,7 @@ class PublicOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PublicDecoratorModelInPublic] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.PublicDecoratorModelInPublic] = kwargs.pop("cls", None)
 
         _request = build_public_operation_public_decorator_in_public_request(
             name=name,
@@ -346,7 +346,7 @@ class PublicOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PublicDecoratorModelInPublic, response.json())
+            deserialized = _deserialize(_models1.PublicDecoratorModelInPublic, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -360,7 +360,7 @@ class InternalOperationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~specs.azure.clientgenerator.core.access.AccessClient`'s
+        :class:`~azure.clientgenerator.core.access.AccessClient`'s
         :attr:`internal_operation` attribute.
     """
 
@@ -372,14 +372,14 @@ class InternalOperationOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def _no_decorator_in_internal(self, *, name: str, **kwargs: Any) -> _models._models.NoDecoratorModelInInternal:
+    def _no_decorator_in_internal(self, *, name: str, **kwargs: Any) -> _models1._models.NoDecoratorModelInInternal:
         """no_decorator_in_internal.
 
         :keyword name: Required.
         :paramtype name: str
         :return: NoDecoratorModelInInternal. The NoDecoratorModelInInternal is compatible with
          MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models._models.NoDecoratorModelInInternal
+        :rtype: ~azure.clientgenerator.core.access.models._models.NoDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -393,7 +393,7 @@ class InternalOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.NoDecoratorModelInInternal] = kwargs.pop("cls", None)
+        cls: ClsType[_models1._models.NoDecoratorModelInInternal] = kwargs.pop("cls", None)
 
         _request = build_internal_operation_no_decorator_in_internal_request(
             name=name,
@@ -425,7 +425,7 @@ class InternalOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.NoDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
+                _models1._models.NoDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
             )
 
         if cls:
@@ -436,15 +436,14 @@ class InternalOperationOperations:
     @distributed_trace
     def _internal_decorator_in_internal(
         self, *, name: str, **kwargs: Any
-    ) -> _models._models.InternalDecoratorModelInInternal:
+    ) -> _models1._models.InternalDecoratorModelInInternal:
         """internal_decorator_in_internal.
 
         :keyword name: Required.
         :paramtype name: str
         :return: InternalDecoratorModelInInternal. The InternalDecoratorModelInInternal is compatible
          with MutableMapping
-        :rtype:
-         ~specs.azure.clientgenerator.core.access.models._models.InternalDecoratorModelInInternal
+        :rtype: ~azure.clientgenerator.core.access.models._models.InternalDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -458,7 +457,7 @@ class InternalOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.InternalDecoratorModelInInternal] = kwargs.pop("cls", None)
+        cls: ClsType[_models1._models.InternalDecoratorModelInInternal] = kwargs.pop("cls", None)
 
         _request = build_internal_operation_internal_decorator_in_internal_request(
             name=name,
@@ -490,7 +489,7 @@ class InternalOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.InternalDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
+                _models1._models.InternalDecoratorModelInInternal, response.json()  # pylint: disable=protected-access
             )
 
         if cls:
@@ -499,14 +498,14 @@ class InternalOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def _public_decorator_in_internal(self, *, name: str, **kwargs: Any) -> _models.PublicDecoratorModelInInternal:
+    def _public_decorator_in_internal(self, *, name: str, **kwargs: Any) -> _models1.PublicDecoratorModelInInternal:
         """public_decorator_in_internal.
 
         :keyword name: Required.
         :paramtype name: str
         :return: PublicDecoratorModelInInternal. The PublicDecoratorModelInInternal is compatible with
          MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.PublicDecoratorModelInInternal
+        :rtype: ~azure.clientgenerator.core.access.models.PublicDecoratorModelInInternal
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -520,7 +519,7 @@ class InternalOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.PublicDecoratorModelInInternal] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.PublicDecoratorModelInInternal] = kwargs.pop("cls", None)
 
         _request = build_internal_operation_public_decorator_in_internal_request(
             name=name,
@@ -551,7 +550,7 @@ class InternalOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.PublicDecoratorModelInInternal, response.json())
+            deserialized = _deserialize(_models1.PublicDecoratorModelInInternal, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -565,7 +564,7 @@ class SharedModelInOperationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~specs.azure.clientgenerator.core.access.AccessClient`'s
+        :class:`~azure.clientgenerator.core.access.AccessClient`'s
         :attr:`shared_model_in_operation` attribute.
     """
 
@@ -577,13 +576,13 @@ class SharedModelInOperationOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def public(self, *, name: str, **kwargs: Any) -> _models.SharedModel:
+    def public(self, *, name: str, **kwargs: Any) -> _models1.SharedModel:
         """public.
 
         :keyword name: Required.
         :paramtype name: str
         :return: SharedModel. The SharedModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
+        :rtype: ~azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -597,7 +596,7 @@ class SharedModelInOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.SharedModel] = kwargs.pop("cls", None)
 
         _request = build_shared_model_in_operation_public_request(
             name=name,
@@ -628,7 +627,7 @@ class SharedModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SharedModel, response.json())
+            deserialized = _deserialize(_models1.SharedModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -636,13 +635,13 @@ class SharedModelInOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def _internal(self, *, name: str, **kwargs: Any) -> _models.SharedModel:
+    def _internal(self, *, name: str, **kwargs: Any) -> _models1.SharedModel:
         """internal.
 
         :keyword name: Required.
         :paramtype name: str
         :return: SharedModel. The SharedModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models.SharedModel
+        :rtype: ~azure.clientgenerator.core.access.models.SharedModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -656,7 +655,7 @@ class SharedModelInOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.SharedModel] = kwargs.pop("cls", None)
 
         _request = build_shared_model_in_operation_internal_request(
             name=name,
@@ -687,7 +686,7 @@ class SharedModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.SharedModel, response.json())
+            deserialized = _deserialize(_models1.SharedModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -701,7 +700,7 @@ class RelativeModelInOperationOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~specs.azure.clientgenerator.core.access.AccessClient`'s
+        :class:`~azure.clientgenerator.core.access.AccessClient`'s
         :attr:`relative_model_in_operation` attribute.
     """
 
@@ -713,7 +712,7 @@ class RelativeModelInOperationOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def _operation(self, *, name: str, **kwargs: Any) -> _models._models.OuterModel:
+    def _operation(self, *, name: str, **kwargs: Any) -> _models1._models.OuterModel:
         """Expected query parameter: name="Madge"
         Expected response body:
 
@@ -730,7 +729,7 @@ class RelativeModelInOperationOperations:
         :keyword name: Required.
         :paramtype name: str
         :return: OuterModel. The OuterModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models._models.OuterModel
+        :rtype: ~azure.clientgenerator.core.access.models._models.OuterModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -744,7 +743,7 @@ class RelativeModelInOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.OuterModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models1._models.OuterModel] = kwargs.pop("cls", None)
 
         _request = build_relative_model_in_operation_operation_request(
             name=name,
@@ -775,7 +774,9 @@ class RelativeModelInOperationOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models._models.OuterModel, response.json())  # pylint: disable=protected-access
+            deserialized = _deserialize(
+                _models1._models.OuterModel, response.json()  # pylint: disable=protected-access
+            )
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -783,7 +784,7 @@ class RelativeModelInOperationOperations:
         return deserialized  # type: ignore
 
     @distributed_trace
-    def _discriminator(self, *, kind: str, **kwargs: Any) -> _models._models.AbstractModel:
+    def _discriminator(self, *, kind: str, **kwargs: Any) -> _models1._models.AbstractModel:
         """Expected query parameter: kind="real"
         Expected response body:
 
@@ -797,7 +798,7 @@ class RelativeModelInOperationOperations:
         :keyword kind: Required.
         :paramtype kind: str
         :return: AbstractModel. The AbstractModel is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.access.models._models.AbstractModel
+        :rtype: ~azure.clientgenerator.core.access.models._models.AbstractModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -811,7 +812,7 @@ class RelativeModelInOperationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models._models.AbstractModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models1._models.AbstractModel] = kwargs.pop("cls", None)
 
         _request = build_relative_model_in_operation_discriminator_request(
             kind=kind,
@@ -843,7 +844,7 @@ class RelativeModelInOperationOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(
-                _models._models.AbstractModel, response.json()  # pylint: disable=protected-access
+                _models1._models.AbstractModel, response.json()  # pylint: disable=protected-access
             )
 
         if cls:

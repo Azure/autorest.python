@@ -1,4 +1,4 @@
-# Specs Azure Core Model client library for Python
+# Azure Core Model client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-core-model
+python -m pip install azure-core-model
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Core Model instance.
+- An existing Azure Core Model instance.
 
 
 ## Contributing

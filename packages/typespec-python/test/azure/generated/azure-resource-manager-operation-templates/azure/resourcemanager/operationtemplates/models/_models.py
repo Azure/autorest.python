@@ -198,6 +198,34 @@ class ExportRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class ExportResult(_model_base.Model):
+    """ExportResult.
+
+    :ivar content: Content of the exported order. Required.
+    :vartype content: str
+    """
+
+    content: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Content of the exported order. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        content: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class Operation(_model_base.Model):
     """Details of a REST API operation, returned from the Resource Provider Operations API.
 

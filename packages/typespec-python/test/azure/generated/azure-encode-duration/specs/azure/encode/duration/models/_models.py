@@ -10,8 +10,8 @@
 import datetime
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.encode.duration import _model_base
+from ......azure.encode.duration._model_base import rest_field
 
 
 class DurationModel(_model_base.Model):

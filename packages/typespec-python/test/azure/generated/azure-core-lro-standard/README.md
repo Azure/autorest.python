@@ -1,4 +1,4 @@
-# Specs Azure Core Lro Standard client library for Python
+# Azure Core Lro Standard client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-core-lro-standard
+python -m pip install azure-core-lro-standard
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Core Lro Standard instance.
+- An existing Azure Core Lro Standard instance.
 
 
 ## Contributing

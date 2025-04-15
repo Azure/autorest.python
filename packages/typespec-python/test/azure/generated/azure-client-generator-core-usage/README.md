@@ -1,4 +1,4 @@
-# Specs Azure Clientgenerator Core Usage client library for Python
+# Azure Clientgenerator Core Usage client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-clientgenerator-core-usage
+python -m pip install azure-clientgenerator-core-usage
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Clientgenerator Core Usage instance.
+- An existing Azure Clientgenerator Core Usage instance.
 
 
 ## Contributing

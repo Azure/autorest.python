@@ -10,8 +10,8 @@
 
 from typing import Any, Dict, Literal, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .......azure.clientgenerator.core.access import _model_base
+from .......azure.clientgenerator.core.access._model_base import rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -200,7 +200,7 @@ class OuterModel(BaseModel):
     :ivar name: Required.
     :vartype name: str
     :ivar inner: Required.
-    :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
+    :vartype inner: ~azure.clientgenerator.core.access.models._models.InnerModel
     """
 
     inner: "_models._models.InnerModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])

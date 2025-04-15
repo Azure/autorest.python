@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "specs-azure-encode-duration"
-PACKAGE_PPRINT_NAME = "Specs Azure Encode Duration"
+PACKAGE_NAME = "azure-encode-duration"
+PACKAGE_PPRINT_NAME = "Azure Encode Duration"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -53,14 +53,13 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "specs",
-            "specs.azure",
-            "specs.azure.encode",
+            "azure",
+            "azure.encode",
         ]
     ),
     include_package_data=True,
     package_data={
-        "specs.azure.encode.duration": ["py.typed"],
+        "azure.encode.duration": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",

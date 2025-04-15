@@ -26,10 +26,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import models as _models
-from .._configuration import ModelClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Deserializer, Serializer
+from .. import models as _models1
+from ......azure.core.model._configuration import ModelClientConfiguration
+from ......azure.core.model._model_base import SdkJSONEncoder, _deserialize
+from ......azure.core.model._serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -90,7 +90,7 @@ class AzureCoreEmbeddingVectorOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~specs.azure.core.model.ModelClient`'s
+        :class:`~azure.core.model.ModelClient`'s
         :attr:`azure_core_embedding_vector` attribute.
     """
 
@@ -245,22 +245,24 @@ class AzureCoreEmbeddingVectorOperations:
 
     @overload
     def post(
-        self, body: _models.AzureEmbeddingModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.AzureEmbeddingModel:
+        self, body: _models1.AzureEmbeddingModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.AzureEmbeddingModel:
         """post a model which has an embeddingVector property.
 
         :param body: _. Required.
-        :type body: ~specs.azure.core.model.models.AzureEmbeddingModel
+        :type body: ~azure.core.model.models.AzureEmbeddingModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
-        :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
+        :rtype: ~azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def post(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.AzureEmbeddingModel:
+    def post(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models1.AzureEmbeddingModel:
         """post a model which has an embeddingVector property.
 
         :param body: _. Required.
@@ -269,14 +271,14 @@ class AzureCoreEmbeddingVectorOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
-        :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
+        :rtype: ~azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
     def post(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _models.AzureEmbeddingModel:
+    ) -> _models1.AzureEmbeddingModel:
         """post a model which has an embeddingVector property.
 
         :param body: _. Required.
@@ -285,20 +287,20 @@ class AzureCoreEmbeddingVectorOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
-        :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
+        :rtype: ~azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
     def post(
-        self, body: Union[_models.AzureEmbeddingModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> _models.AzureEmbeddingModel:
+        self, body: Union[_models1.AzureEmbeddingModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models1.AzureEmbeddingModel:
         """post a model which has an embeddingVector property.
 
         :param body: _. Is one of the following types: AzureEmbeddingModel, JSON, IO[bytes] Required.
-        :type body: ~specs.azure.core.model.models.AzureEmbeddingModel or JSON or IO[bytes]
+        :type body: ~azure.core.model.models.AzureEmbeddingModel or JSON or IO[bytes]
         :return: AzureEmbeddingModel. The AzureEmbeddingModel is compatible with MutableMapping
-        :rtype: ~specs.azure.core.model.models.AzureEmbeddingModel
+        :rtype: ~azure.core.model.models.AzureEmbeddingModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -313,7 +315,7 @@ class AzureCoreEmbeddingVectorOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_models.AzureEmbeddingModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models1.AzureEmbeddingModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -352,7 +354,7 @@ class AzureCoreEmbeddingVectorOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.AzureEmbeddingModel, response.json())
+            deserialized = _deserialize(_models1.AzureEmbeddingModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .......azure.clientgenerator.core.usage import _model_base
+from .......azure.clientgenerator.core.usage._model_base import rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -138,7 +138,7 @@ class RoundTripModel(_model_base.Model):
     """RoundTripModel.
 
     :ivar result: Required.
-    :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel
+    :vartype result: ~azure.clientgenerator.core.usage.models.ResultModel
     """
 
     result: "_models.ResultModel" = rest_field(visibility=["read"])

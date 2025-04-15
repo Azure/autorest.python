@@ -6,9 +6,9 @@
         "specs.azure.clientgenerator.core.usage.models.OutputModel": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.OutputModel",
         "specs.azure.clientgenerator.core.usage.models.ResultModel": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.ResultModel",
         "specs.azure.clientgenerator.core.usage.models.RoundTripModel": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.RoundTripModel",
-        "specs.azure.clientgenerator.core.usage.UsageClient.model_in_operation.input_to_input_output": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.inputToInputOutput",
-        "specs.azure.clientgenerator.core.usage.UsageClient.model_in_operation.output_to_input_output": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.outputToInputOutput",
-        "specs.azure.clientgenerator.core.usage.UsageClient.model_in_operation.model_in_read_only_property": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.modelInReadOnlyProperty",
-        "specs.azure.clientgenerator.core.usage.UsageClient.model_in_operation.orphan_model_serializable": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.orphanModelSerializable"
+        "azure.clientgenerator.core.usage.UsageClient.model_in_operation.input_to_input_output": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.inputToInputOutput",
+        "azure.clientgenerator.core.usage.UsageClient.model_in_operation.output_to_input_output": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.outputToInputOutput",
+        "azure.clientgenerator.core.usage.UsageClient.model_in_operation.model_in_read_only_property": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.modelInReadOnlyProperty",
+        "azure.clientgenerator.core.usage.UsageClient.model_in_operation.orphan_model_serializable": "_Specs_.Azure.ClientGenerator.Core.Usage.ModelInOperation.orphanModelSerializable"
     }
 }

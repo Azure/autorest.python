@@ -9,8 +9,8 @@
 
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.core.model import _model_base
+from ......azure.core.model._model_base import rest_field
 
 
 class AzureEmbeddingModel(_model_base.Model):

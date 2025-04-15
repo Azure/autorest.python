@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from ......azure.payload.pageable import _model_base
+from ......azure.payload.pageable._model_base import rest_field
 
 
 class User(_model_base.Model):

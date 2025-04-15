@@ -9,8 +9,8 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .......azure.core.lro.standard import _model_base
+from .......azure.core.lro.standard._model_base import rest_field
 
 
 class ExportedUser(_model_base.Model):

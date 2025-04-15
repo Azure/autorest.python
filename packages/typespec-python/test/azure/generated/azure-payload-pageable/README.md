@@ -1,4 +1,4 @@
-# Specs Azure Payload Pageable client library for Python
+# Azure Payload Pageable client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install specs-azure-payload-pageable
+python -m pip install azure-payload-pageable
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing Specs Azure Payload Pageable instance.
+- An existing Azure Payload Pageable instance.
 
 
 ## Contributing
