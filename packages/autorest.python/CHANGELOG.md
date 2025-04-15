@@ -1,5 +1,15 @@
 # Release
 
+## 6.32.3
+
+### Bug Fixes
+
+- [#3071](https://github.com/Azure/autorest.python/pull/3071) Allow `_` in namespaces
+
+### Other Changes
+
+- [#3065](https://github.com/Azure/autorest.python/pull/3065) Drop support for python3.8
+
 ## 6.32.2
 
 No changes, version bump only.
