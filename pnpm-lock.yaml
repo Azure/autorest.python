@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.9.2-dev.1
-        version: 0.9.2-dev.1(2ivfmxvrftapo7cbuxsaae6yq4)
+        specifier: ~0.9.2
+        version: 0.9.2(2ivfmxvrftapo7cbuxsaae6yq4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.9.2-dev.1
-        version: 0.9.2-dev.1(2ivfmxvrftapo7cbuxsaae6yq4)
+        specifier: ~0.9.2
+        version: 0.9.2(2ivfmxvrftapo7cbuxsaae6yq4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1538,8 +1538,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.0.0-rc.0
 
-  '@typespec/http-client-python@0.9.2-dev.1':
-    resolution: {integrity: sha512-pGKnJXY2b/eX0ktvxjwIZPP8DqIm+LzB9JWeJ8bdzqrKmzq8fYsQjSfb6vzZIXrObC/5gvg9X789aoinaU+8YA==}
+  '@typespec/http-client-python@0.9.2':
+    resolution: {integrity: sha512-CpLRMV+plAmHcOnaIiKgIJqk/mq4sejPVs/lipt7WllseQydomqcJfyWsQUnZVkqrW7dfl1uyn/AcC5yLxmExA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.54.0 <1.0.0'
@@ -5893,7 +5893,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.0.0-rc.0(@types/node@22.13.17)
 
-  '@typespec/http-client-python@0.9.2-dev.1(2ivfmxvrftapo7cbuxsaae6yq4)':
+  '@typespec/http-client-python@0.9.2(2ivfmxvrftapo7cbuxsaae6yq4)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.54.0(eijwshhpe4ydfv4uxokr3dajqe)
       '@azure-tools/typespec-azure-core': 0.54.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/http@1.0.0-rc.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/streams@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))))(@typespec/rest@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/http@1.0.0-rc.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/streams@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17)))))
