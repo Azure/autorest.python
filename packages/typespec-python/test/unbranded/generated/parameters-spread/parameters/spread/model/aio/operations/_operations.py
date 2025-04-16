@@ -167,7 +167,7 @@ class ModelOperations:
         """spread_composite_request_only_with_body.
 
         :param body: Required.
-        :type body: ~parameters.spread.models.BodyParameter
+        :type body: ~parameters.spread.model.models.BodyParameter
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -214,7 +214,7 @@ class ModelOperations:
         """spread_composite_request_only_with_body.
 
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :type body: ~parameters.spread.model.models.BodyParameter or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -325,7 +325,7 @@ class ModelOperations:
         :param name: Required.
         :type name: str
         :param body: Required.
-        :type body: ~parameters.spread.models.BodyParameter
+        :type body: ~parameters.spread.model.models.BodyParameter
         :keyword test_header: Required.
         :paramtype test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -384,7 +384,7 @@ class ModelOperations:
         :param name: Required.
         :type name: str
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :type body: ~parameters.spread.model.models.BodyParameter or JSON or IO[bytes]
         :keyword test_header: Required.
         :paramtype test_header: str
         :return: None
