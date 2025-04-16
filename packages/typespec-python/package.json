@@ -64,7 +64,7 @@
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "~0.9.2",
+    "@typespec/http-client-python": "~0.9.3-dev.1",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
