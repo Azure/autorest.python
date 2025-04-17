@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from . import models as _models
 from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import ArrayOperations
 
 if TYPE_CHECKING:

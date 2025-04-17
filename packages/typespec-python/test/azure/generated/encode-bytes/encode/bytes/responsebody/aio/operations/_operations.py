@@ -23,8 +23,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._vendor.model_base import _deserialize
+from ...._vendor.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
     build_response_body_base64_request,

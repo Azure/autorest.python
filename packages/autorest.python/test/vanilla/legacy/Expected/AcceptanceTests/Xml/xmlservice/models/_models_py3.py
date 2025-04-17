@@ -10,13 +10,13 @@
 import datetime
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class AccessPolicy(_serialization.Model):
+class AccessPolicy(serialization.Model):
     """An Access policy.
 
     All required parameters must be populated in order to send to server.
@@ -56,7 +56,7 @@ class AccessPolicy(_serialization.Model):
         self.permission = permission
 
 
-class AppleBarrel(_serialization.Model):
+class AppleBarrel(serialization.Model):
     """A barrel of apples.
 
     :ivar good_apples:
@@ -84,7 +84,7 @@ class AppleBarrel(_serialization.Model):
         self.bad_apples = bad_apples
 
 
-class Banana(_serialization.Model):
+class Banana(serialization.Model):
     """A banana.
 
     :ivar name:
@@ -124,7 +124,7 @@ class Banana(_serialization.Model):
         self.expiration = expiration
 
 
-class Blob(_serialization.Model):
+class Blob(serialization.Model):
     """An Azure Storage blob.
 
     All required parameters must be populated in order to send to server.
@@ -187,7 +187,7 @@ class Blob(_serialization.Model):
         self.metadata = metadata
 
 
-class BlobPrefix(_serialization.Model):
+class BlobPrefix(serialization.Model):
     """BlobPrefix.
 
     All required parameters must be populated in order to send to server.
@@ -213,7 +213,7 @@ class BlobPrefix(_serialization.Model):
         self.name = name
 
 
-class BlobProperties(_serialization.Model):
+class BlobProperties(serialization.Model):
     """Properties of a blob.
 
     All required parameters must be populated in order to send to server.
@@ -440,7 +440,7 @@ class BlobProperties(_serialization.Model):
         self.archive_status = archive_status
 
 
-class Blobs(_serialization.Model):
+class Blobs(serialization.Model):
     """Blobs.
 
     :ivar blob_prefix:
@@ -472,7 +472,7 @@ class Blobs(_serialization.Model):
         self.blob = blob
 
 
-class ComplexTypeNoMeta(_serialization.Model):
+class ComplexTypeNoMeta(serialization.Model):
     """I am a complex type with no XML node.
 
     :ivar id: The id of the res.
@@ -492,7 +492,7 @@ class ComplexTypeNoMeta(_serialization.Model):
         self.id = id
 
 
-class ComplexTypeWithMeta(_serialization.Model):
+class ComplexTypeWithMeta(serialization.Model):
     """I am a complex type with XML node.
 
     :ivar id: The id of the res.
@@ -513,7 +513,7 @@ class ComplexTypeWithMeta(_serialization.Model):
         self.id = id
 
 
-class Container(_serialization.Model):
+class Container(serialization.Model):
     """An Azure Storage container.
 
     All required parameters must be populated in order to send to server.
@@ -559,7 +559,7 @@ class Container(_serialization.Model):
         self.metadata = metadata
 
 
-class ContainerProperties(_serialization.Model):
+class ContainerProperties(serialization.Model):
     """Properties of a container.
 
     All required parameters must be populated in order to send to server.
@@ -628,7 +628,7 @@ class ContainerProperties(_serialization.Model):
         self.public_access = public_access
 
 
-class CorsRule(_serialization.Model):
+class CorsRule(serialization.Model):
     """CORS is an HTTP feature that enables a web application running under one domain to access
     resources in another domain. Web browsers implement a security restriction known as same-origin
     policy that prevents a web page from calling APIs in a different domain; CORS provides a secure
@@ -711,7 +711,7 @@ class CorsRule(_serialization.Model):
         self.max_age_in_seconds = max_age_in_seconds
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -737,7 +737,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class JSONInput(_serialization.Model):
+class JSONInput(serialization.Model):
     """JSONInput.
 
     :ivar id:
@@ -757,7 +757,7 @@ class JSONInput(_serialization.Model):
         self.id = id
 
 
-class JSONOutput(_serialization.Model):
+class JSONOutput(serialization.Model):
     """JSONOutput.
 
     :ivar id:
@@ -777,7 +777,7 @@ class JSONOutput(_serialization.Model):
         self.id = id
 
 
-class ListBlobsResponse(_serialization.Model):
+class ListBlobsResponse(serialization.Model):
     """An enumeration of blobs.
 
     All required parameters must be populated in order to send to server.
@@ -864,7 +864,7 @@ class ListBlobsResponse(_serialization.Model):
         self.next_marker = next_marker
 
 
-class ListContainersResponse(_serialization.Model):
+class ListContainersResponse(serialization.Model):
     """An enumeration of containers.
 
     All required parameters must be populated in order to send to server.
@@ -934,7 +934,7 @@ class ListContainersResponse(_serialization.Model):
         self.next_marker = next_marker
 
 
-class Logging(_serialization.Model):
+class Logging(serialization.Model):
     """Azure Analytics Logging settings.
 
     All required parameters must be populated in order to send to server.
@@ -997,7 +997,7 @@ class Logging(_serialization.Model):
         self.retention_policy = retention_policy
 
 
-class Metrics(_serialization.Model):
+class Metrics(serialization.Model):
     """Metrics.
 
     All required parameters must be populated in order to send to server.
@@ -1051,7 +1051,7 @@ class Metrics(_serialization.Model):
         self.retention_policy = retention_policy
 
 
-class ModelWithByteProperty(_serialization.Model):
+class ModelWithByteProperty(serialization.Model):
     """ModelWithByteProperty.
 
     :ivar bytes:
@@ -1071,7 +1071,7 @@ class ModelWithByteProperty(_serialization.Model):
         self.bytes = bytes
 
 
-class ModelWithUrlProperty(_serialization.Model):
+class ModelWithUrlProperty(serialization.Model):
     """ModelWithUrlProperty.
 
     :ivar url:
@@ -1091,7 +1091,7 @@ class ModelWithUrlProperty(_serialization.Model):
         self.url = url
 
 
-class ObjectWithXMsTextProperty(_serialization.Model):
+class ObjectWithXMsTextProperty(serialization.Model):
     """Contans property.
 
     :ivar language: Returned value should be 'english'.
@@ -1118,7 +1118,7 @@ class ObjectWithXMsTextProperty(_serialization.Model):
         self.content = content
 
 
-class RetentionPolicy(_serialization.Model):
+class RetentionPolicy(serialization.Model):
     """the retention policy.
 
     All required parameters must be populated in order to send to server.
@@ -1155,7 +1155,7 @@ class RetentionPolicy(_serialization.Model):
         self.days = days
 
 
-class RootWithRefAndMeta(_serialization.Model):
+class RootWithRefAndMeta(serialization.Model):
     """I am root, and I ref a model WITH meta.
 
     :ivar ref_to_model: XML will use XMLComplexTypeWithMeta.
@@ -1187,7 +1187,7 @@ class RootWithRefAndMeta(_serialization.Model):
         self.something = something
 
 
-class RootWithRefAndNoMeta(_serialization.Model):
+class RootWithRefAndNoMeta(serialization.Model):
     """I am root, and I ref a model with no meta.
 
     :ivar ref_to_model: XML will use RefToModel.
@@ -1219,7 +1219,7 @@ class RootWithRefAndNoMeta(_serialization.Model):
         self.something = something
 
 
-class SignedIdentifier(_serialization.Model):
+class SignedIdentifier(serialization.Model):
     """signed identifier.
 
     All required parameters must be populated in order to send to server.
@@ -1255,7 +1255,7 @@ class SignedIdentifier(_serialization.Model):
         self.access_policy = access_policy
 
 
-class Slide(_serialization.Model):
+class Slide(serialization.Model):
     """A slide in a slideshow.
 
     :ivar type:
@@ -1295,7 +1295,7 @@ class Slide(_serialization.Model):
         self.items = items
 
 
-class Slideshow(_serialization.Model):
+class Slideshow(serialization.Model):
     """Data about a slideshow.
 
     :ivar title:
@@ -1342,7 +1342,7 @@ class Slideshow(_serialization.Model):
         self.slides = slides
 
 
-class StorageServiceProperties(_serialization.Model):
+class StorageServiceProperties(serialization.Model):
     """Storage Service Properties.
 
     :ivar logging: Azure Analytics Logging settings.

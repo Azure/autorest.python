@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .._configuration import MicrosoftAzureTestUrlConfiguration
-from .._serialization import Deserializer, Serializer
+from .._vendor.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

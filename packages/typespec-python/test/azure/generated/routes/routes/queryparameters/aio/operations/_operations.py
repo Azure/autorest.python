@@ -21,7 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...._serialization import Deserializer, Serializer
+from ...._vendor.serialization import Deserializer, Serializer
 from ....aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
     build_query_parameters_annotation_only_request,

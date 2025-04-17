@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 
-class ClientModel(_model_base.Model):
+class ClientModel(_Model):
     """ClientModel.
 
     :ivar default_name: Pass in true. Required.
@@ -41,7 +40,7 @@ class ClientModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ClientNameAndJsonEncodedNameModel(_model_base.Model):
+class ClientNameAndJsonEncodedNameModel(_Model):
     """ClientNameAndJsonEncodedNameModel.
 
     :ivar client_name: Pass in true. Required.
@@ -69,7 +68,7 @@ class ClientNameAndJsonEncodedNameModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ClientNameModel(_model_base.Model):
+class ClientNameModel(_Model):
     """ClientNameModel.
 
     :ivar client_name: Pass in true. Required.
@@ -97,7 +96,7 @@ class ClientNameModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class LanguageClientNameModel(_model_base.Model):
+class LanguageClientNameModel(_Model):
     """LanguageClientNameModel.
 
     :ivar python_name: Pass in true. Required.
@@ -125,7 +124,7 @@ class LanguageClientNameModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class PythonModel(_model_base.Model):
+class PythonModel(_Model):
     """PythonModel.
 
     :ivar default_name: Pass in true. Required.

@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,14 +27,15 @@ from ..._operations._operations import (
     build_resiliency_service_driven_from_one_optional_request,
     build_resiliency_service_driven_from_one_required_request,
 )
-from .._vendor import ResiliencyServiceDrivenClientMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import ResiliencyServiceDrivenClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
-    ResiliencyServiceDrivenClientMixinABC
+    ClientMixinABC[AsyncPipelineClient, ResiliencyServiceDrivenClientConfiguration]
 ):
 
     @distributed_trace_async

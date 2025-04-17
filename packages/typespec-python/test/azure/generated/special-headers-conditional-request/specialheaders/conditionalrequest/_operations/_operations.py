@@ -9,7 +9,7 @@ from collections.abc import MutableMapping
 import datetime
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core import MatchConditions
+from azure.core import MatchConditions, PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,8 +24,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import ConditionalRequestClientMixinABC, prep_if_match, prep_if_none_match
+from .._configuration import ConditionalRequestClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC, prep_if_match, prep_if_none_match
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -102,7 +103,7 @@ def build_conditional_request_post_if_unmodified_since_request(  # pylint: disab
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
+class ConditionalRequestClientOperationsMixin(ClientMixinABC[PipelineClient, ConditionalRequestClientConfiguration]):
 
     @distributed_trace
     def post_if_match(  # pylint: disable=inconsistent-return-statements

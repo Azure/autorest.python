@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class Animal(_serialization.Model):
+class Animal(serialization.Model):
     """Animal.
 
     :ivar ani_type:
@@ -31,7 +31,7 @@ class Animal(_serialization.Model):
         self.ani_type = ani_type
 
 
-class BaseError(_serialization.Model):
+class BaseError(serialization.Model):
     """BaseError.
 
     :ivar some_base_prop:
@@ -214,7 +214,7 @@ class Pet(Animal):
         self.name: Optional[str] = None
 
 
-class PetAction(_serialization.Model):
+class PetAction(serialization.Model):
     """PetAction.
 
     :ivar action_response: action feedback.

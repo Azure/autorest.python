@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._vendor.utils import ClientMixinABC
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,
@@ -33,13 +35,13 @@ from ...operations._media_types_client_operations import (
     build_content_type_with_encoding_request,
     build_put_text_and_json_body_request,
 )
-from .._vendor import MediaTypesClientMixinABC
+from .._configuration import MediaTypesClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
+class MediaTypesClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MediaTypesClientConfiguration]):
 
     @overload
     async def analyze_body(

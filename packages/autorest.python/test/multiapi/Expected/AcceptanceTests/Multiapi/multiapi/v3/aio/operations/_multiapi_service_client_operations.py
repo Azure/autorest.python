@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from typing import Any, AsyncIterable, Callable, Dict, Optional, TypeVar
 import urllib.parse
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -27,17 +28,18 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
+from ..._vendor.utils import ClientMixinABC
 from ...operations._multiapi_service_client_operations import (
     build_test_different_calls_request,
     build_test_paging_request,
 )
-from .._vendor import MultiapiServiceClientMixinABC
+from .._configuration import MultiapiServiceClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
+class MultiapiServiceClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultiapiServiceClientConfiguration]):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version

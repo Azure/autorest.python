@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from ...operations._header_operations import (
     build_custom_named_request_id_head_request,
     build_custom_named_request_id_param_grouping_request,

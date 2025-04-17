@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from ...operations._skip_url_encoding_operations import (
     build_get_method_path_valid_request,
     build_get_method_query_null_request,

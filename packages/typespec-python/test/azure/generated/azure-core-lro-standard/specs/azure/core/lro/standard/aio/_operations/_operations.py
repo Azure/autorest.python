@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -29,20 +30,21 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_standard_create_or_replace_request,
     build_standard_delete_request,
     build_standard_export_request,
 )
-from .._vendor import StandardClientMixinABC
+from ..._vendor.model_base import SdkJSONEncoder, _deserialize
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import StandardClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StandardClientOperationsMixin(StandardClientMixinABC):
+class StandardClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, StandardClientConfiguration]):
 
     async def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any

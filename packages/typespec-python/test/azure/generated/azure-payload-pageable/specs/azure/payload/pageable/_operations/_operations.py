@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,10 +24,11 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import _deserialize
-from .._serialization import Serializer
+from .._configuration import PageableClientConfiguration
 from .._validation import api_version_validation
-from .._vendor import PageableClientMixinABC
+from .._vendor.model_base import _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -54,7 +56,7 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class PageableClientOperationsMixin(PageableClientMixinABC):
+class PageableClientOperationsMixin(ClientMixinABC[PipelineClient, PageableClientConfiguration]):
 
     @distributed_trace
     @api_version_validation(

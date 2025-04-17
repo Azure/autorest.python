@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,8 +23,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import ReservedWordsClientMixinABC
+from .._configuration import ReservedWordsClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -143,7 +145,7 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):
+class ReservedWordsClientOperationsMixin(ClientMixinABC[PipelineClient, ReservedWordsClientConfiguration]):
 
     @distributed_trace
     def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:

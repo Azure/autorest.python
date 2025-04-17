@@ -23,7 +23,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from ...operations._formdataurlencoded_operations import (
     build_partial_constant_body_request,
     build_update_pet_with_form_request,

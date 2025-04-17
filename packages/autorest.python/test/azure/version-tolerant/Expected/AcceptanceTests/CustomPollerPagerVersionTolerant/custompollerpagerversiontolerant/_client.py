@@ -18,7 +18,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutoRestPagingTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import PagingOperations
 
 if TYPE_CHECKING:

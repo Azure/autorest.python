@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -20,8 +21,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .._serialization import Serializer
-from .._vendor import MultipleClientMixinABC
+from .._configuration import MultipleClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -51,7 +53,7 @@ def build_multiple_with_operation_path_param_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class MultipleClientOperationsMixin(MultipleClientMixinABC):
+class MultipleClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleClientConfiguration]):
 
     @distributed_trace
     def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

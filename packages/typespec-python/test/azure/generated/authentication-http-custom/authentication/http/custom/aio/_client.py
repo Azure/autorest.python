@@ -15,7 +15,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
+from .._vendor.serialization import Deserializer, Serializer
 from ._configuration import CustomClientConfiguration
 from ._operations import CustomClientOperationsMixin
 

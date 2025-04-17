@@ -9,14 +9,13 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
-from ... import _model_base
-from ..._model_base import rest_field
+from ..._vendor.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from ..sub import models as _sub_models2
 
 
-class SecondClientResult(_model_base.Model):
+class SecondClientResult(_Model):
     """SecondClientResult.
 
     :ivar type: Required. "second"

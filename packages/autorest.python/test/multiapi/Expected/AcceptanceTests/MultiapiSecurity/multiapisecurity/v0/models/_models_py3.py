@@ -8,13 +8,13 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING
 
-from ... import _serialization
+from .. import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -40,7 +40,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class PagingResult(_serialization.Model):
+class PagingResult(serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -68,7 +68,7 @@ class PagingResult(_serialization.Model):
         self.next_link = next_link
 
 
-class Product(_serialization.Model):
+class Product(serialization.Model):
     """Product.
 
     :ivar id:

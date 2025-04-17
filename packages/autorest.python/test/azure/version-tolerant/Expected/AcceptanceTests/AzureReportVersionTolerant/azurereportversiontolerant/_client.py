@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestReportServiceForAzureConfiguration
 from ._operations import AutoRestReportServiceForAzureOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class AutoRestReportServiceForAzure(

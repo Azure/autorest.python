@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,9 +25,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models1
-from .._model_base import SdkJSONEncoder
-from .._serialization import Serializer
-from .._vendor import BodyOptionalityClientMixinABC
+from .._configuration import BodyOptionalityClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 _Unset: Any = object()
@@ -65,7 +67,7 @@ def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
+class BodyOptionalityClientOperationsMixin(ClientMixinABC[PipelineClient, BodyOptionalityClientConfiguration]):
 
     @overload
     def required_explicit(

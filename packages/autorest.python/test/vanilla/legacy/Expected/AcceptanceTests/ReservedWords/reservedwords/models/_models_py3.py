@@ -8,11 +8,11 @@
 
 from typing import Any, IO
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
 class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    _serialization.Model
+    serialization.Model
 ):  # pylint: disable=name-too-long
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
@@ -47,7 +47,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 
 
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(
-    _serialization.Model
+    serialization.Model
 ):  # pylint: disable=name-too-long
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 

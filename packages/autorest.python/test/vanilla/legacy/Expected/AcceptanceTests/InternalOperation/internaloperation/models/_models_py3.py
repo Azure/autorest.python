@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class SourcePath(_serialization.Model):
+class SourcePath(serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

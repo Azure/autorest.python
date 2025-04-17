@@ -11,6 +11,7 @@ from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, o
 
 from msrest import Serializer
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,7 +26,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._vendor import AutoRestValidationTestMixinABC
+from .._configuration import AutoRestValidationTestConfiguration
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -132,7 +134,7 @@ def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
+class AutoRestValidationTestOperationsMixin(ClientMixinABC[PipelineClient, AutoRestValidationTestConfiguration]):
 
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> _models.Product:

@@ -11,6 +11,7 @@ import json
 from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -28,9 +29,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import BasicClientMixinABC
+from .._configuration import BasicClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder, _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -230,7 +232,7 @@ def build_basic_export_all_users_request(*, format: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class BasicClientOperationsMixin(BasicClientMixinABC):
+class BasicClientOperationsMixin(ClientMixinABC[PipelineClient, BasicClientConfiguration]):
 
     @overload
     def create_or_update(

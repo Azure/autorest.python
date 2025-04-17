@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ClientNamespaceFirstClientConfiguration
 from ._operations import ClientNamespaceFirstClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class ClientNamespaceFirstClient(

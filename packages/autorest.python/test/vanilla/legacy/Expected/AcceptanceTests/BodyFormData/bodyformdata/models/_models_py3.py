@@ -8,10 +8,10 @@
 
 from typing import Any, IO, List, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -38,7 +38,7 @@ class Error(_serialization.Model):
 
 
 class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema(
-    _serialization.Model
+    serialization.Model
 ):  # pylint: disable=name-too-long
     """Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema.
 
@@ -74,7 +74,7 @@ class Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDat
 
 
 class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema(
-    _serialization.Model
+    serialization.Model
 ):  # pylint: disable=name-too-long
     """Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema.
 

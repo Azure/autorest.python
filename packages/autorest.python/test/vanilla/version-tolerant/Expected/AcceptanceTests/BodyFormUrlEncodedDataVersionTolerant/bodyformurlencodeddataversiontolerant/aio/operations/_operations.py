@@ -7,9 +7,9 @@
 # --------------------------------------------------------------------------
 from azure.core import AsyncPipelineClient
 
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from .._configuration import BodyFormsDataURLEncodedConfiguration
-from .._vendor import raise_if_not_implemented
+from .._vendor.utils import raise_if_not_implemented
 
 
 class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiated

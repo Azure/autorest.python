@@ -8,7 +8,7 @@
 from azure.core import PipelineClient
 
 from ...._configuration import RoutesClientConfiguration
-from ...._serialization import Deserializer, Serializer
+from ...._vendor.serialization import Deserializer, Serializer
 from ..explode.operations._operations import PathParametersLabelExpansionExplodeOperations
 from ..standard.operations._operations import PathParametersLabelExpansionStandardOperations
 

@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import IncorrectReturnedErrorModelConfiguration
 from ._operations import IncorrectReturnedErrorModelOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class IncorrectReturnedErrorModel(

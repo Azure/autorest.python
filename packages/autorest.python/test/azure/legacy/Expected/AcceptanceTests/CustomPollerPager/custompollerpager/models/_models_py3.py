@@ -8,13 +8,13 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class BodyParam(_serialization.Model):
+class BodyParam(serialization.Model):
     """BodyParam.
 
     :ivar name:
@@ -34,7 +34,7 @@ class BodyParam(_serialization.Model):
         self.name = name
 
 
-class CustomParameterGroup(_serialization.Model):
+class CustomParameterGroup(serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
@@ -67,7 +67,7 @@ class CustomParameterGroup(_serialization.Model):
         self.tenant = tenant
 
 
-class OdataProductResult(_serialization.Model):
+class OdataProductResult(serialization.Model):
     """OdataProductResult.
 
     :ivar values:
@@ -95,7 +95,7 @@ class OdataProductResult(_serialization.Model):
         self.odata_next_link = odata_next_link
 
 
-class OperationResult(_serialization.Model):
+class OperationResult(serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -118,7 +118,7 @@ class OperationResult(_serialization.Model):
         self.status = status
 
 
-class PagingGetMultiplePagesLroOptions(_serialization.Model):
+class PagingGetMultiplePagesLroOptions(serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -146,7 +146,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesOptions(_serialization.Model):
+class PagingGetMultiplePagesOptions(serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -174,7 +174,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
+class PagingGetMultiplePagesWithOffsetOptions(serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
@@ -214,7 +214,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
         self.timeout = timeout
 
 
-class PagingGetOdataMultiplePagesOptions(_serialization.Model):
+class PagingGetOdataMultiplePagesOptions(serialization.Model):
     """Parameter group.
 
     :ivar maxresults: Sets the maximum number of items to return in the response.
@@ -242,7 +242,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
         self.timeout = timeout
 
 
-class Product(_serialization.Model):
+class Product(serialization.Model):
     """Product.
 
     :ivar properties:
@@ -262,7 +262,7 @@ class Product(_serialization.Model):
         self.properties = properties
 
 
-class ProductProperties(_serialization.Model):
+class ProductProperties(serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -294,7 +294,7 @@ class ProductProperties(_serialization.Model):
         self.name = name
 
 
-class ProductResult(_serialization.Model):
+class ProductResult(serialization.Model):
     """ProductResult.
 
     :ivar values:
@@ -322,7 +322,7 @@ class ProductResult(_serialization.Model):
         self.next_link = next_link
 
 
-class ProductResultValue(_serialization.Model):
+class ProductResultValue(serialization.Model):
     """ProductResultValue.
 
     :ivar value:
@@ -350,7 +350,7 @@ class ProductResultValue(_serialization.Model):
         self.next_link = next_link
 
 
-class ProductResultValueWithXMSClientName(_serialization.Model):
+class ProductResultValueWithXMSClientName(serialization.Model):
     """ProductResultValueWithXMSClientName.
 
     :ivar indexes:

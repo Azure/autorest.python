@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,18 +23,19 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import (
     build_status_code_range_error_response_status_code404_request,
     build_status_code_range_error_response_status_code_in_range_request,
 )
-from .._vendor import StatusCodeRangeClientMixinABC
+from ..._vendor.model_base import _failsafe_deserialize
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import StatusCodeRangeClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
+class StatusCodeRangeClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, StatusCodeRangeClientConfiguration]):
 
     @distributed_trace_async
     async def error_response_status_code_in_range(self, **kwargs: Any) -> None:

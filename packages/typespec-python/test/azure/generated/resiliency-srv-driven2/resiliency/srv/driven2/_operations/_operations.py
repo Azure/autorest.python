@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,9 +22,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
+from .._configuration import ResiliencyServiceDrivenClientConfiguration
 from .._validation import api_version_validation
-from .._vendor import ResiliencyServiceDrivenClientMixinABC
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -90,7 +92,7 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
-    ResiliencyServiceDrivenClientMixinABC
+    ClientMixinABC[PipelineClient, ResiliencyServiceDrivenClientConfiguration]
 ):
 
     @distributed_trace

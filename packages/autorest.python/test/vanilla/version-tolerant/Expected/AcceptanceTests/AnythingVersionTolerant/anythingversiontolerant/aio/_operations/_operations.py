@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -30,13 +31,14 @@ from ..._operations._operations import (
     build_anything_put_object_request,
     build_anything_put_string_request,
 )
-from .._vendor import AnythingClientMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import AnythingClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AnythingClientOperationsMixin(AnythingClientMixinABC):
+class AnythingClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, AnythingClientConfiguration]):
 
     @distributed_trace_async
     async def get_object(self, **kwargs: Any) -> Any:

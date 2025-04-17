@@ -8,13 +8,13 @@
 
 from typing import Any, Dict, List, Literal, Optional, TYPE_CHECKING
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class BaseProduct(_serialization.Model):
+class BaseProduct(serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to server.
@@ -50,7 +50,7 @@ class BaseProduct(_serialization.Model):
         self.description = description
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -89,7 +89,7 @@ class Error(_serialization.Model):
         self.parent_error = parent_error
 
 
-class Resource(_serialization.Model):
+class Resource(serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -212,7 +212,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = provisioning_state
 
 
-class FlattenParameterGroup(_serialization.Model):
+class FlattenParameterGroup(serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
@@ -297,7 +297,7 @@ class FlattenParameterGroup(_serialization.Model):
         self.odata_value = odata_value
 
 
-class GenericUrl(_serialization.Model):
+class GenericUrl(serialization.Model):
     """The Generic URL.
 
     :ivar generic_value: Generic URL value.
@@ -344,7 +344,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = odata_value
 
 
-class ProductWrapper(_serialization.Model):
+class ProductWrapper(serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.
@@ -364,7 +364,7 @@ class ProductWrapper(_serialization.Model):
         self.value = value
 
 
-class ResourceCollection(_serialization.Model):
+class ResourceCollection(serialization.Model):
     """ResourceCollection.
 
     :ivar productresource: Flattened product.
@@ -471,7 +471,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = odata_value
 
 
-class WrappedProduct(_serialization.Model):
+class WrappedProduct(serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.

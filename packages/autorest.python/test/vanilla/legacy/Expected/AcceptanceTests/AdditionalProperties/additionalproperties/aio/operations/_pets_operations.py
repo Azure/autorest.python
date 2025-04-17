@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from ...operations._pets_operations import (
     build_create_ap_in_properties_request,
     build_create_ap_in_properties_with_ap_string_request,

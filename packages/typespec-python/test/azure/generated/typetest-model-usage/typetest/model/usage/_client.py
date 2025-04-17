@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import UsageClientConfiguration
 from ._operations import UsageClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from ... import _serialization
+from .. import serialization as _serialization
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:

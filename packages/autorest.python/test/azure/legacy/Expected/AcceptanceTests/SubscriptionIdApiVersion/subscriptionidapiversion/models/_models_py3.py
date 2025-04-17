@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar code:
@@ -37,7 +37,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class SampleResourceGroup(_serialization.Model):
+class SampleResourceGroup(serialization.Model):
     """SampleResourceGroup.
 
     :ivar name: resource group name 'testgroup101'.

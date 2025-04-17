@@ -10,14 +10,13 @@
 
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .._vendor.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Fish(_model_base.Model):
+class Fish(_Model):
     """This is base model for polymorphic multiple levels inheritance with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:

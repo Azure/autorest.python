@@ -9,13 +9,13 @@
 import datetime
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Bar(_serialization.Model):
+class Bar(serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar recursive_point: Recursive Endpoints.
@@ -35,7 +35,7 @@ class Bar(_serialization.Model):
         self.recursive_point = recursive_point
 
 
-class CheckNameAvailabilityResult(_serialization.Model):
+class CheckNameAvailabilityResult(serialization.Model):
     """The CheckNameAvailability operation response.
 
     :ivar name_available: Gets a boolean value that indicates whether the name is available for you
@@ -82,7 +82,7 @@ class CheckNameAvailabilityResult(_serialization.Model):
         self.message = message
 
 
-class CustomDomain(_serialization.Model):
+class CustomDomain(serialization.Model):
     """The custom domain assigned to this storage account. This can be set via Update.
 
     :ivar name: Gets or sets the custom domain name. Name is the CNAME source.
@@ -110,7 +110,7 @@ class CustomDomain(_serialization.Model):
         self.use_sub_domain = use_sub_domain
 
 
-class Endpoints(_serialization.Model):
+class Endpoints(serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar blob: Gets the blob endpoint.
@@ -163,7 +163,7 @@ class Endpoints(_serialization.Model):
         self.foo_point = foo_point
 
 
-class Foo(_serialization.Model):
+class Foo(serialization.Model):
     """The URIs that are used to perform a retrieval of a public blob, queue or table object.
 
     :ivar bar_point: Bar point.
@@ -183,7 +183,7 @@ class Foo(_serialization.Model):
         self.bar_point = bar_point
 
 
-class Resource(_serialization.Model):
+class Resource(serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -385,7 +385,7 @@ class StorageAccount(Resource):
         self.secondary_endpoints = secondary_endpoints
 
 
-class StorageAccountCheckNameAvailabilityParameters(_serialization.Model):  # pylint: disable=name-too-long
+class StorageAccountCheckNameAvailabilityParameters(serialization.Model):  # pylint: disable=name-too-long
     """StorageAccountCheckNameAvailabilityParameters.
 
     All required parameters must be populated in order to send to server.
@@ -476,7 +476,7 @@ class StorageAccountCreateParameters(Resource):
         self.account_type = account_type
 
 
-class StorageAccountKeys(_serialization.Model):
+class StorageAccountKeys(serialization.Model):
     """The access keys for the storage account.
 
     :ivar key1: Gets the value of key 1.
@@ -502,7 +502,7 @@ class StorageAccountKeys(_serialization.Model):
         self.key2 = key2
 
 
-class StorageAccountListResult(_serialization.Model):
+class StorageAccountListResult(serialization.Model):
     """The list storage accounts operation response.
 
     :ivar value: Gets the list of storage accounts and their properties.
@@ -532,7 +532,7 @@ class StorageAccountListResult(_serialization.Model):
         self.next_link = next_link
 
 
-class StorageAccountRegenerateKeyParameters(_serialization.Model):
+class StorageAccountRegenerateKeyParameters(serialization.Model):
     """StorageAccountRegenerateKeyParameters.
 
     :ivar key_name: Known values are: "key1" and "key2".
@@ -626,7 +626,7 @@ class StorageAccountUpdateParameters(Resource):
         self.custom_domain = custom_domain
 
 
-class SubResource(_serialization.Model):
+class SubResource(serialization.Model):
     """SubResource.
 
     :ivar id: Resource Id.
@@ -646,7 +646,7 @@ class SubResource(_serialization.Model):
         self.id = id
 
 
-class Usage(_serialization.Model):
+class Usage(serialization.Model):
     """Describes Storage Resource Usage.
 
     :ivar unit: Gets the unit of measurement. Known values are: "Count", "Bytes", "Seconds",
@@ -695,7 +695,7 @@ class Usage(_serialization.Model):
         self.name = name
 
 
-class UsageListResult(_serialization.Model):
+class UsageListResult(serialization.Model):
     """The List Usages operation response.
 
     :ivar value: Gets or sets the list Storage Resource Usages.
@@ -715,7 +715,7 @@ class UsageListResult(_serialization.Model):
         self.value = value
 
 
-class UsageName(_serialization.Model):
+class UsageName(serialization.Model):
     """The Usage Names.
 
     :ivar value: Gets a string describing the resource name.

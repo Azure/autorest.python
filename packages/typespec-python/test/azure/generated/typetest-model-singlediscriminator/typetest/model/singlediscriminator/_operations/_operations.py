@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,9 +27,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import SingleDiscriminatorClientMixinABC
+from .._configuration import SingleDiscriminatorClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder, _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -144,7 +146,7 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC):
+class SingleDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, SingleDiscriminatorClientConfiguration]):
 
     @distributed_trace
     def get_model(self, **kwargs: Any) -> _models.Bird:

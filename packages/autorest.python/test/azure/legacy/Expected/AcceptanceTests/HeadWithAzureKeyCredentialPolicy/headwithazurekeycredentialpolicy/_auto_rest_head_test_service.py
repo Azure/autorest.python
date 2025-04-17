@@ -17,7 +17,7 @@ from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 
 from ._configuration import AutoRestHeadTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import HttpSuccessOperations
 
 

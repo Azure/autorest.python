@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 import json
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,9 +25,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import ReturnTypeChangedFromClientMixinABC
+from .._configuration import ReturnTypeChangedFromClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder, _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -51,7 +53,9 @@ def build_return_type_changed_from_test_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixinABC):  # pylint: disable=name-too-long
+class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[PipelineClient, ReturnTypeChangedFromClientConfiguration]
+):
 
     @distributed_trace
     def test(self, body: str, **kwargs: Any) -> str:

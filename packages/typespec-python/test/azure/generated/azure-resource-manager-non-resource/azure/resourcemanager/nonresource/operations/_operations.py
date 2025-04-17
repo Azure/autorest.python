@@ -30,8 +30,8 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from .. import models as _models
 from .._configuration import NonResourceClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
-from .._serialization import Deserializer, Serializer
+from .._vendor.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from .._vendor.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

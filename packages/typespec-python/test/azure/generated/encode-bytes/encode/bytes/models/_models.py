@@ -9,11 +9,10 @@
 
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 
-class Base64BytesProperty(_model_base.Model):
+class Base64BytesProperty(_Model):
     """Base64BytesProperty.
 
     :ivar value: Required.
@@ -41,7 +40,7 @@ class Base64BytesProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Base64urlArrayBytesProperty(_model_base.Model):
+class Base64urlArrayBytesProperty(_Model):
     """Base64urlArrayBytesProperty.
 
     :ivar value: Required.
@@ -69,7 +68,7 @@ class Base64urlArrayBytesProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Base64urlBytesProperty(_model_base.Model):
+class Base64urlBytesProperty(_Model):
     """Base64urlBytesProperty.
 
     :ivar value: Required.
@@ -97,7 +96,7 @@ class Base64urlBytesProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DefaultBytesProperty(_model_base.Model):
+class DefaultBytesProperty(_Model):
     """DefaultBytesProperty.
 
     :ivar value: Required.

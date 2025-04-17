@@ -21,7 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...._serialization import Deserializer, Serializer
+from ...._vendor.serialization import Deserializer, Serializer
 from ....aio._configuration import RoutesClientConfiguration
 from ...labelexpansion.aio.operations._operations import PathParametersLabelExpansionOperations
 from ...matrixexpansion.aio.operations._operations import PathParametersMatrixExpansionOperations

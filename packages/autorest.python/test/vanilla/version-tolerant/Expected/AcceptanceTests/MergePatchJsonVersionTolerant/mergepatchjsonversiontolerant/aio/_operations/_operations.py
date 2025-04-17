@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,14 +24,15 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import build_merge_patch_json_patch_single_request
-from .._vendor import MergePatchJsonClientMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import MergePatchJsonClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
+class MergePatchJsonClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MergePatchJsonClientConfiguration]):
 
     @distributed_trace_async
     async def patch_single(self, body: JSON, **kwargs: Any) -> None:

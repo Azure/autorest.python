@@ -24,8 +24,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from ..._configuration import BytesClientConfiguration
-from ..._model_base import SdkJSONEncoder
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.model_base import SdkJSONEncoder
+from ..._vendor.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
-from ..._serialization import Deserializer, Serializer
+from ..._vendor.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_lr_os_custom_header_post202_retry200_request,
     build_lr_os_custom_header_post_async_retry_succeeded_request,

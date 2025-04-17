@@ -8,8 +8,8 @@
 from azure.core import PipelineClient
 
 from .._configuration import BodyFormsDataURLEncodedConfiguration
-from .._serialization import Deserializer, Serializer
-from .._vendor import raise_if_not_implemented
+from .._vendor.serialization import Deserializer, Serializer
+from .._vendor.utils import raise_if_not_implemented
 
 
 class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiated

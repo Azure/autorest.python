@@ -9,14 +9,13 @@
 
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ActionRequest(_model_base.Model):
+class ActionRequest(_Model):
     """ActionRequest.
 
     :ivar string_property: Required.
@@ -62,7 +61,7 @@ class ActionRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ActionResponse(_model_base.Model):
+class ActionResponse(_Model):
     """ActionResponse.
 
     :ivar string_property: Required.
@@ -108,7 +107,7 @@ class ActionResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Model(_model_base.Model):
+class Model(_Model):
     """Model.
 
     :ivar int32_property:

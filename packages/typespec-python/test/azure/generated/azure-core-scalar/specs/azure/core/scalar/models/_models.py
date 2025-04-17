@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 
-class AzureLocationModel(_model_base.Model):
+class AzureLocationModel(_Model):
     """AzureLocationModel.
 
     :ivar location: Required.

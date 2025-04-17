@@ -9,14 +9,13 @@
 
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class InnerModel(_model_base.Model):
+class InnerModel(_Model):
     """It is the model used by Resource model.
 
     :ivar name:
@@ -47,7 +46,7 @@ class InnerModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Resource(_model_base.Model):
+class Resource(_Model):
     """Details about a resource.
 
     :ivar name: Required.
@@ -111,7 +110,7 @@ class Resource(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ResourcePatch(_model_base.Model):
+class ResourcePatch(_Model):
     """Details about a resource for patch operation.
 
     :ivar description:

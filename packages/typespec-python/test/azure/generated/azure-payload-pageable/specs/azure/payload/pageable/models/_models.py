@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 
-class User(_model_base.Model):
+class User(_Model):
     """User model.
 
     :ivar name: User name. Required.

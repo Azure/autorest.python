@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, cast, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,8 +23,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import AutoRestValidationTestMixinABC
+from .._configuration import AutoRestValidationTestConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -136,7 +138,7 @@ def build_auto_rest_validation_test_post_with_constant_in_body_request(  # pylin
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
+class AutoRestValidationTestOperationsMixin(ClientMixinABC[PipelineClient, AutoRestValidationTestConfiguration]):
 
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:

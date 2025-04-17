@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,8 +23,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import AutoRestReportServiceForAzureMixinABC
+from .._configuration import AutoRestReportServiceForAzureConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -52,7 +54,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
 
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
-    AutoRestReportServiceForAzureMixinABC
+    ClientMixinABC[PipelineClient, AutoRestReportServiceForAzureConfiguration]
 ):
 
     @distributed_trace

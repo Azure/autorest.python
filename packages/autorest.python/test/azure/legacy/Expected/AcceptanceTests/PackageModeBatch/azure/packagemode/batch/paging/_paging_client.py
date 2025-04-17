@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from . import models as _models
 from ._configuration import PagingClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import PagingOperations
 
 if TYPE_CHECKING:

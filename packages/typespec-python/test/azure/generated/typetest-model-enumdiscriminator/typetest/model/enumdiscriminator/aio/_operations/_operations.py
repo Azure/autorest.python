@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,7 +28,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_enum_discriminator_get_extensible_model_missing_discriminator_request,
     build_enum_discriminator_get_extensible_model_request,
@@ -38,14 +38,16 @@ from ..._operations._operations import (
     build_enum_discriminator_put_extensible_model_request,
     build_enum_discriminator_put_fixed_model_request,
 )
-from .._vendor import EnumDiscriminatorClientMixinABC
+from ..._vendor.model_base import SdkJSONEncoder, _deserialize
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import EnumDiscriminatorClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
+class EnumDiscriminatorClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, EnumDiscriminatorClientConfiguration]):
 
     @distributed_trace_async
     async def get_extensible_model(self, **kwargs: Any) -> _models.Dog:

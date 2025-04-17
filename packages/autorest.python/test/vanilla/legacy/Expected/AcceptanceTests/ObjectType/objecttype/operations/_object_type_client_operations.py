@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,8 +22,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import ObjectTypeClientMixinABC
+from .._configuration import ObjectTypeClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -63,7 +65,7 @@ def build_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
+class ObjectTypeClientOperationsMixin(ClientMixinABC[PipelineClient, ObjectTypeClientConfiguration]):
 
     @distributed_trace
     def get(self, **kwargs: Any) -> JSON:

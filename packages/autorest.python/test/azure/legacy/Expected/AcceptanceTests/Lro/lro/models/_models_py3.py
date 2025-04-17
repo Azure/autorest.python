@@ -8,13 +8,13 @@
 
 from typing import Any, Dict, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class OperationResult(_serialization.Model):
+class OperationResult(serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -49,7 +49,7 @@ class OperationResult(_serialization.Model):
         self.error = error
 
 
-class OperationResultError(_serialization.Model):
+class OperationResultError(serialization.Model):
     """OperationResultError.
 
     :ivar code: The error code for an operation failure.
@@ -75,7 +75,7 @@ class OperationResultError(_serialization.Model):
         self.message = message
 
 
-class Resource(_serialization.Model):
+class Resource(serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -181,7 +181,7 @@ class Product(Resource):
         self.provisioning_state_values: Optional[Union[str, "_models.ProductPropertiesProvisioningStateValues"]] = None
 
 
-class Sku(_serialization.Model):
+class Sku(serialization.Model):
     """Sku.
 
     :ivar name:
@@ -213,7 +213,7 @@ class Sku(_serialization.Model):
         self.id = id
 
 
-class SubResource(_serialization.Model):
+class SubResource(serialization.Model):
     """SubResource.
 
     Variables are only populated by the server, and will be ignored when sending a request.

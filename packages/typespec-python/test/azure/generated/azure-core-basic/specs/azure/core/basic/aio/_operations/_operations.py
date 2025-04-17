@@ -12,6 +12,7 @@ import json
 from typing import Any, AsyncIterable, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -30,7 +31,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_basic_create_or_replace_request,
     build_basic_create_or_update_request,
@@ -40,14 +40,16 @@ from ..._operations._operations import (
     build_basic_get_request,
     build_basic_list_request,
 )
-from .._vendor import BasicClientMixinABC
+from ..._vendor.model_base import SdkJSONEncoder, _deserialize
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import BasicClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class BasicClientOperationsMixin(BasicClientMixinABC):
+class BasicClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, BasicClientConfiguration]):
 
     @overload
     async def create_or_update(

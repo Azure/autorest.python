@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,19 +28,20 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_flatten_property_put_flatten_model_request,
     build_flatten_property_put_nested_flatten_model_request,
 )
-from .._vendor import FlattenPropertyClientMixinABC
+from ..._vendor.model_base import SdkJSONEncoder, _deserialize
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import FlattenPropertyClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FlattenPropertyClientOperationsMixin(FlattenPropertyClientMixinABC):
+class FlattenPropertyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, FlattenPropertyClientConfiguration]):
 
     @overload
     async def put_flatten_model(

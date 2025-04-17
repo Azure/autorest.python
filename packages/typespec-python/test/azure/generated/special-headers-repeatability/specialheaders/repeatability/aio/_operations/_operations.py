@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,13 +23,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_repeatability_immediate_success_request
-from .._vendor import RepeatabilityClientMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import RepeatabilityClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
+class RepeatabilityClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RepeatabilityClientConfiguration]):
 
     @distributed_trace_async
     async def immediate_success(self, **kwargs: Any) -> None:

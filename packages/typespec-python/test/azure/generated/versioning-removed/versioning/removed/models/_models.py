@@ -9,14 +9,13 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import _types, models as _models
 
 
-class ModelV2(_model_base.Model):
+class ModelV2(_Model):
     """ModelV2.
 
     :ivar prop: Required.
@@ -58,7 +57,7 @@ class ModelV2(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelV3(_model_base.Model):
+class ModelV3(_Model):
     """ModelV3.
 
     :ivar id: Required.

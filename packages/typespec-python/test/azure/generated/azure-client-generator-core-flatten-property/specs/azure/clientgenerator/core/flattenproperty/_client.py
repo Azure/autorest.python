@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import FlattenPropertyClientConfiguration
 from ._operations import FlattenPropertyClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class FlattenPropertyClient(FlattenPropertyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

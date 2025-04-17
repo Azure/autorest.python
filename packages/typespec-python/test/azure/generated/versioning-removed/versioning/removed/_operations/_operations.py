@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,9 +27,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import RemovedClientMixinABC
+from .._configuration import RemovedClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder, _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -72,7 +74,7 @@ def build_removed_model_v3_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RemovedClientOperationsMixin(RemovedClientMixinABC):
+class RemovedClientOperationsMixin(ClientMixinABC[PipelineClient, RemovedClientConfiguration]):
 
     @overload
     def v2(self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:

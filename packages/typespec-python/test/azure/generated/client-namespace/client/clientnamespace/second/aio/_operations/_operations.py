@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,15 +25,18 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models2
-from ...._model_base import _deserialize
+from ...._vendor.model_base import _deserialize
+from ...._vendor.utils import ClientMixinABC
 from ..._operations._operations import build_client_namespace_second_get_second_request
-from .._vendor import ClientNamespaceSecondClientMixinABC
+from .._configuration import ClientNamespaceSecondClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixinABC):  # pylint: disable=name-too-long
+class ClientNamespaceSecondClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[AsyncPipelineClient, ClientNamespaceSecondClientConfiguration]
+):
 
     @distributed_trace_async
     async def get_second(self, **kwargs: Any) -> _models2.SecondClientResult:

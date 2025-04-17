@@ -8,13 +8,13 @@
 
 from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """The error object.
 
     All required parameters must be populated in order to send to server.
@@ -87,7 +87,7 @@ class Error(_serialization.Model):
         self.innererror = innererror
 
 
-class ErrorResponse(_serialization.Model):
+class ErrorResponse(serialization.Model):
     """Error response.
 
     All required parameters must be populated in order to send to server.
@@ -123,7 +123,7 @@ class ErrorResponse(_serialization.Model):
         self.error = error
 
 
-class InnerError(_serialization.Model):
+class InnerError(serialization.Model):
     """An object containing more specific information about the error. As per Microsoft One API
     guidelines -
     https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#7102-error-condition-responses.
@@ -184,7 +184,7 @@ class InnerError(_serialization.Model):
         self.innererror = innererror
 
 
-class SecretResponse(_serialization.Model):
+class SecretResponse(serialization.Model):
     """A secret.
 
     All required parameters must be populated in order to send to server.

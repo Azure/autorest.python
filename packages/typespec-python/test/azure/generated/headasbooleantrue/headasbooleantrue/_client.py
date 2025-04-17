@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import VisibilityClientConfiguration
 from ._operations import VisibilityClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

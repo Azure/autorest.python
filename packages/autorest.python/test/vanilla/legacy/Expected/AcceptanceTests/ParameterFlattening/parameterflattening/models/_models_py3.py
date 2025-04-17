@@ -8,10 +8,10 @@
 
 from typing import Any, Dict
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class AvailabilitySetUpdateParameters(_serialization.Model):
+class AvailabilitySetUpdateParameters(serialization.Model):
     """AvailabilitySetUpdateParameters.
 
     All required parameters must be populated in order to send to server.

@@ -8,13 +8,13 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING, Union
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Input(_serialization.Model):
+class Input(serialization.Model):
     """Input.
 
     All required parameters must be populated in order to send to server.
@@ -40,7 +40,7 @@ class Input(_serialization.Model):
         self.hello = hello
 
 
-class Product(_serialization.Model):
+class Product(serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to server.
@@ -100,7 +100,7 @@ class LROProduct(Product):
         self.provisioning_state = provisioning_state
 
 
-class ProductResult(_serialization.Model):
+class ProductResult(serialization.Model):
     """ProductResult.
 
     :ivar values:

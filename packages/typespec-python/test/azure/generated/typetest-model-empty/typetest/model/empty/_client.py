@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import EmptyClientConfiguration
 from ._operations import EmptyClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

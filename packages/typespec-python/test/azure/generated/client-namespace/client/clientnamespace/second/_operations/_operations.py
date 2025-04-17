@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,9 +25,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models1
-from ..._model_base import _deserialize
-from ..._serialization import Serializer
-from .._vendor import ClientNamespaceSecondClientMixinABC
+from ..._vendor.model_base import _deserialize
+from ..._vendor.serialization import Serializer
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import ClientNamespaceSecondClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -49,7 +51,9 @@ def build_client_namespace_second_get_second_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixinABC):  # pylint: disable=name-too-long
+class ClientNamespaceSecondClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[PipelineClient, ClientNamespaceSecondClientConfiguration]
+):
 
     @distributed_trace
     def get_second(self, **kwargs: Any) -> _models1.SecondClientResult:

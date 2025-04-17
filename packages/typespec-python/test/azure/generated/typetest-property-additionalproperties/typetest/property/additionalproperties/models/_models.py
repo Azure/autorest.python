@@ -11,14 +11,13 @@
 import datetime
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .._vendor.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class DifferentSpreadFloatRecord(_model_base.Model):
+class DifferentSpreadFloatRecord(_Model):
     """The model spread Record<float32> with the different known property type.
 
     :ivar name: The id property. Required.
@@ -78,7 +77,7 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadModelArrayRecord(_model_base.Model):
+class DifferentSpreadModelArrayRecord(_Model):
     """The model spread Record<ModelForRecord[]> with the different known property type.
 
     :ivar known_prop: Required.
@@ -140,7 +139,7 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadModelRecord(_model_base.Model):
+class DifferentSpreadModelRecord(_Model):
     """The model spread Record<ModelForRecord> with the different known property type.
 
     :ivar known_prop: Required.
@@ -202,7 +201,7 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
         super().__init__(*args, **kwargs)
 
 
-class DifferentSpreadStringRecord(_model_base.Model):
+class DifferentSpreadStringRecord(_Model):
     """The model spread Record<string> with the different known property type.
 
     :ivar id: The name property. Required.
@@ -262,7 +261,7 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsFloatAdditionalProperties(_model_base.Model):
+class ExtendsFloatAdditionalProperties(_Model):
     """The model extends from Record<float32> type.
 
     :ivar id: The id property. Required.
@@ -290,7 +289,7 @@ class ExtendsFloatAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsModelAdditionalProperties(_model_base.Model):
+class ExtendsModelAdditionalProperties(_Model):
     """The model extends from Record<ModelForRecord> type.
 
     :ivar known_prop: Required.
@@ -320,7 +319,7 @@ class ExtendsModelAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsModelArrayAdditionalProperties(_model_base.Model):
+class ExtendsModelArrayAdditionalProperties(_Model):
     """The model extends from Record<ModelForRecord[]> type.
 
     :ivar known_prop: Required.
@@ -350,7 +349,7 @@ class ExtendsModelArrayAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsStringAdditionalProperties(_model_base.Model):
+class ExtendsStringAdditionalProperties(_Model):
     """The model extends from Record<string> type.
 
     :ivar name: The name property. Required.
@@ -378,7 +377,7 @@ class ExtendsStringAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExtendsUnknownAdditionalProperties(_model_base.Model):
+class ExtendsUnknownAdditionalProperties(_Model):
     """The model extends from Record<unknown> type.
 
     :ivar name: The name property. Required.
@@ -442,7 +441,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
         super().__init__(*args, **kwargs)
 
 
-class ExtendsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
+class ExtendsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=name-too-long
     """The model extends from Record<unknown> with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -521,7 +520,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         super().__init__(*args, kind="derived", **kwargs)
 
 
-class IsFloatAdditionalProperties(_model_base.Model):
+class IsFloatAdditionalProperties(_Model):
     """The model is from Record<float32> type.
 
     :ivar id: The id property. Required.
@@ -549,7 +548,7 @@ class IsFloatAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IsModelAdditionalProperties(_model_base.Model):
+class IsModelAdditionalProperties(_Model):
     """The model is from Record<ModelForRecord> type.
 
     :ivar known_prop: Required.
@@ -579,7 +578,7 @@ class IsModelAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IsModelArrayAdditionalProperties(_model_base.Model):
+class IsModelArrayAdditionalProperties(_Model):
     """The model is from Record<ModelForRecord[]> type.
 
     :ivar known_prop: Required.
@@ -609,7 +608,7 @@ class IsModelArrayAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IsStringAdditionalProperties(_model_base.Model):
+class IsStringAdditionalProperties(_Model):
     """The model is from Record<string> type.
 
     :ivar name: The name property. Required.
@@ -637,7 +636,7 @@ class IsStringAdditionalProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IsUnknownAdditionalProperties(_model_base.Model):
+class IsUnknownAdditionalProperties(_Model):
     """The model is from Record<unknown> type.
 
     :ivar name: The name property. Required.
@@ -701,7 +700,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
         super().__init__(*args, **kwargs)
 
 
-class IsUnknownAdditionalPropertiesDiscriminated(_model_base.Model):  # pylint: disable=name-too-long
+class IsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=name-too-long
     """The model is Record<unknown> with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -780,7 +779,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         super().__init__(*args, kind="derived", **kwargs)
 
 
-class ModelForRecord(_model_base.Model):
+class ModelForRecord(_Model):
     """model for record.
 
     :ivar state: The state property. Required.
@@ -808,7 +807,7 @@ class ModelForRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class MultipleSpreadRecord(_model_base.Model):
+class MultipleSpreadRecord(_Model):
     """The model spread Record<string> and Record<float32>.
 
     :ivar flag: The name property. Required.
@@ -836,7 +835,7 @@ class MultipleSpreadRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadFloatRecord(_model_base.Model):
+class SpreadFloatRecord(_Model):
     """The model spread Record<float32> with the same known property type.
 
     :ivar id: The id property. Required.
@@ -864,7 +863,7 @@ class SpreadFloatRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadModelArrayRecord(_model_base.Model):
+class SpreadModelArrayRecord(_Model):
     """SpreadModelArrayRecord.
 
     :ivar known_prop: Required.
@@ -894,7 +893,7 @@ class SpreadModelArrayRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadModelRecord(_model_base.Model):
+class SpreadModelRecord(_Model):
     """The model spread Record<ModelForRecord> with the same known property type.
 
     :ivar known_prop: Required.
@@ -924,7 +923,7 @@ class SpreadModelRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
+class SpreadRecordForNonDiscriminatedUnion(_Model):
     """The model spread Record<WidgetData0 | WidgetData1>.
 
     :ivar name: The name property. Required.
@@ -952,7 +951,7 @@ class SpreadRecordForNonDiscriminatedUnion(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
+class SpreadRecordForNonDiscriminatedUnion2(_Model):
     """The model spread Record<WidgetData2 | WidgetData1>.
 
     :ivar name: The name property. Required.
@@ -980,7 +979,7 @@ class SpreadRecordForNonDiscriminatedUnion2(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
+class SpreadRecordForNonDiscriminatedUnion3(_Model):
     """The model spread Record<WidgetData2[] | WidgetData1>.
 
     :ivar name: The name property. Required.
@@ -1008,7 +1007,7 @@ class SpreadRecordForNonDiscriminatedUnion3(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadRecordForUnion(_model_base.Model):
+class SpreadRecordForUnion(_Model):
     """The model spread Record<string | float32>.
 
     :ivar flag: The name property. Required.
@@ -1036,7 +1035,7 @@ class SpreadRecordForUnion(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SpreadStringRecord(_model_base.Model):
+class SpreadStringRecord(_Model):
     """The model spread Record<string> with the same known property type.
 
     :ivar name: The name property. Required.
@@ -1064,7 +1063,7 @@ class SpreadStringRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class WidgetData0(_model_base.Model):
+class WidgetData0(_Model):
     """WidgetData0.
 
     :ivar kind: Required. Default value is "kind0".
@@ -1097,7 +1096,7 @@ class WidgetData0(_model_base.Model):
         self.kind: Literal["kind0"] = "kind0"
 
 
-class WidgetData1(_model_base.Model):
+class WidgetData1(_Model):
     """WidgetData1.
 
     :ivar kind: Required. Default value is "kind1".
@@ -1136,7 +1135,7 @@ class WidgetData1(_model_base.Model):
         self.kind: Literal["kind1"] = "kind1"
 
 
-class WidgetData2(_model_base.Model):
+class WidgetData2(_Model):
     """WidgetData2.
 
     :ivar kind: Required. Default value is "kind1".

@@ -25,8 +25,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
-from .._serialization import Deserializer, Serializer
-from .._vendor import raise_if_not_implemented
+from .._vendor.serialization import Deserializer, Serializer
+from .._vendor.utils import raise_if_not_implemented
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

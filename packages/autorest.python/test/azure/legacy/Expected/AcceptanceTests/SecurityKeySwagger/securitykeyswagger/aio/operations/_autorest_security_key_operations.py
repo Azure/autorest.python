@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,14 +23,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
+from ..._vendor.utils import ClientMixinABC
 from ...operations._autorest_security_key_operations import build_head_request
-from .._vendor import AutorestSecurityKeyMixinABC
+from .._configuration import AutorestSecurityKeyConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityKeyOperationsMixin(AutorestSecurityKeyMixinABC):
+class AutorestSecurityKeyOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutorestSecurityKeyConfiguration]):
 
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> bool:

@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import OptionalClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import (
     BooleanLiteralOperations,
     BytesOperations,

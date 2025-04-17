@@ -8,10 +8,10 @@
 
 from typing import Any, Dict, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class PetAPTrue(_serialization.Model):
+class PetAPTrue(serialization.Model):
     """PetAPTrue.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -122,7 +122,7 @@ class CatAPTrue(PetAPTrue):
         self.friendly = friendly
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -148,7 +148,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class PetAPInProperties(_serialization.Model):
+class PetAPInProperties(serialization.Model):
     """PetAPInProperties.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -200,7 +200,7 @@ class PetAPInProperties(_serialization.Model):
         self.additional_properties = additional_properties
 
 
-class PetAPInPropertiesWithAPString(_serialization.Model):
+class PetAPInPropertiesWithAPString(serialization.Model):
     """PetAPInPropertiesWithAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -269,7 +269,7 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         self.additional_properties1 = additional_properties1
 
 
-class PetAPObject(_serialization.Model):
+class PetAPObject(serialization.Model):
     """PetAPObject.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -323,7 +323,7 @@ class PetAPObject(_serialization.Model):
         self.status: Optional[bool] = None
 
 
-class PetAPString(_serialization.Model):
+class PetAPString(serialization.Model):
     """PetAPString.
 
     Variables are only populated by the server, and will be ignored when sending a request.

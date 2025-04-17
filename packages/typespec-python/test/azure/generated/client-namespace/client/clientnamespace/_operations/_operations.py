@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,9 +24,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._model_base import _deserialize
-from .._serialization import Serializer
-from .._vendor import ClientNamespaceFirstClientMixinABC
+from .._configuration import ClientNamespaceFirstClientConfiguration
+from .._vendor.model_base import _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 from ..first import models as _first_models2
 
 T = TypeVar("T")
@@ -49,7 +51,9 @@ def build_client_namespace_first_get_first_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinABC):  # pylint: disable=name-too-long
+class ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[PipelineClient, ClientNamespaceFirstClientConfiguration]
+):
 
     @distributed_trace
     def get_first(self, **kwargs: Any) -> _first_models2.FirstClientResult:

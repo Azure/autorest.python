@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -36,7 +37,8 @@ from ..._operations._operations import (
     build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request,
     build_auto_rest_resource_flattening_test_service_put_wrapped_array_request,
 )
-from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -44,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
-    AutoRestResourceFlatteningTestServiceMixinABC
+    ClientMixinABC[AsyncPipelineClient, AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 
     @overload

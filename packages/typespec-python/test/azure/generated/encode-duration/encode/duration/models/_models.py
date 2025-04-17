@@ -10,11 +10,10 @@
 import datetime
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 
-class DefaultDurationProperty(_model_base.Model):
+class DefaultDurationProperty(_Model):
     """DefaultDurationProperty.
 
     :ivar value: Required.
@@ -42,7 +41,7 @@ class DefaultDurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Float64SecondsDurationProperty(_model_base.Model):
+class Float64SecondsDurationProperty(_Model):
     """Float64SecondsDurationProperty.
 
     :ivar value: Required.
@@ -70,7 +69,7 @@ class Float64SecondsDurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FloatSecondsDurationArrayProperty(_model_base.Model):
+class FloatSecondsDurationArrayProperty(_Model):
     """FloatSecondsDurationArrayProperty.
 
     :ivar value: Required.
@@ -98,7 +97,7 @@ class FloatSecondsDurationArrayProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FloatSecondsDurationProperty(_model_base.Model):
+class FloatSecondsDurationProperty(_Model):
     """FloatSecondsDurationProperty.
 
     :ivar value: Required.
@@ -126,7 +125,7 @@ class FloatSecondsDurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Int32SecondsDurationProperty(_model_base.Model):
+class Int32SecondsDurationProperty(_Model):
     """Int32SecondsDurationProperty.
 
     :ivar value: Required.
@@ -154,7 +153,7 @@ class Int32SecondsDurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ISO8601DurationProperty(_model_base.Model):
+class ISO8601DurationProperty(_Model):
     """ISO8601DurationProperty.
 
     :ivar value: Required.

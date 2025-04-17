@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ResiliencyServiceDrivenClientConfiguration
 from ._operations import ResiliencyServiceDrivenClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):

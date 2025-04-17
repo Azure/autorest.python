@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,8 +24,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import MultipleInheritanceServiceClientMixinABC
+from .._configuration import MultipleInheritanceServiceClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -189,7 +191,7 @@ def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
 
 
 class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
-    MultipleInheritanceServiceClientMixinABC
+    ClientMixinABC[PipelineClient, MultipleInheritanceServiceClientConfiguration]
 ):
 
     @distributed_trace

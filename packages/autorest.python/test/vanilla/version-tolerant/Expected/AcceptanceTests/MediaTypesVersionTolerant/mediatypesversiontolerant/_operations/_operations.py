@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,8 +23,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
+from .._configuration import MediaTypesClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC, raise_if_not_implemented
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -142,7 +144,9 @@ def build_media_types_put_text_and_json_body_request(  # pylint: disable=name-to
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disable=abstract-class-instantiated
+class MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
+    ClientMixinABC[PipelineClient, MediaTypesClientConfiguration]
+):
 
     def __init__(self):
         raise_if_not_implemented(

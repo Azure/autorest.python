@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 from .operations import XmlOperations
 
 

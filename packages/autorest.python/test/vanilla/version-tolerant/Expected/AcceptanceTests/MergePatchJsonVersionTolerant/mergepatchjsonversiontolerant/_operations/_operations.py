@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,8 +22,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import MergePatchJsonClientMixinABC
+from .._configuration import MergePatchJsonClientConfiguration
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -51,7 +53,7 @@ def build_merge_patch_json_patch_single_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class MergePatchJsonClientOperationsMixin(MergePatchJsonClientMixinABC):
+class MergePatchJsonClientOperationsMixin(ClientMixinABC[PipelineClient, MergePatchJsonClientConfiguration]):
 
     @distributed_trace
     def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

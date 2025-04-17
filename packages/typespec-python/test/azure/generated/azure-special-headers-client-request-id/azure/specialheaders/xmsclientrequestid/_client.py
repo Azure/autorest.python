@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import XmsClientRequestIdClientConfiguration
 from ._operations import XmsClientRequestIdClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._vendor.serialization import Deserializer, Serializer
 
 
 class XmsClientRequestIdClient(

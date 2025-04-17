@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -37,7 +37,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class Widget(_serialization.Model):
+class Widget(serialization.Model):
     """Widget.
 
     :ivar integer:

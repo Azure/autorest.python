@@ -8,10 +8,10 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 
-class MyException(_serialization.Model):
+class MyException(serialization.Model):
     """MyException.
 
     :ivar status_code:
@@ -58,7 +58,7 @@ class B(MyException):
         self.text_status_code = text_status_code
 
 
-class C(_serialization.Model):
+class C(serialization.Model):
     """C.
 
     :ivar http_code:
@@ -78,7 +78,7 @@ class C(_serialization.Model):
         self.http_code = http_code
 
 
-class D(_serialization.Model):
+class D(serialization.Model):
     """D.
 
     :ivar http_status_code:
@@ -98,7 +98,7 @@ class D(_serialization.Model):
         self.http_status_code = http_status_code
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:

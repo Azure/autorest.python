@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,16 +26,17 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder
 from ..._operations._operations import build_duration_duration_constant_request
-from .._vendor import DurationClientMixinABC
+from ..._vendor.model_base import SdkJSONEncoder
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import DurationClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DurationClientOperationsMixin(DurationClientMixinABC):
+class DurationClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, DurationClientConfiguration]):
 
     @overload
     async def duration_constant(

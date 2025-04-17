@@ -22,8 +22,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .._configuration import RoutesClientConfiguration
-from .._serialization import Deserializer, Serializer
-from .._vendor import RoutesClientMixinABC
+from .._vendor.serialization import Deserializer, Serializer
+from .._vendor.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -108,7 +108,7 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(RoutesClientMixinABC):
+class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient, RoutesClientConfiguration]):
 
     @distributed_trace
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

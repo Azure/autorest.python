@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,13 +23,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_incorrect_returned_error_model_get_incorrect_error_from_server_request
-from .._vendor import IncorrectReturnedErrorModelMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import IncorrectReturnedErrorModelConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class IncorrectReturnedErrorModelOperationsMixin(IncorrectReturnedErrorModelMixinABC):  # pylint: disable=name-too-long
+class IncorrectReturnedErrorModelOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[AsyncPipelineClient, IncorrectReturnedErrorModelConfiguration]
+):
 
     @distributed_trace_async
     async def get_incorrect_error_from_server(self, **kwargs: Any) -> None:

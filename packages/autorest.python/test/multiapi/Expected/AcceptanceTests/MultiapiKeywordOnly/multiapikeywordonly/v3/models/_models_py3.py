@@ -8,13 +8,13 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING
 
-from ... import _serialization
+from .. import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -40,7 +40,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class ModelThree(_serialization.Model):
+class ModelThree(serialization.Model):
     """Only exists in api version 3.0.0.
 
     :ivar optional_property:
@@ -60,7 +60,7 @@ class ModelThree(_serialization.Model):
         self.optional_property = optional_property
 
 
-class PagingResult(_serialization.Model):
+class PagingResult(serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -88,7 +88,7 @@ class PagingResult(_serialization.Model):
         self.next_link = next_link
 
 
-class SourcePath(_serialization.Model):
+class SourcePath(serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

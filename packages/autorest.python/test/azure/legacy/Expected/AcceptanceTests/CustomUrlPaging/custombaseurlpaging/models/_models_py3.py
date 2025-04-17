@@ -8,13 +8,13 @@
 
 from typing import Any, List, Optional, TYPE_CHECKING
 
-from .. import _serialization
+from .._vendor import serialization as _serialization
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(_serialization.Model):
+class Error(serialization.Model):
     """Error.
 
     :ivar status:
@@ -40,7 +40,7 @@ class Error(_serialization.Model):
         self.message = message
 
 
-class Product(_serialization.Model):
+class Product(serialization.Model):
     """Product.
 
     :ivar properties:
@@ -60,7 +60,7 @@ class Product(_serialization.Model):
         self.properties = properties
 
 
-class ProductProperties(_serialization.Model):
+class ProductProperties(serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -92,7 +92,7 @@ class ProductProperties(_serialization.Model):
         self.name = name
 
 
-class ProductResult(_serialization.Model):
+class ProductResult(serialization.Model):
     """ProductResult.
 
     :ivar values:

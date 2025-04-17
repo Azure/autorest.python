@@ -9,14 +9,13 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._vendor.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import _types, models as _models
 
 
-class NewModel(_model_base.Model):
+class NewModel(_Model):
     """NewModel.
 
     :ivar new_prop: Required.

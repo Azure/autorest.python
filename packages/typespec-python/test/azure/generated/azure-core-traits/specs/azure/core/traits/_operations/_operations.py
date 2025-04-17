@@ -12,7 +12,7 @@ import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import uuid
 
-from azure.core import MatchConditions
+from azure.core import MatchConditions, PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -30,9 +30,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import TraitsClientMixinABC, prep_if_match, prep_if_none_match
+from .._configuration import TraitsClientConfiguration
+from .._vendor.model_base import SdkJSONEncoder, _deserialize
+from .._vendor.serialization import Serializer
+from .._vendor.utils import ClientMixinABC, prep_if_match, prep_if_none_match
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -119,7 +120,7 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class TraitsClientOperationsMixin(TraitsClientMixinABC):
+class TraitsClientOperationsMixin(ClientMixinABC[PipelineClient, TraitsClientConfiguration]):
 
     @distributed_trace
     def smoke_test(

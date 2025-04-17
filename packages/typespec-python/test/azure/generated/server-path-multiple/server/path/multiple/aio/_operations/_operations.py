@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,13 +26,14 @@ from ..._operations._operations import (
     build_multiple_no_operation_params_request,
     build_multiple_with_operation_path_param_request,
 )
-from .._vendor import MultipleClientMixinABC
+from ..._vendor.utils import ClientMixinABC
+from .._configuration import MultipleClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleClientOperationsMixin(MultipleClientMixinABC):
+class MultipleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleClientConfiguration]):
 
     @distributed_trace_async
     async def no_operation_params(self, **kwargs: Any) -> None:

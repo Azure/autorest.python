@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,15 +23,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
+from ..._vendor.utils import ClientMixinABC
 from ...operations._object_type_client_operations import build_get_request, build_put_request
-from .._vendor import ObjectTypeClientMixinABC
+from .._configuration import ObjectTypeClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ObjectTypeClientOperationsMixin(ObjectTypeClientMixinABC):
+class ObjectTypeClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ObjectTypeClientConfiguration]):
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> JSON:

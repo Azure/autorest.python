@@ -6,16 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from .. import _model_base
+from .._vendor.model_base import Model as _Model
 
 
-class EmptyInput(_model_base.Model):
+class EmptyInput(_Model):
     """Empty model used in operation parameters."""
 
 
-class EmptyInputOutput(_model_base.Model):
+class EmptyInputOutput(_Model):
     """Empty model used in both parameter and return type."""
 
 
-class EmptyOutput(_model_base.Model):
+class EmptyOutput(_Model):
     """Empty model used in operation return type."""
