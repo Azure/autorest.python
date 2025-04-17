@@ -1,5 +1,13 @@
 # Release
 
+## 6.33.0
+
+### Features
+
+- [#3076](https://github.com/Azure/autorest.python/pull/3076) Improve user experience in multi clouds scenario
+- [#3073](https://github.com/Azure/autorest.python/pull/3073) add more hooks into setup.py template for users with custom templates
+
+
 ## 6.32.3
 
 ### Bug Fixes

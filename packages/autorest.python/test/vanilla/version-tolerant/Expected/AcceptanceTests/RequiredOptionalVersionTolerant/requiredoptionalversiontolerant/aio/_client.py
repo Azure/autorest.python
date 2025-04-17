@@ -51,6 +51,7 @@ class AutoRestRequiredOptionalTestService:  # pylint: disable=client-accepts-api
             optional_global_query=optional_global_query,
             **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

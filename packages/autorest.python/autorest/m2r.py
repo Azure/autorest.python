@@ -3,8 +3,7 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-"""An autorest MD to RST plugin.
-"""
+"""An autorest MD to RST plugin."""
 import logging
 from typing import Any, Dict, Set, Union
 

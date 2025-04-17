@@ -75,6 +75,7 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = OptionalClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

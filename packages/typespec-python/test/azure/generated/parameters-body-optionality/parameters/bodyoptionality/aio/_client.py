@@ -35,6 +35,7 @@ class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = BodyOptionalityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

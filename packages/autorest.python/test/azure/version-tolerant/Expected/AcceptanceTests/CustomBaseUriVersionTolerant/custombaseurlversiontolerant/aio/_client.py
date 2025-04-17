@@ -34,6 +34,7 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
     ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = AutoRestParameterizedHostTestClientConfiguration(host=host, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
