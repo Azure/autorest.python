@@ -33,8 +33,8 @@ from ..._operations._operations import (
     build_json_merge_patch_update_optional_resource_request,
     build_json_merge_patch_update_resource_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import JsonMergePatchClientConfiguration
 
 JSON = MutableMapping[str, Any]

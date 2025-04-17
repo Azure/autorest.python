@@ -22,8 +22,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._vendor.serialization import Deserializer, Serializer
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import build_in_interface_fixed_request, build_routes_fixed_request
 from .._configuration import RoutesClientConfiguration
 

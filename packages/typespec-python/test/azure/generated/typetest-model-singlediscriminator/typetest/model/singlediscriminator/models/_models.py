@@ -10,7 +10,7 @@
 
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .._vendor.model_base import Model as _Model, rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -28,7 +28,7 @@ class Bird(_Model):
     :vartype wingspan: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
     wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -66,7 +66,7 @@ class Dinosaur(_Model):
     :vartype size: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])

@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import UnionClientConfiguration
 from ._operations import UnionClientOperationsMixin
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential

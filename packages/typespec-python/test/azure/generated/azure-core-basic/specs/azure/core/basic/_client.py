@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BasicClientConfiguration
 from ._operations import BasicClientOperationsMixin
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class BasicClient(BasicClientOperationsMixin):

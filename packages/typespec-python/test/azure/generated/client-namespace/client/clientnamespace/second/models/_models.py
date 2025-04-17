@@ -9,7 +9,7 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, Union, overload
 
-from ..._vendor.model_base import Model as _Model, rest_field
+from ..._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from ..sub import models as _sub_models2

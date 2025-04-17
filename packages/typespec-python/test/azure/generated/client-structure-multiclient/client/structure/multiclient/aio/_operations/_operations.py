@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_client_b_renamed_six_request,
     build_client_b_renamed_two_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ClientAClientConfiguration, ClientBClientConfiguration
 
 T = TypeVar("T")

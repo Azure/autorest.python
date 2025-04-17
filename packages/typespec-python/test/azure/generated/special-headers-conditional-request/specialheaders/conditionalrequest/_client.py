@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ConditionalRequestClientConfiguration
 from ._operations import ConditionalRequestClientOperationsMixin
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ConditionalRequestClient(

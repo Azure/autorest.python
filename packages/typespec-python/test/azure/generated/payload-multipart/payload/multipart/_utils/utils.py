@@ -8,7 +8,7 @@
 import json
 from typing import Any, Dict, IO, List, Mapping, Optional, Tuple, Union
 
-from .._vendor.model_base import Model, SdkJSONEncoder
+from .._utils.model_base import Model, SdkJSONEncoder
 
 
 # file-like tuple could be `(filename, IO (or bytes))` or `(filename, IO (or bytes), content_type)`

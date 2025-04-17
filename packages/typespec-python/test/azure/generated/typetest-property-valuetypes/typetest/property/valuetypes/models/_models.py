@@ -11,7 +11,7 @@ import datetime
 import decimal
 from typing import Any, Dict, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
-from .._vendor.model_base import Model as _Model, rest_field
+from .._utils.model_base import Model as _Model, rest_field
 from ._enums import ExtendedEnum
 
 if TYPE_CHECKING:

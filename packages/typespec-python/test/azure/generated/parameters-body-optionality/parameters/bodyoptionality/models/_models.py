@@ -9,7 +9,7 @@
 
 from typing import Any, Mapping, overload
 
-from .._vendor.model_base import Model as _Model, rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
 class BodyModel(_Model):

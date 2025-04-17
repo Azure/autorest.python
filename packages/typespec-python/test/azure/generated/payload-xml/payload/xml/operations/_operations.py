@@ -27,8 +27,8 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import XmlClientConfiguration
-from .._vendor.model_base import _deserialize_xml, _get_element
-from .._vendor.serialization import Deserializer, Serializer
+from .._utils.model_base import _deserialize_xml, _get_element
+from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

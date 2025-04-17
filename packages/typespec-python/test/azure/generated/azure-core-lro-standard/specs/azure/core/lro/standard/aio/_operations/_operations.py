@@ -35,8 +35,8 @@ from ..._operations._operations import (
     build_standard_delete_request,
     build_standard_export_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import StandardClientConfiguration
 
 JSON = MutableMapping[str, Any]

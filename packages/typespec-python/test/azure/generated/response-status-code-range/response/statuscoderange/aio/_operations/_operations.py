@@ -27,8 +27,8 @@ from ..._operations._operations import (
     build_status_code_range_error_response_status_code404_request,
     build_status_code_range_error_response_status_code_in_range_request,
 )
-from ..._vendor.model_base import _failsafe_deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import StatusCodeRangeClientConfiguration
 
 T = TypeVar("T")

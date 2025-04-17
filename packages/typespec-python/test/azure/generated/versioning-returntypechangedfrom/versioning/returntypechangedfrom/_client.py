@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import ReturnTypeChangedFromClientConfiguration
 from ._operations import ReturnTypeChangedFromClientOperationsMixin
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ReturnTypeChangedFromClient(

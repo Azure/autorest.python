@@ -25,9 +25,9 @@ from azure.core.tracing.decorator import distributed_trace
 
 from ... import models as _models
 from ..._operations._operations import build_pageable_list_request
+from ..._utils.model_base import _deserialize
+from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
-from ..._vendor.model_base import _deserialize
-from ..._vendor.utils import ClientMixinABC
 from .._configuration import PageableClientConfiguration
 
 T = TypeVar("T")

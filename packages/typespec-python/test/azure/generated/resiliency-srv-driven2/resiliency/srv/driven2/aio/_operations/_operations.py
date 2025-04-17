@@ -28,8 +28,8 @@ from ..._operations._operations import (
     build_resiliency_service_driven_from_one_optional_request,
     build_resiliency_service_driven_from_one_required_request,
 )
+from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
-from ..._vendor.utils import ClientMixinABC
 from .._configuration import ResiliencyServiceDrivenClientConfiguration
 
 T = TypeVar("T")

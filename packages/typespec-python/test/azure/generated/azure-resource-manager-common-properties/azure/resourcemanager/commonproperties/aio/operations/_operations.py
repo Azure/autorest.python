@@ -28,8 +28,8 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
-from ..._vendor.serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_error_create_for_user_defined_error_request,
     build_error_get_for_predefined_error_request,

@@ -26,7 +26,7 @@ from ..._operations._operations import (
     build_multiple_no_operation_params_request,
     build_multiple_with_operation_path_param_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import MultipleClientConfiguration
 
 T = TypeVar("T")

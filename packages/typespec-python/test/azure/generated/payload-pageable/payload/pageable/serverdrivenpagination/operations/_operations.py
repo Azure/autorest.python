@@ -25,8 +25,8 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models2
 from ..._configuration import PageableClientConfiguration
-from ..._vendor.model_base import _deserialize
-from ..._vendor.serialization import Deserializer, Serializer
+from ..._utils.model_base import _deserialize
+from ..._utils.serialization import Deserializer, Serializer
 from ..continuationtoken.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 
 T = TypeVar("T")

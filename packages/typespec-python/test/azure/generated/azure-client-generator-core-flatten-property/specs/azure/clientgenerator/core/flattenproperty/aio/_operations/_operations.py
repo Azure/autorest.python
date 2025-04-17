@@ -32,8 +32,8 @@ from ..._operations._operations import (
     build_flatten_property_put_flatten_model_request,
     build_flatten_property_put_nested_flatten_model_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import FlattenPropertyClientConfiguration
 
 JSON = MutableMapping[str, Any]

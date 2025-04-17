@@ -25,9 +25,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models1
-from ..._vendor.model_base import _deserialize
-from ..._vendor.serialization import Serializer
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import _deserialize
+from ..._utils.serialization import Serializer
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ClientNamespaceSecondClientConfiguration
 
 T = TypeVar("T")

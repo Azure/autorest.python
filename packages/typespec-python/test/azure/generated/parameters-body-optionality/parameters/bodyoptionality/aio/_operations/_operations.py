@@ -30,8 +30,8 @@ from ..._operations._operations import (
     build_body_optionality_required_explicit_request,
     build_body_optionality_required_implicit_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.utils import ClientMixinABC
 from .._configuration import BodyOptionalityClientConfiguration
 
 JSON = MutableMapping[str, Any]

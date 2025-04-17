@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_conditional_request_post_if_none_match_request,
     build_conditional_request_post_if_unmodified_since_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ConditionalRequestClientConfiguration
 
 T = TypeVar("T")

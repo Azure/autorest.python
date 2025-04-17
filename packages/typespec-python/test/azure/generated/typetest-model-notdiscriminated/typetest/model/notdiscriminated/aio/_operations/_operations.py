@@ -33,8 +33,8 @@ from ..._operations._operations import (
     build_not_discriminated_post_valid_request,
     build_not_discriminated_put_valid_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import NotDiscriminatedClientConfiguration
 
 JSON = MutableMapping[str, Any]

@@ -24,8 +24,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._operations._operations import build_api_key_invalid_request, build_api_key_valid_request
-from ..._vendor.model_base import _failsafe_deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ApiKeyClientConfiguration
 
 T = TypeVar("T")

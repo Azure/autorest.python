@@ -37,8 +37,8 @@ from ..._operations._operations import (
     build_visibility_put_model_request,
     build_visibility_put_read_only_model_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import VisibilityClientConfiguration
 
 JSON = MutableMapping[str, Any]

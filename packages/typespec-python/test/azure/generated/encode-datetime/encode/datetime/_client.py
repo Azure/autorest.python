@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DatetimeClientConfiguration
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .header.operations import HeaderOperations
 from .property.operations import PropertyOperations
 from .query.operations import QueryOperations

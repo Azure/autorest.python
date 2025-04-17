@@ -25,8 +25,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._configuration import ConditionalRequestClientConfiguration
-from .._vendor.serialization import Serializer
-from .._vendor.utils import ClientMixinABC, prep_if_match, prep_if_none_match
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC, prep_if_match, prep_if_none_match
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

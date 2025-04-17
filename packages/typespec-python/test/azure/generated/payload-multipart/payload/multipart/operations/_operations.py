@@ -15,11 +15,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _vendor.model_base, models as _models
+from .. import _utils.model_base, models as _models
 from .._configuration import MultiPartClientConfiguration
-from .._vendor.model_base import Model as _Model
-from .._vendor.serialization import Deserializer, Serializer
-from .._vendor.utils import prepare_multipart_form_data
+from .._utils.model_base import Model as _Model
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import prepare_multipart_form_data
 JSON = MutableMapping[str, Any]
 T = TypeVar('T')
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -313,7 +313,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -408,7 +408,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'pictures']
@@ -503,7 +503,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -598,7 +598,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['pictures']
@@ -693,7 +693,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'picture']
@@ -788,7 +788,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -883,7 +883,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1003,7 +1003,7 @@ class FormDataHttpPartsOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'pictures']
@@ -1118,7 +1118,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1214,7 +1214,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1310,7 +1310,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1424,7 +1424,7 @@ class FormDataHttpPartsNonStringOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = []

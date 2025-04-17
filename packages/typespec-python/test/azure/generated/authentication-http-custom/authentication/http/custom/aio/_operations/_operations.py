@@ -24,8 +24,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
 from ..._operations._operations import build_custom_invalid_request, build_custom_valid_request
-from ..._vendor.model_base import _failsafe_deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import CustomClientConfiguration
 
 T = TypeVar("T")

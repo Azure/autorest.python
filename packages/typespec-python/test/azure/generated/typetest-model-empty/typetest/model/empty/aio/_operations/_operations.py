@@ -33,8 +33,8 @@ from ..._operations._operations import (
     build_empty_post_round_trip_empty_request,
     build_empty_put_empty_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import EmptyClientConfiguration
 
 JSON = MutableMapping[str, Any]

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from azure.core import AsyncPipelineClient
 
-from ....._vendor.serialization import Deserializer, Serializer
+from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import RoutesClientConfiguration
 from ...explode.aio.operations._operations import QueryParametersQueryExpansionExplodeOperations
 from ...standard.aio.operations._operations import QueryParametersQueryExpansionStandardOperations

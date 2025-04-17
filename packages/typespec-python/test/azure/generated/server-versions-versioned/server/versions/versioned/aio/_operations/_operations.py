@@ -28,7 +28,7 @@ from ..._operations._operations import (
     build_versioned_with_query_old_api_version_request,
     build_versioned_without_api_version_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import VersionedClientConfiguration
 
 T = TypeVar("T")

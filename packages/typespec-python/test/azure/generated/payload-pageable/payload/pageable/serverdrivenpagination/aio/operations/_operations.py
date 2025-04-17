@@ -23,8 +23,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from .... import models as _models3
-from ...._vendor.model_base import _deserialize
-from ...._vendor.serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
 from ...continuationtoken.aio.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 from ...operations._operations import build_server_driven_pagination_link_request

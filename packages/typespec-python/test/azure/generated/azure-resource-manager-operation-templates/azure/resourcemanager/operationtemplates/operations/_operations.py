@@ -34,8 +34,8 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._configuration import OperationTemplatesClientConfiguration
-from .._vendor.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
-from .._vendor.serialization import Deserializer, Serializer
+from .._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

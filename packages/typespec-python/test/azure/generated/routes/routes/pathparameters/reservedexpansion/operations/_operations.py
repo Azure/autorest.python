@@ -22,7 +22,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from ...._configuration import RoutesClientConfiguration
-from ...._vendor.serialization import Deserializer, Serializer
+from ...._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

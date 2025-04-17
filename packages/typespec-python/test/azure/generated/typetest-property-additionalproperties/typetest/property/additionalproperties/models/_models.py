@@ -11,7 +11,7 @@
 import datetime
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .._vendor.model_base import Model as _Model, rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -453,7 +453,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disabl
     :vartype kind: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
@@ -712,7 +712,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=nam
     :vartype kind: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])

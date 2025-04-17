@@ -38,8 +38,8 @@ from ..._operations._operations import (
     build_enum_discriminator_put_extensible_model_request,
     build_enum_discriminator_put_fixed_model_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import EnumDiscriminatorClientConfiguration
 
 JSON = MutableMapping[str, Any]

@@ -10,7 +10,7 @@
 
 from typing import Any, Dict, Literal, Mapping, overload
 
-from .._vendor.model_base import Model as _Model, rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 from ._enums import DogKind, SnakeKind
 
 
@@ -26,7 +26,7 @@ class Snake(_Model):
     :vartype length: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"cobra\""""
     length: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -93,7 +93,7 @@ class Dog(_Model):
     :vartype weight: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"golden\""""
     weight: int = rest_field(visibility=["read", "create", "update", "delete", "query"])

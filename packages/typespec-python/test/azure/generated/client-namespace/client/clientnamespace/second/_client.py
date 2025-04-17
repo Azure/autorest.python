@@ -14,7 +14,7 @@ from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from .._vendor.serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientNamespaceSecondClientConfiguration
 from ._operations import ClientNamespaceSecondClientOperationsMixin
 

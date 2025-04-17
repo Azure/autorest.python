@@ -31,9 +31,9 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import TraitsClientConfiguration
-from .._vendor.model_base import SdkJSONEncoder, _deserialize
-from .._vendor.serialization import Serializer
-from .._vendor.utils import ClientMixinABC, prep_if_match, prep_if_none_match
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC, prep_if_match, prep_if_none_match
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

@@ -22,8 +22,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .._configuration import ServiceClientConfiguration
-from .._vendor.serialization import Deserializer, Serializer
-from .._vendor.utils import ClientMixinABC
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

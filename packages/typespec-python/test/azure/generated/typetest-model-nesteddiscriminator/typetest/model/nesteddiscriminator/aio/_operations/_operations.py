@@ -36,8 +36,8 @@ from ..._operations._operations import (
     build_nested_discriminator_put_model_request,
     build_nested_discriminator_put_recursive_model_request,
 )
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import NestedDiscriminatorClientConfiguration
 
 JSON = MutableMapping[str, Any]

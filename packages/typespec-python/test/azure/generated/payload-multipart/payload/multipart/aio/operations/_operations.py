@@ -14,10 +14,10 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ... import _vendor.model_base, models as _models
-from ..._vendor.model_base import Model as _Model
-from ..._vendor.serialization import Deserializer, Serializer
-from ..._vendor.utils import prepare_multipart_form_data
+from ... import _utils.model_base, models as _models
+from ..._utils.model_base import Model as _Model
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import prepare_multipart_form_data
 from ...operations._operations import build_form_data_anonymous_model_request, build_form_data_basic_request, build_form_data_binary_array_parts_request, build_form_data_check_file_name_and_content_type_request, build_form_data_file_array_and_basic_request, build_form_data_http_parts_content_type_image_jpeg_content_type_request, build_form_data_http_parts_content_type_optional_content_type_request, build_form_data_http_parts_content_type_required_content_type_request, build_form_data_http_parts_json_array_and_file_array_request, build_form_data_http_parts_non_string_float_request, build_form_data_json_part_request, build_form_data_multi_binary_parts_request
 from .._configuration import MultiPartClientConfiguration
 JSON = MutableMapping[str, Any]
@@ -106,7 +106,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -201,7 +201,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'pictures']
@@ -296,7 +296,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -391,7 +391,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['pictures']
@@ -486,7 +486,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'picture']
@@ -581,7 +581,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -676,7 +676,7 @@ class FormDataOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -796,7 +796,7 @@ class FormDataHttpPartsOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage', 'pictures']
@@ -911,7 +911,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1007,7 +1007,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1103,7 +1103,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = ['profileImage']
@@ -1217,7 +1217,7 @@ class FormDataHttpPartsNonStringOperations:
 
         _body = (
             body.as_dict()
-            if isinstance(body, _model_base.Model) else
+            if isinstance(body, _Model) else
             body
         )
         _file_fields: List[str] = []

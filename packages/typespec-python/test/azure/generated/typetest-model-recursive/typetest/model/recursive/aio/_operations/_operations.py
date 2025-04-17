@@ -29,8 +29,8 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._operations._operations import build_recursive_get_request, build_recursive_put_request
-from ..._vendor.model_base import SdkJSONEncoder, _deserialize
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
 from .._configuration import RecursiveClientConfiguration
 
 JSON = MutableMapping[str, Any]

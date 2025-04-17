@@ -26,9 +26,9 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models1
 from .._configuration import BodyOptionalityClientConfiguration
-from .._vendor.model_base import SdkJSONEncoder
-from .._vendor.serialization import Serializer
-from .._vendor.utils import ClientMixinABC
+from .._utils.model_base import SdkJSONEncoder
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 _Unset: Any = object()

@@ -27,8 +27,8 @@ from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
 from ..._operations._operations import build_duration_duration_constant_request
-from ..._vendor.model_base import SdkJSONEncoder
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.utils import ClientMixinABC
 from .._configuration import DurationClientConfiguration
 
 JSON = MutableMapping[str, Any]

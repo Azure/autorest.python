@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from .._vendor.model_base import Model as _Model
+from .._utils.model_base import Model as _Model
 
 
 class EmptyInput(_Model):
