@@ -54,7 +54,7 @@ class PropertyOperations:
         """send.
 
         :param body: Required.
-        :type body: ~serialization.encodedname.json.models.JsonEncodedNameModel
+        :type body: ~serialization.encodedname.json.property.models.JsonEncodedNameModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -95,7 +95,8 @@ class PropertyOperations:
         """send.
 
         :param body: Is one of the following types: JsonEncodedNameModel, JSON, IO[bytes] Required.
-        :type body: ~serialization.encodedname.json.models.JsonEncodedNameModel or JSON or IO[bytes]
+        :type body: ~serialization.encodedname.json.property.models.JsonEncodedNameModel or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -148,7 +149,7 @@ class PropertyOperations:
         """get.
 
         :return: JsonEncodedNameModel. The JsonEncodedNameModel is compatible with MutableMapping
-        :rtype: ~serialization.encodedname.json.models.JsonEncodedNameModel
+        :rtype: ~serialization.encodedname.json.property.models.JsonEncodedNameModel
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

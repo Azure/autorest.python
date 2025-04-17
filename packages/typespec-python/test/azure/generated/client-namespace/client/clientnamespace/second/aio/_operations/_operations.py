@@ -39,7 +39,7 @@ class ClientNamespaceSecondClientOperationsMixin(ClientNamespaceSecondClientMixi
         """get_second.
 
         :return: SecondClientResult. The SecondClientResult is compatible with MutableMapping
-        :rtype: ~client.clientnamespace.models.SecondClientResult
+        :rtype: ~client.clientnamespace.second.models.SecondClientResult
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

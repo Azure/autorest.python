@@ -515,7 +515,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_and.
 
         :param body: Required.
-        :type body: ~specialwords.models.AndModel
+        :type body: ~specialwords.models.models.AndModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -558,7 +558,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_and.
 
         :param body: Is one of the following types: AndModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.AndModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.AndModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -612,7 +612,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_as.
 
         :param body: Required.
-        :type body: ~specialwords.models.AsModel
+        :type body: ~specialwords.models.models.AsModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -655,7 +655,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_as.
 
         :param body: Is one of the following types: AsModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.AsModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.AsModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -709,7 +709,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_assert.
 
         :param body: Required.
-        :type body: ~specialwords.models.AssertModel
+        :type body: ~specialwords.models.models.AssertModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -752,7 +752,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_assert.
 
         :param body: Is one of the following types: AssertModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.AssertModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.AssertModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -806,7 +806,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_async.
 
         :param body: Required.
-        :type body: ~specialwords.models.AsyncModel
+        :type body: ~specialwords.models.models.AsyncModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -849,7 +849,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_async.
 
         :param body: Is one of the following types: AsyncModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.AsyncModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.AsyncModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -903,7 +903,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_await.
 
         :param body: Required.
-        :type body: ~specialwords.models.AwaitModel
+        :type body: ~specialwords.models.models.AwaitModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -946,7 +946,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_await.
 
         :param body: Is one of the following types: AwaitModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.AwaitModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.AwaitModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1000,7 +1000,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_break.
 
         :param body: Required.
-        :type body: ~specialwords.models.BreakModel
+        :type body: ~specialwords.models.models.BreakModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1043,7 +1043,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_break.
 
         :param body: Is one of the following types: BreakModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.BreakModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.BreakModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1097,7 +1097,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_class.
 
         :param body: Required.
-        :type body: ~specialwords.models.ClassModel
+        :type body: ~specialwords.models.models.ClassModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1140,7 +1140,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_class.
 
         :param body: Is one of the following types: ClassModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ClassModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ClassModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1196,7 +1196,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_constructor.
 
         :param body: Required.
-        :type body: ~specialwords.models.Constructor
+        :type body: ~specialwords.models.models.Constructor
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1239,7 +1239,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_constructor.
 
         :param body: Is one of the following types: Constructor, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.Constructor or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.Constructor or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1295,7 +1295,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_continue.
 
         :param body: Required.
-        :type body: ~specialwords.models.ContinueModel
+        :type body: ~specialwords.models.models.ContinueModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1338,7 +1338,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_continue.
 
         :param body: Is one of the following types: ContinueModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ContinueModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ContinueModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1392,7 +1392,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_def.
 
         :param body: Required.
-        :type body: ~specialwords.models.DefModel
+        :type body: ~specialwords.models.models.DefModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1435,7 +1435,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_def.
 
         :param body: Is one of the following types: DefModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.DefModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.DefModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1489,7 +1489,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_del.
 
         :param body: Required.
-        :type body: ~specialwords.models.DelModel
+        :type body: ~specialwords.models.models.DelModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1532,7 +1532,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_del.
 
         :param body: Is one of the following types: DelModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.DelModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.DelModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1586,7 +1586,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_elif.
 
         :param body: Required.
-        :type body: ~specialwords.models.ElifModel
+        :type body: ~specialwords.models.models.ElifModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1629,7 +1629,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_elif.
 
         :param body: Is one of the following types: ElifModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ElifModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ElifModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1683,7 +1683,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_else.
 
         :param body: Required.
-        :type body: ~specialwords.models.ElseModel
+        :type body: ~specialwords.models.models.ElseModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1726,7 +1726,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_else.
 
         :param body: Is one of the following types: ElseModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ElseModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ElseModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1780,7 +1780,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_except.
 
         :param body: Required.
-        :type body: ~specialwords.models.ExceptModel
+        :type body: ~specialwords.models.models.ExceptModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1823,7 +1823,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_except.
 
         :param body: Is one of the following types: ExceptModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ExceptModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ExceptModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1877,7 +1877,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_exec.
 
         :param body: Required.
-        :type body: ~specialwords.models.ExecModel
+        :type body: ~specialwords.models.models.ExecModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1920,7 +1920,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_exec.
 
         :param body: Is one of the following types: ExecModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ExecModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ExecModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1976,7 +1976,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_finally.
 
         :param body: Required.
-        :type body: ~specialwords.models.FinallyModel
+        :type body: ~specialwords.models.models.FinallyModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2019,7 +2019,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_finally.
 
         :param body: Is one of the following types: FinallyModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.FinallyModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.FinallyModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2073,7 +2073,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_for.
 
         :param body: Required.
-        :type body: ~specialwords.models.ForModel
+        :type body: ~specialwords.models.models.ForModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2116,7 +2116,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_for.
 
         :param body: Is one of the following types: ForModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ForModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ForModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2170,7 +2170,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_from.
 
         :param body: Required.
-        :type body: ~specialwords.models.FromModel
+        :type body: ~specialwords.models.models.FromModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2213,7 +2213,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_from.
 
         :param body: Is one of the following types: FromModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.FromModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.FromModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2267,7 +2267,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_global.
 
         :param body: Required.
-        :type body: ~specialwords.models.GlobalModel
+        :type body: ~specialwords.models.models.GlobalModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2310,7 +2310,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_global.
 
         :param body: Is one of the following types: GlobalModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.GlobalModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.GlobalModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2364,7 +2364,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_if.
 
         :param body: Required.
-        :type body: ~specialwords.models.IfModel
+        :type body: ~specialwords.models.models.IfModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2407,7 +2407,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_if.
 
         :param body: Is one of the following types: IfModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.IfModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.IfModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2461,7 +2461,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_import.
 
         :param body: Required.
-        :type body: ~specialwords.models.ImportModel
+        :type body: ~specialwords.models.models.ImportModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2504,7 +2504,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_import.
 
         :param body: Is one of the following types: ImportModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ImportModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ImportModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2558,7 +2558,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_in.
 
         :param body: Required.
-        :type body: ~specialwords.models.InModel
+        :type body: ~specialwords.models.models.InModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2601,7 +2601,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_in.
 
         :param body: Is one of the following types: InModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.InModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.InModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2655,7 +2655,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_is.
 
         :param body: Required.
-        :type body: ~specialwords.models.IsModel
+        :type body: ~specialwords.models.models.IsModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2698,7 +2698,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_is.
 
         :param body: Is one of the following types: IsModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.IsModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.IsModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2752,7 +2752,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_lambda.
 
         :param body: Required.
-        :type body: ~specialwords.models.LambdaModel
+        :type body: ~specialwords.models.models.LambdaModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2795,7 +2795,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_lambda.
 
         :param body: Is one of the following types: LambdaModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.LambdaModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.LambdaModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2849,7 +2849,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_not.
 
         :param body: Required.
-        :type body: ~specialwords.models.NotModel
+        :type body: ~specialwords.models.models.NotModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2892,7 +2892,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_not.
 
         :param body: Is one of the following types: NotModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.NotModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.NotModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -2946,7 +2946,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_or.
 
         :param body: Required.
-        :type body: ~specialwords.models.OrModel
+        :type body: ~specialwords.models.models.OrModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2989,7 +2989,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_or.
 
         :param body: Is one of the following types: OrModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.OrModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.OrModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3043,7 +3043,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_pass.
 
         :param body: Required.
-        :type body: ~specialwords.models.PassModel
+        :type body: ~specialwords.models.models.PassModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3086,7 +3086,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_pass.
 
         :param body: Is one of the following types: PassModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.PassModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.PassModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3140,7 +3140,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_raise.
 
         :param body: Required.
-        :type body: ~specialwords.models.RaiseModel
+        :type body: ~specialwords.models.models.RaiseModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3183,7 +3183,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_raise.
 
         :param body: Is one of the following types: RaiseModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.RaiseModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.RaiseModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3237,7 +3237,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_return.
 
         :param body: Required.
-        :type body: ~specialwords.models.ReturnModel
+        :type body: ~specialwords.models.models.ReturnModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3280,7 +3280,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_return.
 
         :param body: Is one of the following types: ReturnModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.ReturnModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.ReturnModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3334,7 +3334,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_try.
 
         :param body: Required.
-        :type body: ~specialwords.models.TryModel
+        :type body: ~specialwords.models.models.TryModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3377,7 +3377,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_try.
 
         :param body: Is one of the following types: TryModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.TryModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.TryModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3431,7 +3431,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_while.
 
         :param body: Required.
-        :type body: ~specialwords.models.WhileModel
+        :type body: ~specialwords.models.models.WhileModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3474,7 +3474,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_while.
 
         :param body: Is one of the following types: WhileModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.WhileModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.WhileModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3528,7 +3528,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_with.
 
         :param body: Required.
-        :type body: ~specialwords.models.WithModel
+        :type body: ~specialwords.models.models.WithModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3571,7 +3571,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_with.
 
         :param body: Is one of the following types: WithModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.WithModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.WithModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -3625,7 +3625,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_yield.
 
         :param body: Required.
-        :type body: ~specialwords.models.YieldModel
+        :type body: ~specialwords.models.models.YieldModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -3668,7 +3668,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         """with_yield.
 
         :param body: Is one of the following types: YieldModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.YieldModel or JSON or IO[bytes]
+        :type body: ~specialwords.models.models.YieldModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
