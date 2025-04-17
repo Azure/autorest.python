@@ -60,7 +60,7 @@ class FormDataHttpPartsNonStringOperations:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
-        :type body: ~payload.multipart.models.FloatRequest
+        :type body: ~payload.multipart.formdata.httpparts.nonstring.models.FloatRequest
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -83,7 +83,7 @@ class FormDataHttpPartsNonStringOperations:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Is either a FloatRequest type or a JSON type. Required.
-        :type body: ~payload.multipart.models.FloatRequest or JSON
+        :type body: ~payload.multipart.formdata.httpparts.nonstring.models.FloatRequest or JSON
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

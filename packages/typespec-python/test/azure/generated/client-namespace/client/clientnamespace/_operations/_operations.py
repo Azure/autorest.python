@@ -56,7 +56,7 @@ class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinA
         """get_first.
 
         :return: FirstClientResult. The FirstClientResult is compatible with MutableMapping
-        :rtype: ~client.clientnamespace.models.FirstClientResult
+        :rtype: ~client.clientnamespace.first.models.FirstClientResult
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

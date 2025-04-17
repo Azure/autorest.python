@@ -563,7 +563,7 @@ class FormDataOperations:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
-        :type body: ~payload.multipart.models.AnonymousModelRequest
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -586,7 +586,7 @@ class FormDataOperations:
         """Test content-type: multipart/form-data.
 
         :param body: Is either a AnonymousModelRequest type or a JSON type. Required.
-        :type body: ~payload.multipart.models.AnonymousModelRequest or JSON
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest or JSON
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

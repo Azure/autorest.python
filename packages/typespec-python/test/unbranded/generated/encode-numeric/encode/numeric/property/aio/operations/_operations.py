@@ -58,12 +58,12 @@ class PropertyOperations:
         """safeint_as_string.
 
         :param value: Required.
-        :type value: ~encode.numeric.models.SafeintAsStringProperty
+        :type value: ~encode.numeric.property.models.SafeintAsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: SafeintAsStringProperty. The SafeintAsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.SafeintAsStringProperty
+        :rtype: ~encode.numeric.property.models.SafeintAsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -79,7 +79,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: SafeintAsStringProperty. The SafeintAsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.SafeintAsStringProperty
+        :rtype: ~encode.numeric.property.models.SafeintAsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -95,7 +95,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: SafeintAsStringProperty. The SafeintAsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.SafeintAsStringProperty
+        :rtype: ~encode.numeric.property.models.SafeintAsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -105,9 +105,9 @@ class PropertyOperations:
         """safeint_as_string.
 
         :param value: Is one of the following types: SafeintAsStringProperty, JSON, IO[bytes] Required.
-        :type value: ~encode.numeric.models.SafeintAsStringProperty or JSON or IO[bytes]
+        :type value: ~encode.numeric.property.models.SafeintAsStringProperty or JSON or IO[bytes]
         :return: SafeintAsStringProperty. The SafeintAsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.SafeintAsStringProperty
+        :rtype: ~encode.numeric.property.models.SafeintAsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -173,12 +173,12 @@ class PropertyOperations:
         """uint32_as_string_optional.
 
         :param value: Required.
-        :type value: ~encode.numeric.models.Uint32AsStringProperty
+        :type value: ~encode.numeric.property.models.Uint32AsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint32AsStringProperty. The Uint32AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint32AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint32AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -194,7 +194,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint32AsStringProperty. The Uint32AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint32AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint32AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -210,7 +210,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint32AsStringProperty. The Uint32AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint32AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint32AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -220,9 +220,9 @@ class PropertyOperations:
         """uint32_as_string_optional.
 
         :param value: Is one of the following types: Uint32AsStringProperty, JSON, IO[bytes] Required.
-        :type value: ~encode.numeric.models.Uint32AsStringProperty or JSON or IO[bytes]
+        :type value: ~encode.numeric.property.models.Uint32AsStringProperty or JSON or IO[bytes]
         :return: Uint32AsStringProperty. The Uint32AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint32AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint32AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -288,12 +288,12 @@ class PropertyOperations:
         """uint8_as_string.
 
         :param value: Required.
-        :type value: ~encode.numeric.models.Uint8AsStringProperty
+        :type value: ~encode.numeric.property.models.Uint8AsStringProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint8AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -309,7 +309,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint8AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -325,7 +325,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint8AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -335,9 +335,9 @@ class PropertyOperations:
         """uint8_as_string.
 
         :param value: Is one of the following types: Uint8AsStringProperty, JSON, IO[bytes] Required.
-        :type value: ~encode.numeric.models.Uint8AsStringProperty or JSON or IO[bytes]
+        :type value: ~encode.numeric.property.models.Uint8AsStringProperty or JSON or IO[bytes]
         :return: Uint8AsStringProperty. The Uint8AsStringProperty is compatible with MutableMapping
-        :rtype: ~encode.numeric.models.Uint8AsStringProperty
+        :rtype: ~encode.numeric.property.models.Uint8AsStringProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
