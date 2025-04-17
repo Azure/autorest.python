@@ -106,7 +106,7 @@ class DifferentBodyOperations:
         """get_avatar_as_json.
 
         :return: PngImageAsJson. The PngImageAsJson is compatible with MutableMapping
-        :rtype: ~payload.contentnegotiation.models.PngImageAsJson
+        :rtype: ~payload.contentnegotiation.differentbody.models.PngImageAsJson
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

@@ -66,7 +66,7 @@ class ExplicitBodyOperations:
         """simple.
 
         :param body: Required.
-        :type body: ~parameters.basic.models.User
+        :type body: ~parameters.basic.explicitbody.models.User
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -109,7 +109,7 @@ class ExplicitBodyOperations:
         """simple.
 
         :param body: Is one of the following types: User, JSON, IO[bytes] Required.
-        :type body: ~parameters.basic.models.User or JSON or IO[bytes]
+        :type body: ~parameters.basic.explicitbody.models.User or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

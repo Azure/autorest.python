@@ -52,7 +52,7 @@ class ModelPropertiesOperations:
         """same_as_model.
 
         :param body: Required.
-        :type body: ~specialwords.models.SameAsModel
+        :type body: ~specialwords.modelproperties.models.SameAsModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -93,7 +93,7 @@ class ModelPropertiesOperations:
         """same_as_model.
 
         :param body: Is one of the following types: SameAsModel, JSON, IO[bytes] Required.
-        :type body: ~specialwords.models.SameAsModel or JSON or IO[bytes]
+        :type body: ~specialwords.modelproperties.models.SameAsModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
