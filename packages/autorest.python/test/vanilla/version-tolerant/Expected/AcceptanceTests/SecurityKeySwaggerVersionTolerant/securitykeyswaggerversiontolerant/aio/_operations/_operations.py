@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_autorest_security_key_head_request
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import AutorestSecurityKeyConfiguration
 
 T = TypeVar("T")

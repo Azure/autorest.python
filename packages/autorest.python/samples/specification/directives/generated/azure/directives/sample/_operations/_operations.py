@@ -29,8 +29,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._configuration import PollingPagingExampleConfiguration
-from .._vendor.serialization import Serializer
-from .._vendor.utils import ClientMixinABC
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

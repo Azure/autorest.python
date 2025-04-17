@@ -37,7 +37,7 @@ from ..._operations._operations import (
     build_dpg_lro_request,
     build_dpg_post_model_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import DPGClientConfiguration
 
 T = TypeVar("T")

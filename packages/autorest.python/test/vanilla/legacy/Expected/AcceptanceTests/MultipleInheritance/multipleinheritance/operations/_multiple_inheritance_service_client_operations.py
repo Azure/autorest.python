@@ -25,8 +25,8 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import MultipleInheritanceServiceClientConfiguration
-from .._vendor.serialization import Serializer
-from .._vendor.utils import ClientMixinABC
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

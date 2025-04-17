@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
-from ..._vendor.serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_api_version_default_get_method_global_not_provided_valid_request,
     build_api_version_default_get_method_global_valid_request,

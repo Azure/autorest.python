@@ -23,8 +23,8 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._configuration import ReservedWordsClientConfiguration
-from .._vendor.serialization import Deserializer, Serializer
-from .._vendor.utils import ClientMixinABC, raise_if_not_implemented
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC, raise_if_not_implemented
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

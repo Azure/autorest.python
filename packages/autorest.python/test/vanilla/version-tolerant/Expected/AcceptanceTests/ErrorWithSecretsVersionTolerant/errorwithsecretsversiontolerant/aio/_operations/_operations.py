@@ -26,7 +26,7 @@ from ..._operations._operations import (
     build_error_with_secrets_create_secret_request,
     build_error_with_secrets_get_error_with_secrets_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ErrorWithSecretsConfiguration
 
 JSON = MutableMapping[str, Any]

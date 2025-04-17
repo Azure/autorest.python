@@ -31,7 +31,7 @@ from ..._operations._operations import (
     build_anything_put_object_request,
     build_anything_put_string_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import AnythingClientConfiguration
 
 T = TypeVar("T")

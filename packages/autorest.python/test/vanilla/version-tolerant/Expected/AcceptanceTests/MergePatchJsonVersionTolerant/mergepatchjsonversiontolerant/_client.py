@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import MergePatchJsonClientConfiguration
 from ._operations import MergePatchJsonClientOperationsMixin
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

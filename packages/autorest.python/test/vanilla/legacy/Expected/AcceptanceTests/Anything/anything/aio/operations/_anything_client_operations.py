@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._anything_client_operations import (
     build_get_array_request,
     build_get_object_request,

@@ -32,7 +32,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._multiapi_service_client_operations import (
     build_test_different_calls_request,
     build_test_lro_and_paging_request,

@@ -22,7 +22,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._incorrect_returned_error_model_operations import build_get_incorrect_error_from_server_request
 from .._configuration import IncorrectReturnedErrorModelConfiguration
 

@@ -26,7 +26,7 @@ from ..._operations._operations import (
     build_auto_rest_report_service_get_optional_report_request,
     build_auto_rest_report_service_get_report_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import AutoRestReportServiceConfiguration
 
 T = TypeVar("T")

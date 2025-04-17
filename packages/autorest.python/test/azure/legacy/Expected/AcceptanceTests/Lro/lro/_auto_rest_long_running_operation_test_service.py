@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from . import models as _models
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
 
 if TYPE_CHECKING:

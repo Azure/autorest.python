@@ -32,7 +32,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._configuration import MultiapiServiceClientConfiguration
-from .._vendor.utils import ClientMixinABC
+from .._utils.utils import ClientMixinABC
 from ..serialization import Serializer
 
 T = TypeVar("T")

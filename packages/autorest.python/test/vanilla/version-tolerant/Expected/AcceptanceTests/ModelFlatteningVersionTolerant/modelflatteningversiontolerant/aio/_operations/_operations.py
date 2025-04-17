@@ -37,7 +37,7 @@ from ..._operations._operations import (
     build_auto_rest_resource_flattening_test_service_put_simple_product_with_grouping_request,
     build_auto_rest_resource_flattening_test_service_put_wrapped_array_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 
 JSON = MutableMapping[str, Any]

@@ -25,7 +25,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._multiapi_service_client_operations import build_test_different_calls_request, build_test_one_request
 from .._configuration import MultiapiServiceClientConfiguration
 

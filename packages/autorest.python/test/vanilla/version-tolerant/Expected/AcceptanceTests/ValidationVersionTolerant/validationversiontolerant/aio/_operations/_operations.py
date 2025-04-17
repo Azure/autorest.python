@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_auto_rest_validation_test_validation_of_body_request,
     build_auto_rest_validation_test_validation_of_method_parameters_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import AutoRestValidationTestConfiguration
 
 JSON = MutableMapping[str, Any]

@@ -36,7 +36,7 @@ from ..._operations._operations import (
     build_multiple_inheritance_service_put_kitten_request,
     build_multiple_inheritance_service_put_pet_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import MultipleInheritanceServiceClientConfiguration
 
 JSON = MutableMapping[str, Any]

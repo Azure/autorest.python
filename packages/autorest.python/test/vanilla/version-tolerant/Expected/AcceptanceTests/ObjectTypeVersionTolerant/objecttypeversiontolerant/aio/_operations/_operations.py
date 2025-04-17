@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._operations._operations import build_object_type_get_request, build_object_type_put_request
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import ObjectTypeClientConfiguration
 
 JSON = MutableMapping[str, Any]

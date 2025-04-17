@@ -30,7 +30,7 @@ from ..._operations._operations import (
     build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endpoints_request,
     build_lro_with_paramaterized_endpoints_poll_with_parameterized_endpoints_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import LROWithParamaterizedEndpointsConfiguration
 
 T = TypeVar("T")

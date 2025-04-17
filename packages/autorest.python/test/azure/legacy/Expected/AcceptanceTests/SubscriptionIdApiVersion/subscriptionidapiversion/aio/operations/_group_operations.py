@@ -24,7 +24,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._vendor.serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._group_operations import build_get_sample_resource_group_request
 from .._configuration import MicrosoftAzureTestUrlConfiguration
 

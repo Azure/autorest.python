@@ -16,7 +16,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutorestSecurityKeyConfiguration
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import AutorestSecurityKeyOperationsMixin
 
 

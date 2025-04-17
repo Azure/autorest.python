@@ -35,7 +35,7 @@ from ..._operations._operations import (
     build_polling_paging_example_basic_paging_request,
     build_polling_paging_example_basic_polling_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import PollingPagingExampleConfiguration
 
 JSON = MutableMapping[str, Any]

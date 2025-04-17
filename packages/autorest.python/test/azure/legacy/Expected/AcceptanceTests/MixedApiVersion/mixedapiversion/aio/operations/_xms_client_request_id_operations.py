@@ -22,7 +22,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor.serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._xms_client_request_id_operations import build_get_request, build_param_get_request
 from .._configuration import MixedApiVersionClientConfiguration
 

@@ -32,9 +32,9 @@ from ..._operations._operations import (
     build_media_types_content_type_with_encoding_request,
     build_media_types_put_text_and_json_body_request,
 )
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from .._configuration import MediaTypesClientConfiguration
-from .._vendor.utils import raise_if_not_implemented
+from .._utils.utils import raise_if_not_implemented
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

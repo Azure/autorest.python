@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._auto_rest_report_service_operations import (
     build_get_optional_report_request,
     build_get_report_request,

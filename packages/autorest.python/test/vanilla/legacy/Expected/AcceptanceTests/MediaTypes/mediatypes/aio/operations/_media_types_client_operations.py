@@ -25,7 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._vendor.utils import ClientMixinABC
+from ..._utils.utils import ClientMixinABC
 from ...operations._media_types_client_operations import (
     build_analyze_body_no_accept_header_request,
     build_analyze_body_request,

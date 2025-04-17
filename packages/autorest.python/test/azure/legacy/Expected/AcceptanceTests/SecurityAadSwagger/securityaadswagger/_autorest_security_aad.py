@@ -18,7 +18,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutorestSecurityAadConfiguration
-from ._vendor.serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import AutorestSecurityAadOperationsMixin
 
 if TYPE_CHECKING:
