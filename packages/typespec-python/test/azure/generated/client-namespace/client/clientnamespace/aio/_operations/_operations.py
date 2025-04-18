@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,16 +24,19 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._model_base import _deserialize
 from ..._operations._operations import build_client_namespace_first_get_first_request
+from ..._utils.model_base import _deserialize
+from ..._utils.utils import ClientMixinABC
 from ...first import models as _first_models3
-from .._vendor import ClientNamespaceFirstClientMixinABC
+from .._configuration import ClientNamespaceFirstClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientNamespaceFirstClientOperationsMixin(ClientNamespaceFirstClientMixinABC):  # pylint: disable=name-too-long
+class ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[AsyncPipelineClient, ClientNamespaceFirstClientConfiguration]
+):
 
     @distributed_trace_async
     async def get_first(self, **kwargs: Any) -> _first_models3.FirstClientResult:

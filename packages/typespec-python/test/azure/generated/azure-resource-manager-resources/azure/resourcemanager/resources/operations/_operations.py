@@ -34,8 +34,8 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._configuration import ResourcesClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
-from .._serialization import Deserializer, Serializer
+from .._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import RecursiveClientMixinABC
+from .._configuration import RecursiveClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -59,7 +61,7 @@ def build_recursive_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
+class RecursiveClientOperationsMixin(ClientMixinABC[PipelineClient, RecursiveClientConfiguration]):
 
     @overload
     def put(self, input: _models.Extension, *, content_type: str = "application/json", **kwargs: Any) -> None:

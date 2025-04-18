@@ -1,7 +1,7 @@
 # coding=utf-8
 from corehttp.runtime import AsyncPipelineClient
 
-from ....._serialization import Deserializer, Serializer
+from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import RoutesClientConfiguration
 from ...explode.aio.operations._operations import PathParametersPathExpansionExplodeOperations
 from ...standard.aio.operations._operations import PathParametersPathExpansionStandardOperations

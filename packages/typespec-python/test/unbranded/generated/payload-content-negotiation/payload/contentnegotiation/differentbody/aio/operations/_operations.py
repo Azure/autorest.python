@@ -18,8 +18,8 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models2
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ContentNegotiationClientConfiguration
 from ...operations._operations import (
     build_different_body_get_avatar_as_json_request,

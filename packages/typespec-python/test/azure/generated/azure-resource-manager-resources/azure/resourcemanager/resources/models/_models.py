@@ -11,14 +11,13 @@
 import datetime
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ErrorAdditionalInfo(_model_base.Model):
+class ErrorAdditionalInfo(_Model):
     """The resource management error additional info.
 
     :ivar type: The additional info type.
@@ -33,7 +32,7 @@ class ErrorAdditionalInfo(_model_base.Model):
     """The additional info."""
 
 
-class ErrorDetail(_model_base.Model):
+class ErrorDetail(_Model):
     """The error detail.
 
     :ivar code: The error code.
@@ -62,7 +61,7 @@ class ErrorDetail(_model_base.Model):
     """The error additional info."""
 
 
-class ErrorResponse(_model_base.Model):
+class ErrorResponse(_Model):
     """Common error response for all Azure Resource Manager APIs to return error details for failed
     operations.
 
@@ -91,7 +90,7 @@ class ErrorResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Resource(_model_base.Model):
+class Resource(_Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
@@ -178,7 +177,7 @@ class ExtensionsResource(ExtensionResource):
         super().__init__(*args, **kwargs)
 
 
-class ExtensionsResourceProperties(_model_base.Model):
+class ExtensionsResourceProperties(_Model):
     """ExtensionsResource properties.
 
     :ivar description: The description of the resource.
@@ -274,7 +273,7 @@ class LocationResource(ProxyResource):
         super().__init__(*args, **kwargs)
 
 
-class LocationResourceProperties(_model_base.Model):
+class LocationResourceProperties(_Model):
     """Location resource properties.
 
     :ivar description: The description of the resource.
@@ -351,7 +350,7 @@ class NestedProxyResource(ProxyResource):
         super().__init__(*args, **kwargs)
 
 
-class NestedProxyResourceProperties(_model_base.Model):
+class NestedProxyResourceProperties(_Model):
     """Nested Proxy Resource Properties.
 
     :ivar provisioning_state: Provisioning State of the nested child Resource. Known values are:
@@ -387,7 +386,7 @@ class NestedProxyResourceProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NotificationDetails(_model_base.Model):
+class NotificationDetails(_Model):
     """The details of a user notification.
 
     :ivar message: The notification message. Required.
@@ -513,7 +512,7 @@ class SingletonTrackedResource(TrackedResource):
         super().__init__(*args, **kwargs)
 
 
-class SingletonTrackedResourceProperties(_model_base.Model):
+class SingletonTrackedResourceProperties(_Model):
     """Singleton Arm Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
@@ -549,7 +548,7 @@ class SingletonTrackedResourceProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SystemData(_model_base.Model):
+class SystemData(_Model):
     """Metadata pertaining to creation and last modification of the resource.
 
     :ivar created_by: The identity that created the resource.
@@ -664,7 +663,7 @@ class TopLevelTrackedResource(TrackedResource):
         super().__init__(*args, **kwargs)
 
 
-class TopLevelTrackedResourceProperties(_model_base.Model):
+class TopLevelTrackedResourceProperties(_Model):
     """Top Level Arm Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",

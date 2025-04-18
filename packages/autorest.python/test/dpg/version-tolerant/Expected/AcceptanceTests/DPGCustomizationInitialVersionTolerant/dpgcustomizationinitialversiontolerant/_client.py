@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DPGClientConfiguration
 from ._operations import DPGClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

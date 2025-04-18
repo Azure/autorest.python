@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from .operations import XmlOperations
 

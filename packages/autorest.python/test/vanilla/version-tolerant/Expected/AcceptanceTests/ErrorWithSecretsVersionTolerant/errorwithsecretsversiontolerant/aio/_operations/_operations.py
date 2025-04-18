@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar, cast
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,14 +26,15 @@ from ..._operations._operations import (
     build_error_with_secrets_create_secret_request,
     build_error_with_secrets_get_error_with_secrets_request,
 )
-from .._vendor import ErrorWithSecretsMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ErrorWithSecretsConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
+class ErrorWithSecretsOperationsMixin(ClientMixinABC[AsyncPipelineClient, ErrorWithSecretsConfiguration]):
 
     @distributed_trace_async
     async def create_secret(self, **kwargs: Any) -> JSON:

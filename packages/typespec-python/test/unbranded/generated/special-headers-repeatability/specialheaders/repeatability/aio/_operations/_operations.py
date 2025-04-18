@@ -11,16 +11,18 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import build_repeatability_immediate_success_request
-from .._vendor import RepeatabilityClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import RepeatabilityClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
+class RepeatabilityClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RepeatabilityClientConfiguration]):
 
     async def immediate_success(self, **kwargs: Any) -> None:
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.

@@ -19,8 +19,8 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_boolean_get_request,
     build_boolean_put_request,

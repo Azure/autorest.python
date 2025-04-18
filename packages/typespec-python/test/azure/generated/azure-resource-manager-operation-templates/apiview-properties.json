@@ -18,11 +18,17 @@
         "azure.resourcemanager.operationtemplates.models.ActionType": "Azure.ResourceManager.CommonTypes.ActionType",
         "azure.resourcemanager.operationtemplates.models.CheckNameAvailabilityReason": "Azure.ResourceManager.CommonTypes.CheckNameAvailabilityReason",
         "azure.resourcemanager.operationtemplates.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.operations.list": "Azure.ResourceManager.Operations.list",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.check_name_availability.check_global": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkGlobal",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.check_name_availability.check_local": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkLocal",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.lro.begin_create_or_replace": "Azure.ResourceManager.OperationTemplates.Lro.createOrReplace",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.lro.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
-        "azure.resourcemanager.operationtemplates.OperationTemplatesClient.lro.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete"
+        "azure.resourcemanager.operationtemplates.operations.Operations.list": "Azure.ResourceManager.Operations.list",
+        "azure.resourcemanager.operationtemplates.aio.operations.Operations.list": "Azure.ResourceManager.Operations.list",
+        "azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations.check_global": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkGlobal",
+        "azure.resourcemanager.operationtemplates.aio.operations.CheckNameAvailabilityOperations.check_global": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkGlobal",
+        "azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations.check_local": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkLocal",
+        "azure.resourcemanager.operationtemplates.aio.operations.CheckNameAvailabilityOperations.check_local": "Azure.ResourceManager.OperationTemplates.CheckNameAvailability.checkLocal",
+        "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_create_or_replace": "Azure.ResourceManager.OperationTemplates.Lro.createOrReplace",
+        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_create_or_replace": "Azure.ResourceManager.OperationTemplates.Lro.createOrReplace",
+        "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
+        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
+        "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete",
+        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete"
     }
 }

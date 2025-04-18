@@ -16,8 +16,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
     build_response_body_base64_request,

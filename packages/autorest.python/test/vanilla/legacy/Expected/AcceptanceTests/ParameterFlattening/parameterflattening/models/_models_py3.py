@@ -8,7 +8,7 @@
 
 from typing import Any, Dict
 
-from .. import _serialization
+from .._utils import serialization as _serialization
 
 
 class AvailabilitySetUpdateParameters(_serialization.Model):

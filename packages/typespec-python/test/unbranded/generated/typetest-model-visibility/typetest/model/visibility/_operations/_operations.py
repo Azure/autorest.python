@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import VisibilityClientMixinABC
+from .._configuration import VisibilityClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -143,7 +145,7 @@ def build_visibility_put_read_only_model_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
+class VisibilityClientOperationsMixin(ClientMixinABC[PipelineClient, VisibilityClientConfiguration]):
 
     @overload
     def get_model(

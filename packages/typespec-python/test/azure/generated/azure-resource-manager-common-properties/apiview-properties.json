@@ -19,10 +19,15 @@
         "azure.resourcemanager.commonproperties.models.UserAssignedIdentity": "Azure.ResourceManager.CommonTypes.UserAssignedIdentity",
         "azure.resourcemanager.commonproperties.models.CreatedByType": "Azure.ResourceManager.CommonTypes.createdByType",
         "azure.resourcemanager.commonproperties.models.ManagedServiceIdentityType": "Azure.ResourceManager.CommonTypes.ManagedServiceIdentityType",
-        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.get": "Azure.ResourceManager.CommonProperties.ManagedIdentity.get",
-        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.create_with_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.createWithSystemAssigned",
-        "azure.resourcemanager.commonproperties.CommonPropertiesClient.managed_identity.update_with_user_assigned_and_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.updateWithUserAssignedAndSystemAssigned",
-        "azure.resourcemanager.commonproperties.CommonPropertiesClient.error.get_for_predefined_error": "Azure.ResourceManager.CommonProperties.Error.getForPredefinedError",
-        "azure.resourcemanager.commonproperties.CommonPropertiesClient.error.create_for_user_defined_error": "Azure.ResourceManager.CommonProperties.Error.createForUserDefinedError"
+        "azure.resourcemanager.commonproperties.operations.ManagedIdentityOperations.get": "Azure.ResourceManager.CommonProperties.ManagedIdentity.get",
+        "azure.resourcemanager.commonproperties.aio.operations.ManagedIdentityOperations.get": "Azure.ResourceManager.CommonProperties.ManagedIdentity.get",
+        "azure.resourcemanager.commonproperties.operations.ManagedIdentityOperations.create_with_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.createWithSystemAssigned",
+        "azure.resourcemanager.commonproperties.aio.operations.ManagedIdentityOperations.create_with_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.createWithSystemAssigned",
+        "azure.resourcemanager.commonproperties.operations.ManagedIdentityOperations.update_with_user_assigned_and_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.updateWithUserAssignedAndSystemAssigned",
+        "azure.resourcemanager.commonproperties.aio.operations.ManagedIdentityOperations.update_with_user_assigned_and_system_assigned": "Azure.ResourceManager.CommonProperties.ManagedIdentity.updateWithUserAssignedAndSystemAssigned",
+        "azure.resourcemanager.commonproperties.operations.ErrorOperations.get_for_predefined_error": "Azure.ResourceManager.CommonProperties.Error.getForPredefinedError",
+        "azure.resourcemanager.commonproperties.aio.operations.ErrorOperations.get_for_predefined_error": "Azure.ResourceManager.CommonProperties.Error.getForPredefinedError",
+        "azure.resourcemanager.commonproperties.operations.ErrorOperations.create_for_user_defined_error": "Azure.ResourceManager.CommonProperties.Error.createForUserDefinedError",
+        "azure.resourcemanager.commonproperties.aio.operations.ErrorOperations.create_for_user_defined_error": "Azure.ResourceManager.CommonProperties.Error.createForUserDefinedError"
     }
 }

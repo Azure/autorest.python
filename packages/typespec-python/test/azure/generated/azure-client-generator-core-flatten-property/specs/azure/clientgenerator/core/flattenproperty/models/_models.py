@@ -9,14 +9,13 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ChildFlattenModel(_model_base.Model):
+class ChildFlattenModel(_Model):
     """This is the child model to be flattened. And it has flattened property as well.
 
     :ivar summary: Required.
@@ -69,7 +68,7 @@ class ChildFlattenModel(_model_base.Model):
             super().__setattr__(key, value)
 
 
-class ChildModel(_model_base.Model):
+class ChildModel(_Model):
     """This is the child model to be flattened.
 
     :ivar description: Required.
@@ -102,7 +101,7 @@ class ChildModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FlattenModel(_model_base.Model):
+class FlattenModel(_Model):
     """This is the model with one level of flattening.
 
     :ivar name: Required.
@@ -155,7 +154,7 @@ class FlattenModel(_model_base.Model):
             super().__setattr__(key, value)
 
 
-class NestedFlattenModel(_model_base.Model):
+class NestedFlattenModel(_Model):
     """This is the model with two levels of flattening.
 
     :ivar name: Required.

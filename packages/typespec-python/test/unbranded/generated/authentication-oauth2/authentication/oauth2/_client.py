@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import OAuth2ClientConfiguration
 from ._operations import OAuth2ClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     from corehttp.credentials import TokenCredential

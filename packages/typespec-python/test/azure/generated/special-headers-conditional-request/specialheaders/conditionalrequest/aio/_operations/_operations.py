@@ -10,7 +10,7 @@ from collections.abc import MutableMapping
 import datetime
 from typing import Any, Callable, Dict, Optional, TypeVar
 
-from azure.core import MatchConditions
+from azure.core import AsyncPipelineClient, MatchConditions
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -30,13 +30,16 @@ from ..._operations._operations import (
     build_conditional_request_post_if_none_match_request,
     build_conditional_request_post_if_unmodified_since_request,
 )
-from .._vendor import ConditionalRequestClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ConditionalRequestClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
+class ConditionalRequestClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient, ConditionalRequestClientConfiguration]
+):
 
     @distributed_trace_async
     async def post_if_match(

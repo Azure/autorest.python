@@ -16,10 +16,11 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models1
-from ... import _model_base, models as _models2
+from ... import models as _models2
 from ..._configuration import MultiPartClientConfiguration
-from ..._serialization import Deserializer, Serializer
-from ..._vendor import prepare_multipart_form_data
+from ..._utils.model_base import Model as _Model
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import prepare_multipart_form_data
 from ..httpparts.operations._operations import FormDataHttpPartsOperations
 
 JSON = MutableMapping[str, Any]
@@ -160,7 +161,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -234,7 +235,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "pictures"]
         _data_fields: List[str] = ["id", "address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -308,7 +309,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -382,7 +383,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["pictures"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -456,7 +457,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "picture"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -530,7 +531,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -604,7 +605,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

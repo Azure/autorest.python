@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Iterator, Literal, Optional, TypeVar, Union, cast
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,8 +27,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import LROWithParamaterizedEndpointsMixinABC
+from .._configuration import LROWithParamaterizedEndpointsConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -75,7 +77,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
-    LROWithParamaterizedEndpointsMixinABC
+    ClientMixinABC[PipelineClient, LROWithParamaterizedEndpointsConfiguration]
 ):
 
     def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long

@@ -19,7 +19,7 @@ from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPol
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
 

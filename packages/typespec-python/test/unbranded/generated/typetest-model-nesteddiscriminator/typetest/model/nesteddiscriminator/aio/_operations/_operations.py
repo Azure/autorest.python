@@ -15,11 +15,11 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_nested_discriminator_get_missing_discriminator_request,
     build_nested_discriminator_get_model_request,
@@ -28,14 +28,18 @@ from ..._operations._operations import (
     build_nested_discriminator_put_model_request,
     build_nested_discriminator_put_recursive_model_request,
 )
-from .._vendor import NestedDiscriminatorClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import NestedDiscriminatorClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC):
+class NestedDiscriminatorClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient, NestedDiscriminatorClientConfiguration]
+):
 
     async def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.

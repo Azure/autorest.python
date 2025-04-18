@@ -9,14 +9,13 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ErrorAdditionalInfo(_model_base.Model):
+class ErrorAdditionalInfo(_Model):
     """The resource management error additional info.
 
     :ivar type: The additional info type.
@@ -31,7 +30,7 @@ class ErrorAdditionalInfo(_model_base.Model):
     """The additional info."""
 
 
-class ErrorDetail(_model_base.Model):
+class ErrorDetail(_Model):
     """The error detail.
 
     :ivar code: The error code.
@@ -60,7 +59,7 @@ class ErrorDetail(_model_base.Model):
     """The error additional info."""
 
 
-class ErrorResponse(_model_base.Model):
+class ErrorResponse(_Model):
     """Common error response for all Azure Resource Manager APIs to return error details for failed
     operations.
 
@@ -89,7 +88,7 @@ class ErrorResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NonResource(_model_base.Model):
+class NonResource(_Model):
     """Though this model has ``id``, ``name``, ``type`` properties, it is not a resource as it doesn't
     extends ``Resource``.
 

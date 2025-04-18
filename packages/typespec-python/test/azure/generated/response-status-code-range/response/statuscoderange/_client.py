@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import StatusCodeRangeClientConfiguration
 from ._operations import StatusCodeRangeClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

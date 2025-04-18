@@ -4,14 +4,13 @@
 
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Fish(_model_base.Model):
+class Fish(_Model):
     """This is base model for polymorphic multiple levels inheritance with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -23,7 +22,7 @@ class Fish(_model_base.Model):
     :vartype age: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Fish. Required. Default value is None."""
     age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -63,7 +62,7 @@ class Shark(Fish, discriminator="shark"):
     :vartype sharktype: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"shark\"."""
     sharktype: str = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])
@@ -99,7 +98,7 @@ class GoblinShark(Shark, discriminator="goblin"):
     :vartype sharktype: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     sharktype: Literal["goblin"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"goblin\"."""
 
@@ -175,7 +174,7 @@ class SawShark(Shark, discriminator="saw"):
     :vartype sharktype: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     sharktype: Literal["saw"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"saw\"."""
 

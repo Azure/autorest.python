@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,13 +28,14 @@ from ..._operations._operations import (
     build_versioned_with_query_old_api_version_request,
     build_versioned_without_api_version_request,
 )
-from .._vendor import VersionedClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import VersionedClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class VersionedClientOperationsMixin(VersionedClientMixinABC):
+class VersionedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, VersionedClientConfiguration]):
 
     @distributed_trace_async
     async def without_api_version(self, **kwargs: Any) -> bool:

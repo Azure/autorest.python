@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class GenerationOptions(_model_base.Model):
+class GenerationOptions(_Model):
     """Options for the generation.
 
     :ivar prompt: Prompt. Required.
@@ -41,7 +40,7 @@ class GenerationOptions(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GenerationResult(_model_base.Model):
+class GenerationResult(_Model):
     """Result of the generation.
 
     :ivar data: The data. Required.

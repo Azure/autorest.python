@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,8 +22,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import AnythingClientMixinABC
+from .._configuration import AnythingClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -115,7 +117,7 @@ def build_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class AnythingClientOperationsMixin(AnythingClientMixinABC):
+class AnythingClientOperationsMixin(ClientMixinABC[PipelineClient, AnythingClientConfiguration]):
 
     @distributed_trace
     def get_object(self, **kwargs: Any) -> Any:

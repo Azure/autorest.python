@@ -4,11 +4,10 @@
 import datetime
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class DefaultDatetimeProperty(_model_base.Model):
+class DefaultDatetimeProperty(_Model):
     """DefaultDatetimeProperty.
 
     :ivar value: Required.
@@ -36,7 +35,7 @@ class DefaultDatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Rfc3339DatetimeProperty(_model_base.Model):
+class Rfc3339DatetimeProperty(_Model):
     """Rfc3339DatetimeProperty.
 
     :ivar value: Required.
@@ -64,7 +63,7 @@ class Rfc3339DatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Rfc7231DatetimeProperty(_model_base.Model):
+class Rfc7231DatetimeProperty(_Model):
     """Rfc7231DatetimeProperty.
 
     :ivar value: Required.
@@ -92,7 +91,7 @@ class Rfc7231DatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UnixTimestampArrayDatetimeProperty(_model_base.Model):
+class UnixTimestampArrayDatetimeProperty(_Model):
     """UnixTimestampArrayDatetimeProperty.
 
     :ivar value: Required.
@@ -122,7 +121,7 @@ class UnixTimestampArrayDatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UnixTimestampDatetimeProperty(_model_base.Model):
+class UnixTimestampDatetimeProperty(_Model):
     """UnixTimestampDatetimeProperty.
 
     :ivar value: Required.

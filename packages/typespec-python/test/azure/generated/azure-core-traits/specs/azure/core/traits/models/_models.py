@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class User(_model_base.Model):
+class User(_Model):
     """Sample Model.
 
     :ivar id: The user's id. Required.
@@ -45,7 +44,7 @@ class User(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserActionParam(_model_base.Model):
+class UserActionParam(_Model):
     """User action param.
 
     :ivar user_action_value: User action value. Required.
@@ -75,7 +74,7 @@ class UserActionParam(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserActionResponse(_model_base.Model):
+class UserActionResponse(_Model):
     """User action response.
 
     :ivar user_action_result: User action result. Required.

@@ -21,7 +21,7 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 
 from ._configuration import MultiapiServiceClientConfiguration
 from ._operations_mixin import MultiapiServiceClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 class _SDKClient(object):
     def __init__(self, *args, **kwargs):

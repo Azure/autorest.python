@@ -467,7 +467,7 @@ def regenerate(
 @task
 def regenerate_unittests(c):
     shutil.copyfile(
-        "test/azure/legacy/Expected/AcceptanceTests/AzureBodyDuration/bodyduration/_serialization.py",
+        "test/azure/legacy/Expected/AcceptanceTests/AzureBodyDuration/bodyduration/_utils/serialization.py",
         "test/unittests/storage_models/serialization.py",
     )
 

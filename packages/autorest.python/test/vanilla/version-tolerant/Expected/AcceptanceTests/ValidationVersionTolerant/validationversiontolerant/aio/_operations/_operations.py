@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -29,14 +30,15 @@ from ..._operations._operations import (
     build_auto_rest_validation_test_validation_of_body_request,
     build_auto_rest_validation_test_validation_of_method_parameters_request,
 )
-from .._vendor import AutoRestValidationTestMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import AutoRestValidationTestConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
+class AutoRestValidationTestOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutoRestValidationTestConfiguration]):
 
     @distributed_trace_async
     async def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> JSON:

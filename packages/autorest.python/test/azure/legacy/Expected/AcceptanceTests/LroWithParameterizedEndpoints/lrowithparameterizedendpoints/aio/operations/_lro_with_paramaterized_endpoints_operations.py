@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, AsyncIterator, Callable, Dict, Literal, Optional, TypeVar, Union, cast
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,18 +27,19 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._lro_with_paramaterized_endpoints_operations import (
     build_poll_with_constant_parameterized_endpoints_request,
     build_poll_with_parameterized_endpoints_request,
 )
-from .._vendor import LROWithParamaterizedEndpointsMixinABC
+from .._configuration import LROWithParamaterizedEndpointsConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
-    LROWithParamaterizedEndpointsMixinABC
+    ClientMixinABC[AsyncPipelineClient, LROWithParamaterizedEndpointsConfiguration]
 ):
 
     async def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long

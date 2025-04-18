@@ -11,10 +11,12 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from .._serialization import Serializer
-from .._vendor import NotDefinedClientMixinABC
+from .._configuration import NotDefinedClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -30,7 +32,7 @@ def build_not_defined_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class NotDefinedClientOperationsMixin(NotDefinedClientMixinABC):
+class NotDefinedClientOperationsMixin(ClientMixinABC[PipelineClient, NotDefinedClientConfiguration]):
 
     def valid(self, **kwargs: Any) -> bool:
         """valid.

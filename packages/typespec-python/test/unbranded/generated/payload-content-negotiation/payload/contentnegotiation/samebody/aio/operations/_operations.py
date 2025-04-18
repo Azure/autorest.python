@@ -17,7 +17,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ...._serialization import Deserializer, Serializer
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ContentNegotiationClientConfiguration
 from ...operations._operations import (
     build_same_body_get_avatar_as_jpeg_request,

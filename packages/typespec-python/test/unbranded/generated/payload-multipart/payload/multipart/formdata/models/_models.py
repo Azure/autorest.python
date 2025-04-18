@@ -3,16 +3,15 @@
 
 from typing import Any, Mapping, overload
 
-from ... import _model_base
-from ..._model_base import rest_field
-from ..._vendor import FileType
+from ..._utils.model_base import Model as _Model, rest_field
+from ..._utils.utils import FileType
 
 
-class AnonymousModelRequest(_model_base.Model):
+class AnonymousModelRequest(_Model):
     """AnonymousModelRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(

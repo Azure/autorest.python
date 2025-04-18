@@ -14,7 +14,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ......_serialization import Deserializer, Serializer
+from ......_utils.serialization import Deserializer, Serializer
 from ......aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
     build_query_parameters_query_continuation_explode_array_request,

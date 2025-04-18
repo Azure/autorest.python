@@ -3,14 +3,13 @@
 
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ModelWithArrayOfModel(_model_base.Model):
+class ModelWithArrayOfModel(_Model):
     """Contains an array of models.
 
     :ivar items_property: Required.
@@ -44,7 +43,7 @@ class ModelWithArrayOfModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithAttributes(_model_base.Model):
+class ModelWithAttributes(_Model):
     """Contains fields that are XML attributes.
 
     :ivar id1: Required.
@@ -93,7 +92,7 @@ class ModelWithAttributes(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithDictionary(_model_base.Model):
+class ModelWithDictionary(_Model):
     """Contains a dictionary of key value pairs.
 
     :ivar metadata: Required.
@@ -126,7 +125,7 @@ class ModelWithDictionary(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithEmptyArray(_model_base.Model):
+class ModelWithEmptyArray(_Model):
     """Contains an array of models that's supposed to be sent/received as an empty XML element.
 
     :ivar items_property: Required.
@@ -160,7 +159,7 @@ class ModelWithEmptyArray(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithEncodedNames(_model_base.Model):
+class ModelWithEncodedNames(_Model):
     """Uses encodedName instead of Xml.Name which is functionally equivalent.
 
     :ivar model_data: Required.
@@ -202,7 +201,7 @@ class ModelWithEncodedNames(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithOptionalField(_model_base.Model):
+class ModelWithOptionalField(_Model):
     """Contains an optional field.
 
     :ivar item: Required.
@@ -242,7 +241,7 @@ class ModelWithOptionalField(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithRenamedArrays(_model_base.Model):
+class ModelWithRenamedArrays(_Model):
     """Contains fields of wrapped and unwrapped arrays of primitive types that have different XML
     representations.
 
@@ -284,7 +283,7 @@ class ModelWithRenamedArrays(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithRenamedFields(_model_base.Model):
+class ModelWithRenamedFields(_Model):
     """Contains fields of the same type that have different XML representation.
 
     :ivar input_data: Required.
@@ -327,7 +326,7 @@ class ModelWithRenamedFields(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithSimpleArrays(_model_base.Model):
+class ModelWithSimpleArrays(_Model):
     """Contains fields of arrays of primitive types.
 
     :ivar colors: Required.
@@ -368,7 +367,7 @@ class ModelWithSimpleArrays(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithText(_model_base.Model):
+class ModelWithText(_Model):
     """Contains an attribute and text.
 
     :ivar language: Required.
@@ -409,7 +408,7 @@ class ModelWithText(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ModelWithUnwrappedArray(_model_base.Model):
+class ModelWithUnwrappedArray(_Model):
     """Contains fields of wrapped and unwrapped arrays of primitive types.
 
     :ivar colors: Required.
@@ -450,7 +449,7 @@ class ModelWithUnwrappedArray(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SimpleModel(_model_base.Model):
+class SimpleModel(_Model):
     """Contains fields of primitive types.
 
     :ivar name: Required.

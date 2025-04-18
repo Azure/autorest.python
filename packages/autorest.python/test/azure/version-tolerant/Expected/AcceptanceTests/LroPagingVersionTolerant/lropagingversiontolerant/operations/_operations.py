@@ -30,7 +30,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .._configuration import LroPagingClientConfiguration
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

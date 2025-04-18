@@ -29,7 +29,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._lro_retrys_operations import (
     build_delete202_retry200_request,
     build_delete_async_relative_retry_succeeded_request,

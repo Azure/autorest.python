@@ -27,9 +27,9 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import NamingClientConfiguration
-from .._model_base import SdkJSONEncoder
-from .._serialization import Deserializer, Serializer
-from .._vendor import NamingClientMixinABC
+from .._utils.model_base import SdkJSONEncoder
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -515,7 +515,7 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(NamingClientMixinABC):
+class NamingClientOperationsMixin(ClientMixinABC[PipelineClient, NamingClientConfiguration]):
 
     @distributed_trace
     def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

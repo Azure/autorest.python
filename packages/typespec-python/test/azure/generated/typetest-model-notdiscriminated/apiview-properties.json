@@ -5,7 +5,10 @@
         "typetest.model.notdiscriminated.models.Cat": "Type.Model.Inheritance.NotDiscriminated.Cat",
         "typetest.model.notdiscriminated.models.Siamese": "Type.Model.Inheritance.NotDiscriminated.Siamese",
         "typetest.model.notdiscriminated.NotDiscriminatedClient.post_valid": "Type.Model.Inheritance.NotDiscriminated.postValid",
+        "typetest.model.notdiscriminated.aio.NotDiscriminatedClient.post_valid": "Type.Model.Inheritance.NotDiscriminated.postValid",
         "typetest.model.notdiscriminated.NotDiscriminatedClient.get_valid": "Type.Model.Inheritance.NotDiscriminated.getValid",
-        "typetest.model.notdiscriminated.NotDiscriminatedClient.put_valid": "Type.Model.Inheritance.NotDiscriminated.putValid"
+        "typetest.model.notdiscriminated.aio.NotDiscriminatedClient.get_valid": "Type.Model.Inheritance.NotDiscriminated.getValid",
+        "typetest.model.notdiscriminated.NotDiscriminatedClient.put_valid": "Type.Model.Inheritance.NotDiscriminated.putValid",
+        "typetest.model.notdiscriminated.aio.NotDiscriminatedClient.put_valid": "Type.Model.Inheritance.NotDiscriminated.putValid"
     }
 }

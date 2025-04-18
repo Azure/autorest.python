@@ -8,7 +8,7 @@
 
 from typing import Any, Dict, Optional
 
-from .. import _serialization
+from .._utils import serialization as _serialization
 
 
 class PetAPTrue(_serialization.Model):

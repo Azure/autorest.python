@@ -3,11 +3,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class DefaultError(_model_base.Model):
+class DefaultError(_Model):
     """DefaultError.
 
     :ivar code: Required.
@@ -35,7 +34,7 @@ class DefaultError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ErrorInRange(_model_base.Model):
+class ErrorInRange(_Model):
     """ErrorInRange.
 
     :ivar code: Required.
@@ -68,7 +67,7 @@ class ErrorInRange(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NotFoundError(_model_base.Model):
+class NotFoundError(_Model):
     """NotFoundError.
 
     :ivar code: Required.
@@ -101,7 +100,7 @@ class NotFoundError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Standard4XXError(_model_base.Model):
+class Standard4XXError(_Model):
     """Standard4XXError.
 
     :ivar code: Required.

@@ -9,11 +9,10 @@
 
 from typing import Any, Dict, List, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class ReadOnlyModel(_model_base.Model):
+class ReadOnlyModel(_Model):
     """RoundTrip model with readonly optional properties.
 
     :ivar optional_nullable_int_list: Optional readonly nullable int list.
@@ -28,7 +27,7 @@ class ReadOnlyModel(_model_base.Model):
     """Optional readonly string dictionary."""
 
 
-class VisibilityModel(_model_base.Model):
+class VisibilityModel(_Model):
     """Output model with visibility properties.
 
     :ivar read_prop: Required string, illustrating a readonly property. Required.

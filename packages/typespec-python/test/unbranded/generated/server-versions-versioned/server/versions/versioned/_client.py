@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import VersionedClientConfiguration
 from ._operations import VersionedClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class VersionedClient(VersionedClientOperationsMixin):

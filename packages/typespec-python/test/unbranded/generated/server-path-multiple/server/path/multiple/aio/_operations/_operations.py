@@ -11,19 +11,21 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import (
     build_multiple_no_operation_params_request,
     build_multiple_with_operation_path_param_request,
 )
-from .._vendor import MultipleClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import MultipleClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleClientOperationsMixin(MultipleClientMixinABC):
+class MultipleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleClientConfiguration]):
 
     async def no_operation_params(self, **kwargs: Any) -> None:
         """no_operation_params.

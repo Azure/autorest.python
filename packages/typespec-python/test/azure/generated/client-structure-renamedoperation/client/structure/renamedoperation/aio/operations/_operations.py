@@ -22,7 +22,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
     build_group_renamed_four_request,
     build_group_renamed_six_request,
@@ -32,7 +33,6 @@ from ...operations._operations import (
     build_renamed_operation_renamed_three_request,
 )
 from .._configuration import RenamedOperationClientConfiguration
-from .._vendor import RenamedOperationClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -191,7 +191,7 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
+class RenamedOperationClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RenamedOperationClientConfiguration]):
 
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:

@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -29,13 +30,14 @@ from ..._operations._operations import (
     build_client_b_renamed_six_request,
     build_client_b_renamed_two_request,
 )
-from .._vendor import ClientAClientMixinABC, ClientBClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ClientAClientConfiguration, ClientBClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientAClientOperationsMixin(ClientAClientMixinABC):
+class ClientAClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientAClientConfiguration]):
 
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:
@@ -173,7 +175,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientBClientOperationsMixin(ClientBClientMixinABC):
+class ClientBClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientBClientConfiguration]):
 
     @distributed_trace_async
     async def renamed_two(self, **kwargs: Any) -> None:

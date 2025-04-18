@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import NotDiscriminatedClientMixinABC
+from .._configuration import NotDiscriminatedClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -76,7 +78,7 @@ def build_not_discriminated_put_valid_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
+class NotDiscriminatedClientOperationsMixin(ClientMixinABC[PipelineClient, NotDiscriminatedClientConfiguration]):
 
     @overload
     def post_valid(self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any) -> None:

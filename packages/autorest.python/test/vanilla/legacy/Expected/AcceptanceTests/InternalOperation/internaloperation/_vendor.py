@@ -13,7 +13,7 @@ from ._configuration import MediaTypesClientConfiguration
 if TYPE_CHECKING:
     from azure.core import PipelineClient
 
-    from ._serialization import Deserializer, Serializer
+    from ._utils.serialization import Deserializer, Serializer
 
 
 class MediaTypesClientMixinABC(ABC):

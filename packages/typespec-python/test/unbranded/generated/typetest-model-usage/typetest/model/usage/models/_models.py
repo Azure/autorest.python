@@ -3,11 +3,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class InputOutputRecord(_model_base.Model):
+class InputOutputRecord(_Model):
     """Record used both as operation parameter and return type.
 
     :ivar required_prop: Required.
@@ -35,7 +34,7 @@ class InputOutputRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InputRecord(_model_base.Model):
+class InputRecord(_Model):
     """Record used in operation parameters.
 
     :ivar required_prop: Required.
@@ -63,7 +62,7 @@ class InputRecord(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class OutputRecord(_model_base.Model):
+class OutputRecord(_Model):
     """Record used in operation return type.
 
     :ivar required_prop: Required.

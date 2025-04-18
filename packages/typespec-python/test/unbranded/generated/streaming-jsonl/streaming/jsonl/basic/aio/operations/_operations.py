@@ -17,7 +17,7 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ...._serialization import Deserializer, Serializer
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import JsonlClientConfiguration
 from ...operations._operations import build_basic_receive_request, build_basic_send_request
 

@@ -16,8 +16,8 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..... import models as _models4
-from ....._model_base import _deserialize
-from ....._serialization import Deserializer, Serializer
+from ....._utils.model_base import _deserialize
+from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import PageableClientConfiguration
 from ...operations._operations import (
     build_server_driven_pagination_continuation_token_request_header_response_body_request,

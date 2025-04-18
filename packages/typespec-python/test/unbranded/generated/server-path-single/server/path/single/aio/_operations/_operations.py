@@ -11,16 +11,18 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import build_single_my_op_request
-from .._vendor import SingleClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import SingleClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class SingleClientOperationsMixin(SingleClientMixinABC):
+class SingleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, SingleClientConfiguration]):
 
     async def my_op(self, **kwargs: Any) -> bool:
         """my_op.

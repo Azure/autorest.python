@@ -8,7 +8,7 @@
 
 from typing import Any, IO, List, Optional
 
-from .. import _serialization
+from .._utils import serialization as _serialization
 
 
 class Error(_serialization.Model):

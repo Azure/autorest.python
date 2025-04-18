@@ -16,7 +16,7 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ..._configuration import RoutesClientConfiguration
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ..querycontinuation.operations._operations import QueryParametersQueryContinuationOperations
 from ..queryexpansion.operations._operations import QueryParametersQueryExpansionOperations
 

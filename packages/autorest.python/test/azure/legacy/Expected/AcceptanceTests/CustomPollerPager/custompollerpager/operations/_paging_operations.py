@@ -34,7 +34,7 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .. import models as _models
 from .._configuration import AutoRestPagingTestServiceConfiguration
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

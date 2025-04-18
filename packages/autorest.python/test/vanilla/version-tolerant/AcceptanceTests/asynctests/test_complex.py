@@ -27,7 +27,7 @@ import os
 import isodate
 from async_generator import yield_, async_generator
 from datetime import datetime, timedelta, tzinfo
-from bodycomplexversiontolerant._serialization import Serializer, Deserializer
+from bodycomplexversiontolerant._utils.serialization import Serializer, Deserializer
 from azure.core.exceptions import DeserializationError
 from base64 import b64decode, b64encode
 from azure.core.exceptions import HttpResponseError

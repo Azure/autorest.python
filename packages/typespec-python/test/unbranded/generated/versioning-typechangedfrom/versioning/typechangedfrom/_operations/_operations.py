@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import TypeChangedFromClientMixinABC
+from .._configuration import TypeChangedFromClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -52,7 +54,7 @@ def build_type_changed_from_test_request(*, param: str, **kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class TypeChangedFromClientOperationsMixin(TypeChangedFromClientMixinABC):
+class TypeChangedFromClientOperationsMixin(ClientMixinABC[PipelineClient, TypeChangedFromClientConfiguration]):
 
     @overload
     def test(

@@ -11,14 +11,13 @@
 import datetime
 from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ApiError(_model_base.Model):
+class ApiError(_Model):
     """Api error.
 
     :ivar details: The Api error details.
@@ -68,7 +67,7 @@ class ApiError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ApiErrorBase(_model_base.Model):
+class ApiErrorBase(_Model):
     """Api error base.
 
     :ivar code: The error code.
@@ -106,7 +105,7 @@ class ApiErrorBase(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class CloudError(_model_base.Model):
+class CloudError(_Model):
     """An error response.
 
     :ivar error: Api error.
@@ -134,7 +133,7 @@ class CloudError(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Resource(_model_base.Model):
+class Resource(_Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
@@ -256,7 +255,7 @@ class ConfidentialResource(TrackedResource):
         super().__init__(*args, **kwargs)
 
 
-class ConfidentialResourceProperties(_model_base.Model):
+class ConfidentialResourceProperties(_Model):
     """Confidential Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Required.
@@ -288,7 +287,7 @@ class ConfidentialResourceProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ErrorAdditionalInfo(_model_base.Model):
+class ErrorAdditionalInfo(_Model):
     """The resource management error additional info.
 
     :ivar type: The additional info type.
@@ -303,7 +302,7 @@ class ErrorAdditionalInfo(_model_base.Model):
     """The additional info."""
 
 
-class ErrorDetail(_model_base.Model):
+class ErrorDetail(_Model):
     """The error detail.
 
     :ivar code: The error code.
@@ -333,7 +332,7 @@ class ErrorDetail(_model_base.Model):
     """The error additional info."""
 
 
-class ErrorResponse(_model_base.Model):
+class ErrorResponse(_Model):
     """Common error response for all Azure Resource Manager APIs to return error details for failed
     operations.
 
@@ -362,7 +361,7 @@ class ErrorResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InnerError(_model_base.Model):
+class InnerError(_Model):
     """Inner error details.
 
     :ivar exceptiontype: The exception type.
@@ -451,7 +450,7 @@ class ManagedIdentityTrackedResource(TrackedResource):
         super().__init__(*args, **kwargs)
 
 
-class ManagedIdentityTrackedResourceProperties(_model_base.Model):
+class ManagedIdentityTrackedResourceProperties(_Model):
     """Managed Identity Arm Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Required.
@@ -462,7 +461,7 @@ class ManagedIdentityTrackedResourceProperties(_model_base.Model):
     """The status of the last operation. Required."""
 
 
-class ManagedServiceIdentity(_model_base.Model):
+class ManagedServiceIdentity(_Model):
     """Managed service identity (system assigned and/or user assigned identities).
 
     :ivar principal_id: The service principal ID of the system assigned identity. This property
@@ -514,7 +513,7 @@ class ManagedServiceIdentity(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class SystemData(_model_base.Model):
+class SystemData(_Model):
     """Metadata pertaining to creation and last modification of the resource.
 
     :ivar created_by: The identity that created the resource.
@@ -582,7 +581,7 @@ class SystemData(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserAssignedIdentity(_model_base.Model):
+class UserAssignedIdentity(_Model):
     """User assigned identity properties.
 
     :ivar client_id: The client ID of the assigned identity.

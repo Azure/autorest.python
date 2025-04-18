@@ -3,14 +3,13 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Element(_model_base.Model):
+class Element(_Model):
     """element.
 
     :ivar extension:

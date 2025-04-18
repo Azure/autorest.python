@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import NestedDiscriminatorClientMixinABC
+from .._configuration import NestedDiscriminatorClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -123,7 +125,7 @@ def build_nested_discriminator_get_wrong_discriminator_request(  # pylint: disab
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class NestedDiscriminatorClientOperationsMixin(NestedDiscriminatorClientMixinABC):
+class NestedDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, NestedDiscriminatorClientConfiguration]):
 
     def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.

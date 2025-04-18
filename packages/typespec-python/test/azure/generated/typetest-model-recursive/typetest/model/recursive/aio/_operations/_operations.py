@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,16 +28,17 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_recursive_get_request, build_recursive_put_request
-from .._vendor import RecursiveClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import RecursiveClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RecursiveClientOperationsMixin(RecursiveClientMixinABC):
+class RecursiveClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RecursiveClientConfiguration]):
 
     @overload
     async def put(self, input: _models.Extension, *, content_type: str = "application/json", **kwargs: Any) -> None:

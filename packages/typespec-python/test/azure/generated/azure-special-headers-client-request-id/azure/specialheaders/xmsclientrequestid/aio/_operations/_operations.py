@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,13 +23,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._operations._operations import build_xms_client_request_id_get_request
-from .._vendor import XmsClientRequestIdClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import XmsClientRequestIdClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class XmsClientRequestIdClientOperationsMixin(XmsClientRequestIdClientMixinABC):
+class XmsClientRequestIdClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient, XmsClientRequestIdClientConfiguration]
+):
 
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:

@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ParmaterizedEndpointClientConfiguration
 from ._operations import ParmaterizedEndpointClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ParmaterizedEndpointClient(

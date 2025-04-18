@@ -4,14 +4,13 @@
 
 from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Bird(_model_base.Model):
+class Bird(_Model):
     """This is base model for polymorphic single level inheritance with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -23,7 +22,7 @@ class Bird(_model_base.Model):
     :vartype wingspan: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
     wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -48,7 +47,7 @@ class Bird(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Dinosaur(_model_base.Model):
+class Dinosaur(_Model):
     """Define a base class in the legacy way. Discriminator property is not explicitly defined in the
     model.
 
@@ -61,7 +60,7 @@ class Dinosaur(_model_base.Model):
     :vartype size: int
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])

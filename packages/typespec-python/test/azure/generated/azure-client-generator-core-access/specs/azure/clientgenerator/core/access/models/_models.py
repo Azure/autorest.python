@@ -10,14 +10,13 @@
 
 from typing import Any, Dict, Literal, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_discriminator, rest_field
+from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class AbstractModel(_model_base.Model):
+class AbstractModel(_Model):
     """Used in internal operations, should be generated but not exported.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
@@ -29,7 +28,7 @@ class AbstractModel(_model_base.Model):
     :vartype name: str
     """
 
-    __mapping__: Dict[str, _model_base.Model] = {}
+    __mapping__: Dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for AbstractModel. Required. Default value is None."""
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -54,7 +53,7 @@ class AbstractModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class BaseModel(_model_base.Model):
+class BaseModel(_Model):
     """Used in internal operations, should be generated but not exported.
 
     :ivar name: Required.
@@ -82,7 +81,7 @@ class BaseModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InnerModel(_model_base.Model):
+class InnerModel(_Model):
     """Used in internal operations, should be generated but not exported.
 
     :ivar name: Required.
@@ -110,7 +109,7 @@ class InnerModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InternalDecoratorModelInInternal(_model_base.Model):
+class InternalDecoratorModelInInternal(_Model):
     """Used in an internal operation, should be generated but not exported.
 
     :ivar name: Required.
@@ -138,7 +137,7 @@ class InternalDecoratorModelInInternal(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NoDecoratorModelInInternal(_model_base.Model):
+class NoDecoratorModelInInternal(_Model):
     """Used in an internal operation, should be generated but not exported.
 
     :ivar name: Required.
@@ -166,7 +165,7 @@ class NoDecoratorModelInInternal(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NoDecoratorModelInPublic(_model_base.Model):
+class NoDecoratorModelInPublic(_Model):
     """Used in a public operation, should be generated and exported.
 
     :ivar name: Required.
@@ -225,7 +224,7 @@ class OuterModel(BaseModel):
         super().__init__(*args, **kwargs)
 
 
-class PublicDecoratorModelInInternal(_model_base.Model):
+class PublicDecoratorModelInInternal(_Model):
     """Used in an internal operation but with public decorator, should be generated and exported.
 
     :ivar name: Required.
@@ -253,7 +252,7 @@ class PublicDecoratorModelInInternal(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class PublicDecoratorModelInPublic(_model_base.Model):
+class PublicDecoratorModelInPublic(_Model):
     """Used in a public operation, should be generated and exported.
 
     :ivar name: Required.
@@ -311,7 +310,7 @@ class RealModel(AbstractModel, discriminator="real"):
         super().__init__(*args, kind="real", **kwargs)
 
 
-class SharedModel(_model_base.Model):
+class SharedModel(_Model):
     """Used by both public and internal operation. It should be generated and exported.
 
     :ivar name: Required.

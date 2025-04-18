@@ -26,7 +26,7 @@
 import isodate
 from datetime import timedelta
 
-from bodyarrayversiontolerant._serialization import Serializer
+from bodyarrayversiontolerant._utils.serialization import Serializer
 from azure.core.exceptions import DecodeError
 from base64 import b64encode, b64decode
 from .serializer import deserialize_base64

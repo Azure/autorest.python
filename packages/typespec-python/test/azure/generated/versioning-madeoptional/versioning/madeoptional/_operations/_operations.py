@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,9 +27,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import MadeOptionalClientMixinABC
+from .._configuration import MadeOptionalClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -60,7 +62,7 @@ def build_made_optional_test_request(*, param: Optional[str] = None, **kwargs: A
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MadeOptionalClientOperationsMixin(MadeOptionalClientMixinABC):
+class MadeOptionalClientOperationsMixin(ClientMixinABC[PipelineClient, MadeOptionalClientConfiguration]):
 
     @overload
     def test(

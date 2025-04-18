@@ -11,10 +11,12 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from .._serialization import Serializer
-from .._vendor import MultipleClientMixinABC
+from .._configuration import MultipleClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -44,7 +46,7 @@ def build_multiple_with_operation_path_param_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class MultipleClientOperationsMixin(MultipleClientMixinABC):
+class MultipleClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleClientConfiguration]):
 
     def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """no_operation_params.

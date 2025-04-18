@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,15 +24,16 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._multiapi_custom_base_url_service_client_operations import build_test_request
-from .._vendor import MultiapiCustomBaseUrlServiceClientMixinABC
+from .._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
-    MultiapiCustomBaseUrlServiceClientMixinABC
+    ClientMixinABC[AsyncPipelineClient, MultiapiCustomBaseUrlServiceClientConfiguration]
 ):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:

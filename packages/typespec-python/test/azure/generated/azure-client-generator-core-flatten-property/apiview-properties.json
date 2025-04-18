@@ -6,6 +6,8 @@
         "specs.azure.clientgenerator.core.flattenproperty.models.FlattenModel": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.FlattenModel",
         "specs.azure.clientgenerator.core.flattenproperty.models.NestedFlattenModel": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.NestedFlattenModel",
         "specs.azure.clientgenerator.core.flattenproperty.FlattenPropertyClient.put_flatten_model": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.putFlattenModel",
-        "specs.azure.clientgenerator.core.flattenproperty.FlattenPropertyClient.put_nested_flatten_model": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.putNestedFlattenModel"
+        "specs.azure.clientgenerator.core.flattenproperty.aio.FlattenPropertyClient.put_flatten_model": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.putFlattenModel",
+        "specs.azure.clientgenerator.core.flattenproperty.FlattenPropertyClient.put_nested_flatten_model": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.putNestedFlattenModel",
+        "specs.azure.clientgenerator.core.flattenproperty.aio.FlattenPropertyClient.put_nested_flatten_model": "_Specs_.Azure.ClientGenerator.Core.FlattenProperty.putNestedFlattenModel"
     }
 }

@@ -15,13 +15,15 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import SingleDiscriminatorClientMixinABC
+from .._configuration import SingleDiscriminatorClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -137,7 +139,7 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class SingleDiscriminatorClientOperationsMixin(SingleDiscriminatorClientMixinABC):
+class SingleDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, SingleDiscriminatorClientConfiguration]):
 
     def get_model(self, **kwargs: Any) -> _models.Bird:
         """get_model.
