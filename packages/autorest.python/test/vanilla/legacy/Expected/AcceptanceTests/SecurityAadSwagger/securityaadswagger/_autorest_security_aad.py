@@ -33,6 +33,7 @@ class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disabl
 
     def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = AutorestSecurityAadConfiguration(credential=credential, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

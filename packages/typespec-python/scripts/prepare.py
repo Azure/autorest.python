@@ -9,8 +9,8 @@ import sys
 import os
 import argparse
 
-if not sys.version_info >= (3, 8, 0):
-    raise Exception("Autorest for Python extension requires Python 3.8 at least")
+if not sys.version_info >= (3, 9, 0):
+    raise Exception("Autorest for Python extension requires Python 3.9 at least")
 
 from pathlib import Path
 import venv

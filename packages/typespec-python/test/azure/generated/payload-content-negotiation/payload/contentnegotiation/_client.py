@@ -35,6 +35,7 @@ class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-ke
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ContentNegotiationClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

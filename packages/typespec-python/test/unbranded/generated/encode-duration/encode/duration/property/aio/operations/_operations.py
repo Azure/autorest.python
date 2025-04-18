@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -32,11 +32,7 @@ from ...operations._operations import (
     build_property_iso8601_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -65,12 +61,12 @@ class PropertyOperations:
         """default.
 
         :param body: Required.
-        :type body: ~encode.duration.models.DefaultDurationProperty
+        :type body: ~encode.duration.property.models.DefaultDurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.DefaultDurationProperty
+        :rtype: ~encode.duration.property.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -86,7 +82,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.DefaultDurationProperty
+        :rtype: ~encode.duration.property.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -102,7 +98,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.DefaultDurationProperty
+        :rtype: ~encode.duration.property.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -112,9 +108,9 @@ class PropertyOperations:
         """default.
 
         :param body: Is one of the following types: DefaultDurationProperty, JSON, IO[bytes] Required.
-        :type body: ~encode.duration.models.DefaultDurationProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.DefaultDurationProperty or JSON or IO[bytes]
         :return: DefaultDurationProperty. The DefaultDurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.DefaultDurationProperty
+        :rtype: ~encode.duration.property.models.DefaultDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -180,12 +176,12 @@ class PropertyOperations:
         """iso8601.
 
         :param body: Required.
-        :type body: ~encode.duration.models.ISO8601DurationProperty
+        :type body: ~encode.duration.property.models.ISO8601DurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :rtype: ~encode.duration.property.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -201,7 +197,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :rtype: ~encode.duration.property.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -217,7 +213,7 @@ class PropertyOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :rtype: ~encode.duration.property.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -227,9 +223,9 @@ class PropertyOperations:
         """iso8601.
 
         :param body: Is one of the following types: ISO8601DurationProperty, JSON, IO[bytes] Required.
-        :type body: ~encode.duration.models.ISO8601DurationProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.ISO8601DurationProperty or JSON or IO[bytes]
         :return: ISO8601DurationProperty. The ISO8601DurationProperty is compatible with MutableMapping
-        :rtype: ~encode.duration.models.ISO8601DurationProperty
+        :rtype: ~encode.duration.property.models.ISO8601DurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -295,13 +291,13 @@ class PropertyOperations:
         """int32_seconds.
 
         :param body: Required.
-        :type body: ~encode.duration.models.Int32SecondsDurationProperty
+        :type body: ~encode.duration.property.models.Int32SecondsDurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Int32SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -318,7 +314,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Int32SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -335,7 +331,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Int32SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -346,10 +342,10 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Int32SecondsDurationProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.duration.models.Int32SecondsDurationProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.Int32SecondsDurationProperty or JSON or IO[bytes]
         :return: Int32SecondsDurationProperty. The Int32SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Int32SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Int32SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -415,13 +411,13 @@ class PropertyOperations:
         """float_seconds.
 
         :param body: Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationProperty
+        :type body: ~encode.duration.property.models.FloatSecondsDurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -438,7 +434,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -455,7 +451,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -466,10 +462,10 @@ class PropertyOperations:
 
         :param body: Is one of the following types: FloatSecondsDurationProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.FloatSecondsDurationProperty or JSON or IO[bytes]
         :return: FloatSecondsDurationProperty. The FloatSecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -535,13 +531,13 @@ class PropertyOperations:
         """float64_seconds.
 
         :param body: Required.
-        :type body: ~encode.duration.models.Float64SecondsDurationProperty
+        :type body: ~encode.duration.property.models.Float64SecondsDurationProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: Float64SecondsDurationProperty. The Float64SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Float64SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -558,7 +554,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: Float64SecondsDurationProperty. The Float64SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Float64SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -575,7 +571,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: Float64SecondsDurationProperty. The Float64SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Float64SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -586,10 +582,11 @@ class PropertyOperations:
 
         :param body: Is one of the following types: Float64SecondsDurationProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.duration.models.Float64SecondsDurationProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.Float64SecondsDurationProperty or JSON or
+         IO[bytes]
         :return: Float64SecondsDurationProperty. The Float64SecondsDurationProperty is compatible with
          MutableMapping
-        :rtype: ~encode.duration.models.Float64SecondsDurationProperty
+        :rtype: ~encode.duration.property.models.Float64SecondsDurationProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -655,13 +652,13 @@ class PropertyOperations:
         """float_seconds_array.
 
         :param body: Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty
+        :type body: ~encode.duration.property.models.FloatSecondsDurationArrayProperty
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -678,7 +675,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -695,7 +692,7 @@ class PropertyOperations:
         :paramtype content_type: str
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
@@ -706,10 +703,11 @@ class PropertyOperations:
 
         :param body: Is one of the following types: FloatSecondsDurationArrayProperty, JSON, IO[bytes]
          Required.
-        :type body: ~encode.duration.models.FloatSecondsDurationArrayProperty or JSON or IO[bytes]
+        :type body: ~encode.duration.property.models.FloatSecondsDurationArrayProperty or JSON or
+         IO[bytes]
         :return: FloatSecondsDurationArrayProperty. The FloatSecondsDurationArrayProperty is compatible
          with MutableMapping
-        :rtype: ~encode.duration.models.FloatSecondsDurationArrayProperty
+        :rtype: ~encode.duration.property.models.FloatSecondsDurationArrayProperty
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

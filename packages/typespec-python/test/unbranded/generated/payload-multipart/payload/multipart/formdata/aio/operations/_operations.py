@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -30,11 +30,7 @@ from ...operations._operations import (
     build_form_data_multi_binary_parts_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -497,7 +493,7 @@ class FormDataOperations:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
-        :type body: ~payload.multipart.models.AnonymousModelRequest
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -518,7 +514,7 @@ class FormDataOperations:
         """Test content-type: multipart/form-data.
 
         :param body: Is either a AnonymousModelRequest type or a JSON type. Required.
-        :type body: ~payload.multipart.models.AnonymousModelRequest or JSON
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest or JSON
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

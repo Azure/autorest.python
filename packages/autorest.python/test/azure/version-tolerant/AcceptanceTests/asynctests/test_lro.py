@@ -75,7 +75,7 @@ async def client(cookie_policy, credential):
     """Create a AutoRestLongRunningOperationTestService client with test server credentials."""
     policies = [RequestIdPolicy(), HeadersPolicy(), ContentDecodePolicy(), AsyncRetryPolicy(), cookie_policy]
     async with AutoRestLongRunningOperationTestService(
-        credential=credential, policies=policies, polling_interval=POLLING_INTERVAL
+        credential=credential, policies=policies, polling_interval=POLLING_INTERVAL, endpoint="http://localhost:3000"
     ) as client:
         await yield_(client)
 
@@ -540,7 +540,7 @@ async def test_polling_interval_config(cookie_policy, credential, client):
     # Now we create a new client with a polling_interval of 1
     policies = [RequestIdPolicy(), HeadersPolicy(), ContentDecodePolicy(), AsyncRetryPolicy(), cookie_policy]
     client_one_second = AutoRestLongRunningOperationTestService(
-        credential=credential, policies=policies, polling_interval=1
+        credential=credential, policies=policies, polling_interval=1, endpoint="http://localhost:3000"
     )
     one_second_polling_interval_start_time = time.time()
     poller = await client_one_second.lros.begin_post_double_headers_final_azure_header_get_default()

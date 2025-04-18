@@ -37,6 +37,7 @@ class StandardClient(StandardClientOperationsMixin):
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = StandardClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

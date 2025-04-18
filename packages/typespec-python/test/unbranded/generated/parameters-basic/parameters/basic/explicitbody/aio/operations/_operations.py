@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -23,11 +23,7 @@ from ...._serialization import Deserializer, Serializer
 from ....aio._configuration import BasicClientConfiguration
 from ...operations._operations import build_explicit_body_simple_request
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -54,7 +50,7 @@ class ExplicitBodyOperations:
         """simple.
 
         :param body: Required.
-        :type body: ~parameters.basic.models.User
+        :type body: ~parameters.basic.explicitbody.models.User
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -95,7 +91,7 @@ class ExplicitBodyOperations:
         """simple.
 
         :param body: Is one of the following types: User, JSON, IO[bytes] Required.
-        :type body: ~parameters.basic.models.User or JSON or IO[bytes]
+        :type body: ~parameters.basic.explicitbody.models.User or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
