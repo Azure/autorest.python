@@ -17,7 +17,7 @@ from azure.core.pipeline import policies
 from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 
-from ..serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
 from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
 

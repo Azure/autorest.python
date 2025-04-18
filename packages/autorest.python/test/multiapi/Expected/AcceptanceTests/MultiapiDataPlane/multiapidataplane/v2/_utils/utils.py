@@ -9,7 +9,7 @@ from abc import ABC
 from typing import Generic, TYPE_CHECKING, TypeVar
 
 if TYPE_CHECKING:
-    from ..serialization import Deserializer, Serializer
+    from .serialization import Deserializer, Serializer
 
 
 TClient = TypeVar("TClient")
