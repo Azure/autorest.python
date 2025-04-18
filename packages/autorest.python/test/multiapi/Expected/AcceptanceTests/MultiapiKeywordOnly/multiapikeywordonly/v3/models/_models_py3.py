@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -40,7 +40,7 @@ class Error(serialization.Model):
         self.message = message
 
 
-class ModelThree(serialization.Model):
+class ModelThree(_serialization.Model):
     """Only exists in api version 3.0.0.
 
     :ivar optional_property:
@@ -60,7 +60,7 @@ class ModelThree(serialization.Model):
         self.optional_property = optional_property
 
 
-class PagingResult(serialization.Model):
+class PagingResult(_serialization.Model):
     """PagingResult.
 
     :ivar values:
@@ -88,7 +88,7 @@ class PagingResult(serialization.Model):
         self.next_link = next_link
 
 
-class SourcePath(serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

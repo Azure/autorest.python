@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class OperationResult(serialization.Model):
+class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
@@ -49,7 +49,7 @@ class OperationResult(serialization.Model):
         self.error = error
 
 
-class OperationResultError(serialization.Model):
+class OperationResultError(_serialization.Model):
     """OperationResultError.
 
     :ivar code: The error code for an operation failure.
@@ -75,7 +75,7 @@ class OperationResultError(serialization.Model):
         self.message = message
 
 
-class Resource(serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -181,7 +181,7 @@ class Product(Resource):
         self.provisioning_state_values: Optional[Union[str, "_models.ProductPropertiesProvisioningStateValues"]] = None
 
 
-class Sku(serialization.Model):
+class Sku(_serialization.Model):
     """Sku.
 
     :ivar name:
@@ -213,7 +213,7 @@ class Sku(serialization.Model):
         self.id = id
 
 
-class SubResource(serialization.Model):
+class SubResource(_serialization.Model):
     """SubResource.
 
     Variables are only populated by the server, and will be ignored when sending a request.

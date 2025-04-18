@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -50,7 +50,7 @@ class Error(serialization.Model):
         self.message = message
 
 
-class HeaderCustomNamedRequestIdParamGroupingParameters(serialization.Model):  # pylint: disable=name-too-long
+class HeaderCustomNamedRequestIdParamGroupingParameters(_serialization.Model):  # pylint: disable=name-too-long
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
@@ -76,7 +76,7 @@ class HeaderCustomNamedRequestIdParamGroupingParameters(serialization.Model):  #
         self.foo_client_request_id = foo_client_request_id
 
 
-class OdataFilter(serialization.Model):
+class OdataFilter(_serialization.Model):
     """OdataFilter.
 
     :ivar id:

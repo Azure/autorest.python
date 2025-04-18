@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class Feline(serialization.Model):
+class Feline(_serialization.Model):
     """Feline.
 
     :ivar meows:
@@ -37,7 +37,7 @@ class Feline(serialization.Model):
         self.hisses = hisses
 
 
-class Pet(serialization.Model):
+class Pet(_serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to server.
@@ -115,7 +115,7 @@ class Cat(Pet, Feline):
         self.name = name
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:

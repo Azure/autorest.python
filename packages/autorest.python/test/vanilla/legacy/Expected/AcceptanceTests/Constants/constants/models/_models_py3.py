@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class ModelAsStringNoRequiredOneValueDefault(serialization.Model):
+class ModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueDefault.
 
     :ivar parameter: "value1"
@@ -36,7 +36,7 @@ class ModelAsStringNoRequiredOneValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringNoRequiredOneValueNoDefault(serialization.Model):
+class ModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: "value1"
@@ -61,7 +61,7 @@ class ModelAsStringNoRequiredOneValueNoDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringNoRequiredTwoValueDefault(serialization.Model):
+class ModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".
@@ -83,7 +83,7 @@ class ModelAsStringNoRequiredTwoValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringNoRequiredTwoValueNoDefault(serialization.Model):
+class ModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".
@@ -108,7 +108,7 @@ class ModelAsStringNoRequiredTwoValueNoDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringRequiredOneValueDefault(serialization.Model):
+class ModelAsStringRequiredOneValueDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueDefault.
 
     All required parameters must be populated in order to send to server.
@@ -136,7 +136,7 @@ class ModelAsStringRequiredOneValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringRequiredOneValueNoDefault(serialization.Model):
+class ModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredOneValueNoDefault.
 
     All required parameters must be populated in order to send to server.
@@ -164,7 +164,7 @@ class ModelAsStringRequiredOneValueNoDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringRequiredTwoValueDefault(serialization.Model):
+class ModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueDefault.
 
     All required parameters must be populated in order to send to server.
@@ -192,7 +192,7 @@ class ModelAsStringRequiredTwoValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class ModelAsStringRequiredTwoValueNoDefault(serialization.Model):
+class ModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """ModelAsStringRequiredTwoValueNoDefault.
 
     All required parameters must be populated in order to send to server.
@@ -220,7 +220,7 @@ class ModelAsStringRequiredTwoValueNoDefault(serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredOneValueDefault(serialization.Model):
+class NoModelAsStringNoRequiredOneValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredOneValueDefault.
 
     :ivar parameter: Default value is "value1".
@@ -240,7 +240,7 @@ class NoModelAsStringNoRequiredOneValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredOneValueNoDefault(serialization.Model):  # pylint: disable=name-too-long
+class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredOneValueNoDefault.
 
     :ivar parameter: Default value is "value1".
@@ -260,7 +260,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(serialization.Model):  # pylint
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredTwoValueDefault(serialization.Model):
+class NoModelAsStringNoRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringNoRequiredTwoValueDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".
@@ -282,7 +282,7 @@ class NoModelAsStringNoRequiredTwoValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefault(serialization.Model):  # pylint: disable=name-too-long
+class NoModelAsStringNoRequiredTwoValueNoDefault(_serialization.Model):  # pylint: disable=name-too-long
     """NoModelAsStringNoRequiredTwoValueNoDefault.
 
     :ivar parameter: Known values are: "value1" and "value2".
@@ -307,7 +307,7 @@ class NoModelAsStringNoRequiredTwoValueNoDefault(serialization.Model):  # pylint
         self.parameter = parameter
 
 
-class NoModelAsStringRequiredOneValueDefault(serialization.Model):
+class NoModelAsStringRequiredOneValueDefault(_serialization.Model):
     """NoModelAsStringRequiredOneValueDefault.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -333,7 +333,7 @@ class NoModelAsStringRequiredOneValueDefault(serialization.Model):
         super().__init__(**kwargs)
 
 
-class NoModelAsStringRequiredOneValueNoDefault(serialization.Model):
+class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
     """NoModelAsStringRequiredOneValueNoDefault.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -359,7 +359,7 @@ class NoModelAsStringRequiredOneValueNoDefault(serialization.Model):
         super().__init__(**kwargs)
 
 
-class NoModelAsStringRequiredTwoValueDefault(serialization.Model):
+class NoModelAsStringRequiredTwoValueDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueDefault.
 
     All required parameters must be populated in order to send to server.
@@ -387,7 +387,7 @@ class NoModelAsStringRequiredTwoValueDefault(serialization.Model):
         self.parameter = parameter
 
 
-class NoModelAsStringRequiredTwoValueNoDefault(serialization.Model):
+class NoModelAsStringRequiredTwoValueNoDefault(_serialization.Model):
     """NoModelAsStringRequiredTwoValueNoDefault.
 
     All required parameters must be populated in order to send to server.

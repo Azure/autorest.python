@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class BaseProduct(serialization.Model):
+class BaseProduct(_serialization.Model):
     """The product documentation.
 
     All required parameters must be populated in order to send to server.
@@ -50,7 +50,7 @@ class BaseProduct(serialization.Model):
         self.description = description
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -89,7 +89,7 @@ class Error(serialization.Model):
         self.parent_error = parent_error
 
 
-class Resource(serialization.Model):
+class Resource(_serialization.Model):
     """Resource.
 
     Variables are only populated by the server, and will be ignored when sending a request.
@@ -212,7 +212,7 @@ class FlattenedProduct(Resource):
         self.provisioning_state = provisioning_state
 
 
-class FlattenParameterGroup(serialization.Model):
+class FlattenParameterGroup(_serialization.Model):
     """Parameter group.
 
     All required parameters must be populated in order to send to server.
@@ -297,7 +297,7 @@ class FlattenParameterGroup(serialization.Model):
         self.odata_value = odata_value
 
 
-class GenericUrl(serialization.Model):
+class GenericUrl(_serialization.Model):
     """The Generic URL.
 
     :ivar generic_value: Generic URL value.
@@ -344,7 +344,7 @@ class ProductUrl(GenericUrl):
         self.odata_value = odata_value
 
 
-class ProductWrapper(serialization.Model):
+class ProductWrapper(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.
@@ -364,7 +364,7 @@ class ProductWrapper(serialization.Model):
         self.value = value
 
 
-class ResourceCollection(serialization.Model):
+class ResourceCollection(_serialization.Model):
     """ResourceCollection.
 
     :ivar productresource: Flattened product.
@@ -471,7 +471,7 @@ class SimpleProduct(BaseProduct):
         self.odata_value = odata_value
 
 
-class WrappedProduct(serialization.Model):
+class WrappedProduct(_serialization.Model):
     """The wrapped produc.
 
     :ivar value: the product value.

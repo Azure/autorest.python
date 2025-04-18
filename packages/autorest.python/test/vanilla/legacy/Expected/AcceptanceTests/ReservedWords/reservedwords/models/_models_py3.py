@@ -12,7 +12,7 @@ from .._utils import serialization as _serialization
 
 
 class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema(
-    serialization.Model
+    _serialization.Model
 ):  # pylint: disable=name-too-long
     """PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema.
 
@@ -47,7 +47,7 @@ class PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwF
 
 
 class PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema(
-    serialization.Model
+    _serialization.Model
 ):  # pylint: disable=name-too-long
     """PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema.
 

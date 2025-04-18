@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class Animal(serialization.Model):
+class Animal(_serialization.Model):
     """Animal.
 
     :ivar ani_type:
@@ -31,7 +31,7 @@ class Animal(serialization.Model):
         self.ani_type = ani_type
 
 
-class BaseError(serialization.Model):
+class BaseError(_serialization.Model):
     """BaseError.
 
     :ivar some_base_prop:
@@ -214,7 +214,7 @@ class Pet(Animal):
         self.name: Optional[str] = None
 
 
-class PetAction(serialization.Model):
+class PetAction(_serialization.Model):
     """PetAction.
 
     :ivar action_response: action feedback.

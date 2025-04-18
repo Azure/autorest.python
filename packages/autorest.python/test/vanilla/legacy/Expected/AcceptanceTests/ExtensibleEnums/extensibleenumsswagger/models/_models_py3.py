@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Pet(serialization.Model):
+class Pet(_serialization.Model):
     """Pet.
 
     All required parameters must be populated in order to send to server.

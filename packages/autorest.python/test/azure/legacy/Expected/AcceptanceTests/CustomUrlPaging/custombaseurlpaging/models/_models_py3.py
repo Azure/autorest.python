@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
@@ -40,7 +40,7 @@ class Error(serialization.Model):
         self.message = message
 
 
-class Product(serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     :ivar properties:
@@ -60,7 +60,7 @@ class Product(serialization.Model):
         self.properties = properties
 
 
-class ProductProperties(serialization.Model):
+class ProductProperties(_serialization.Model):
     """ProductProperties.
 
     :ivar id:
@@ -92,7 +92,7 @@ class ProductProperties(serialization.Model):
         self.name = name
 
 
-class ProductResult(serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:

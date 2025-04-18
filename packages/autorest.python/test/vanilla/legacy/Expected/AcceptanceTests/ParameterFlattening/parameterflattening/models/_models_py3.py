@@ -11,7 +11,7 @@ from typing import Any, Dict
 from .._utils import serialization as _serialization
 
 
-class AvailabilitySetUpdateParameters(serialization.Model):
+class AvailabilitySetUpdateParameters(_serialization.Model):
     """AvailabilitySetUpdateParameters.
 
     All required parameters must be populated in order to send to server.

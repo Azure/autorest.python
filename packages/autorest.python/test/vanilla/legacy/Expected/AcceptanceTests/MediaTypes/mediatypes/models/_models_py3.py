@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class SourcePath(serialization.Model):
+class SourcePath(_serialization.Model):
     """Uri or local path to source data.
 
     :ivar source: File source path.

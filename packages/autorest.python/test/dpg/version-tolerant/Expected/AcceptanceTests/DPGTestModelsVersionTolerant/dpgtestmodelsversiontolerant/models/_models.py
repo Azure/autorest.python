@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Input(serialization.Model):
+class Input(_serialization.Model):
     """Input.
 
     All required parameters must be populated in order to send to server.
@@ -40,7 +40,7 @@ class Input(serialization.Model):
         self.hello = hello
 
 
-class Product(serialization.Model):
+class Product(_serialization.Model):
     """Product.
 
     All required parameters must be populated in order to send to server.
@@ -100,7 +100,7 @@ class LROProduct(Product):
         self.provisioning_state = provisioning_state
 
 
-class ProductResult(serialization.Model):
+class ProductResult(_serialization.Model):
     """ProductResult.
 
     :ivar values:

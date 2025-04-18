@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:

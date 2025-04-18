@@ -11,7 +11,7 @@ from typing import Any, Optional
 from .._utils import serialization as _serialization
 
 
-class MyException(serialization.Model):
+class MyException(_serialization.Model):
     """MyException.
 
     :ivar status_code:
@@ -58,7 +58,7 @@ class B(MyException):
         self.text_status_code = text_status_code
 
 
-class C(serialization.Model):
+class C(_serialization.Model):
     """C.
 
     :ivar http_code:
@@ -78,7 +78,7 @@ class C(serialization.Model):
         self.http_code = http_code
 
 
-class D(serialization.Model):
+class D(_serialization.Model):
     """D.
 
     :ivar http_status_code:
@@ -98,7 +98,7 @@ class D(serialization.Model):
         self.http_status_code = http_status_code
 
 
-class Error(serialization.Model):
+class Error(_serialization.Model):
     """Error.
 
     :ivar status:
