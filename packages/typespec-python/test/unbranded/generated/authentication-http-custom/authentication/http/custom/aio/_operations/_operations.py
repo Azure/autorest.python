@@ -11,18 +11,20 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import models as _models
-from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import build_custom_invalid_request, build_custom_valid_request
-from .._vendor import CustomClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import CustomClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class CustomClientOperationsMixin(CustomClientMixinABC):
+class CustomClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, CustomClientConfiguration]):
 
     async def valid(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.

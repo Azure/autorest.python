@@ -10,7 +10,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ApiKeyClientConfiguration
 from ._operations import ApiKeyClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

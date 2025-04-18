@@ -18,8 +18,8 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ...._model_base import SdkJSONEncoder, _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import SdkJSONEncoder, _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import MediaTypeClientConfiguration
 from ...operations._operations import (
     build_string_body_get_as_json_request,

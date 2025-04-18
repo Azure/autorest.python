@@ -17,8 +17,8 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ...._model_base import SdkJSONEncoder
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import SdkJSONEncoder
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import SpreadClientConfiguration
 from ...operations._operations import (
     build_alias_spread_as_request_body_request,

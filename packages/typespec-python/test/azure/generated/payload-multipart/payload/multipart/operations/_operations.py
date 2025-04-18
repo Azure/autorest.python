@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -9,229 +10,152 @@ from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from azure.core import PipelineClient
-from azure.core.exceptions import ClientAuthenticationError, HttpResponseError, ResourceExistsError, ResourceNotFoundError, ResourceNotModifiedError, map_error
+from azure.core.exceptions import (
+    ClientAuthenticationError,
+    HttpResponseError,
+    ResourceExistsError,
+    ResourceNotFoundError,
+    ResourceNotModifiedError,
+    map_error,
+)
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .. import _utils.model_base, models as _models
+from .. import models as _models
 from .._configuration import MultiPartClientConfiguration
 from .._utils.model_base import Model as _Model
 from .._utils.serialization import Deserializer, Serializer
 from .._utils.utils import prepare_multipart_form_data
+
 JSON = MutableMapping[str, Any]
-T = TypeVar('T')
+T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_basic_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_basic_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/mixed-parts"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_array_and_basic_request(  # pylint: disable=name-too-long
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_file_array_and_basic_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/complex-parts"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_json_part_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_json_part_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/json-part"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_binary_array_parts_request(  # pylint: disable=name-too-long
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/binary-array-parts"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_multi_binary_parts_request(  # pylint: disable=name-too-long
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/multi-binary-parts"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_form_data_check_file_name_and_content_type_request(  # pylint: disable=name-too-long
-    **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/check-filename-and-content-type"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_anonymous_model_request(
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_anonymous_model_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/anonymous-model"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_form_data_http_parts_json_array_and_file_array_request(  # pylint: disable=name-too-long
-    **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/complex-parts-with-httppart"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_form_data_http_parts_content_type_image_jpeg_content_type_request(  # pylint: disable=name-too-long
-    **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/check-filename-and-specific-content-type-with-httppart"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_form_data_http_parts_content_type_required_content_type_request(  # pylint: disable=name-too-long
-    **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/check-filename-and-required-content-type-with-httppart"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
 def build_form_data_http_parts_content_type_optional_content_type_request(  # pylint: disable=name-too-long
-    **kwargs: Any
+    **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/file-with-http-part-optional-content-type"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_http_parts_non_string_float_request(  # pylint: disable=name-too-long
-    **kwargs: Any
-) -> HttpRequest:
+def build_form_data_http_parts_non_string_float_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/multipart/form-data/non-string-float"
 
-    
-    return HttpRequest(
-        method="POST",
-        url=_url,
-        headers=_headers,
-        **kwargs
-    )
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
-class FormDataOperations: 
+
+class FormDataOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -248,18 +172,10 @@ class FormDataOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.http_parts = FormDataHttpPartsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-
-
+        self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
-    def basic(
-        self,
-        body: _models.MultiPartRequest,
-        **kwargs: Any
-    ) -> None:
+    def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -270,11 +186,7 @@ class FormDataOperations:
         """
 
     @overload
-    def basic(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -284,12 +196,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def basic(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.MultiPartRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -300,24 +209,21 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
-        _data_fields: List[str] = ['id']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
@@ -327,15 +233,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -345,16 +249,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def file_array_and_basic(
-        self,
-        body: _models.ComplexPartsRequest,
-        **kwargs: Any
-    ) -> None:
+    def file_array_and_basic(self, body: _models.ComplexPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -365,11 +263,7 @@ class FormDataOperations:
         """
 
     @overload
-    def file_array_and_basic(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def file_array_and_basic(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -379,12 +273,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def file_array_and_basic(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.ComplexPartsRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.ComplexPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
@@ -395,24 +286,21 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage', 'pictures']
-        _data_fields: List[str] = ['id', 'address']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage", "pictures"]
+        _data_fields: List[str] = ["id", "address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_file_array_and_basic_request(
@@ -422,15 +310,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -440,16 +326,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def json_part(
-        self,
-        body: _models.JsonPartRequest,
-        **kwargs: Any
-    ) -> None:
+    def json_part(self, body: _models.JsonPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -460,11 +340,7 @@ class FormDataOperations:
         """
 
     @overload
-    def json_part(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def json_part(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
         :param body: Required.
@@ -474,12 +350,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def json_part(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.JsonPartRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.JsonPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains json part and binary part.
 
@@ -490,24 +363,21 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
-        _data_fields: List[str] = ['address']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_part_request(
@@ -517,15 +387,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -535,16 +403,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def binary_array_parts(
-        self,
-        body: _models.BinaryArrayPartsRequest,
-        **kwargs: Any
-    ) -> None:
+    def binary_array_parts(self, body: _models.BinaryArrayPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -555,11 +417,7 @@ class FormDataOperations:
         """
 
     @overload
-    def binary_array_parts(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def binary_array_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -569,12 +427,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def binary_array_parts(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.BinaryArrayPartsRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.BinaryArrayPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
@@ -585,24 +440,21 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['pictures']
-        _data_fields: List[str] = ['id']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["pictures"]
+        _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_binary_array_parts_request(
@@ -612,15 +464,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -630,16 +480,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def multi_binary_parts(
-        self,
-        body: _models.MultiBinaryPartsRequest,
-        **kwargs: Any
-    ) -> None:
+    def multi_binary_parts(self, body: _models.MultiBinaryPartsRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -650,11 +494,7 @@ class FormDataOperations:
         """
 
     @overload
-    def multi_binary_parts(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def multi_binary_parts(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
         :param body: Required.
@@ -664,12 +504,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def multi_binary_parts(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.MultiBinaryPartsRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.MultiBinaryPartsRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for scenario contains multi binary parts.
 
@@ -680,23 +517,20 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage', 'picture']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage", "picture"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
@@ -707,15 +541,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -725,16 +557,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def check_file_name_and_content_type(
-        self,
-        body: _models.MultiPartRequest,
-        **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -745,11 +571,7 @@ class FormDataOperations:
         """
 
     @overload
-    def check_file_name_and_content_type(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def check_file_name_and_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -759,12 +581,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def check_file_name_and_content_type(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.MultiPartRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.MultiPartRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -775,24 +594,21 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
-        _data_fields: List[str] = ['id']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
+        _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_check_file_name_and_content_type_request(
@@ -802,15 +618,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -820,16 +634,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def anonymous_model(
-        self,
-        body: _models.AnonymousModelRequest,
-        **kwargs: Any
-    ) -> None:
+    def anonymous_model(self, body: _models.AnonymousModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -840,11 +648,7 @@ class FormDataOperations:
         """
 
     @overload
-    def anonymous_model(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def anonymous_model(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -854,12 +658,9 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.AnonymousModelRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.AnonymousModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -870,23 +671,20 @@ class FormDataOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
@@ -897,15 +695,13 @@ class FormDataOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -915,10 +711,10 @@ class FormDataOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsOperations: 
+class FormDataHttpPartsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -942,14 +738,8 @@ class FormDataHttpPartsOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-
-
     @overload
-    def json_array_and_file_array(
-        self,
-        body: _models.ComplexHttpPartsModelRequest,
-        **kwargs: Any
-    ) -> None:
+    def json_array_and_file_array(self, body: _models.ComplexHttpPartsModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -960,11 +750,7 @@ class FormDataHttpPartsOperations:
         """
 
     @overload
-    def json_array_and_file_array(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def json_array_and_file_array(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
         :param body: Required.
@@ -974,12 +760,9 @@ class FormDataHttpPartsOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def json_array_and_file_array(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.ComplexHttpPartsModelRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.ComplexHttpPartsModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for mixed scenarios.
 
@@ -990,24 +773,21 @@ class FormDataHttpPartsOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage', 'pictures']
-        _data_fields: List[str] = ['id', 'address', 'previousAddresses']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage", "pictures"]
+        _data_fields: List[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_json_array_and_file_array_request(
@@ -1017,15 +797,13 @@ class FormDataHttpPartsOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1035,10 +813,10 @@ class FormDataHttpPartsOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsContentTypeOperations: 
+class FormDataHttpPartsContentTypeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -1055,15 +833,8 @@ class FormDataHttpPartsContentTypeOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
-
-
     @overload
-    def image_jpeg_content_type(
-        self,
-        body: _models.FileWithHttpPartSpecificContentTypeRequest,
-        **kwargs: Any
-    ) -> None:
+    def image_jpeg_content_type(self, body: _models.FileWithHttpPartSpecificContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -1074,11 +845,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def image_jpeg_content_type(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def image_jpeg_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -1088,12 +855,9 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def image_jpeg_content_type(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.FileWithHttpPartSpecificContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -1105,23 +869,20 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
@@ -1132,15 +893,13 @@ class FormDataHttpPartsContentTypeOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1150,16 +909,10 @@ class FormDataHttpPartsContentTypeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def required_content_type(
-        self,
-        body: _models.FileWithHttpPartRequiredContentTypeRequest,
-        **kwargs: Any
-    ) -> None:
+    def required_content_type(self, body: _models.FileWithHttpPartRequiredContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -1170,11 +923,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def required_content_type(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def required_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
         :param body: Required.
@@ -1184,12 +933,9 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def required_content_type(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.FileWithHttpPartRequiredContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
@@ -1201,23 +947,20 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
@@ -1228,15 +971,13 @@ class FormDataHttpPartsContentTypeOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1246,16 +987,10 @@ class FormDataHttpPartsContentTypeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def optional_content_type(
-        self,
-        body: _models.FileWithHttpPartOptionalContentTypeRequest,
-        **kwargs: Any
-    ) -> None:
+    def optional_content_type(self, body: _models.FileWithHttpPartOptionalContentTypeRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
         :param body: Required.
@@ -1266,11 +1001,7 @@ class FormDataHttpPartsContentTypeOperations:
         """
 
     @overload
-    def optional_content_type(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def optional_content_type(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
         :param body: Required.
@@ -1280,12 +1011,9 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def optional_content_type(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.FileWithHttpPartOptionalContentTypeRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for optional content type.
 
@@ -1297,23 +1025,20 @@ class FormDataHttpPartsContentTypeOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
-        _file_fields: List[str] = ['profileImage']
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
@@ -1324,15 +1049,13 @@ class FormDataHttpPartsContentTypeOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1342,10 +1065,10 @@ class FormDataHttpPartsContentTypeOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
+            return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsNonStringOperations: 
+class FormDataHttpPartsNonStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
@@ -1362,15 +1085,8 @@ class FormDataHttpPartsNonStringOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-
-
-
     @overload
-    def float(
-        self,
-        body: _models.FloatRequest,
-        **kwargs: Any
-    ) -> None:
+    def float(self, body: _models.FloatRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -1381,11 +1097,7 @@ class FormDataHttpPartsNonStringOperations:
         """
 
     @overload
-    def float(
-        self,
-        body: JSON,
-        **kwargs: Any
-    ) -> None:
+    def float(self, body: JSON, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data for non string.
 
         :param body: Required.
@@ -1395,12 +1107,9 @@ class FormDataHttpPartsNonStringOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-
     @distributed_trace
     def float(  # pylint: disable=inconsistent-return-statements
-        self,
-        body: Union[_models.FloatRequest, JSON],
-        **kwargs: Any
+        self, body: Union[_models.FloatRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data for non string.
 
@@ -1411,24 +1120,21 @@ class FormDataHttpPartsNonStringOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
-            401: ClientAuthenticationError, 404: ResourceNotFoundError, 409: ResourceExistsError, 304: ResourceNotModifiedError
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop('error_map', {}) or {})
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[None] = kwargs.pop(
-            'cls', None
-        )
+        cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = (
-            body.as_dict()
-            if isinstance(body, _Model) else
-            body
-        )
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = []
-        _data_fields: List[str] = ['temperature']
+        _data_fields: List[str] = ["temperature"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_non_string_float_request(
@@ -1438,15 +1144,13 @@ class FormDataHttpPartsNonStringOperations:
             params=_params,
         )
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, 'str', skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = self._client._pipeline.run(   # pylint: disable=protected-access
-            _request,
-            stream=_stream,
-            **kwargs
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
         )
 
         response = pipeline_response.http_response
@@ -1456,6 +1160,4 @@ class FormDataHttpPartsNonStringOperations:
             raise HttpResponseError(response=response)
 
         if cls:
-            return cls(pipeline_response, None, {}) # type: ignore
-
-
+            return cls(pipeline_response, None, {})  # type: ignore

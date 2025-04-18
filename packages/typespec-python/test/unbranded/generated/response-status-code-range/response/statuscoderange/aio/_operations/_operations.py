@@ -11,21 +11,23 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import models as _models
-from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import (
     build_status_code_range_error_response_status_code404_request,
     build_status_code_range_error_response_status_code_in_range_request,
 )
-from .._vendor import StatusCodeRangeClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import StatusCodeRangeClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StatusCodeRangeClientOperationsMixin(StatusCodeRangeClientMixinABC):
+class StatusCodeRangeClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, StatusCodeRangeClientConfiguration]):
 
     async def error_response_status_code_in_range(self, **kwargs: Any) -> None:
         """error_response_status_code_in_range.

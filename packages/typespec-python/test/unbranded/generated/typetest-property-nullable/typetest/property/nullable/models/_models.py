@@ -4,14 +4,13 @@
 import datetime
 from typing import Any, List, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class BytesProperty(_model_base.Model):
+class BytesProperty(_Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
     are looking for.
 
@@ -49,7 +48,7 @@ class BytesProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class CollectionsByteProperty(_model_base.Model):
+class CollectionsByteProperty(_Model):
     """Model with collection bytes properties.
 
     :ivar required_property: Required property. Required.
@@ -86,7 +85,7 @@ class CollectionsByteProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class CollectionsModelProperty(_model_base.Model):
+class CollectionsModelProperty(_Model):
     """Model with collection models properties.
 
     :ivar required_property: Required property. Required.
@@ -123,7 +122,7 @@ class CollectionsModelProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class CollectionsStringProperty(_model_base.Model):
+class CollectionsStringProperty(_Model):
     """Model with collection string properties.
 
     :ivar required_property: Required property. Required.
@@ -160,7 +159,7 @@ class CollectionsStringProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DatetimeProperty(_model_base.Model):
+class DatetimeProperty(_Model):
     """Model with a datetime property.
 
     :ivar required_property: Required property. Required.
@@ -197,7 +196,7 @@ class DatetimeProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DurationProperty(_model_base.Model):
+class DurationProperty(_Model):
     """Model with a duration property.
 
     :ivar required_property: Required property. Required.
@@ -234,7 +233,7 @@ class DurationProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InnerModel(_model_base.Model):
+class InnerModel(_Model):
     """Inner model used in collections model property.
 
     :ivar property: Inner model property. Required.
@@ -262,7 +261,7 @@ class InnerModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class StringProperty(_model_base.Model):
+class StringProperty(_Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
     are looking for.
 

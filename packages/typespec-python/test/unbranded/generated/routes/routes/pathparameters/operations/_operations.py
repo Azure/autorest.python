@@ -15,7 +15,7 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._configuration import RoutesClientConfiguration
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ..labelexpansion.operations._operations import PathParametersLabelExpansionOperations
 from ..matrixexpansion.operations._operations import PathParametersMatrixExpansionOperations
 from ..pathexpansion.operations._operations import PathParametersPathExpansionOperations

@@ -3,11 +3,10 @@
 
 from typing import Any, Mapping, overload
 
-from ... import _model_base
-from ..._model_base import rest_field
+from ..._utils.model_base import Model as _Model, rest_field
 
 
-class AndModel(_model_base.Model):
+class AndModel(_Model):
     """AndModel.
 
     :ivar name: Required.
@@ -35,7 +34,7 @@ class AndModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class AsModel(_model_base.Model):
+class AsModel(_Model):
     """AsModel.
 
     :ivar name: Required.
@@ -63,7 +62,7 @@ class AsModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class AssertModel(_model_base.Model):
+class AssertModel(_Model):
     """AssertModel.
 
     :ivar name: Required.
@@ -91,7 +90,7 @@ class AssertModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class AsyncModel(_model_base.Model):
+class AsyncModel(_Model):
     """AsyncModel.
 
     :ivar name: Required.
@@ -119,7 +118,7 @@ class AsyncModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class AwaitModel(_model_base.Model):
+class AwaitModel(_Model):
     """AwaitModel.
 
     :ivar name: Required.
@@ -147,7 +146,7 @@ class AwaitModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class BreakModel(_model_base.Model):
+class BreakModel(_Model):
     """BreakModel.
 
     :ivar name: Required.
@@ -175,7 +174,7 @@ class BreakModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ClassModel(_model_base.Model):
+class ClassModel(_Model):
     """ClassModel.
 
     :ivar name: Required.
@@ -203,7 +202,7 @@ class ClassModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Constructor(_model_base.Model):
+class Constructor(_Model):
     """Constructor.
 
     :ivar name: Required.
@@ -231,7 +230,7 @@ class Constructor(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ContinueModel(_model_base.Model):
+class ContinueModel(_Model):
     """ContinueModel.
 
     :ivar name: Required.
@@ -259,7 +258,7 @@ class ContinueModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DefModel(_model_base.Model):
+class DefModel(_Model):
     """DefModel.
 
     :ivar name: Required.
@@ -287,7 +286,7 @@ class DefModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class DelModel(_model_base.Model):
+class DelModel(_Model):
     """DelModel.
 
     :ivar name: Required.
@@ -315,7 +314,7 @@ class DelModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ElifModel(_model_base.Model):
+class ElifModel(_Model):
     """ElifModel.
 
     :ivar name: Required.
@@ -343,7 +342,7 @@ class ElifModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ElseModel(_model_base.Model):
+class ElseModel(_Model):
     """ElseModel.
 
     :ivar name: Required.
@@ -371,7 +370,7 @@ class ElseModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExceptModel(_model_base.Model):
+class ExceptModel(_Model):
     """ExceptModel.
 
     :ivar name: Required.
@@ -399,7 +398,7 @@ class ExceptModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ExecModel(_model_base.Model):
+class ExecModel(_Model):
     """ExecModel.
 
     :ivar name: Required.
@@ -427,7 +426,7 @@ class ExecModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FinallyModel(_model_base.Model):
+class FinallyModel(_Model):
     """FinallyModel.
 
     :ivar name: Required.
@@ -455,7 +454,7 @@ class FinallyModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ForModel(_model_base.Model):
+class ForModel(_Model):
     """ForModel.
 
     :ivar name: Required.
@@ -483,7 +482,7 @@ class ForModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FromModel(_model_base.Model):
+class FromModel(_Model):
     """FromModel.
 
     :ivar name: Required.
@@ -511,7 +510,7 @@ class FromModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GlobalModel(_model_base.Model):
+class GlobalModel(_Model):
     """GlobalModel.
 
     :ivar name: Required.
@@ -539,7 +538,7 @@ class GlobalModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IfModel(_model_base.Model):
+class IfModel(_Model):
     """IfModel.
 
     :ivar name: Required.
@@ -567,7 +566,7 @@ class IfModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ImportModel(_model_base.Model):
+class ImportModel(_Model):
     """ImportModel.
 
     :ivar name: Required.
@@ -595,7 +594,7 @@ class ImportModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class InModel(_model_base.Model):
+class InModel(_Model):
     """InModel.
 
     :ivar name: Required.
@@ -623,7 +622,7 @@ class InModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class IsModel(_model_base.Model):
+class IsModel(_Model):
     """IsModel.
 
     :ivar name: Required.
@@ -651,7 +650,7 @@ class IsModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class LambdaModel(_model_base.Model):
+class LambdaModel(_Model):
     """LambdaModel.
 
     :ivar name: Required.
@@ -679,7 +678,7 @@ class LambdaModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class NotModel(_model_base.Model):
+class NotModel(_Model):
     """NotModel.
 
     :ivar name: Required.
@@ -707,7 +706,7 @@ class NotModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class OrModel(_model_base.Model):
+class OrModel(_Model):
     """OrModel.
 
     :ivar name: Required.
@@ -735,7 +734,7 @@ class OrModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class PassModel(_model_base.Model):
+class PassModel(_Model):
     """PassModel.
 
     :ivar name: Required.
@@ -763,7 +762,7 @@ class PassModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class RaiseModel(_model_base.Model):
+class RaiseModel(_Model):
     """RaiseModel.
 
     :ivar name: Required.
@@ -791,7 +790,7 @@ class RaiseModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ReturnModel(_model_base.Model):
+class ReturnModel(_Model):
     """ReturnModel.
 
     :ivar name: Required.
@@ -819,7 +818,7 @@ class ReturnModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class TryModel(_model_base.Model):
+class TryModel(_Model):
     """TryModel.
 
     :ivar name: Required.
@@ -847,7 +846,7 @@ class TryModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class WhileModel(_model_base.Model):
+class WhileModel(_Model):
     """WhileModel.
 
     :ivar name: Required.
@@ -875,7 +874,7 @@ class WhileModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class WithModel(_model_base.Model):
+class WithModel(_Model):
     """WithModel.
 
     :ivar name: Required.
@@ -903,7 +902,7 @@ class WithModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class YieldModel(_model_base.Model):
+class YieldModel(_Model):
     """YieldModel.
 
     :ivar name: Required.

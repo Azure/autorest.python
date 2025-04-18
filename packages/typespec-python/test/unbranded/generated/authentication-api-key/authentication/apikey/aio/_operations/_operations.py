@@ -11,18 +11,20 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import models as _models
-from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import build_api_key_invalid_request, build_api_key_valid_request
-from .._vendor import ApiKeyClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ApiKeyClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
+class ApiKeyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ApiKeyClientConfiguration]):
 
     async def valid(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.

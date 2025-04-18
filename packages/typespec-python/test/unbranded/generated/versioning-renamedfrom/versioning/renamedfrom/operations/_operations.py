@@ -21,9 +21,9 @@ from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import RenamedFromClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Deserializer, Serializer
-from .._vendor import RenamedFromClientMixinABC
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -205,7 +205,7 @@ class NewInterfaceOperations:
         return deserialized  # type: ignore
 
 
-class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
+class RenamedFromClientOperationsMixin(ClientMixinABC[PipelineClient, RenamedFromClientConfiguration]):
 
     @overload
     def new_op(

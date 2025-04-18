@@ -10,7 +10,7 @@ from corehttp.runtime import PipelineClient, policies
 from . import models as _models
 from ._configuration import ReturnTypeChangedFromClientConfiguration
 from ._operations import ReturnTypeChangedFromClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ReturnTypeChangedFromClient(

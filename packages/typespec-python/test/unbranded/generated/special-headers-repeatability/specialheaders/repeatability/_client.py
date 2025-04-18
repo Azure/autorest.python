@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import RepeatabilityClientConfiguration
 from ._operations import RepeatabilityClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
