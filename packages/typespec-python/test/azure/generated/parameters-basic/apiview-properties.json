@@ -2,7 +2,9 @@
     "CrossLanguagePackageId": "Parameters.Basic",
     "CrossLanguageDefinitionId": {
         "parameters.basic.models.User": "Parameters.Basic.ExplicitBody.User",
-        "parameters.basic.BasicClient.explicit_body.simple": "Parameters.Basic.ExplicitBody.simple",
-        "parameters.basic.BasicClient.implicit_body.simple": "Parameters.Basic.ImplicitBody.simple"
+        "parameters.basic.operations.ExplicitBodyOperations.simple": "Parameters.Basic.ExplicitBody.simple",
+        "parameters.basic.aio.operations.ExplicitBodyOperations.simple": "Parameters.Basic.ExplicitBody.simple",
+        "parameters.basic.operations.ImplicitBodyOperations.simple": "Parameters.Basic.ImplicitBody.simple",
+        "parameters.basic.aio.operations.ImplicitBodyOperations.simple": "Parameters.Basic.ImplicitBody.simple"
     }
 }
