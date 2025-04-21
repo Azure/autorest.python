@@ -706,7 +706,7 @@ class ParamAliasClientOperationsMixin(ParamAliasClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_param_alias_with_aliased_name_request(
-            blob=self._config.blob,
+            blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,
         )

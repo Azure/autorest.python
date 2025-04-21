@@ -35,11 +35,11 @@ def build_path_normal_request(name: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_optional_request(name: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_path_optional_request(*, name: Optional[str] = None, **kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/parameters/path/optional{name}"
     path_format_arguments = {
-        "name": _SERIALIZER.url("name", name, "str"),
+        "name": "" if name is None else "/" + _SERIALIZER.url("name", name, "str"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -94,12 +94,12 @@ class PathClientOperationsMixin(PathClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
     def optional(  # pylint: disable=inconsistent-return-statements
-        self, name: Optional[str] = None, **kwargs: Any
+        self, *, name: Optional[str] = None, **kwargs: Any
     ) -> None:
         """optional.
 
-        :param name: Default value is None.
-        :type name: str
+        :keyword name: Default value is None.
+        :paramtype name: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

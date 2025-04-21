@@ -199,12 +199,12 @@ def build_path_param_delete_standalone_request(  # pylint: disable=name-too-long
 
 
 def build_param_alias_with_aliased_name_request(  # pylint: disable=name-too-long
-    blob: str, **kwargs: Any
+    blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
     _url = "/azure/client-generator-core/client-initialization/param-alias/{blob}/with-aliased-name"
     path_format_arguments = {
-        "blob": _SERIALIZER.url("blob", blob, "str"),
+        "blob": _SERIALIZER.url("blob_name", blob_name, "str"),
     }
 
     _url: str = _url.format(**path_format_arguments)  # type: ignore
@@ -882,7 +882,7 @@ class ParamAliasClientOperationsMixin(ParamAliasClientMixinABC):
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_param_alias_with_aliased_name_request(
-            blob=self._config.blob,
+            blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,
         )

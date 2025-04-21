@@ -68,11 +68,11 @@ class PathClientOperationsMixin(PathClientMixinABC):
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def optional(self, name: Optional[str] = None, **kwargs: Any) -> None:
+    async def optional(self, *, name: Optional[str] = None, **kwargs: Any) -> None:
         """optional.
 
-        :param name: Default value is None.
-        :type name: str
+        :keyword name: Default value is None.
+        :paramtype name: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
