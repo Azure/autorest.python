@@ -925,7 +925,7 @@ class LroOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -938,8 +938,10 @@ class LroOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns ExportResult. The ExportResult is compatible
+         with MutableMapping
+        :rtype:
+         ~azure.core.polling.LROPoller[~azure.resourcemanager.operationtemplates.models.ExportResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -952,7 +954,7 @@ class LroOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -965,8 +967,10 @@ class LroOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns ExportResult. The ExportResult is compatible
+         with MutableMapping
+        :rtype:
+         ~azure.core.polling.LROPoller[~azure.resourcemanager.operationtemplates.models.ExportResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -979,7 +983,7 @@ class LroOperations:
         *,
         content_type: str = "application/json",
         **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -992,8 +996,10 @@ class LroOperations:
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns ExportResult. The ExportResult is compatible
+         with MutableMapping
+        :rtype:
+         ~azure.core.polling.LROPoller[~azure.resourcemanager.operationtemplates.models.ExportResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
@@ -1004,7 +1010,7 @@ class LroOperations:
         order_name: str,
         body: Union[_models.ExportRequest, JSON, IO[bytes]],
         **kwargs: Any
-    ) -> LROPoller[None]:
+    ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1015,15 +1021,17 @@ class LroOperations:
         :param body: The content of the action request. Is one of the following types: ExportRequest,
          JSON, IO[bytes] Required.
         :type body: ~azure.resourcemanager.operationtemplates.models.ExportRequest or JSON or IO[bytes]
-        :return: An instance of LROPoller that returns None
-        :rtype: ~azure.core.polling.LROPoller[None]
+        :return: An instance of LROPoller that returns ExportResult. The ExportResult is compatible
+         with MutableMapping
+        :rtype:
+         ~azure.core.polling.LROPoller[~azure.resourcemanager.operationtemplates.models.ExportResult]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[None] = kwargs.pop("cls", None)
+        cls: ClsType[_models.ExportResult] = kwargs.pop("cls", None)
         polling: Union[bool, PollingMethod] = kwargs.pop("polling", True)
         lro_delay = kwargs.pop("polling_interval", self._config.polling_interval)
         cont_token: Optional[str] = kwargs.pop("continuation_token", None)
@@ -1041,9 +1049,19 @@ class LroOperations:
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
 
-        def get_long_running_output(pipeline_response):  # pylint: disable=inconsistent-return-statements
+        def get_long_running_output(pipeline_response):
+            response_headers = {}
+            response = pipeline_response.http_response
+            response_headers["Azure-AsyncOperation"] = self._deserialize(
+                "str", response.headers.get("Azure-AsyncOperation")
+            )
+            response_headers["Location"] = self._deserialize("str", response.headers.get("Location"))
+            response_headers["Retry-After"] = self._deserialize("int", response.headers.get("Retry-After"))
+
+            deserialized = _deserialize(_models.ExportResult, response.json())
             if cls:
-                return cls(pipeline_response, None, {})  # type: ignore
+                return cls(pipeline_response, deserialized, response_headers)  # type: ignore
+            return deserialized
 
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
@@ -1058,13 +1076,15 @@ class LroOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller[None].from_continuation_token(
+            return LROPoller[_models.ExportResult].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[None](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
+        return LROPoller[_models.ExportResult](
+            self._client, raw_result, get_long_running_output, polling_method  # type: ignore
+        )
 
     def _delete_initial(self, resource_group_name: str, order_name: str, **kwargs: Any) -> Iterator[bytes]:
         error_map: MutableMapping = {
