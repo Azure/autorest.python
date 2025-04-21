@@ -23,7 +23,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
 from ._operations import MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixin
-from ._utils.serialization import Serializer
+from .._utils.serialization import Serializer
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

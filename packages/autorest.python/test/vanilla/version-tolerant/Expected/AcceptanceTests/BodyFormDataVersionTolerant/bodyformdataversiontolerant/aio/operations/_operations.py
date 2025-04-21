@@ -25,9 +25,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import raise_if_not_implemented
 from ...operations._operations import build_formdata_upload_file_via_body_request
 from .._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
-from .._utils.utils import raise_if_not_implemented
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]

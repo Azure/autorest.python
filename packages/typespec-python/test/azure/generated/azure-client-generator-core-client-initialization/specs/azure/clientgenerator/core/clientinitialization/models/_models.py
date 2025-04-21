@@ -10,11 +10,10 @@
 import datetime
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class BlobProperties(_model_base.Model):
+class BlobProperties(_Model):
     """Properties of a blob.
 
     :ivar name: Required.
@@ -59,7 +58,7 @@ class BlobProperties(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Input(_model_base.Model):
+class Input(_Model):
     """Input.
 
     :ivar name: Required.
@@ -87,7 +86,7 @@ class Input(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class WithBodyRequest(_model_base.Model):
+class WithBodyRequest(_Model):
     """WithBodyRequest.
 
     :ivar name: Required.

@@ -11,16 +11,18 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import build_path_normal_request, build_path_optional_request
-from .._vendor import PathClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import PathClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PathClientOperationsMixin(PathClientMixinABC):
+class PathClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathClientConfiguration]):
 
     async def normal(self, name: str, **kwargs: Any) -> None:
         """normal.

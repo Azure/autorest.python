@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -26,15 +27,16 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import (
-    HeaderParamClientMixinABC,
-    MixedParamsClientMixinABC,
-    MultipleParamsClientMixinABC,
-    ParamAliasClientMixinABC,
-    PathParamClientMixinABC,
+from .._configuration import (
+    HeaderParamClientConfiguration,
+    MixedParamsClientConfiguration,
+    MultipleParamsClientConfiguration,
+    ParamAliasClientConfiguration,
+    PathParamClientConfiguration,
 )
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -226,7 +228,7 @@ def build_param_alias_with_original_name_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class HeaderParamClientOperationsMixin(HeaderParamClientMixinABC):
+class HeaderParamClientOperationsMixin(ClientMixinABC[PipelineClient, HeaderParamClientConfiguration]):
 
     @distributed_trace
     def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -379,7 +381,7 @@ class HeaderParamClientOperationsMixin(HeaderParamClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(MultipleParamsClientMixinABC):
+class MultipleParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleParamsClientConfiguration]):
 
     @distributed_trace
     def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -534,7 +536,7 @@ class MultipleParamsClientOperationsMixin(MultipleParamsClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(MixedParamsClientMixinABC):
+class MixedParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MixedParamsClientConfiguration]):
 
     @distributed_trace
     def with_query(  # pylint: disable=inconsistent-return-statements
@@ -703,7 +705,7 @@ class MixedParamsClientOperationsMixin(MixedParamsClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(PathParamClientMixinABC):
+class PathParamClientOperationsMixin(ClientMixinABC[PipelineClient, PathParamClientConfiguration]):
 
     @distributed_trace
     def with_query(  # pylint: disable=inconsistent-return-statements
@@ -858,7 +860,7 @@ class PathParamClientOperationsMixin(PathParamClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(ParamAliasClientMixinABC):
+class ParamAliasClientOperationsMixin(ClientMixinABC[PipelineClient, ParamAliasClientConfiguration]):
 
     @distributed_trace
     def with_aliased_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

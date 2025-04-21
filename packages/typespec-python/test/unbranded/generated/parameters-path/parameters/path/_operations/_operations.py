@@ -11,10 +11,12 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from .._serialization import Serializer
-from .._vendor import PathClientMixinABC
+from .._configuration import PathClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -47,7 +49,7 @@ def build_path_optional_request(*, name: Optional[str] = None, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class PathClientOperationsMixin(PathClientMixinABC):
+class PathClientOperationsMixin(ClientMixinABC[PipelineClient, PathClientConfiguration]):
 
     def normal(self, name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """normal.

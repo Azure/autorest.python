@@ -6,20 +6,20 @@
 # --------------------------------------------------------------------------
 
 from abc import ABC
-from typing import TYPE_CHECKING
-
-from ._configuration import PathClientConfiguration
+from typing import Generic, TYPE_CHECKING, TypeVar
 
 if TYPE_CHECKING:
-    from azure.core import PipelineClient
-
-    from ._serialization import Deserializer, Serializer
+    from .serialization import Deserializer, Serializer
 
 
-class PathClientMixinABC(ABC):
+TClient = TypeVar("TClient")
+TConfig = TypeVar("TConfig")
+
+
+class ClientMixinABC(ABC, Generic[TClient, TConfig]):
     """DO NOT use this class. It is for internal typing use only."""
 
-    _client: "PipelineClient"
-    _config: PathClientConfiguration
+    _client: TClient
+    _config: TConfig
     _serialize: "Serializer"
     _deserialize: "Deserializer"

@@ -225,7 +225,7 @@ class ExportResult(_Model):
         super().__init__(*args, **kwargs)
 
 
-class Operation(_model_base.Model):
+class Operation(_Model):
     """Details of a REST API operation, returned from the Resource Provider Operations API.
 
     :ivar name: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
