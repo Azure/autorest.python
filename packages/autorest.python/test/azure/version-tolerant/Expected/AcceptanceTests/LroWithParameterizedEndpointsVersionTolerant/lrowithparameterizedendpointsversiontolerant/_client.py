@@ -36,6 +36,7 @@ class LROWithParamaterizedEndpoints(
     ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

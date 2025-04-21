@@ -34,7 +34,7 @@ import pytest
 @async_generator
 async def client(credential, authentication_policy):
     async with AutoRestPagingTestService(
-        credential, host="host:3000", authentication_policy=authentication_policy
+        credential, endpoint="http://localhost:3000", authentication_policy=authentication_policy
     ) as client:
         await yield_(client)
 

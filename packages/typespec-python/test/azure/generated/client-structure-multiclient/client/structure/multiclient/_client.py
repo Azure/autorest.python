@@ -23,7 +23,8 @@ from ._serialization import Deserializer, Serializer
 class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ClientAClient.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
@@ -36,6 +37,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientAClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -100,7 +102,8 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
 class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ClientBClient.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
@@ -113,6 +116,7 @@ class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ClientBClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

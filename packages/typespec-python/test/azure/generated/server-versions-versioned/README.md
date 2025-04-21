@@ -1,5 +1,3 @@
-
-
 # Server Versions Versioned client library for Python
 <!-- write necessary description of service -->
 
@@ -13,9 +11,10 @@ python -m pip install server-versions-versioned
 
 #### Prequisites
 
-- Python 3.8 or later is required to use this package.
+- Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
 - An existing Server Versions Versioned instance.
+
 
 ## Contributing
 
@@ -42,4 +41,3 @@ additional questions or comments.
 [default_azure_credential]: https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/identity/azure-identity#defaultazurecredential
 [pip]: https://pypi.org/project/pip/
 [azure_sub]: https://azure.microsoft.com/free/
-

@@ -36,17 +36,6 @@ class TestCollectionFormatQueryOperations(CollectionFormatClientTestBase):
 
     @CollectionFormatPreparer()
     @recorded_by_proxy
-    def test_query_tsv(self, collectionformat_endpoint):
-        client = self.create_client(endpoint=collectionformat_endpoint)
-        response = client.query.tsv(
-            colors=["str"],
-        )
-
-        # please add some check logic here by yourself
-        # ...
-
-    @CollectionFormatPreparer()
-    @recorded_by_proxy
     def test_query_pipes(self, collectionformat_endpoint):
         client = self.create_client(endpoint=collectionformat_endpoint)
         response = client.query.pipes(

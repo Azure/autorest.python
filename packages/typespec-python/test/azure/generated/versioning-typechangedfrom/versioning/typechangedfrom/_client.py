@@ -23,7 +23,8 @@ from ._serialization import Deserializer, Serializer
 class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@typeChangedFrom`` decorator.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
      Required.
@@ -35,6 +36,7 @@ class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}/versioning/type-changed-from/api-version:{version}"
         self._config = TypeChangedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -1,5 +1,79 @@
 # Release
 
+## 6.33.0
+
+### Features
+
+- [#3076](https://github.com/Azure/autorest.python/pull/3076) Improve user experience in multi clouds scenario
+- [#3073](https://github.com/Azure/autorest.python/pull/3073) add more hooks into setup.py template for users with custom templates
+
+
+## 6.32.3
+
+### Bug Fixes
+
+- [#3071](https://github.com/Azure/autorest.python/pull/3071) Allow `_` in namespaces
+
+### Other Changes
+
+- [#3065](https://github.com/Azure/autorest.python/pull/3065) Drop support for python3.8
+
+## 6.32.2
+
+No changes, version bump only.
+
+## 6.32.1
+
+### Bug Fixes
+
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Fix crash when configure `license` in tspconfig.yaml`
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Keep license header for legacy SDK
+
+
+## 6.32.0
+
+### Features
+
+- [#3062](https://github.com/Azure/autorest.python/pull/3062) Pass authentication flows info into credential policy for unbranded
+- [#3061](https://github.com/Azure/autorest.python/pull/3061) support typespec license config
+
+
+## 6.31.0
+
+### Features
+
+- [#3057](https://github.com/Azure/autorest.python/pull/3057) Always respect namespace from TCGC
+- [#3060](https://github.com/Azure/autorest.python/pull/3060) Refine emitter options
+
+
+## 6.30.0
+
+### Bump dependencies
+
+- [#3058](https://github.com/Azure/autorest.python/pull/3058) Bump `@typespec/*` 0.67
+
+### Features
+
+- [#3050](https://github.com/Azure/autorest.python/pull/3050) Support continuation token for paging
+
+
+## 6.29.1
+
+No changes, version bump only.
+
+## 6.29.0
+
+### Bug Fixes
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Fix sphinx syntax for raising `DeserializationError` in serialization file
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) remove useless docstring for models
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Don't throw error directly when emitter crash
+
+### Features
+
+- [#3051](https://github.com/Azure/autorest.python/pull/3051) Report TCGC diagnostics after create SDK context.
+
+
 ## 6.28.4
 
 No changes, version bump only.

@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageableClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import ServerDrivenPaginationOperations
+from .serverdrivenpagination.operations import ServerDrivenPaginationOperations
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -33,6 +33,7 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = PageableClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -43,3 +43,15 @@ class TestUsageModelInOperationOperationsAsync(UsageClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @UsagePreparer()
+    @recorded_by_proxy_async
+    async def test_model_in_operation_orphan_model_serializable(self, usage_endpoint):
+        client = self.create_async_client(endpoint=usage_endpoint)
+        response = await client.model_in_operation.orphan_model_serializable(
+            body={},
+            content_type="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...

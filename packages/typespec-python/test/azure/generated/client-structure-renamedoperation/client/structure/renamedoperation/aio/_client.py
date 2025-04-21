@@ -27,7 +27,8 @@ class RenamedOperationClient(
 
     :ivar group: GroupOperations operations
     :vartype group: client.structure.renamedoperation.aio.operations.GroupOperations
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
@@ -40,6 +41,7 @@ class RenamedOperationClient(
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = RenamedOperationClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

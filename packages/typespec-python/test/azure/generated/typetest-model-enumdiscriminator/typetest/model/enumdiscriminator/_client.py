@@ -33,6 +33,7 @@ class EnumDiscriminatorClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = EnumDiscriminatorClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

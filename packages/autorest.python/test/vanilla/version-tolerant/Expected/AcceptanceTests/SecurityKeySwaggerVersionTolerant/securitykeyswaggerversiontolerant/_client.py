@@ -33,6 +33,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
         self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -99,8 +99,6 @@ class CheckNameAvailabilityResponse(_model_base.Model):
 class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar type: The additional info type.
     :vartype type: str
     :ivar info: The additional info.
@@ -115,8 +113,6 @@ class ErrorAdditionalInfo(_model_base.Model):
 
 class ErrorDetail(_model_base.Model):
     """The error detail.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -177,8 +173,6 @@ class ErrorResponse(_model_base.Model):
 class ExportRequest(_model_base.Model):
     """ExportRequest.
 
-    All required parameters must be populated in order to send to server.
-
     :ivar format: Format of the exported order. Required.
     :vartype format: str
     """
@@ -204,10 +198,36 @@ class ExportRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
+class ExportResult(_model_base.Model):
+    """ExportResult.
+
+    :ivar content: Content of the exported order. Required.
+    :vartype content: str
+    """
+
+    content: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Content of the exported order. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        content: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class Operation(_model_base.Model):
     """Details of a REST API operation, returned from the Resource Provider Operations API.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar name: The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
      "Microsoft.Compute/virtualMachines/write", "Microsoft.Compute/virtualMachines/capture/action".
@@ -266,8 +286,6 @@ class Operation(_model_base.Model):
 class OperationDisplay(_model_base.Model):
     """Localized display information for and operation.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar provider: The localized friendly form of the resource provider name, e.g. "Microsoft
      Monitoring Insights" or "Microsoft Compute".
     :vartype provider: str
@@ -299,8 +317,6 @@ class OperationDisplay(_model_base.Model):
 class Resource(_model_base.Model):
     """Common fields that are returned in the response for all Azure Resource Manager resources.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
@@ -329,9 +345,6 @@ class Resource(_model_base.Model):
 class TrackedResource(Resource):
     """The resource model definition for an Azure Resource Manager tracked top level resource which
     has 'tags' and a 'location'.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -377,9 +390,6 @@ class TrackedResource(Resource):
 class Order(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -427,9 +437,6 @@ class Order(TrackedResource):
 
 class OrderProperties(_model_base.Model):
     """OrderProperties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar product_id: The product ID of the order. Required.
     :vartype product_id: str

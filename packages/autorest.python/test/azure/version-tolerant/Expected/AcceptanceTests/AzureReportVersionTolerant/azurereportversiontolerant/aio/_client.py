@@ -32,6 +32,7 @@ class AutoRestReportServiceForAzure(
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestReportServiceForAzureConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

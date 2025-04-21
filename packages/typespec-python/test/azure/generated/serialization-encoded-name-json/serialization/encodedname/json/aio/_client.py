@@ -20,7 +20,7 @@ from .operations import PropertyOperations
 
 
 class JsonClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Projection.
+    """Encoded names.
 
     :ivar property: PropertyOperations operations
     :vartype property: serialization.encodedname.json.aio.operations.PropertyOperations
@@ -33,6 +33,7 @@ class JsonClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = JsonClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

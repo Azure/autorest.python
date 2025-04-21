@@ -23,7 +23,8 @@ from ._serialization import Deserializer, Serializer
 class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@madeOptional`` decorator.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
      Required.
@@ -35,6 +36,7 @@ class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=
     ) -> None:
         _endpoint = "{endpoint}/versioning/made-optional/api-version:{version}"
         self._config = MadeOptionalClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -25,7 +25,8 @@ class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=cl
 
     :ivar new_interface: NewInterfaceOperations operations
     :vartype new_interface: versioning.renamedfrom.aio.operations.NewInterfaceOperations
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
      Required.
@@ -37,6 +38,7 @@ class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=cl
     ) -> None:
         _endpoint = "{endpoint}/versioning/renamed-from/api-version:{version}"
         self._config = RenamedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

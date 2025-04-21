@@ -15,8 +15,8 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..stringbody.aio.operations import StringBodyOperations
 from ._configuration import MediaTypeClientConfiguration
-from .operations import StringBodyOperations
 
 
 class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -33,6 +33,7 @@ class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = MediaTypeClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

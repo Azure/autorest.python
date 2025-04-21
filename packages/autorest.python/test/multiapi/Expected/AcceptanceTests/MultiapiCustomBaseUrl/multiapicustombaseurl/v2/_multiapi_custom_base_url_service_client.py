@@ -40,6 +40,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(
             credential=credential, endpoint=endpoint, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

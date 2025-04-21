@@ -18,10 +18,278 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
+class ApiError(_model_base.Model):
+    """Api error.
+
+    :ivar details: The Api error details.
+    :vartype details: list[~azure.resourcemanager.commonproperties.models.ApiErrorBase]
+    :ivar innererror: The Api inner error.
+    :vartype innererror: ~azure.resourcemanager.commonproperties.models.InnerError
+    :ivar code: The error code.
+    :vartype code: str
+    :ivar target: The target of the particular error.
+    :vartype target: str
+    :ivar message: The error message.
+    :vartype message: str
+    """
+
+    details: Optional[List["_models.ApiErrorBase"]] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The Api error details."""
+    innererror: Optional["_models.InnerError"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The Api inner error."""
+    code: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The error code."""
+    target: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The target of the particular error."""
+    message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The error message."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        details: Optional[List["_models.ApiErrorBase"]] = None,
+        innererror: Optional["_models.InnerError"] = None,
+        code: Optional[str] = None,
+        target: Optional[str] = None,
+        message: Optional[str] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ApiErrorBase(_model_base.Model):
+    """Api error base.
+
+    :ivar code: The error code.
+    :vartype code: str
+    :ivar target: The target of the particular error.
+    :vartype target: str
+    :ivar message: The error message.
+    :vartype message: str
+    """
+
+    code: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The error code."""
+    target: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The target of the particular error."""
+    message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The error message."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        code: Optional[str] = None,
+        target: Optional[str] = None,
+        message: Optional[str] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class CloudError(_model_base.Model):
+    """An error response.
+
+    :ivar error: Api error.
+    :vartype error: ~azure.resourcemanager.commonproperties.models.ApiError
+    """
+
+    error: Optional["_models.ApiError"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Api error."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        error: Optional["_models.ApiError"] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Resource(_model_base.Model):
+    """Common fields that are returned in the response for all Azure Resource Manager resources.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts".
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
+    """
+
+    id: Optional[str] = rest_field(visibility=["read"])
+    """Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+    name: Optional[str] = rest_field(visibility=["read"])
+    """The name of the resource."""
+    type: Optional[str] = rest_field(visibility=["read"])
+    """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
+     \"Microsoft.Storage/storageAccounts\"."""
+    system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
+    """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
+
+
+class TrackedResource(Resource):
+    """The resource model definition for an Azure Resource Manager tracked top level resource which
+    has 'tags' and a 'location'.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts".
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    """
+
+    tags: Optional[Dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Resource tags."""
+    location: str = rest_field(visibility=["read", "create"])
+    """The geo-location where the resource lives. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ConfidentialResource(TrackedResource):
+    """Concrete tracked resource types can be created by aliasing this type using a specific property
+    type.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts".
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties:
+     ~azure.resourcemanager.commonproperties.models.ConfidentialResourceProperties
+    """
+
+    properties: Optional["_models.ConfidentialResourceProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        properties: Optional["_models.ConfidentialResourceProperties"] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ConfidentialResourceProperties(_model_base.Model):
+    """Confidential Resource Properties.
+
+    :ivar provisioning_state: The status of the last operation. Required.
+    :vartype provisioning_state: str
+    :ivar username: Required.
+    :vartype username: str
+    """
+
+    provisioning_state: str = rest_field(name="provisioningState", visibility=["read"])
+    """The status of the last operation. Required."""
+    username: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        username: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ErrorAdditionalInfo(_model_base.Model):
     """The resource management error additional info.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar type: The additional info type.
     :vartype type: str
@@ -37,8 +305,6 @@ class ErrorAdditionalInfo(_model_base.Model):
 
 class ErrorDetail(_model_base.Model):
     """The error detail.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar code: The error code.
     :vartype code: str
@@ -96,71 +362,26 @@ class ErrorResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Resource(_model_base.Model):
-    """Common fields that are returned in the response for all Azure Resource Manager resources.
+class InnerError(_model_base.Model):
+    """Inner error details.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-    :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
+    :ivar exceptiontype: The exception type.
+    :vartype exceptiontype: str
+    :ivar errordetail: The internal error message or exception dump.
+    :vartype errordetail: str
     """
 
-    id: Optional[str] = rest_field(visibility=["read"])
-    """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
-    name: Optional[str] = rest_field(visibility=["read"])
-    """The name of the resource."""
-    type: Optional[str] = rest_field(visibility=["read"])
-    """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\"."""
-    system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
-    """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
-
-
-class TrackedResource(Resource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource which
-    has 'tags' and a 'location'.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
-    :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
-    :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
-    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
-    :vartype type: str
-    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
-    :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
-    :ivar tags: Resource tags.
-    :vartype tags: dict[str, str]
-    :ivar location: The geo-location where the resource lives. Required.
-    :vartype location: str
-    """
-
-    tags: Optional[Dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Resource tags."""
-    location: str = rest_field(visibility=["read", "create"])
-    """The geo-location where the resource lives. Required."""
+    exceptiontype: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The exception type."""
+    errordetail: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The internal error message or exception dump."""
 
     @overload
     def __init__(
         self,
         *,
-        location: str,
-        tags: Optional[Dict[str, str]] = None,
+        exceptiontype: Optional[str] = None,
+        errordetail: Optional[str] = None,
     ) -> None: ...
 
     @overload
@@ -177,9 +398,6 @@ class TrackedResource(Resource):
 class ManagedIdentityTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
     type.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -236,9 +454,6 @@ class ManagedIdentityTrackedResource(TrackedResource):
 class ManagedIdentityTrackedResourceProperties(_model_base.Model):
     """Managed Identity Arm Resource Properties.
 
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
-
     :ivar provisioning_state: The status of the last operation. Required.
     :vartype provisioning_state: str
     """
@@ -249,9 +464,6 @@ class ManagedIdentityTrackedResourceProperties(_model_base.Model):
 
 class ManagedServiceIdentity(_model_base.Model):
     """Managed service identity (system assigned and/or user assigned identities).
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar principal_id: The service principal ID of the system assigned identity. This property
      will only be provided for a system assigned identity.
@@ -372,8 +584,6 @@ class SystemData(_model_base.Model):
 
 class UserAssignedIdentity(_model_base.Model):
     """User assigned identity properties.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
 
     :ivar client_id: The client ID of the assigned identity.
     :vartype client_id: str

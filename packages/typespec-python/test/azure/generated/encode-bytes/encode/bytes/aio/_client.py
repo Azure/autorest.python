@@ -15,14 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._serialization import Deserializer, Serializer
+from ..header.aio.operations import HeaderOperations
+from ..property.aio.operations import PropertyOperations
+from ..query.aio.operations import QueryOperations
+from ..requestbody.aio.operations import RequestBodyOperations
+from ..responsebody.aio.operations import ResponseBodyOperations
 from ._configuration import BytesClientConfiguration
-from .operations import (
-    HeaderOperations,
-    PropertyOperations,
-    QueryOperations,
-    RequestBodyOperations,
-    ResponseBodyOperations,
-)
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -47,6 +45,7 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = BytesClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

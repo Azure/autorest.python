@@ -22,7 +22,8 @@ from ._serialization import Deserializer, Serializer
 class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-versioned server.
 
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     """
 
@@ -31,6 +32,7 @@ class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotVersionedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

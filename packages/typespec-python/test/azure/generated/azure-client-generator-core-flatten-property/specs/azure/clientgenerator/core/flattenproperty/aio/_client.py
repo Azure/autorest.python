@@ -31,6 +31,7 @@ class FlattenPropertyClient(FlattenPropertyClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = FlattenPropertyClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

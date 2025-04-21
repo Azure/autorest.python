@@ -16,12 +16,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import RoutesClientConfiguration
 from ._serialization import Deserializer, Serializer
-from .operations import (
-    InInterfaceOperations,
-    PathParametersOperations,
-    QueryParametersOperations,
-    RoutesClientOperationsMixin,
-)
+from .operations import InInterfaceOperations, RoutesClientOperationsMixin
+from .pathparameters.operations import PathParametersOperations
+from .queryparameters.operations import QueryParametersOperations
 
 
 class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -42,6 +39,7 @@ class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = RoutesClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -15,8 +15,9 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BodyOptionalityClientConfiguration
+from ._operations import BodyOptionalityClientOperationsMixin
 from ._serialization import Deserializer, Serializer
-from .operations import BodyOptionalityClientOperationsMixin, OptionalExplicitOperations
+from .optionalexplicit.operations import OptionalExplicitOperations
 
 
 class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -33,6 +34,7 @@ class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = BodyOptionalityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -2,8 +2,9 @@
 
 ## Requirements
 
-- Node 16+
-- Python 3.7+
+-   Node 20+
+-   pnpm 9+
+-   Python 3.9+
 
 ## Develop
 

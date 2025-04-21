@@ -24,13 +24,12 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     """Test that we can use @client and @operationGroup decorators to customize client side code
     structure, such as:
 
-
-    #. have everything as default.
-    #. to rename client or operation group
-    #. one client can have more than one operations groups
-    #. split one interface into two clients
-    #. have two clients with operations come from different interfaces
-    #. have two clients with a hierarchy relation.
+    1. have everything as default.
+    2. to rename client or operation group
+    3. one client can have more than one operations groups
+    4. split one interface into two clients
+    5. have two clients with operations come from different interfaces
+    6. have two clients with a hierarchy relation.
 
     :ivar baz: BazOperations operations
     :vartype baz: client.structure.service.operations.BazOperations
@@ -40,7 +39,8 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     :vartype foo: client.structure.service.operations.FooOperations
     :ivar bar: BarOperations operations
     :vartype bar: client.structure.service.operations.BarOperations
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
      'two-operation-group' in client. Known values are: "default", "multi-client",
@@ -53,6 +53,7 @@ class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-acc
     ) -> None:
         _endpoint = "{endpoint}/client/structure/{client}"
         self._config = ServiceClientConfiguration(endpoint=endpoint, client=client, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

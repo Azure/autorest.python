@@ -25,7 +25,8 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
 
     :ivar interface_v2: InterfaceV2Operations operations
     :vartype interface_v2: versioning.added.aio.operations.InterfaceV2Operations
-    :param endpoint: Need to be set as 'http://localhost:3000' in client. Required.
+    :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
+     client. Required.
     :type endpoint: str
     :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
      Required.
@@ -37,6 +38,7 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     ) -> None:
         _endpoint = "{endpoint}/versioning/added/api-version:{version}"
         self._config = AddedClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

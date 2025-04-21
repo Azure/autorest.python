@@ -19,7 +19,6 @@ if TYPE_CHECKING:
 class InputModel(_model_base.Model):
     """Usage override to roundtrip.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -49,20 +48,23 @@ class OrphanModel(_model_base.Model):
     """Not used anywhere, but access is override to public so still need to be generated and exported
     with serialization.
 
-    All required parameters must be populated in order to send to server.
-
-    :ivar name: Required.
-    :vartype name: str
+    :ivar model_name: Required.
+    :vartype model_name: str
+    :ivar description: Required.
+    :vartype description: str
     """
 
-    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    model_name: str = rest_field(name="modelName", visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+    description: str = rest_field(name="desc", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        name: str,
+        model_name: str,
+        description: str,
     ) -> None: ...
 
     @overload
@@ -78,7 +80,6 @@ class OrphanModel(_model_base.Model):
 
 class OutputModel(_model_base.Model):
     """Usage override to roundtrip.
-
 
     :ivar name: Required.
     :vartype name: str
@@ -108,7 +109,6 @@ class OutputModel(_model_base.Model):
 class ResultModel(_model_base.Model):
     """ResultModel.
 
-
     :ivar name: Required.
     :vartype name: str
     """
@@ -136,9 +136,6 @@ class ResultModel(_model_base.Model):
 
 class RoundTripModel(_model_base.Model):
     """RoundTripModel.
-
-    Readonly variables are only populated by the server, and will be ignored when sending a request.
-
 
     :ivar result: Required.
     :vartype result: ~specs.azure.clientgenerator.core.usage.models.ResultModel

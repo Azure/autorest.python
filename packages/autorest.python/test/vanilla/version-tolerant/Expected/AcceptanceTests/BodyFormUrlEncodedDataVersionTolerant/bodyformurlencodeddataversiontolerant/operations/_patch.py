@@ -2,6 +2,7 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
+
 """Customize generated code here.
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
@@ -29,6 +30,7 @@ class Helpers:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
         # Construct URL
+
         _url = "/formsdataurlencoded/pet/add/{petId}"
         path_format_arguments = {
             "petId": pet_id,
@@ -64,9 +66,11 @@ class Helpers:
 
         content_type = kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
         # Construct URL
+
         _url = "/formsdataurlencoded/partialConstantBody"
 
         # Construct headers
+
         if content_type is not None:
             _headers["Content-Type"] = content_type
         return HttpRequest(method="POST", url=_url, headers=_headers, data=data, params=_params)
