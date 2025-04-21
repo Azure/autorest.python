@@ -13,6 +13,7 @@ exclude = '''
   | node_modules
   | Expected/AcceptanceTests
   | generated/
+  | samples/
 )/
 '''
 line-length = 120
