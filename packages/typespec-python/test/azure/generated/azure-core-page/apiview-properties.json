@@ -11,6 +11,7 @@
         "specs.azure.core.page.PageClient.two_models_as_page_item.list_second_item": "_Specs_.Azure.Core.Page.TwoModelsAsPageItem.listSecondItem",
         "specs.azure.core.page.PageClient.list_with_page": "_Specs_.Azure.Core.Page.listWithPage",
         "specs.azure.core.page.PageClient.list_with_parameters": "_Specs_.Azure.Core.Page.listWithParameters",
-        "specs.azure.core.page.PageClient.list_with_custom_page_model": "_Specs_.Azure.Core.Page.listWithCustomPageModel"
+        "specs.azure.core.page.PageClient.list_with_custom_page_model": "_Specs_.Azure.Core.Page.listWithCustomPageModel",
+        "specs.azure.core.page.PageClient.with_parameterized_next_link": "_Specs_.Azure.Core.Page.withParameterizedNextLink"
     }
 }

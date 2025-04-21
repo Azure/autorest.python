@@ -40,3 +40,14 @@ class TestPage(PageClientTestBase):
         result = [r for r in response]
         # please add some check logic here by yourself
         # ...
+
+    @PagePreparer()
+    @recorded_by_proxy
+    def test_with_parameterized_next_link(self, page_endpoint):
+        client = self.create_client(endpoint=page_endpoint)
+        response = client.with_parameterized_next_link(
+            select="str",
+        )
+        result = [r for r in response]
+        # please add some check logic here by yourself
+        # ...

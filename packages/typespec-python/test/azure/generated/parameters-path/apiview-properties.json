@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": "Parameters.Path",
+    "CrossLanguageDefinitionId": {
+        "parameters.path.PathClient.normal": "Parameters.Path.normal",
+        "parameters.path.PathClient.optional": "Parameters.Path.optional"
+    }
+}
