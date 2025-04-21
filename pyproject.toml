@@ -10,10 +10,10 @@ exclude = '''
   | buck-out
   | build
   | dist
-  | node_modules
-  | Expected/AcceptanceTests
-  | generated/
-  | samples/
+  | .*/node_modules/*
+  | .*/Expected/AcceptanceTests/*
+  | .*/generated/*
+  | .*/samples/*
 )/
 '''
 line-length = 120
