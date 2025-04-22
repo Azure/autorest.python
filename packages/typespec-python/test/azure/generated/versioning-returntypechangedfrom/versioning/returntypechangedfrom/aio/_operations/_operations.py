@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 import json
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -25,15 +26,18 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_return_type_changed_from_test_request
-from .._vendor import ReturnTypeChangedFromClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ReturnTypeChangedFromClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixinABC):  # pylint: disable=name-too-long
+class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[AsyncPipelineClient, ReturnTypeChangedFromClientConfiguration]
+):
 
     @distributed_trace_async
     async def test(self, body: str, **kwargs: Any) -> str:

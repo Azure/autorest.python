@@ -21,7 +21,7 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ...._serialization import Deserializer, Serializer
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
 from ...operations._operations import (
     build_response_header_default_request,

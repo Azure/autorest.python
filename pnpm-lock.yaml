@@ -57,8 +57,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.11.0
-        version: 0.11.0(snncae6gzwxjtoyf2aptgh5sru)
+        specifier: ~0.11.1
+        version: 0.11.1(snncae6gzwxjtoyf2aptgh5sru)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -79,8 +79,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.11.0
-        version: 0.11.0(snncae6gzwxjtoyf2aptgh5sru)
+        specifier: ~0.11.1
+        version: 0.11.1(snncae6gzwxjtoyf2aptgh5sru)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1538,8 +1538,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.0.0-rc.0
 
-  '@typespec/http-client-python@0.11.0':
-    resolution: {integrity: sha512-slbYCuyMcQrq0ACwk0PKAN1lkbhrRH3oawxadVreYHWxWpletRNCuoAiGD/f4NK1VGQzfNokPmAs2myRsi7D9w==}
+  '@typespec/http-client-python@0.11.1':
+    resolution: {integrity: sha512-RVdyHsFu4fzVO3/xtfNo9ZspCKAUZPukmKiV6WUfoabS5jEtl9YpxMGC7Cyb07tAnE0qjEOrQcMyABIq0yBpxA==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.54.0 <1.0.0'
@@ -5893,7 +5893,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.0.0-rc.0(@types/node@22.13.17)
 
-  '@typespec/http-client-python@0.11.0(snncae6gzwxjtoyf2aptgh5sru)':
+  '@typespec/http-client-python@0.11.1(snncae6gzwxjtoyf2aptgh5sru)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.54.0(psqtwvjmgth7tsukc2x2eth2za)
       '@azure-tools/typespec-azure-core': 0.54.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/http@1.0.0-rc.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/streams@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))))(@typespec/rest@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/http@1.0.0-rc.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17))(@typespec/streams@0.68.0(@typespec/compiler@1.0.0-rc.0(@types/node@22.13.17)))))

@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -31,14 +32,17 @@ from ..._operations._operations import (
     build_media_types_content_type_with_encoding_request,
     build_media_types_put_text_and_json_body_request,
 )
-from .._vendor import MediaTypesClientMixinABC, raise_if_not_implemented
+from ..._utils.utils import ClientMixinABC, raise_if_not_implemented
+from .._configuration import MediaTypesClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):  # pylint: disable=abstract-class-instantiated
+class MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
+    ClientMixinABC[AsyncPipelineClient, MediaTypesClientConfiguration]
+):
 
     def __init__(self) -> None:
         raise_if_not_implemented(

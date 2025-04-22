@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,19 +25,20 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._auto_rest_validation_test_operations import (
     build_get_with_constant_in_path_request,
     build_post_with_constant_in_body_request,
     build_validation_of_body_request,
     build_validation_of_method_parameters_request,
 )
-from .._vendor import AutoRestValidationTestMixinABC
+from .._configuration import AutoRestValidationTestConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestValidationTestOperationsMixin(AutoRestValidationTestMixinABC):
+class AutoRestValidationTestOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutoRestValidationTestConfiguration]):
 
     @distributed_trace_async
     async def validation_of_method_parameters(

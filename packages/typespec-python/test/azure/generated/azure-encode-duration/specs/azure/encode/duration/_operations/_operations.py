@@ -10,6 +10,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,9 +25,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import SdkJSONEncoder
-from .._serialization import Serializer
-from .._vendor import DurationClientMixinABC
+from .._configuration import DurationClientConfiguration
+from .._utils.model_base import SdkJSONEncoder
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -50,7 +52,7 @@ def build_duration_duration_constant_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DurationClientOperationsMixin(DurationClientMixinABC):
+class DurationClientOperationsMixin(ClientMixinABC[PipelineClient, DurationClientConfiguration]):
 
     @overload
     def duration_constant(

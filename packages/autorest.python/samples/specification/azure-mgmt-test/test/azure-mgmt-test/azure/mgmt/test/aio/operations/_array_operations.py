@@ -27,7 +27,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.mgmt.core.exceptions import ARMErrorFormat
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._array_operations import (
     build_get_array_empty_request,
     build_get_array_item_empty_request,

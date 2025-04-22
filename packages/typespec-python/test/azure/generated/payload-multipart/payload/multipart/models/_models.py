@@ -9,15 +9,14 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
-from .._vendor import FileType
+from .._utils.model_base import Model as _Model, rest_field
+from .._utils.utils import FileType
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Address(_model_base.Model):
+class Address(_Model):
     """Address.
 
     :ivar city: Required.
@@ -45,11 +44,11 @@ class Address(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class AnonymousModelRequest(_model_base.Model):
+class AnonymousModelRequest(_Model):
     """AnonymousModelRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(
@@ -75,13 +74,13 @@ class AnonymousModelRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class BinaryArrayPartsRequest(_model_base.Model):
+class BinaryArrayPartsRequest(_Model):
     """BinaryArrayPartsRequest.
 
     :ivar id: Required.
     :vartype id: str
     :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+    :vartype pictures: list[~payload.multipart._utils.utils.FileType]
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -110,7 +109,7 @@ class BinaryArrayPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ComplexHttpPartsModelRequest(_model_base.Model):
+class ComplexHttpPartsModelRequest(_Model):
     """ComplexHttpPartsModelRequest.
 
     :ivar id: Required.
@@ -118,11 +117,11 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     :ivar previous_addresses: Required.
     :vartype previous_addresses: list[~payload.multipart.models.Address]
     :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+    :vartype pictures: list[~payload.multipart._utils.utils.FileType]
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -164,7 +163,7 @@ class ComplexHttpPartsModelRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ComplexPartsRequest(_model_base.Model):
+class ComplexPartsRequest(_Model):
     """ComplexPartsRequest.
 
     :ivar id: Required.
@@ -172,9 +171,9 @@ class ComplexPartsRequest(_model_base.Model):
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     :ivar pictures: Required.
-    :vartype pictures: list[~payload.multipart._vendor.FileType]
+    :vartype pictures: list[~payload.multipart._utils.utils.FileType]
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -211,11 +210,11 @@ class ComplexPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartOptionalContentTypeRequest(_Model):  # pylint: disable=name-too-long
     """FileWithHttpPartOptionalContentTypeRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(
@@ -241,11 +240,11 @@ class FileWithHttpPartOptionalContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartRequiredContentTypeRequest(_Model):  # pylint: disable=name-too-long
     """FileWithHttpPartRequiredContentTypeRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(
@@ -271,11 +270,11 @@ class FileWithHttpPartRequiredContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
-class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: disable=name-too-long
+class FileWithHttpPartSpecificContentTypeRequest(_Model):  # pylint: disable=name-too-long
     """FileWithHttpPartSpecificContentTypeRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(
@@ -301,7 +300,7 @@ class FileWithHttpPartSpecificContentTypeRequest(_model_base.Model):  # pylint: 
         super().__init__(*args, **kwargs)
 
 
-class FloatRequest(_model_base.Model):
+class FloatRequest(_Model):
     """FloatRequest.
 
     :ivar temperature: Required.
@@ -329,13 +328,13 @@ class FloatRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class JsonPartRequest(_model_base.Model):
+class JsonPartRequest(_Model):
     """JsonPartRequest.
 
     :ivar address: Required.
     :vartype address: ~payload.multipart.models.Address
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -364,13 +363,13 @@ class JsonPartRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class MultiBinaryPartsRequest(_model_base.Model):
+class MultiBinaryPartsRequest(_Model):
     """MultiBinaryPartsRequest.
 
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     :ivar picture:
-    :vartype picture: ~payload.multipart._vendor.FileType
+    :vartype picture: ~payload.multipart._utils.utils.FileType
     """
 
     profile_image: FileType = rest_field(
@@ -400,13 +399,13 @@ class MultiBinaryPartsRequest(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class MultiPartRequest(_model_base.Model):
+class MultiPartRequest(_Model):
     """MultiPartRequest.
 
     :ivar id: Required.
     :vartype id: str
     :ivar profile_image: Required.
-    :vartype profile_image: ~payload.multipart._vendor.FileType
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
     """
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])

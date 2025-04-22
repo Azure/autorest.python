@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,15 +23,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._model_base import _failsafe_deserialize
 from ..._operations._operations import build_api_key_invalid_request, build_api_key_valid_request
-from .._vendor import ApiKeyClientMixinABC
+from ..._utils.model_base import _failsafe_deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ApiKeyClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ApiKeyClientOperationsMixin(ApiKeyClientMixinABC):
+class ApiKeyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ApiKeyClientConfiguration]):
 
     @distributed_trace_async
     async def valid(self, **kwargs: Any) -> None:

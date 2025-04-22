@@ -30,7 +30,7 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_question_answering_projects_get_qnas_request,
     build_question_answering_projects_update_qnas_request,

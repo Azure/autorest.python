@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -29,16 +30,17 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import build_rpc_long_running_rpc_request
-from .._vendor import RpcClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import RpcClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RpcClientOperationsMixin(RpcClientMixinABC):
+class RpcClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RpcClientConfiguration]):
 
     async def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any

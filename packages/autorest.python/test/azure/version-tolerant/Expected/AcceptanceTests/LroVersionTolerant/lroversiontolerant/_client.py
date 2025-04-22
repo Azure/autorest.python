@@ -18,7 +18,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
 
 if TYPE_CHECKING:

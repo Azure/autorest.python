@@ -34,8 +34,8 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_check_name_availability_check_global_request,
     build_check_name_availability_check_local_request,

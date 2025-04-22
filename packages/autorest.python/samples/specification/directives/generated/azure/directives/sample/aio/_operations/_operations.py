@@ -12,6 +12,7 @@ from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Option
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -34,14 +35,15 @@ from ..._operations._operations import (
     build_polling_paging_example_basic_paging_request,
     build_polling_paging_example_basic_polling_request,
 )
-from .._vendor import PollingPagingExampleMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import PollingPagingExampleConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PollingPagingExampleOperationsMixin(PollingPagingExampleMixinABC):
+class PollingPagingExampleOperationsMixin(ClientMixinABC[AsyncPipelineClient, PollingPagingExampleConfiguration]):
 
     async def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any

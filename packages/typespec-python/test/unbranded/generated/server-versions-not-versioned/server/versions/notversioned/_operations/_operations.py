@@ -11,11 +11,13 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import NotVersionedClientMixinABC
+from .._configuration import NotVersionedClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -59,7 +61,7 @@ def build_not_versioned_with_path_api_version_request(  # pylint: disable=name-t
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
+class NotVersionedClientOperationsMixin(ClientMixinABC[PipelineClient, NotVersionedClientConfiguration]):
 
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

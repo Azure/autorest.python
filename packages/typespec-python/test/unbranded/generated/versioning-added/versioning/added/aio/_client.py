@@ -8,7 +8,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .. import models as _models
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AddedClientConfiguration
 from .operations import AddedClientOperationsMixin, InterfaceV2Operations
 

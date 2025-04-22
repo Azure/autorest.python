@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._paging_operations import (
     build_get_pages_partial_url_operation_next_request,
     build_get_pages_partial_url_operation_request,

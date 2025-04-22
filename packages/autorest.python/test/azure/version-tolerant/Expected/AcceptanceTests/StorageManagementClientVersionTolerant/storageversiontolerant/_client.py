@@ -18,7 +18,7 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import StorageManagementClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import StorageAccountsOperations, UsageOperations
 
 if TYPE_CHECKING:

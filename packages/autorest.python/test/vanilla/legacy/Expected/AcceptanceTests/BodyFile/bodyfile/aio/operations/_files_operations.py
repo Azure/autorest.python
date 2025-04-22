@@ -24,7 +24,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._files_operations import (
     build_get_empty_file_request,
     build_get_file_large_request,

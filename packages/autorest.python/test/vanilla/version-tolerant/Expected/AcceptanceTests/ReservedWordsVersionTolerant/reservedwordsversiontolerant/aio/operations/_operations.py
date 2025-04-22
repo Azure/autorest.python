@@ -23,7 +23,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC, raise_if_not_implemented
 from ...operations._operations import (
     build_import_operations_operation_one_request,
     build_reserved_words_operation_with_content_param_request,
@@ -32,7 +33,6 @@ from ...operations._operations import (
     build_reserved_words_reserved_enum_request,
 )
 from .._configuration import ReservedWordsClientConfiguration
-from .._vendor import ReservedWordsClientMixinABC, raise_if_not_implemented
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -108,7 +108,9 @@ class ImportOperations:
         return cast(JSON, deserialized)  # type: ignore
 
 
-class ReservedWordsClientOperationsMixin(ReservedWordsClientMixinABC):  # pylint: disable=abstract-class-instantiated
+class ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
+    ClientMixinABC[AsyncPipelineClient, ReservedWordsClientConfiguration]
+):
 
     def __init__(self) -> None:
         raise_if_not_implemented(

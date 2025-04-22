@@ -9,11 +9,10 @@
 
 from typing import Any, List, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class AzureEmbeddingModel(_model_base.Model):
+class AzureEmbeddingModel(_Model):
     """AzureEmbeddingModel.
 
     :ivar embedding: Required.

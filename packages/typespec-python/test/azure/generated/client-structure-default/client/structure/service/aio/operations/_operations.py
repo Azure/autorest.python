@@ -22,7 +22,8 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
     build_bar_five_request,
     build_bar_six_request,
@@ -35,7 +36,6 @@ from ...operations._operations import (
     build_service_two_request,
 )
 from .._configuration import ServiceClientConfiguration
-from .._vendor import ServiceClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -342,7 +342,7 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(ServiceClientMixinABC):
+class ServiceClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ServiceClientConfiguration]):
 
     @distributed_trace_async
     async def one(self, **kwargs: Any) -> None:

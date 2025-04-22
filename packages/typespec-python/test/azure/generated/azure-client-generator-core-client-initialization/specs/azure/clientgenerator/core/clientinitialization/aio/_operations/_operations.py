@@ -11,6 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -27,7 +28,6 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_header_param_with_body_request,
     build_header_param_with_query_request,
@@ -41,12 +41,14 @@ from ..._operations._operations import (
     build_path_param_get_standalone_request,
     build_path_param_with_query_request,
 )
-from .._vendor import (
-    HeaderParamClientMixinABC,
-    MixedParamsClientMixinABC,
-    MultipleParamsClientMixinABC,
-    ParamAliasClientMixinABC,
-    PathParamClientMixinABC,
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import (
+    HeaderParamClientConfiguration,
+    MixedParamsClientConfiguration,
+    MultipleParamsClientConfiguration,
+    ParamAliasClientConfiguration,
+    PathParamClientConfiguration,
 )
 
 JSON = MutableMapping[str, Any]
@@ -54,7 +56,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HeaderParamClientOperationsMixin(HeaderParamClientMixinABC):
+class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, HeaderParamClientConfiguration]):
 
     @distributed_trace_async
     async def with_query(self, *, id: str, **kwargs: Any) -> None:
@@ -205,7 +207,7 @@ class HeaderParamClientOperationsMixin(HeaderParamClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(MultipleParamsClientMixinABC):
+class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleParamsClientConfiguration]):
 
     @distributed_trace_async
     async def with_query(self, *, id: str, **kwargs: Any) -> None:
@@ -358,7 +360,7 @@ class MultipleParamsClientOperationsMixin(MultipleParamsClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(MixedParamsClientMixinABC):
+class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MixedParamsClientConfiguration]):
 
     @distributed_trace_async
     async def with_query(self, *, region: str, id: str, **kwargs: Any) -> None:
@@ -529,7 +531,7 @@ class MixedParamsClientOperationsMixin(MixedParamsClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(PathParamClientMixinABC):
+class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathParamClientConfiguration]):
 
     @distributed_trace_async
     async def with_query(self, *, format: Optional[str] = None, **kwargs: Any) -> None:
@@ -682,7 +684,7 @@ class PathParamClientOperationsMixin(PathParamClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(ParamAliasClientMixinABC):
+class ParamAliasClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ParamAliasClientConfiguration]):
 
     @distributed_trace_async
     async def with_aliased_name(self, **kwargs: Any) -> None:

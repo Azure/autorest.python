@@ -28,7 +28,7 @@ from ._operations import (
     ParamAliasClientOperationsMixin,
     PathParamClientOperationsMixin,
 )
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class HeaderParamClient(HeaderParamClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

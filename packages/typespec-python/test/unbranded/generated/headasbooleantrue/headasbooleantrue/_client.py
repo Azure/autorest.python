@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import VisibilityClientConfiguration
 from ._operations import VisibilityClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,8 +22,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import XmsClientRequestIdClientMixinABC
+from .._configuration import XmsClientRequestIdClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -42,7 +44,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class XmsClientRequestIdClientOperationsMixin(XmsClientRequestIdClientMixinABC):
+class XmsClientRequestIdClientOperationsMixin(ClientMixinABC[PipelineClient, XmsClientRequestIdClientConfiguration]):
 
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

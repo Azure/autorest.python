@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, List, Literal, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,8 +25,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import AutoRestResourceFlatteningTestServiceMixinABC
+from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -217,7 +219,7 @@ def build_put_simple_product_with_grouping_request(  # pylint: disable=name-too-
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
-    AutoRestResourceFlatteningTestServiceMixinABC
+    ClientMixinABC[PipelineClient, AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 
     @overload

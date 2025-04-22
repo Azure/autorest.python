@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -35,14 +36,15 @@ from ..._operations._operations import (
     build_dpg_lro_request,
     build_dpg_post_model_request,
 )
-from .._vendor import DPGClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import DPGClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DPGClientOperationsMixin(DPGClientMixinABC):
+class DPGClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, DPGClientConfiguration]):
 
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> JSON:

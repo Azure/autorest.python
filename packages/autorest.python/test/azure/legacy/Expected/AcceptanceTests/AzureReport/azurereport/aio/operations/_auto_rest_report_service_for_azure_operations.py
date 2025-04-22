@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,15 +23,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._auto_rest_report_service_for_azure_operations import build_get_report_request
-from .._vendor import AutoRestReportServiceForAzureMixinABC
+from .._configuration import AutoRestReportServiceForAzureConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
-    AutoRestReportServiceForAzureMixinABC
+    ClientMixinABC[AsyncPipelineClient, AutoRestReportServiceForAzureConfiguration]
 ):
 
     @distributed_trace_async

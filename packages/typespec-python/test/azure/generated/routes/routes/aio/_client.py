@@ -14,7 +14,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ..pathparameters.aio.operations import PathParametersOperations
 from ..queryparameters.aio.operations import QueryParametersOperations
 from ._configuration import RoutesClientConfiguration

@@ -28,8 +28,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
     build_page_list_with_custom_page_model_request,
     build_page_list_with_page_request,
@@ -39,7 +40,6 @@ from ...operations._operations import (
     build_two_models_as_page_item_list_second_item_request,
 )
 from .._configuration import PageClientConfiguration
-from .._vendor import PageClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
@@ -230,7 +230,7 @@ class TwoModelsAsPageItemOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(PageClientMixinABC):
+class PageClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PageClientConfiguration]):
 
     @distributed_trace
     def list_with_page(self, **kwargs: Any) -> AsyncIterable["_models.User"]:

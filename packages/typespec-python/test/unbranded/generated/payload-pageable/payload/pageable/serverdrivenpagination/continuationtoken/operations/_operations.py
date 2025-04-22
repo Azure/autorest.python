@@ -19,8 +19,8 @@ from corehttp.utils import case_insensitive_dict
 
 from .... import models as _models3
 from ...._configuration import PageableClientConfiguration
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

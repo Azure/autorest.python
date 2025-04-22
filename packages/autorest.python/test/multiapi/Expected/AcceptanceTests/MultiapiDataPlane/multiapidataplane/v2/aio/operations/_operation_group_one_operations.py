@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ...._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operation_group_one_operations import build_test_three_request, build_test_two_request
 from .._configuration import MultiapiServiceClientConfiguration
 

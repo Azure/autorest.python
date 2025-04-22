@@ -15,24 +15,26 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_usage_input_and_output_request,
     build_usage_input_request,
     build_usage_output_request,
 )
-from .._vendor import UsageClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import UsageClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class UsageClientOperationsMixin(UsageClientMixinABC):
+class UsageClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, UsageClientConfiguration]):
 
     @overload
     async def input(self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:

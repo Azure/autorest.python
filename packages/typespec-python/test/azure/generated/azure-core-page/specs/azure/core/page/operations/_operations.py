@@ -28,9 +28,9 @@ from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import PageClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Deserializer, Serializer
-from .._vendor import PageClientMixinABC
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -352,7 +352,7 @@ class TwoModelsAsPageItemOperations:
         return ItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(PageClientMixinABC):
+class PageClientOperationsMixin(ClientMixinABC[PipelineClient, PageClientConfiguration]):
 
     @distributed_trace
     def list_with_page(self, **kwargs: Any) -> Iterable["_models.User"]:

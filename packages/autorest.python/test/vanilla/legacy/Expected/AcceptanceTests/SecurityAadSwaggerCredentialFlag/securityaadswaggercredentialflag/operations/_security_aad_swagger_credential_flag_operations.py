@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -20,8 +21,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .._serialization import Serializer
-from .._vendor import SecurityAadSwaggerCredentialFlagMixinABC
+from .._configuration import SecurityAadSwaggerCredentialFlagConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -38,7 +40,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
 
 
 class SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
-    SecurityAadSwaggerCredentialFlagMixinABC
+    ClientMixinABC[PipelineClient, SecurityAadSwaggerCredentialFlagConfiguration]
 ):
 
     @distributed_trace

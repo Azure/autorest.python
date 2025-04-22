@@ -9,14 +9,13 @@
 
 from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class User(_model_base.Model):
+class User(_Model):
     """Details about a user.
 
     :ivar id: The user's id. Required.
@@ -57,7 +56,7 @@ class User(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserList(_model_base.Model):
+class UserList(_Model):
     """UserList.
 
     :ivar users: Required.
@@ -85,7 +84,7 @@ class UserList(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class UserOrder(_model_base.Model):
+class UserOrder(_Model):
     """UserOrder for testing list with expand.
 
     :ivar id: The user's id. Required.

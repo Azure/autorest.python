@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,9 +23,10 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._model_base import _failsafe_deserialize
-from .._serialization import Serializer
-from .._vendor import OAuth2ClientMixinABC
+from .._configuration import OAuth2ClientConfiguration
+from .._utils.model_base import _failsafe_deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -54,7 +56,7 @@ def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class OAuth2ClientOperationsMixin(OAuth2ClientMixinABC):
+class OAuth2ClientOperationsMixin(ClientMixinABC[PipelineClient, OAuth2ClientConfiguration]):
 
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

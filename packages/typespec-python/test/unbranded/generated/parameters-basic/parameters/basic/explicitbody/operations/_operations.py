@@ -19,8 +19,8 @@ from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models1
 from ..._configuration import BasicClientConfiguration
-from ..._model_base import SdkJSONEncoder
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

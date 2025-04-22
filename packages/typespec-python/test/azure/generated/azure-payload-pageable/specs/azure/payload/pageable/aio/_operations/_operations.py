@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -23,16 +24,17 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator import distributed_trace
 
 from ... import models as _models
-from ..._model_base import _deserialize
 from ..._operations._operations import build_pageable_list_request
+from ..._utils.model_base import _deserialize
+from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
-from .._vendor import PageableClientMixinABC
+from .._configuration import PageableClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PageableClientOperationsMixin(PageableClientMixinABC):
+class PageableClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PageableClientConfiguration]):
 
     @distributed_trace
     @api_version_validation(

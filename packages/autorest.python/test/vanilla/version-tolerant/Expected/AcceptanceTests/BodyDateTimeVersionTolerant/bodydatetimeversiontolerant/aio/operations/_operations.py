@@ -24,7 +24,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_datetime_get_invalid_request,
     build_datetime_get_local_negative_offset_lowercase_max_date_time_request,

@@ -23,7 +23,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import build_pet_add_pet_request, build_pet_get_by_pet_id_request
 from .._configuration import PetStoreIncConfiguration
 

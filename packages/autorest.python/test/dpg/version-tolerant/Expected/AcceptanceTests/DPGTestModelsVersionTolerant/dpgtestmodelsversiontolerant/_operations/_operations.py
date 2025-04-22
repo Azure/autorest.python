@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, TypeVar, Union, cast, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -28,8 +29,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import DPGClientMixinABC
+from .._configuration import DPGClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -117,7 +119,7 @@ def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DPGClientOperationsMixin(DPGClientMixinABC):
+class DPGClientOperationsMixin(ClientMixinABC[PipelineClient, DPGClientConfiguration]):
 
     @distributed_trace
     def get_model(self, mode: str, **kwargs: Any) -> _models.Product:

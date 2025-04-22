@@ -14,9 +14,10 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ..... import _model_base, models as _models4
-from ....._serialization import Deserializer, Serializer
-from ....._vendor import prepare_multipart_form_data
+from ..... import models as _models4
+from ....._utils.model_base import Model as _Model
+from ....._utils.serialization import Deserializer, Serializer
+from ....._utils.utils import prepare_multipart_form_data
 from .....aio._configuration import MultiPartClientConfiguration
 from ...contenttype.aio.operations._operations import FormDataHttpPartsContentTypeOperations
 from ...nonstring.aio.operations._operations import FormDataHttpPartsNonStringOperations
@@ -97,7 +98,7 @@ class FormDataHttpPartsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "pictures"]
         _data_fields: List[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

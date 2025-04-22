@@ -9,6 +9,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,8 +24,9 @@ from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
-from .._serialization import Serializer
-from .._vendor import MediaTypesClientMixinABC
+from .._configuration import MediaTypesClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -153,7 +155,7 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(MediaTypesClientMixinABC):
+class MediaTypesClientOperationsMixin(ClientMixinABC[PipelineClient, MediaTypesClientConfiguration]):
 
     @overload
     def analyze_body(

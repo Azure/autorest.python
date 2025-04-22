@@ -11,16 +11,18 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import build_union_valid_key_request, build_union_valid_token_request
-from .._vendor import UnionClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import UnionClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class UnionClientOperationsMixin(UnionClientMixinABC):
+class UnionClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, UnionClientConfiguration]):
 
     async def valid_key(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.

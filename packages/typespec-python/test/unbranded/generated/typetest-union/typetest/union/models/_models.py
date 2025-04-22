@@ -3,14 +3,13 @@
 
 from typing import Any, List, Literal, Mapping, TYPE_CHECKING, Union, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class Cat(_model_base.Model):
+class Cat(_Model):
     """Cat.
 
     :ivar name: Required.
@@ -38,7 +37,7 @@ class Cat(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Dog(_model_base.Model):
+class Dog(_Model):
     """Dog.
 
     :ivar bark: Required.
@@ -66,7 +65,7 @@ class Dog(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class EnumsOnlyCases(_model_base.Model):
+class EnumsOnlyCases(_Model):
     """EnumsOnlyCases.
 
     :ivar lr: This should be receive/send the left variant. Required. Is one of the following
@@ -103,7 +102,7 @@ class EnumsOnlyCases(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse(_model_base.Model):
+class GetResponse(_Model):
     """GetResponse.
 
     :ivar prop: Required. Is one of the following types: Literal["a"], Literal["b"], Literal["c"]
@@ -131,7 +130,7 @@ class GetResponse(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse1(_model_base.Model):
+class GetResponse1(_Model):
     """GetResponse1.
 
     :ivar prop: Required. Is one of the following types: Literal["b"], Literal["c"], str
@@ -161,7 +160,7 @@ class GetResponse1(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse2(_model_base.Model):
+class GetResponse2(_Model):
     """GetResponse2.
 
     :ivar prop: Required. Known values are: "b" and "c".
@@ -191,7 +190,7 @@ class GetResponse2(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse3(_model_base.Model):
+class GetResponse3(_Model):
     """GetResponse3.
 
     :ivar prop: Required. Is one of the following types: Literal[1], Literal[2], Literal[3]
@@ -219,7 +218,7 @@ class GetResponse3(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse4(_model_base.Model):
+class GetResponse4(_Model):
     """GetResponse4.
 
     :ivar prop: Required. Is one of the following types: float
@@ -247,7 +246,7 @@ class GetResponse4(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse5(_model_base.Model):
+class GetResponse5(_Model):
     """GetResponse5.
 
     :ivar prop: Required. Is either a Cat type or a Dog type.
@@ -275,7 +274,7 @@ class GetResponse5(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse6(_model_base.Model):
+class GetResponse6(_Model):
     """GetResponse6.
 
     :ivar prop: Required.
@@ -303,7 +302,7 @@ class GetResponse6(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse7(_model_base.Model):
+class GetResponse7(_Model):
     """GetResponse7.
 
     :ivar prop: Required.
@@ -331,7 +330,7 @@ class GetResponse7(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse8(_model_base.Model):
+class GetResponse8(_Model):
     """GetResponse8.
 
     :ivar prop: Required.
@@ -359,7 +358,7 @@ class GetResponse8(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class GetResponse9(_model_base.Model):
+class GetResponse9(_Model):
     """GetResponse9.
 
     :ivar prop: Required.
@@ -387,7 +386,7 @@ class GetResponse9(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class MixedLiteralsCases(_model_base.Model):
+class MixedLiteralsCases(_Model):
     """MixedLiteralsCases.
 
     :ivar string_literal: This should be receive/send the "a" variant. Required. Is one of the
@@ -446,7 +445,7 @@ class MixedLiteralsCases(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class MixedTypesCases(_model_base.Model):
+class MixedTypesCases(_Model):
     """MixedTypesCases.
 
     :ivar model: This should be receive/send the Cat variant. Required. Is one of the following
@@ -512,7 +511,7 @@ class MixedTypesCases(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class StringAndArrayCases(_model_base.Model):
+class StringAndArrayCases(_Model):
     """StringAndArrayCases.
 
     :ivar string: This should be receive/send the string variant. Required. Is either a str type or

@@ -14,12 +14,14 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Serializer
-from .._vendor import ReturnTypeChangedFromClientMixinABC
+from .._configuration import ReturnTypeChangedFromClientConfiguration
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -44,7 +46,9 @@ def build_return_type_changed_from_test_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixinABC):  # pylint: disable=name-too-long
+class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[PipelineClient, ReturnTypeChangedFromClientConfiguration]
+):
 
     def test(self, body: str, **kwargs: Any) -> str:
         """test.

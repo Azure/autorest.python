@@ -20,8 +20,9 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
 from ...operations._operations import (
     build_added_v1_request,
@@ -29,7 +30,6 @@ from ...operations._operations import (
     build_interface_v2_v2_in_interface_request,
 )
 from .._configuration import AddedClientConfiguration
-from .._vendor import AddedClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -172,7 +172,7 @@ class InterfaceV2Operations:
         return deserialized  # type: ignore
 
 
-class AddedClientOperationsMixin(AddedClientMixinABC):
+class AddedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, AddedClientConfiguration]):
 
     @overload
     async def v1(

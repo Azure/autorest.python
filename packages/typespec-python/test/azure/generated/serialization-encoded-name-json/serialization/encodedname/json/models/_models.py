@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class JsonEncodedNameModel(_model_base.Model):
+class JsonEncodedNameModel(_Model):
     """JsonEncodedNameModel.
 
     :ivar default_name: Pass in true. Required.

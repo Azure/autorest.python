@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -22,17 +23,18 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._error_with_secrets_operations import (
     build_create_secret_request,
     build_get_error_with_secrets_request,
 )
-from .._vendor import ErrorWithSecretsMixinABC
+from .._configuration import ErrorWithSecretsConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ErrorWithSecretsOperationsMixin(ErrorWithSecretsMixinABC):
+class ErrorWithSecretsOperationsMixin(ClientMixinABC[AsyncPipelineClient, ErrorWithSecretsConfiguration]):
 
     @distributed_trace_async
     async def create_secret(self, **kwargs: Any) -> _models.SecretResponse:

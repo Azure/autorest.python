@@ -14,7 +14,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ..basic.aio.operations import BasicOperations
 from ._configuration import JsonlClientConfiguration
 

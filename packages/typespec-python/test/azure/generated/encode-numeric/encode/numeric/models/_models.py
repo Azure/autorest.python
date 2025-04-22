@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, Optional, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class SafeintAsStringProperty(_model_base.Model):
+class SafeintAsStringProperty(_Model):
     """SafeintAsStringProperty.
 
     :ivar value: Required.
@@ -41,7 +40,7 @@ class SafeintAsStringProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Uint32AsStringProperty(_model_base.Model):
+class Uint32AsStringProperty(_Model):
     """Uint32AsStringProperty.
 
     :ivar value:
@@ -68,7 +67,7 @@ class Uint32AsStringProperty(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class Uint8AsStringProperty(_model_base.Model):
+class Uint8AsStringProperty(_Model):
     """Uint8AsStringProperty.
 
     :ivar value: Required.

@@ -22,8 +22,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
 from .._configuration import RenamedOperationClientConfiguration
-from .._serialization import Deserializer, Serializer
-from .._vendor import RenamedOperationClientMixinABC
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -227,7 +227,7 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(RenamedOperationClientMixinABC):
+class RenamedOperationClientOperationsMixin(ClientMixinABC[PipelineClient, RenamedOperationClientConfiguration]):
 
     @distributed_trace
     def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

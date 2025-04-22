@@ -19,8 +19,8 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ..._configuration import MediaTypeClientConfiguration
-from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]

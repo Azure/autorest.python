@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import SpecialWordsClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .modelproperties.operations import ModelPropertiesOperations
 from .models.operations import ModelsOperations
 from .operations import Operations, ParametersOperations

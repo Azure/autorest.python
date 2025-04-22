@@ -13,7 +13,7 @@ from ._configuration import AnythingClientConfiguration
 if TYPE_CHECKING:
     from azure.core import AsyncPipelineClient
 
-    from .._serialization import Deserializer, Serializer
+    from .._utils.serialization import Deserializer, Serializer
 
 
 class AnythingClientMixinABC(ABC):

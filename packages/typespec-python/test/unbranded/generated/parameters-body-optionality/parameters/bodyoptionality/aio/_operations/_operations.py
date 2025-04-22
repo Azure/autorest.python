@@ -13,16 +13,18 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models2
-from ..._model_base import SdkJSONEncoder
 from ..._operations._operations import (
     build_body_optionality_required_explicit_request,
     build_body_optionality_required_implicit_request,
 )
-from .._vendor import BodyOptionalityClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.utils import ClientMixinABC
+from .._configuration import BodyOptionalityClientConfiguration
 
 JSON = MutableMapping[str, Any]
 _Unset: Any = object()
@@ -30,7 +32,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class BodyOptionalityClientOperationsMixin(BodyOptionalityClientMixinABC):
+class BodyOptionalityClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, BodyOptionalityClientConfiguration]):
 
     @overload
     async def required_explicit(

@@ -9,14 +9,13 @@
 
 from typing import Any, Mapping, TYPE_CHECKING, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 if TYPE_CHECKING:
     from .. import models as _models
 
 
-class InputModel(_model_base.Model):
+class InputModel(_Model):
     """Usage override to roundtrip.
 
     :ivar name: Required.
@@ -44,7 +43,7 @@ class InputModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class OrphanModel(_model_base.Model):
+class OrphanModel(_Model):
     """Not used anywhere, but access is override to public so still need to be generated and exported
     with serialization.
 
@@ -78,7 +77,7 @@ class OrphanModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class OutputModel(_model_base.Model):
+class OutputModel(_Model):
     """Usage override to roundtrip.
 
     :ivar name: Required.
@@ -106,7 +105,7 @@ class OutputModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class ResultModel(_model_base.Model):
+class ResultModel(_Model):
     """ResultModel.
 
     :ivar name: Required.
@@ -134,7 +133,7 @@ class ResultModel(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class RoundTripModel(_model_base.Model):
+class RoundTripModel(_Model):
     """RoundTripModel.
 
     :ivar result: Required.

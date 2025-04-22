@@ -15,9 +15,9 @@ from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ... import models as _models2
-from ...... import _model_base
-from ......_serialization import Deserializer, Serializer
-from ......_vendor import prepare_multipart_form_data
+from ......_utils.model_base import Model as _Model
+from ......_utils.serialization import Deserializer, Serializer
+from ......_utils.utils import prepare_multipart_form_data
 from ......aio._configuration import MultiPartClientConfiguration
 from ...operations._operations import build_form_data_http_parts_non_string_float_request
 
@@ -87,7 +87,7 @@ class FormDataHttpPartsNonStringOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = []
         _data_fields: List[str] = ["temperature"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

@@ -8,6 +8,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -20,8 +21,9 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 
-from .._serialization import Serializer
-from .._vendor import ClientAClientMixinABC, ClientBClientMixinABC
+from .._configuration import ClientAClientConfiguration, ClientBClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -72,7 +74,7 @@ def build_client_b_renamed_six_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class ClientAClientOperationsMixin(ClientAClientMixinABC):
+class ClientAClientOperationsMixin(ClientMixinABC[PipelineClient, ClientAClientConfiguration]):
 
     @distributed_trace
     def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -210,7 +212,7 @@ class ClientAClientOperationsMixin(ClientAClientMixinABC):
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientBClientOperationsMixin(ClientBClientMixinABC):
+class ClientBClientOperationsMixin(ClientMixinABC[PipelineClient, ClientBClientConfiguration]):
 
     @distributed_trace
     def renamed_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

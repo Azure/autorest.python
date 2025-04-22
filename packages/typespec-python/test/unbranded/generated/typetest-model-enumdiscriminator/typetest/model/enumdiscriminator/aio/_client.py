@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import EnumDiscriminatorClientConfiguration
 from ._operations import EnumDiscriminatorClientOperationsMixin
 

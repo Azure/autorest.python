@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import PathClientConfiguration
 from ._operations import PathClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class PathClient(PathClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

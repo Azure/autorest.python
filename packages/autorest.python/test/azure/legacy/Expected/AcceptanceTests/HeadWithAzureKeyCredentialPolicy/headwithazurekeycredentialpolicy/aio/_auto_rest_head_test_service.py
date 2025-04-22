@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from .operations import HttpSuccessOperations
 

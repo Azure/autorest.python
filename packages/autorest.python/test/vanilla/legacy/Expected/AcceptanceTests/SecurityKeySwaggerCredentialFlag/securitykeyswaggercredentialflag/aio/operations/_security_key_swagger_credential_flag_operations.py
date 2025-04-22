@@ -9,6 +9,7 @@
 from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,15 +22,16 @@ from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ..._utils.utils import ClientMixinABC
 from ...operations._security_key_swagger_credential_flag_operations import build_head_request
-from .._vendor import SecurityKeySwaggerCredentialFlagMixinABC
+from .._configuration import SecurityKeySwaggerCredentialFlagConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class SecurityKeySwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
-    SecurityKeySwaggerCredentialFlagMixinABC
+    ClientMixinABC[AsyncPipelineClient, SecurityKeySwaggerCredentialFlagConfiguration]
 ):
 
     @distributed_trace_async

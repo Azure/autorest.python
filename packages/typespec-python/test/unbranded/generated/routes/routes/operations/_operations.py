@@ -15,8 +15,8 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from .._configuration import RoutesClientConfiguration
-from .._serialization import Deserializer, Serializer
-from .._vendor import RoutesClientMixinABC
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -98,7 +98,7 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(RoutesClientMixinABC):
+class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient, RoutesClientConfiguration]):
 
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """fixed.

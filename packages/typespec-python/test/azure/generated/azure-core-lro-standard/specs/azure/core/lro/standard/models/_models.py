@@ -9,11 +9,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class ExportedUser(_model_base.Model):
+class ExportedUser(_Model):
     """The exported user data.
 
     :ivar name: The name of user. Required.
@@ -46,7 +45,7 @@ class ExportedUser(_model_base.Model):
         super().__init__(*args, **kwargs)
 
 
-class User(_model_base.Model):
+class User(_Model):
     """Details about a user.
 
     :ivar name: The name of user. Required.

@@ -32,7 +32,7 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from azure.mgmt.core.polling.arm_polling import ARMPolling
 
 from .._configuration import StorageManagementClientConfiguration
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")

@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import AutoRestParameterFlatteningConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import AvailabilitySetsOperations
 
 

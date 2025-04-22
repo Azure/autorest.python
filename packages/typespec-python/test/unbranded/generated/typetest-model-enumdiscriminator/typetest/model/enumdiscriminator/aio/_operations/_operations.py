@@ -15,11 +15,11 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_enum_discriminator_get_extensible_model_missing_discriminator_request,
     build_enum_discriminator_get_extensible_model_request,
@@ -30,14 +30,16 @@ from ..._operations._operations import (
     build_enum_discriminator_put_extensible_model_request,
     build_enum_discriminator_put_fixed_model_request,
 )
-from .._vendor import EnumDiscriminatorClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import EnumDiscriminatorClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class EnumDiscriminatorClientOperationsMixin(EnumDiscriminatorClientMixinABC):
+class EnumDiscriminatorClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, EnumDiscriminatorClientConfiguration]):
 
     async def get_extensible_model(self, **kwargs: Any) -> _models.Dog:
         """Receive model with extensible enum discriminator type.

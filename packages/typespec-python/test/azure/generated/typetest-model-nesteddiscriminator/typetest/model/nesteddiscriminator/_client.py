@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NestedDiscriminatorClientConfiguration
 from ._operations import NestedDiscriminatorClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class NestedDiscriminatorClient(

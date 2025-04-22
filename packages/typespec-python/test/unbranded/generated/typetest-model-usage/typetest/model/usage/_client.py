@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import UsageClientConfiguration
 from ._operations import UsageClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

@@ -26,8 +26,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
     build_client_model_client_request,
     build_client_model_language_request,
@@ -42,7 +43,6 @@ from ...operations._operations import (
     build_union_enum_union_enum_name_request,
 )
 from .._configuration import NamingClientConfiguration
-from .._vendor import NamingClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -385,7 +385,7 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(NamingClientMixinABC):
+class NamingClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, NamingClientConfiguration]):
 
     @distributed_trace_async
     async def client_name(self, **kwargs: Any) -> None:

@@ -8,7 +8,7 @@
 
 from typing import Any, Optional
 
-from .. import _serialization
+from .._utils import serialization as _serialization
 
 
 class SourcePath(_serialization.Model):

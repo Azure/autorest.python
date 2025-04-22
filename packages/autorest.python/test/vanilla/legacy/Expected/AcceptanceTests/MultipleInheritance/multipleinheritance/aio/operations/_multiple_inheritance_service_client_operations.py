@@ -10,6 +10,7 @@ from collections.abc import MutableMapping
 from io import IOBase
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
+from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -24,6 +25,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._multiple_inheritance_service_client_operations import (
     build_get_cat_request,
     build_get_feline_request,
@@ -36,14 +38,14 @@ from ...operations._multiple_inheritance_service_client_operations import (
     build_put_kitten_request,
     build_put_pet_request,
 )
-from .._vendor import MultipleInheritanceServiceClientMixinABC
+from .._configuration import MultipleInheritanceServiceClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
 class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
-    MultipleInheritanceServiceClientMixinABC
+    ClientMixinABC[AsyncPipelineClient, MultipleInheritanceServiceClientConfiguration]
 ):
 
     @distributed_trace_async

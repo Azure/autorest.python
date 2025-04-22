@@ -24,7 +24,7 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
 from ...operations._number_operations import (
     build_get_big_decimal_negative_decimal_request,
     build_get_big_decimal_positive_decimal_request,

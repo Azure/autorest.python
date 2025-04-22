@@ -11,6 +11,7 @@ from io import IOBase
 from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
+from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -31,19 +32,20 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ... import models as _models
+from ..._utils.utils import ClientMixinABC
 from ...operations._multiapi_service_client_operations import (
     build_test_different_calls_request,
     build_test_lro_and_paging_request,
     build_test_lro_request,
     build_test_one_request,
 )
-from .._vendor import MultiapiServiceClientMixinABC
+from .._configuration import MultiapiServiceClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiServiceClientOperationsMixin(MultiapiServiceClientMixinABC):
+class MultiapiServiceClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultiapiServiceClientConfiguration]):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version
