@@ -1,5 +1,17 @@
 # Release
 
+## 0.44.0
+
+### Bug Fixes
+
+- [#3077](https://github.com/Azure/autorest.python/pull/3077) Move all utils code into a `_utils` folder
+- [#3070](https://github.com/Azure/autorest.python/pull/3070) Improve emitter performance by updating black plugin implementation.
+
+### Bump dependencies
+
+- [#3078](https://github.com/Azure/autorest.python/pull/3078) Bump to http-client-python 0.11.0.
+
+
 ## 0.43.0
 
 ### Features

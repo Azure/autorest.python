@@ -1,5 +1,16 @@
 # Release
 
+## 6.34.0
+
+### Bug Fixes
+
+- [#3077](https://github.com/Azure/autorest.python/pull/3077) Move all utils code into a `_utils` folder
+
+### Bump dependencies
+
+- [#3078](https://github.com/Azure/autorest.python/pull/3078) Bump to http-client-python 0.11.0.
+
+
 ## 6.33.0
 
 ### Features
