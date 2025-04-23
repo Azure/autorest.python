@@ -60,7 +60,7 @@ class DeserializeEmptyStringAsNullClientOperationsMixin(  # pylint: disable=name
         """get.
 
         :return: ResponseModel. The ResponseModel is compatible with MutableMapping
-        :rtype: ~_specs_.azure.clientgenerator.core.deserializeemptystringasnull.models.ResponseModel
+        :rtype: ~specs.azure.clientgenerator.core.emptystring.models.ResponseModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

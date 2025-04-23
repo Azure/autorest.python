@@ -1,8 +1,8 @@
 {
     "CrossLanguagePackageId": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull",
     "CrossLanguageDefinitionId": {
-        "_specs_.azure.clientgenerator.core.deserializeemptystringasnull.models.ResponseModel": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.ResponseModel",
-        "_specs_.azure.clientgenerator.core.deserializeemptystringasnull.DeserializeEmptyStringAsNullClient.get": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.get",
-        "_specs_.azure.clientgenerator.core.deserializeemptystringasnull.aio.DeserializeEmptyStringAsNullClient.get": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.get"
+        "specs.azure.clientgenerator.core.emptystring.models.ResponseModel": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.ResponseModel",
+        "specs.azure.clientgenerator.core.emptystring.DeserializeEmptyStringAsNullClient.get": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.get",
+        "specs.azure.clientgenerator.core.emptystring.aio.DeserializeEmptyStringAsNullClient.get": "_Specs_.Azure.ClientGenerator.Core.DeserializeEmptyStringAsNull.get"
     }
 }

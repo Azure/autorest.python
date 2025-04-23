@@ -1,4 +1,4 @@
-# _specs_ Azure Clientgenerator Core Deserializeemptystringasnull client library for Python
+# Specs Azure Clientgenerator Core Emptystring client library for Python
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +6,14 @@
 ### Install the package
 
 ```bash
-python -m pip install _specs_-azure-clientgenerator-core-deserializeemptystringasnull
+python -m pip install specs-azure-clientgenerator-core-emptystring
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
-- An existing _specs_ Azure Clientgenerator Core Deserializeemptystringasnull instance.
+- An existing Specs Azure Clientgenerator Core Emptystring instance.
 
 
 ## Contributing

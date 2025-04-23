@@ -12,8 +12,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "_specs_-azure-clientgenerator-core-deserializeemptystringasnull"
-PACKAGE_PPRINT_NAME = "_specs_ Azure Clientgenerator Core Deserializeemptystringasnull"
+PACKAGE_NAME = "specs-azure-clientgenerator-core-emptystring"
+PACKAGE_PPRINT_NAME = "Specs Azure Clientgenerator Core Emptystring"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")
@@ -53,15 +53,15 @@ setup(
         exclude=[
             "tests",
             # Exclude packages that will be covered by PEP420 or nspkg
-            "_specs_",
-            "_specs_.azure",
-            "_specs_.azure.clientgenerator",
-            "_specs_.azure.clientgenerator.core",
+            "specs",
+            "specs.azure",
+            "specs.azure.clientgenerator",
+            "specs.azure.clientgenerator.core",
         ]
     ),
     include_package_data=True,
     package_data={
-        "_specs_.azure.clientgenerator.core.deserializeemptystringasnull": ["py.typed"],
+        "specs.azure.clientgenerator.core.emptystring": ["py.typed"],
     },
     install_requires=[
         "isodate>=0.6.1",
