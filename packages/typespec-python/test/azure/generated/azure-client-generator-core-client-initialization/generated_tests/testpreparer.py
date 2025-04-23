@@ -12,6 +12,7 @@ from specs.azure.clientgenerator.core.clientinitialization import (
     MixedParamsClient,
     MultipleParamsClient,
     ParamAliasClient,
+    ParentClient,
     PathParamClient,
 )
 
@@ -94,3 +95,17 @@ class ParamAliasClientTestBase(AzureRecordedTestCase):
 ParamAliasPreparer = functools.partial(
     PowerShellPreparer, "paramalias", paramalias_endpoint="https://fake_paramalias_endpoint.com"
 )
+
+
+class ParentClientTestBase(AzureRecordedTestCase):
+
+    def create_client(self, endpoint):
+        credential = self.get_credential(ParentClient)
+        return self.create_client_from_credential(
+            ParentClient,
+            credential=credential,
+            endpoint=endpoint,
+        )
+
+
+ParentPreparer = functools.partial(PowerShellPreparer, "parent", parent_endpoint="https://fake_parent_endpoint.com")

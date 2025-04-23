@@ -11,6 +11,7 @@ from specs.azure.clientgenerator.core.clientinitialization.aio import (
     MixedParamsClient,
     MultipleParamsClient,
     ParamAliasClient,
+    ParentClient,
     PathParamClient,
 )
 
@@ -65,6 +66,17 @@ class ParamAliasClientTestBaseAsync(AzureRecordedTestCase):
         credential = self.get_credential(ParamAliasClient, is_async=True)
         return self.create_client_from_credential(
             ParamAliasClient,
+            credential=credential,
+            endpoint=endpoint,
+        )
+
+
+class ParentClientTestBaseAsync(AzureRecordedTestCase):
+
+    def create_async_client(self, endpoint):
+        credential = self.get_credential(ParentClient, is_async=True)
+        return self.create_client_from_credential(
+            ParentClient,
             credential=credential,
             endpoint=endpoint,
         )
