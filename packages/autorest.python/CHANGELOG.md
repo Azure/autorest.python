@@ -1,5 +1,12 @@
 # Release
 
+## 6.34.1
+
+### Bump dependencies
+
+- Bump to latest typespec version
+
+
 ## 6.34.0
 
 ### Bug Fixes
