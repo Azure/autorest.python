@@ -1,4 +1,4 @@
-# pylint: disable=line-too-long,useless-suppression
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,7 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core import AsyncPipelineClient
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -23,43 +23,272 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.rest import AsyncHttpResponse, HttpRequest
-from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
-from ..._operations._operations import (
-    build_header_param_with_body_request,
-    build_header_param_with_query_request,
-    build_mixed_params_with_body_request,
-    build_mixed_params_with_query_request,
-    build_multiple_params_with_body_request,
-    build_multiple_params_with_query_request,
-    build_param_alias_with_aliased_name_request,
-    build_param_alias_with_original_name_request,
-    build_path_param_delete_standalone_request,
-    build_path_param_get_standalone_request,
-    build_path_param_with_query_request,
-)
-from ..._utils.model_base import SdkJSONEncoder, _deserialize
-from ..._utils.utils import ClientMixinABC
+from .. import models as _models
 from .._configuration import (
     HeaderParamClientConfiguration,
     MixedParamsClientConfiguration,
     MultipleParamsClientConfiguration,
     ParamAliasClientConfiguration,
+    ParentClientConfiguration,
     PathParamClientConfiguration,
 )
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
 
 
-class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, HeaderParamClientConfiguration]):
+def build_header_param_with_query_request(*, id: str, name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
-    @distributed_trace_async
-    async def with_query(self, *, id: str, **kwargs: Any) -> None:
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/header-param/with-query"
+
+    # Construct parameters
+    _params["id"] = _SERIALIZER.query("id", id, "str")
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_header_param_with_body_request(*, name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/header-param/with-body"
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_multiple_params_with_query_request(*, id: str, name: str, region: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/multiple-params/with-query"
+
+    # Construct parameters
+    _params["region"] = _SERIALIZER.query("region", region, "str")
+    _params["id"] = _SERIALIZER.query("id", id, "str")
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_multiple_params_with_body_request(*, name: str, region: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/multiple-params/with-body"
+
+    # Construct parameters
+    _params["region"] = _SERIALIZER.query("region", region, "str")
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_mixed_params_with_query_request(*, region: str, id: str, name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/mixed-params/with-query"
+
+    # Construct parameters
+    _params["region"] = _SERIALIZER.query("region", region, "str")
+    _params["id"] = _SERIALIZER.query("id", id, "str")
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_mixed_params_with_body_request(*, region: str, name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/mixed-params/with-body"
+
+    # Construct parameters
+    _params["region"] = _SERIALIZER.query("region", region, "str")
+
+    # Construct headers
+    _headers["name"] = _SERIALIZER.header("name", name, "str")
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
+
+
+def build_path_param_with_query_request(blob_name: str, *, format: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/path/{blobName}/with-query"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if format is not None:
+        _params["format"] = _SERIALIZER.query("format", format, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
+
+
+def build_path_param_get_standalone_request(blob_name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/path/{blobName}/get-standalone"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_path_param_delete_standalone_request(  # pylint: disable=name-too-long
+    blob_name: str, **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/path/{blobName}"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    return HttpRequest(method="DELETE", url=_url, **kwargs)
+
+
+def build_param_alias_with_aliased_name_request(  # pylint: disable=name-too-long
+    blob_name: str, **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/param-alias/{blob}/with-aliased-name"
+    path_format_arguments = {
+        "blob": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_param_alias_with_original_name_request(  # pylint: disable=name-too-long
+    blob_name: str, **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/param-alias/{blobName}/with-original-name"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_child_client_with_query_request(
+    blob_name: str, *, format: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/child-client/{blobName}/with-query"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if format is not None:
+        _params["format"] = _SERIALIZER.query("format", format, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
+
+
+def build_child_client_get_standalone_request(  # pylint: disable=name-too-long
+    blob_name: str, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/child-client/{blobName}/get-standalone"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_child_client_delete_standalone_request(  # pylint: disable=name-too-long
+    blob_name: str, **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    _url = "/azure/client-generator-core/client-initialization/child-client/{blobName}"
+    path_format_arguments = {
+        "blobName": _SERIALIZER.url("blob_name", blob_name, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    return HttpRequest(method="DELETE", url=_url, **kwargs)
+
+
+class HeaderParamClientOperationsMixin(ClientMixinABC[PipelineClient, HeaderParamClientConfiguration]):
+
+    @distributed_trace
+    def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """with_query.
 
         :keyword id: Required.
@@ -93,7 +322,7 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -107,7 +336,7 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_body(self, body: _models.Input, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: _models.Input, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -121,7 +350,7 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
         """
 
     @overload
-    async def with_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -135,7 +364,7 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
         """
 
     @overload
-    async def with_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -148,8 +377,10 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def with_body(self, body: Union[_models.Input, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.Input, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """with_body.
 
         :param body: Is one of the following types: Input, JSON, IO[bytes] Required.
@@ -193,7 +424,7 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -207,10 +438,10 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Heade
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleParamsClientConfiguration]):
+class MultipleParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleParamsClientConfiguration]):
 
-    @distributed_trace_async
-    async def with_query(self, *, id: str, **kwargs: Any) -> None:
+    @distributed_trace
+    def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """with_query.
 
         :keyword id: Required.
@@ -245,7 +476,7 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -259,7 +490,7 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_body(self, body: _models.Input, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: _models.Input, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -273,7 +504,7 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
         """
 
     @overload
-    async def with_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -287,7 +518,7 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
         """
 
     @overload
-    async def with_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def with_body(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -300,8 +531,10 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def with_body(self, body: Union[_models.Input, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def with_body(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.Input, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """with_body.
 
         :param body: Is one of the following types: Input, JSON, IO[bytes] Required.
@@ -346,7 +579,7 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -360,10 +593,12 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mu
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MixedParamsClientConfiguration]):
+class MixedParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MixedParamsClientConfiguration]):
 
-    @distributed_trace_async
-    async def with_query(self, *, region: str, id: str, **kwargs: Any) -> None:
+    @distributed_trace
+    def with_query(  # pylint: disable=inconsistent-return-statements
+        self, *, region: str, id: str, **kwargs: Any
+    ) -> None:
         """with_query.
 
         :keyword region: Required.
@@ -400,7 +635,7 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -414,7 +649,7 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def with_body(
+    def with_body(
         self, body: _models.WithBodyRequest, *, region: str, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """with_body.
@@ -432,9 +667,7 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
         """
 
     @overload
-    async def with_body(
-        self, body: JSON, *, region: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def with_body(self, body: JSON, *, region: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -450,9 +683,7 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
         """
 
     @overload
-    async def with_body(
-        self, body: IO[bytes], *, region: str, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def with_body(self, body: IO[bytes], *, region: str, content_type: str = "application/json", **kwargs: Any) -> None:
         """with_body.
 
         :param body: Required.
@@ -467,8 +698,8 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def with_body(
+    @distributed_trace
+    def with_body(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.WithBodyRequest, JSON, IO[bytes]], *, region: str, **kwargs: Any
     ) -> None:
         """with_body.
@@ -517,7 +748,7 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -531,10 +762,12 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, Mixed
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathParamClientConfiguration]):
+class PathParamClientOperationsMixin(ClientMixinABC[PipelineClient, PathParamClientConfiguration]):
 
-    @distributed_trace_async
-    async def with_query(self, *, format: Optional[str] = None, **kwargs: Any) -> None:
+    @distributed_trace
+    def with_query(  # pylint: disable=inconsistent-return-statements
+        self, *, format: Optional[str] = None, **kwargs: Any
+    ) -> None:
         """with_query.
 
         :keyword format: Default value is None.
@@ -568,7 +801,7 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -581,8 +814,8 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def get_standalone(self, **kwargs: Any) -> _models.BlobProperties:
+    @distributed_trace
+    def get_standalone(self, **kwargs: Any) -> _models.BlobProperties:
         """get_standalone.
 
         :return: BlobProperties. The BlobProperties is compatible with MutableMapping
@@ -613,7 +846,7 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = kwargs.pop("stream", False)
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -622,7 +855,7 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
         if response.status_code not in [200]:
             if _stream:
                 try:
-                    await response.read()  # Load the body in memory and close the socket
+                    response.read()  # Load the body in memory and close the socket
                 except (StreamConsumedError, StreamClosedError):
                     pass
             map_error(status_code=response.status_code, response=response, error_map=error_map)
@@ -638,8 +871,8 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
 
         return deserialized  # type: ignore
 
-    @distributed_trace_async
-    async def delete_standalone(self, **kwargs: Any) -> None:
+    @distributed_trace
+    def delete_standalone(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """delete_standalone.
 
         :return: None
@@ -670,7 +903,7 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -684,10 +917,10 @@ class PathParamClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathPar
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ParamAliasClientConfiguration]):
+class ParamAliasClientOperationsMixin(ClientMixinABC[PipelineClient, ParamAliasClientConfiguration]):
 
-    @distributed_trace_async
-    async def with_aliased_name(self, **kwargs: Any) -> None:
+    @distributed_trace
+    def with_aliased_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """with_aliased_name.
 
         :return: None
@@ -718,7 +951,7 @@ class ParamAliasClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ParamA
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -731,8 +964,8 @@ class ParamAliasClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ParamA
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def with_original_name(self, **kwargs: Any) -> None:
+    @distributed_trace
+    def with_original_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """with_original_name.
 
         :return: None
@@ -763,7 +996,177 @@ class ParamAliasClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ParamA
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class ChildClientOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~specs.azure.clientgenerator.core.clientinitialization.ParentClient`'s
+        :attr:`child_client` attribute.
+    """
+
+    def __init__(self, *args, **kwargs):
+        input_args = list(args)
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ParentClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def with_query(  # pylint: disable=inconsistent-return-statements
+        self, *, format: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """with_query.
+
+        :keyword format: Default value is None.
+        :paramtype format: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_child_client_with_query_request(
+            blob_name=self._config.blob_name,
+            format=format,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace
+    def get_standalone(self, **kwargs: Any) -> _models.BlobProperties:
+        """get_standalone.
+
+        :return: BlobProperties. The BlobProperties is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.clientinitialization.models.BlobProperties
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.BlobProperties] = kwargs.pop("cls", None)
+
+        _request = build_child_client_get_standalone_request(
+            blob_name=self._config.blob_name,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.BlobProperties, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @distributed_trace
+    def delete_standalone(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+        """delete_standalone.
+
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_child_client_delete_standalone_request(
+            blob_name=self._config.blob_name,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 

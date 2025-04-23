@@ -25,6 +25,12 @@
         "specs.azure.clientgenerator.core.clientinitialization.ParamAliasClient.with_aliased_name": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParamAlias.withAliasedName",
         "specs.azure.clientgenerator.core.clientinitialization.aio.ParamAliasClient.with_aliased_name": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParamAlias.withAliasedName",
         "specs.azure.clientgenerator.core.clientinitialization.ParamAliasClient.with_original_name": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParamAlias.withOriginalName",
-        "specs.azure.clientgenerator.core.clientinitialization.aio.ParamAliasClient.with_original_name": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParamAlias.withOriginalName"
+        "specs.azure.clientgenerator.core.clientinitialization.aio.ParamAliasClient.with_original_name": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParamAlias.withOriginalName",
+        "specs.azure.clientgenerator.core.clientinitialization.operations.ChildClientOperations.with_query": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.withQuery",
+        "specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations.with_query": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.withQuery",
+        "specs.azure.clientgenerator.core.clientinitialization.operations.ChildClientOperations.get_standalone": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.getStandalone",
+        "specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations.get_standalone": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.getStandalone",
+        "specs.azure.clientgenerator.core.clientinitialization.operations.ChildClientOperations.delete_standalone": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.deleteStandalone",
+        "specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations.delete_standalone": "_Specs_.Azure.ClientGeneratorCore.ClientInitialization.ParentClient.ChildClient.deleteStandalone"
     }
 }
