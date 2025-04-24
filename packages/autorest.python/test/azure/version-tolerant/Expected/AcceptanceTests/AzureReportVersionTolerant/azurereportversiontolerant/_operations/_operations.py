@@ -55,7 +55,7 @@ def build_auto_rest_report_service_for_azure_get_report_request(  # pylint: disa
 
 
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, AutoRestReportServiceForAzureConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceForAzureConfiguration]
 ):
 
     @distributed_trace

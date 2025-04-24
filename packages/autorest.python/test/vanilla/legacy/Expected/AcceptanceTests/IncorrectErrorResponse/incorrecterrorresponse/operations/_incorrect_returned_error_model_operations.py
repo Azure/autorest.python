@@ -40,7 +40,7 @@ def build_get_incorrect_error_from_server_request(**kwargs: Any) -> HttpRequest:
 
 
 class IncorrectReturnedErrorModelOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, IncorrectReturnedErrorModelConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], IncorrectReturnedErrorModelConfiguration]
 ):
 
     @distributed_trace

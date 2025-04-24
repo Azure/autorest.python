@@ -31,7 +31,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityAadOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutorestSecurityAadConfiguration]):
+class AutorestSecurityAadOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutorestSecurityAadConfiguration]
+):
 
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> bool:

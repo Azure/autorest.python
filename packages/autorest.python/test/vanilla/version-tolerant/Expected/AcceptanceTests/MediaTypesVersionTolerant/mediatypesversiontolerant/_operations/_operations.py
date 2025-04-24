@@ -145,7 +145,7 @@ def build_media_types_put_text_and_json_body_request(  # pylint: disable=name-to
 
 
 class MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
-    ClientMixinABC[PipelineClient, MediaTypesClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MediaTypesClientConfiguration]
 ):
 
     def __init__(self):

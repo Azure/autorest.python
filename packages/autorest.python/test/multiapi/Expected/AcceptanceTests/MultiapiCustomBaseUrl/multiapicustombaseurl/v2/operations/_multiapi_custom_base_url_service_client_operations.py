@@ -55,7 +55,7 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
 
 
 class MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, MultiapiCustomBaseUrlServiceClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultiapiCustomBaseUrlServiceClientConfiguration]
 ):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:

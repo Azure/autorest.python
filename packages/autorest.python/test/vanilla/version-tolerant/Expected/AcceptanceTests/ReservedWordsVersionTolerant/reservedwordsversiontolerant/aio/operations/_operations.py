@@ -109,7 +109,7 @@ class ImportOperations:
 
 
 class ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
-    ClientMixinABC[AsyncPipelineClient, ReservedWordsClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ReservedWordsClientConfiguration]
 ):
 
     def __init__(self) -> None:

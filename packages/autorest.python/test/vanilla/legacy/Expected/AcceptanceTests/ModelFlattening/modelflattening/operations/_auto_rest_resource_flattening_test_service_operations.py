@@ -219,7 +219,7 @@ def build_put_simple_product_with_grouping_request(  # pylint: disable=name-too-
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, AutoRestResourceFlatteningTestServiceConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 
     @overload

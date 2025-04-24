@@ -65,7 +65,9 @@ def build_object_type_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class ObjectTypeClientOperationsMixin(ClientMixinABC[PipelineClient, ObjectTypeClientConfiguration]):
+class ObjectTypeClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ObjectTypeClientConfiguration]
+):
 
     @distributed_trace
     def get(self, **kwargs: Any) -> JSON:

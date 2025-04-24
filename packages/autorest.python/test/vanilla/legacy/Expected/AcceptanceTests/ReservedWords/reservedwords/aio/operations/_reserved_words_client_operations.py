@@ -40,7 +40,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReservedWordsClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ReservedWordsClientConfiguration]):
+class ReservedWordsClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ReservedWordsClientConfiguration]
+):
 
     @distributed_trace_async
     async def operation_with_content_param(self, content: IO[bytes], **kwargs: Any) -> JSON:

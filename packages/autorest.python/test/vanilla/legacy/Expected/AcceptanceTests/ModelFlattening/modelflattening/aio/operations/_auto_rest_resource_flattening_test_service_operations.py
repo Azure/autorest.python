@@ -46,7 +46,9 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, AutoRestResourceFlatteningTestServiceConfiguration]
+    ClientMixinABC[
+        AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutoRestResourceFlatteningTestServiceConfiguration
+    ]
 ):
 
     @overload

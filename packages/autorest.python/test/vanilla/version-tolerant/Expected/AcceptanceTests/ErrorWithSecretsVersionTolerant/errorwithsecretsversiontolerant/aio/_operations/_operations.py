@@ -34,7 +34,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ErrorWithSecretsOperationsMixin(ClientMixinABC[AsyncPipelineClient, ErrorWithSecretsConfiguration]):
+class ErrorWithSecretsOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ErrorWithSecretsConfiguration]
+):
 
     @distributed_trace_async
     async def create_secret(self, **kwargs: Any) -> JSON:

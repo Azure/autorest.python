@@ -40,7 +40,7 @@ def build_parmaterized_endpoint_get_request(**kwargs: Any) -> HttpRequest:
 
 
 class ParmaterizedEndpointClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, ParmaterizedEndpointClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ParmaterizedEndpointClientConfiguration]
 ):
 
     @distributed_trace

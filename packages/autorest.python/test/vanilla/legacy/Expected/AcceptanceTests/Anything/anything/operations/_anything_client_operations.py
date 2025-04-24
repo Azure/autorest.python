@@ -117,7 +117,9 @@ def build_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class AnythingClientOperationsMixin(ClientMixinABC[PipelineClient, AnythingClientConfiguration]):
+class AnythingClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AnythingClientConfiguration]
+):
 
     @distributed_trace
     def get_object(self, **kwargs: Any) -> Any:

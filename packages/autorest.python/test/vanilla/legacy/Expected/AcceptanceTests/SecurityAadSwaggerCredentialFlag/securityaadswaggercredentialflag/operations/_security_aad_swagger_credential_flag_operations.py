@@ -40,7 +40,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
 
 
 class SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, SecurityAadSwaggerCredentialFlagConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SecurityAadSwaggerCredentialFlagConfiguration]
 ):
 
     @distributed_trace

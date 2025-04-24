@@ -43,7 +43,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PollingPagingExampleOperationsMixin(ClientMixinABC[AsyncPipelineClient, PollingPagingExampleConfiguration]):
+class PollingPagingExampleOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PollingPagingExampleConfiguration]
+):
 
     async def _basic_polling_initial(
         self, product: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any

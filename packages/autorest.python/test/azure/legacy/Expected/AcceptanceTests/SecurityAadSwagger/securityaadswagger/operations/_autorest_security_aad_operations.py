@@ -40,7 +40,9 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class AutorestSecurityAadOperationsMixin(ClientMixinABC[PipelineClient, AutorestSecurityAadConfiguration]):
+class AutorestSecurityAadOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutorestSecurityAadConfiguration]
+):
 
     @distributed_trace
     def head(self, **kwargs: Any) -> bool:

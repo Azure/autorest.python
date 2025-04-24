@@ -32,7 +32,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MergePatchJsonClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MergePatchJsonClientConfiguration]):
+class MergePatchJsonClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MergePatchJsonClientConfiguration]
+):
 
     @distributed_trace_async
     async def patch_single(self, body: JSON, **kwargs: Any) -> None:

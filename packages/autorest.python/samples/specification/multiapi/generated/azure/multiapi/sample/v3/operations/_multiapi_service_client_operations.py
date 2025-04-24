@@ -81,7 +81,9 @@ def build_test_different_calls_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MultiapiServiceClientOperationsMixin(ClientMixinABC[PipelineClient, MultiapiServiceClientConfiguration]):
+class MultiapiServiceClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultiapiServiceClientConfiguration]
+):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version

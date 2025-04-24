@@ -239,7 +239,7 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
 
 
 class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, AutoRestResourceFlatteningTestServiceConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 
     @overload

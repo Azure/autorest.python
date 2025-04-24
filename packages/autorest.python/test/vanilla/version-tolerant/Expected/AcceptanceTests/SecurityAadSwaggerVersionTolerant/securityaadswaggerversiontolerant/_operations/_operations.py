@@ -39,7 +39,9 @@ def build_autorest_security_aad_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class AutorestSecurityAadOperationsMixin(ClientMixinABC[PipelineClient, AutorestSecurityAadConfiguration]):
+class AutorestSecurityAadOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutorestSecurityAadConfiguration]
+):
 
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -33,7 +33,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutoRestReportServiceConfiguration]):
+class AutoRestReportServiceOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutoRestReportServiceConfiguration]
+):
 
     @distributed_trace_async
     async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:

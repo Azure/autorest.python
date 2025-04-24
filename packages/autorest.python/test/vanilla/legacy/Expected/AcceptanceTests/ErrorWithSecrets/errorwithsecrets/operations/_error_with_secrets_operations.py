@@ -62,7 +62,9 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(ClientMixinABC[PipelineClient, ErrorWithSecretsConfiguration]):
+class ErrorWithSecretsOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ErrorWithSecretsConfiguration]
+):
 
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> _models.SecretResponse:

@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientWithEnumOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientWithEnumConfiguration]):
+class ClientWithEnumOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientWithEnumConfiguration]
+):
 
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:

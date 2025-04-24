@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityKeyOperationsMixin(ClientMixinABC[AsyncPipelineClient, AutorestSecurityKeyConfiguration]):
+class AutorestSecurityKeyOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutorestSecurityKeyConfiguration]
+):
 
     @distributed_trace_async
     async def head(self, **kwargs: Any) -> None:

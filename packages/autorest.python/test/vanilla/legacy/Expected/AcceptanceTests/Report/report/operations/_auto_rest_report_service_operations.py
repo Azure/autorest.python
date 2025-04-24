@@ -72,7 +72,9 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceOperationsMixin(ClientMixinABC[PipelineClient, AutoRestReportServiceConfiguration]):
+class AutoRestReportServiceOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceConfiguration]
+):
 
     @distributed_trace
     def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:

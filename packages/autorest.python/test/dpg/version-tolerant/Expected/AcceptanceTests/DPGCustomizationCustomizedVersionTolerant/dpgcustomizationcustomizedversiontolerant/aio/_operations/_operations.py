@@ -44,7 +44,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DPGClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, DPGClientConfiguration]):
+class DPGClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], DPGClientConfiguration]
+):
 
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> JSON:

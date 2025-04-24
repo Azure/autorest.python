@@ -119,7 +119,7 @@ def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DPGClientOperationsMixin(ClientMixinABC[PipelineClient, DPGClientConfiguration]):
+class DPGClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DPGClientConfiguration]):
 
     @distributed_trace
     def get_model(self, mode: str, **kwargs: Any) -> JSON:

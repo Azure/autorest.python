@@ -31,7 +31,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class SecurityKeySwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, SecurityKeySwaggerCredentialFlagConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], SecurityKeySwaggerCredentialFlagConfiguration]
 ):
 
     @distributed_trace_async

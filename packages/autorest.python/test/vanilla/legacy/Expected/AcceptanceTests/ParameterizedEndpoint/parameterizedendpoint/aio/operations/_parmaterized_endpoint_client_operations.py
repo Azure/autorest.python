@@ -31,7 +31,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ParmaterizedEndpointClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, ParmaterizedEndpointClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ParmaterizedEndpointClientConfiguration]
 ):
 
     @distributed_trace_async

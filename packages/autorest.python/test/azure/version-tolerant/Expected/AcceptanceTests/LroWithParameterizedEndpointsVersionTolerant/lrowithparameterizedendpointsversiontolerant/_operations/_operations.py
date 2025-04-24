@@ -77,7 +77,7 @@ def build_lro_with_paramaterized_endpoints_poll_with_constant_parameterized_endp
 
 
 class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, LROWithParamaterizedEndpointsConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], LROWithParamaterizedEndpointsConfiguration]
 ):
 
     def _poll_with_parameterized_endpoints_initial(  # pylint: disable=name-too-long

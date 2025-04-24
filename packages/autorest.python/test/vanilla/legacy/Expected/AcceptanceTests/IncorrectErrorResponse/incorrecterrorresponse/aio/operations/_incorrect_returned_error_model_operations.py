@@ -31,7 +31,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class IncorrectReturnedErrorModelOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, IncorrectReturnedErrorModelConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], IncorrectReturnedErrorModelConfiguration]
 ):
 
     @distributed_trace_async

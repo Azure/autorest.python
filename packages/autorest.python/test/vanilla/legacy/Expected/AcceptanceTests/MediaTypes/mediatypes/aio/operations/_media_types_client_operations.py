@@ -41,7 +41,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MediaTypesClientConfiguration]):
+class MediaTypesClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MediaTypesClientConfiguration]
+):
 
     @overload
     async def analyze_body(
