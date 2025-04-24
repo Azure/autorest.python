@@ -98,7 +98,7 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient, RoutesClientConfiguration]):
+class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RoutesClientConfiguration]):
 
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """fixed.

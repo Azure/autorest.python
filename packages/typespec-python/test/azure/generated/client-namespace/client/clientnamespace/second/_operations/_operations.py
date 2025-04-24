@@ -52,7 +52,7 @@ def build_client_namespace_second_get_second_request(**kwargs: Any) -> HttpReque
 
 
 class ClientNamespaceSecondClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, ClientNamespaceSecondClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientNamespaceSecondClientConfiguration]
 ):
 
     @distributed_trace

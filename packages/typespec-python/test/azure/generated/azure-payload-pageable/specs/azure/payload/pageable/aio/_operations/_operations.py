@@ -34,7 +34,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PageableClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PageableClientConfiguration]):
+class PageableClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PageableClientConfiguration]
+):
 
     @distributed_trace
     @api_version_validation(

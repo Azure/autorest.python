@@ -32,7 +32,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ApiKeyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ApiKeyClientConfiguration]):
+class ApiKeyClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ApiKeyClientConfiguration]
+):
 
     @distributed_trace_async
     async def valid(self, **kwargs: Any) -> None:

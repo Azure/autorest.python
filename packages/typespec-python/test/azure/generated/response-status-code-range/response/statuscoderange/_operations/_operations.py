@@ -67,7 +67,9 @@ def build_status_code_range_error_response_status_code404_request(  # pylint: di
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class StatusCodeRangeClientOperationsMixin(ClientMixinABC[PipelineClient, StatusCodeRangeClientConfiguration]):
+class StatusCodeRangeClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], StatusCodeRangeClientConfiguration]
+):
 
     @distributed_trace
     def error_response_status_code_in_range(  # pylint: disable=inconsistent-return-statements

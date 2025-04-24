@@ -125,7 +125,9 @@ def build_nested_discriminator_get_wrong_discriminator_request(  # pylint: disab
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class NestedDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, NestedDiscriminatorClientConfiguration]):
+class NestedDiscriminatorClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NestedDiscriminatorClientConfiguration]
+):
 
     def get_model(self, **kwargs: Any) -> _models.Fish:
         """get_model.

@@ -183,7 +183,9 @@ class InterfaceV2Operations:
         return deserialized  # type: ignore
 
 
-class AddedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, AddedClientConfiguration]):
+class AddedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AddedClientConfiguration]
+):
 
     @overload
     async def v1(

@@ -27,7 +27,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StatusCodeRangeClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, StatusCodeRangeClientConfiguration]):
+class StatusCodeRangeClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], StatusCodeRangeClientConfiguration]
+):
 
     async def error_response_status_code_in_range(self, **kwargs: Any) -> None:
         """error_response_status_code_in_range.

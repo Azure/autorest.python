@@ -230,7 +230,9 @@ class TwoModelsAsPageItemOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PageClientConfiguration]):
+class PageClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PageClientConfiguration]
+):
 
     @distributed_trace
     def list_with_page(self, **kwargs: Any) -> AsyncIterable["_models.User"]:

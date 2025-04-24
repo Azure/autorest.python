@@ -85,7 +85,7 @@ def build_usage_input_and_output_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class UsageClientOperationsMixin(ClientMixinABC[PipelineClient, UsageClientConfiguration]):
+class UsageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], UsageClientConfiguration]):
 
     @overload
     def input(self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:

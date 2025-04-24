@@ -67,7 +67,9 @@ def build_removed_model_v3_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RemovedClientOperationsMixin(ClientMixinABC[PipelineClient, RemovedClientConfiguration]):
+class RemovedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RemovedClientConfiguration]
+):
 
     @overload
     def v2(self, body: _models.ModelV2, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV2:

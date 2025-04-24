@@ -22,7 +22,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RepeatabilityClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RepeatabilityClientConfiguration]):
+class RepeatabilityClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RepeatabilityClientConfiguration]
+):
 
     async def immediate_success(self, **kwargs: Any) -> None:
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.

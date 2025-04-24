@@ -85,7 +85,9 @@ def build_not_discriminated_put_valid_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class NotDiscriminatedClientOperationsMixin(ClientMixinABC[PipelineClient, NotDiscriminatedClientConfiguration]):
+class NotDiscriminatedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NotDiscriminatedClientConfiguration]
+):
 
     @overload
     def post_valid(self, input: _models.Siamese, *, content_type: str = "application/json", **kwargs: Any) -> None:

@@ -42,7 +42,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class EmptyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, EmptyClientConfiguration]):
+class EmptyClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], EmptyClientConfiguration]
+):
 
     @overload
     async def put_empty(

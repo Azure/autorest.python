@@ -34,7 +34,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class UsageClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, UsageClientConfiguration]):
+class UsageClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], UsageClientConfiguration]
+):
 
     @overload
     async def input(self, input: _models.InputRecord, *, content_type: str = "application/json", **kwargs: Any) -> None:

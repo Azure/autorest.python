@@ -385,7 +385,9 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, NamingClientConfiguration]):
+class NamingClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NamingClientConfiguration]
+):
 
     @distributed_trace_async
     async def client_name(self, **kwargs: Any) -> None:

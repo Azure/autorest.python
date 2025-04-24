@@ -157,7 +157,9 @@ def build_enum_discriminator_get_fixed_model_wrong_discriminator_request(  # pyl
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class EnumDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, EnumDiscriminatorClientConfiguration]):
+class EnumDiscriminatorClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], EnumDiscriminatorClientConfiguration]
+):
 
     def get_extensible_model(self, **kwargs: Any) -> _models.Dog:
         """Receive model with extensible enum discriminator type.

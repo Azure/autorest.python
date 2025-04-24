@@ -27,7 +27,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class VersionedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, VersionedClientConfiguration]):
+class VersionedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], VersionedClientConfiguration]
+):
 
     async def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

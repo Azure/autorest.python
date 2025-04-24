@@ -34,7 +34,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NotVersionedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, NotVersionedClientConfiguration]):
+class NotVersionedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NotVersionedClientConfiguration]
+):
 
     @distributed_trace_async
     async def without_api_version(self, **kwargs: Any) -> bool:

@@ -227,7 +227,9 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(ClientMixinABC[PipelineClient, RenamedOperationClientConfiguration]):
+class RenamedOperationClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RenamedOperationClientConfiguration]
+):
 
     @distributed_trace
     def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

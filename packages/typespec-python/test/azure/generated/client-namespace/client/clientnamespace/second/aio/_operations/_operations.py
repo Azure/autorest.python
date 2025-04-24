@@ -35,7 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ClientNamespaceSecondClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, ClientNamespaceSecondClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientNamespaceSecondClientConfiguration]
 ):
 
     @distributed_trace_async

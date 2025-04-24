@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PathClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, PathClientConfiguration]):
+class PathClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PathClientConfiguration]
+):
 
     @distributed_trace_async
     async def normal(self, name: str, **kwargs: Any) -> None:

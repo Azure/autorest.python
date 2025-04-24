@@ -179,7 +179,9 @@ class NewInterfaceOperations:
         return deserialized  # type: ignore
 
 
-class RenamedFromClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RenamedFromClientConfiguration]):
+class RenamedFromClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RenamedFromClientConfiguration]
+):
 
     @overload
     async def new_op(

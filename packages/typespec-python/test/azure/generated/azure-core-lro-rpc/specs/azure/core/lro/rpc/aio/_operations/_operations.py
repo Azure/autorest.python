@@ -40,7 +40,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RpcClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RpcClientConfiguration]):
+class RpcClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RpcClientConfiguration]
+):
 
     async def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any

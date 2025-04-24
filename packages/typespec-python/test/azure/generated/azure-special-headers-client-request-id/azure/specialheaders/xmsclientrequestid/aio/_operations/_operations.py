@@ -31,7 +31,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class XmsClientRequestIdClientOperationsMixin(
-    ClientMixinABC[AsyncPipelineClient, XmsClientRequestIdClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], XmsClientRequestIdClientConfiguration]
 ):
 
     @distributed_trace_async

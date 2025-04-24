@@ -68,7 +68,9 @@ def build_recursive_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class RecursiveClientOperationsMixin(ClientMixinABC[PipelineClient, RecursiveClientConfiguration]):
+class RecursiveClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RecursiveClientConfiguration]
+):
 
     @overload
     def put(self, input: _models.Extension, *, content_type: str = "application/json", **kwargs: Any) -> None:

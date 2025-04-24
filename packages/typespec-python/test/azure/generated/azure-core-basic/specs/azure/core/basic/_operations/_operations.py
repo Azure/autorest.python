@@ -232,7 +232,7 @@ def build_basic_export_all_users_request(*, format: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class BasicClientOperationsMixin(ClientMixinABC[PipelineClient, BasicClientConfiguration]):
+class BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], BasicClientConfiguration]):
 
     @overload
     def create_or_update(

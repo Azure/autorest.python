@@ -45,7 +45,9 @@ def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RepeatabilityClientOperationsMixin(ClientMixinABC[PipelineClient, RepeatabilityClientConfiguration]):
+class RepeatabilityClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RepeatabilityClientConfiguration]
+):
 
     def immediate_success(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.

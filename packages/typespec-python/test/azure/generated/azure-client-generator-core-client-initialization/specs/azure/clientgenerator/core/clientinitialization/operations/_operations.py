@@ -285,7 +285,9 @@ def build_child_client_delete_standalone_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="DELETE", url=_url, **kwargs)
 
 
-class HeaderParamClientOperationsMixin(ClientMixinABC[PipelineClient, HeaderParamClientConfiguration]):
+class HeaderParamClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], HeaderParamClientConfiguration]
+):
 
     @distributed_trace
     def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -438,7 +440,9 @@ class HeaderParamClientOperationsMixin(ClientMixinABC[PipelineClient, HeaderPara
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleParamsClientConfiguration]):
+class MultipleParamsClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleParamsClientConfiguration]
+):
 
     @distributed_trace
     def with_query(self, *, id: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -593,7 +597,9 @@ class MultipleParamsClientOperationsMixin(ClientMixinABC[PipelineClient, Multipl
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MixedParamsClientConfiguration]):
+class MixedParamsClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MixedParamsClientConfiguration]
+):
 
     @distributed_trace
     def with_query(  # pylint: disable=inconsistent-return-statements
@@ -762,7 +768,9 @@ class MixedParamsClientOperationsMixin(ClientMixinABC[PipelineClient, MixedParam
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(ClientMixinABC[PipelineClient, PathParamClientConfiguration]):
+class PathParamClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PathParamClientConfiguration]
+):
 
     @distributed_trace
     def with_query(  # pylint: disable=inconsistent-return-statements
@@ -917,7 +925,9 @@ class PathParamClientOperationsMixin(ClientMixinABC[PipelineClient, PathParamCli
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(ClientMixinABC[PipelineClient, ParamAliasClientConfiguration]):
+class ParamAliasClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ParamAliasClientConfiguration]
+):
 
     @distributed_trace
     def with_aliased_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -52,7 +52,9 @@ def build_duration_duration_constant_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DurationClientOperationsMixin(ClientMixinABC[PipelineClient, DurationClientConfiguration]):
+class DurationClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DurationClientConfiguration]
+):
 
     @overload
     def duration_constant(

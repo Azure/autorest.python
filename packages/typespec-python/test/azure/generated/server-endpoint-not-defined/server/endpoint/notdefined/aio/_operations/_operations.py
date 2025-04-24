@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NotDefinedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, NotDefinedClientConfiguration]):
+class NotDefinedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NotDefinedClientConfiguration]
+):
 
     @distributed_trace_async
     async def valid(self, **kwargs: Any) -> bool:

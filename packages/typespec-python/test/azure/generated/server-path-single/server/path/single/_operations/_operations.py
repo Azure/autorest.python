@@ -39,7 +39,7 @@ def build_single_my_op_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class SingleClientOperationsMixin(ClientMixinABC[PipelineClient, SingleClientConfiguration]):
+class SingleClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SingleClientConfiguration]):
 
     @distributed_trace
     def my_op(self, **kwargs: Any) -> bool:

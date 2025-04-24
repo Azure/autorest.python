@@ -38,7 +38,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AzureExampleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, AzureExampleClientConfiguration]):
+class AzureExampleClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AzureExampleClientConfiguration]
+):
 
     @overload
     async def basic_action(

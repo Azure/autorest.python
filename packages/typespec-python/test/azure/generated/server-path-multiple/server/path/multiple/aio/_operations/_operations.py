@@ -33,7 +33,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleClientConfiguration]):
+class MultipleClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultipleClientConfiguration]
+):
 
     @distributed_trace_async
     async def no_operation_params(self, **kwargs: Any) -> None:

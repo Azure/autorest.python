@@ -93,7 +93,9 @@ def build_json_merge_patch_update_optional_resource_request(  # pylint: disable=
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-class JsonMergePatchClientOperationsMixin(ClientMixinABC[PipelineClient, JsonMergePatchClientConfiguration]):
+class JsonMergePatchClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], JsonMergePatchClientConfiguration]
+):
 
     @overload
     def create_resource(

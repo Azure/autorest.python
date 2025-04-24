@@ -56,7 +56,7 @@ def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class OAuth2ClientOperationsMixin(ClientMixinABC[PipelineClient, OAuth2ClientConfiguration]):
+class OAuth2ClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], OAuth2ClientConfiguration]):
 
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

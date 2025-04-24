@@ -74,7 +74,9 @@ def build_client_b_renamed_six_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class ClientAClientOperationsMixin(ClientMixinABC[PipelineClient, ClientAClientConfiguration]):
+class ClientAClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientAClientConfiguration]
+):
 
     @distributed_trace
     def renamed_one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -212,7 +214,9 @@ class ClientAClientOperationsMixin(ClientMixinABC[PipelineClient, ClientAClientC
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientBClientOperationsMixin(ClientMixinABC[PipelineClient, ClientBClientConfiguration]):
+class ClientBClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientBClientConfiguration]
+):
 
     @distributed_trace
     def renamed_two(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -22,7 +22,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class SingleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, SingleClientConfiguration]):
+class SingleClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], SingleClientConfiguration]
+):
 
     async def my_op(self, **kwargs: Any) -> bool:
         """my_op.

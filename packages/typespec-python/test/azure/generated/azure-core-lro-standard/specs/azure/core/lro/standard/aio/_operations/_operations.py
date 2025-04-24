@@ -44,7 +44,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StandardClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, StandardClientConfiguration]):
+class StandardClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], StandardClientConfiguration]
+):
 
     async def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any
