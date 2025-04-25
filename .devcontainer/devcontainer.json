@@ -1,4 +1,4 @@
 {
   "name": "Standard",
-  "onCreateCommand": "nvm install 22 && npm install -g autorest pnpm"
+  "postCreateCommand": "nvm install 22 && npm install -g autorest pnpm"
 }
