@@ -41,7 +41,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FlattenPropertyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, FlattenPropertyClientConfiguration]):
+class FlattenPropertyClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], FlattenPropertyClientConfiguration]
+):
 
     @overload
     async def put_flatten_model(

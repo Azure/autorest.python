@@ -54,7 +54,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
 
 
 class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, AutoRestReportServiceForAzureConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceForAzureConfiguration]
 ):
 
     @distributed_trace

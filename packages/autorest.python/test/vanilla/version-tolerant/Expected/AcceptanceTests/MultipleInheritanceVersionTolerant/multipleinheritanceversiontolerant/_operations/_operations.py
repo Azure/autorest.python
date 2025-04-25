@@ -200,7 +200,7 @@ def build_multiple_inheritance_service_put_kitten_request(  # pylint: disable=na
 
 
 class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, MultipleInheritanceServiceClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleInheritanceServiceClientConfiguration]
 ):
 
     @distributed_trace

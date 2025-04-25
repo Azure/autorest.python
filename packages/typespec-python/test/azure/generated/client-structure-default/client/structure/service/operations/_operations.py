@@ -396,7 +396,9 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(ClientMixinABC[PipelineClient, ServiceClientConfiguration]):
+class ServiceClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ServiceClientConfiguration]
+):
 
     @distributed_trace
     def one(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

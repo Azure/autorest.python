@@ -72,7 +72,9 @@ def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-class VersionedClientOperationsMixin(ClientMixinABC[PipelineClient, VersionedClientConfiguration]):
+class VersionedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], VersionedClientConfiguration]
+):
 
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

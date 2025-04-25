@@ -53,7 +53,9 @@ def build_multiple_with_operation_path_param_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class MultipleClientOperationsMixin(ClientMixinABC[PipelineClient, MultipleClientConfiguration]):
+class MultipleClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleClientConfiguration]
+):
 
     @distributed_trace
     def no_operation_params(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -37,7 +37,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientAClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientAClientConfiguration]):
+class ClientAClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientAClientConfiguration]
+):
 
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:
@@ -175,7 +177,9 @@ class ClientAClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientACl
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientBClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ClientBClientConfiguration]):
+class ClientBClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientBClientConfiguration]
+):
 
     @distributed_trace_async
     async def renamed_two(self, **kwargs: Any) -> None:

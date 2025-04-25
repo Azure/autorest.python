@@ -155,7 +155,9 @@ def build_put_text_and_json_body_request(*, content: str, **kwargs: Any) -> Http
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class MediaTypesClientOperationsMixin(ClientMixinABC[PipelineClient, MediaTypesClientConfiguration]):
+class MediaTypesClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MediaTypesClientConfiguration]
+):
 
     @overload
     def analyze_body(

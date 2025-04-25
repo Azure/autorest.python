@@ -51,7 +51,9 @@ def build_patch_single_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class MergePatchJsonClientOperationsMixin(ClientMixinABC[PipelineClient, MergePatchJsonClientConfiguration]):
+class MergePatchJsonClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MergePatchJsonClientConfiguration]
+):
 
     @distributed_trace
     def patch_single(self, body: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

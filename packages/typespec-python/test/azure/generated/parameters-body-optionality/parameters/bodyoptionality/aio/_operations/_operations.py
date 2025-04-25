@@ -40,7 +40,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class BodyOptionalityClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, BodyOptionalityClientConfiguration]):
+class BodyOptionalityClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], BodyOptionalityClientConfiguration]
+):
 
     @overload
     async def required_explicit(

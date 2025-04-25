@@ -97,7 +97,9 @@ def build_conditional_request_post_if_unmodified_since_request(  # pylint: disab
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ConditionalRequestClientOperationsMixin(ClientMixinABC[PipelineClient, ConditionalRequestClientConfiguration]):
+class ConditionalRequestClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ConditionalRequestClientConfiguration]
+):
 
     def post_if_match(  # pylint: disable=inconsistent-return-statements
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any

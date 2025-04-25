@@ -39,7 +39,9 @@ def build_not_defined_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class NotDefinedClientOperationsMixin(ClientMixinABC[PipelineClient, NotDefinedClientConfiguration]):
+class NotDefinedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NotDefinedClientConfiguration]
+):
 
     @distributed_trace
     def valid(self, **kwargs: Any) -> bool:

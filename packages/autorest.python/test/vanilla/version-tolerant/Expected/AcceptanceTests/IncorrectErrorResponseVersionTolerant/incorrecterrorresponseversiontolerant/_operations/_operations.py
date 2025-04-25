@@ -42,7 +42,7 @@ def build_incorrect_returned_error_model_get_incorrect_error_from_server_request
 
 
 class IncorrectReturnedErrorModelOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, IncorrectReturnedErrorModelConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], IncorrectReturnedErrorModelConfiguration]
 ):
 
     @distributed_trace

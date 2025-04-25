@@ -44,7 +44,9 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class XmsClientRequestIdClientOperationsMixin(ClientMixinABC[PipelineClient, XmsClientRequestIdClientConfiguration]):
+class XmsClientRequestIdClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], XmsClientRequestIdClientConfiguration]
+):
 
     @distributed_trace
     def get(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

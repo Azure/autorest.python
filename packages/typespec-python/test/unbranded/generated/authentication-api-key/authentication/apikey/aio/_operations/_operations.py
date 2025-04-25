@@ -24,7 +24,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ApiKeyClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ApiKeyClientConfiguration]):
+class ApiKeyClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ApiKeyClientConfiguration]
+):
 
     async def valid(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.

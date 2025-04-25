@@ -85,7 +85,7 @@ def build_empty_post_round_trip_empty_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class EmptyClientOperationsMixin(ClientMixinABC[PipelineClient, EmptyClientConfiguration]):
+class EmptyClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], EmptyClientConfiguration]):
 
     @overload
     def put_empty(self, input: _models.EmptyInput, *, content_type: str = "application/json", **kwargs: Any) -> None:

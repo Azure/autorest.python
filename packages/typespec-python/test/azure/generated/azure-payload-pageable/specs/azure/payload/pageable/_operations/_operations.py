@@ -56,7 +56,9 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class PageableClientOperationsMixin(ClientMixinABC[PipelineClient, PageableClientConfiguration]):
+class PageableClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageableClientConfiguration]
+):
 
     @distributed_trace
     @api_version_validation(

@@ -38,7 +38,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MadeOptionalClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MadeOptionalClientConfiguration]):
+class MadeOptionalClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MadeOptionalClientConfiguration]
+):
 
     @overload
     async def test(

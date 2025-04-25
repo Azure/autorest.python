@@ -134,7 +134,9 @@ def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(ClientMixinABC[PipelineClient, AutoRestValidationTestConfiguration]):
+class AutoRestValidationTestOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestValidationTestConfiguration]
+):
 
     @distributed_trace
     def validation_of_method_parameters(self, resource_group_name: str, id: int, **kwargs: Any) -> _models.Product:

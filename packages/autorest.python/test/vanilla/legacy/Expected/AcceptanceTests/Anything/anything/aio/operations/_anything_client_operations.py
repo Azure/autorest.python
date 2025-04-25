@@ -38,7 +38,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AnythingClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, AnythingClientConfiguration]):
+class AnythingClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AnythingClientConfiguration]
+):
 
     @distributed_trace_async
     async def get_object(self, **kwargs: Any) -> Any:

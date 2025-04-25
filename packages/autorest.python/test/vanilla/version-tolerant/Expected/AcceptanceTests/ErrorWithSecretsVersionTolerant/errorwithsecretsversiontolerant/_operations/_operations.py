@@ -64,7 +64,9 @@ def build_error_with_secrets_get_error_with_secrets_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(ClientMixinABC[PipelineClient, ErrorWithSecretsConfiguration]):
+class ErrorWithSecretsOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ErrorWithSecretsConfiguration]
+):
 
     @distributed_trace
     def create_secret(self, **kwargs: Any) -> JSON:

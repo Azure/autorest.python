@@ -28,7 +28,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, ReturnTypeChangedFromClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ReturnTypeChangedFromClientConfiguration]
 ):
 
     async def test(self, body: str, **kwargs: Any) -> str:

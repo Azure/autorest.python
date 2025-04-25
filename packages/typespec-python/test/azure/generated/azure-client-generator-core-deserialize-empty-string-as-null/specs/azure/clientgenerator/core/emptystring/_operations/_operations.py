@@ -52,7 +52,7 @@ def build_deserialize_empty_string_as_null_get_request(**kwargs: Any) -> HttpReq
 
 
 class DeserializeEmptyStringAsNullClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, DeserializeEmptyStringAsNullClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DeserializeEmptyStringAsNullClientConfiguration]
 ):
 
     @distributed_trace

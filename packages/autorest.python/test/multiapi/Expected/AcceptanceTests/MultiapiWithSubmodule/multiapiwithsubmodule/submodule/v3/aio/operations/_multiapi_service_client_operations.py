@@ -39,7 +39,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultiapiServiceClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultiapiServiceClientConfiguration]):
+class MultiapiServiceClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultiapiServiceClientConfiguration]
+):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument
         try:
             return self._config.api_version

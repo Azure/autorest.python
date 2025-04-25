@@ -39,7 +39,9 @@ def build_autorest_security_key_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class AutorestSecurityKeyOperationsMixin(ClientMixinABC[PipelineClient, AutorestSecurityKeyConfiguration]):
+class AutorestSecurityKeyOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutorestSecurityKeyConfiguration]
+):
 
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -191,7 +191,9 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RenamedOperationClientConfiguration]):
+class RenamedOperationClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RenamedOperationClientConfiguration]
+):
 
     @distributed_trace_async
     async def renamed_one(self, **kwargs: Any) -> None:

@@ -82,7 +82,9 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RoutesClientConfiguration]):
+class RoutesClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RoutesClientConfiguration]
+):
 
     async def fixed(self, **kwargs: Any) -> None:
         """fixed.

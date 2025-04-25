@@ -118,7 +118,9 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class StandardClientOperationsMixin(ClientMixinABC[PipelineClient, StandardClientConfiguration]):
+class StandardClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], StandardClientConfiguration]
+):
 
     def _create_or_replace_initial(
         self, name: str, resource: Union[_models.User, JSON, IO[bytes]], **kwargs: Any

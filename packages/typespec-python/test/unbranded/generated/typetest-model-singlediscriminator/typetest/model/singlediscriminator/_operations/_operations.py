@@ -139,7 +139,9 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class SingleDiscriminatorClientOperationsMixin(ClientMixinABC[PipelineClient, SingleDiscriminatorClientConfiguration]):
+class SingleDiscriminatorClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SingleDiscriminatorClientConfiguration]
+):
 
     def get_model(self, **kwargs: Any) -> _models.Bird:
         """get_model.

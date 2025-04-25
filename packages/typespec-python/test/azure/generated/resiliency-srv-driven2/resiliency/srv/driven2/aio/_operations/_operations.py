@@ -37,7 +37,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, ResiliencyServiceDrivenClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ResiliencyServiceDrivenClientConfiguration]
 ):
 
     @distributed_trace_async

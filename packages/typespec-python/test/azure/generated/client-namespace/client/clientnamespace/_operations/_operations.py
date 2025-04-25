@@ -52,7 +52,7 @@ def build_client_namespace_first_get_first_request(**kwargs: Any) -> HttpRequest
 
 
 class ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, ClientNamespaceFirstClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientNamespaceFirstClientConfiguration]
 ):
 
     @distributed_trace

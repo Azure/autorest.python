@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RecursiveClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RecursiveClientConfiguration]):
+class RecursiveClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RecursiveClientConfiguration]
+):
 
     @overload
     async def put(self, input: _models.Extension, *, content_type: str = "application/json", **kwargs: Any) -> None:

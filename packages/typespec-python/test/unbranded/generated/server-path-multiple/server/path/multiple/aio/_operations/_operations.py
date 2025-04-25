@@ -25,7 +25,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, MultipleClientConfiguration]):
+class MultipleClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultipleClientConfiguration]
+):
 
     async def no_operation_params(self, **kwargs: Any) -> None:
         """no_operation_params.

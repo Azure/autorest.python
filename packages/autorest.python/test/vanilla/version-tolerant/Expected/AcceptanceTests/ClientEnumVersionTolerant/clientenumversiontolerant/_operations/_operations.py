@@ -46,7 +46,9 @@ def build_client_with_enum_head_request(*, x_ms_enum: Union[str, _models.Enum0],
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-class ClientWithEnumOperationsMixin(ClientMixinABC[PipelineClient, ClientWithEnumConfiguration]):
+class ClientWithEnumOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientWithEnumConfiguration]
+):
 
     @distributed_trace
     def head(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

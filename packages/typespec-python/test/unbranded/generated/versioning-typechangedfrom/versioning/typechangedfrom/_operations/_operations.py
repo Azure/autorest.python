@@ -54,7 +54,9 @@ def build_type_changed_from_test_request(*, param: str, **kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class TypeChangedFromClientOperationsMixin(ClientMixinABC[PipelineClient, TypeChangedFromClientConfiguration]):
+class TypeChangedFromClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], TypeChangedFromClientConfiguration]
+):
 
     @overload
     def test(

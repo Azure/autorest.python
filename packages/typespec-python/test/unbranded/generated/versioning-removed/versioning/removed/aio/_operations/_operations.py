@@ -30,7 +30,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RemovedClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RemovedClientConfiguration]):
+class RemovedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RemovedClientConfiguration]
+):
 
     @overload
     async def v2(

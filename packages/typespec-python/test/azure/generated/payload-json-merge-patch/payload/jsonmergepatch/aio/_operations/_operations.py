@@ -42,7 +42,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class JsonMergePatchClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, JsonMergePatchClientConfiguration]):
+class JsonMergePatchClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], JsonMergePatchClientConfiguration]
+):
 
     @overload
     async def create_resource(

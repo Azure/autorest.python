@@ -49,7 +49,7 @@ def build_custom_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class CustomClientOperationsMixin(ClientMixinABC[PipelineClient, CustomClientConfiguration]):
+class CustomClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], CustomClientConfiguration]):
 
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

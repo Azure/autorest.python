@@ -61,7 +61,9 @@ def build_not_versioned_with_path_api_version_request(  # pylint: disable=name-t
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class NotVersionedClientOperationsMixin(ClientMixinABC[PipelineClient, NotVersionedClientConfiguration]):
+class NotVersionedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NotVersionedClientConfiguration]
+):
 
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

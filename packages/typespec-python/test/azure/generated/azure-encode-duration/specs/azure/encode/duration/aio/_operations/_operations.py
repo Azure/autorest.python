@@ -36,7 +36,9 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DurationClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, DurationClientConfiguration]):
+class DurationClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], DurationClientConfiguration]
+):
 
     @overload
     async def duration_constant(

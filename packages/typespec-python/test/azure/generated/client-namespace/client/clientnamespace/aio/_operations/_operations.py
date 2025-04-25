@@ -35,7 +35,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[AsyncPipelineClient, ClientNamespaceFirstClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientNamespaceFirstClientConfiguration]
 ):
 
     @distributed_trace_async

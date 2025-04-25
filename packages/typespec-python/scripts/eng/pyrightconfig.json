@@ -2,5 +2,6 @@
     "reportUnnecessaryCast": "warning",
     "reportTypeCommentUsage": true,
     "reportMissingImports": false,
+    "reportAttributeAccessIssue": false,
     "pythonVersion": "3.9"
 }

@@ -46,7 +46,7 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 
 
 class NestedDiscriminatorClientOperationsMixin(
-    ClientMixinABC[AsyncPipelineClient, NestedDiscriminatorClientConfiguration]
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NestedDiscriminatorClientConfiguration]
 ):
 
     @distributed_trace_async

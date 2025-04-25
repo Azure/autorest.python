@@ -56,7 +56,7 @@ def build_path_optional_request(*, name: Optional[str] = None, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class PathClientOperationsMixin(ClientMixinABC[PipelineClient, PathClientConfiguration]):
+class PathClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PathClientConfiguration]):
 
     @distributed_trace
     def normal(self, name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

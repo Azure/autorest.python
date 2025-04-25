@@ -70,7 +70,7 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
 
 
 class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, ResiliencyServiceDrivenClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ResiliencyServiceDrivenClientConfiguration]
 ):
 
     @distributed_trace

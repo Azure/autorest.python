@@ -342,7 +342,9 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, ServiceClientConfiguration]):
+class ServiceClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ServiceClientConfiguration]
+):
 
     @distributed_trace_async
     async def one(self, **kwargs: Any) -> None:

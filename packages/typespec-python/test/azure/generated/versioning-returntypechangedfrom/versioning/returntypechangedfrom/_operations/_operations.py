@@ -54,7 +54,7 @@ def build_return_type_changed_from_test_request(**kwargs: Any) -> HttpRequest:  
 
 
 class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
-    ClientMixinABC[PipelineClient, ReturnTypeChangedFromClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ReturnTypeChangedFromClientConfiguration]
 ):
 
     @distributed_trace

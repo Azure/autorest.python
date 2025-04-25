@@ -93,7 +93,9 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(ClientMixinABC[AsyncPipelineClient, RoutesClientConfiguration]):
+class RoutesClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RoutesClientConfiguration]
+):
 
     @distributed_trace_async
     async def fixed(self, **kwargs: Any) -> None:
