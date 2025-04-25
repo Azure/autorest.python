@@ -2,5 +2,9 @@
     "reportUnnecessaryCast": "warning",
     "reportTypeCommentUsage": true,
     "reportMissingImports": false,
-    "pythonVersion": "3.9"
+    "pythonVersion": "3.9",
+    "exclude": [
+        "**/azure-client-generator-core-client-initialization/specs/azure/clientgenerator/core/clientinitialization/aio/operations/_operations.py",
+        "**/azure-client-generator-core-client-initialization/specs/azure/clientgenerator/core/clientinitialization/operations/_operations.py"
+    ]
 }
