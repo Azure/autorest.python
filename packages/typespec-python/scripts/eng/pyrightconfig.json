@@ -2,8 +2,6 @@
     "reportUnnecessaryCast": "warning",
     "reportTypeCommentUsage": true,
     "reportMissingImports": false,
-    "pythonVersion": "3.9",
-    "exclude": [
-        "**/azure-client-generator-core-client-initialization"
-    ]
+    "reportAttributeAccessIssue": false,
+    "pythonVersion": "3.9"
 }
