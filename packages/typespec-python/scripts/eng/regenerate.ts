@@ -382,16 +382,20 @@ function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
 }
 
 async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number): Promise<void> {
-    let currentIndex = 0;
-
-    async function worker() {
-        while (currentIndex < tasks.length) {
-            const index = currentIndex++;
-            await tasks[index]();
+    async function worker(start: number, end: number) {
+        while (start < end) {
+            await tasks[start]();
+            start++;
         }
     }
 
-    const workers = new Array(Math.min(poolLimit, tasks.length)).fill(null).map(() => worker());
+    const workers = [];
+    let start = 0;
+    while (start < tasks.length) {
+        const end = Math.min(start + poolLimit, tasks.length);
+        workers.push((async () => await worker(start, end))());
+        start = end;
+    }
     await Promise.all(workers);
 }
 
