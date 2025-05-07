@@ -60,8 +60,7 @@ class ErrorDetail(_Model):
 
 
 class ErrorResponse(_Model):
-    """Common error response for all Azure Resource Manager APIs to return error details for failed
-    operations.
+    """Error response.
 
     :ivar error: The error object.
     :vartype error: ~azure.resourcemanager.nonresource.models.ErrorDetail
