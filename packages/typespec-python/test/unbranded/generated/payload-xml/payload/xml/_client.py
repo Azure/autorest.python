@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import XmlClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     ModelWithArrayOfModelValueOperations,
     ModelWithAttributesValueOperations,
@@ -69,6 +69,7 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = XmlClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

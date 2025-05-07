@@ -20,14 +20,53 @@ interface TspCommand {
 }
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
-    "azure/example/basic": {
-        namespace: "specs.azure.example.basic",
-    },
     "azure/client-generator-core/access": {
         namespace: "specs.azure.clientgenerator.core.access",
     },
+    "azure/client-generator-core/api-version": {
+        namespace: "specs.azure.clientgenerator.core.apiversion",
+    },
+    "azure/client-generator-core/client-initialization": {
+        namespace: "specs.azure.clientgenerator.core.clientinitialization",
+    },
+    "azure/client-generator-core/deserialize-empty-string-as-null": {
+        namespace: "specs.azure.clientgenerator.core.emptystring",
+    },
+    "azure/client-generator-core/flatten-property": {
+        namespace: "specs.azure.clientgenerator.core.flattenproperty",
+    },
     "azure/client-generator-core/usage": {
         namespace: "specs.azure.clientgenerator.core.usage",
+    },
+    "azure/core/basic": {
+        namespace: "specs.azure.core.basic",
+    },
+    "azure/core/lro/rpc": {
+        namespace: "specs.azure.core.lro.rpc",
+    },
+    "azure/core/lro/standard": {
+        namespace: "specs.azure.core.lro.standard",
+    },
+    "azure/core/model": {
+        namespace: "specs.azure.core.model",
+    },
+    "azure/core/page": {
+        namespace: "specs.azure.core.page",
+    },
+    "azure/core/scalar": {
+        namespace: "specs.azure.core.scalar",
+    },
+    "azure/core/traits": {
+        namespace: "specs.azure.core.traits",
+    },
+    "azure/encode/duration": {
+        namespace: "specs.azure.encode.duration",
+    },
+    "azure/example/basic": {
+        namespace: "specs.azure.example.basic",
+    },
+    "azure/payload/pageable": {
+        namespace: "specs.azure.payload.pageable",
     },
     "client/structure/default": {
         namespace: "client.structure.service",
@@ -203,25 +242,6 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
     const emitter_options = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
     const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
-
-    function updateOptions(options: Record<string, string>): void {
-        if (options["package-name"] && options["enable-typespec-namespace"] === undefined) {
-            options["enable-typespec-namespace"] = "false";
-        }
-    }
-
-    if (flavor !== "azure") {
-        for (const options of result) {
-            if (Array.isArray(options)) {
-                for (const option of options) {
-                    updateOptions(option);
-                }
-            } else {
-                updateOptions(options);
-            }
-        }
-    }
-
     return result;
 }
 

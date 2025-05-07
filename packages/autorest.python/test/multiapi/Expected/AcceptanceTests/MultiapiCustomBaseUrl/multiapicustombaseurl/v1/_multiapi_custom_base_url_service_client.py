@@ -15,8 +15,8 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
-from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
+from ._utils.serialization import Deserializer, Serializer
 from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:
@@ -40,6 +40,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
         self._config = MultiapiCustomBaseUrlServiceClientConfiguration(
             credential=credential, endpoint=endpoint, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

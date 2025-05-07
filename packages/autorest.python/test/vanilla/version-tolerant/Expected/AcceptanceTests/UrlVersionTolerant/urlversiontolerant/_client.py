@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestUrlTestServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import PathItemsOperations, PathsOperations, QueriesOperations
 
 
@@ -48,6 +48,7 @@ class AutoRestUrlTestService:  # pylint: disable=client-accepts-api-version-keyw
         self._config = AutoRestUrlTestServiceConfiguration(
             global_string_path=global_string_path, global_string_query=global_string_query, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

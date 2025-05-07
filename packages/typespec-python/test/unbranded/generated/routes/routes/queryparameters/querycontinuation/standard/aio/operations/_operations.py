@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -14,7 +14,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ......_serialization import Deserializer, Serializer
+from ......_utils.serialization import Deserializer, Serializer
 from ......aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
     build_query_parameters_query_continuation_standard_array_request,
@@ -22,10 +22,6 @@ from ...operations._operations import (
     build_query_parameters_query_continuation_standard_record_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 

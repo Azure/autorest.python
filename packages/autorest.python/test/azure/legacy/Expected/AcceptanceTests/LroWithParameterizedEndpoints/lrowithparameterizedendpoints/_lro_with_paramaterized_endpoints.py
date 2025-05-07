@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import LROWithParamaterizedEndpointsOperationsMixin
 
 
@@ -37,6 +37,7 @@ class LROWithParamaterizedEndpoints(
     ) -> None:
         _endpoint = "http://{accountName}{host}"
         self._config = LROWithParamaterizedEndpointsConfiguration(host=host, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -14,9 +14,10 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ...... import _model_base, models as _models5
-from ......_serialization import Deserializer, Serializer
-from ......_vendor import prepare_multipart_form_data
+from ...... import models as _models5
+from ......_utils.model_base import Model as _Model
+from ......_utils.serialization import Deserializer, Serializer
+from ......_utils.utils import prepare_multipart_form_data
 from ......aio._configuration import MultiPartClientConfiguration
 from ...operations._operations import (
     build_form_data_http_parts_content_type_image_jpeg_content_type_request,
@@ -24,11 +25,7 @@ from ...operations._operations import (
     build_form_data_http_parts_content_type_required_content_type_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -99,7 +96,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -176,7 +173,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -253,7 +250,7 @@ class FormDataHttpPartsContentTypeOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

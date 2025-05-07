@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import MixedApiVersionClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     ApiVersionDefaultOperations,
     ApiVersionLocalOperations,
@@ -74,6 +74,7 @@ class MixedApiVersionClient:  # pylint: disable=client-accepts-api-version-keywo
         self._config = MixedApiVersionClientConfiguration(
             credential=credential, subscription_id=subscription_id, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

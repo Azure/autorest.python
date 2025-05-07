@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ObjectTypeClientConfiguration
 from ._operations import ObjectTypeClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -30,6 +30,7 @@ class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=clie
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ObjectTypeClientConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

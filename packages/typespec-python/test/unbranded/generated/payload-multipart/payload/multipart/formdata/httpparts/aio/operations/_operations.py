@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -14,19 +14,16 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ..... import _model_base, models as _models4
-from ....._serialization import Deserializer, Serializer
-from ....._vendor import prepare_multipart_form_data
+from ..... import models as _models4
+from ....._utils.model_base import Model as _Model
+from ....._utils.serialization import Deserializer, Serializer
+from ....._utils.utils import prepare_multipart_form_data
 from .....aio._configuration import MultiPartClientConfiguration
 from ...contenttype.aio.operations._operations import FormDataHttpPartsContentTypeOperations
 from ...nonstring.aio.operations._operations import FormDataHttpPartsNonStringOperations
 from ...operations._operations import build_form_data_http_parts_json_array_and_file_array_request
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -101,7 +98,7 @@ class FormDataHttpPartsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "pictures"]
         _data_fields: List[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

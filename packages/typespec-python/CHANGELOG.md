@@ -1,5 +1,62 @@
 # Release
 
+## 0.44.1
+
+### Bump dependencies
+
+- Bump to latest typespec version
+
+
+## 0.44.0
+
+### Bug Fixes
+
+- [#3077](https://github.com/Azure/autorest.python/pull/3077) Move all utils code into a `_utils` folder
+- [#3070](https://github.com/Azure/autorest.python/pull/3070) Improve emitter performance by updating black plugin implementation.
+
+### Bump dependencies
+
+- [#3078](https://github.com/Azure/autorest.python/pull/3078) Bump to http-client-python 0.11.0.
+
+
+## 0.43.0
+
+### Features
+
+- [#3076](https://github.com/Azure/autorest.python/pull/3076) Improve user experience in multi clouds scenario
+- [#3073](https://github.com/Azure/autorest.python/pull/3073) add more hooks into setup.py template for users with custom templates
+
+
+## 0.42.3
+
+### Bug Fixes
+
+- [#3071](https://github.com/Azure/autorest.python/pull/3071) Allow `_` in namespaces
+
+### Other Changes
+
+- [#3065](https://github.com/Azure/autorest.python/pull/3065) Drop support for python3.8
+
+## 0.42.2
+
+No changes, version bump only.
+
+## 0.42.1
+
+### Bug Fixes
+
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Fix crash when configure `license` in tspconfig.yaml`
+- [#3067](https://github.com/Azure/autorest.python/pull/3067) Keep license header for legacy SDK
+
+
+## 0.42.0
+
+### Features
+
+- [#3062](https://github.com/Azure/autorest.python/pull/3062) Pass authentication flows info into credential policy for unbranded
+- [#3061](https://github.com/Azure/autorest.python/pull/3061) support typespec license config
+
+
 ## 0.41.0
 
 ### Features

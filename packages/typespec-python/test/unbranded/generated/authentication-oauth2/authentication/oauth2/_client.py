@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import OAuth2ClientConfiguration
 from ._operations import OAuth2ClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     from corehttp.credentials import TokenCredential
@@ -29,6 +29,7 @@ class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = OAuth2ClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

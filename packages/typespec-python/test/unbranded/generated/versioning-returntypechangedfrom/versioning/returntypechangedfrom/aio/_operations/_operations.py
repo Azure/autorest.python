@@ -1,5 +1,6 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
+import json
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -13,22 +14,22 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ..._model_base import _deserialize
 from ..._operations._operations import build_return_type_changed_from_test_request
-from .._vendor import ReturnTypeChangedFromClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ReturnTypeChangedFromClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixinABC):  # pylint: disable=name-too-long
+class ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ReturnTypeChangedFromClientConfiguration]
+):
 
     async def test(self, body: str, **kwargs: Any) -> str:
         """test.
@@ -50,10 +51,10 @@ class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixi
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "text/plain"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("content-type", "application/json"))
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _content = body
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_return_type_changed_from_test_request(
             content_type=content_type,
@@ -63,7 +64,7 @@ class ReturnTypeChangedFromClientOperationsMixin(ReturnTypeChangedFromClientMixi
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

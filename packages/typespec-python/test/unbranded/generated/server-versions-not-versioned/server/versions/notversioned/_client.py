@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import NotVersionedClientConfiguration
 from ._operations import NotVersionedClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -25,6 +25,7 @@ class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotVersionedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

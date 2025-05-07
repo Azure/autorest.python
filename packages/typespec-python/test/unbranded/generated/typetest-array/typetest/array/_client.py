@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ArrayClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     BooleanValueOperations,
     DatetimeValueOperations,
@@ -67,6 +67,7 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ArrayClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

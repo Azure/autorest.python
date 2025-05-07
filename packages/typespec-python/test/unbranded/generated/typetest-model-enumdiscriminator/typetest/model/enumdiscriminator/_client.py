@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import EnumDiscriminatorClientConfiguration
 from ._operations import EnumDiscriminatorClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class EnumDiscriminatorClient(
@@ -26,6 +26,7 @@ class EnumDiscriminatorClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = EnumDiscriminatorClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

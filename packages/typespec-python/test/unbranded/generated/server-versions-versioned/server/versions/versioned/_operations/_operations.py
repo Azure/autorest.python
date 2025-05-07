@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -11,16 +11,14 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import VersionedClientMixinABC
+from .._configuration import VersionedClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -74,7 +72,9 @@ def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-class VersionedClientOperationsMixin(VersionedClientMixinABC):
+class VersionedClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], VersionedClientConfiguration]
+):
 
     def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

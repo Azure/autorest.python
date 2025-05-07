@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import NotDefinedClientConfiguration
 from ._operations import NotDefinedClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -25,6 +25,7 @@ class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=clie
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotDefinedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -3,11 +3,10 @@
 
 from typing import Any, Mapping, overload
 
-from .. import _model_base
-from .._model_base import rest_field
+from .._utils.model_base import Model as _Model, rest_field
 
 
-class Pet(_model_base.Model):
+class Pet(_Model):
     """This is base model for not-discriminated normal multiple levels inheritance.
 
     :ivar name: Required.

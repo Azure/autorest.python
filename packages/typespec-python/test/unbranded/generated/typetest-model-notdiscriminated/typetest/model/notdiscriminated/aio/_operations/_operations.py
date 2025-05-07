@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -15,28 +15,28 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_not_discriminated_get_valid_request,
     build_not_discriminated_post_valid_request,
     build_not_discriminated_put_valid_request,
 )
-from .._vendor import NotDiscriminatedClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import NotDiscriminatedClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NotDiscriminatedClientOperationsMixin(NotDiscriminatedClientMixinABC):
+class NotDiscriminatedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NotDiscriminatedClientConfiguration]
+):
 
     @overload
     async def post_valid(

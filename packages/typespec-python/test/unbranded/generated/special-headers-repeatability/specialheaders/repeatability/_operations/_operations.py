@@ -1,6 +1,6 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 import datetime
-import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 import uuid
 
@@ -13,16 +13,14 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from .._serialization import Serializer
-from .._vendor import RepeatabilityClientMixinABC
+from .._configuration import RepeatabilityClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -47,7 +45,9 @@ def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RepeatabilityClientOperationsMixin(RepeatabilityClientMixinABC):
+class RepeatabilityClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RepeatabilityClientConfiguration]
+):
 
     def immediate_success(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check we recognize Repeatability-Request-ID and Repeatability-First-Sent.

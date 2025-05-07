@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -11,20 +11,20 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import build_union_valid_key_request, build_union_valid_token_request
-from .._vendor import UnionClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import UnionClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class UnionClientOperationsMixin(UnionClientMixinABC):
+class UnionClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], UnionClientConfiguration]
+):
 
     async def valid_key(self, **kwargs: Any) -> None:
         """Check whether client is authenticated.

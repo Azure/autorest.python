@@ -1,6 +1,6 @@
 # pylint: disable=too-many-lines
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -20,13 +20,9 @@ from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import XmlClientConfiguration
-from .._model_base import _deserialize_xml, _get_element
-from .._serialization import Deserializer, Serializer
+from .._utils.model_base import _deserialize_xml, _get_element
+from .._utils.serialization import Deserializer, Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 

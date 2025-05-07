@@ -8,7 +8,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .. import models as _models
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ReturnTypeChangedFromClientConfiguration
 from ._operations import ReturnTypeChangedFromClientOperationsMixin
 
@@ -31,6 +31,7 @@ class ReturnTypeChangedFromClient(
     ) -> None:
         _endpoint = "{endpoint}/versioning/return-type-changed-from/api-version:{version}"
         self._config = ReturnTypeChangedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -71,7 +72,7 @@ class ReturnTypeChangedFromClient(
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

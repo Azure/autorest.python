@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultipleClientConfiguration
 from ._operations import MultipleClientOperationsMixin
 
@@ -28,6 +28,7 @@ class MultipleClient(MultipleClientOperationsMixin):
     ) -> None:
         _endpoint = "{endpoint}/server/path/multiple/{apiVersion}"
         self._config = MultipleClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -68,9 +69,7 @@ class MultipleClient(MultipleClientOperationsMixin):
         request_copy = deepcopy(request)
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

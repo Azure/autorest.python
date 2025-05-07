@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -20,8 +20,9 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
 from ...operations._operations import (
     build_added_v1_request,
@@ -29,13 +30,8 @@ from ...operations._operations import (
     build_interface_v2_v2_in_interface_request,
 )
 from .._configuration import AddedClientConfiguration
-from .._vendor import AddedClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -147,7 +143,7 @@ class InterfaceV2Operations:
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -176,7 +172,9 @@ class InterfaceV2Operations:
         return deserialized  # type: ignore
 
 
-class AddedClientOperationsMixin(AddedClientMixinABC):
+class AddedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AddedClientConfiguration]
+):
 
     @overload
     async def v1(
@@ -278,7 +276,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -394,7 +392,7 @@ class AddedClientOperationsMixin(AddedClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

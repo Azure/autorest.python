@@ -41,6 +41,7 @@ def code_model():
             "show_operations": True,
             "models_mode": "dpg",
             "version_tolerant": True,
+            "azure_arm": False,
         },
     )
 

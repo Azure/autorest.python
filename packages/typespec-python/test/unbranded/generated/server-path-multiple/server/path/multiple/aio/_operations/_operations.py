@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -11,23 +11,23 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import (
     build_multiple_no_operation_params_request,
     build_multiple_with_operation_path_param_request,
 )
-from .._vendor import MultipleClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import MultipleClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MultipleClientOperationsMixin(MultipleClientMixinABC):
+class MultipleClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultipleClientConfiguration]
+):
 
     async def no_operation_params(self, **kwargs: Any) -> None:
         """no_operation_params.
@@ -55,9 +55,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -104,9 +102,7 @@ class MultipleClientOperationsMixin(MultipleClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "apiVersion": self._serialize.url(
-                "self._config.api_version", self._config.api_version, "str", skip_quote=True
-            ),
+            "apiVersion": self._serialize.url("self._config.api_version", self._config.api_version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

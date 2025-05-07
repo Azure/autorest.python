@@ -7,15 +7,17 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, TYPE_CHECKING
+from typing import Any, Awaitable, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
+from azure.core.settings import settings
 from azure.mgmt.core import AsyncARMPipelineClient
 from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
+from azure.mgmt.core.tools import get_arm_endpoints
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestAzureSpecialParametersTestClientConfiguration
 from .operations import (
     ApiVersionDefaultOperations,
@@ -62,7 +64,7 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
-    :param endpoint: Service URL. Default value is "http://localhost:3000".
+    :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
      this default value may result in unsupported behavior.
@@ -70,15 +72,17 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     """
 
     def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        subscription_id: str,
-        endpoint: str = "http://localhost:3000",
-        **kwargs: Any
+        self, credential: "AsyncTokenCredential", subscription_id: str, endpoint: Optional[str] = None, **kwargs: Any
     ) -> None:
+        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _endpoints = get_arm_endpoints(_cloud)
+        if not endpoint:
+            endpoint = _endpoints["resource_manager"]
+        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
-            credential=credential, subscription_id=subscription_id, **kwargs
+            credential=credential, subscription_id=subscription_id, credential_scopes=credential_scopes, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [
@@ -97,7 +101,9 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(base_url=endpoint, policies=_policies, **kwargs)
+        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
+            base_url=cast(str, endpoint), policies=_policies, **kwargs
+        )
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()

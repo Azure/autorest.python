@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ContentNegotiationClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .differentbody.operations import DifferentBodyOperations
 from .samebody.operations import SameBodyOperations
 
@@ -29,6 +29,7 @@ class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-ke
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ContentNegotiationClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

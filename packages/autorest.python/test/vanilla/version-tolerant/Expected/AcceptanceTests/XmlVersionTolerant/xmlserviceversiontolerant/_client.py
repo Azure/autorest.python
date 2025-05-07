@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import AutoRestSwaggerBATXMLServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import XmlOperations
 
 
@@ -33,6 +33,7 @@ class AutoRestSwaggerBATXMLService:  # pylint: disable=client-accepts-api-versio
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestSwaggerBATXMLServiceConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

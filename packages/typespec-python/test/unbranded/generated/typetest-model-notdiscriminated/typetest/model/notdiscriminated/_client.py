@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import NotDiscriminatedClientConfiguration
 from ._operations import NotDiscriminatedClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class NotDiscriminatedClient(
@@ -26,6 +26,7 @@ class NotDiscriminatedClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = NotDiscriminatedClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

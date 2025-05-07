@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 import sys
 
-if not sys.version_info >= (3, 8, 0):
-    raise Exception("Autorest for Python extension requires Python 3.8 at least")
+if not sys.version_info >= (3, 9, 0):
+    raise Exception("Autorest for Python extension requires Python 3.9 at least")
 
 try:
     import pip
@@ -21,7 +21,7 @@ except ImportError:
     raise Exception("Your Python installation doesn't have venv available")
 
 
-# Now we have pip and Py >= 3.8, go to work
+# Now we have pip and Py >= 3.9, go to work
 
 from pathlib import Path
 

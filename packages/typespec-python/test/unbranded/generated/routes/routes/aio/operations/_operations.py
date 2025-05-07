@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -14,15 +14,11 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ..._serialization import Deserializer, Serializer
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import ClientMixinABC
 from ...operations._operations import build_in_interface_fixed_request, build_routes_fixed_request
 from .._configuration import RoutesClientConfiguration
-from .._vendor import RoutesClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -86,7 +82,9 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(RoutesClientMixinABC):
+class RoutesClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RoutesClientConfiguration]
+):
 
     async def fixed(self, **kwargs: Any) -> None:
         """fixed.

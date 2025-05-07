@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -15,11 +15,11 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models
-from ..._model_base import SdkJSONEncoder, _deserialize
 from ..._operations._operations import (
     build_visibility_delete_model_request,
     build_visibility_get_model_request,
@@ -29,27 +29,29 @@ from ..._operations._operations import (
     build_visibility_put_model_request,
     build_visibility_put_read_only_model_request,
 )
-from .._vendor import VisibilityClientMixinABC
+from ..._utils.model_base import SdkJSONEncoder, _deserialize
+from ..._utils.utils import ClientMixinABC
+from .._configuration import VisibilityClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
+class VisibilityClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], VisibilityClientConfiguration]
+):
 
     @overload
     async def get_model(
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.VisibilityModel, *, query_prop: int, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
         :type input: ~typetest.model.visibility.models.VisibilityModel
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -60,12 +62,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def get_model(
-        self, input: JSON, *, content_type: str = "application/json", **kwargs: Any
+        self, input: JSON, *, query_prop: int, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
         :type input: JSON
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -76,12 +80,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def get_model(
-        self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+        self, input: IO[bytes], *, query_prop: int, content_type: str = "application/json", **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Required.
         :type input: IO[bytes]
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -91,12 +97,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     async def get_model(
-        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], *, query_prop: int, **kwargs: Any
     ) -> _models.VisibilityModel:
         """get_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :return: VisibilityModel. The VisibilityModel is compatible with MutableMapping
         :rtype: ~typetest.model.visibility.models.VisibilityModel
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -123,6 +131,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_visibility_get_model_request(
+            query_prop=query_prop,
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -161,12 +170,14 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
 
     @overload
     async def head_model(
-        self, input: _models.VisibilityModel, *, content_type: str = "application/json", **kwargs: Any
+        self, input: _models.VisibilityModel, *, query_prop: int, content_type: str = "application/json", **kwargs: Any
     ) -> bool:
         """head_model.
 
         :param input: Required.
         :type input: ~typetest.model.visibility.models.VisibilityModel
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -176,11 +187,15 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def head_model(self, input: JSON, *, content_type: str = "application/json", **kwargs: Any) -> bool:
+    async def head_model(
+        self, input: JSON, *, query_prop: int, content_type: str = "application/json", **kwargs: Any
+    ) -> bool:
         """head_model.
 
         :param input: Required.
         :type input: JSON
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -190,11 +205,15 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         """
 
     @overload
-    async def head_model(self, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> bool:
+    async def head_model(
+        self, input: IO[bytes], *, query_prop: int, content_type: str = "application/json", **kwargs: Any
+    ) -> bool:
         """head_model.
 
         :param input: Required.
         :type input: IO[bytes]
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -203,11 +222,15 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def head_model(self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], **kwargs: Any) -> bool:
+    async def head_model(
+        self, input: Union[_models.VisibilityModel, JSON, IO[bytes]], *, query_prop: int, **kwargs: Any
+    ) -> bool:
         """head_model.
 
         :param input: Is one of the following types: VisibilityModel, JSON, IO[bytes] Required.
         :type input: ~typetest.model.visibility.models.VisibilityModel or JSON or IO[bytes]
+        :keyword query_prop: Required int32, illustrating a query property. Required.
+        :paramtype query_prop: int
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -234,6 +257,7 @@ class VisibilityClientOperationsMixin(VisibilityClientMixinABC):
             _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_visibility_head_model_request(
+            query_prop=query_prop,
             content_type=content_type,
             content=_content,
             headers=_headers,

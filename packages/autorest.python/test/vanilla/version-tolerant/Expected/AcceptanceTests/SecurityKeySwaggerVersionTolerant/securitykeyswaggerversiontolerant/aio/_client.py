@@ -15,7 +15,7 @@ from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutorestSecurityKeyConfiguration
 from ._operations import AutorestSecurityKeyOperationsMixin
 
@@ -33,6 +33,7 @@ class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disabl
         self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

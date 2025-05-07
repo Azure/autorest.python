@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import EnumDiscriminatorClientConfiguration
 from ._operations import EnumDiscriminatorClientOperationsMixin
 
@@ -26,6 +26,7 @@ class EnumDiscriminatorClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = EnumDiscriminatorClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

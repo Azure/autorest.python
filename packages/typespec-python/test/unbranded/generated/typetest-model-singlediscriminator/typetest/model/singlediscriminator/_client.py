@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import SingleDiscriminatorClientConfiguration
 from ._operations import SingleDiscriminatorClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class SingleDiscriminatorClient(
@@ -26,6 +26,7 @@ class SingleDiscriminatorClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = SingleDiscriminatorClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

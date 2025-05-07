@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import SingleClientConfiguration
 from ._operations import SingleClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -25,6 +25,7 @@ class SingleClient(SingleClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = SingleClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

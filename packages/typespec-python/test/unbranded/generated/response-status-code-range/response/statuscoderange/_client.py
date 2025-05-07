@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import StatusCodeRangeClientConfiguration
 from ._operations import StatusCodeRangeClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -24,6 +24,7 @@ class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = StatusCodeRangeClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

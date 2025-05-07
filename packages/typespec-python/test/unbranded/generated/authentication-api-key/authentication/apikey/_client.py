@@ -10,7 +10,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ApiKeyClientConfiguration
 from ._operations import ApiKeyClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -27,6 +27,7 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ApiKeyClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

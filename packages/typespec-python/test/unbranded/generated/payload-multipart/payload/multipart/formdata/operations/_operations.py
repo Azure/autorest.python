@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -15,18 +15,15 @@ from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
-from ... import _model_base, models as _models2
+from .. import models as _models1
+from ... import models as _models2
 from ..._configuration import MultiPartClientConfiguration
-from ..._serialization import Deserializer, Serializer
-from ..._vendor import FileType, prepare_multipart_form_data
+from ..._utils.model_base import Model as _Model
+from ..._utils.serialization import Deserializer, Serializer
+from ..._utils.utils import prepare_multipart_form_data
 from ..httpparts.operations._operations import FormDataHttpPartsOperations
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
-_Unset: Any = object()
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -164,7 +161,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -238,7 +235,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "pictures"]
         _data_fields: List[str] = ["id", "address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -312,7 +309,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -386,7 +383,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["pictures"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -460,7 +457,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage", "picture"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -534,7 +531,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
@@ -563,11 +560,11 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    def anonymous_model(self, *, profile_image: FileType, **kwargs: Any) -> None:
+    def anonymous_model(self, body: _models1.AnonymousModelRequest, **kwargs: Any) -> None:
         """Test content-type: multipart/form-data.
 
-        :keyword profile_image: Required.
-        :paramtype profile_image: ~payload.multipart._vendor.FileType
+        :param body: Required.
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -585,14 +582,12 @@ class FormDataOperations:
         """
 
     def anonymous_model(  # pylint: disable=inconsistent-return-statements
-        self, body: JSON = _Unset, *, profile_image: FileType = _Unset, **kwargs: Any
+        self, body: Union[_models1.AnonymousModelRequest, JSON], **kwargs: Any
     ) -> None:
         """Test content-type: multipart/form-data.
 
-        :param body: Is one of the following types: JSON Required.
-        :type body: JSON
-        :keyword profile_image: Required.
-        :paramtype profile_image: ~payload.multipart._vendor.FileType
+        :param body: Is either a AnonymousModelRequest type or a JSON type. Required.
+        :type body: ~payload.multipart.formdata.models.AnonymousModelRequest or JSON
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -610,12 +605,7 @@ class FormDataOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        if body is _Unset:
-            if profile_image is _Unset:
-                raise TypeError("missing required argument: profile_image")
-            body = {"profileImage": profile_image}
-            body = {k: v for k, v in body.items() if v is not None}
-        _body = body.as_dict() if isinstance(body, _model_base.Model) else body
+        _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: List[str] = ["profileImage"]
         _data_fields: List[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)

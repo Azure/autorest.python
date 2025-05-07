@@ -10,7 +10,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import UnionClientConfiguration
 from ._operations import UnionClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     from corehttp.credentials import TokenCredential
@@ -36,6 +36,7 @@ class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = UnionClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

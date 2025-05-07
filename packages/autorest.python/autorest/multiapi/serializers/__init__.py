@@ -133,7 +133,11 @@ class MultiAPISerializer(ReaderAndWriter):  # pylint: disable=abstract-method
                 lstrip_blocks=True,
             )
             self.write_file(
-                Path("_serialization.py"),
+                Path("_utils/__init__.py"),
+                self.env.get_template("multiapi_utils_init.py.jinja2").render(),
+            )
+            self.write_file(
+                Path("_utils/serialization.py"),
                 codegen_env.get_template("serialization.py.jinja2").render(
                     code_model=code_model,
                 ),

@@ -14,7 +14,7 @@ from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestParameterizedCustomHostTestClientConfiguration
 from .operations import PathsOperations
 
@@ -38,6 +38,7 @@ class AutoRestParameterizedCustomHostTestClient:  # pylint: disable=client-accep
         self._config = AutoRestParameterizedCustomHostTestClientConfiguration(
             subscription_id=subscription_id, dns_suffix=dns_suffix, **kwargs
         )
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -21,15 +21,11 @@ from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import RenamedFromClientConfiguration
-from .._model_base import SdkJSONEncoder, _deserialize
-from .._serialization import Deserializer, Serializer
-from .._vendor import RenamedFromClientMixinABC
+from .._utils.model_base import SdkJSONEncoder, _deserialize
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -180,7 +176,7 @@ class NewInterfaceOperations:
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
@@ -209,7 +205,9 @@ class NewInterfaceOperations:
         return deserialized  # type: ignore
 
 
-class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
+class RenamedFromClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RenamedFromClientConfiguration]
+):
 
     @overload
     def new_op(
@@ -308,7 +306,7 @@ class RenamedFromClientOperationsMixin(RenamedFromClientMixinABC):
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
-            "version": self._serialize.url("self._config.version", self._config.version, "str", skip_quote=True),
+            "version": self._serialize.url("self._config.version", self._config.version, "str"),
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 

@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import RepeatabilityClientConfiguration
 from ._operations import RepeatabilityClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -24,6 +24,7 @@ class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disabl
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = RepeatabilityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

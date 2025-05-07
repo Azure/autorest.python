@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BodyFormsDataURLEncodedConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import FormdataurlencodedOperations
 
 
@@ -33,6 +33,7 @@ class BodyFormsDataURLEncoded:  # pylint: disable=client-accepts-api-version-key
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = BodyFormsDataURLEncodedConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

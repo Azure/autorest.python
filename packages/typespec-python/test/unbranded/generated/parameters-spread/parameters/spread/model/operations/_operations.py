@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -19,14 +19,10 @@ from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models1
 from ..._configuration import SpreadClientConfiguration
-from ..._model_base import SdkJSONEncoder
-from ..._serialization import Deserializer, Serializer
+from ..._utils.model_base import SdkJSONEncoder
+from ..._utils.serialization import Deserializer, Serializer
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
@@ -256,7 +252,7 @@ class ModelOperations:
         """spread_composite_request_only_with_body.
 
         :param body: Required.
-        :type body: ~parameters.spread.models.BodyParameter
+        :type body: ~parameters.spread.model.models.BodyParameter
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -303,7 +299,7 @@ class ModelOperations:
         """spread_composite_request_only_with_body.
 
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :type body: ~parameters.spread.model.models.BodyParameter or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -416,7 +412,7 @@ class ModelOperations:
         :param name: Required.
         :type name: str
         :param body: Required.
-        :type body: ~parameters.spread.models.BodyParameter
+        :type body: ~parameters.spread.model.models.BodyParameter
         :keyword test_header: Required.
         :paramtype test_header: str
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
@@ -475,7 +471,7 @@ class ModelOperations:
         :param name: Required.
         :type name: str
         :param body: Is one of the following types: BodyParameter, JSON, IO[bytes] Required.
-        :type body: ~parameters.spread.models.BodyParameter or JSON or IO[bytes]
+        :type body: ~parameters.spread.model.models.BodyParameter or JSON or IO[bytes]
         :keyword test_header: Required.
         :paramtype test_header: str
         :return: None

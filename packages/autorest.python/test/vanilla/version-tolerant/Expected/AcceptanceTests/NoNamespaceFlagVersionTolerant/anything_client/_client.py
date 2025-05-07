@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AnythingClientConfiguration
 from ._operations import AnythingClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -31,6 +31,7 @@ class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-a
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AnythingClientConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

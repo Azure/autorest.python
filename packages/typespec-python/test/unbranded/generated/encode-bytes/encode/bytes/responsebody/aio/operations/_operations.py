@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, AsyncIterator, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -16,8 +16,8 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
     build_response_body_base64_request,
@@ -27,10 +27,6 @@ from ...operations._operations import (
     build_response_body_octet_stream_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -313,7 +309,7 @@ class ResponseBodyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(bytes, response.json(), format="base64")
+            deserialized = _deserialize(bytes, response.json(), format="base64url")
 
         if cls:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore

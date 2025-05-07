@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, AsyncIterator, Callable, Dict, Literal, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -18,18 +18,14 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models2
-from ...._model_base import _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ContentNegotiationClientConfiguration
 from ...operations._operations import (
     build_different_body_get_avatar_as_json_request,
     build_different_body_get_avatar_as_png_request,
 )
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -110,7 +106,7 @@ class DifferentBodyOperations:
         """get_avatar_as_json.
 
         :return: PngImageAsJson. The PngImageAsJson is compatible with MutableMapping
-        :rtype: ~payload.contentnegotiation.models.PngImageAsJson
+        :rtype: ~payload.contentnegotiation.differentbody.models.PngImageAsJson
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import JsonMergePatchClientConfiguration
 from ._operations import JsonMergePatchClientOperationsMixin
 
@@ -24,6 +24,7 @@ class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):  # pylint: disa
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = JsonMergePatchClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

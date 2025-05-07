@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AdditionalPropertiesClientConfiguration
 from .operations import (
     ExtendsDifferentSpreadFloatOperations,
@@ -149,6 +149,7 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = AdditionalPropertiesClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

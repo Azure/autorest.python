@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import AutoRestSwaggerBATHeaderServiceConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import HeaderOperations
 
 
@@ -33,6 +33,7 @@ class AutoRestSwaggerBATHeaderService:  # pylint: disable=client-accepts-api-ver
         self, base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutoRestSwaggerBATHeaderServiceConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

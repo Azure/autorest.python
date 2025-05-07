@@ -9,7 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ConditionalRequestClientConfiguration
 from ._operations import ConditionalRequestClientOperationsMixin
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 
 
 class ConditionalRequestClient(
@@ -26,6 +26,7 @@ class ConditionalRequestClient(
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ConditionalRequestClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

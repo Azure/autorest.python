@@ -1,6 +1,6 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 import datetime
-import sys
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp import MatchConditions
@@ -14,6 +14,7 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import (
@@ -22,17 +23,16 @@ from ..._operations._operations import (
     build_conditional_request_post_if_none_match_request,
     build_conditional_request_post_if_unmodified_since_request,
 )
-from .._vendor import ConditionalRequestClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import ConditionalRequestClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ConditionalRequestClientOperationsMixin(ConditionalRequestClientMixinABC):
+class ConditionalRequestClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ConditionalRequestClientConfiguration]
+):
 
     async def post_if_match(
         self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any

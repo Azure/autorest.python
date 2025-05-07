@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ErrorWithSecretsConfiguration
 from .operations import ErrorWithSecretsOperationsMixin
 
@@ -31,6 +31,7 @@ class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=clie
         self, base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = ErrorWithSecretsConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

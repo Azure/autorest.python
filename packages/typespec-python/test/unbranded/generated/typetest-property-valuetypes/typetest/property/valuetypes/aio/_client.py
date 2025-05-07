@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ValueTypesClientConfiguration
 from .operations import (
     BooleanLiteralOperations,
@@ -118,6 +118,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ValueTypesClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

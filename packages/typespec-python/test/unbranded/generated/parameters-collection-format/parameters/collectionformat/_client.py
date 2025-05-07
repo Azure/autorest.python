@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import CollectionFormatClientConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .header.operations import HeaderOperations
 from .query.operations import QueryOperations
 
@@ -29,6 +29,7 @@ class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyw
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = CollectionFormatClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

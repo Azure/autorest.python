@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -11,6 +11,7 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import AsyncHttpResponse, HttpRequest
+from corehttp.runtime import AsyncPipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._operations._operations import (
@@ -18,17 +19,16 @@ from ..._operations._operations import (
     build_not_versioned_with_query_api_version_request,
     build_not_versioned_without_api_version_request,
 )
-from .._vendor import NotVersionedClientMixinABC
+from ..._utils.utils import ClientMixinABC
+from .._configuration import NotVersionedClientConfiguration
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NotVersionedClientOperationsMixin(NotVersionedClientMixinABC):
+class NotVersionedClientOperationsMixin(
+    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NotVersionedClientConfiguration]
+):
 
     async def without_api_version(self, **kwargs: Any) -> bool:
         """without_api_version.

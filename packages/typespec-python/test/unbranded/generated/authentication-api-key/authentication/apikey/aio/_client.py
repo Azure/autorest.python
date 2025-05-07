@@ -8,7 +8,7 @@ from corehttp.credentials import ServiceKeyCredential
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ApiKeyClientConfiguration
 from ._operations import ApiKeyClientOperationsMixin
 
@@ -27,6 +27,7 @@ class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accep
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = ApiKeyClientConfiguration(credential=credential, endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -7,7 +7,7 @@ from typing_extensions import Self
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .._serialization import Deserializer, Serializer
+from .._utils.serialization import Deserializer, Serializer
 from ..optionalexplicit.aio.operations import OptionalExplicitOperations
 from ._configuration import BodyOptionalityClientConfiguration
 from ._operations import BodyOptionalityClientOperationsMixin
@@ -28,6 +28,7 @@ class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: di
     ) -> None:
         _endpoint = "{endpoint}"
         self._config = BodyOptionalityClientConfiguration(endpoint=endpoint, **kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

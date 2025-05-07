@@ -1,7 +1,7 @@
 # coding=utf-8
+from collections.abc import MutableMapping
 from io import IOBase
 import json
-import sys
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
@@ -20,16 +20,12 @@ from corehttp.runtime.pipeline import PipelineResponse
 from corehttp.utils import case_insensitive_dict
 
 from ... import models as _models2
-from ...._model_base import SdkJSONEncoder, _deserialize
-from ...._serialization import Deserializer, Serializer
+from ...._utils.model_base import SdkJSONEncoder, _deserialize
+from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import JsonClientConfiguration
 from ...operations._operations import build_property_get_request, build_property_send_request
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
-JSON = MutableMapping[str, Any]  # pylint: disable=unsubscriptable-object
+JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
@@ -58,7 +54,7 @@ class PropertyOperations:
         """send.
 
         :param body: Required.
-        :type body: ~serialization.encodedname.json.models.JsonEncodedNameModel
+        :type body: ~serialization.encodedname.json.property.models.JsonEncodedNameModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -99,7 +95,8 @@ class PropertyOperations:
         """send.
 
         :param body: Is one of the following types: JsonEncodedNameModel, JSON, IO[bytes] Required.
-        :type body: ~serialization.encodedname.json.models.JsonEncodedNameModel or JSON or IO[bytes]
+        :type body: ~serialization.encodedname.json.property.models.JsonEncodedNameModel or JSON or
+         IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -152,7 +149,7 @@ class PropertyOperations:
         """get.
 
         :return: JsonEncodedNameModel. The JsonEncodedNameModel is compatible with MutableMapping
-        :rtype: ~serialization.encodedname.json.models.JsonEncodedNameModel
+        :rtype: ~serialization.encodedname.json.property.models.JsonEncodedNameModel
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {

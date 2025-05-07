@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BinaryWithContentTypeApplicationJsonConfiguration
-from ._serialization import Deserializer, Serializer
+from ._utils.serialization import Deserializer, Serializer
 from .operations import DownloadOperations, UploadOperations
 
 
@@ -34,6 +34,7 @@ class BinaryWithContentTypeApplicationJson:  # pylint: disable=client-accepts-ap
         self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = BinaryWithContentTypeApplicationJsonConfiguration(**kwargs)
+
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

@@ -1,5 +1,5 @@
 # coding=utf-8
-import sys
+from collections.abc import MutableMapping
 from typing import Any, Callable, Dict, Optional, TypeVar
 
 from corehttp.exceptions import (
@@ -11,15 +11,13 @@ from corehttp.exceptions import (
     map_error,
 )
 from corehttp.rest import HttpRequest, HttpResponse
+from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
 
-from .._serialization import Serializer
-from .._vendor import SingleClientMixinABC
+from .._configuration import SingleClientConfiguration
+from .._utils.serialization import Serializer
+from .._utils.utils import ClientMixinABC
 
-if sys.version_info >= (3, 9):
-    from collections.abc import MutableMapping
-else:
-    from typing import MutableMapping  # type: ignore
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
 
@@ -34,7 +32,7 @@ def build_single_my_op_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class SingleClientOperationsMixin(SingleClientMixinABC):
+class SingleClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SingleClientConfiguration]):
 
     def my_op(self, **kwargs: Any) -> bool:
         """my_op.
