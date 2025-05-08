@@ -1,5 +1,17 @@
 # Release
 
+## 0.44.2
+
+### Bug Fixes
+
+- [#3081](https://github.com/Azure/autorest.python/pull/3081) Fix typing for generic `PipelineClient`
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Add support for legacy parameterized next links
+
+### Bump dependencies
+
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Bump typespec 1.0.0
+
+
 ## 0.44.1
 
 ### Bump dependencies
