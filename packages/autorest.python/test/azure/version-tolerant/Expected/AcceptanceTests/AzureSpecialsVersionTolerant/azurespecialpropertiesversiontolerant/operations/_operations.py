@@ -649,7 +649,7 @@ class XMsClientRequestIdOperations:
         :attr:`xms_client_request_id` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -753,7 +753,7 @@ class SubscriptionInCredentialsOperations:
         :attr:`subscription_in_credentials` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -991,7 +991,7 @@ class SubscriptionInMethodOperations:
         :attr:`subscription_in_method` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -1203,7 +1203,7 @@ class ApiVersionDefaultOperations:
         :attr:`api_version_default` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -1393,7 +1393,7 @@ class ApiVersionLocalOperations:
         :attr:`api_version_local` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -1589,7 +1589,7 @@ class SkipUrlEncodingOperations:
         :attr:`skip_url_encoding` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -1923,7 +1923,7 @@ class OdataOperations:
         :attr:`odata` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (
@@ -1996,7 +1996,7 @@ class HeaderOperations:
         :attr:`header` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestAzureSpecialParametersTestClientConfiguration = (

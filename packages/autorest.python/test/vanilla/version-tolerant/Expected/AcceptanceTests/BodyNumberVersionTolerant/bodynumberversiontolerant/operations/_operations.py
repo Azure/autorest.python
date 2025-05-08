@@ -421,7 +421,7 @@ class NumberOperations:  # pylint: disable=too-many-public-methods
         :attr:`number` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestNumberTestServiceConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

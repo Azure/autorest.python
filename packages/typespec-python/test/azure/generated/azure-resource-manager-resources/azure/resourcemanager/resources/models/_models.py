@@ -62,8 +62,7 @@ class ErrorDetail(_Model):
 
 
 class ErrorResponse(_Model):
-    """Common error response for all Azure Resource Manager APIs to return error details for failed
-    operations.
+    """Error response.
 
     :ivar error: The error object.
     :vartype error: ~azure.resourcemanager.resources.models.ErrorDetail
@@ -91,7 +90,7 @@ class ErrorResponse(_Model):
 
 
 class Resource(_Model):
-    """Common fields that are returned in the response for all Azure Resource Manager resources.
+    """Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -214,8 +213,7 @@ class ExtensionsResourceProperties(_Model):
 
 
 class ProxyResource(Resource):
-    """The resource model definition for a Azure Resource Manager proxy resource. It will not have
-    tags and a location.
+    """Proxy Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -420,8 +418,7 @@ class NotificationDetails(_Model):
 
 
 class TrackedResource(Resource):
-    """The resource model definition for an Azure Resource Manager tracked top level resource which
-    has 'tags' and a 'location'.
+    """Tracked Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.

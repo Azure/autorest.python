@@ -627,6 +627,10 @@ class PageClientOperationsMixin(
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
+                if include_pending is not None:
+                    _next_request_params["includePending"] = self._serialize.query(
+                        "include_pending", include_pending, "bool"
+                    )
                 _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )

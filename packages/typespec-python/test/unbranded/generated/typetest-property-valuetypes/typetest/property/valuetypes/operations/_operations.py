@@ -855,7 +855,7 @@ class BooleanOperations:
         :attr:`boolean` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1023,7 +1023,7 @@ class StringOperations:
         :attr:`string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1191,7 +1191,7 @@ class BytesOperations:
         :attr:`bytes` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1359,7 +1359,7 @@ class IntOperations:
         :attr:`int_operations` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1527,7 +1527,7 @@ class FloatOperations:
         :attr:`float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1695,7 +1695,7 @@ class DecimalOperations:
         :attr:`decimal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1863,7 +1863,7 @@ class Decimal128Operations:
         :attr:`decimal128` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2031,7 +2031,7 @@ class DatetimeOperations:
         :attr:`datetime` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2199,7 +2199,7 @@ class DurationOperations:
         :attr:`duration` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2367,7 +2367,7 @@ class EnumOperations:
         :attr:`enum` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2535,7 +2535,7 @@ class ExtensibleEnumOperations:
         :attr:`extensible_enum` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2706,7 +2706,7 @@ class ModelOperations:
         :attr:`model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2874,7 +2874,7 @@ class CollectionsStringOperations:
         :attr:`collections_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3046,7 +3046,7 @@ class CollectionsIntOperations:
         :attr:`collections_int` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3217,7 +3217,7 @@ class CollectionsModelOperations:
         :attr:`collections_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3389,7 +3389,7 @@ class DictionaryStringOperations:
         :attr:`dictionary_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3561,7 +3561,7 @@ class NeverOperations:
         :attr:`never` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3729,7 +3729,7 @@ class UnknownStringOperations:
         :attr:`unknown_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3900,7 +3900,7 @@ class UnknownIntOperations:
         :attr:`unknown_int` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4068,7 +4068,7 @@ class UnknownDictOperations:
         :attr:`unknown_dict` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4237,7 +4237,7 @@ class UnknownArrayOperations:
         :attr:`unknown_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4406,7 +4406,7 @@ class StringLiteralOperations:
         :attr:`string_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4577,7 +4577,7 @@ class IntLiteralOperations:
         :attr:`int_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4745,7 +4745,7 @@ class FloatLiteralOperations:
         :attr:`float_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4914,7 +4914,7 @@ class BooleanLiteralOperations:
         :attr:`boolean_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -5085,7 +5085,7 @@ class UnionStringLiteralOperations:
         :attr:`union_string_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -5258,7 +5258,7 @@ class UnionIntLiteralOperations:
         :attr:`union_int_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -5429,7 +5429,7 @@ class UnionFloatLiteralOperations:
         :attr:`union_float_literal` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -5601,7 +5601,7 @@ class UnionEnumValueOperations:
         :attr:`union_enum_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ValueTypesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

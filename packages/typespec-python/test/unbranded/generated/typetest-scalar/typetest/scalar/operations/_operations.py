@@ -258,7 +258,7 @@ class StringOperations:
         :attr:`string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -380,7 +380,7 @@ class BooleanOperations:
         :attr:`boolean` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -502,7 +502,7 @@ class UnknownOperations:
         :attr:`unknown` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -624,7 +624,7 @@ class DecimalTypeOperations:
         :attr:`decimal_type` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -794,7 +794,7 @@ class Decimal128TypeOperations:
         :attr:`decimal128_type` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -964,7 +964,7 @@ class DecimalVerifyOperations:
         :attr:`decimal_verify` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1083,7 +1083,7 @@ class Decimal128VerifyOperations:
         :attr:`decimal128_verify` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ScalarClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

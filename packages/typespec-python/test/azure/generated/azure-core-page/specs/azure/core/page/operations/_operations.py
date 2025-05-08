@@ -178,7 +178,7 @@ class TwoModelsAsPageItemOperations:
         :attr:`two_models_as_page_item` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: PageClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -747,6 +747,10 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
+                if include_pending is not None:
+                    _next_request_params["includePending"] = self._serialize.query(
+                        "include_pending", include_pending, "bool"
+                    )
                 _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )

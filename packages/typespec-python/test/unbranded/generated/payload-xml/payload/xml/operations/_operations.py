@@ -364,7 +364,7 @@ class SimpleModelValueOperations:
         :attr:`simple_model_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -486,7 +486,7 @@ class ModelWithSimpleArraysValueOperations:
         :attr:`model_with_simple_arrays_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -610,7 +610,7 @@ class ModelWithArrayOfModelValueOperations:
         :attr:`model_with_array_of_model_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -734,7 +734,7 @@ class ModelWithOptionalFieldValueOperations:
         :attr:`model_with_optional_field_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -858,7 +858,7 @@ class ModelWithAttributesValueOperations:
         :attr:`model_with_attributes_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -982,7 +982,7 @@ class ModelWithUnwrappedArrayValueOperations:
         :attr:`model_with_unwrapped_array_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1106,7 +1106,7 @@ class ModelWithRenamedArraysValueOperations:
         :attr:`model_with_renamed_arrays_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1230,7 +1230,7 @@ class ModelWithRenamedFieldsValueOperations:
         :attr:`model_with_renamed_fields_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1354,7 +1354,7 @@ class ModelWithEmptyArrayValueOperations:
         :attr:`model_with_empty_array_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1478,7 +1478,7 @@ class ModelWithTextValueOperations:
         :attr:`model_with_text_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1602,7 +1602,7 @@ class ModelWithDictionaryValueOperations:
         :attr:`model_with_dictionary_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1726,7 +1726,7 @@ class ModelWithEncodedNamesValueOperations:
         :attr:`model_with_encoded_names_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: XmlClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

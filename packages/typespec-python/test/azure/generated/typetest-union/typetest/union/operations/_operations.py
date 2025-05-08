@@ -331,7 +331,7 @@ class StringsOnlyOperations:
         :attr:`strings_only` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -514,7 +514,7 @@ class StringExtensibleOperations:
         :attr:`string_extensible` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -701,7 +701,7 @@ class StringExtensibleNamedOperations:
         :attr:`string_extensible_named` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -892,7 +892,7 @@ class IntsOnlyOperations:
         :attr:`ints_only` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1073,7 +1073,7 @@ class FloatsOnlyOperations:
         :attr:`floats_only` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1254,7 +1254,7 @@ class ModelsOnlyOperations:
         :attr:`models_only` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1437,7 +1437,7 @@ class EnumsOnlyOperations:
         :attr:`enums_only` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1618,7 +1618,7 @@ class StringAndArrayOperations:
         :attr:`string_and_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1799,7 +1799,7 @@ class MixedLiteralsOperations:
         :attr:`mixed_literals` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1980,7 +1980,7 @@ class MixedTypesOperations:
         :attr:`mixed_types` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: UnionClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

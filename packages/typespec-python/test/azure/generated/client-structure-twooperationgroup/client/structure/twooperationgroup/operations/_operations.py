@@ -83,7 +83,7 @@ class Group1Operations:
         :attr:`group1` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: TwoOperationGroupClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -236,7 +236,7 @@ class Group2Operations:
         :attr:`group2` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: TwoOperationGroupClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

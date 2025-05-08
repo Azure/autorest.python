@@ -22,7 +22,7 @@ class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiat
         :attr:`formdataurlencoded` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: BodyFormsDataURLEncodedConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

@@ -442,7 +442,7 @@ class Int32ValueOperations:
         :attr:`int32_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -602,7 +602,7 @@ class Int64ValueOperations:
         :attr:`int64_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -762,7 +762,7 @@ class BooleanValueOperations:
         :attr:`boolean_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -922,7 +922,7 @@ class StringValueOperations:
         :attr:`string_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1082,7 +1082,7 @@ class Float32ValueOperations:
         :attr:`float32_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1242,7 +1242,7 @@ class DatetimeValueOperations:
         :attr:`datetime_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1402,7 +1402,7 @@ class DurationValueOperations:
         :attr:`duration_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1562,7 +1562,7 @@ class UnknownValueOperations:
         :attr:`unknown_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1722,7 +1722,7 @@ class ModelValueOperations:
         :attr:`model_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1882,7 +1882,7 @@ class NullableFloatValueOperations:
         :attr:`nullable_float_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2042,7 +2042,7 @@ class NullableInt32ValueOperations:
         :attr:`nullable_int32_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2202,7 +2202,7 @@ class NullableBooleanValueOperations:
         :attr:`nullable_boolean_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2362,7 +2362,7 @@ class NullableStringValueOperations:
         :attr:`nullable_string_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2522,7 +2522,7 @@ class NullableModelValueOperations:
         :attr:`nullable_model_value` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ArrayClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

@@ -119,7 +119,7 @@ class QuestionAnsweringProjectsOperations:
         :attr:`question_answering_projects` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: LroPagingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

@@ -1,5 +1,13 @@
 # Release
 
+## 6.34.2
+
+### Bug Fixes
+
+- [#3081](https://github.com/Azure/autorest.python/pull/3081) Fix typing for generic `PipelineClient`
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Add support for legacy parameterized next links
+
+
 ## 6.34.1
 
 ### Bump dependencies

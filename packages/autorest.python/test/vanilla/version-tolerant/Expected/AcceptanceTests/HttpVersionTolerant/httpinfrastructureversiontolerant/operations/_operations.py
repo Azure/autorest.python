@@ -1758,7 +1758,7 @@ class HttpFailureOperations:
         :attr:`http_failure` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -1922,7 +1922,7 @@ class HttpSuccessOperations:
         :attr:`http_success` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -2917,7 +2917,7 @@ class HttpRedirectsOperations:
         :attr:`http_redirects` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -3765,7 +3765,7 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
         :attr:`http_client_failure` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -5020,7 +5020,7 @@ class HttpServerFailureOperations:
         :attr:`http_server_failure` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -5230,7 +5230,7 @@ class HttpRetryOperations:
         :attr:`http_retry` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
@@ -5704,7 +5704,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
         :attr:`multiple_responses` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestHttpInfrastructureTestServiceConfiguration = (
