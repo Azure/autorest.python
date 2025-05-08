@@ -148,7 +148,7 @@ class MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instant
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MediaTypesClientConfiguration]
 ):
 
-    def __init__(self):
+    def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,
             [

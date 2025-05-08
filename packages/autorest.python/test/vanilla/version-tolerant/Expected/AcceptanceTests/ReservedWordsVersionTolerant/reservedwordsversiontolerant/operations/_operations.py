@@ -148,7 +148,7 @@ class ImportOperations:
         :attr:`import_operations` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ReservedWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -211,7 +211,7 @@ class ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-inst
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ReservedWordsClientConfiguration]
 ):
 
-    def __init__(self):
+    def __init__(self) -> None:
         raise_if_not_implemented(
             self.__class__,
             [

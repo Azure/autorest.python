@@ -1397,7 +1397,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         :attr:`lros` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
@@ -9379,7 +9379,7 @@ class LRORetrysOperations:
         :attr:`lro_retrys` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
@@ -10570,7 +10570,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         :attr:`lrosads` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
@@ -15250,7 +15250,7 @@ class LROsCustomHeaderOperations:
         :attr:`lr_os_custom_header` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestLongRunningOperationTestServiceConfiguration = (
