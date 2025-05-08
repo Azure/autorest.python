@@ -1167,7 +1167,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :attr:`models` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4491,7 +4491,7 @@ class ModelPropertiesOperations:
         :attr:`model_properties` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4611,7 +4611,7 @@ class Operations:  # pylint: disable=too-many-public-methods
         :attr:`operations` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -6081,7 +6081,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
         :attr:`parameters` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

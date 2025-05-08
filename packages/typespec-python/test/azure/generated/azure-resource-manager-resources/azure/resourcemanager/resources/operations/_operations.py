@@ -840,7 +840,7 @@ class TopLevelOperations:
         :attr:`top_level` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1844,7 +1844,7 @@ class NestedOperations:
         :attr:`nested` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2661,7 +2661,7 @@ class SingletonOperations:
         :attr:`singleton` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3194,7 +3194,7 @@ class ExtensionsResourcesOperations:
         :attr:`extensions_resources` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3821,7 +3821,7 @@ class LocationResourcesOperations:
         :attr:`location_resources` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

@@ -223,7 +223,7 @@ class Operations:
         :attr:`operations` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: OperationTemplatesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -325,7 +325,7 @@ class CheckNameAvailabilityOperations:
         :attr:`check_name_availability` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: OperationTemplatesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -611,7 +611,7 @@ class LroOperations:
         :attr:`lro` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: OperationTemplatesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

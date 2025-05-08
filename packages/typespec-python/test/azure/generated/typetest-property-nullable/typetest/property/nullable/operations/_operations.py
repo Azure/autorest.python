@@ -442,7 +442,7 @@ class StringOperations:
         :attr:`string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -778,7 +778,7 @@ class BytesOperations:
         :attr:`bytes` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1114,7 +1114,7 @@ class DatetimeOperations:
         :attr:`datetime` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1450,7 +1450,7 @@ class DurationOperations:
         :attr:`duration` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1786,7 +1786,7 @@ class CollectionsByteOperations:
         :attr:`collections_byte` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2130,7 +2130,7 @@ class CollectionsModelOperations:
         :attr:`collections_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2476,7 +2476,7 @@ class CollectionsStringOperations:
         :attr:`collections_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NullableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
