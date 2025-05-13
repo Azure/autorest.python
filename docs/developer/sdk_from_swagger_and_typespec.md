@@ -1,14 +1,14 @@
 # Overview
 
-This doc introdcues the difference between Python SDK generated from swagger(OpenAPI) and typespec. In the following doc, we call the former swagger SDK and the latter typespec SDK.
+This document compares Python SDKs generated from Swagger (OpenAPI) specifications versus TypeSpec. For clarity, we'll refer to these as "Swagger SDKs" and "TypeSpec SDKs" respectively.
 
 ## Model 
 
-### Model structure
+### Model Structure
 
-#### Msrest model
+#### Msrest Model
 
-Swagger SDK is generated from [Swagger specifications](https://github.com/Azure/azure-rest-api-specs/tree/main/specification) using [@autorest/python](https://www.npmjs.com/package/@autorest/python), and implements the Msrest model pattern for SDK consumers. The following example illustrates the fundamental structure of an Msrest model:
+Swagger SDKs are generated from [Swagger specifications](https://github.com/Azure/azure-rest-api-specs/tree/main/specification) using [@autorest/python](https://www.npmjs.com/package/@autorest/python), and implement the Msrest model pattern. The following example illustrates the fundamental structure of an Msrest model:
 
 ```python
 from azure.mgmt.example._utils import serialization as _serialization
@@ -23,9 +23,9 @@ class Person(_serialization.Model):
         ...
 ```
 
-### DPG model
+### DPG Model
 
-Typespec SDK is generated from [typespec](https://github.com/microsoft/typespec/) using [@azure-tools/typespec-python](https://www.npmjs.com/package/@azure-tools/typespec-python), and implements the DPG model pattern. The following example demonstrates the fundamental structure of a DPG model:
+TypeSpec SDKs are generated from [TypeSpec](https://github.com/microsoft/typespec/) using [@azure-tools/typespec-python](https://www.npmjs.com/package/@azure-tools/typespec-python), and implement the DPG model pattern. The following example demonstrates the fundamental structure of a DPG model:
 
 ```python
 from azure.mgmt.example._utils.model_base import Model as _Model, rest_field
@@ -50,9 +50,9 @@ class Person(_Model):
         super().__init__(*args, **kwargs)
 ```
 
-### Model usage
+### Model Usage
 
-#### Msrest model usage
+#### Msrest Model Usage
 
 ```python
 msrest_model = Person(name="xxx", parent_name="xxx")
@@ -65,7 +65,7 @@ print(json_model["name"])
 print(json_model["parentName"])
 ```
 
-#### DPG model usage
+#### DPG Model Usage
 
 ```python
 dpg_model = Person(name="xxx", parent_name="xxx")
@@ -77,17 +77,17 @@ print(dpg_model["name"])
 print(dpg_model["parentName"])
 ```
 
-By comparing the usage, We can see that users could use DPG model as dictionary directly instead of calling `.as_dict()` as before, which is more convenient.
+By comparing these usage patterns, we can see that DPG models can be accessed directly as dictionaries without calling `.as_dict()`, providing a more convenient experience.
 
-#### NOTE for usage
+#### Usage Note
 
-For backward compatibility, DPG model still supports `.as_dict()` for legacy SDK users.
+For backward compatibility, DPG models continue to support the `.as_dict()` method for existing SDK users.
 
-### Model for flatten
+### Model Flattening
 
-If property is marked with `"x-ms-flatten": "true"` (e.g. [here](https://azure.github.io/autorest/extensions/#x-ms-client-flatten)), nested property could be accessed directly in Msrest model like:
+When a property is marked with `"x-ms-flatten": "true"` (as described [here](https://azure.github.io/autorest/extensions/#x-ms-client-flatten)), nested properties can be accessed directly in Msrest models as follows:
 
-#### Simple flatten
+#### Simple Flattening Example
 
 ```python
 class Person(_serialization.Model):
@@ -98,14 +98,14 @@ class Person(_serialization.Model):
     def __init__(self, *, name: Optional[str] = None) -> None:
         ...
 
-msrest_model = Persion(name="xxx")
+msrest_model = Person(name="xxx")
 print(msrest_model.name) # A
-print(msrest_model.properties.name) # equal to A
+print(msrest_model.properties.name) # equivalent to A
 ``` 
 
-When the inner property name is same with outter property name, to avoid name duplicated, there will be prefix before the innter property name like:
+When an inner property name matches an outer property name, a prefix is added to avoid name collisions:
 
-#### Bad flatten
+#### Complex Flattening Example
 
 ```python
 class Person(_serialization.Model):
@@ -117,47 +117,47 @@ class Person(_serialization.Model):
     def __init__(self, *, name: Optional[str] = None) -> None:
         ...
 
-msrest_model = Persion(name="xxx", properties_name="properties_name")
+msrest_model = Person(name="xxx", properties_name="properties_name")
 print(msrest_model.name)
 print(msrest_model.properties_name) # A
-print(msrest_model.properties.name) # equal to A
+print(msrest_model.properties.name) # equivalent to A
 ```
 
-Since some swagger author abouse flatten, some property name has long and ugly prefix name which is not friendly for SDK user. Thus **DPG model don't support flatten**.
+Due to inconsistent usage of flattening in some Swagger specifications, property names can become unwieldy and user-unfriendly. For this reason, **DPG models do not support flattening**.
 
-#### NOTE for flatten
+#### Flattening Compatibility Note
 
-For legacy SDKs which are genearted from swagger, after migration to typespec, we design a [compatible logic](https://azure.github.io/typespec-azure/docs/howtos/generate-client-libraries/07types/#flattening) to not break legacy SDK users. However, for deep nested flatten, legacy SDK users still have to update the code.
+For legacy SDKs generated from Swagger that are migrated to TypeSpec, we've designed a [compatibility mechanism](https://azure.github.io/typespec-azure/docs/howtos/generate-client-libraries/07types/#flattening) to minimize breaking changes. However, for deeply nested flattened properties, code updates may be required:
 
 ```python
 # Msrest model
 msrest_model = Model(...)
 
 print(msrest_model.properties_name) # A
-print(msrest_model.properties.name) # equal to A
+print(msrest_model.properties.name) # equivalent to A
 print(msrest_model.properties_properties_name) # B
-print(msrest_model.properties.properties.name) # equal to B
+print(msrest_model.properties.properties.name) # equivalent to B
 
-# after migrate to typespec
+# After migration to TypeSpec
 dpg_model = Model(...)
-print(dpg_model.properties_name) # A, compatible with before but not recommend
-print(msrest_model.properties.name) # equal to A
-print(msrest_model.properties_properties_name) # can't work anymore
-print(msrest_model.properties.properties.name) # legacy SDK users shall update code to use model with this way
+print(dpg_model.properties_name) # A, backwards compatible but not recommended
+print(dpg_model.properties.name) # equivalent to A
+print.dpg_model.properties_properties_name) # no longer works
+print(dpg_model.properties.properties.name) # recommended approach after migration
 ```
 
-### Additional properties
+### Additional Properties
 
-#### Additional properties in Msrest model
-To support [additional properties](https://www.apimatic.io/openapi/additionalproperties), Msrest model introduce a property named `additional_properties`:
+#### Additional Properties in Msrest Models
+To support [additional properties](https://www.apimatic.io/openapi/additionalproperties), Msrest models include an `additional_properties` parameter:
 
 ```python
 msrest_model = Model(additional_properties={"hello": "world"})
 print(msrest_model) # output is `{"hello": "world"}`
 ```
 
-#### Additional properties in DPG model
-DPG model could accept any key just like a dictionary so it supports additional properties natively:
+#### Additional Properties in DPG Models
+DPG models inherently support additional properties through dictionary-like behavior:
 
 ```python
 dpg_model = Model({"hello": "world"})
@@ -171,23 +171,22 @@ dpg_model["hello"] = "world"
 print(dpg_model) # output is `{"hello": "world"}`
 ```
 
-## Query/Header parameter in Operation
+## Query/Header Parameters in Operations
 
-Query/Header parameter in SDK generated from swagger is positional but in SDK generated from typespec is keyword only:
+Query and header parameters in Swagger-generated SDKs are positional, while in TypeSpec-generated SDKs they are keyword-only:
 
 ```python
-
+# Swagger SDK
 client.operation("header", "query") # A
-client.operation(header_parameter="header", query_parameter="query") # equal to A
+client.operation(header_parameter="header", query_parameter="query") # equivalent to A
 
-# After migration
-client.operation("header", "query") # can't work anymore
-client.operation(header_parameter="header", query_parameter="query") # OK
+# After migration to TypeSpec
+client.operation("header", "query") # no longer works
+client.operation(header_parameter="header", query_parameter="query") # correct approach
 ```
 
-
-## File name change
-After migration, there are some changes for private file name but will not have any impact for SDK users.
+## File Name Changes
+After migration, some internal file names change, but these changes do not affect SDK users:
 
 ```
 _xxx_client.py => _client.py
