@@ -153,7 +153,7 @@ To support [additional properties](https://www.apimatic.io/openapi/additionalpro
 
 ```python
 msrest_model = Model(additional_properties={"hello": "world"})
-print(msrest_model) # output is `{"hello": "world"}`
+print(msrest_model.as_dict()) # output is `{"hello": "world"}`
 ```
 
 #### Additional Properties in DPG Models
