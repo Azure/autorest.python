@@ -21,7 +21,7 @@ class Person(_serialization.Model):
         ...
 ```
 
-### DPG Model
+#### DPG Model
 
 TypeSpec SDKs are generated from [TypeSpec](https://github.com/microsoft/typespec/) using [@azure-tools/typespec-python](https://www.npmjs.com/package/@azure-tools/typespec-python), and implement the DPG model pattern. The following example demonstrates the fundamental structure of a DPG model:
 
@@ -168,6 +168,10 @@ dpg_model["hello"] = "world"
 
 print(dpg_model) # output is `{"hello": "world"}`
 ```
+
+#### Additional Properties Note
+
+DPG models don't have property named `additional_properties` anymore.
 
 ## Operations
 
