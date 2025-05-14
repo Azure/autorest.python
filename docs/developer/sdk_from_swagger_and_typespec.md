@@ -2,7 +2,7 @@
 
 This document compares Python SDKs generated from Swagger (OpenAPI) specifications versus TypeSpec. For clarity, we'll refer to these as "Swagger SDKs" and "TypeSpec SDKs" respectively.
 
-## Model 
+## Model
 
 ### Model Structure
 
@@ -11,8 +11,6 @@ This document compares Python SDKs generated from Swagger (OpenAPI) specificatio
 Swagger SDKs are generated from [Swagger specifications](https://github.com/Azure/azure-rest-api-specs/tree/main/specification) using [@autorest/python](https://www.npmjs.com/package/@autorest/python), and implement the Msrest model pattern. The following example illustrates the fundamental structure of an Msrest model:
 
 ```python
-from azure.mgmt.example._utils import serialization as _serialization
-
 class Person(_serialization.Model):
     _attribute_map = {
         "name": {"key": "name", "type": "str"},
@@ -28,8 +26,6 @@ class Person(_serialization.Model):
 TypeSpec SDKs are generated from [TypeSpec](https://github.com/microsoft/typespec/) using [@azure-tools/typespec-python](https://www.npmjs.com/package/@azure-tools/typespec-python), and implement the DPG model pattern. The following example demonstrates the fundamental structure of a DPG model:
 
 ```python
-from azure.mgmt.example._utils.model_base import Model as _Model, rest_field
-
 class Person(_Model):
     name: Optional[str] = rest_field()
     parent_name: Optional[str] = rest_field(name="parentName")
@@ -149,6 +145,7 @@ print(dpg_model.properties.properties.name) # recommended approach after migrati
 ### Additional Properties
 
 #### Additional Properties in Msrest Models
+
 To support [additional properties](https://www.apimatic.io/openapi/additionalproperties), Msrest models include an `additional_properties` parameter:
 
 ```python
@@ -157,6 +154,7 @@ print(msrest_model.as_dict()) # output is `{"hello": "world"}`
 ```
 
 #### Additional Properties in DPG Models
+
 DPG models inherently support additional properties through dictionary-like behavior:
 
 ```python
@@ -171,7 +169,9 @@ dpg_model["hello"] = "world"
 print(dpg_model) # output is `{"hello": "world"}`
 ```
 
-## Query/Header Parameters in Operations
+## Operations
+
+### Query/Header Parameters in Operations
 
 Query and header parameters in Swagger-generated SDKs are positional, while in TypeSpec-generated SDKs they are keyword-only:
 
@@ -186,6 +186,7 @@ client.operation(header_parameter="header", query_parameter="query") # correct a
 ```
 
 ## File Name Changes
+
 After migration, some internal file names change, but these changes do not affect SDK users:
 
 ```
@@ -193,3 +194,7 @@ _xxx_client.py => _client.py
 _xxx_enums.py  => _enum.py
 _models_py3.py => _models.py
 ```
+
+### File Name Note
+
+Files that name starts with `_` are internal files.
