@@ -95,9 +95,8 @@ class Person(_serialization.Model):
         ...
 
 msrest_model = Person(name="xxx")
-print(msrest_model.name) # A
-print(msrest_model.properties.name) # equivalent to A
-``` 
+print(msrest_model.name)  # equivalent to `msrest_model.serialize()["properties"]["name"]`
+```
 
 When an inner property name matches an outer property name, a prefix is added to avoid name collisions:
 
@@ -115,8 +114,7 @@ class Person(_serialization.Model):
 
 msrest_model = Person(name="xxx", properties_name="properties_name")
 print(msrest_model.name)
-print(msrest_model.properties_name) # A
-print(msrest_model.properties.name) # equivalent to A
+print(msrest_model.properties_name)  # equivalent to `msrest_model.serialize()["properties"]["name"]`
 ```
 
 Due to inconsistent usage of flattening in some Swagger specifications, property names can become unwieldy and user-unfriendly. For this reason, **DPG models do not support flattening**.
@@ -129,10 +127,8 @@ For legacy SDKs generated from Swagger that are migrated to TypeSpec, we've desi
 # Msrest model
 msrest_model = Model(...)
 
-print(msrest_model.properties_name) # A
-print(msrest_model.properties.name) # equivalent to A
-print(msrest_model.properties_properties_name) # B
-print(msrest_model.properties.properties.name) # equivalent to B
+print(msrest_model.properties_name) # A, equivalent to `msrest_model.serialize()["properties"]["name"]`
+print(msrest_model.properties_properties_name) # B, equivalent to `msrest_model.serialize()["properties"]["properties"]["name"]`
 
 # After migration to TypeSpec
 dpg_model = Model(...)
