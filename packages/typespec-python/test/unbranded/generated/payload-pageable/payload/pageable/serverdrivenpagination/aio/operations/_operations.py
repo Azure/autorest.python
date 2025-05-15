@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -47,7 +47,7 @@ class ServerDrivenPaginationOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def link(self, **kwargs: Any) -> AsyncIterable["_models3.Pet"]:
+    def link(self, **kwargs: Any) -> AsyncItemPaged["_models3.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet
