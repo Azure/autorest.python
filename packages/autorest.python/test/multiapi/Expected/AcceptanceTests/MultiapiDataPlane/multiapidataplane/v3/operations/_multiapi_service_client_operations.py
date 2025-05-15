@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -90,7 +90,7 @@ class MultiapiServiceClientOperationsMixin(
             return ""
 
     @distributed_trace
-    def test_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
+    def test_paging(self, **kwargs: Any) -> ItemPaged["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :return: An iterator like instance of either ModelThree or the result of cls(response)

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, Optional, TypeVar
+from typing import Any, Callable, Dict, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -105,7 +105,7 @@ class PagingOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> ItemPaged["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
         host.
 
@@ -176,7 +176,7 @@ class PagingOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> Iterable["_models.Product"]:
+    def get_pages_partial_url_operation(self, account_name: str, **kwargs: Any) -> ItemPaged["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL with next operation.
 
         :param account_name: Account Name. Required.

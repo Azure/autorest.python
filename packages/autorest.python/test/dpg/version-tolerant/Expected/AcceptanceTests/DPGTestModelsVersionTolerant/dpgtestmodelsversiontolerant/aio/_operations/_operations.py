@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -208,7 +208,7 @@ class DPGClientOperationsMixin(
         return deserialized  # type: ignore
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable["_models.Product"]:
+    def get_pages(self, mode: str, **kwargs: Any) -> AsyncItemPaged["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 

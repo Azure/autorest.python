@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -135,7 +135,7 @@ class QuestionAnsweringProjectsOperations:
         top: Optional[int] = None,
         skip: Optional[int] = None,
         **kwargs: Any
-    ) -> Iterable[JSON]:
+    ) -> ItemPaged[JSON]:
         """Gets all the QnAs of a project.
 
         Gets all the QnAs of a project.
@@ -355,7 +355,7 @@ class QuestionAnsweringProjectsOperations:
     @overload
     def begin_update_qnas(
         self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[Iterable[JSON]]:
+    ) -> LROPoller[ItemPaged[JSON]]:
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -480,7 +480,7 @@ class QuestionAnsweringProjectsOperations:
     @overload
     def begin_update_qnas(
         self, project_name: str, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> LROPoller[Iterable[JSON]]:
+    ) -> LROPoller[ItemPaged[JSON]]:
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -564,7 +564,7 @@ class QuestionAnsweringProjectsOperations:
     @distributed_trace
     def begin_update_qnas(
         self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
-    ) -> LROPoller[Iterable[JSON]]:
+    ) -> LROPoller[ItemPaged[JSON]]:
         """Updates the QnAs of a project.
 
         Updates the QnAs of a project.
@@ -748,12 +748,12 @@ class QuestionAnsweringProjectsOperations:
         else:
             polling_method = polling
         if cont_token:
-            return LROPoller[Iterable[JSON]].from_continuation_token(
+            return LROPoller[ItemPaged[JSON]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return LROPoller[Iterable[JSON]](
+        return LROPoller[ItemPaged[JSON]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
