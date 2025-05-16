@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -72,7 +72,7 @@ class ServerDrivenPaginationOperations:
         )
 
     @distributed_trace
-    def link(self, **kwargs: Any) -> Iterable["_models2.Pet"]:
+    def link(self, **kwargs: Any) -> ItemPaged["_models2.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet

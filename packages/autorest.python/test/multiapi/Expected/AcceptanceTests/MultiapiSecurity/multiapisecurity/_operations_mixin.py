@@ -10,7 +10,7 @@
 # --------------------------------------------------------------------------
 from ._utils.serialization import Serializer, Deserializer
 from io import IOBase
-from typing import Any, IO, Iterable, Iterator, Optional, Union
+from typing import Any, IO, Iterator, Optional, Union
 
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
@@ -53,7 +53,7 @@ class MultiapiServiceClientOperationsMixin(object):
         client_request_id: Optional[str] = None,
         test_lro_and_paging_options: Optional[_models.TestLroAndPagingOptions] = None,
         **kwargs: Any
-    ) -> LROPoller[Iterable["_models.Product"]]:
+    ) -> LROPoller[ItemPaged["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param client_request_id: Default value is None.
