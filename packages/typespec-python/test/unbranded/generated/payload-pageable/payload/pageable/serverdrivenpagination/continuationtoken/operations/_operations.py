@@ -1,7 +1,7 @@
 # pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -148,7 +148,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> ItemPaged["_models3.Pet"]:
         """request_query_response_body.
 
         :keyword foo: Default value is None.
@@ -211,7 +211,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> ItemPaged["_models3.Pet"]:
         """request_header_response_body.
 
         :keyword foo: Default value is None.
@@ -274,7 +274,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_query_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> ItemPaged["_models3.Pet"]:
         """request_query_response_header.
 
         :keyword foo: Default value is None.
@@ -337,7 +337,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
     def request_header_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> Iterable["_models3.Pet"]:
+    ) -> ItemPaged["_models3.Pet"]:
         """request_header_response_header.
 
         :keyword foo: Default value is None.

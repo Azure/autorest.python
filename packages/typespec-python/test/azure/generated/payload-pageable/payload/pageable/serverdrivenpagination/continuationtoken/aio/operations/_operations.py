@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -57,7 +57,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
     @distributed_trace
     def request_query_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncItemPaged["_models4.Pet"]:
         """request_query_response_body.
 
         :keyword foo: Default value is None.
@@ -123,7 +123,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
     @distributed_trace
     def request_header_response_body(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncItemPaged["_models4.Pet"]:
         """request_header_response_body.
 
         :keyword foo: Default value is None.
@@ -189,7 +189,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
     @distributed_trace
     def request_query_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncItemPaged["_models4.Pet"]:
         """request_query_response_header.
 
         :keyword foo: Default value is None.
@@ -255,7 +255,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
     @distributed_trace
     def request_header_response_header(
         self, *, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
-    ) -> AsyncIterable["_models4.Pet"]:
+    ) -> AsyncItemPaged["_models4.Pet"]:
         """request_header_response_header.
 
         :keyword foo: Default value is None.

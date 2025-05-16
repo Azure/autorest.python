@@ -9,7 +9,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import AsyncPipelineClient
@@ -747,7 +747,7 @@ class TopLevelOperations:
     @distributed_trace
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.TopLevelTrackedResource"]:
+    ) -> AsyncItemPaged["_models.TopLevelTrackedResource"]:
         """List TopLevelTrackedResource resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -836,7 +836,7 @@ class TopLevelOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> AsyncIterable["_models.TopLevelTrackedResource"]:
+    def list_by_subscription(self, **kwargs: Any) -> AsyncItemPaged["_models.TopLevelTrackedResource"]:
         """List TopLevelTrackedResource resources by subscription ID.
 
         :return: An iterator like instance of TopLevelTrackedResource
@@ -1800,7 +1800,7 @@ class NestedOperations:
     @distributed_trace
     def list_by_top_level_tracked_resource(
         self, resource_group_name: str, top_level_tracked_resource_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.NestedProxyResource"]:
+    ) -> AsyncItemPaged["_models.NestedProxyResource"]:
         """List NestedProxyResource resources by TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2336,7 +2336,7 @@ class SingletonOperations:
     @distributed_trace
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
-    ) -> AsyncIterable["_models.SingletonTrackedResource"]:
+    ) -> AsyncItemPaged["_models.SingletonTrackedResource"]:
         """List SingletonTrackedResource resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2962,7 +2962,7 @@ class ExtensionsResourcesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def list_by_scope(self, resource_uri: str, **kwargs: Any) -> AsyncIterable["_models.ExtensionsResource"]:
+    def list_by_scope(self, resource_uri: str, **kwargs: Any) -> AsyncItemPaged["_models.ExtensionsResource"]:
         """List ExtensionsResource resources by parent.
 
         :param resource_uri: The fully qualified Azure Resource manager identifier of the resource.
@@ -3510,7 +3510,7 @@ class LocationResourcesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def list_by_location(self, location: str, **kwargs: Any) -> AsyncIterable["_models.LocationResource"]:
+    def list_by_location(self, location: str, **kwargs: Any) -> AsyncItemPaged["_models.LocationResource"]:
         """List LocationResource resources by SubscriptionLocationResource.
 
         :param location: The name of the Azure region. Required.

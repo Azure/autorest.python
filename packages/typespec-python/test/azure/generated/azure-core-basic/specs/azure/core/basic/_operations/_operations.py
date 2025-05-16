@@ -8,7 +8,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -577,7 +577,7 @@ class BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
         select: Optional[List[str]] = None,
         expand: Optional[List[str]] = None,
         **kwargs: Any
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """Lists all users.
 
         Lists all Users.
