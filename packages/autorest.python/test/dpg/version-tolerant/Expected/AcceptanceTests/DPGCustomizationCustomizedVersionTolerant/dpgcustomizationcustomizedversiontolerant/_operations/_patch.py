@@ -20,7 +20,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = super().post_model(mode, input, **kwargs)
         return Product(**response)
 
-    def get_pages(self, mode: str, **kwargs: Any) -> ItemPaged[Product]:
+    def get_pages(self, mode: str, **kwargs: Any) -> ItemPaged[Product]:  # type: ignore
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
         return cast(ItemPaged[Product], pages)
 
