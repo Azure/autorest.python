@@ -4,7 +4,8 @@
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
 # ------------------------------------
-from typing import Any, Iterable, Union, cast, IO
+from typing import Any, Union, cast, IO
+from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
 from ..models import *  # pylint: disable=wildcard-import,unused-wildcard-import
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSON
@@ -19,9 +20,9 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = super().post_model(mode, input, **kwargs)
         return Product(**response)
 
-    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[Product]:
+    def get_pages(self, mode: str, **kwargs: Any) -> ItemPaged[Product]:
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
-        return cast(Iterable[Product], pages)
+        return cast(ItemPaged[Product], pages)
 
     def begin_lro(self, mode: str, **kwargs: Any) -> LROPoller[LROProduct]:  # type: ignore
         poller = super().begin_lro(

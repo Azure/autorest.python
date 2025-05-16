@@ -5,7 +5,8 @@
 # Licensed under the MIT License.
 # ------------------------------------
 
-from typing import Any, AsyncIterable, cast
+from typing import Any, cast
+from azure.core.async_paging import AsyncItemPaged
 from azure.core.polling import AsyncLROPoller
 
 from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
@@ -21,9 +22,9 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
         response = await super().post_model(mode, input, **kwargs)
         return Product(**response)
 
-    def get_pages(self, mode: str, **kwargs) -> AsyncIterable[Product]:
+    def get_pages(self, mode: str, **kwargs) -> AsyncItemPaged[Product]:
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
-        return cast(AsyncIterable[Product], pages)
+        return cast(AsyncItemPaged[Product], pages)
 
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[LROProduct]:  # type: ignore
         poller = await super().begin_lro(
