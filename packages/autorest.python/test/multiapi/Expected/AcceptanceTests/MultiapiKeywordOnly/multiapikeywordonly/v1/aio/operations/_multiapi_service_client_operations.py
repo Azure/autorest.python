@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import AsyncPipelineClient
@@ -323,7 +323,7 @@ class MultiapiServiceClientOperationsMixin(
         *,
         client_request_id: Optional[str] = None,
         **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable["_models.Product"]]:
+    ) -> AsyncLROPoller[AsyncItemPaged["_models.Product"]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :param test_lro_and_paging_options: Parameter group. Default value is None.
@@ -436,13 +436,13 @@ class MultiapiServiceClientOperationsMixin(
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[AsyncIterable["_models.Product"]].from_continuation_token(
+            return AsyncLROPoller[AsyncItemPaged["_models.Product"]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[AsyncIterable["_models.Product"]](
+        return AsyncLROPoller[AsyncItemPaged["_models.Product"]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
