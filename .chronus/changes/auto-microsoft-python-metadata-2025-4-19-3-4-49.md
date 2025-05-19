@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-generate _metadata.json
+generate `_metadata.json` to store info from TCGC
