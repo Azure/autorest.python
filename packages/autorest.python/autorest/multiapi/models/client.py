@@ -43,7 +43,7 @@ class Client:
         file_import = FileImport(json.loads(self.default_version_metadata["client"][imports_to_load]))
         local_imports = file_import.imports.get(TypingSection.REGULAR, {}).get(ImportType.LOCAL, {})
         for key in local_imports:
-            if re.search("^\\.*_serialization$", key):
+            if re.search("^\\.*_utils.serialization$", key):
                 relative_path = ".." if async_mode else "."
                 local_imports[f"{relative_path}_serialization"] = local_imports.pop(key)
                 break
