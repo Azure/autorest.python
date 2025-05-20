@@ -1,5 +1,16 @@
 # Release
 
+## 0.45.0
+
+### Features
+
+- [#3089](https://github.com/Azure/autorest.python/pull/3089) generate `_metadata.json` to store info from TCGC
+
+### Bug Fixes
+
+- [#3088](https://github.com/Azure/autorest.python/pull/3088) Fix response type of paging operations from `Iterable` to `ItemPaged`
+
+
 ## 0.44.2
 
 ### Bug Fixes
