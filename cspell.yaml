@@ -93,11 +93,13 @@ words:
   - ptvsd
   - pylint
   - pylintrc
+  - pyodide
   - pygen
   - qnas
   - ragrs
   - rcfile
   - recommonmark
+  - regen
   - reqs
   - retrys
   - roundtrippable
@@ -123,6 +125,7 @@ words:
   - tfft
   - tikka
   - toctree
+  - tspd
   - undoc
   - venv
   - venvtools
