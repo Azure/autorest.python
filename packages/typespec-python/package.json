@@ -19,8 +19,10 @@
   "type": "module",
   "main": "dist/src/index.js",
   "exports": {
-    ".": "./dist/src/index.js",
-    "./testing": "./dist/src/testing/index.js"
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    }
   },
   "tspMain": "dist/src/index.js",
   "engines": {
@@ -36,7 +38,8 @@
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "npx prettier **/*.ts --write && tsx ./scripts/eng/format.ts",
     "regenerate": "tsx ./scripts/eng/regenerate.ts",
-    "test": "tsx ./scripts/eng/run-tests.ts"
+    "test": "tsx ./scripts/eng/run-tests.ts",
+    "regen-docs": "npm run build && tspd doc . --enable-experimental --output-dir ./website/src/content/docs/docs/emitters/clients/typespec-python/reference --skip-js"
   },
   "files": [
     "dist/**",
@@ -76,6 +79,7 @@
     "@typespec/events": "~0.70.0",
     "@typespec/sse": "~0.70.0",
     "@typespec/streams": "~0.70.0",
+    "@typespec/tspd": "~0.70.0",
     "@typespec/xml": "~0.70.0",
     "@azure-tools/typespec-azure-resource-manager": "~0.56.0",
     "@azure-tools/typespec-azure-core": "~0.56.0",

@@ -1,118 +1,139 @@
-# TypeSpec Python Client Emitter
+# @azure-tools/typespec-python
 
-## Getting started
+TypeSpec emitter for Python SDKs
 
-### Initialize TypeSpec Project
+## Install
 
-Follow [TypeSpec Getting Started](https://typespec.io/docs) to initialize your TypeSpec project.
-
-Make sure `npx tsp compile .` runs correctly.
-
-### Add typespec-python to your project
-
-Include @azure-tools/typespec-python dependencies in `package.json`:
-
-```diff
- "dependencies": {
-+      "@azure-tools/typespec-python": "latest"
-  },
+```bash
+npm install @azure-tools/typespec-python
 ```
 
-Run `npm install` to install the dependency.
+## Usage
 
-### Generate a Python client library
+1. Via the command line
 
-You can either specify typespec-python on the commandline or through tspconfig.yaml.
-
-#### Generate with `--emit` command
-
-Run command `npx tsp compile --emit @azure-tools/typespec-python <path-to-typespec-file>`
-
-e.g.
-
-```cmd
-npx tsp compile main.tsp --emit @azure-tools/typespec-python
+```bash
+tsp compile . --emit=@azure-tools/typespec-python
 ```
 
-or
+2. Via the config
 
-```cmd
-npx tsp compile client.tsp --emit @azure-tools/typespec-python
-```
-
-#### Generate with tspconfig.yaml
-
-Add the following configuration in tspconfig.yaml:
-
-```diff
+```yaml
 emit:
   - "@azure-tools/typespec-python"
-options:
-  "@azure-tools/typespec-python":
-+    package-dir: "azure-contoso"
-+    package-name: "azure-contoso"
 ```
 
-Run the command to generate your library:
-
-```cmd
-npx tsp compile main.tsp
-```
-
-or
-
-```cmd
-npx tsp compile client.tsp
-```
-
-## Configure the generated library
-
-You can further configure the generated client library using the emitter options provided through @azure-tools/typespec-python.
-
-You can set options in the command line directly via `--option @azure-tools/typespec-python.<optionName>=XXX`, e.g. `--option @azure-tools/typespec-python.package-name="azure-contoso"`
-
-or
-
-Modify `tspconfig.yaml` in the TypeSpec project to add emitter options under options/@azure-tools/typespec-python.
-
-```diff
-emit:
-  - "@azure-tools/typespec-python"
-options:
-  "@azure-tools/typespec-python":
-+    package-dir: "{package-dir}"
-+    package-name: "azure-contoso"
-```
-
-### Supported emitter options
-
-Common emitter configuration example:
+The config can be extended with options as follows:
 
 ```yaml
 emit:
   - "@azure-tools/typespec-python"
 options:
   "@azure-tools/typespec-python":
-    package-dir: "{package-dir}"
-    package-name: "azure-contoso"
+    option: value
 ```
 
-|Option|Type|Description|
-|-|-|-|
-|`package-version`|string|Specify the package version. Default version: `1.0.0b1`.|
-|`package-name`|string|Specify the package name.|
-|`package-dir`|string|Specify the output directory for the package.|
-|`generate-packaging-files`|boolean|Indicate if packaging files, such as setup.py, should be generated.|
-|`package-pprint-name`|string|Specify the pretty print name for the package.|
-|`flavor`|string|Represents the type of SDK that will be generated. By default, there will be no branding in the generated client library. Specify `"azure"` to generate an SDK following Azure guidelines.|
-|`company-name`|string|Specify the company name to be inserted into licensing data. For `"azure"` flavor, the default value inserted is `Microsoft`.|
+## Emitter options
 
-**Advanced emitter options**
+### `emitter-output-dir`
 
-|Option|Type|Description|
-|-|-|-|
-|`head-as-boolean`|boolean|Generate head calls to return a boolean. Default: `true`.|
-|`packaging-files-dir`|string|Pass in the path to a custom directory with SDK packaging files.|
-|`packaging-files-config`|object|Specify configuration options that will be passed directly into the packaging files specified by the `packaging-files-dir` option.|
-|`tracing`|boolean|Only available for the `"azure"` flavor of SDKs, provide tracing support in the generated client library. Default: `true`.|
-|`debug`|boolean|Enable debugging.|
+**Type:** `absolutePath`
+
+Defines the emitter output directory. Defaults to `{output-dir}/@azure-tools/typespec-python`
+See [Configuring output directory for more info](https://typespec.io/docs/handbook/configuration/configuration/#configuring-output-directory)
+
+### `examples-dir`
+
+**Type:** `string`
+
+Specifies the directory where the emitter will look for example files. If the flag isn’t set, the emitter defaults to using an `examples` directory located at the project root.
+
+### `namespace`
+
+**Type:** `string`
+
+Specifies the namespace you want to override for namespaces set in the spec. With this config, all namespace for the spec types will default to it.
+
+### `flavor`
+
+**Type:** `string`
+
+The flavor of the SDK.
+
+### `models-mode`
+
+**Type:** `"dpg" | "none"`
+
+What kind of models to generate. If you pass in `none`, we won't generate models. `dpg` models are the default models we generate.
+
+### `generate-sample`
+
+**Type:** `boolean`
+
+Whether to generate sample files, for basic samples of your generated sdks. Defaults to `false`.
+
+### `generate-test`
+
+**Type:** `boolean`
+
+Whether to generate test files, for basic testing of your generated sdks. Defaults to `false`.
+
+### `api-version`
+
+**Type:** `string`
+
+Use this flag if you would like to generate the sdk only for a specific version. Default value is the latest version. Also accepts values `latest` and `all`.
+
+### `license`
+
+**Type:** `object`
+
+License information for the generated client code.
+
+### `package-version`
+
+**Type:** `string`
+
+The version of the package.
+
+### `package-name`
+
+**Type:** `string`
+
+The name of the package.
+
+### `generate-packaging-files`
+
+**Type:** `boolean`
+
+Whether to generate packaging files. Packaging files refer to the `setup.py`, `README`, and other files that are needed to package your code.
+
+### `packaging-files-dir`
+
+**Type:** `string`
+
+If you are using a custom packaging files directory, you can specify it here. We won't generate with the default packaging files we have.
+
+### `packaging-files-config`
+
+**Type:** `object`
+
+If you are using a custom packaging files directory, and have additional configuration parameters you want to pass in during generation, you can specify it here. Only applicable if `packaging-files-dir` is set.
+
+### `package-pprint-name`
+
+**Type:** `string`
+
+The name of the package to be used in pretty-printing. Will be the name of the package in `README` and pprinting of `setup.py`.
+
+### `head-as-boolean`
+
+**Type:** `boolean`
+
+Whether to return responses from HEAD requests as boolean. Defaults to `true`.
+
+### `use-pyodide`
+
+**Type:** `boolean`
+
+Whether to generate using `pyodide` instead of `python`. If there is no python installed on your device, we will default to using pyodide to generate the code.
