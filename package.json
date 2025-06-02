@@ -32,8 +32,8 @@
   "homepage": "https://github.com/Azure/autorest.python#readme",
   "devDependencies": {
     "@actions/github": "6.0.0",
-    "@chronus/chronus": "^1.0.2",
-    "@chronus/github": "^1.0.2",
+    "@chronus/chronus": "^0.12.1",
+    "@chronus/github": "^0.4.4",
     "@eslint/js": "^9.11.1",
     "autorest": "~3.7.1",
     "cross-env": "^7.0.3",
@@ -55,5 +55,10 @@
       "prod",
       "resolutions"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "cross-spawn@>=7.0.0 <7.0.5": "^7.0.5"
+    }
   }
 }
