@@ -12,7 +12,9 @@ from ._configuration import ReturnTypeChangedFromClientConfiguration
 from ._operations import ReturnTypeChangedFromClientOperationsMixin
 
 
-class ReturnTypeChangedFromClient(ReturnTypeChangedFromClientOperationsMixin):
+class ReturnTypeChangedFromClient(
+    ReturnTypeChangedFromClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@returnTypeChangedFrom`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

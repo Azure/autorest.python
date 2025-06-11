@@ -12,7 +12,7 @@ from ._operations import MadeOptionalClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class MadeOptionalClient(MadeOptionalClientOperationsMixin):
+class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@madeOptional`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
