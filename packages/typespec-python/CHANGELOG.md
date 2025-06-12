@@ -1,5 +1,12 @@
 # Release
 
+## 0.45.1
+
+### Bump dependencies
+
+- Bump typespec
+
+
 ## 0.45.0
 
 ### Features

@@ -1,13 +1,12 @@
 # coding=utf-8
 
 from copy import deepcopy
-from typing import Any, Awaitable, Union
+from typing import Any, Awaitable
 from typing_extensions import Self
 
 from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
-from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AddedClientConfiguration
 from .operations import AddedClientOperationsMixin, InterfaceV2Operations
@@ -21,16 +20,17 @@ class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
-    :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
-     Required.
-    :type version: str or ~versioning.added.models.Versions
+    :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
+     Default value is "v2". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype version: str or ~versioning.added.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, version: Union[str, _models.Versions], **kwargs: Any
+        self, endpoint: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/versioning/added/api-version:{version}"
-        self._config = AddedClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+        self._config = AddedClientConfiguration(endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
