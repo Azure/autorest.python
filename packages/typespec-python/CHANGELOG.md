@@ -1,5 +1,9 @@
 # Release
 
+## 0.45.2
+
+No changes, version bump only.
+
 ## 0.45.1
 
 ### Bump dependencies
