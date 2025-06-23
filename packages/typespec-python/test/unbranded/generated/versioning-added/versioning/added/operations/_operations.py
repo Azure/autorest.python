@@ -152,6 +152,7 @@ class InterfaceV2Operations:
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     def v2_in_interface(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
@@ -278,6 +279,7 @@ class AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
     @api_version_validation(
         params_added_on={"v2": ["header_v2"]},
+        api_versions_list=["v1", "v2"],
     )
     def v1(self, body: Union[_models.ModelV1, JSON, IO[bytes]], *, header_v2: str, **kwargs: Any) -> _models.ModelV1:
         """v1.
@@ -393,6 +395,7 @@ class AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     def v2(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2.

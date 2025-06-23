@@ -43,6 +43,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace_async
     @api_version_validation(
         method_added_on="v2",
+        api_versions_list=["v2"],
     )
     async def add_operation(self, **kwargs: Any) -> None:
         """Added operation.
@@ -94,6 +95,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace_async
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
+        api_versions_list=["v1", "v2"],
     )
     async def from_none(self, *, new_parameter: Optional[str] = None, **kwargs: Any) -> bool:
         """Test that grew up from accepting no parameters to an optional input parameter.
@@ -149,6 +151,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace_async
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
+        api_versions_list=["v1", "v2"],
     )
     async def from_one_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Operation that grew up from accepting one required parameter to accepting a required parameter
@@ -207,6 +210,7 @@ class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-
     @distributed_trace_async
     @api_version_validation(
         params_added_on={"v2": ["new_parameter"]},
+        api_versions_list=["v1", "v2"],
     )
     async def from_one_optional(
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
