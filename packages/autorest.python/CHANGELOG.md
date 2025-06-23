@@ -1,5 +1,12 @@
 # Release
 
+## 6.35.3
+
+### Bump dependencies
+
+- [#3103](https://github.com/Azure/autorest.python/pull/3103) Add support for `validate-versioning` flag, so users can toggle whether they get api versioning validation
+
+
 ## 6.35.2
 
 No changes, version bump only.
