@@ -63,7 +63,6 @@ class PageableClientOperationsMixin(
     @distributed_trace
     @api_version_validation(
         params_added_on={"1.0-preview.1": ["maxpagesize"]},
-        api_versions_list=[],
     )
     def list(self, **kwargs: Any) -> ItemPaged["_models.User"]:
         """List users.
