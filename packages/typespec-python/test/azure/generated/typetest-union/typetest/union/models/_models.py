@@ -82,10 +82,10 @@ class EnumsOnlyCases(_Model):
     :vartype ud: str or str
     """
 
-    lr: Literal["left", "right", "up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    lr: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the left variant. Required. Is one of the following types:
      Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
-    ud: Literal["up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    ud: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
      Literal[\"down\"] type."""
 
@@ -93,8 +93,8 @@ class EnumsOnlyCases(_Model):
     def __init__(
         self,
         *,
-        lr: Literal["left", "right", "up", "down"],
-        ud: Literal["up", "down"],
+        lr: str,
+        ud: str,
     ) -> None: ...
 
     @overload
@@ -115,14 +115,14 @@ class GetResponse(_Model):
     :vartype prop: str or str or str
     """
 
-    prop: Literal["a", "b", "c"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: Literal[\"a\"], Literal[\"b\"], Literal[\"c\"]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Literal["a", "b", "c"],
+        prop: str,
     ) -> None: ...
 
     @overload
@@ -143,16 +143,14 @@ class GetResponse1(_Model):
     :vartype prop: str or str or str
     """
 
-    prop: Union[Literal["b"], Literal["c"], str] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: Literal[\"b\"], Literal[\"c\"], str"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union[Literal["b"], Literal["c"], str],
+        prop: str,
     ) -> None: ...
 
     @overload
@@ -203,14 +201,14 @@ class GetResponse3(_Model):
     :vartype prop: int or int or int
     """
 
-    prop: Literal[1, 2, 3] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: Literal[1], Literal[2], Literal[3]"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Literal[1, 2, 3],
+        prop: str,
     ) -> None: ...
 
     @overload
@@ -231,14 +229,14 @@ class GetResponse4(_Model):
     :vartype prop: float or float or float
     """
 
-    prop: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is one of the following types: float"""
 
     @overload
     def __init__(
         self,
         *,
-        prop: float,
+        prop: str,
     ) -> None: ...
 
     @overload
@@ -259,14 +257,14 @@ class GetResponse5(_Model):
     :vartype prop: ~typetest.union.models.Cat or ~typetest.union.models.Dog
     """
 
-    prop: Union["_models.Cat", "_models.Dog"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Is either a Cat type or a Dog type."""
 
     @overload
     def __init__(
         self,
         *,
-        prop: Union["_models.Cat", "_models.Dog"],
+        prop: str,
     ) -> None: ...
 
     @overload
@@ -409,24 +407,16 @@ class MixedLiteralsCases(_Model):
     :vartype boolean_literal: str or int or float or bool
     """
 
-    string_literal: Literal["a", 2, True] = rest_field(
-        name="stringLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    string_literal: str = rest_field(name="stringLiteral", visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the \"a\" variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    int_literal: Literal["a", 2, True] = rest_field(
-        name="intLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    int_literal: str = rest_field(name="intLiteral", visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the 2 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    float_literal: Literal["a", 2, True] = rest_field(
-        name="floatLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    float_literal: str = rest_field(name="floatLiteral", visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the 3.3 variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
-    boolean_literal: Literal["a", 2, True] = rest_field(
-        name="booleanLiteral", visibility=["read", "create", "update", "delete", "query"]
-    )
+    boolean_literal: str = rest_field(name="booleanLiteral", visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the true variant. Required. Is one of the following types:
      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
@@ -434,10 +424,10 @@ class MixedLiteralsCases(_Model):
     def __init__(
         self,
         *,
-        string_literal: Literal["a", 2, True],
-        int_literal: Literal["a", 2, True],
-        float_literal: Literal["a", 2, True],
-        boolean_literal: Literal["a", 2, True],
+        string_literal: str,
+        int_literal: str,
+        float_literal: str,
+        boolean_literal: str,
     ) -> None: ...
 
     @overload
@@ -470,24 +460,16 @@ class MixedTypesCases(_Model):
     :vartype array: list[~typetest.union.models.Cat or str or int or bool]
     """
 
-    model: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
+    model: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
+    literal: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
-        name="int", visibility=["read", "create", "update", "delete", "query"]
-    )
+    int_property: str = rest_field(name="int", visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the int variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
+    boolean: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
     array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
@@ -499,10 +481,10 @@ class MixedTypesCases(_Model):
     def __init__(
         self,
         *,
-        model: Union["_models.Cat", Literal["a"], int, bool],
-        literal: Union["_models.Cat", Literal["a"], int, bool],
-        int_property: Union["_models.Cat", Literal["a"], int, bool],
-        boolean: Union["_models.Cat", Literal["a"], int, bool],
+        model: str,
+        literal: str,
+        int_property: str,
+        boolean: str,
         array: List[Union["_models.Cat", Literal["a"], int, bool]],
     ) -> None: ...
 
@@ -528,17 +510,17 @@ class StringAndArrayCases(_Model):
     :vartype array: str or list[str]
     """
 
-    string: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    string: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
-    array: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    array: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
 
     @overload
     def __init__(
         self,
         *,
-        string: Union[str, List[str]],
-        array: Union[str, List[str]],
+        string: str,
+        array: str,
     ) -> None: ...
 
     @overload

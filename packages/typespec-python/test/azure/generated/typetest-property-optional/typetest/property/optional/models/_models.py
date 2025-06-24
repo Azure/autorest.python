@@ -404,14 +404,14 @@ class UnionFloatLiteralProperty(_Model):
     :vartype property: float or float
     """
 
-    property: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Is one of the following types: float"""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[float] = None,  # pylint: disable=redefined-builtin
+        property: str = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -432,14 +432,14 @@ class UnionIntLiteralProperty(_Model):
     :vartype property: int or int
     """
 
-    property: Optional[Literal[1, 2]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Is either a Literal[1] type or a Literal[2] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Literal[1, 2]] = None,  # pylint: disable=redefined-builtin
+        property: str = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -460,16 +460,14 @@ class UnionStringLiteralProperty(_Model):
     :vartype property: str or str
     """
 
-    property: Optional[Literal["hello", "world"]] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"]
-    )
+    property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Is either a Literal[\"hello\"] type or a Literal[\"world\"] type."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Literal["hello", "world"]] = None,  # pylint: disable=redefined-builtin
+        property: str = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload

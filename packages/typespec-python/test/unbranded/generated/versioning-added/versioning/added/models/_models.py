@@ -26,9 +26,7 @@ class ModelV1(_Model):
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. Known values are: \"enumMemberV1\" and \"enumMemberV2\"."""
-    union_prop: "_types.UnionV1" = rest_field(
-        name="unionProp", visibility=["read", "create", "update", "delete", "query"]
-    )
+    union_prop: str = rest_field(name="unionProp", visibility=["read", "create", "update", "delete", "query"])
     """Required. Is either a str type or a int type."""
 
     @overload
@@ -37,7 +35,7 @@ class ModelV1(_Model):
         *,
         prop: str,
         enum_prop: Union[str, "_models.EnumV1"],
-        union_prop: "_types.UnionV1",
+        union_prop: str,
     ) -> None: ...
 
     @overload
@@ -68,9 +66,7 @@ class ModelV2(_Model):
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. \"enumMember\""""
-    union_prop: "_types.UnionV2" = rest_field(
-        name="unionProp", visibility=["read", "create", "update", "delete", "query"]
-    )
+    union_prop: str = rest_field(name="unionProp", visibility=["read", "create", "update", "delete", "query"])
     """Required. Is either a str type or a int type."""
 
     @overload
@@ -79,7 +75,7 @@ class ModelV2(_Model):
         *,
         prop: str,
         enum_prop: Union[str, "_models.EnumV2"],
-        union_prop: "_types.UnionV2",
+        union_prop: str,
     ) -> None: ...
 
     @overload
