@@ -2,6 +2,13 @@
 
 const { run } = require("./helpers.js");
 
+// First, refresh the git index to normalize line endings
+// This ensures line ending differences don't show up as changes
+run("git", ["add", "--renormalize", "."], {
+  encoding: "utf-8",
+  stdio: [null, "pipe", "pipe"],
+});
+
 const proc = run("git", ["status", "--porcelain", "."], {
   encoding: "utf-8",
   stdio: [null, "pipe", "pipe"],
