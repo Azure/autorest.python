@@ -16,7 +16,7 @@ if TYPE_CHECKING:
 
 
 class InputModel(_Model):
-    """Usage override to roundtrip.
+    """Usage additive to roundtrip.
 
     :ivar name: Required.
     :vartype name: str
@@ -53,7 +53,7 @@ class OrphanModel(_Model):
     :vartype description: str
     """
 
-    model_name: str = rest_field(name="modelName", visibility=["read", "create", "update", "delete", "query"])
+    model_name: str = rest_field(name="name", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
     description: str = rest_field(name="desc", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
@@ -78,7 +78,7 @@ class OrphanModel(_Model):
 
 
 class OutputModel(_Model):
-    """Usage override to roundtrip.
+    """Usage additive to roundtrip.
 
     :ivar name: Required.
     :vartype name: str
