@@ -32,7 +32,9 @@ class NewModel(_Model):
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. \"newEnumMember\""""
-    union_prop: str = rest_field(name="unionProp", visibility=["read", "create", "update", "delete", "query"])
+    union_prop: "_types.NewUnion" = rest_field(
+        name="unionProp", visibility=["read", "create", "update", "delete", "query"]
+    )
     """Required. Is either a str type or a int type."""
 
     @overload
@@ -41,7 +43,7 @@ class NewModel(_Model):
         *,
         new_prop: str,
         enum_prop: Union[str, "_models.NewEnum"],
-        union_prop: str,
+        union_prop: "_types.NewUnion",
     ) -> None: ...
 
     @overload
