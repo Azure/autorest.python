@@ -2,10 +2,6 @@
 
 ## 0.45.3
 
-### Features
-
-- Add test cases
-
 ### Bump dependencies
 
 - [#3103](https://github.com/Azure/autorest.python/pull/3103) Add support for `validate-versioning` flag, so users can toggle whether they get api versioning validation
