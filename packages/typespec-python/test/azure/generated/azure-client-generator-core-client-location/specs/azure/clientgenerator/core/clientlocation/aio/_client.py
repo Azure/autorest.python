@@ -7,19 +7,22 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any
+from typing import Any, Awaitable
 from typing_extensions import Self
 
-from azure.core import PipelineClient
+from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
-from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.rest import AsyncHttpResponse, HttpRequest
 
+from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientLocationClientConfiguration
-from ._utils.serialization import Deserializer, Serializer
-from .movetoexistingsubclient.operations import MoveToExistingSubClientOperations
-from .movetonewsubclient.operations import MoveToNewSubClientOperations
-from .movetorootclient.operations import MoveToRootClientOperations
-from .operations import ArchiveOperationsOperations, ClientLocationClientOperationsMixin
+from .operations import (
+    ArchiveOperationsOperations,
+    ClientLocationClientOperationsMixin,
+    MoveToExistingSubClientOperations,
+    MoveToNewSubClientOperations,
+    MoveToRootClientOperations,
+)
 
 
 class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -27,16 +30,16 @@ class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disa
 
     :ivar move_to_existing_sub_client: MoveToExistingSubClientOperations operations
     :vartype move_to_existing_sub_client:
-     _specs_.azure.clientgenerator.core.clientlocation.operations.MoveToExistingSubClientOperations
+     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToExistingSubClientOperations
     :ivar move_to_new_sub_client: MoveToNewSubClientOperations operations
     :vartype move_to_new_sub_client:
-     _specs_.azure.clientgenerator.core.clientlocation.operations.MoveToNewSubClientOperations
+     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToNewSubClientOperations
     :ivar move_to_root_client: MoveToRootClientOperations operations
     :vartype move_to_root_client:
-     _specs_.azure.clientgenerator.core.clientlocation.operations.MoveToRootClientOperations
+     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToRootClientOperations
     :ivar archive_operations: ArchiveOperationsOperations operations
     :vartype archive_operations:
-     _specs_.azure.clientgenerator.core.clientlocation.operations.ArchiveOperationsOperations
+     specs.azure.clientgenerator.core.clientlocation.aio.operations.ArchiveOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -64,7 +67,7 @@ class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disa
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
@@ -82,14 +85,16 @@ class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disa
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
+    def send_request(
+        self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
+    ) -> Awaitable[AsyncHttpResponse]:
         """Runs the network request through the client's chained policies.
 
         >>> from azure.core.rest import HttpRequest
         >>> request = HttpRequest("GET", "https://www.example.org/")
         <HttpRequest [GET], url: 'https://www.example.org/'>
-        >>> response = client.send_request(request)
-        <HttpResponse: 200 OK>
+        >>> response = await client.send_request(request)
+        <AsyncHttpResponse: 200 OK>
 
         For more information on this code flow, see https://aka.ms/azsdk/dpcodegen/python/send_request
 
@@ -97,7 +102,7 @@ class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disa
         :type request: ~azure.core.rest.HttpRequest
         :keyword bool stream: Whether the response payload will be streamed. Defaults to False.
         :return: The response of your network call. Does not do error handling on your response.
-        :rtype: ~azure.core.rest.HttpResponse
+        :rtype: ~azure.core.rest.AsyncHttpResponse
         """
 
         request_copy = deepcopy(request)
@@ -108,12 +113,12 @@ class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disa
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)
         return self._client.send_request(request_copy, stream=stream, **kwargs)  # type: ignore
 
-    def close(self) -> None:
-        self._client.close()
+    async def close(self) -> None:
+        await self._client.close()
 
-    def __enter__(self) -> Self:
-        self._client.__enter__()
+    async def __aenter__(self) -> Self:
+        await self._client.__aenter__()
         return self
 
-    def __exit__(self, *exc_details: Any) -> None:
-        self._client.__exit__(*exc_details)
+    async def __aexit__(self, *exc_details: Any) -> None:
+        await self._client.__aexit__(*exc_details)
