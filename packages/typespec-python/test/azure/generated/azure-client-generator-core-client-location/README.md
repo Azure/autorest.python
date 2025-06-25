@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # _specs_ Azure Clientgenerator Core Clientlocation client library for Python
+=======
+# Specs Azure Clientgenerator Core Clientlocation client library for Python
+>>>>>>> 16511663a12cb5b67d00b8db9f8118b5236240c2
 <!-- write necessary description of service -->
 
 ## Getting started
@@ -6,14 +10,22 @@
 ### Install the package
 
 ```bash
+<<<<<<< HEAD
 python -m pip install _specs_-azure-clientgenerator-core-clientlocation
+=======
+python -m pip install specs-azure-clientgenerator-core-clientlocation
+>>>>>>> 16511663a12cb5b67d00b8db9f8118b5236240c2
 ```
 
 #### Prequisites
 
 - Python 3.9 or later is required to use this package.
 - You need an [Azure subscription][azure_sub] to use this package.
+<<<<<<< HEAD
 - An existing _specs_ Azure Clientgenerator Core Clientlocation instance.
+=======
+- An existing Specs Azure Clientgenerator Core Clientlocation instance.
+>>>>>>> 16511663a12cb5b67d00b8db9f8118b5236240c2
 
 
 ## Contributing
