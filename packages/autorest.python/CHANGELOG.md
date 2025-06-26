@@ -1,5 +1,12 @@
 # Release
 
+## 6.35.4
+
+### Bump dependencies
+
+- [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
+
+
 ## 6.35.3
 
 ### Bump dependencies
