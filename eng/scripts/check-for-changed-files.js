@@ -41,11 +41,7 @@ if (proc.stdout || proc.stderr) {
     });
     
     if (diffProc.stdout) {
-        console.log("Git diff output:");
-        console.log(diffProc.stdout);
+        console.error(diffProc.stdout);
     }
-    console.error(
-        `ERROR: There are diffs in regeneration. Please run 'inv regenerate' and re-run. You may also have to remove 'node_modules' and re-run 'npm install' to get the latest testserver.`,
-    );
     process.exit(1);
 }
