@@ -1,8 +1,8 @@
 ---
-changeKind: internal
+changeKind: dependencies
 packages:
   - "@autorest/python"
   - "@azure-tools/typespec-python"
 ---
 
-Bump `cross-spawn` to `>=7.0.5`
+Bump dependency TCGC 0.57.2

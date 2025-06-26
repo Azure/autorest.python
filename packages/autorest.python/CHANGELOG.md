@@ -1,5 +1,22 @@
 # Release
 
+## 6.35.3
+
+### Bump dependencies
+
+- Regular release
+
+## 6.35.2
+
+No changes, version bump only.
+
+## 6.35.1
+
+### Bump dependencies
+
+- Bump typespec
+
+
 ## 6.35.0
 
 ### Features

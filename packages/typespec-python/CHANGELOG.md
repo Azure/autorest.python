@@ -1,5 +1,24 @@
 # Release
 
+## 0.45.3
+
+### Bump dependencies
+
+- [#3103](https://github.com/Azure/autorest.python/pull/3103) Add support for `validate-versioning` flag, so users can toggle whether they get api versioning validation
+- [#3103](https://github.com/Azure/autorest.python/pull/3103) Validate api versions by looking at ordering of api versions from spec
+
+
+## 0.45.2
+
+No changes, version bump only.
+
+## 0.45.1
+
+### Bump dependencies
+
+- Bump typespec
+
+
 ## 0.45.0
 
 ### Features
