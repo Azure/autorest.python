@@ -12,13 +12,14 @@ schedules:
 
 pr: none
 
-pool:
-  name: "azsdk-pool-mms-ubuntu-2004-general"
-  vmImage: "MMSUbuntu20.04"
-
 variables:
-  - group: Release Secrets for GitHub
+  - template: /eng/pipelines/templates/variables/image.yml
+  - name: group
+    value: Release Secrets for GitHub
 
+pool:
+  name: $(LINUXPOOL)
+  demands: ImageOverride -equals $(LINUXVMIMAGE)
 
 resources:
   repositories:

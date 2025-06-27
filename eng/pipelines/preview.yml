@@ -30,11 +30,13 @@ resources:
       ref: refs/heads/main
 
 variables:
-  PythonVersion: "3.10"
+  - template: /eng/pipelines/templates/variables/image.yml
+  - name: PythonVersion
+    value: "3.10"
 
 pool:
-  name: azsdk-pool-mms-ubuntu-2004-general
-  vmImage: MMSUbuntu20.04
+  name: $(LINUXPOOL)
+  demands: ImageOverride -equals $(LINUXVMIMAGE)
 
 extends:
   template: eng/pipelines/templates/stages/archetype-autorest-preview.yml@azure-sdk-tools
