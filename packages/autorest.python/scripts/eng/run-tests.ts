@@ -46,7 +46,20 @@ const commandToRun = argv.command || "all";
 
 function getCommand(command: string, folder: string, name?: string): string {
     if (!validCommands.includes(command)) throw new Error(`Unknown command '${command}'.`);
-    const retval = `FOLDER=${folder} tox -c ./test/${folder}/tox.ini -e ${command}`;
+
+    // Check if running on Windows
+    const isWindows = process.platform === "win32";
+    const baseCommand = `tox -c ./test/${folder}/tox.ini -e ${command}`;
+
+    let retval: string;
+    if (isWindows) {
+        // Windows command format: set FOLDER=value && command
+        retval = `set FOLDER=${folder} && ${baseCommand}`;
+    } else {
+        // Unix/Linux/macOS format: FOLDER=value command
+        retval = `FOLDER=${folder} ${baseCommand}`;
+    }
+
     if (name) {
         return `${retval} -- -f ${name}`;
     }
