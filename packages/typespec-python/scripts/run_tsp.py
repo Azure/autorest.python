@@ -27,7 +27,7 @@ if __name__ == "__main__":
         try:
             import debugpy  # pylint: disable=import-outside-toplevel
         except ImportError:
-            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
+            raise SystemExit("Please install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
         debugpy.listen(("localhost", 5678))
