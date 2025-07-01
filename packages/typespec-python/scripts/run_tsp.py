@@ -4,11 +4,11 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
-import venv
 import logging
 from pathlib import Path
 from pygen import preprocess, codegen
 from pygen.utils import parse_args
+from package_manager import create_venv_with_package_manager
 
 _ROOT_DIR = Path(__file__).parent.parent
 
@@ -20,8 +20,7 @@ if __name__ == "__main__":
 
     assert venv_preexists  # Otherwise install was not done
 
-    env_builder = venv.EnvBuilder(with_pip=True)
-    venv_context = env_builder.ensure_directories(venv_path)
+    venv_context = create_venv_with_package_manager(venv_path)
 
     if "--debug" in sys.argv or "--debug=true" in sys.argv:
         try:
