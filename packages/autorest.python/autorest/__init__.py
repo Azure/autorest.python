@@ -18,7 +18,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class ReaderAndWriterAutorest(ReaderAndWriter):
-    def __init__(self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI, **kwargs) -> None:
+    def __init__(self, *, output_folder: Union[str, Path], autorestapi: AutorestAPI) -> None:
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
@@ -35,11 +35,9 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
 class PluginAutorest(Plugin, ReaderAndWriterAutorest):
     """For our Autorest plugins, we want to take autorest api as input as options, then pass it to the Plugin"""
 
-    def __init__(self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path], **kwargs) -> None:
-        self._autorestapi = autorestapi
-        options = self.get_options()
-        options.pop("output_folder", None)  # Remove output_folder from options if it exists
-        super().__init__(autorestapi=autorestapi, output_folder=output_folder, **options)
+    def __init__(self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]) -> None:
+        super().__init__(autorestapi=autorestapi, output_folder=output_folder)
+        self.options = OptionsDict(self.get_options())
 
     @abstractmethod
     def get_options(self) -> Dict[str, Any]:
