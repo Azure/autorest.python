@@ -1,5 +1,12 @@
 # Release
 
+## 0.45.5
+
+### Features
+
+- [#3116](https://github.com/Azure/autorest.python/pull/3116) [typespec-python] Add support for uv package manager alongside pip
+
+
 ## 0.45.4
 
 ### Bump dependencies
