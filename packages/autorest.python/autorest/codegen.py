@@ -77,7 +77,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
                 "only-path-and-body-params-positional"
             ),
             "combine-operation-files": self._autorestapi.get_boolean_value("combine-operation-files"),
-            "package-mode": self._autorestapi.get_value("package-mode"),
+            "package-mode": self._autorestapi.get_value("package-mode") or None,
             "package-pprint-name": self._autorestapi.get_value("package-pprint-name"),
             "packaging-files-config": self._autorestapi.get_value("package-configuration"),
             "default-optional-constants-to-none": self._autorestapi.get_boolean_value(
