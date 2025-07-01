@@ -1,5 +1,9 @@
 # Release
 
+## 6.35.5
+
+No changes, version bump only.
+
 ## 6.35.4
 
 ### Bump dependencies
