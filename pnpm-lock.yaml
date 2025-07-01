@@ -60,8 +60,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.12.4
-        version: 0.12.4(zqlw4u2idnbcqieabzlhuf7frq)
+        specifier: 0.13.0-dev.2
+        version: 0.13.0-dev.2(zqlw4u2idnbcqieabzlhuf7frq)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -82,8 +82,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.12.4
-        version: 0.12.4(zqlw4u2idnbcqieabzlhuf7frq)
+        specifier: 0.13.0-dev.2
+        version: 0.13.0-dev.2(zqlw4u2idnbcqieabzlhuf7frq)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1684,8 +1684,8 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.1.0
 
-  '@typespec/http-client-python@0.12.4':
-    resolution: {integrity: sha512-jNS1zaqCgUbCfvf1N8AQb6w0XwrXgN95Z5CqUkmhzik7jAZY9OxFuIQbYGtv2yB4+K/cBgfuaNEc8T4j9t0hqQ==}
+  '@typespec/http-client-python@0.13.0-dev.2':
+    resolution: {integrity: sha512-fVWDyGSHgpvV7vvYlhjEecU7UPXj5Uw9mvVdOq9MXiioQ/+8wBmLwSeBKsSkQnZeEEN8RjNLzPc1g0xW4teScw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.56.0 <1.0.0'
@@ -6437,7 +6437,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.1.0(@types/node@22.13.17)
 
-  '@typespec/http-client-python@0.12.4(zqlw4u2idnbcqieabzlhuf7frq)':
+  '@typespec/http-client-python@0.13.0-dev.2(zqlw4u2idnbcqieabzlhuf7frq)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.57.0(y57gch43lkhene77dcdsarymam)
       '@azure-tools/typespec-azure-core': 0.57.0(@typespec/compiler@1.1.0(@types/node@22.13.17))(@typespec/http@1.1.0(@typespec/compiler@1.1.0(@types/node@22.13.17))(@typespec/streams@0.71.0(@typespec/compiler@1.1.0(@types/node@22.13.17))))(@typespec/rest@0.71.0(@typespec/compiler@1.1.0(@types/node@22.13.17))(@typespec/http@1.1.0(@typespec/compiler@1.1.0(@types/node@22.13.17))(@typespec/streams@0.71.0(@typespec/compiler@1.1.0(@types/node@22.13.17)))))
