@@ -190,7 +190,7 @@ def build_put_kitten_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
+class _MultipleInheritanceServiceClientOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleInheritanceServiceClientConfiguration]
 ):
 

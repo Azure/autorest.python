@@ -16,14 +16,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import SecurityKeySwaggerCredentialFlagConfiguration
-from .operations import SecurityKeySwaggerCredentialFlagOperationsMixin
+from .operations import _SecurityKeySwaggerCredentialFlagOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
 class SecurityKeySwaggerCredentialFlag(
-    SecurityKeySwaggerCredentialFlagOperationsMixin
+    _SecurityKeySwaggerCredentialFlagOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 

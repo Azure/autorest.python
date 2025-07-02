@@ -19,13 +19,13 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutorestSecurityKeyConfiguration
-from .operations import AutorestSecurityKeyOperationsMixin
+from .operations import _AutorestSecurityKeyOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutorestSecurityKey(AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AutorestSecurityKey(_AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

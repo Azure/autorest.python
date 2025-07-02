@@ -17,11 +17,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
-from .operations import SecurityAadSwaggerCredentialFlagOperationsMixin
+from .operations import _SecurityAadSwaggerCredentialFlagOperationsMixin
 
 
 class SecurityAadSwaggerCredentialFlag(
-    SecurityAadSwaggerCredentialFlagOperationsMixin
+    _SecurityAadSwaggerCredentialFlagOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 

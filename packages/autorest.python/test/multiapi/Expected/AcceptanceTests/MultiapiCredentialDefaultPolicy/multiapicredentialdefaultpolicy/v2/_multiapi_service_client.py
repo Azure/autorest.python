@@ -19,10 +19,10 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from . import models as _models
 from ._configuration import MultiapiServiceClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
+from .operations import OperationGroupOneOperations, OperationGroupTwoOperations, _MultiapiServiceClientOperationsMixin
 
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+class MultiapiServiceClient(_MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations

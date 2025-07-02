@@ -17,11 +17,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import AutoRestResourceFlatteningTestServiceOperationsMixin
+from .operations import _AutoRestResourceFlatteningTestServiceOperationsMixin
 
 
 class AutoRestResourceFlatteningTestService(
-    AutoRestResourceFlatteningTestServiceOperationsMixin
+    _AutoRestResourceFlatteningTestServiceOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Resource Flattening for AutoRest.
 

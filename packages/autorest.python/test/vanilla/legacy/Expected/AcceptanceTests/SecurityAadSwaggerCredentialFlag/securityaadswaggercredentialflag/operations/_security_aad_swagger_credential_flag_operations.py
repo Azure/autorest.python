@@ -39,7 +39,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
+class _SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SecurityAadSwaggerCredentialFlagConfiguration]
 ):
 

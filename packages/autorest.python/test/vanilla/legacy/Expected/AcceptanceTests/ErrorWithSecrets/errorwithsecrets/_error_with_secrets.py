@@ -17,10 +17,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import ErrorWithSecretsConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ErrorWithSecretsOperationsMixin
+from .operations import _ErrorWithSecretsOperationsMixin
 
 
-class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ErrorWithSecrets(_ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

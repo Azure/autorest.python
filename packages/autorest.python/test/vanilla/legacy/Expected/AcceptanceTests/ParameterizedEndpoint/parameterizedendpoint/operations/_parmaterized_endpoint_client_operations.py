@@ -39,7 +39,7 @@ def build_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ParmaterizedEndpointClientOperationsMixin(  # pylint: disable=name-too-long
+class _ParmaterizedEndpointClientOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ParmaterizedEndpointClientConfiguration]
 ):
 

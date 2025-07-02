@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AnythingClientConfiguration
-from ._operations import AnythingClientOperationsMixin
+from ._operations import _AnythingClientOperationsMixin
 
 
-class AnythingClient(AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AnythingClient(_AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic anything types. Those schemas without types can be anything:
     primitive, object, array.
 

@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._multiapi_service_client_operations import MultiapiServiceClientOperationsMixin  # type: ignore
+from ._multiapi_service_client_operations import _MultiapiServiceClientOperationsMixin  # type: ignore
 from ._operation_group_one_operations import OperationGroupOneOperations  # type: ignore
 from ._operation_group_two_operations import OperationGroupTwoOperations  # type: ignore
 
@@ -21,7 +21,7 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "MultiapiServiceClientOperationsMixin",
+    "_MultiapiServiceClientOperationsMixin",
     "OperationGroupOneOperations",
     "OperationGroupTwoOperations",
 ]

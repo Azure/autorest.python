@@ -17,10 +17,12 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestReportServiceConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import AutoRestReportServiceOperationsMixin
+from .operations import _AutoRestReportServiceOperationsMixin
 
 
-class AutoRestReportService(AutoRestReportServiceOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AutoRestReportService(
+    _AutoRestReportServiceOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

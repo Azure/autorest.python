@@ -15,14 +15,14 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutorestSecurityAadConfiguration
-from ._operations import AutorestSecurityAadOperationsMixin
+from ._operations import _AutorestSecurityAadOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutorestSecurityAad(AutorestSecurityAadOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AutorestSecurityAad(_AutorestSecurityAadOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

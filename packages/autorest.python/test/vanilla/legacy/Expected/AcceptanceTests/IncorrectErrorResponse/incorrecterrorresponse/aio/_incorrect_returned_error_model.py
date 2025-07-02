@@ -17,11 +17,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import IncorrectReturnedErrorModelConfiguration
-from .operations import IncorrectReturnedErrorModelOperationsMixin
+from .operations import _IncorrectReturnedErrorModelOperationsMixin
 
 
 class IncorrectReturnedErrorModel(
-    IncorrectReturnedErrorModelOperationsMixin
+    _IncorrectReturnedErrorModelOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
     errors.

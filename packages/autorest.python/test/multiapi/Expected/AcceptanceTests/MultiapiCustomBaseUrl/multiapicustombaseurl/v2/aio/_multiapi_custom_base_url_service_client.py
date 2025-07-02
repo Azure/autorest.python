@@ -17,13 +17,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from .operations import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from .operations import _MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOperationsMixin):
+class MultiapiCustomBaseUrlServiceClient(_MultiapiCustomBaseUrlServiceClientOperationsMixin):
     """Service client for multiapi custom base url testing.
 
     :param credential: Credential needed for the client to connect to Azure. Required.

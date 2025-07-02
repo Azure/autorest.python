@@ -16,10 +16,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import MergePatchJsonClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import MergePatchJsonClientOperationsMixin
+from .operations import _MergePatchJsonClientOperationsMixin
 
 
-class MergePatchJsonClient(MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MergePatchJsonClient(_MergePatchJsonClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing merge patch json.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

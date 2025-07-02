@@ -13,7 +13,7 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 from ._import_operations_operations import ImportOperations  # type: ignore
-from ._reserved_words_client_operations import ReservedWordsClientOperationsMixin  # type: ignore
+from ._reserved_words_client_operations import _ReservedWordsClientOperationsMixin  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -21,7 +21,7 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "ImportOperations",
-    "ReservedWordsClientOperationsMixin",
+    "_ReservedWordsClientOperationsMixin",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

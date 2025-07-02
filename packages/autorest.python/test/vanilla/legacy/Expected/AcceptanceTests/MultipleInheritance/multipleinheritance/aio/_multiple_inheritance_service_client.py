@@ -17,11 +17,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultipleInheritanceServiceClientConfiguration
-from .operations import MultipleInheritanceServiceClientOperationsMixin
+from .operations import _MultipleInheritanceServiceClientOperationsMixin
 
 
 class MultipleInheritanceServiceClient(
-    MultipleInheritanceServiceClientOperationsMixin
+    _MultipleInheritanceServiceClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for multiinheritance client testing.
 
