@@ -50,33 +50,33 @@ jobs:
     strategy:
       matrix:
         Linux_Python3.9:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.9"
         Windows_Python3.9:
-          Pool: ${{ variables.WINDOWSPOOL }}
           OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.9"
         Linux_Python3.10:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python3.11:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
         Linux_Python3.12:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.12"
         Windows_Python3.12:
-          Pool: ${{ variables.WINDOWSPOOL }}
           OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
@@ -149,33 +149,33 @@ jobs:
     strategy:
       matrix:
         Linux_Python3.9:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.9"
         Windows_Python3.9:
-          Pool: ${{ variables.WINDOWSPOOL }}
           OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.9"
         Linux_Python310:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python311:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
         Linux_Python312:
-          Pool: ${{ variables.LINUXPOOL }}
           OSName: "Linux"
+          Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.12"
         Windows_Python312:
-          Pool: ${{ variables.WINDOWSPOOL }}
           OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
