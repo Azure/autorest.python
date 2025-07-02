@@ -56,9 +56,8 @@ jobs:
           PythonVersion: "3.9"
         Windows_Python3.9:
           OSName: "Windows"
-          # TODO: Update to WINDOWSPOOL and WINDOWSVMIMAGE once tests pass
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.9"
         Linux_Python3.10:
           OSName: "Linux"
@@ -77,9 +76,8 @@ jobs:
           PythonVersion: "3.12"
         Windows_Python3.12:
           OSName: "Windows"
-          # TODO: Update to WINDOWSPOOL and WINDOWSVMIMAGE once tests pass
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
     pool:
@@ -157,9 +155,8 @@ jobs:
           PythonVersion: "3.9"
         Windows_Python3.9:
           OSName: "Windows"
-          # TODO: Update to WINDOWSPOOL and WINDOWSVMIMAGE once tests pass
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.9"
         Linux_Python310:
           OSName: "Linux"
@@ -178,9 +175,8 @@ jobs:
           PythonVersion: "3.12"
         Windows_Python312:
           OSName: "Windows"
-          # TODO: Update to WINDOWSPOOL and WINDOWSVMIMAGE once tests pass
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
     pool:
