@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ResiliencyServiceDrivenClientConfiguration
-from ._operations import ResiliencyServiceDrivenClientOperationsMixin
+from ._operations import _ResiliencyServiceDrivenClientOperationsMixin
 
 
-class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):
+class ResiliencyServiceDrivenClient(_ResiliencyServiceDrivenClientOperationsMixin):
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 

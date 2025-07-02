@@ -56,7 +56,9 @@ def build_custom_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class CustomClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], CustomClientConfiguration]):
+class _CustomClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], CustomClientConfiguration]
+):
 
     @distributed_trace
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

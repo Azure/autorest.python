@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ConditionalRequestClientConfiguration
-from ._operations import ConditionalRequestClientOperationsMixin
+from ._operations import _ConditionalRequestClientOperationsMixin
 
 
 class ConditionalRequestClient(
-    ConditionalRequestClientOperationsMixin
+    _ConditionalRequestClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates conditional request headers.
 

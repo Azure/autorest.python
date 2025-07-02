@@ -9,10 +9,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RepeatabilityClientConfiguration
-from ._operations import RepeatabilityClientOperationsMixin
+from ._operations import _RepeatabilityClientOperationsMixin
 
 
-class RepeatabilityClient(RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RepeatabilityClient(_RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates OASIS repeatability headers.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

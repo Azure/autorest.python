@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ReturnTypeChangedFromClientConfiguration
-from ._operations import ReturnTypeChangedFromClientOperationsMixin
+from ._operations import _ReturnTypeChangedFromClientOperationsMixin
 
 
 class ReturnTypeChangedFromClient(
-    ReturnTypeChangedFromClientOperationsMixin
+    _ReturnTypeChangedFromClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@returnTypeChangedFrom`` decorator.
 

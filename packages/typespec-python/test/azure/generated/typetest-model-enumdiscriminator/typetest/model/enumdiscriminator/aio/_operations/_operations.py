@@ -47,7 +47,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class EnumDiscriminatorClientOperationsMixin(
+class _EnumDiscriminatorClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], EnumDiscriminatorClientConfiguration]
 ):
 

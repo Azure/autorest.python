@@ -9,11 +9,11 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import CustomClientConfiguration
-from ._operations import CustomClientOperationsMixin
+from ._operations import _CustomClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class CustomClient(CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class CustomClient(_CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with generic HTTP auth.
 
     :param credential: Credential used to authenticate requests to the service. Required.

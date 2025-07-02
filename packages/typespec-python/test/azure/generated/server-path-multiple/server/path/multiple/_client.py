@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import MultipleClientConfiguration
-from ._operations import MultipleClientOperationsMixin
+from ._operations import _MultipleClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class MultipleClient(MultipleClientOperationsMixin):
+class MultipleClient(_MultipleClientOperationsMixin):
     """MultipleClient.
 
     :param endpoint: Pass in `http://localhost:3000 <http://localhost:3000>`_ for endpoint.

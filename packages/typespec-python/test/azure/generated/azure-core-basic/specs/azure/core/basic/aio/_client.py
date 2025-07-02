@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import BasicClientConfiguration
-from ._operations import BasicClientOperationsMixin
+from ._operations import _BasicClientOperationsMixin
 
 
-class BasicClient(BasicClientOperationsMixin):
+class BasicClient(_BasicClientOperationsMixin):
     """Illustrates bodies templated with Azure Core.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

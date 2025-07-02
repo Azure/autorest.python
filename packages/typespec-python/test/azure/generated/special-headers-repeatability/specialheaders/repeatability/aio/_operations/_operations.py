@@ -30,7 +30,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class RepeatabilityClientOperationsMixin(
+class _RepeatabilityClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], RepeatabilityClientConfiguration]
 ):
 

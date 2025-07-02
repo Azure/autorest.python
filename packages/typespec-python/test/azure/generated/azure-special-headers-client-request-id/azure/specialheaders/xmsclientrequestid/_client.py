@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import XmsClientRequestIdClientConfiguration
-from ._operations import XmsClientRequestIdClientOperationsMixin
+from ._operations import _XmsClientRequestIdClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class XmsClientRequestIdClient(
-    XmsClientRequestIdClientOperationsMixin
+    _XmsClientRequestIdClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Azure client request id header configurations.
 

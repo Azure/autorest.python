@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientNamespaceFirstClientConfiguration
-from ._operations import ClientNamespaceFirstClientOperationsMixin
+from ._operations import _ClientNamespaceFirstClientOperationsMixin
 
 
 class ClientNamespaceFirstClient(
-    ClientNamespaceFirstClientOperationsMixin
+    _ClientNamespaceFirstClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """ClientNamespaceFirstClient.
 

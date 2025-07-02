@@ -25,15 +25,15 @@ from ._configuration import (
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     ChildClientOperations,
-    HeaderParamClientOperationsMixin,
-    MixedParamsClientOperationsMixin,
-    MultipleParamsClientOperationsMixin,
-    ParamAliasClientOperationsMixin,
-    PathParamClientOperationsMixin,
+    _HeaderParamClientOperationsMixin,
+    _MixedParamsClientOperationsMixin,
+    _MultipleParamsClientOperationsMixin,
+    _ParamAliasClientOperationsMixin,
+    _PathParamClientOperationsMixin,
 )
 
 
-class HeaderParamClient(HeaderParamClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class HeaderParamClient(_HeaderParamClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Client for testing header parameter moved to client level.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
@@ -109,7 +109,7 @@ class HeaderParamClient(HeaderParamClientOperationsMixin):  # pylint: disable=cl
         self._client.__exit__(*exc_details)
 
 
-class MultipleParamsClient(MultipleParamsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MultipleParamsClient(_MultipleParamsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """MultipleParamsClient.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
@@ -188,7 +188,7 @@ class MultipleParamsClient(MultipleParamsClientOperationsMixin):  # pylint: disa
         self._client.__exit__(*exc_details)
 
 
-class MixedParamsClient(MixedParamsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MixedParamsClient(_MixedParamsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """MixedParamsClient.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
@@ -264,7 +264,7 @@ class MixedParamsClient(MixedParamsClientOperationsMixin):  # pylint: disable=cl
         self._client.__exit__(*exc_details)
 
 
-class PathParamClient(PathParamClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class PathParamClient(_PathParamClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """PathParamClient.
 
     :param blob_name: The name of the blob. This parameter is used as a path parameter in all
@@ -340,7 +340,7 @@ class PathParamClient(PathParamClientOperationsMixin):  # pylint: disable=client
         self._client.__exit__(*exc_details)
 
 
-class ParamAliasClient(ParamAliasClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ParamAliasClient(_ParamAliasClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ParamAliasClient.
 
     :param blob_name: Blob name for the client. Required.

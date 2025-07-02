@@ -8,11 +8,11 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import UsageClientConfiguration
-from ._operations import UsageClientOperationsMixin
+from ._operations import _UsageClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class UsageClient(UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class UsageClient(_UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates usage of Record in different places(Operation parameters, return type or both).
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

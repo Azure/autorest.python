@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NotVersionedClientConfiguration
-from ._operations import NotVersionedClientOperationsMixin
+from ._operations import _NotVersionedClientOperationsMixin
 
 
-class NotVersionedClient(NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NotVersionedClient(_NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-versioned server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

@@ -125,7 +125,7 @@ def build_nested_discriminator_get_wrong_discriminator_request(  # pylint: disab
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class NestedDiscriminatorClientOperationsMixin(
+class _NestedDiscriminatorClientOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NestedDiscriminatorClientConfiguration]
 ):
 

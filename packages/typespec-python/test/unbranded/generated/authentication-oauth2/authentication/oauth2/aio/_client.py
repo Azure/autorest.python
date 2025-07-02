@@ -9,13 +9,13 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OAuth2ClientConfiguration
-from ._operations import OAuth2ClientOperationsMixin
+from ._operations import _OAuth2ClientOperationsMixin
 
 if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential
 
 
-class OAuth2Client(OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class OAuth2Client(_OAuth2ClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Required.

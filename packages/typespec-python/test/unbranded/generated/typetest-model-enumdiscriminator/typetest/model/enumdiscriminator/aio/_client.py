@@ -9,11 +9,11 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import EnumDiscriminatorClientConfiguration
-from ._operations import EnumDiscriminatorClientOperationsMixin
+from ._operations import _EnumDiscriminatorClientOperationsMixin
 
 
 class EnumDiscriminatorClient(
-    EnumDiscriminatorClientOperationsMixin
+    _EnumDiscriminatorClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance with enum discriminator.
 

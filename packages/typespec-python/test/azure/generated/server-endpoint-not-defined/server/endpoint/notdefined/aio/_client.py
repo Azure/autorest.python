@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NotDefinedClientConfiguration
-from ._operations import NotDefinedClientOperationsMixin
+from ._operations import _NotDefinedClientOperationsMixin
 
 
-class NotDefinedClient(NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NotDefinedClient(_NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates server doesn't define endpoint. Client should automatically add an endpoint to let
     user pass in.
 

@@ -12,16 +12,16 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ClientAClientOperationsMixin  # type: ignore
-from ._operations import ClientBClientOperationsMixin  # type: ignore
+from ._operations import _ClientAClientOperationsMixin  # type: ignore
+from ._operations import _ClientBClientOperationsMixin  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ClientAClientOperationsMixin",
-    "ClientBClientOperationsMixin",
+    "_ClientAClientOperationsMixin",
+    "_ClientBClientOperationsMixin",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

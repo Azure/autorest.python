@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RenamedFromClientConfiguration
-from .operations import NewInterfaceOperations, RenamedFromClientOperationsMixin
+from .operations import NewInterfaceOperations, _RenamedFromClientOperationsMixin
 
 
-class RenamedFromClient(RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RenamedFromClient(_RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@renamedFrom`` decorator.
 
     :ivar new_interface: NewInterfaceOperations operations

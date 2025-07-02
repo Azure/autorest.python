@@ -52,7 +52,7 @@ def build_repeatability_immediate_success_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RepeatabilityClientOperationsMixin(
+class _RepeatabilityClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RepeatabilityClientConfiguration]
 ):
 

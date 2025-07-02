@@ -17,10 +17,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientAClientConfiguration, ClientBClientConfiguration
-from ._operations import ClientAClientOperationsMixin, ClientBClientOperationsMixin
+from ._operations import _ClientAClientOperationsMixin, _ClientBClientOperationsMixin
 
 
-class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientAClient(_ClientAClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ClientAClient.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
@@ -101,7 +101,7 @@ class ClientAClient(ClientAClientOperationsMixin):  # pylint: disable=client-acc
         await self._client.__aexit__(*exc_details)
 
 
-class ClientBClient(ClientBClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientBClient(_ClientBClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """ClientBClient.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

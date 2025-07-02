@@ -9,10 +9,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import VisibilityClientConfiguration
-from ._operations import VisibilityClientOperationsMixin
+from ._operations import _VisibilityClientOperationsMixin
 
 
-class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class VisibilityClient(_VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates models with visibility properties.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

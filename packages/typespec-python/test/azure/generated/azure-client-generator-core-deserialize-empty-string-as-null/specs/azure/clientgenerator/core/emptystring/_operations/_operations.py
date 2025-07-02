@@ -51,7 +51,7 @@ def build_deserialize_empty_string_as_null_get_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class DeserializeEmptyStringAsNullClientOperationsMixin(  # pylint: disable=name-too-long
+class _DeserializeEmptyStringAsNullClientOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DeserializeEmptyStringAsNullClientConfiguration]
 ):
 

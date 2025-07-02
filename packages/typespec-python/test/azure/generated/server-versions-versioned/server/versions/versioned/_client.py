@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import VersionedClientConfiguration
-from ._operations import VersionedClientOperationsMixin
+from ._operations import _VersionedClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class VersionedClient(VersionedClientOperationsMixin):
+class VersionedClient(_VersionedClientOperationsMixin):
     """Illustrates versioned server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

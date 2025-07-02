@@ -64,7 +64,7 @@ def build_rpc_long_running_rpc_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class RpcClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RpcClientConfiguration]):
+class _RpcClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RpcClientConfiguration]):
 
     def _long_running_rpc_initial(
         self, body: Union[_models.GenerationOptions, JSON, IO[bytes]], **kwargs: Any

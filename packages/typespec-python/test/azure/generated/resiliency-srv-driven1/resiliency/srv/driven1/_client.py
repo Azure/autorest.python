@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ResiliencyServiceDrivenClientConfiguration
-from ._operations import ResiliencyServiceDrivenClientOperationsMixin
+from ._operations import _ResiliencyServiceDrivenClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class ResiliencyServiceDrivenClient(ResiliencyServiceDrivenClientOperationsMixin):
+class ResiliencyServiceDrivenClient(_ResiliencyServiceDrivenClientOperationsMixin):
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
     with full client support.
 

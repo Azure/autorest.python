@@ -9,11 +9,11 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NotDiscriminatedClientConfiguration
-from ._operations import NotDiscriminatedClientOperationsMixin
+from ._operations import _NotDiscriminatedClientOperationsMixin
 
 
 class NotDiscriminatedClient(
-    NotDiscriminatedClientOperationsMixin
+    _NotDiscriminatedClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-discriminated inheritance model.
 

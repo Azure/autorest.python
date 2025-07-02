@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DeserializeEmptyStringAsNullClientConfiguration
-from ._operations import DeserializeEmptyStringAsNullClientOperationsMixin
+from ._operations import _DeserializeEmptyStringAsNullClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class DeserializeEmptyStringAsNullClient(
-    DeserializeEmptyStringAsNullClientOperationsMixin
+    _DeserializeEmptyStringAsNullClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test decorator @deserializeEmptyStringAsNull.
 

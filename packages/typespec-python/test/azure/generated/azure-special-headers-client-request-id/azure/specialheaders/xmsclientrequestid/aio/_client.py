@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import XmsClientRequestIdClientConfiguration
-from ._operations import XmsClientRequestIdClientOperationsMixin
+from ._operations import _XmsClientRequestIdClientOperationsMixin
 
 
 class XmsClientRequestIdClient(
-    XmsClientRequestIdClientOperationsMixin
+    _XmsClientRequestIdClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Azure client request id header configurations.
 

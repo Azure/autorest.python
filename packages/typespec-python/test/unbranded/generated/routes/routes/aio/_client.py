@@ -11,10 +11,10 @@ from .._utils.serialization import Deserializer, Serializer
 from ..pathparameters.aio.operations import PathParametersOperations
 from ..queryparameters.aio.operations import QueryParametersOperations
 from ._configuration import RoutesClientConfiguration
-from .operations import InInterfaceOperations, RoutesClientOperationsMixin
+from .operations import InInterfaceOperations, _RoutesClientOperationsMixin
 
 
-class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Define scenario in building the http route/uri.
 
     :ivar path_parameters: PathParametersOperations operations

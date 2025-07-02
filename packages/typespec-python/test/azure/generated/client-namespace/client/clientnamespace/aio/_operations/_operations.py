@@ -34,7 +34,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
+class _ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientNamespaceFirstClientConfiguration]
 ):
 

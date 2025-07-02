@@ -76,7 +76,7 @@ def build_flatten_property_put_nested_flatten_model_request(  # pylint: disable=
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class FlattenPropertyClientOperationsMixin(
+class _FlattenPropertyClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], FlattenPropertyClientConfiguration]
 ):
 

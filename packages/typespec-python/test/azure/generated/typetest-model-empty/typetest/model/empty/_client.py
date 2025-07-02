@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import EmptyClientConfiguration
-from ._operations import EmptyClientOperationsMixin
+from ._operations import _EmptyClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class EmptyClient(EmptyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class EmptyClient(_EmptyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates usage of empty model used in operation's parameters and responses.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

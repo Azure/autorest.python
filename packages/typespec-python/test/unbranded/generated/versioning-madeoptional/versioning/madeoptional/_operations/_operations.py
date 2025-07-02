@@ -55,7 +55,7 @@ def build_made_optional_test_request(*, param: Optional[str] = None, **kwargs: A
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class MadeOptionalClientOperationsMixin(
+class _MadeOptionalClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MadeOptionalClientConfiguration]
 ):
 

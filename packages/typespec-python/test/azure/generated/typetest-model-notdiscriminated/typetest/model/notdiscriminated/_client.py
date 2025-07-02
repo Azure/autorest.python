@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NotDiscriminatedClientConfiguration
-from ._operations import NotDiscriminatedClientOperationsMixin
+from ._operations import _NotDiscriminatedClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class NotDiscriminatedClient(
-    NotDiscriminatedClientOperationsMixin
+    _NotDiscriminatedClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates not-discriminated inheritance model.
 

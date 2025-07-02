@@ -9,11 +9,11 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NestedDiscriminatorClientConfiguration
-from ._operations import NestedDiscriminatorClientOperationsMixin
+from ._operations import _NestedDiscriminatorClientOperationsMixin
 
 
 class NestedDiscriminatorClient(
-    NestedDiscriminatorClientOperationsMixin
+    _NestedDiscriminatorClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates multiple level inheritance with multiple discriminators.
 

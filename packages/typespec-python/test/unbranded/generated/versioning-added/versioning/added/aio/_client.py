@@ -9,10 +9,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AddedClientConfiguration
-from .operations import AddedClientOperationsMixin, InterfaceV2Operations
+from .operations import InterfaceV2Operations, _AddedClientOperationsMixin
 
 
-class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@added`` decorator.
 
     :ivar interface_v2: InterfaceV2Operations operations

@@ -16,10 +16,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import PageClientOperationsMixin, TwoModelsAsPageItemOperations
+from .operations import TwoModelsAsPageItemOperations, _PageClientOperationsMixin
 
 
-class PageClient(PageClientOperationsMixin):
+class PageClient(_PageClientOperationsMixin):
     """Illustrates bodies templated with Azure Core with paging support.
 
     :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations

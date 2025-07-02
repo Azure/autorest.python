@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import EnumDiscriminatorClientConfiguration
-from ._operations import EnumDiscriminatorClientOperationsMixin
+from ._operations import _EnumDiscriminatorClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class EnumDiscriminatorClient(
-    EnumDiscriminatorClientOperationsMixin
+    _EnumDiscriminatorClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance with enum discriminator.
 

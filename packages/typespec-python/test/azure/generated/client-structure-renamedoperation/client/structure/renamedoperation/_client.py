@@ -17,11 +17,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import RenamedOperationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import GroupOperations, RenamedOperationClientOperationsMixin
+from .operations import GroupOperations, _RenamedOperationClientOperationsMixin
 
 
 class RenamedOperationClient(
-    RenamedOperationClientOperationsMixin
+    _RenamedOperationClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """RenamedOperationClient.
 

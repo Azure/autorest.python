@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import TraitsClientConfiguration
-from ._operations import TraitsClientOperationsMixin
+from ._operations import _TraitsClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class TraitsClient(TraitsClientOperationsMixin):
+class TraitsClient(_TraitsClientOperationsMixin):
     """Illustrates Azure Core operation customizations by traits.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

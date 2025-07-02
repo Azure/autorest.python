@@ -15,12 +15,14 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BodyOptionalityClientConfiguration
-from ._operations import BodyOptionalityClientOperationsMixin
+from ._operations import _BodyOptionalityClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 from .optionalexplicit.operations import OptionalExplicitOperations
 
 
-class BodyOptionalityClient(BodyOptionalityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class BodyOptionalityClient(
+    _BodyOptionalityClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
     :ivar optional_explicit: OptionalExplicitOperations operations
