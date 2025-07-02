@@ -23,11 +23,11 @@ def get_code_model():
             "namespace": "namespace",
         },
         options={
-            "show_send_request": True,
-            "builders_visibility": "public",
-            "show_operations": True,
-            "models_mode": "dpg",
-            "azure_arm": False,
+            "show-send-request": True,
+            "builders-visibility": "public",
+            "show-operations": True,
+            "models-mode": "dpg",
+            "azure-arm": False,
         },
     )
 
