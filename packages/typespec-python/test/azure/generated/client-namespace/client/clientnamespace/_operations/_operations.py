@@ -51,7 +51,7 @@ def build_client_namespace_first_get_first_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class _ClientNamespaceFirstClientOperationsMixin(  # pylint: disable=name-too-long
+class _ClientNamespaceFirstClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientNamespaceFirstClientConfiguration]
 ):
 

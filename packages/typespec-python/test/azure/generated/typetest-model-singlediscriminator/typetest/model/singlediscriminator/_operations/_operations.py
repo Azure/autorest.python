@@ -146,7 +146,7 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class _SingleDiscriminatorClientOperationsMixin(  # pylint: disable=name-too-long
+class _SingleDiscriminatorClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SingleDiscriminatorClientConfiguration]
 ):
 

@@ -53,7 +53,7 @@ def build_get_report_request(*, qualifier: Optional[str] = None, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class _AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
+class _AutoRestReportServiceForAzureOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceForAzureConfiguration]
 ):
 

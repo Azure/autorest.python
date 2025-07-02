@@ -30,7 +30,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class _SecurityAadSwaggerCredentialFlagOperationsMixin(  # pylint: disable=name-too-long
+class _SecurityAadSwaggerCredentialFlagOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], SecurityAadSwaggerCredentialFlagConfiguration]
 ):
 

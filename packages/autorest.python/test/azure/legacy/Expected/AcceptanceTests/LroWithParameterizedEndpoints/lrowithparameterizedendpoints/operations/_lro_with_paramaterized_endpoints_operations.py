@@ -74,7 +74,7 @@ def build_poll_with_constant_parameterized_endpoints_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class _LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
+class _LROWithParamaterizedEndpointsOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], LROWithParamaterizedEndpointsConfiguration]
 ):
 

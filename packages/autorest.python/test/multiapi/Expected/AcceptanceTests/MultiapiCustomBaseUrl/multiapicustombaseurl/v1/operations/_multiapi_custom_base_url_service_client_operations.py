@@ -54,7 +54,7 @@ def build_test_request(*, id: int, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class _MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
+class _MultiapiCustomBaseUrlServiceClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultiapiCustomBaseUrlServiceClientConfiguration]
 ):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument

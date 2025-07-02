@@ -54,7 +54,7 @@ def build_auto_rest_report_service_for_azure_get_report_request(  # pylint: disa
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class _AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
+class _AutoRestReportServiceForAzureOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceForAzureConfiguration]
 ):
 

@@ -218,7 +218,7 @@ def build_put_simple_product_with_grouping_request(  # pylint: disable=name-too-
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class _AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
+class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 

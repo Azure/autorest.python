@@ -46,7 +46,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class _SingleDiscriminatorClientOperationsMixin(  # pylint: disable=name-too-long
+class _SingleDiscriminatorClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], SingleDiscriminatorClientConfiguration]
 ):
 

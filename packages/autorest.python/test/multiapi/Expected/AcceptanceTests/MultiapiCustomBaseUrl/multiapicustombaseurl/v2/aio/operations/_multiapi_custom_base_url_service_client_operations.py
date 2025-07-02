@@ -32,7 +32,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class _MultiapiCustomBaseUrlServiceClientOperationsMixin(  # pylint: disable=name-too-long
+class _MultiapiCustomBaseUrlServiceClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultiapiCustomBaseUrlServiceClientConfiguration]
 ):
     def _api_version(self, op_name: str) -> str:  # pylint: disable=unused-argument

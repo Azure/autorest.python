@@ -91,7 +91,7 @@ def build_resiliency_service_driven_from_one_optional_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class _ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
+class _ResiliencyServiceDrivenClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ResiliencyServiceDrivenClientConfiguration]
 ):
 

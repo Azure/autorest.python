@@ -53,7 +53,7 @@ def build_return_type_changed_from_test_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class _ReturnTypeChangedFromClientOperationsMixin(  # pylint: disable=name-too-long
+class _ReturnTypeChangedFromClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ReturnTypeChangedFromClientConfiguration]
 ):
 
