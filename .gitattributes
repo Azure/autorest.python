@@ -1,4 +1,4 @@
-gitattributes# Default: auto-detect text files and force LF line endings
+# Default: auto-detect text files and force LF line endings
 * text=auto eol=lf
 
 # Specific text files (these will inherit eol=lf from above)
