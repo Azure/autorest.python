@@ -25,7 +25,7 @@ class DPGClient(DPGClientGenerated):
         return Product(**response)
 
     @distributed_trace_async
-    async def post_model(self, mode: str, input: Union[IO, Input, JSON], **kwargs: Any) -> Product:
+    async def post_model(self, mode: str, input: Union[IO, Input, JSON], **kwargs: Any) -> Product:  # type: ignore
         response = await super().post_model(mode, input, **kwargs)
         return Product(**response)
 
