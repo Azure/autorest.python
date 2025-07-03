@@ -32,7 +32,7 @@ def build_not_defined_valid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class NotDefinedClientOperationsMixin(
+class _NotDefinedClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NotDefinedClientConfiguration]
 ):
 

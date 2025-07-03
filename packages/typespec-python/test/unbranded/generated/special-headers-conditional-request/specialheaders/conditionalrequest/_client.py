@@ -8,12 +8,12 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ConditionalRequestClientConfiguration
-from ._operations import ConditionalRequestClientOperationsMixin
+from ._operations._operations import _ConditionalRequestClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class ConditionalRequestClient(
-    ConditionalRequestClientOperationsMixin
+    _ConditionalRequestClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates conditional request headers.
 

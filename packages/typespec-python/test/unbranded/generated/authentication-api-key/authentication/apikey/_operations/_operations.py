@@ -49,7 +49,9 @@ def build_api_key_invalid_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ApiKeyClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ApiKeyClientConfiguration]):
+class _ApiKeyClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ApiKeyClientConfiguration]
+):
 
     def valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

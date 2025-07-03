@@ -342,7 +342,7 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(
+class _ServiceClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ServiceClientConfiguration]
 ):
 

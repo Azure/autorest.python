@@ -10,13 +10,13 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import UnionClientConfiguration
-from ._operations import UnionClientOperationsMixin
+from ._operations._operations import _UnionClientOperationsMixin
 
 if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential
 
 
-class UnionClient(UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class UnionClient(_UnionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Is either a key

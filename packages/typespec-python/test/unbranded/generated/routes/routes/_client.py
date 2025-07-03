@@ -9,12 +9,13 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import RoutesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import InInterfaceOperations, RoutesClientOperationsMixin
+from .operations import InInterfaceOperations
+from .operations._operations import _RoutesClientOperationsMixin
 from .pathparameters.operations import PathParametersOperations
 from .queryparameters.operations import QueryParametersOperations
 
 
-class RoutesClient(RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Define scenario in building the http route/uri.
 
     :ivar path_parameters: PathParametersOperations operations

@@ -16,10 +16,12 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import StatusCodeRangeClientConfiguration
-from ._operations import StatusCodeRangeClientOperationsMixin
+from ._operations._operations import _StatusCodeRangeClientOperationsMixin
 
 
-class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class StatusCodeRangeClient(
+    _StatusCodeRangeClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for range of status code.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

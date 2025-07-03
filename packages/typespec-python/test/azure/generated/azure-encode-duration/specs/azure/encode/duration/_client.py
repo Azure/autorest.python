@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DurationClientConfiguration
-from ._operations import DurationClientOperationsMixin
+from ._operations._operations import _DurationClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class DurationClient(DurationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class DurationClient(_DurationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for azure related encode decorator.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

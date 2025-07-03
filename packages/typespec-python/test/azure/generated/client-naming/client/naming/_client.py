@@ -16,10 +16,11 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NamingClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ClientModelOperations, NamingClientOperationsMixin, UnionEnumOperations
+from .operations import ClientModelOperations, UnionEnumOperations
+from .operations._operations import _NamingClientOperationsMixin
 
 
-class NamingClient(NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
 
     :ivar client_model: ClientModelOperations operations

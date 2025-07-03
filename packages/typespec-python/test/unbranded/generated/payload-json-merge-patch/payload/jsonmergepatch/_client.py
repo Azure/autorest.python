@@ -8,11 +8,11 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import JsonMergePatchClientConfiguration
-from ._operations import JsonMergePatchClientOperationsMixin
+from ._operations._operations import _JsonMergePatchClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class JsonMergePatchClient(JsonMergePatchClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class JsonMergePatchClient(_JsonMergePatchClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for merge-patch+json content-type.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

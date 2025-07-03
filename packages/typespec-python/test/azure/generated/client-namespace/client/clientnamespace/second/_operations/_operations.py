@@ -51,7 +51,7 @@ def build_client_namespace_second_get_second_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ClientNamespaceSecondClientOperationsMixin(  # pylint: disable=name-too-long
+class _ClientNamespaceSecondClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientNamespaceSecondClientConfiguration]
 ):
 

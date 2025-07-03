@@ -18,14 +18,14 @@ from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientLocationClientConfiguration
 from .operations import (
     ArchiveOperationsOperations,
-    ClientLocationClientOperationsMixin,
     MoveToExistingSubClientOperations,
     MoveToNewSubClientOperations,
     MoveToRootClientOperations,
 )
+from .operations._operations import _ClientLocationClientOperationsMixin
 
 
-class ClientLocationClient(ClientLocationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for @clientLocation decorator - moving operations between clients.
 
     :ivar move_to_existing_sub_client: MoveToExistingSubClientOperations operations

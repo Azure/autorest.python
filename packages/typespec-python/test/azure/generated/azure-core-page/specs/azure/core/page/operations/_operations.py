@@ -352,7 +352,7 @@ class TwoModelsAsPageItemOperations:
         return ItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageClientConfiguration]):
+class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageClientConfiguration]):
 
     @distributed_trace
     def list_with_page(self, **kwargs: Any) -> ItemPaged["_models.User"]:
