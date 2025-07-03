@@ -61,7 +61,7 @@ def build_recursive_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class RecursiveClientOperationsMixin(
+class _RecursiveClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RecursiveClientConfiguration]
 ):
 

@@ -139,7 +139,7 @@ def build_single_discriminator_get_legacy_model_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class SingleDiscriminatorClientOperationsMixin(
+class _SingleDiscriminatorClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], SingleDiscriminatorClientConfiguration]
 ):
 

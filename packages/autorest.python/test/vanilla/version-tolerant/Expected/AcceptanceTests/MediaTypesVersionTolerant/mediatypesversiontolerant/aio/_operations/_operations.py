@@ -40,7 +40,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
+class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MediaTypesClientConfiguration]
 ):
 

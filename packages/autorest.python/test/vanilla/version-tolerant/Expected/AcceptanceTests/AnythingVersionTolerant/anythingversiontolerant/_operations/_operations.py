@@ -117,7 +117,7 @@ def build_anything_put_array_request(*, json: Any, **kwargs: Any) -> HttpRequest
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class AnythingClientOperationsMixin(
+class _AnythingClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AnythingClientConfiguration]
 ):
 

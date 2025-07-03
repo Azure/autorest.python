@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import NestedDiscriminatorClientConfiguration
-from ._operations import NestedDiscriminatorClientOperationsMixin
+from ._operations._operations import _NestedDiscriminatorClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class NestedDiscriminatorClient(
-    NestedDiscriminatorClientOperationsMixin
+    _NestedDiscriminatorClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates multiple level inheritance with multiple discriminators.
 

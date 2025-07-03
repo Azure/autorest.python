@@ -30,7 +30,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutoRestReportServiceForAzureOperationsMixin(  # pylint: disable=name-too-long
+class _AutoRestReportServiceForAzureOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutoRestReportServiceForAzureConfiguration]
 ):
 

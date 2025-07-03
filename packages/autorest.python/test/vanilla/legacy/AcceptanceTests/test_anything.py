@@ -59,13 +59,13 @@ def test_put_array(client):
 
 
 def test_operation_groups():
-    from anything.operations import AnythingClientOperationsMixin
+    from anything.operations._anything_client_operations import _AnythingClientOperationsMixin
 
     with pytest.raises(ImportError):
         from anything.operations import _anything_client_operations_py3
 
     from anything.operations._anything_client_operations import (
-        AnythingClientOperationsMixin as AnythingClientOperationsMixinPy2,
+        _AnythingClientOperationsMixin as _AnythingClientOperationsMixinPy2,
     )
 
-    assert AnythingClientOperationsMixin == AnythingClientOperationsMixinPy2
+    assert _AnythingClientOperationsMixin == _AnythingClientOperationsMixinPy2

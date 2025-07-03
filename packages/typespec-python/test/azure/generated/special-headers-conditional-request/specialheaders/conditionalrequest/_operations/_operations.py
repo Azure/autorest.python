@@ -103,7 +103,7 @@ def build_conditional_request_post_if_unmodified_since_request(  # pylint: disab
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ConditionalRequestClientOperationsMixin(
+class _ConditionalRequestClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ConditionalRequestClientConfiguration]
 ):
 

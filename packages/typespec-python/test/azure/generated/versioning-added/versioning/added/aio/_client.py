@@ -16,10 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AddedClientConfiguration
-from .operations import AddedClientOperationsMixin, InterfaceV2Operations
+from .operations import InterfaceV2Operations
+from .operations._operations import _AddedClientOperationsMixin
 
 
-class AddedClient(AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@added`` decorator.
 
     :ivar interface_v2: InterfaceV2Operations operations

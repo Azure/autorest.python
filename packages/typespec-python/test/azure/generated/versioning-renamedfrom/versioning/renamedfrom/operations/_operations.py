@@ -215,7 +215,7 @@ class NewInterfaceOperations:
         return deserialized  # type: ignore
 
 
-class RenamedFromClientOperationsMixin(
+class _RenamedFromClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RenamedFromClientConfiguration]
 ):
 

@@ -39,7 +39,7 @@ def build_union_valid_token_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class UnionClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], UnionClientConfiguration]):
+class _UnionClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], UnionClientConfiguration]):
 
     def valid_key(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Check whether client is authenticated.

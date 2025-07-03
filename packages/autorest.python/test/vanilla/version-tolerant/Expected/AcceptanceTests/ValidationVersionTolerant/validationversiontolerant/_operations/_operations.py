@@ -138,7 +138,7 @@ def build_auto_rest_validation_test_post_with_constant_in_body_request(  # pylin
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(
+class _AutoRestValidationTestOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestValidationTestConfiguration]
 ):
 

@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AzureExampleClientConfiguration
-from ._operations import AzureExampleClientOperationsMixin
+from ._operations._operations import _AzureExampleClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class AzureExampleClient(AzureExampleClientOperationsMixin):
+class AzureExampleClient(_AzureExampleClientOperationsMixin):
     """AzureExampleClient.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MadeOptionalClientConfiguration
-from ._operations import MadeOptionalClientOperationsMixin
+from ._operations._operations import _MadeOptionalClientOperationsMixin
 
 
-class MadeOptionalClient(MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MadeOptionalClient(_MadeOptionalClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@madeOptional`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

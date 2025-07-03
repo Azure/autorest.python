@@ -118,7 +118,7 @@ def build_standard_export_request(name: str, *, format: str, **kwargs: Any) -> H
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class StandardClientOperationsMixin(
+class _StandardClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], StandardClientConfiguration]
 ):
 

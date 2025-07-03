@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import TraitsClientConfiguration
-from ._operations import TraitsClientOperationsMixin
+from ._operations._operations import _TraitsClientOperationsMixin
 
 
-class TraitsClient(TraitsClientOperationsMixin):
+class TraitsClient(_TraitsClientOperationsMixin):
     """Illustrates Azure Core operation customizations by traits.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

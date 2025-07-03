@@ -515,7 +515,9 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NamingClientConfiguration]):
+class _NamingClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NamingClientConfiguration]
+):
 
     @distributed_trace
     def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

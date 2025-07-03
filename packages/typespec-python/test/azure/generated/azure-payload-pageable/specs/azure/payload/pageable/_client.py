@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageableClientConfiguration
-from ._operations import PageableClientOperationsMixin
+from ._operations._operations import _PageableClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class PageableClient(PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class PageableClient(_PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing pageable.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

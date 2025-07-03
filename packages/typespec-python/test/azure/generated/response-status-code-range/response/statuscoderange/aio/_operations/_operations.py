@@ -35,7 +35,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class StatusCodeRangeClientOperationsMixin(
+class _StatusCodeRangeClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], StatusCodeRangeClientConfiguration]
 ):
 

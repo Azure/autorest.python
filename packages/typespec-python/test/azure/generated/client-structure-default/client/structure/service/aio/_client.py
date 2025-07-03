@@ -17,10 +17,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ServiceClientConfiguration
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, ServiceClientOperationsMixin
+from .operations import BarOperations, BazOperations, FooOperations, QuxOperations
+from .operations._operations import _ServiceClientOperationsMixin
 
 
-class ServiceClient(ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can use @client and @operationGroup decorators to customize client side code
     structure, such as:
 

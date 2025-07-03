@@ -46,7 +46,7 @@ def build_multiple_with_operation_path_param_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class MultipleClientOperationsMixin(
+class _MultipleClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleClientConfiguration]
 ):
 

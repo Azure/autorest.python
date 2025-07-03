@@ -15,11 +15,13 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import FlattenPropertyClientConfiguration
-from ._operations import FlattenPropertyClientOperationsMixin
+from ._operations._operations import _FlattenPropertyClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class FlattenPropertyClient(FlattenPropertyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class FlattenPropertyClient(
+    _FlattenPropertyClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates the model flatten cases.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

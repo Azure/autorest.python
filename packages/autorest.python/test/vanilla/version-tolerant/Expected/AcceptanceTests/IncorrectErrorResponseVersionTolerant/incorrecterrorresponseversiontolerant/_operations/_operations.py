@@ -41,7 +41,7 @@ def build_incorrect_returned_error_model_get_incorrect_error_from_server_request
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class IncorrectReturnedErrorModelOperationsMixin(  # pylint: disable=name-too-long
+class _IncorrectReturnedErrorModelOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], IncorrectReturnedErrorModelConfiguration]
 ):
 

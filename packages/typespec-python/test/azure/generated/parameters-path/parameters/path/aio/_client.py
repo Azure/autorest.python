@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import PathClientConfiguration
-from ._operations import PathClientOperationsMixin
+from ._operations._operations import _PathClientOperationsMixin
 
 
-class PathClient(PathClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class PathClient(_PathClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for path parameters cases.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

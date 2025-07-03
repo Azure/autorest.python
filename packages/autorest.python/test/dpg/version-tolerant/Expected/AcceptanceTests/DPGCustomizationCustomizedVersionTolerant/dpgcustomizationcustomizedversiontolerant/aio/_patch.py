@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # ------------------------------------
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
@@ -7,9 +8,46 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import List
+from typing import List, Any, Union, cast, IO
+from azure.core.async_paging import AsyncItemPaged
+from azure.core.polling import AsyncLROPoller
+from azure.core.tracing.decorator import distributed_trace
+from azure.core.tracing.decorator_async import distributed_trace_async
+from ..models import *  # pylint: disable=wildcard-import,unused-wildcard-import
+from ._operations._operations import JSON
+from ._client import DPGClient as DPGClientGenerated
 
-__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
+
+class DPGClient(DPGClientGenerated):
+    @distributed_trace_async
+    async def get_model(self, mode: str, **kwargs: Any) -> Product:
+        response = await super().get_model(mode, **kwargs)
+        return Product(**response)
+
+    @distributed_trace_async
+    async def post_model(self, mode: str, input: Union[IO, Input, JSON], **kwargs: Any) -> Product:  # type: ignore
+        response = await super().post_model(mode, input, **kwargs)
+        return Product(**response)
+
+    @distributed_trace
+    # pylint: disable=client-paging-methods-use-list
+    def get_pages(self, mode: str, **kwargs: Any) -> AsyncItemPaged[Product]:  # type: ignore
+        pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
+        return cast(AsyncItemPaged[Product], pages)
+
+    @distributed_trace_async
+    async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[LROProduct]:  # type: ignore
+        poller = await super().begin_lro(
+            mode,
+            cls=lambda pipeline_response, deserialized, headers: LROProduct._from_dict(  # pylint: disable=protected-access
+                **deserialized
+            ),
+            **kwargs
+        )
+        return cast(AsyncLROPoller[LROProduct], poller)
+
+
+__all__: List[str] = ["DPGClient"]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

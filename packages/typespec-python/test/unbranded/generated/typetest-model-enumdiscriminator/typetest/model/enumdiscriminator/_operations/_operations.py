@@ -157,7 +157,7 @@ def build_enum_discriminator_get_fixed_model_wrong_discriminator_request(  # pyl
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class EnumDiscriminatorClientOperationsMixin(
+class _EnumDiscriminatorClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], EnumDiscriminatorClientConfiguration]
 ):
 

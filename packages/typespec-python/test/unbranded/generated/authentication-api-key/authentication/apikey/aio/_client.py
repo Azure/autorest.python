@@ -10,10 +10,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ApiKeyClientConfiguration
-from ._operations import ApiKeyClientOperationsMixin
+from ._operations._operations import _ApiKeyClientOperationsMixin
 
 
-class ApiKeyClient(ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ApiKeyClient(_ApiKeyClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates clients generated with ApiKey authentication.
 
     :param credential: Credential used to authenticate requests to the service. Required.

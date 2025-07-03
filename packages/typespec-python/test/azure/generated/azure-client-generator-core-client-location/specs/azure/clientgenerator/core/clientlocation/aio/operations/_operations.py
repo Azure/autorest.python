@@ -170,7 +170,7 @@ class ArchiveOperationsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientLocationClientOperationsMixin(
+class _ClientLocationClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ClientLocationClientConfiguration]
 ):
 

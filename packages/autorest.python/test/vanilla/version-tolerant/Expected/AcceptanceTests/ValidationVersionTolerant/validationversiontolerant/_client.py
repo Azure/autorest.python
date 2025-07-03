@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutoRestValidationTestConfiguration
-from ._operations import AutoRestValidationTestOperationsMixin
+from ._operations._operations import _AutoRestValidationTestOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTest(_AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
     :param subscription_id: Subscription ID. Required.
