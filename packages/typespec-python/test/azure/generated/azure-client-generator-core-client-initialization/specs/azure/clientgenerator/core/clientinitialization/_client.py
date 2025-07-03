@@ -23,8 +23,8 @@ from ._configuration import (
     PathParamClientConfiguration,
 )
 from ._utils.serialization import Deserializer, Serializer
-from .operations import (
-    ChildClientOperations,
+from .operations import ChildClientOperations
+from .operations._operations import (
     _HeaderParamClientOperationsMixin,
     _MixedParamsClientOperationsMixin,
     _MultipleParamsClientOperationsMixin,

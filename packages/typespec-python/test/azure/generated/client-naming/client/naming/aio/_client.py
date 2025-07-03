@@ -16,7 +16,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ClientModelOperations, UnionEnumOperations, _NamingClientOperationsMixin
+from .operations import ClientModelOperations, UnionEnumOperations
+from .operations._operations import _NamingClientOperationsMixin
 
 
 class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

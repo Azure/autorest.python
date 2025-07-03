@@ -10,7 +10,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 from .._utils.serialization import Deserializer, Serializer
 from ..optionalexplicit.aio.operations import OptionalExplicitOperations
 from ._configuration import BodyOptionalityClientConfiguration
-from ._operations import _BodyOptionalityClientOperationsMixin
+from ._operations._operations import _BodyOptionalityClientOperationsMixin
 
 
 class BodyOptionalityClient(

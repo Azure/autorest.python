@@ -16,7 +16,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import CustomClientConfiguration
-from ._operations import _CustomClientOperationsMixin
+from ._operations._operations import _CustomClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

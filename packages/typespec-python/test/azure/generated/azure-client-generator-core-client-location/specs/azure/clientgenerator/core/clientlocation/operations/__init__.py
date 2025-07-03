@@ -16,7 +16,6 @@ from ._operations import MoveToExistingSubClientOperations  # type: ignore
 from ._operations import MoveToNewSubClientOperations  # type: ignore
 from ._operations import MoveToRootClientOperations  # type: ignore
 from ._operations import ArchiveOperationsOperations  # type: ignore
-from ._operations import _ClientLocationClientOperationsMixin  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -27,7 +26,6 @@ __all__ = [
     "MoveToNewSubClientOperations",
     "MoveToRootClientOperations",
     "ArchiveOperationsOperations",
-    "_ClientLocationClientOperationsMixin",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

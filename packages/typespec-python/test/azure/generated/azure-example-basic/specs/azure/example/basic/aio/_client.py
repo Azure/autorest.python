@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AzureExampleClientConfiguration
-from ._operations import _AzureExampleClientOperationsMixin
+from ._operations._operations import _AzureExampleClientOperationsMixin
 
 
 class AzureExampleClient(_AzureExampleClientOperationsMixin):

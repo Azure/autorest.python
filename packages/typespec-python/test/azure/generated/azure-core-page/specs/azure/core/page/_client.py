@@ -16,7 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import TwoModelsAsPageItemOperations, _PageClientOperationsMixin
+from .operations import TwoModelsAsPageItemOperations
+from .operations._operations import _PageClientOperationsMixin
 
 
 class PageClient(_PageClientOperationsMixin):

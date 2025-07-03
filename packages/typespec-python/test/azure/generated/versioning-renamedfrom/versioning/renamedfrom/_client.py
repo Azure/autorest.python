@@ -16,7 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import RenamedFromClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import NewInterfaceOperations, _RenamedFromClientOperationsMixin
+from .operations import NewInterfaceOperations
+from .operations._operations import _RenamedFromClientOperationsMixin
 
 
 class RenamedFromClient(_RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

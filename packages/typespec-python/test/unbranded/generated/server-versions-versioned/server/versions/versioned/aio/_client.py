@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import VersionedClientConfiguration
-from ._operations import _VersionedClientOperationsMixin
+from ._operations._operations import _VersionedClientOperationsMixin
 
 
 class VersionedClient(_VersionedClientOperationsMixin):

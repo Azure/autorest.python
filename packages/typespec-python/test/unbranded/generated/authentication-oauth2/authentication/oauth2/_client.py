@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import OAuth2ClientConfiguration
-from ._operations import _OAuth2ClientOperationsMixin
+from ._operations._operations import _OAuth2ClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:

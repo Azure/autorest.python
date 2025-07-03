@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RepeatabilityClientConfiguration
-from ._operations import _RepeatabilityClientOperationsMixin
+from ._operations._operations import _RepeatabilityClientOperationsMixin
 
 
 class RepeatabilityClient(_RepeatabilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

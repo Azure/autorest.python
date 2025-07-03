@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import ClientAClientConfiguration, ClientBClientConfiguration
-from ._operations import _ClientAClientOperationsMixin, _ClientBClientOperationsMixin
+from ._operations._operations import _ClientAClientOperationsMixin, _ClientBClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

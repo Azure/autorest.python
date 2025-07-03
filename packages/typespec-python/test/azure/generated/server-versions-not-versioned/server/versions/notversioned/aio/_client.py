@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NotVersionedClientConfiguration
-from ._operations import _NotVersionedClientOperationsMixin
+from ._operations._operations import _NotVersionedClientOperationsMixin
 
 
 class NotVersionedClient(_NotVersionedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

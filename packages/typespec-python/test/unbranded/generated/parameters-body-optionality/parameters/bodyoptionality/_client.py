@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import BodyOptionalityClientConfiguration
-from ._operations import _BodyOptionalityClientOperationsMixin
+from ._operations._operations import _BodyOptionalityClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 from .optionalexplicit.operations import OptionalExplicitOperations
 

@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import SingleDiscriminatorClientConfiguration
-from ._operations import _SingleDiscriminatorClientOperationsMixin
+from ._operations._operations import _SingleDiscriminatorClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

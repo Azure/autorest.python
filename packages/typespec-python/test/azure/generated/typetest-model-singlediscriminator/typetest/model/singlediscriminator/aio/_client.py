@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import SingleDiscriminatorClientConfiguration
-from ._operations import _SingleDiscriminatorClientOperationsMixin
+from ._operations._operations import _SingleDiscriminatorClientOperationsMixin
 
 
 class SingleDiscriminatorClient(

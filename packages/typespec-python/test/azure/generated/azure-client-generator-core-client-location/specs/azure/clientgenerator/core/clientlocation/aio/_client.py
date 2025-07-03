@@ -21,8 +21,8 @@ from .operations import (
     MoveToExistingSubClientOperations,
     MoveToNewSubClientOperations,
     MoveToRootClientOperations,
-    _ClientLocationClientOperationsMixin,
 )
+from .operations._operations import _ClientLocationClientOperationsMixin
 
 
 class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

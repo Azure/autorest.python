@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OAuth2ClientConfiguration
-from ._operations import _OAuth2ClientOperationsMixin
+from ._operations._operations import _OAuth2ClientOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential

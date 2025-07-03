@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import JsonMergePatchClientConfiguration
-from ._operations import _JsonMergePatchClientOperationsMixin
+from ._operations._operations import _JsonMergePatchClientOperationsMixin
 
 
 class JsonMergePatchClient(_JsonMergePatchClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

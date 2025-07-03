@@ -23,8 +23,8 @@ from ._configuration import (
     ParentClientConfiguration,
     PathParamClientConfiguration,
 )
-from .operations import (
-    ChildClientOperations,
+from .operations import ChildClientOperations
+from .operations._operations import (
     _HeaderParamClientOperationsMixin,
     _MixedParamsClientOperationsMixin,
     _MultipleParamsClientOperationsMixin,

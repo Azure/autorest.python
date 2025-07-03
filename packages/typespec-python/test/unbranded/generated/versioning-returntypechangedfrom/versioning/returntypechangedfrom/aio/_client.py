@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ReturnTypeChangedFromClientConfiguration
-from ._operations import _ReturnTypeChangedFromClientOperationsMixin
+from ._operations._operations import _ReturnTypeChangedFromClientOperationsMixin
 
 
 class ReturnTypeChangedFromClient(

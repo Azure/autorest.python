@@ -10,7 +10,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import UnionClientConfiguration
-from ._operations import _UnionClientOperationsMixin
+from ._operations._operations import _UnionClientOperationsMixin
 
 if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential

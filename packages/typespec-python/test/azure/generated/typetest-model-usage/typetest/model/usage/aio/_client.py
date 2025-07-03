@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import UsageClientConfiguration
-from ._operations import _UsageClientOperationsMixin
+from ._operations._operations import _UsageClientOperationsMixin
 
 
 class UsageClient(_UsageClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
