@@ -67,7 +67,10 @@ class ReservedWordsClient(ReservedWordsClientGenerated, Helpers):
         request.url = self._client.format_url(request.url)
         return self._operation_with_files_param_deserialize(await self._send_request(request), **kwargs)
 
-__all__: List[str] = ["ReservedWordsClient"]  # Add all objects you want publicly available to users at this package level
+
+__all__: List[str] = [
+    "ReservedWordsClient"
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

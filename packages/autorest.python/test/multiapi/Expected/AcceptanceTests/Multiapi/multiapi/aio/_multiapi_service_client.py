@@ -22,7 +22,7 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
-from ._operations_mixin import _MultiapiServiceClientOperationsMixin
+from ._operations_mixin import MultiapiServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

@@ -93,8 +93,7 @@ class MediaTypesSharedMixin:
         return cast(str, deserialized)
 
 
-__all__: List[str] = [
-]  # Add all objects you want publicly available to users at this package level
+__all__: List[str] = []  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():

@@ -18,7 +18,7 @@ from azure.profiles import KnownProfiles, ProfileDefinition
 from azure.profiles.multiapiclient import MultiApiClientMixin
 
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from ._operations_mixin import _MultiapiCustomBaseUrlServiceClientOperationsMixin
+from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
 from ._serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:

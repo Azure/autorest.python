@@ -167,6 +167,7 @@ class MediaTypesClient(MediaTypesClientGenerated, MediaTypesSharedMixin):
         )
         return self._handle_body_three_types_response(pipeline_response, error_map, cls)
 
+
 __all__: List[str] = ["MediaTypesClient"]  # Add all objects you want publicly available to users at this package level
 
 
