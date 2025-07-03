@@ -164,9 +164,7 @@ class MediaTypesClient(MediaTypesClientGenerated, MediaTypesSharedMixin):
         pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
-        return self._handle_body_three_types_response(
-            pipeline_response=pipeline_response, error_map=error_map, cls=cls
-        )
+        return self._handle_body_three_types_response(pipeline_response=pipeline_response, error_map=error_map, cls=cls)
 
 
 __all__: List[str] = ["MediaTypesClient"]  # Add all objects you want publicly available to users at this package level
