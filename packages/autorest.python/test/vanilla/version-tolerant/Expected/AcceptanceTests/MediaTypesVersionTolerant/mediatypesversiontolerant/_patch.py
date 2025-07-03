@@ -21,7 +21,6 @@ from azure.core.utils import case_insensitive_dict
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
-from ._operations._operations import JSON
 from ._client import MediaTypesClient as MediaTypesClientGenerated
 from ._utils.serialization import Serializer
 
@@ -165,7 +164,9 @@ class MediaTypesClient(MediaTypesClientGenerated, MediaTypesSharedMixin):
         pipeline_response = self._client._pipeline.run(  # pylint: disable=protected-access
             request, stream=False, **kwargs
         )
-        return self._handle_body_three_types_response(pipeline_response, error_map, cls)
+        return self._handle_body_three_types_response(
+            pipeline_response=pipeline_response, error_map=error_map, cls=cls
+        )
 
 
 __all__: List[str] = ["MediaTypesClient"]  # Add all objects you want publicly available to users at this package level

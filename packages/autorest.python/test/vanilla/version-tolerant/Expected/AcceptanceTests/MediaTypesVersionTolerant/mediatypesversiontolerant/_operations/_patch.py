@@ -8,18 +8,14 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
-from typing import List, Any, overload, IO, Optional, cast, Union, Tuple, Dict
+from typing import List, Any, IO, Optional, cast, Union, Tuple, Dict
 
 from azure.core.exceptions import (
-    ClientAuthenticationError,
-    ResourceExistsError,
-    ResourceNotFoundError,
     HttpResponseError,
     map_error,
 )
 from azure.core.rest import HttpRequest
 from azure.core.utils import case_insensitive_dict
-from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
 from ._operations import _MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixinGen

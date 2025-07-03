@@ -16,7 +16,6 @@ from azure.core.exceptions import (
     ResourceNotFoundError,
 )
 
-from ._operations._operations import JSON
 from ._client import MediaTypesClient as MediaTypesClientGenerated
 from .._operations._patch import MediaTypesSharedMixin
 
