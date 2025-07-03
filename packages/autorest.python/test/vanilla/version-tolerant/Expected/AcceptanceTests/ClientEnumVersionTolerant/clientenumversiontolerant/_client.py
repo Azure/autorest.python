@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import ClientWithEnumConfiguration
-from ._operations import _ClientWithEnumOperationsMixin
+from ._operations._operations import _ClientWithEnumOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

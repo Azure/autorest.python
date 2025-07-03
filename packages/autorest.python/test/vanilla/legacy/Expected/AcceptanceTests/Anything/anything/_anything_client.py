@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AnythingClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _AnythingClientOperationsMixin
+from .operations._anything_client_operations import _AnythingClientOperationsMixin
 
 
 class AnythingClient(_AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

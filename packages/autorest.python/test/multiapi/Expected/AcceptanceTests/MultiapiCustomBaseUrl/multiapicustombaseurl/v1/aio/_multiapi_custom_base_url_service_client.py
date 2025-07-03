@@ -17,7 +17,9 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from .operations import _MultiapiCustomBaseUrlServiceClientOperationsMixin
+from .operations._multiapi_custom_base_url_service_client_operations import (
+    _MultiapiCustomBaseUrlServiceClientOperationsMixin,
+)
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential

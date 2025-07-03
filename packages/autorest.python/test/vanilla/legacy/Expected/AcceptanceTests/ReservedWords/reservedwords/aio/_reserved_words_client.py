@@ -17,7 +17,8 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ReservedWordsClientConfiguration
-from .operations import ImportOperations, _ReservedWordsClientOperationsMixin
+from .operations import ImportOperations
+from .operations._reserved_words_client_operations import _ReservedWordsClientOperationsMixin
 
 
 class ReservedWordsClient(_ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

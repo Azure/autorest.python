@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import MediaTypesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _MediaTypesClientOperationsMixin
+from .operations._media_types_client_operations import _MediaTypesClientOperationsMixin
 
 
 class MediaTypesClient(_MediaTypesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

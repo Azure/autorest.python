@@ -17,7 +17,9 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SecurityAadSwaggerCredentialFlagConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _SecurityAadSwaggerCredentialFlagOperationsMixin
+from .operations._security_aad_swagger_credential_flag_operations import (
+    _SecurityAadSwaggerCredentialFlagOperationsMixin,
+)
 
 
 class SecurityAadSwaggerCredentialFlag(

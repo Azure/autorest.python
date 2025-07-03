@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutorestSecurityAadConfiguration
-from ._operations import _AutorestSecurityAadOperationsMixin
+from ._operations._operations import _AutorestSecurityAadOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential

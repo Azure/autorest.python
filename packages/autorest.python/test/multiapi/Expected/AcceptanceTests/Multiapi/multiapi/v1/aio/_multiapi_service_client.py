@@ -20,7 +20,8 @@ from azure.mgmt.core.tools import get_arm_endpoints
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
-from .operations import OperationGroupOneOperations, _MultiapiServiceClientOperationsMixin
+from .operations import OperationGroupOneOperations
+from .operations._multiapi_service_client_operations import _MultiapiServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential

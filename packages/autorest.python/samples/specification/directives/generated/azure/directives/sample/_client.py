@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PollingPagingExampleConfiguration
-from ._operations import _PollingPagingExampleOperationsMixin
+from ._operations._operations import _PollingPagingExampleOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

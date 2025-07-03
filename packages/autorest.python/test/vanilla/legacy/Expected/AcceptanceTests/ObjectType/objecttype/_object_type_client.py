@@ -16,7 +16,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ObjectTypeClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _ObjectTypeClientOperationsMixin
+from .operations._object_type_client_operations import _ObjectTypeClientOperationsMixin
 
 
 class ObjectTypeClient(_ObjectTypeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

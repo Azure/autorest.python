@@ -16,7 +16,9 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import SecurityKeySwaggerCredentialFlagConfiguration
-from .operations import _SecurityKeySwaggerCredentialFlagOperationsMixin
+from .operations._security_key_swagger_credential_flag_operations import (
+    _SecurityKeySwaggerCredentialFlagOperationsMixin,
+)
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential

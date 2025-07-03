@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import AutorestSecurityAadConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _AutorestSecurityAadOperationsMixin
+from .operations._autorest_security_aad_operations import _AutorestSecurityAadOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential

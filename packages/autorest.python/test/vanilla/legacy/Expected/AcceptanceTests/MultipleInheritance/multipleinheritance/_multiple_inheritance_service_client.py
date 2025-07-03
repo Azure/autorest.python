@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import MultipleInheritanceServiceClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import _MultipleInheritanceServiceClientOperationsMixin
+from .operations._multiple_inheritance_service_client_operations import _MultipleInheritanceServiceClientOperationsMixin
 
 
 class MultipleInheritanceServiceClient(
