@@ -29,6 +29,7 @@ class DPGClient(DPGClientGenerated):
         return Product(**response)
 
     @distributed_trace
+    # pylint: disable=client-paging-methods-use-list
     def get_pages(self, mode: str, **kwargs: Any) -> ItemPaged[Product]:  # type: ignore
         pages = super().get_pages(mode, cls=lambda objs: [Product(**x) for x in objs], **kwargs)
         return cast(ItemPaged[Product], pages)
