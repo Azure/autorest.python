@@ -51,7 +51,7 @@ def build_patch_single_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class MergePatchJsonClientOperationsMixin(
+class _MergePatchJsonClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MergePatchJsonClientConfiguration]
 ):
 

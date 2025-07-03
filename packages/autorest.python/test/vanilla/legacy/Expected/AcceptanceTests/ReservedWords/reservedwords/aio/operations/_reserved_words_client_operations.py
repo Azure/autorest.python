@@ -40,7 +40,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ReservedWordsClientOperationsMixin(
+class _ReservedWordsClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ReservedWordsClientConfiguration]
 ):
 

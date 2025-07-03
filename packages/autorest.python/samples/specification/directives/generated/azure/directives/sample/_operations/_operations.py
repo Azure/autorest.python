@@ -72,7 +72,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class PollingPagingExampleOperationsMixin(
+class _PollingPagingExampleOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PollingPagingExampleConfiguration]
 ):
 

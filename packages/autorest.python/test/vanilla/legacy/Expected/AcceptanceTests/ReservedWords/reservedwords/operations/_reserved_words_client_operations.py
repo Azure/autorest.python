@@ -145,7 +145,7 @@ def build_reserved_enum_request(*, enum_parameter: Union[str, _models.MyEnum], *
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ReservedWordsClientOperationsMixin(
+class _ReservedWordsClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ReservedWordsClientConfiguration]
 ):
 

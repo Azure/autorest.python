@@ -16,10 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ReservedWordsClientConfiguration
-from .operations import ImportOperations, ReservedWordsClientOperationsMixin
+from .operations import ImportOperations
+from .operations._operations import _ReservedWordsClientOperationsMixin
 
 
-class ReservedWordsClient(ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ReservedWordsClient(_ReservedWordsClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Swagger that has operation groups etc. with reserved words.
 
     :ivar import_operations: ImportOperations operations

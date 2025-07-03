@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MediaTypesClientConfiguration
-from ._operations import MediaTypesClientOperationsMixin
+from ._operations._operations import _MediaTypesClientOperationsMixin
 
 
-class MediaTypesClient(MediaTypesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class MediaTypesClient(_MediaTypesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Play with produces/consumes and media-types in general.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

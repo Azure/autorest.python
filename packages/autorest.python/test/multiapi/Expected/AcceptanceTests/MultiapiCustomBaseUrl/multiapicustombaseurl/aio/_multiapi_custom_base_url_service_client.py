@@ -19,7 +19,7 @@ from azure.profiles.multiapiclient import MultiApiClientMixin
 
 from .._serialization import Deserializer, Serializer
 from ._configuration import MultiapiCustomBaseUrlServiceClientConfiguration
-from ._operations_mixin import MultiapiCustomBaseUrlServiceClientOperationsMixin
+from ._operations_mixin import _MultiapiCustomBaseUrlServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports

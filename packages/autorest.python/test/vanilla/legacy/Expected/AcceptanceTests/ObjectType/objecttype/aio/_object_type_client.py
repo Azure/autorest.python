@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ObjectTypeClientConfiguration
-from .operations import ObjectTypeClientOperationsMixin
+from .operations._object_type_client_operations import _ObjectTypeClientOperationsMixin
 
 
-class ObjectTypeClient(ObjectTypeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ObjectTypeClient(_ObjectTypeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic type: object swaggers.
 
     :param base_url: Service URL. Default value is "http://localhost:3000".

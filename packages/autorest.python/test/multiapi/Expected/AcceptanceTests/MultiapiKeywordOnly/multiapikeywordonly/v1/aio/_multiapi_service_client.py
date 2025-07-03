@@ -17,13 +17,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
-from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations
+from .operations import OperationGroupOneOperations
+from .operations._multiapi_service_client_operations import _MultiapiServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
+class MultiapiServiceClient(_MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
