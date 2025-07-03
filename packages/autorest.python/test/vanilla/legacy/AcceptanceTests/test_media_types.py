@@ -91,13 +91,13 @@ class TestMediaTypes(object):
         assert SourcePath == SourcePathPy3
 
     def test_operation_groups(self):
-        from mediatypes.operations import MediaTypesClientOperationsMixin
+        from mediatypes.operations._media_types_client_operations import _MediaTypesClientOperationsMixin
 
         with pytest.raises(ImportError):
             from mediatypes.operations import _media_types_client_operations_py3
 
         from mediatypes.operations._media_types_client_operations import (
-            MediaTypesClientOperationsMixin as MediaTypesClientOperationsMixinPy2,
+            _MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixinPy2,
         )
 
-        assert MediaTypesClientOperationsMixin == MediaTypesClientOperationsMixinPy2
+        assert _MediaTypesClientOperationsMixin == _MediaTypesClientOperationsMixinPy2
