@@ -45,13 +45,13 @@ def test_poll_with_constant_parameterized_endpoints(client):
 
 
 def test_operation_groups():
-    from lrowithparameterizedendpoints.operations import LROWithParamaterizedEndpointsOperationsMixin
+    from lrowithparameterizedendpoints.operations._lro_with_paramaterized_endpoints_operations import _LROWithParamaterizedEndpointsOperationsMixin
 
     with pytest.raises(ImportError):
         from lrowithparameterizedendpoints.operations import _lro_with_paramaterized_endpoints_operations_py3
 
     from lrowithparameterizedendpoints.operations._lro_with_paramaterized_endpoints_operations import (
-        LROWithParamaterizedEndpointsOperationsMixin as LROWithParamaterizedEndpointsOperationsMixinPy2,
+        _LROWithParamaterizedEndpointsOperationsMixin as _LROWithParamaterizedEndpointsOperationsMixinPy2,
     )
 
-    assert LROWithParamaterizedEndpointsOperationsMixin == LROWithParamaterizedEndpointsOperationsMixinPy2
+    assert _LROWithParamaterizedEndpointsOperationsMixin == _LROWithParamaterizedEndpointsOperationsMixinPy2

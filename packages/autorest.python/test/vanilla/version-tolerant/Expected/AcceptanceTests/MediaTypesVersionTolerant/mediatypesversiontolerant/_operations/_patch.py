@@ -22,7 +22,7 @@ from azure.core.utils import case_insensitive_dict
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.pipeline import PipelineResponse
 
-from ._operations import MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixin
+from ._operations import _MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixinGen
 from .._utils.serialization import Serializer
 
 _SERIALIZER = Serializer()
@@ -93,7 +93,7 @@ class MediaTypesSharedMixin:
         return cast(str, deserialized)
 
 
-class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTypesSharedMixin):
+class _MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixinGen, MediaTypesSharedMixin):
     @overload
     def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
@@ -169,7 +169,7 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
 
 
 __all__: List[str] = [
-    "MediaTypesClientOperationsMixin"
+    "_MediaTypesClientOperationsMixin"
 ]  # Add all objects you want publicly available to users at this package level
 
 

@@ -8,10 +8,10 @@ from typing import Any, Union, cast, IO
 from azure.core.paging import ItemPaged
 from azure.core.polling import LROPoller
 from ..models import *  # pylint: disable=wildcard-import,unused-wildcard-import
-from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated, JSON
+from ._operations import _DPGClientOperationsMixin as _DPGClientOperationsMixinGenerated, JSON
 
 
-class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
+class _DPGClientOperationsMixin(_DPGClientOperationsMixinGenerated):
     def get_model(self, mode: str, **kwargs: Any) -> Product:
         response = super().get_model(mode, **kwargs)
         return Product(**response)
@@ -45,5 +45,5 @@ def patch_sdk():
 
 
 __all__ = [
-    "DPGClientOperationsMixin"
+    "_DPGClientOperationsMixin"
 ]  # only add objects you want to be publicly available to your users at your package level

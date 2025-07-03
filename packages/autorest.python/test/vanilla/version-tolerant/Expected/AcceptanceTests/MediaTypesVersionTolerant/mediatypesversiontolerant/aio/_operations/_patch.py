@@ -17,11 +17,11 @@ from azure.core.exceptions import (
     ResourceNotFoundError,
 )
 
-from ._operations import MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixin
+from ._operations import _MediaTypesClientOperationsMixin as _MediaTypesClientOperationsMixinGen
 from ..._operations._patch import MediaTypesSharedMixin
 
 
-class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTypesSharedMixin):
+class _MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixinGen, MediaTypesSharedMixin):
     @overload
     async def body_three_types(self, message: Any, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
@@ -97,7 +97,7 @@ class MediaTypesClientOperationsMixin(_MediaTypesClientOperationsMixin, MediaTyp
 
 
 __all__: List[str] = [
-    "MediaTypesClientOperationsMixin"
+    "_MediaTypesClientOperationsMixin"
 ]  # Add all objects you want publicly available to users at this package level
 
 

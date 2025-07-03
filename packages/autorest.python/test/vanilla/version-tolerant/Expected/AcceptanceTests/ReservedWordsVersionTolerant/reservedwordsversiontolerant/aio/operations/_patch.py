@@ -13,11 +13,11 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.rest import HttpRequest
 from azure.core.pipeline import PipelineResponse
 
-from ._operations import ReservedWordsClientOperationsMixin as _ReservedWordsClientOperationsMixin
+from ._operations import _ReservedWordsClientOperationsMixin as _ReservedWordsClientOperationsMixinGen
 from ...operations._patch import Helpers
 
 
-class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, Helpers):
+class _ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixinGen, Helpers):
     async def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs) -> PipelineResponse:
         return await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
             request, stream=stream, **kwargs
@@ -69,7 +69,7 @@ class ReservedWordsClientOperationsMixin(_ReservedWordsClientOperationsMixin, He
 
 
 __all__: List[str] = [
-    "ReservedWordsClientOperationsMixin"
+    "_ReservedWordsClientOperationsMixin"
 ]  # Add all objects you want publicly available to users at this package level
 
 
