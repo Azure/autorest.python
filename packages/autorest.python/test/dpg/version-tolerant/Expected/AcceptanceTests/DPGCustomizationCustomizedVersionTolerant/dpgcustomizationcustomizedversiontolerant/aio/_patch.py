@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # ------------------------------------
 # Copyright (c) Microsoft Corporation.
 # Licensed under the MIT License.
@@ -13,6 +14,7 @@ from azure.core.polling import AsyncLROPoller
 from ..models import *  # pylint: disable=wildcard-import,unused-wildcard-import
 from ._operations._operations import JSON
 from ._client import DPGClient as DPGClientGenerated
+
 
 class DPGClient(DPGClientGenerated):
     async def get_model(self, mode: str, **kwargs: Any) -> Product:
@@ -36,6 +38,7 @@ class DPGClient(DPGClientGenerated):
             **kwargs
         )
         return cast(AsyncLROPoller[LROProduct], poller)
+
 
 __all__: List[str] = ["DPGClient"]  # Add all objects you want publicly available to users at this package level
 

@@ -20,14 +20,13 @@ from azure.mgmt.core.tools import get_arm_endpoints
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiapiServiceClientConfiguration
-from .operations import OperationGroupOneOperations, OperationGroupTwoOperations
-from .operations._multiapi_service_client_operations import _MultiapiServiceClientOperationsMixin
+from .operations import MultiapiServiceClientOperationsMixin, OperationGroupOneOperations, OperationGroupTwoOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class MultiapiServiceClient(_MultiapiServiceClientOperationsMixin):
+class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """Service client for multiapi client testing.
 
     :ivar operation_group_one: OperationGroupOneOperations operations
