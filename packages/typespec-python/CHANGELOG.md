@@ -1,5 +1,12 @@
 # Release
 
+## 0.46.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
 ## 0.45.5
 
 ### Features

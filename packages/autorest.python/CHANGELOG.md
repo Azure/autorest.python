@@ -1,5 +1,12 @@
 # Release
 
+## 6.36.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
 ## 6.35.5
 
 No changes, version bump only.
