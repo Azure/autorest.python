@@ -263,7 +263,9 @@ class TestModelFlatteningTests(object):
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
-        from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import _AutoRestResourceFlatteningTestServiceOperationsMixin
+        from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import (
+            _AutoRestResourceFlatteningTestServiceOperationsMixin,
+        )
 
         with pytest.raises(ImportError):
             from modelflattening.operations import _auto_rest_resource_flattening_test_service_operations_py3

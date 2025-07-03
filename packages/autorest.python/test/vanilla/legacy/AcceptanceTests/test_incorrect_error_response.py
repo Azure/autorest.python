@@ -36,7 +36,9 @@ def test_swallow_deserialization_error_for_error_model():
 
 
 def test_operation_groups():
-    from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import _IncorrectReturnedErrorModelOperationsMixin
+    from incorrecterrorresponse.operations._incorrect_returned_error_model_operations import (
+        _IncorrectReturnedErrorModelOperationsMixin,
+    )
 
     with pytest.raises(ImportError):
         from incorrecterrorresponse.operations import _incorrect_returned_error_model_operations_py3
