@@ -9,6 +9,7 @@ azure-mgmt-core==1.5.0
 -e ./generated/azure-client-generator-core-deserialize-empty-string-as-null
 -e ./generated/azure-client-generator-core-flatten-property
 -e ./generated/azure-client-generator-core-usage
+-e ./generated/azure-client-generator-core-client-location
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-scalar
 -e ./generated/azure-core-lro-rpc
@@ -25,6 +26,7 @@ azure-mgmt-core==1.5.0
 -e ./generated/azure-resource-manager-operation-templates
 -e ./generated/azure-resource-manager-resources
 -e ./generated/azure-payload-pageable
+-e ./generated/client-namespace
 -e ./generated/client-naming
 -e ./generated/client-structure-default
 -e ./generated/client-structure-multiclient
@@ -90,3 +92,4 @@ azure-mgmt-core==1.5.0
 -e ./generated/versioning-returntypechangedfrom
 -e ./generated/versioning-typechangedfrom
 -e ./generated/routes
+-e ./generated/response-status-code-range
