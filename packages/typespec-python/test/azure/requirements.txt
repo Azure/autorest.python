@@ -6,6 +6,7 @@ azure-mgmt-core==1.5.0
 # only for azure
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-client-initialization
+-e ./generated/azure-client-generator-core-client-location
 -e ./generated/azure-client-generator-core-deserialize-empty-string-as-null
 -e ./generated/azure-client-generator-core-flatten-property
 -e ./generated/azure-client-generator-core-usage
@@ -26,6 +27,7 @@ azure-mgmt-core==1.5.0
 -e ./generated/azure-resource-manager-resources
 -e ./generated/azure-payload-pageable
 -e ./generated/client-naming
+-e ./generated/client-namespace
 -e ./generated/client-structure-default
 -e ./generated/client-structure-multiclient
 -e ./generated/client-structure-renamedoperation
