@@ -162,11 +162,11 @@ class Repo:
         self.update_dependency_http_client_python()
         self.update_other_dependencies()
         try:
-            self.log_call("git add .")
-            self.log_call('git commit -m "Update dependencies"')
+            log_call("git add .")
+            log_call('git commit -m "Update dependencies"')
             git_push()
         except:
-            logger.info("No changes to commit.")
+            logger.info("No changes about dependencies to commit.")
 
     # prepare pr for autorest.python repo
     def prepare_pr(self):
