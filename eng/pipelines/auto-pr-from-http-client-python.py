@@ -161,6 +161,12 @@ class Repo:
     def update_dependency(self):
         self.update_dependency_http_client_python()
         self.update_other_dependencies()
+        try:
+            self.log_call("git add .")
+            self.log_call('git commit -m "Update dependencies"')
+            git_push()
+        except:
+            logger.info("No changes to commit.")
 
     # prepare pr for autorest.python repo
     def prepare_pr(self):
@@ -171,7 +177,9 @@ class Repo:
 
     # create PR in autorest.python repo
     def create_pr(self):
-        existing_pr = list(self.autorest_repo.get_pulls(state="open", head=f"Azure:{self.new_branch_name}", base="main"))
+        existing_pr = list(
+            self.autorest_repo.get_pulls(state="open", head=f"Azure:{self.new_branch_name}", base="main")
+        )
         if len(existing_pr) > 0:
             logger.info(f"PR already exists for {self.pull_url}")
             for item in existing_pr:
@@ -188,8 +196,8 @@ class Repo:
 
     def run(self):
         self.checkout_branch()
-        self.create_pr()
         self.update_dependency()
+        self.create_pr()
         self.prepare_pr()
 
 
