@@ -1,6 +1,10 @@
 {
     "CrossLanguagePackageId": "Azure.ResourceManager.OperationTemplates",
     "CrossLanguageDefinitionId": {
+        "azure.resourcemanager.operationtemplates.models.ActionRequest": "Azure.ResourceManager.OperationTemplates.ActionRequest",
+        "azure.resourcemanager.operationtemplates.models.ActionResult": "Azure.ResourceManager.OperationTemplates.ActionResult",
+        "azure.resourcemanager.operationtemplates.models.ChangeAllowanceRequest": "Azure.ResourceManager.OperationTemplates.ChangeAllowanceRequest",
+        "azure.resourcemanager.operationtemplates.models.ChangeAllowanceResult": "Azure.ResourceManager.OperationTemplates.ChangeAllowanceResult",
         "azure.resourcemanager.operationtemplates.models.CheckNameAvailabilityRequest": "Azure.ResourceManager.CommonTypes.CheckNameAvailabilityRequest",
         "azure.resourcemanager.operationtemplates.models.CheckNameAvailabilityResponse": "Azure.ResourceManager.CommonTypes.CheckNameAvailabilityResponse",
         "azure.resourcemanager.operationtemplates.models.ErrorAdditionalInfo": "Azure.ResourceManager.CommonTypes.ErrorAdditionalInfo",
@@ -15,6 +19,8 @@
         "azure.resourcemanager.operationtemplates.models.Order": "Azure.ResourceManager.OperationTemplates.Order",
         "azure.resourcemanager.operationtemplates.models.OrderProperties": "Azure.ResourceManager.OperationTemplates.OrderProperties",
         "azure.resourcemanager.operationtemplates.models.SystemData": "Azure.ResourceManager.CommonTypes.SystemData",
+        "azure.resourcemanager.operationtemplates.models.Widget": "Azure.ResourceManager.OperationTemplates.Widget",
+        "azure.resourcemanager.operationtemplates.models.WidgetProperties": "Azure.ResourceManager.OperationTemplates.WidgetProperties",
         "azure.resourcemanager.operationtemplates.models.Origin": "Azure.ResourceManager.CommonTypes.Origin",
         "azure.resourcemanager.operationtemplates.models.ActionType": "Azure.ResourceManager.CommonTypes.ActionType",
         "azure.resourcemanager.operationtemplates.models.CheckNameAvailabilityReason": "Azure.ResourceManager.CommonTypes.CheckNameAvailabilityReason",
@@ -30,6 +36,14 @@
         "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
         "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
         "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete",
-        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete"
+        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete",
+        "azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations.get": "Azure.ResourceManager.OperationTemplates.OptionalBody.get",
+        "azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations.get": "Azure.ResourceManager.OperationTemplates.OptionalBody.get",
+        "azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations.patch": "Azure.ResourceManager.OperationTemplates.OptionalBody.patch",
+        "azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations.patch": "Azure.ResourceManager.OperationTemplates.OptionalBody.patch",
+        "azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations.post": "Azure.ResourceManager.OperationTemplates.OptionalBody.post",
+        "azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations.post": "Azure.ResourceManager.OperationTemplates.OptionalBody.post",
+        "azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations.provider_post": "Azure.ResourceManager.OperationTemplates.OptionalBody.providerPost",
+        "azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations.provider_post": "Azure.ResourceManager.OperationTemplates.OptionalBody.providerPost"
     }
 }
