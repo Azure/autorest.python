@@ -188,9 +188,9 @@ class Repo:
 
     def run(self):
         self.checkout_branch()
+        self.create_pr()
         self.update_dependency()
         self.prepare_pr()
-        self.create_pr()
 
 
 if __name__ == "__main__":
