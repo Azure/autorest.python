@@ -9,7 +9,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, List, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -840,7 +840,7 @@ class TopLevelOperations:
         :attr:`top_level` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1506,7 +1506,7 @@ class TopLevelOperations:
     @distributed_trace
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
-    ) -> Iterable["_models.TopLevelTrackedResource"]:
+    ) -> ItemPaged["_models.TopLevelTrackedResource"]:
         """List TopLevelTrackedResource resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -1595,7 +1595,7 @@ class TopLevelOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_subscription(self, **kwargs: Any) -> Iterable["_models.TopLevelTrackedResource"]:
+    def list_by_subscription(self, **kwargs: Any) -> ItemPaged["_models.TopLevelTrackedResource"]:
         """List TopLevelTrackedResource resources by subscription ID.
 
         :return: An iterator like instance of TopLevelTrackedResource
@@ -1844,7 +1844,7 @@ class NestedOperations:
         :attr:`nested` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -2559,7 +2559,7 @@ class NestedOperations:
     @distributed_trace
     def list_by_top_level_tracked_resource(
         self, resource_group_name: str, top_level_tracked_resource_name: str, **kwargs: Any
-    ) -> Iterable["_models.NestedProxyResource"]:
+    ) -> ItemPaged["_models.NestedProxyResource"]:
         """List NestedProxyResource resources by TopLevelTrackedResource.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -2661,7 +2661,7 @@ class SingletonOperations:
         :attr:`singleton` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3095,7 +3095,7 @@ class SingletonOperations:
     @distributed_trace
     def list_by_resource_group(
         self, resource_group_name: str, **kwargs: Any
-    ) -> Iterable["_models.SingletonTrackedResource"]:
+    ) -> ItemPaged["_models.SingletonTrackedResource"]:
         """List SingletonTrackedResource resources by resource group.
 
         :param resource_group_name: The name of the resource group. The name is case insensitive.
@@ -3194,7 +3194,7 @@ class ExtensionsResourcesOperations:
         :attr:`extensions_resources` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -3723,7 +3723,7 @@ class ExtensionsResourcesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def list_by_scope(self, resource_uri: str, **kwargs: Any) -> Iterable["_models.ExtensionsResource"]:
+    def list_by_scope(self, resource_uri: str, **kwargs: Any) -> ItemPaged["_models.ExtensionsResource"]:
         """List ExtensionsResource resources by parent.
 
         :param resource_uri: The fully qualified Azure Resource manager identifier of the resource.
@@ -3821,7 +3821,7 @@ class LocationResourcesOperations:
         :attr:`location_resources` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ResourcesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -4273,7 +4273,7 @@ class LocationResourcesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def list_by_location(self, location: str, **kwargs: Any) -> Iterable["_models.LocationResource"]:
+    def list_by_location(self, location: str, **kwargs: Any) -> ItemPaged["_models.LocationResource"]:
         """List LocationResource resources by SubscriptionLocationResource.
 
         :param location: The name of the Azure region. Required.

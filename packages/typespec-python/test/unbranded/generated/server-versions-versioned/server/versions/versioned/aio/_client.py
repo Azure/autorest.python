@@ -9,10 +9,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import VersionedClientConfiguration
-from ._operations import VersionedClientOperationsMixin
+from ._operations._operations import _VersionedClientOperationsMixin
 
 
-class VersionedClient(VersionedClientOperationsMixin):
+class VersionedClient(_VersionedClientOperationsMixin):
     """Illustrates versioned server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

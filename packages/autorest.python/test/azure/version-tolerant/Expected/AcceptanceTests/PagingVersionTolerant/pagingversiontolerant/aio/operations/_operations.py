@@ -8,20 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import (
-    Any,
-    AsyncIterable,
-    AsyncIterator,
-    Callable,
-    Dict,
-    IO,
-    Literal,
-    Optional,
-    TypeVar,
-    Union,
-    cast,
-    overload,
-)
+from typing import Any, AsyncIterator, Callable, Dict, IO, Literal, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import AsyncPipelineClient
@@ -98,7 +85,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_no_item_name_pages(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that must return result of the default 'value' node.
 
         :return: An iterator like instance of JSON object
@@ -180,7 +167,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_empty_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_empty_next_link_name_pages(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that gets an empty next link and should stop after page 1.
 
         :return: An iterator like instance of JSON object
@@ -262,7 +249,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_null_next_link_name_pages(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that must ignore any kind of nextLink, and stop after page 1.
 
         :return: An iterator like instance of JSON object
@@ -344,7 +331,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_single_pages(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that finishes on the first call without a nextlink.
 
         :return: An iterator like instance of JSON object
@@ -428,7 +415,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @overload
     def get_single_pages_with_body_params(
         self, parameters: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param parameters: put {'name': 'body'} to pass the test. Required.
@@ -460,7 +447,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @overload
     def get_single_pages_with_body_params(
         self, parameters: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param parameters: put {'name': 'body'} to pass the test. Required.
@@ -487,7 +474,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_single_pages_with_body_params(
         self, parameters: Union[JSON, IO[bytes]], **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that finishes on the first call with body params without a nextlink.
 
         :param parameters: put {'name': 'body'} to pass the test. Is either a JSON type or a IO[bytes]
@@ -588,7 +575,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def first_response_empty(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def first_response_empty(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
         Second (and final) call, will give you an items list of 1.
 
@@ -673,7 +660,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
@@ -763,7 +750,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
@@ -846,7 +833,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncIterable[JSON]:
+    def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
         param in the url sent.
@@ -933,7 +920,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def page_with_max_page_size(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def page_with_max_page_size(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Paging with max page size. We don't want to.
 
         :return: An iterator like instance of JSON object
@@ -1019,7 +1006,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_odata_multiple_pages(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a nextLink in odata format that has 10 pages.
 
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
@@ -1111,7 +1098,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_with_offset(
         self, offset: int, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a nextLink that has 10 pages.
 
         :param offset: Offset of return value. Required.
@@ -1204,7 +1191,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
         response including a nextLink that has 10 pages.
 
@@ -1287,7 +1274,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
         first with 500. The client should retry and finish all 10 pages eventually.
 
@@ -1370,7 +1357,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_single_pages_failure(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_single_pages_failure(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that receives a 400 on the first call.
 
         :return: An iterator like instance of JSON object
@@ -1452,7 +1439,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_multiple_pages_failure(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that receives a 400 on the second call.
 
         :return: An iterator like instance of JSON object
@@ -1534,7 +1521,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_multiple_pages_failure_uri(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that receives an invalid nextLink.
 
         :return: An iterator like instance of JSON object
@@ -1618,7 +1605,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_fragment_next_link(
         self, tenant: str, *, api_version: str, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment.
 
         :param tenant: Sets the tenant to use. Required.
@@ -1704,7 +1691,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_fragment_with_grouping_next_link(  # pylint: disable=name-too-long
         self, tenant: str, *, api_version: str, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that doesn't return a full URL, just a fragment with parameters grouped.
 
         :param tenant: Sets the tenant to use. Required.
@@ -1836,7 +1823,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def begin_get_multiple_pages_lro(
         self, *, maxresults: Optional[int] = None, timeout: int = 30, **kwargs: Any
-    ) -> AsyncLROPoller[AsyncIterable[JSON]]:
+    ) -> AsyncLROPoller[AsyncItemPaged[JSON]]:
         """A long-running paging operation that includes a nextLink that has 10 pages.
 
         :keyword maxresults: Sets the maximum number of items to return in the response. Default value
@@ -1954,18 +1941,18 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         else:
             polling_method = polling
         if cont_token:
-            return AsyncLROPoller[AsyncIterable[JSON]].from_continuation_token(
+            return AsyncLROPoller[AsyncItemPaged[JSON]].from_continuation_token(
                 polling_method=polling_method,
                 continuation_token=cont_token,
                 client=self._client,
                 deserialization_callback=get_long_running_output,
             )
-        return AsyncLROPoller[AsyncIterable[JSON]](
+        return AsyncLROPoller[AsyncItemPaged[JSON]](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
 
     @distributed_trace
-    def append_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def append_api_version(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation with api version. When calling the next link, you want to append your
         client's api version to the next link.
 
@@ -2049,7 +2036,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         return AsyncItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def replace_api_version(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def replace_api_version(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation with api version. When calling the next link, you want to reformat it and
         override the returned api version with your client's api version.
 
@@ -2135,7 +2122,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_paging_model_with_item_name_with_xms_client_name(  # pylint: disable=name-too-long
         self, **kwargs: Any
-    ) -> AsyncIterable[JSON]:
+    ) -> AsyncItemPaged[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
         x-ms-client-name 'indexes'.
 

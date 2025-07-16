@@ -1,147 +1,147 @@
 parameters:
-    installAutorest: false
-    installTypeSpec: false
-    installCadlRanch: false
-    folderName: ""
-    regenerate: false
-    checkChange: true
-    updateToLatestTypespec: false
-    unitTest: false
-    skipWarning: false
+  installAutorest: false
+  installTypeSpec: false
+  installCadlRanch: false
+  folderName: ""
+  regenerate: false
+  checkChange: true
+  updateToLatestTypespec: false
+  unitTest: false
+  skipWarning: false
 
 steps:
-    - checkout: self
-    - checkout: azure-sdk-tools
-    - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
-      parameters:
-          TestProxy: true
-          templateRoot: azure-sdk-tools
-    - task: NodeTool@0
-      displayName: "Install Node.js 20.x"
-      inputs:
-          versionSpec: "20.x"
+  - checkout: self
+  - checkout: azure-sdk-tools
+  - template: eng/common/testproxy/test-proxy-tool.yml@azure-sdk-tools
+    parameters:
+      TestProxy: true
+      templateRoot: azure-sdk-tools
+  - task: NodeTool@0
+    displayName: "Install Node.js 20.x"
+    inputs:
+      versionSpec: "20.x"
 
-    - task: UsePythonVersion@0
-      displayName: "Use Python $(PythonVersion)"
-      inputs:
-          versionSpec: $(PythonVersion)
+  - task: UsePythonVersion@0
+    displayName: "Use Python $(PythonVersion)"
+    inputs:
+      versionSpec: $(PythonVersion)
 
-    - script: npm install -g pnpm@9.5.0
-      displayName: Install pnpm 9.5.0
+  - script: npm install -g pnpm@9.5.0
+    displayName: Install pnpm 9.5.0
 
-    - script: npm install -g autorest
-      displayName: Install autorest
-      condition: and(succeeded(), ${{ parameters.installAutorest }})
+  - script: npm install -g autorest
+    displayName: Install autorest
+    condition: and(succeeded(), ${{ parameters.installAutorest }})
 
-    - script: npm install -g @typespec/compiler
-      displayName: Install TypeSpec
-      condition: and(succeeded(), ${{ parameters.installTypeSpec }})
+  - script: npm install -g @typespec/compiler
+    displayName: Install TypeSpec
+    condition: and(succeeded(), ${{ parameters.installTypeSpec }})
 
-    - script: npm install -g @typespec/compiler@next
-      displayName: Install TypeSpec Next
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+  - script: npm install -g @typespec/compiler@next
+    displayName: Install TypeSpec Next
+    condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npm install -g @azure-tools/typespec-bump-deps@0.9.6
-      displayName: Install @azure-tools/typespec-bump-deps
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+  - script: npm install -g @azure-tools/typespec-bump-deps@latest
+    displayName: Install @azure-tools/typespec-bump-deps
+    condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: npx @azure-tools/typespec-bump-deps package.json packages/typespec-python/package.json
-      displayName: Update typespec packages to latest dev version
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+  - script: npx @azure-tools/typespec-bump-deps package.json packages/typespec-python/package.json
+    displayName: Update typespec packages to latest dev version
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: pnpm install --no-frozen-lockfile
-      displayName: Pnpm install no frozen lockfile
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
+  - script: pnpm install --no-frozen-lockfile
+    displayName: Pnpm install no frozen lockfile
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    condition: and(succeeded(), ${{ parameters.updateToLatestTypespec }})
 
-    - script: pnpm install
-      displayName: Pnpm install
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
+  - script: pnpm install
+    displayName: Pnpm install
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    condition: and(succeeded(), eq(${{ parameters.updateToLatestTypespec }}, false))
 
-    - script: pnpm list
-      displayName: Pnpm list
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
+  - script: pnpm list
+    displayName: Pnpm list
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python
 
-    - script: pnpm run build
-      displayName: Build project
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+  - script: pnpm run build
+    displayName: Build project
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
-    - script: pip list
-      displayName: List installed packages
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pip list
+    displayName: List installed packages
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pip install -r dev_requirements.txt
-      displayName: Pip install dev requirements
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pip install -r dev_requirements.txt
+    displayName: Pip install dev requirements
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pip list
-      displayName: List installed packages
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pip list
+    displayName: List installed packages
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pnpm run cspell
-      displayName: Cspell
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+  - script: pnpm run cspell
+    displayName: Cspell
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
 
-    - script: pnpm run lint --command eslint --skipWarning ${{ parameters.skipWarning }}
-      displayName: Eslint
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pnpm run lint --command eslint --skipWarning ${{ parameters.skipWarning }}
+    displayName: Eslint
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pnpm run lint --command pylint
-      displayName: Pylint
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pnpm run lint --command pylint
+    displayName: Pylint
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pnpm run lint --command mypy
-      displayName: Mypy
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pnpm run lint --command mypy
+    displayName: Mypy
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pnpm run lint --command pyright
-      displayName: Pyright
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pnpm run lint --command pyright
+    displayName: Pyright
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: pnpm run format
-      displayName: Black
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
+  - script: pnpm run format
+    displayName: Black
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}
 
-    - script: node ./eng/scripts/check-for-changed-files.js
-      displayName: Fail on black diff of root folder
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/
-      condition: and(succeeded(), ${{ parameters.checkChange }})
+  - script: node ./eng/scripts/check-for-changed-files.js
+    displayName: Fail on black diff of root folder
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/
+    condition: and(succeeded(), ${{ parameters.checkChange }}, eq(variables['Agent.OS'], 'Linux'))
 
-    - script: |
-        cd test/unittests
-        tox run -e ci
-      displayName: Unit tests
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.unitTest }})
+  - script: |
+      cd test/unittests
+      tox run -e ci
+    displayName: Unit tests
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+    condition: and(succeeded(), ${{ parameters.unitTest }})
 
-    - script: inv regenerate
-      displayName: "Regenerate Code(autorest)"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
+  - script: inv regenerate
+    displayName: "Regenerate Code(autorest)"
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+    condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
-    - script: |
-        rm -rf test/azure/generated test/unbranded/generated
-        npm run regenerate
-      displayName: "Regenerate Code(typespec)"
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
-      condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
+  - script: |
+      rm -rf test/azure/generated test/unbranded/generated
+      npm run regenerate
+    displayName: "Regenerate Code(typespec)"
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+    condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
 
-    - script: node ../../../eng/scripts/check-for-changed-files.js
-      displayName: Fail on regeneration diff in Typespec
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
-      condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }})
+  - script: node ../../../eng/scripts/check-for-changed-files.js
+    displayName: Fail on regeneration diff in Typespec
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
+    condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }}, eq(variables['Agent.OS'], 'Linux'))
 
-    - script: node ../../../eng/scripts/check-for-changed-files.js
-      displayName: Fail on regeneration diff in Autorest
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
-      condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }})
+  - script: node ../../../eng/scripts/check-for-changed-files.js
+    displayName: Fail on regeneration diff in Autorest
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test
+    condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }}, eq(variables['Agent.OS'], 'Linux'))
 
-    - script: |
-          pnpm pack
-          AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
-          cd ../..
-          pnpm install $AbsolutePkgPath -w --verbose
-      displayName: Test tarball
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+  - script: |
+      pnpm pack
+      AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+      cd ../..
+      pnpm install $AbsolutePkgPath -w --verbose
+    displayName: Test tarball
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/

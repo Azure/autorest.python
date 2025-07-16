@@ -96,7 +96,7 @@ class InterfaceV2Operations:
         :attr:`interface_v2` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AddedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -152,6 +152,7 @@ class InterfaceV2Operations:
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     def v2_in_interface(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
@@ -220,7 +221,7 @@ class InterfaceV2Operations:
         return deserialized  # type: ignore
 
 
-class AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AddedClientConfiguration]):
+class _AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AddedClientConfiguration]):
 
     @overload
     def v1(
@@ -278,6 +279,7 @@ class AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
     @api_version_validation(
         params_added_on={"v2": ["header_v2"]},
+        api_versions_list=["v1", "v2"],
     )
     def v1(self, body: Union[_models.ModelV1, JSON, IO[bytes]], *, header_v2: str, **kwargs: Any) -> _models.ModelV1:
         """v1.
@@ -393,6 +395,7 @@ class AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     def v2(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2.

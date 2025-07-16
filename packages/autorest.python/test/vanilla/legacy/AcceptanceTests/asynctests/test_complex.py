@@ -536,6 +536,7 @@ class TestComplex(object):
         assert dot_salmon.fish_type == "DotSalmon"
         assert dot_salmon.location == "sweden"
 
+    @pytest.mark.asyncio
     async def test_pass_in_api_version(self, client):
         assert client._config.api_version == "2016-02-29"
         async with AutoRestComplexTestService(base_url="http://localhost:3000", api_version="2021-10-01") as client:

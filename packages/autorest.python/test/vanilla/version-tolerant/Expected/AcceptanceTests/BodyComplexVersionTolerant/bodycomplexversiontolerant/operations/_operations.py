@@ -895,7 +895,7 @@ class BasicOperations:
         :attr:`basic` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -1312,7 +1312,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
         :attr:`primitive` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -3115,7 +3115,7 @@ class ArrayOperations:
         :attr:`array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -3523,7 +3523,7 @@ class DictionaryOperations:
         :attr:`dictionary` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -3990,7 +3990,7 @@ class InheritanceOperations:
         :attr:`inheritance` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -4204,7 +4204,7 @@ class PolymorphismOperations:
         :attr:`polymorphism` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -5568,7 +5568,7 @@ class PolymorphicrecursiveOperations:
         :attr:`polymorphicrecursive` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -6060,7 +6060,7 @@ class ReadonlypropertyOperations:
         :attr:`readonlyproperty` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (
@@ -6240,7 +6240,7 @@ class FlattencomplexOperations:
         :attr:`flattencomplex` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AutoRestComplexTestServiceConfiguration = (

@@ -6,16 +6,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import sys
-import os
-import argparse
 
 if not sys.version_info >= (3, 9, 0):
     raise Exception("Autorest for Python extension requires Python 3.9 at least")
 
 from pathlib import Path
-import venv
-
-from venvtools import python_run
+from package_manager import create_venv_with_package_manager, install_packages
 
 _ROOT_DIR = Path(__file__).parent.parent
 
@@ -26,10 +22,10 @@ def main():
 
     assert venv_preexists  # Otherwise install was not done
 
-    env_builder = venv.EnvBuilder(with_pip=True)
-    venv_context = env_builder.ensure_directories(venv_path)
+    venv_context = create_venv_with_package_manager(venv_path)
+
     try:
-        python_run(venv_context, "pip", ["install", "-r", f"{_ROOT_DIR}/dev_requirements.txt"])
+        install_packages(["-r", f"{_ROOT_DIR}/dev_requirements.txt"], venv_context)
     except FileNotFoundError as e:
         raise ValueError(e.filename)
 

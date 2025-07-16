@@ -42,7 +42,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class JsonMergePatchClientOperationsMixin(
+class _JsonMergePatchClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], JsonMergePatchClientConfiguration]
 ):
 

@@ -285,7 +285,7 @@ def build_child_client_delete_standalone_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="DELETE", url=_url, **kwargs)
 
 
-class HeaderParamClientOperationsMixin(
+class _HeaderParamClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], HeaderParamClientConfiguration]
 ):
 
@@ -440,7 +440,7 @@ class HeaderParamClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(
+class _MultipleParamsClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MultipleParamsClientConfiguration]
 ):
 
@@ -597,7 +597,7 @@ class MultipleParamsClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(
+class _MixedParamsClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MixedParamsClientConfiguration]
 ):
 
@@ -768,7 +768,7 @@ class MixedParamsClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(
+class _PathParamClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PathParamClientConfiguration]
 ):
 
@@ -925,7 +925,7 @@ class PathParamClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(
+class _ParamAliasClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ParamAliasClientConfiguration]
 ):
 
@@ -1030,7 +1030,7 @@ class ChildClientOperations:
         :attr:`child_client` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ParentClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

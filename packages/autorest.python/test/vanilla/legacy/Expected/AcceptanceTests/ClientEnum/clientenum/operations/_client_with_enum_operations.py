@@ -46,7 +46,7 @@ def build_head_request(*, x_ms_enum: Union[str, _models.Enum0], **kwargs: Any) -
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-class ClientWithEnumOperationsMixin(
+class _ClientWithEnumOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientWithEnumConfiguration]
 ):
 

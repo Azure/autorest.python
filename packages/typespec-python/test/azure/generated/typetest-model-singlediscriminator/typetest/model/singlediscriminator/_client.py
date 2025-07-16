@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SingleDiscriminatorClientConfiguration
-from ._operations import SingleDiscriminatorClientOperationsMixin
+from ._operations._operations import _SingleDiscriminatorClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class SingleDiscriminatorClient(
-    SingleDiscriminatorClientOperationsMixin
+    _SingleDiscriminatorClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates inheritance with single discriminator.
 

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -44,7 +44,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class DPGClientOperationsMixin(
+class _DPGClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], DPGClientConfiguration]
 ):
 
@@ -256,7 +256,7 @@ class DPGClientOperationsMixin(
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> AsyncIterable[JSON]:
+    def get_pages(self, mode: str, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 

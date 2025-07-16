@@ -67,7 +67,7 @@ def build_status_code_range_error_response_status_code404_request(  # pylint: di
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class StatusCodeRangeClientOperationsMixin(
+class _StatusCodeRangeClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], StatusCodeRangeClientConfiguration]
 ):
 

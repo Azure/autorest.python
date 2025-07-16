@@ -927,7 +927,7 @@ class ExtendsUnknownOperations:
         :attr:`extends_unknown` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -1102,7 +1102,7 @@ class ExtendsUnknownDerivedOperations:
         :attr:`extends_unknown_derived` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -1284,7 +1284,7 @@ class ExtendsUnknownDiscriminatedOperations:
         :attr:`extends_unknown_discriminated` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -1466,7 +1466,7 @@ class IsUnknownOperations:
         :attr:`is_unknown` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -1641,7 +1641,7 @@ class IsUnknownDerivedOperations:
         :attr:`is_unknown_derived` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -1820,7 +1820,7 @@ class IsUnknownDiscriminatedOperations:
         :attr:`is_unknown_discriminated` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2002,7 +2002,7 @@ class ExtendsStringOperations:
         :attr:`extends_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2177,7 +2177,7 @@ class IsStringOperations:
         :attr:`is_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2352,7 +2352,7 @@ class SpreadStringOperations:
         :attr:`spread_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2523,7 +2523,7 @@ class ExtendsFloatOperations:
         :attr:`extends_float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2698,7 +2698,7 @@ class IsFloatOperations:
         :attr:`is_float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -2873,7 +2873,7 @@ class SpreadFloatOperations:
         :attr:`spread_float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3044,7 +3044,7 @@ class ExtendsModelOperations:
         :attr:`extends_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3219,7 +3219,7 @@ class IsModelOperations:
         :attr:`is_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3394,7 +3394,7 @@ class SpreadModelOperations:
         :attr:`spread_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3565,7 +3565,7 @@ class ExtendsModelArrayOperations:
         :attr:`extends_model_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3746,7 +3746,7 @@ class IsModelArrayOperations:
         :attr:`is_model_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -3921,7 +3921,7 @@ class SpreadModelArrayOperations:
         :attr:`spread_model_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4095,7 +4095,7 @@ class SpreadDifferentStringOperations:
         :attr:`spread_different_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4270,7 +4270,7 @@ class SpreadDifferentFloatOperations:
         :attr:`spread_different_float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4445,7 +4445,7 @@ class SpreadDifferentModelOperations:
         :attr:`spread_different_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4620,7 +4620,7 @@ class SpreadDifferentModelArrayOperations:
         :attr:`spread_different_model_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4795,7 +4795,7 @@ class ExtendsDifferentSpreadStringOperations:
         :attr:`extends_different_spread_string` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -4970,7 +4970,7 @@ class ExtendsDifferentSpreadFloatOperations:
         :attr:`extends_different_spread_float` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -5145,7 +5145,7 @@ class ExtendsDifferentSpreadModelOperations:
         :attr:`extends_different_spread_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -5320,7 +5320,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         :attr:`extends_different_spread_model_array` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -5495,7 +5495,7 @@ class MultipleSpreadOperations:
         :attr:`multiple_spread` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -5667,7 +5667,7 @@ class SpreadRecordUnionOperations:
         :attr:`spread_record_union` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -5839,7 +5839,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         :attr:`spread_record_non_discriminated_union` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -6018,7 +6018,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         :attr:`spread_record_non_discriminated_union2` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (
@@ -6199,7 +6199,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         :attr:`spread_record_non_discriminated_union3` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: AdditionalPropertiesClientConfiguration = (

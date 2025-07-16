@@ -23,12 +23,12 @@ def get_code_model():
             "namespace": "namespace",
         },
         options={
-            "show_send_request": True,
-            "builders_visibility": "public",
-            "show_operations": True,
-            "models_mode": "dpg",
-            "only_path_and_body_params_positional": True,
-            "azure_arm": False,
+            "show-send-request": True,
+            "builders-visibility": "public",
+            "show-operations": True,
+            "models-mode": "dpg",
+            "only-path-and-body-params-positional": True,
+            "azure-arm": False,
         },
     )
 

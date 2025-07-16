@@ -7,35 +7,35 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Union
+from typing import Any, Awaitable
 from typing_extensions import Self
 
 from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
-from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RemovedClientConfiguration
-from ._operations import RemovedClientOperationsMixin
+from ._operations._operations import _RemovedClientOperationsMixin
 
 
-class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RemovedClient(_RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@removed`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
-    :param version: Need to be set as 'v1', 'v2preview' or 'v2' in client. Known values are: "v1",
-     "v2preview", and "v2". Required.
-    :type version: str or ~versioning.removed.models.Versions
+    :keyword version: Need to be set as 'v1', 'v2preview' or 'v2' in client. Known values are "v2"
+     and None. Default value is "v2". Note that overriding this default value may result in
+     unsupported behavior.
+    :paramtype version: str or ~versioning.removed.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, version: Union[str, _models.Versions], **kwargs: Any
+        self, endpoint: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/versioning/removed/api-version:{version}"
-        self._config = RemovedClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+        self._config = RemovedClientConfiguration(endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:

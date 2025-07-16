@@ -105,7 +105,7 @@ class BazOperations:
         :attr:`baz` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -125,7 +125,7 @@ class QuxOperations:
         :attr:`qux` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -190,7 +190,7 @@ class FooOperations:
         :attr:`foo` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -298,7 +298,7 @@ class BarOperations:
         :attr:`bar` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -396,7 +396,7 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(
+class _ServiceClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ServiceClientConfiguration]
 ):
 
@@ -501,7 +501,7 @@ class BazFooOperations:
         :attr:`foo` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -564,7 +564,7 @@ class QuxBarOperations:
         :attr:`bar` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: ServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

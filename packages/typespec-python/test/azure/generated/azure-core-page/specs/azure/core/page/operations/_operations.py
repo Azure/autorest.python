@@ -8,7 +8,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -178,7 +178,7 @@ class TwoModelsAsPageItemOperations:
         :attr:`two_models_as_page_item` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: PageClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -186,7 +186,7 @@ class TwoModelsAsPageItemOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def list_first_item(self, **kwargs: Any) -> Iterable["_models.FirstItem"]:
+    def list_first_item(self, **kwargs: Any) -> ItemPaged["_models.FirstItem"]:
         """Two operations with two different page item types should be successfully generated. Should
         generate model for FirstItem.
 
@@ -269,7 +269,7 @@ class TwoModelsAsPageItemOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_second_item(self, **kwargs: Any) -> Iterable["_models.SecondItem"]:
+    def list_second_item(self, **kwargs: Any) -> ItemPaged["_models.SecondItem"]:
         """Two operations with two different page item types should be successfully generated. Should
         generate model for SecondItem.
 
@@ -352,10 +352,10 @@ class TwoModelsAsPageItemOperations:
         return ItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageClientConfiguration]):
+class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageClientConfiguration]):
 
     @distributed_trace
-    def list_with_page(self, **kwargs: Any) -> Iterable["_models.User"]:
+    def list_with_page(self, **kwargs: Any) -> ItemPaged["_models.User"]:
         """List with Azure.Core.Page<>.
 
         :return: An iterator like instance of User
@@ -444,7 +444,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -468,7 +468,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -492,7 +492,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         content_type: str = "application/json",
         **kwargs: Any,
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Required.
@@ -515,7 +515,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         *,
         another: Optional[Union[str, _models.ListItemInputExtensibleEnum]] = None,
         **kwargs: Any,
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """List with extensible enum parameter Azure.Core.Page<>.
 
         :param body_input: The body of the input. Is one of the following types: ListItemInputBody,
@@ -613,7 +613,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_with_custom_page_model(self, **kwargs: Any) -> Iterable["_models.User"]:
+    def list_with_custom_page_model(self, **kwargs: Any) -> ItemPaged["_models.User"]:
         """List with custom page model.
 
         :return: An iterator like instance of User
@@ -697,7 +697,7 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
     @distributed_trace
     def with_parameterized_next_link(
         self, *, select: str, include_pending: Optional[bool] = None, **kwargs: Any
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """List with parameterized next link that re-injects parameters.
 
         :keyword select: Required.
@@ -747,6 +747,10 @@ class PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
                     }
                 )
                 _next_request_params["api-version"] = self._config.api_version
+                if include_pending is not None:
+                    _next_request_params["includePending"] = self._serialize.query(
+                        "include_pending", include_pending, "bool"
+                    )
                 _request = HttpRequest(
                     "GET", urllib.parse.urljoin(next_link, _parsed_next_link.path), params=_next_request_params
                 )

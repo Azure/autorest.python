@@ -1,5 +1,60 @@
 # Release
 
+## 6.36.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
+## 6.35.5
+
+No changes, version bump only.
+
+## 6.35.4
+
+### Bump dependencies
+
+- [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
+
+
+## 6.35.3
+
+### Bump dependencies
+
+- Regular release
+
+## 6.35.2
+
+No changes, version bump only.
+
+## 6.35.1
+
+### Bump dependencies
+
+- Bump typespec
+
+
+## 6.35.0
+
+### Features
+
+- [#3089](https://github.com/Azure/autorest.python/pull/3089) generate `_metadata.json` to store info from TCGC
+
+### Bug Fixes
+
+- [#3088](https://github.com/Azure/autorest.python/pull/3088) Fix response type of paging operations from `Iterable` to `ItemPaged`
+- [#3090](https://github.com/Azure/autorest.python/pull/3090) Revert for `_utils` only for multiapi
+
+
+## 6.34.2
+
+### Bug Fixes
+
+- [#3081](https://github.com/Azure/autorest.python/pull/3081) Fix typing for generic `PipelineClient`
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Add support for legacy parameterized next links
+
+
 ## 6.34.1
 
 ### Bump dependencies

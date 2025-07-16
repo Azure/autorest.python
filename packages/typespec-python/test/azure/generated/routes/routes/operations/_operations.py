@@ -56,7 +56,7 @@ class InInterfaceOperations:
         :attr:`in_interface` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: RoutesClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -108,7 +108,9 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RoutesClientConfiguration]):
+class _RoutesClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RoutesClientConfiguration]
+):
 
     @distributed_trace
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

@@ -39,7 +39,7 @@ def build_head_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, **kwargs)
 
 
-class AutorestSecurityKeyOperationsMixin(
+class _AutorestSecurityKeyOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutorestSecurityKeyConfiguration]
 ):
 

@@ -34,7 +34,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class NotDiscriminatedClientOperationsMixin(
+class _NotDiscriminatedClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NotDiscriminatedClientConfiguration]
 ):
 

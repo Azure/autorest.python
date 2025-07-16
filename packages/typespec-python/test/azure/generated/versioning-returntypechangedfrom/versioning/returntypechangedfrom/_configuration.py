@@ -6,11 +6,10 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Union
+from typing import Any
 
 from azure.core.pipeline import policies
 
-from . import models as _models
 from ._version import VERSION
 
 
@@ -23,16 +22,17 @@ class ReturnTypeChangedFromClientConfiguration:  # pylint: disable=too-many-inst
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
-    :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
-     Required.
-    :type version: str or ~versioning.returntypechangedfrom.models.Versions
+    :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
+     Default value is "v2". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype version: str or ~versioning.returntypechangedfrom.models.Versions
     """
 
-    def __init__(self, endpoint: str, version: Union[str, _models.Versions], **kwargs: Any) -> None:
+    def __init__(self, endpoint: str, **kwargs: Any) -> None:
+        version: str = kwargs.pop("version", "v2")
+
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
-        if version is None:
-            raise ValueError("Parameter 'version' must not be None.")
 
         self.endpoint = endpoint
         self.version = version

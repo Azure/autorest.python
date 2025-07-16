@@ -8,7 +8,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Iterable, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -232,7 +232,7 @@ def build_basic_export_all_users_request(*, format: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], BasicClientConfiguration]):
+class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], BasicClientConfiguration]):
 
     @overload
     def create_or_update(
@@ -577,7 +577,7 @@ class BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
         select: Optional[List[str]] = None,
         expand: Optional[List[str]] = None,
         **kwargs: Any
-    ) -> Iterable["_models.User"]:
+    ) -> ItemPaged["_models.User"]:
         """Lists all users.
 
         Lists all Users.

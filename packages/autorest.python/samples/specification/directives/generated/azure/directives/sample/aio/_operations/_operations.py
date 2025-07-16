@@ -8,12 +8,12 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterable, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
 from azure.core import AsyncPipelineClient
-from azure.core.async_paging import AsyncList
+from azure.core.async_paging import AsyncItemPaged, AsyncList
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -43,7 +43,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PollingPagingExampleOperationsMixin(
+class _PollingPagingExampleOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PollingPagingExampleConfiguration]
 ):
 
@@ -250,7 +250,7 @@ class PollingPagingExampleOperationsMixin(
         )
 
     @distributed_trace
-    def basic_paging(self, **kwargs: Any) -> AsyncIterable[JSON]:
+    def basic_paging(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A simple paging operation.
 
         :return: An iterator like instance of JSON object

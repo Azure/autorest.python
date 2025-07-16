@@ -85,7 +85,7 @@ def build_not_discriminated_put_valid_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class NotDiscriminatedClientOperationsMixin(
+class _NotDiscriminatedClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NotDiscriminatedClientConfiguration]
 ):
 

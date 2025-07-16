@@ -1,5 +1,68 @@
 # Release
 
+## 0.46.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
+## 0.45.5
+
+### Features
+
+- [#3116](https://github.com/Azure/autorest.python/pull/3116) [typespec-python] Add support for uv package manager alongside pip
+
+
+## 0.45.4
+
+### Bump dependencies
+
+- [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
+
+
+## 0.45.3
+
+### Bump dependencies
+
+- [#3103](https://github.com/Azure/autorest.python/pull/3103) Add support for `validate-versioning` flag, so users can toggle whether they get api versioning validation
+- [#3103](https://github.com/Azure/autorest.python/pull/3103) Validate api versions by looking at ordering of api versions from spec
+
+
+## 0.45.2
+
+No changes, version bump only.
+
+## 0.45.1
+
+### Bump dependencies
+
+- Bump typespec
+
+
+## 0.45.0
+
+### Features
+
+- [#3089](https://github.com/Azure/autorest.python/pull/3089) generate `_metadata.json` to store info from TCGC
+
+### Bug Fixes
+
+- [#3088](https://github.com/Azure/autorest.python/pull/3088) Fix response type of paging operations from `Iterable` to `ItemPaged`
+
+
+## 0.44.2
+
+### Bug Fixes
+
+- [#3081](https://github.com/Azure/autorest.python/pull/3081) Fix typing for generic `PipelineClient`
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Add support for legacy parameterized next links
+
+### Bump dependencies
+
+- [#3085](https://github.com/Azure/autorest.python/pull/3085) Bump typespec 1.0.0
+
+
 ## 0.44.1
 
 ### Bump dependencies

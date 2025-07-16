@@ -104,6 +104,7 @@ class InterfaceV2Operations:
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     async def v2_in_interface(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2_in_interface.
@@ -172,7 +173,7 @@ class InterfaceV2Operations:
         return deserialized  # type: ignore
 
 
-class AddedClientOperationsMixin(
+class _AddedClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AddedClientConfiguration]
 ):
 
@@ -232,6 +233,7 @@ class AddedClientOperationsMixin(
 
     @api_version_validation(
         params_added_on={"v2": ["header_v2"]},
+        api_versions_list=["v1", "v2"],
     )
     async def v1(
         self, body: Union[_models.ModelV1, JSON, IO[bytes]], *, header_v2: str, **kwargs: Any
@@ -353,6 +355,7 @@ class AddedClientOperationsMixin(
     @api_version_validation(
         method_added_on="v2",
         params_added_on={"v2": ["content_type", "accept"]},
+        api_versions_list=["v2"],
     )
     async def v2(self, body: Union[_models.ModelV2, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV2:
         """v2.

@@ -30,7 +30,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ParmaterizedEndpointClientOperationsMixin(  # pylint: disable=name-too-long
+class _ParmaterizedEndpointClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ParmaterizedEndpointClientConfiguration]
 ):
 

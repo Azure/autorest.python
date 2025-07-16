@@ -72,7 +72,7 @@ def build_get_optional_report_request(*, qualifier: Optional[str] = None, **kwar
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AutoRestReportServiceOperationsMixin(
+class _AutoRestReportServiceOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestReportServiceConfiguration]
 ):
 

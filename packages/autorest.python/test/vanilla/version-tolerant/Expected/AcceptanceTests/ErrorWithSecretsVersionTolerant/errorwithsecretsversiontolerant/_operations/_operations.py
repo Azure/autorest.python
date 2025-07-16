@@ -64,7 +64,7 @@ def build_error_with_secrets_get_error_with_secrets_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(
+class _ErrorWithSecretsOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ErrorWithSecretsConfiguration]
 ):
 

@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -53,7 +53,7 @@ class ServerDrivenPaginationOperations:
         :attr:`server_driven_pagination` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: PageableClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -64,7 +64,7 @@ class ServerDrivenPaginationOperations:
             self._client, self._config, self._serialize, self._deserialize
         )
 
-    def link(self, **kwargs: Any) -> Iterable["_models2.Pet"]:
+    def link(self, **kwargs: Any) -> ItemPaged["_models2.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet

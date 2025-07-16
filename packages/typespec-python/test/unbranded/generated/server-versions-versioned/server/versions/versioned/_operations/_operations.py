@@ -72,7 +72,7 @@ def build_versioned_with_query_old_api_version_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="HEAD", url=_url, params=_params, **kwargs)
 
 
-class VersionedClientOperationsMixin(
+class _VersionedClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], VersionedClientConfiguration]
 ):
 

@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, Union, cast, overload
 
 from my.library import CustomDefaultPollingMethod, CustomPager, CustomPoller
 
@@ -22,6 +22,7 @@ from azure.core.exceptions import (
     StreamConsumedError,
     map_error,
 )
+from azure.core.paging import ItemPaged
 from azure.core.pipeline import PipelineResponse
 from azure.core.polling import NoPolling, PollingMethod
 from azure.core.rest import HttpRequest, HttpResponse
@@ -71,7 +72,7 @@ def build_polling_paging_example_basic_paging_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class PollingPagingExampleOperationsMixin(
+class _PollingPagingExampleOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PollingPagingExampleConfiguration]
 ):
 
@@ -274,7 +275,7 @@ class PollingPagingExampleOperationsMixin(
         return CustomPoller[JSON](self._client, raw_result, get_long_running_output, polling_method)  # type: ignore
 
     @distributed_trace
-    def basic_paging(self, **kwargs: Any) -> Iterable[JSON]:
+    def basic_paging(self, **kwargs: Any) -> ItemPaged[JSON]:
         """A simple paging operation.
 
         :return: An iterator like instance of JSON object

@@ -145,7 +145,7 @@ def build_visibility_put_read_only_model_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class VisibilityClientOperationsMixin(
+class _VisibilityClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], VisibilityClientConfiguration]
 ):
 

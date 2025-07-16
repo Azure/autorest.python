@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import DeserializeEmptyStringAsNullClientConfiguration
-from ._operations import DeserializeEmptyStringAsNullClientOperationsMixin
+from ._operations._operations import _DeserializeEmptyStringAsNullClientOperationsMixin
 
 
 class DeserializeEmptyStringAsNullClient(
-    DeserializeEmptyStringAsNullClientOperationsMixin
+    _DeserializeEmptyStringAsNullClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test decorator @deserializeEmptyStringAsNull.
 

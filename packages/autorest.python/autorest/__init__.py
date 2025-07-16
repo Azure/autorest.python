@@ -10,7 +10,7 @@ from typing import Any, Dict, Union, List
 
 import yaml
 
-from pygen import ReaderAndWriter, Plugin, YamlUpdatePlugin
+from pygen import ReaderAndWriter, Plugin, YamlUpdatePlugin, OptionsDict
 from .jsonrpc import AutorestAPI
 
 
@@ -37,7 +37,7 @@ class PluginAutorest(Plugin, ReaderAndWriterAutorest):
 
     def __init__(self, autorestapi: AutorestAPI, *, output_folder: Union[str, Path]) -> None:
         super().__init__(autorestapi=autorestapi, output_folder=output_folder)
-        self.options = self.get_options()
+        self.options = OptionsDict(self.get_options())
 
     @abstractmethod
     def get_options(self) -> Dict[str, Any]:

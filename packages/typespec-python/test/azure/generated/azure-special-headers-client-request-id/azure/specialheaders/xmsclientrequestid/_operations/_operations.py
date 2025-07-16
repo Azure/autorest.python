@@ -44,7 +44,7 @@ def build_xms_client_request_id_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class XmsClientRequestIdClientOperationsMixin(
+class _XmsClientRequestIdClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], XmsClientRequestIdClientConfiguration]
 ):
 

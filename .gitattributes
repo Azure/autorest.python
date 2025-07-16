@@ -1,10 +1,10 @@
-# These files are text and should be normalized (convert crlf =&gt; lf)
-*.cs    text    diff=csharp
-*.py    text
-*.json  text
-*.md    text
-*.iced  text
-*.csproj    text
+# Default: auto-detect text files and force LF line endings
+* text=auto eol=lf
 
-# Use unix line endings always, even on Windows
-*                            text=auto eol=lf
+# Specific text files (these will inherit eol=lf from above)
+*.cs text diff=csharp
+*.py text
+*.json text
+*.md text
+*.iced text
+*.csproj text

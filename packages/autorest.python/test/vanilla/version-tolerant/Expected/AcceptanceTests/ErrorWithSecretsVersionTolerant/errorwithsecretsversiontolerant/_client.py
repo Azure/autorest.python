@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ErrorWithSecretsConfiguration
-from ._operations import ErrorWithSecretsOperationsMixin
+from ._operations._operations import _ErrorWithSecretsOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class ErrorWithSecrets(ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ErrorWithSecrets(_ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Tests whether loggers/tracers redact secrets and PII within error responses.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

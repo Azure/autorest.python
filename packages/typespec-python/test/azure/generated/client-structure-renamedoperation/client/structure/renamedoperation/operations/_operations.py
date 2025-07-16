@@ -84,7 +84,7 @@ class GroupOperations:
         :attr:`group` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: RenamedOperationClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -227,7 +227,7 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(
+class _RenamedOperationClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RenamedOperationClientConfiguration]
 ):
 

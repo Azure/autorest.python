@@ -61,7 +61,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class HeaderParamClientOperationsMixin(
+class _HeaderParamClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], HeaderParamClientConfiguration]
 ):
 
@@ -214,7 +214,7 @@ class HeaderParamClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleParamsClientOperationsMixin(
+class _MultipleParamsClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MultipleParamsClientConfiguration]
 ):
 
@@ -369,7 +369,7 @@ class MultipleParamsClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedParamsClientOperationsMixin(
+class _MixedParamsClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], MixedParamsClientConfiguration]
 ):
 
@@ -542,7 +542,7 @@ class MixedParamsClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PathParamClientOperationsMixin(
+class _PathParamClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PathParamClientConfiguration]
 ):
 
@@ -697,7 +697,7 @@ class PathParamClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParamAliasClientOperationsMixin(
+class _ParamAliasClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ParamAliasClientConfiguration]
 ):
 

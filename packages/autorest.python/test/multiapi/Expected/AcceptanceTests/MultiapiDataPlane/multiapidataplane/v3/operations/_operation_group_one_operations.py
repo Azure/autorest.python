@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -84,7 +84,7 @@ class OperationGroupOneOperations:
 
     models = _models
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: MultiapiServiceClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -93,7 +93,7 @@ class OperationGroupOneOperations:
         self._api_version = input_args.pop(0) if input_args else kwargs.pop("api_version")
 
     @distributed_trace
-    def test_operation_group_paging(self, **kwargs: Any) -> Iterable["_models.ModelThree"]:
+    def test_operation_group_paging(self, **kwargs: Any) -> ItemPaged["_models.ModelThree"]:
         """Returns ModelThree with optionalProperty 'paged'.
 
         :return: An iterator like instance of either ModelThree or the result of cls(response)

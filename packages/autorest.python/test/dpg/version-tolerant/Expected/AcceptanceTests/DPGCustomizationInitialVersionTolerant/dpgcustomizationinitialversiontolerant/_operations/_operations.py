@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, Union, cast, overload
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -119,7 +119,7 @@ def build_dpg_lro_request(mode: str, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class DPGClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DPGClientConfiguration]):
+class _DPGClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], DPGClientConfiguration]):
 
     @distributed_trace
     def get_model(self, mode: str, **kwargs: Any) -> JSON:
@@ -325,7 +325,7 @@ class DPGClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpRe
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
-    def get_pages(self, mode: str, **kwargs: Any) -> Iterable[JSON]:
+    def get_pages(self, mode: str, **kwargs: Any) -> ItemPaged[JSON]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
         following growup.
 

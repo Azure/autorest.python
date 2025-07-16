@@ -134,7 +134,7 @@ def build_post_with_constant_in_body_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestValidationTestOperationsMixin(
+class _AutoRestValidationTestOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestValidationTestConfiguration]
 ):
 

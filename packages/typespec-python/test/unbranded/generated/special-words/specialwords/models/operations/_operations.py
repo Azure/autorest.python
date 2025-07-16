@@ -503,7 +503,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         :attr:`models` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: SpecialWordsClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

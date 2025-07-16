@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -55,7 +55,7 @@ class ServerDrivenPaginationOperations:
         )
 
     @distributed_trace
-    def link(self, **kwargs: Any) -> AsyncIterable["_models3.Pet"]:
+    def link(self, **kwargs: Any) -> AsyncItemPaged["_models3.Pet"]:
         """link.
 
         :return: An iterator like instance of Pet

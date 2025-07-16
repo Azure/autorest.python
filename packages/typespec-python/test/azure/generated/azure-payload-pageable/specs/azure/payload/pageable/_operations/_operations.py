@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterable, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -56,7 +56,7 @@ def build_pageable_list_request(*, maxpagesize: Optional[int] = None, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class PageableClientOperationsMixin(
+class _PageableClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], PageableClientConfiguration]
 ):
 
@@ -64,7 +64,7 @@ class PageableClientOperationsMixin(
     @api_version_validation(
         params_added_on={"1.0-preview.1": ["maxpagesize"]},
     )
-    def list(self, **kwargs: Any) -> Iterable["_models.User"]:
+    def list(self, **kwargs: Any) -> ItemPaged["_models.User"]:
         """List users.
 
         :return: An iterator like instance of User

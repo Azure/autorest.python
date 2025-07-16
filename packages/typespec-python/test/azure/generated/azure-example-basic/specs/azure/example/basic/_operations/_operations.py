@@ -64,7 +64,7 @@ def build_azure_example_basic_action_request(*, query_param: str, header_param: 
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class AzureExampleClientOperationsMixin(
+class _AzureExampleClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AzureExampleClientConfiguration]
 ):
 

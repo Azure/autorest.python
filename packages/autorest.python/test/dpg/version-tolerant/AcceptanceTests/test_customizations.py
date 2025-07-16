@@ -92,7 +92,7 @@ def test_customized_lro(client):
 )
 def test_dunder_all(package_name):
     assert importlib.import_module(package_name).__all__ == ["DPGClient"]
-    assert importlib.import_module(f"{package_name}._operations").__all__ == ["DPGClientOperationsMixin"]
+    assert importlib.import_module(f"{package_name}._operations").__all__ == []
 
 
 def test_imports():

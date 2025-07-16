@@ -183,7 +183,7 @@ class ClientModelOperations:
         :attr:`client_model` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NamingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -401,7 +401,7 @@ class UnionEnumOperations:
         :attr:`union_enum` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NamingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -515,7 +515,9 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NamingClientConfiguration]):
+class _NamingClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NamingClientConfiguration]
+):
 
     @distributed_trace
     def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

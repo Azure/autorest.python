@@ -29,6 +29,9 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     "azure/client-generator-core/client-initialization": {
         namespace: "specs.azure.clientgenerator.core.clientinitialization",
     },
+    "azure/client-generator-core/client-location": {
+        namespace: "specs.azure.clientgenerator.core.clientlocation",
+    },
     "azure/client-generator-core/deserialize-empty-string-as-null": {
         namespace: "specs.azure.clientgenerator.core.emptystring",
     },
@@ -296,6 +299,9 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 
                 const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
 
+                // after support discriminated union, remove this check
+                if (mainTspRelativePath.includes("type/union/discriminated")) return;
+
                 // after fix test generation for nested operation group, remove this check
                 if (mainTspRelativePath.includes("client-operation-group")) return;
 
@@ -382,16 +388,20 @@ function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
 }
 
 async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number): Promise<void> {
-    let currentIndex = 0;
-
-    async function worker() {
-        while (currentIndex < tasks.length) {
-            const index = currentIndex++;
-            await tasks[index]();
+    async function worker(start: number, end: number) {
+        while (start < end) {
+            await tasks[start]();
+            start++;
         }
     }
 
-    const workers = new Array(Math.min(poolLimit, tasks.length)).fill(null).map(() => worker());
+    const workers = [];
+    let start = 0;
+    while (start < tasks.length) {
+        const end = Math.min(start + poolLimit, tasks.length);
+        workers.push((async () => await worker(start, end))());
+        start = end;
+    }
     await Promise.all(workers);
 }
 

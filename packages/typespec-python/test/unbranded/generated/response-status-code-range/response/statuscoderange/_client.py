@@ -8,11 +8,13 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import StatusCodeRangeClientConfiguration
-from ._operations import StatusCodeRangeClientOperationsMixin
+from ._operations._operations import _StatusCodeRangeClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class StatusCodeRangeClient(StatusCodeRangeClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class StatusCodeRangeClient(
+    _StatusCodeRangeClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for range of status code.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

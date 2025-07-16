@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Iterable, Iterator, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, Dict, IO, Iterator, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import PipelineClient
@@ -329,7 +329,7 @@ class StorageAccountsOperations:
         :attr:`storage_accounts` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: StorageManagementClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
@@ -1424,7 +1424,7 @@ class StorageAccountsOperations:
         return cast(JSON, deserialized)  # type: ignore
 
     @distributed_trace
-    def list(self, **kwargs: Any) -> Iterable[JSON]:
+    def list(self, **kwargs: Any) -> ItemPaged[JSON]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
         returned; use the ListKeys operation for this.
 
@@ -1548,7 +1548,7 @@ class StorageAccountsOperations:
         return ItemPaged(get_next, extract_data)
 
     @distributed_trace
-    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> Iterable[JSON]:
+    def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> ItemPaged[JSON]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
         are not returned; use the ListKeys operation for this.
 
@@ -1857,7 +1857,7 @@ class UsageOperations:
         :attr:`usage` attribute.
     """
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: StorageManagementClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")

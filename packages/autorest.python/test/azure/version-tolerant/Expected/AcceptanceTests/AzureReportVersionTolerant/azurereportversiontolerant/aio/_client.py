@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestReportServiceForAzureConfiguration
-from ._operations import AutoRestReportServiceForAzureOperationsMixin
+from ._operations._operations import _AutoRestReportServiceForAzureOperationsMixin
 
 
 class AutoRestReportServiceForAzure(
-    AutoRestReportServiceForAzureOperationsMixin
+    _AutoRestReportServiceForAzureOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 

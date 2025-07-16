@@ -34,7 +34,7 @@ class Client:
         self.filename = default_version_metadata["client"]["filename"]
         self.host_value = default_version_metadata["client"]["host_value"]
         self.description = default_version_metadata["client"]["description"]
-        self.client_side_validation = default_version_metadata["client"]["client_side_validation"]
+        self.client_side_validation = default_version_metadata["client"]["client-side-validation"]
         self.default_version_metadata = default_version_metadata
         self.version_path_to_metadata = version_path_to_metadata
 
@@ -43,7 +43,7 @@ class Client:
         file_import = FileImport(json.loads(self.default_version_metadata["client"][imports_to_load]))
         local_imports = file_import.imports.get(TypingSection.REGULAR, {}).get(ImportType.LOCAL, {})
         for key in local_imports:
-            if re.search("^\\.*_serialization$", key):
+            if re.search("^\\.*_utils.serialization$", key):
                 relative_path = ".." if async_mode else "."
                 local_imports[f"{relative_path}_serialization"] = local_imports.pop(key)
                 break

@@ -7,35 +7,37 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Union
+from typing import Any
 from typing_extensions import Self
 
 from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from . import models as _models
 from ._configuration import TypeChangedFromClientConfiguration
-from ._operations import TypeChangedFromClientOperationsMixin
+from ._operations._operations import _TypeChangedFromClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class TypeChangedFromClient(
+    _TypeChangedFromClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@typeChangedFrom`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
-    :param version: Need to be set as 'v1' or 'v2' in client. Known values are: "v1" and "v2".
-     Required.
-    :type version: str or ~versioning.typechangedfrom.models.Versions
+    :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
+     Default value is "v2". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype version: str or ~versioning.typechangedfrom.models.Versions
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, endpoint: str, version: Union[str, _models.Versions], **kwargs: Any
+        self, endpoint: str, **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}/versioning/type-changed-from/api-version:{version}"
-        self._config = TypeChangedFromClientConfiguration(endpoint=endpoint, version=version, **kwargs)
+        self._config = TypeChangedFromClientConfiguration(endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:

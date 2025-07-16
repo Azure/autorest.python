@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterable, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Dict, List, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.async_paging import AsyncItemPaged, AsyncList
@@ -34,7 +34,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class PageableClientOperationsMixin(
+class _PageableClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PageableClientConfiguration]
 ):
 
@@ -42,7 +42,7 @@ class PageableClientOperationsMixin(
     @api_version_validation(
         params_added_on={"1.0-preview.1": ["maxpagesize"]},
     )
-    def list(self, **kwargs: Any) -> AsyncIterable["_models.User"]:
+    def list(self, **kwargs: Any) -> AsyncItemPaged["_models.User"]:
         """List users.
 
         :return: An iterator like instance of User
