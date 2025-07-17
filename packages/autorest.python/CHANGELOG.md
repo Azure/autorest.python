@@ -1,5 +1,12 @@
 # Release
 
+## 6.37.0
+
+### Bump dependencies
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Bump typespec
+
+
 ## 6.36.0
 
 ### Features

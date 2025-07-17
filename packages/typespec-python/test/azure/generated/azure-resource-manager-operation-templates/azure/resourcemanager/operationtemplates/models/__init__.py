@@ -14,6 +14,10 @@ if TYPE_CHECKING:
 
 
 from ._models import (  # type: ignore
+    ActionRequest,
+    ActionResult,
+    ChangeAllowanceRequest,
+    ChangeAllowanceResult,
     CheckNameAvailabilityRequest,
     CheckNameAvailabilityResponse,
     ErrorAdditionalInfo,
@@ -28,6 +32,8 @@ from ._models import (  # type: ignore
     Resource,
     SystemData,
     TrackedResource,
+    Widget,
+    WidgetProperties,
 )
 
 from ._enums import (  # type: ignore
@@ -41,6 +47,10 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
+    "ActionRequest",
+    "ActionResult",
+    "ChangeAllowanceRequest",
+    "ChangeAllowanceResult",
     "CheckNameAvailabilityRequest",
     "CheckNameAvailabilityResponse",
     "ErrorAdditionalInfo",
@@ -55,6 +65,8 @@ __all__ = [
     "Resource",
     "SystemData",
     "TrackedResource",
+    "Widget",
+    "WidgetProperties",
     "ActionType",
     "CheckNameAvailabilityReason",
     "CreatedByType",

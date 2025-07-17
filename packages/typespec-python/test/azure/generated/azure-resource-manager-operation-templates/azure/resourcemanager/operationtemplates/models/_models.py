@@ -17,6 +17,137 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
+class ActionRequest(_Model):
+    """ActionRequest.
+
+    :ivar action_type: The action type to perform.
+    :vartype action_type: str
+    :ivar parameters: Additional action parameters.
+    :vartype parameters: str
+    """
+
+    action_type: Optional[str] = rest_field(
+        name="actionType", visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The action type to perform."""
+    parameters: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Additional action parameters."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        action_type: Optional[str] = None,
+        parameters: Optional[str] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ActionResult(_Model):
+    """ActionResult.
+
+    :ivar result: The result of the action. Required.
+    :vartype result: str
+    """
+
+    result: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The result of the action. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        result: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ChangeAllowanceRequest(_Model):
+    """ChangeAllowanceRequest.
+
+    :ivar total_allowed: The new total allowed widgets.
+    :vartype total_allowed: int
+    :ivar reason: The reason for the change.
+    :vartype reason: str
+    """
+
+    total_allowed: Optional[int] = rest_field(
+        name="totalAllowed", visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The new total allowed widgets."""
+    reason: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The reason for the change."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        total_allowed: Optional[int] = None,
+        reason: Optional[str] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ChangeAllowanceResult(_Model):
+    """ChangeAllowanceResult.
+
+    :ivar total_allowed: The new total allowed widgets. Required.
+    :vartype total_allowed: int
+    :ivar status: The status of the change. Required.
+    :vartype status: str
+    """
+
+    total_allowed: int = rest_field(name="totalAllowed", visibility=["read", "create", "update", "delete", "query"])
+    """The new total allowed widgets. Required."""
+    status: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The status of the change. Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        total_allowed: int,
+        status: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class CheckNameAvailabilityRequest(_Model):
     """The check availability request body.
 
@@ -524,6 +655,91 @@ class SystemData(_Model):
         last_modified_by: Optional[str] = None,
         last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
         last_modified_at: Optional[datetime.datetime] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Widget(TrackedResource):
+    """Concrete tracked resource types can be created by aliasing this type using a specific property
+    type.
+
+    :ivar id: Fully qualified resource ID for the resource. Ex -
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
+    :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
+     "Microsoft.Storage/storageAccounts".
+    :vartype type: str
+    :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
+     information.
+    :vartype system_data: ~azure.resourcemanager.operationtemplates.models.SystemData
+    :ivar tags: Resource tags.
+    :vartype tags: dict[str, str]
+    :ivar location: The geo-location where the resource lives. Required.
+    :vartype location: str
+    :ivar properties: The resource-specific properties for this resource.
+    :vartype properties: ~azure.resourcemanager.operationtemplates.models.WidgetProperties
+    """
+
+    properties: Optional["_models.WidgetProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The resource-specific properties for this resource."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        location: str,
+        tags: Optional[Dict[str, str]] = None,
+        properties: Optional["_models.WidgetProperties"] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class WidgetProperties(_Model):
+    """WidgetProperties.
+
+    :ivar name: The name of the widget.
+    :vartype name: str
+    :ivar description: The description of the widget.
+    :vartype description: str
+    :ivar provisioning_state: The provisioning state of the widget.
+    :vartype provisioning_state: str
+    """
+
+    name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The name of the widget."""
+    description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The description of the widget."""
+    provisioning_state: Optional[str] = rest_field(name="provisioningState", visibility=["read"])
+    """The provisioning state of the widget."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: Optional[str] = None,
+        description: Optional[str] = None,
     ) -> None: ...
 
     @overload

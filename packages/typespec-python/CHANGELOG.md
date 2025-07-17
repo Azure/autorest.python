@@ -1,5 +1,16 @@
 # Release
 
+## 0.47.0
+
+### Features
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Support @override to reorder operation parameters
+
+### Bump dependencies
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Bump typespec
+
+
 ## 0.46.0
 
 ### Features

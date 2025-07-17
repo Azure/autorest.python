@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OperationTemplatesClientConfiguration
-from .operations import CheckNameAvailabilityOperations, LroOperations, Operations
+from .operations import CheckNameAvailabilityOperations, LroOperations, Operations, OptionalBodyOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
@@ -35,6 +35,9 @@ class OperationTemplatesClient:
      azure.resourcemanager.operationtemplates.aio.operations.CheckNameAvailabilityOperations
     :ivar lro: LroOperations operations
     :vartype lro: azure.resourcemanager.operationtemplates.aio.operations.LroOperations
+    :ivar optional_body: OptionalBodyOperations operations
+    :vartype optional_body:
+     azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -96,6 +99,7 @@ class OperationTemplatesClient:
             self._client, self._config, self._serialize, self._deserialize
         )
         self.lro = LroOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.optional_body = OptionalBodyOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
