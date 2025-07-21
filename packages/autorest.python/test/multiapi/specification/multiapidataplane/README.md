@@ -30,6 +30,7 @@ license-header: MICROSOFT_MIT_NO_VERSION
 add-credentials: true
 python3-only: true
 version-tolerant: false
+basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)

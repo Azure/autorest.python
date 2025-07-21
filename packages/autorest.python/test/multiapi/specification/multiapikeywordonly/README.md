@@ -27,6 +27,7 @@ add-credentials: true
 python3-only: true
 version-tolerant: false
 only-path-and-body-params-positional: true
+basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)

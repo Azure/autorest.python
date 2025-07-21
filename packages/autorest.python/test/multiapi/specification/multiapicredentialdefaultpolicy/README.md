@@ -32,6 +32,7 @@ add-credentials: true
 credential-default-policy-type: AzureKeyCredentialPolicy
 python3-only: true
 version-tolerant: false
+basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)

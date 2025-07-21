@@ -24,6 +24,7 @@ license-header: MICROSOFT_MIT_NO_VERSION
 security: AADToken
 python3-only: true
 version-tolerant: false
+basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)
