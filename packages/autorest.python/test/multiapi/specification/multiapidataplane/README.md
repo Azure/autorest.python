@@ -25,12 +25,13 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiD
 ### Settings
 ``` yaml
 package-name: multiapidataplane
+package-version: 0.1.0
+basic-setup-py: true
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 add-credentials: true
 python3-only: true
 version-tolerant: false
-basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)

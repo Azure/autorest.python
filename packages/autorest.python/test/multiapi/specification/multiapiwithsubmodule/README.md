@@ -24,13 +24,15 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiW
 
 ### Settings
 ``` yaml
+package-name: multiapiwithsubmodule
+package-version: 0.1.0
+basic-setup-py: true
 license-header: MICROSOFT_MIT_NO_VERSION
 azure-arm: true
 add-credentials: true
 no-namespace-folders: true
 python3-only: true
 version-tolerant: false
-basic-setup-py: true
 ```
 
 ``` yaml $(multiapi)
