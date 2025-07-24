@@ -9,8 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import AddedClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import InterfaceV2Operations
-from .operations._operations import _AddedClientOperationsMixin
+from .operations import InterfaceV2Operations, _AddedClientOperationsMixin
 
 
 class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

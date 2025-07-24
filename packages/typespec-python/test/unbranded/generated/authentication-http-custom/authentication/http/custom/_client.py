@@ -9,7 +9,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import CustomClientConfiguration
-from ._operations._operations import _CustomClientOperationsMixin
+from ._operations import _CustomClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
