@@ -9,10 +9,10 @@ Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python
 """
 from typing import List, Any
 from ..models import Product
-from ._operations import DPGClientOperationsMixin as DPGClientOperationsMixinGenerated
+from ._operations import _DPGClientOperationsMixin as _DPGClientOperationsMixinGenerated
 
 
-class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
+class _DPGClientOperationsMixin(_DPGClientOperationsMixinGenerated):
     def get_model(self, mode: str, **kwargs: Any) -> Product:
         product = super().get_model(mode, **kwargs)
         if product.added_in_customization != "bonjour!":
@@ -25,7 +25,7 @@ class DPGClientOperationsMixin(DPGClientOperationsMixinGenerated):
 
 
 __all__: List[str] = [
-    "DPGClientOperationsMixin"
+    "_DPGClientOperationsMixin"
 ]  # Add all objects you want publicly available to users at this package level
 
 

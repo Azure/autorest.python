@@ -60,7 +60,7 @@ def build_body_optionality_required_implicit_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class BodyOptionalityClientOperationsMixin(
+class _BodyOptionalityClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], BodyOptionalityClientConfiguration]
 ):
 

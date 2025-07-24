@@ -37,7 +37,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class LROWithParamaterizedEndpointsOperationsMixin(  # pylint: disable=name-too-long
+class _LROWithParamaterizedEndpointsOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], LROWithParamaterizedEndpointsConfiguration]
 ):
 

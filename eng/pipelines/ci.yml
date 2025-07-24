@@ -18,10 +18,15 @@ resources:
       name: Azure/azure-sdk-tools
 
 variables:
-  PythonVersion: "3.12"
-  AUTOREST_TESTSERVER_COVERAGE_DIRECTORY: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
-  PROXY_URL: http://localhost:5000
-  PROXY_MANUAL_START: true
+  - template: /eng/pipelines/templates/variables/image.yml
+  - name: PythonVersion
+    value: "3.12"
+  - name: AUTOREST_TESTSERVER_COVERAGE_DIRECTORY
+    value: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
+  - name: PROXY_URL
+    value: http://localhost:5000
+  - name : PROXY_MANUAL_START
+    value: true
 
 parameters:
   - name: VerificationPackages
@@ -46,32 +51,38 @@ jobs:
       matrix:
         Linux_Python3.9:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu18.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.9"
         Windows_Python3.9:
           OSName: "Windows"
-          OSVmImage: "MMS2020"
-          PythonVersion: "3.9"      
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
+          PythonVersion: "3.9"
         Linux_Python3.10:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python3.11:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu22.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
         Linux_Python3.12:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu22.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.12"
         Windows_Python3.12:
           OSName: "Windows"
-          OSVmImage: "MMS2023"
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
     pool:
-      name: azsdk-pool-mms-ubuntu-2004-general
-      vmImage: $(OSVmImage)
+      name: $(Pool)
+      demands: ImageOverride -equals $(OSVmImage)
 
     steps:
       - template: ci-template.yml
@@ -139,32 +150,38 @@ jobs:
       matrix:
         Linux_Python3.9:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu18.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.9"
         Windows_Python3.9:
           OSName: "Windows"
-          OSVmImage: "MMS2020"
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.9"
         Linux_Python310:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu20.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python311:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu22.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
         Linux_Python312:
           OSName: "Linux"
-          OSVmImage: "MMSUbuntu22.04"
+          Pool: ${{ variables.LINUXPOOL }}
+          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.12"
         Windows_Python312:
           OSName: "Windows"
-          OSVmImage: "MMS2023"
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.12"
 
     pool:
-      name: azsdk-pool-mms-ubuntu-2004-general
-      vmImage: $(OSVmImage)
+      name: $(Pool)
+      demands: ImageOverride -equals $(OSVmImage)
 
     steps:
       - template: ci-template.yml

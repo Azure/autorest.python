@@ -8,9 +8,10 @@ from setuptools import setup, find_packages
 
 PACKAGE_NAME = "authentication-http-custom"
 PACKAGE_PPRINT_NAME = "Authentication Http Custom"
+PACKAGE_NAMESPACE = "authentication.http.custom"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:

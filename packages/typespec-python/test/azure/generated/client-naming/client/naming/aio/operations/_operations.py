@@ -385,7 +385,7 @@ class UnionEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NamingClientOperationsMixin(
+class _NamingClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NamingClientConfiguration]
 ):
 

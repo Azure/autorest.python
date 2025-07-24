@@ -230,7 +230,7 @@ class TwoModelsAsPageItemOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class PageClientOperationsMixin(
+class _PageClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], PageClientConfiguration]
 ):
 

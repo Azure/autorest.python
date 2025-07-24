@@ -16,11 +16,11 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
-from ._operations import LROWithParamaterizedEndpointsOperationsMixin
+from ._operations._operations import _LROWithParamaterizedEndpointsOperationsMixin
 
 
 class LROWithParamaterizedEndpoints(
-    LROWithParamaterizedEndpointsOperationsMixin
+    _LROWithParamaterizedEndpointsOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test Infrastructure for AutoRest.
 

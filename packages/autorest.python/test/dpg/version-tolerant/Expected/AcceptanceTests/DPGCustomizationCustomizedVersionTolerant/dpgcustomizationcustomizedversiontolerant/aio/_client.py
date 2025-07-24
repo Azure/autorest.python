@@ -16,10 +16,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import DPGClientConfiguration
-from ._operations import DPGClientOperationsMixin
+from ._operations._operations import _DPGClientOperationsMixin
 
 
-class DPGClient(DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class DPGClient(_DPGClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """DPG Swagger that tests our ability to grow up.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".

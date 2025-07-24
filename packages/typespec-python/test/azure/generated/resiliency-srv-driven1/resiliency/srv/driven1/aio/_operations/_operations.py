@@ -34,7 +34,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ResiliencyServiceDrivenClientOperationsMixin(  # pylint: disable=name-too-long
+class _ResiliencyServiceDrivenClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], ResiliencyServiceDrivenClientConfiguration]
 ):
 

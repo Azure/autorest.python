@@ -17,10 +17,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientWithEnumConfiguration
-from .operations import ClientWithEnumOperationsMixin
+from .operations._client_with_enum_operations import _ClientWithEnumOperationsMixin
 
 
-class ClientWithEnum(ClientWithEnumOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class ClientWithEnum(_ClientWithEnumOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test client with enum variable.
 
     :param x_ms_enum: Enum client parameter. "single" Required.

@@ -52,13 +52,13 @@ class TestObjectType(object):
         assert ex.value.model == {"message": "The object you passed was incorrect"}
 
     def test_operation_groups(self):
-        from objecttype.operations import ObjectTypeClientOperationsMixin
+        from objecttype.operations._object_type_client_operations import _ObjectTypeClientOperationsMixin
 
         with pytest.raises(ImportError):
             from objecttype.operations import _object_type_client_operations_py3
 
         from objecttype.operations._object_type_client_operations import (
-            ObjectTypeClientOperationsMixin as ObjectTypeClientOperationsMixinPy2,
+            _ObjectTypeClientOperationsMixin as _ObjectTypeClientOperationsMixinPy2,
         )
 
-        assert ObjectTypeClientOperationsMixin == ObjectTypeClientOperationsMixinPy2
+        assert _ObjectTypeClientOperationsMixin == _ObjectTypeClientOperationsMixinPy2

@@ -30,7 +30,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class AutorestSecurityKeyOperationsMixin(
+class _AutorestSecurityKeyOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], AutorestSecurityKeyConfiguration]
 ):
 

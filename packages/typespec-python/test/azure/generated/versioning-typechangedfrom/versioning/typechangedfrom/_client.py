@@ -15,11 +15,13 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import TypeChangedFromClientConfiguration
-from ._operations import TypeChangedFromClientOperationsMixin
+from ._operations._operations import _TypeChangedFromClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class TypeChangedFromClient(TypeChangedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class TypeChangedFromClient(
+    _TypeChangedFromClientOperationsMixin
+):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@typeChangedFrom`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

@@ -8,9 +8,10 @@ from setuptools import setup, find_packages
 
 PACKAGE_NAME = "typetest-property-optional"
 PACKAGE_PPRINT_NAME = "Typetest Property Optional"
+PACKAGE_NAMESPACE = "typetest.property.optional"
 
-# a-b-c => a/b/c
-package_folder_path = PACKAGE_NAME.replace("-", "/")
+# a.b.c => a/b/c
+package_folder_path = PACKAGE_NAMESPACE.replace(".", "/")
 
 # Version extraction inspired from 'requests'
 with open(os.path.join(package_folder_path, "_version.py"), "r") as fd:

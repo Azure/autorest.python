@@ -108,7 +108,9 @@ class InInterfaceOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RoutesClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RoutesClientConfiguration]):
+class _RoutesClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RoutesClientConfiguration]
+):
 
     @distributed_trace
     def fixed(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements

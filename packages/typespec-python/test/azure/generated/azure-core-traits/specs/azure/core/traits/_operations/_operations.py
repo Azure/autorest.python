@@ -120,7 +120,9 @@ def build_traits_repeatable_action_request(id: int, **kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class TraitsClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], TraitsClientConfiguration]):
+class _TraitsClientOperationsMixin(
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], TraitsClientConfiguration]
+):
 
     @distributed_trace
     def smoke_test(

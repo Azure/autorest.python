@@ -15,11 +15,11 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import VisibilityClientConfiguration
-from ._operations import VisibilityClientOperationsMixin
+from ._operations._operations import _VisibilityClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
-class VisibilityClient(VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class VisibilityClient(_VisibilityClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates models with visibility properties.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

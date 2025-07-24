@@ -15,12 +15,12 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import ParmaterizedEndpointClientConfiguration
-from ._operations import ParmaterizedEndpointClientOperationsMixin
+from ._operations._operations import _ParmaterizedEndpointClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
 class ParmaterizedEndpointClient(
-    ParmaterizedEndpointClientOperationsMixin
+    _ParmaterizedEndpointClientOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing parameterized hosts with the name 'endpoint'.
 

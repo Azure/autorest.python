@@ -1,5 +1,37 @@
 # Release
 
+## 0.47.0
+
+### Features
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Support @override to reorder operation parameters
+
+### Bump dependencies
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Bump typespec
+
+
+## 0.46.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
+## 0.45.5
+
+### Features
+
+- [#3116](https://github.com/Azure/autorest.python/pull/3116) [typespec-python] Add support for uv package manager alongside pip
+
+
+## 0.45.4
+
+### Bump dependencies
+
+- [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
+
+
 ## 0.45.3
 
 ### Bump dependencies

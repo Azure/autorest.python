@@ -62,7 +62,7 @@ def build_get_error_with_secrets_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ErrorWithSecretsOperationsMixin(
+class _ErrorWithSecretsOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ErrorWithSecretsConfiguration]
 ):
 

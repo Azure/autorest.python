@@ -263,16 +263,18 @@ class TestModelFlatteningTests(object):
         assert Error == ErrorPy3
 
     def test_operation_groups(self):
-        from modelflattening.operations import AutoRestResourceFlatteningTestServiceOperationsMixin
+        from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import (
+            _AutoRestResourceFlatteningTestServiceOperationsMixin,
+        )
 
         with pytest.raises(ImportError):
             from modelflattening.operations import _auto_rest_resource_flattening_test_service_operations_py3
 
         from modelflattening.operations._auto_rest_resource_flattening_test_service_operations import (
-            AutoRestResourceFlatteningTestServiceOperationsMixin as AutoRestResourceFlatteningTestServiceOperationsMixinPy2,
+            _AutoRestResourceFlatteningTestServiceOperationsMixin as _AutoRestResourceFlatteningTestServiceOperationsMixinPy2,
         )
 
         assert (
-            AutoRestResourceFlatteningTestServiceOperationsMixin
-            == AutoRestResourceFlatteningTestServiceOperationsMixinPy2
+            _AutoRestResourceFlatteningTestServiceOperationsMixin
+            == _AutoRestResourceFlatteningTestServiceOperationsMixinPy2
         )

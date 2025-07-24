@@ -65,7 +65,7 @@ def build_object_type_put_request(*, json: JSON, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class ObjectTypeClientOperationsMixin(
+class _ObjectTypeClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ObjectTypeClientConfiguration]
 ):
 

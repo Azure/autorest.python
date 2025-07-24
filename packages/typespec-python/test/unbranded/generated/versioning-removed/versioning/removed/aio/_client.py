@@ -9,10 +9,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RemovedClientConfiguration
-from ._operations import RemovedClientOperationsMixin
+from ._operations._operations import _RemovedClientOperationsMixin
 
 
-class RemovedClient(RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class RemovedClient(_RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@removed`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in

@@ -41,7 +41,7 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class FlattenPropertyClientOperationsMixin(
+class _FlattenPropertyClientOperationsMixin(
     ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], FlattenPropertyClientConfiguration]
 ):
 

@@ -60,3 +60,4 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 -e ./generated/versioning-returntypechangedfrom
 -e ./generated/versioning-typechangedfrom
 -e ./generated/routes
+-e ./generated/response-status-code-range

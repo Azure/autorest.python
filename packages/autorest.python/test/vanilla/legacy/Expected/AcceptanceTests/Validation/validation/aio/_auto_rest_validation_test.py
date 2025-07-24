@@ -18,10 +18,10 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .. import models as _models
 from ._configuration import AutoRestValidationTestConfiguration
-from .operations import AutoRestValidationTestOperationsMixin
+from .operations._auto_rest_validation_test_operations import _AutoRestValidationTestOperationsMixin
 
 
-class AutoRestValidationTest(AutoRestValidationTestOperationsMixin):
+class AutoRestValidationTest(_AutoRestValidationTestOperationsMixin):
     """Test Infrastructure for AutoRest. No server backend exists for these tests.
 
     :param subscription_id: Subscription ID. Required.

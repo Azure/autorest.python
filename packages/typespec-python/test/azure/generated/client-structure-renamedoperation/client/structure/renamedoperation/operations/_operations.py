@@ -227,7 +227,7 @@ class GroupOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RenamedOperationClientOperationsMixin(
+class _RenamedOperationClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RenamedOperationClientConfiguration]
 ):
 

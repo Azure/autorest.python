@@ -238,7 +238,7 @@ def build_auto_rest_resource_flattening_test_service_put_simple_product_with_gro
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class AutoRestResourceFlatteningTestServiceOperationsMixin(  # pylint: disable=name-too-long
+class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], AutoRestResourceFlatteningTestServiceConfiguration]
 ):
 

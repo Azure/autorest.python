@@ -74,7 +74,7 @@ def build_removed_model_v3_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RemovedClientOperationsMixin(
+class _RemovedClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], RemovedClientConfiguration]
 ):
 

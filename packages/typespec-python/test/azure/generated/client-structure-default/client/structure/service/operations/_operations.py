@@ -396,7 +396,7 @@ class BarOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ServiceClientOperationsMixin(
+class _ServiceClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ServiceClientConfiguration]
 ):
 

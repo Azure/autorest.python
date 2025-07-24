@@ -1,5 +1,30 @@
 # Release
 
+## 6.37.0
+
+### Bump dependencies
+
+- [#3128](https://github.com/Azure/autorest.python/pull/3128) Bump typespec
+
+
+## 6.36.0
+
+### Features
+
+- Make mixin operations classes private to remove from documentation
+
+
+## 6.35.5
+
+No changes, version bump only.
+
+## 6.35.4
+
+### Bump dependencies
+
+- [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
+
+
 ## 6.35.3
 
 ### Bump dependencies

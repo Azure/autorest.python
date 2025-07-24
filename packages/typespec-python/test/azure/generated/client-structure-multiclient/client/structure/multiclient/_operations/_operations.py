@@ -74,7 +74,7 @@ def build_client_b_renamed_six_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class ClientAClientOperationsMixin(
+class _ClientAClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientAClientConfiguration]
 ):
 
@@ -214,7 +214,7 @@ class ClientAClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ClientBClientOperationsMixin(
+class _ClientBClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ClientBClientConfiguration]
 ):
 

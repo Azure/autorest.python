@@ -53,7 +53,7 @@ def build_merge_patch_json_patch_single_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-class MergePatchJsonClientOperationsMixin(
+class _MergePatchJsonClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MergePatchJsonClientConfiguration]
 ):
 
