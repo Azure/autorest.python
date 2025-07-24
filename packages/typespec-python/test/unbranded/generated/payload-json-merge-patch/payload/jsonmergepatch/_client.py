@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import JsonMergePatchClientConfiguration
-from ._operations._operations import _JsonMergePatchClientOperationsMixin
+from ._operations import _JsonMergePatchClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
