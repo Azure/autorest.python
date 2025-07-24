@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import PollingPagingExampleConfiguration
-from ._operations._operations import _PollingPagingExampleOperationsMixin
+from ._operations import _PollingPagingExampleOperationsMixin
 
 
 class PollingPagingExample(_PollingPagingExampleOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
