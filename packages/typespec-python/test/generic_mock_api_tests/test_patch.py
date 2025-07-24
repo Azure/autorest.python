@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 
+
 def test_patch_mixin_operation_group_in_operations_folder():
     from authentication.api.key import ApiKeyClient, aio
 
