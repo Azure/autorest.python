@@ -108,6 +108,10 @@ class Repo:
     @property
     def source_branch_name(self):
         return self.pull.head.label
+    
+    @property
+    def pull_title(self):
+        return self.pull.title
 
     def checkout_branch(self):
         self.new_branch_name = f"auto-{self.source_branch_name.replace(':', '-')}"
@@ -188,7 +192,7 @@ class Repo:
             self.autorest_repo.create_pull(
                 base="main",
                 head=self.new_branch_name,
-                title=f"Auto PR for {self.pull_url}",
+                title=f"Auto PR for {self.pull_title}",
                 body=f"Auto PR for {self.pull_url}",
                 maintainer_can_modify=True,
                 draft=True,
