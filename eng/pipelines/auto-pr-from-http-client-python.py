@@ -192,7 +192,7 @@ class Repo:
             self.autorest_repo.create_pull(
                 base="main",
                 head=self.new_branch_name,
-                title=f"Auto PR for {self.pull_title}",
+                title=self.pull_title,
                 body=f"Auto PR for {self.pull_url}",
                 maintainer_can_modify=True,
                 draft=True,
