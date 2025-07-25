@@ -362,10 +362,6 @@ interface EmitterConfig {
     outputDir: string;
 }
 
-function generateSubdir(spec: string): boolean {
-    return spec.includes("authentication/api-key");
-}
-
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): EmitterConfig[] {
     const emitterConfigs: EmitterConfig[] = [];
     for (const config of getEmitterOption(spec, flags.flavor)) {
@@ -382,36 +378,16 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
             options["debug"] = "true";
         }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
+        const configs = Object.entries(options).flatMap(([k, v]) => {
+            return `--option @azure-tools/typespec-python.${k}=${typeof v === "string" && v.indexOf(" ") > -1 ? `"${v}"` : v}`;
+        });
         emitterConfigs.push({
-            optionsStr: getConfigsFromOptions(options).join(" "),
+            optionsStr: configs.join(" "),
             outputDir: options["emitter-output-dir"],
         });
-        if (generateSubdir(spec)) {
-            const packageName = `${options["package-name"] || defaultPackageName(spec)}-with-subdir`;
-            const subdirOptions = {
-                ...options,
-                "package-name": packageName,
-                "generation-subdir": "_generated/",
-                "emitter-output-dir": toPosix(
-                    `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`,
-                ),
-                "generate-packaging-files": "false",
-            };
-            emitterConfigs.push({
-                optionsStr: getConfigsFromOptions(subdirOptions).join(" "),
-                outputDir: subdirOptions["emitter-output-dir"],
-            });
-        }
     }
     return emitterConfigs;
 }
-
-function getConfigsFromOptions(options: Record<string, string>): string[] {
-    return Object.entries(options).flatMap(([k, v]) => {
-        return `--option @azure-tools/typespec-python.${k}=${typeof v === "string" && v.indexOf(" ") > -1 ? `"${v}"` : v}`;
-    });
-}
-
 function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
     return addOptions(spec, PLUGIN_DIR, flags).map((option) => {
         return {
