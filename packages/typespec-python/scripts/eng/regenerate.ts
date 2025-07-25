@@ -131,6 +131,15 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
+    "authentication/api-key": [
+        {
+        },
+        {
+            "package-name": "authentication-api-key-with-subdir",
+            "generation-subdir": "_generated/",
+            "generate-packaging-files": "false",
+        }
+    ],
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
         "namespace": "authentication.http.custom",
@@ -254,7 +263,14 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
 // Function to execute CLI commands asynchronously
 async function executeCommand(tspCommand: TspCommand): Promise<void> {
     try {
-        rmSync(tspCommand.outputDir, { recursive: true, force: true });
+        if (tspCommand.command.includes("generation-subdir")) {
+            // For generation-subdir, only delete the _generated folder within the output directory
+            const generatedSubdir = join(tspCommand.outputDir, "_generated");
+            rmSync(generatedSubdir, { recursive: true, force: true });
+        } else {
+            // For normal generation, delete the entire output directory
+            rmSync(tspCommand.outputDir, { recursive: true, force: true });
+        }
     } catch (error) {
         console.error(`rm error: ${error}`);
     }
