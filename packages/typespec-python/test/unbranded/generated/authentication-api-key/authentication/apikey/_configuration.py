@@ -28,7 +28,7 @@ class ApiKeyClientConfiguration:
 
         self.credential = credential
         self.endpoint = endpoint
-        kwargs.setdefault("sdk_moniker", "authentication-apikey/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "authentication-api-key/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
