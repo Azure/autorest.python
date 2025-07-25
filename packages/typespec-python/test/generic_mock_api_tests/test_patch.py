@@ -5,8 +5,8 @@
 # --------------------------------------------------------------------------
 
 
-def test_patch_mixin_operation_group_in_operations_folder():
+def test_patch_mixin_operation_group_in_operations_folder(key_credential):
     from authentication.apikey import ApiKeyClient, aio
 
-    assert hasattr(ApiKeyClient, "patch_added_operation")
-    assert hasattr(aio.ApiKeyClient, "patch_added_operation")
+    assert hasattr(ApiKeyClient(key_credential), "patch_added_operation")
+    assert hasattr(aio.ApiKeyClient(key_credential), "patch_added_operation")
