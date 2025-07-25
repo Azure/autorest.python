@@ -12,243 +12,109 @@ const exec = promisify(execCallback);
 
 // Get the directory of the current file
 const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
-const AZURE_HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@azure-tools/azure-http-specs/specs");
-const HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@typespec/http-specs/specs");
+const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
 interface TspCommand {
     outputDir: string;
     command: string;
 }
 
-const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
-    "azure/client-generator-core/access": {
-        namespace: "specs.azure.clientgenerator.core.access",
-    },
-    "azure/client-generator-core/api-version": {
-        namespace: "specs.azure.clientgenerator.core.apiversion",
-    },
-    "azure/client-generator-core/client-initialization": {
-        namespace: "specs.azure.clientgenerator.core.clientinitialization",
-    },
-    "azure/client-generator-core/client-location": {
-        namespace: "specs.azure.clientgenerator.core.clientlocation",
-    },
-    "azure/client-generator-core/deserialize-empty-string-as-null": {
-        namespace: "specs.azure.clientgenerator.core.emptystring",
-    },
-    "azure/client-generator-core/flatten-property": {
-        namespace: "specs.azure.clientgenerator.core.flattenproperty",
-    },
-    "azure/client-generator-core/usage": {
-        namespace: "specs.azure.clientgenerator.core.usage",
-    },
-    "azure/client-generator-core/override": {
-        namespace: "specs.azure.clientgenerator.core.override",
-    },
-    "azure/core/basic": {
-        namespace: "specs.azure.core.basic",
-    },
-    "azure/core/lro/rpc": {
-        namespace: "specs.azure.core.lro.rpc",
-    },
-    "azure/core/lro/standard": {
-        namespace: "specs.azure.core.lro.standard",
-    },
-    "azure/core/model": {
-        namespace: "specs.azure.core.model",
-    },
-    "azure/core/page": {
-        namespace: "specs.azure.core.page",
-    },
-    "azure/core/scalar": {
-        namespace: "specs.azure.core.scalar",
-    },
-    "azure/core/traits": {
-        namespace: "specs.azure.core.traits",
-    },
-    "azure/encode/duration": {
-        namespace: "specs.azure.encode.duration",
-    },
-    "azure/example/basic": {
-        namespace: "specs.azure.example.basic",
-    },
-    "azure/payload/pageable": {
-        namespace: "specs.azure.payload.pageable",
-    },
-    "client/structure/default": {
-        namespace: "client.structure.service",
-    },
-    "client/structure/multi-client": {
-        "package-name": "client-structure-multiclient",
-        "namespace": "client.structure.multiclient",
-    },
-    "client/structure/renamed-operation": {
-        "package-name": "client-structure-renamedoperation",
-        "namespace": "client.structure.renamedoperation",
-    },
-    "client/structure/two-operation-group": {
-        "package-name": "client-structure-twooperationgroup",
-        "namespace": "client.structure.twooperationgroup",
-    },
-    "client/naming": {
-        namespace: "client.naming",
-    },
-    "encode/duration": {
-        namespace: "encode.duration",
-    },
-    "encode/numeric": {
-        namespace: "encode.numeric",
-    },
-    "parameters/basic": {
-        namespace: "parameters.basic",
-    },
-    "parameters/spread": {
-        namespace: "parameters.spread",
-    },
-    "payload/content-negotiation": {
-        namespace: "payload.contentnegotiation",
-    },
-    "payload/multipart": {
-        namespace: "payload.multipart",
-    },
-    "serialization/encoded-name/json": {
-        namespace: "serialization.encodedname.json",
-    },
-    "special-words": {
-        namespace: "specialwords",
-    },
-};
-
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
-        "namespace": "resiliency.srv.driven1",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
-        "namespace": "resiliency.srv.driven2",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
-        "namespace": "authentication.http.custom",
-        "package-pprint-name": "Authentication Http Custom",
     },
     "authentication/union": {
         "package-name": "authentication-union",
-        "namespace": "authentication.union",
     },
     "type/array": {
         "package-name": "typetest-array",
-        "namespace": "typetest.array",
     },
     "type/dictionary": {
         "package-name": "typetest-dictionary",
-        "namespace": "typetest.dictionary",
     },
     "type/enum/extensible": {
         "package-name": "typetest-enum-extensible",
-        "namespace": "typetest.enum.extensible",
     },
     "type/enum/fixed": {
         "package-name": "typetest-enum-fixed",
-        "namespace": "typetest.enum.fixed",
     },
     "type/model/empty": {
         "package-name": "typetest-model-empty",
-        "namespace": "typetest.model.empty",
     },
     "type/model/inheritance/enum-discriminator": {
         "package-name": "typetest-model-enumdiscriminator",
-        "namespace": "typetest.model.enumdiscriminator",
     },
     "type/model/inheritance/nested-discriminator": {
         "package-name": "typetest-model-nesteddiscriminator",
-        "namespace": "typetest.model.nesteddiscriminator",
     },
     "type/model/inheritance/not-discriminated": {
         "package-name": "typetest-model-notdiscriminated",
-        "namespace": "typetest.model.notdiscriminated",
     },
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
-        "namespace": "typetest.model.singlediscriminator",
     },
     "type/model/inheritance/recursive": {
         "package-name": "typetest-model-recursive",
-        "namespace": "typetest.model.recursive",
     },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
-        "namespace": "typetest.model.usage",
     },
     "type/model/visibility": [
-        {
-            "package-name": "typetest-model-visibility",
-            "namespace": "typetest.model.visibility",
-        },
-        {
-            "package-name": "headasbooleantrue",
-            "namespace": "headasbooleantrue",
-            "head-as-boolean": "true",
-        },
-        {
-            "package-name": "headasbooleanfalse",
-            "namespace": "headasbooleanfalse",
-            "head-as-boolean": "false",
-        },
+        { "package-name": "typetest-model-visibility" },
+        { "package-name": "headasbooleantrue", "head-as-boolean": "true" },
+        { "package-name": "headasbooleanfalse", "head-as-boolean": "false" },
     ],
     "type/property/nullable": {
         "package-name": "typetest-property-nullable",
-        "namespace": "typetest.property.nullable",
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
-        "namespace": "typetest.property.optional",
     },
     "type/property/additional-properties": {
         "package-name": "typetest-property-additionalproperties",
-        "namespace": "typetest.property.additionalproperties",
     },
     "type/scalar": {
         "package-name": "typetest-scalar",
-        "namespace": "typetest.scalar",
     },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
-        "namespace": "typetest.property.valuetypes",
     },
     "type/union": {
         "package-name": "typetest-union",
-        "namespace": "typetest.union",
+    },
+    "azure/core/lro/rpc": {
+        "package-name": "azurecore-lro-rpc",
     },
     "client/structure/multi-client": {
         "package-name": "client-structure-multiclient",
-        "namespace": "client.structure.multiclient",
     },
     "client/structure/renamed-operation": {
         "package-name": "client-structure-renamedoperation",
-        "namespace": "client.structure.renamedoperation",
     },
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
-        "namespace": "client.structure.twooperationgroup",
     },
+    "mgmt/sphere": [{ "package-name": "azure-mgmt-spheredpg" }],
 };
 
 function toPosix(dir: string): string {
     return dir.replace(/\\/g, "/");
 }
 
-function getEmitterOption(spec: string, flavor: string): Record<string, string>[] {
-    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
-    const relativeSpec = toPosix(relative(specDir, spec));
+function getEmitterOption(spec: string): Record<string, string>[] {
+    const relativeSpec = toPosix(relative(CADL_RANCH_DIR, spec));
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
-    const emitter_options = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
-    const result = Array.isArray(emitter_options) ? emitter_options : [emitter_options];
-    return result;
+    const result = EMITTER_OPTIONS[key] || [{}];
+    return Array.isArray(result) ? result : [result];
 }
 
 // Function to execute CLI commands asynchronously
@@ -297,15 +163,10 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
                 const clientTspPath = join(subDirPath, "client.tsp");
 
                 const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
-
-                // after support discriminated union, remove this check
-                if (mainTspRelativePath.includes("type/union/discriminated")) return;
+                if (flags.flavor === "unbranded" && mainTspRelativePath.includes("azure")) return;
 
                 // after fix test generation for nested operation group, remove this check
                 if (mainTspRelativePath.includes("client-operation-group")) return;
-
-                // after https://github.com/Azure/autorest.python/issues/3043 fixed, remove this check
-                if (mainTspRelativePath.includes("azure/client-generator-core/api-version")) return;
 
                 const hasMainTsp = await promises
                     .access(mainTspPath)
@@ -340,8 +201,7 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 }
 
 function defaultPackageName(spec: string): string {
-    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
-    return toPosix(relative(specDir, dirname(spec)))
+    return toPosix(relative(CADL_RANCH_DIR, dirname(spec)))
         .replace(/\//g, "-")
         .toLowerCase();
 }
@@ -353,7 +213,7 @@ interface EmitterConfig {
 
 function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlags): EmitterConfig[] {
     const emitterConfigs: EmitterConfig[] = [];
-    for (const config of getEmitterOption(spec, flags.flavor)) {
+    for (const config of getEmitterOption(spec)) {
         const options: Record<string, string> = { ...config };
         options["flavor"] = flags.flavor;
         for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
@@ -366,9 +226,12 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
         if (flags.debug) {
             options["debug"] = "true";
         }
+        if (flags.flavor === "unbranded") {
+            options["company-name"] = "Unbranded";
+        }
         options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
         const configs = Object.entries(options).flatMap(([k, v]) => {
-            return `--option @azure-tools/typespec-python.${k}=${typeof v === "string" && v.indexOf(" ") > -1 ? `"${v}"` : v}`;
+            return `--option @azure-tools/typespec-python.${k}=${v}`;
         });
         emitterConfigs.push({
             optionsStr: configs.join(" "),
@@ -386,47 +249,19 @@ function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
     });
 }
 
-async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number): Promise<void> {
-    async function worker(start: number, end: number) {
-        while (start < end) {
-            await tasks[start]();
-            start++;
-        }
-    }
-
-    const workers = [];
-    let start = 0;
-    while (start < tasks.length) {
-        const end = Math.min(start + poolLimit, tasks.length);
-        workers.push((async () => await worker(start, end))());
-        start = end;
-    }
-    await Promise.all(workers);
-}
-
 async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     if (flags.flavor === undefined) {
         await regenerate({ ...flags, flavor: "azure" });
         await regenerate({ ...flags, flavor: "unbranded" });
     } else {
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
-        const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
-        const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
-        const subdirectories =
-            flags.flavor === "azure"
-                ? [...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
-                : subdirectoriesForNonAzure;
+        const CADL_RANCH_DIR = resolve(PLUGIN_DIR, "node_modules/@azure-tools/cadl-ranch-specs/http");
+        const subdirectories = await getSubdirectories(CADL_RANCH_DIR, flagsResolved);
         const cmdList: TspCommand[] = subdirectories.flatMap((subdirectory) =>
             _getCmdList(subdirectory, flagsResolved),
         );
-
-        // Create tasks as functions for the pool
-        const tasks: Array<() => Promise<void>> = cmdList.map((tspCommand) => {
-            return () => executeCommand(tspCommand);
-        });
-
-        // Run tasks with a concurrency limit
-        await runTaskPool(tasks, 30);
+        const PromiseCommands = cmdList.map((tspCommand) => executeCommand(tspCommand));
+        await Promise.all(PromiseCommands);
     }
 }
 
@@ -448,7 +283,6 @@ const argv = yargs(hideBin(process.argv))
         description: "Specify filename if you only want to generate a subset",
     }).argv;
 
-const start = performance.now();
 regenerate(argv as RegenerateFlags)
-    .then(() => console.log(`Regeneration successful, time taken: ${Math.round((performance.now() - start) / 1000)} s`))
+    .then(() => console.log("Regeneration successful"))
     .catch((error) => console.error(`Regeneration failed: ${error.message}`));
