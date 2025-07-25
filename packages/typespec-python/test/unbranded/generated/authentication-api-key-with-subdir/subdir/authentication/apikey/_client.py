@@ -1,5 +1,6 @@
 from ._generated import ApiKeyClient
 
+
 class CustomizedApiKeyClient(ApiKeyClient):
     """Customized ApiKeyClient with additional functionality."""
 
