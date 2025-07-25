@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ErrorWithSecretsConfiguration
-from ._operations._operations import _ErrorWithSecretsOperationsMixin
+from ._operations import _ErrorWithSecretsOperationsMixin
 
 
 class ErrorWithSecrets(_ErrorWithSecretsOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

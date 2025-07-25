@@ -17,7 +17,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import LROWithParamaterizedEndpointsConfiguration
-from .operations._lro_with_paramaterized_endpoints_operations import _LROWithParamaterizedEndpointsOperationsMixin
+from .operations import _LROWithParamaterizedEndpointsOperationsMixin
 
 
 class LROWithParamaterizedEndpoints(
