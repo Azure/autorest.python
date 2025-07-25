@@ -8,13 +8,17 @@ from typing import List
 
 from ._operations import _ApiKeyClientOperationsMixin as Generated
 
+
 class _ApiKeyClientOperationsMixin(Generated):
-    
+
     def patch_added_operation(self, **kwargs):
         """This is a placeholder for the operation that was added in the patch."""
         return True
 
-__all__: List[str] = ["_ApiKeyClientOperationsMixin"]  # Add all objects you want publicly available to users at this package level
+
+__all__: List[str] = [
+    "_ApiKeyClientOperationsMixin"
+]  # Add all objects you want publicly available to users at this package level
 
 
 def patch_sdk():
