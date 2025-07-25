@@ -392,8 +392,11 @@ function addOptions(spec: string, generatedFolder: string, flags: RegenerateFlag
                 ...options,
                 "package-name": packageName,
                 "generation-subdir": "_generated/",
-                "emitter-output-dir": toPosix(`${generatedFolder}/test/${flags.flavor}/generated/${packageName}/subdir`)
-            }
+                "emitter-output-dir": toPosix(
+                    `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`,
+                ),
+                "generate-packaging-files": "false",
+            };
             emitterConfigs.push({
                 optionsStr: getConfigsFromOptions(subdirOptions).join(" "),
                 outputDir: subdirOptions["emitter-output-dir"],
