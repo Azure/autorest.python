@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import AutoRestValidationTestConfiguration
-from ._operations._operations import _AutoRestValidationTestOperationsMixin
+from ._operations import _AutoRestValidationTestOperationsMixin
 
 
 class AutoRestValidationTest(_AutoRestValidationTestOperationsMixin):

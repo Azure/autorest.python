@@ -17,7 +17,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ClientWithEnumConfiguration
-from ._operations._operations import _ClientWithEnumOperationsMixin
+from ._operations import _ClientWithEnumOperationsMixin
 
 
 class ClientWithEnum(_ClientWithEnumOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

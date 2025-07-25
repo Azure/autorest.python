@@ -17,7 +17,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import CustomClientConfiguration
-from ._operations._operations import _CustomClientOperationsMixin
+from ._operations import _CustomClientOperationsMixin
 
 
 class CustomClient(_CustomClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
