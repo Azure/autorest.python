@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RemovedClientConfiguration
-from ._operations._operations import _RemovedClientOperationsMixin
+from ._operations import _RemovedClientOperationsMixin
 
 
 class RemovedClient(_RemovedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import UsageClientConfiguration
-from ._operations._operations import _UsageClientOperationsMixin
+from ._operations import _UsageClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 

@@ -18,8 +18,7 @@ from .._utils.serialization import Deserializer, Serializer
 from ..pathparameters.aio.operations import PathParametersOperations
 from ..queryparameters.aio.operations import QueryParametersOperations
 from ._configuration import RoutesClientConfiguration
-from .operations import InInterfaceOperations
-from .operations._operations import _RoutesClientOperationsMixin
+from .operations import InInterfaceOperations, _RoutesClientOperationsMixin
 
 
 class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

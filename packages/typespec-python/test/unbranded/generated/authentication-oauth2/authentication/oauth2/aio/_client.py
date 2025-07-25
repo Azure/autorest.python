@@ -9,7 +9,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OAuth2ClientConfiguration
-from ._operations._operations import _OAuth2ClientOperationsMixin
+from ._operations import _OAuth2ClientOperationsMixin
 
 if TYPE_CHECKING:
     from corehttp.credentials import AsyncTokenCredential

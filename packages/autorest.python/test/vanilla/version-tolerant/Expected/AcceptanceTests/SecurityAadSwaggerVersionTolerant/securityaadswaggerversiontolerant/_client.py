@@ -15,7 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutorestSecurityAadConfiguration
-from ._operations._operations import _AutorestSecurityAadOperationsMixin
+from ._operations import _AutorestSecurityAadOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 if TYPE_CHECKING:
