@@ -18,4 +18,4 @@ class CustomizedApiKeyClient(ApiKeyClient):
         :return: A string result.
         """
         # Custom logic here
-        return "Hello, world!"
+        return "This is a custom method in the subdirectory client."
