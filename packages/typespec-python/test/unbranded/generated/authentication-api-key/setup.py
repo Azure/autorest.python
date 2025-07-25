@@ -6,8 +6,8 @@ import re
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = "authentication-api-key"
-PACKAGE_PPRINT_NAME = "Authentication Api Key"
+PACKAGE_NAME = "authentication-apikey"
+PACKAGE_PPRINT_NAME = "Authentication Apikey"
 PACKAGE_NAMESPACE = "authentication.apikey"
 
 # a.b.c => a/b/c

@@ -133,7 +133,6 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     },
     "authentication/api-key": [
         {
-            "package-name": "authentication-api-key",
         },
         {
             "package-name": "authentication-api-key-with-subdir",
