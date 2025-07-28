@@ -19,7 +19,6 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiS
 ### Settings
 ``` yaml
 package-name: multiapisecurity
-package-version: 0.1.0
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 security: AADToken
