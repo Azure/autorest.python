@@ -17,9 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations._auto_rest_resource_flattening_test_service_operations import (
-    _AutoRestResourceFlatteningTestServiceOperationsMixin,
-)
+from .operations import _AutoRestResourceFlatteningTestServiceOperationsMixin
 
 
 class AutoRestResourceFlatteningTestService(
