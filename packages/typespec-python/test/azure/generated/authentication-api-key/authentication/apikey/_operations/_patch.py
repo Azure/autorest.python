@@ -11,8 +11,14 @@ from ._operations import _ApiKeyClientOperationsMixin as Generated
 
 class _ApiKeyClientOperationsMixin(Generated):
 
-    def patch_added_operation(self, **kwargs):
-        """This is a placeholder for the operation that was added in the patch."""
+    def patch_added_operation(self) -> bool:
+        """This is a placeholder for the operation that was added in the patch.
+        
+        This method is a no-op and does not perform any action.
+
+        :return: Always returns True.
+        :rtype: bool
+        """
         return True
 
 
