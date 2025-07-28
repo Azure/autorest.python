@@ -10,10 +10,10 @@ from typing import Any, TYPE_CHECKING
 
 from azure.core.pipeline import policies
 
-from .._version import VERSION
-
 if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
+
+VERSION = "unknown"
 
 
 class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-attributes
