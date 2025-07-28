@@ -12,6 +12,11 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
+from ._operations import _HeaderParamClientOperationsMixin  # type: ignore # pylint: disable=unused-import
+from ._operations import _MultipleParamsClientOperationsMixin  # type: ignore # pylint: disable=unused-import
+from ._operations import _MixedParamsClientOperationsMixin  # type: ignore # pylint: disable=unused-import
+from ._operations import _PathParamClientOperationsMixin  # type: ignore # pylint: disable=unused-import
+from ._operations import _ParamAliasClientOperationsMixin  # type: ignore # pylint: disable=unused-import
 from ._operations import ChildClientOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all

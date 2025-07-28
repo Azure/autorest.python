@@ -17,8 +17,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RenamedOperationClientConfiguration
-from .operations import GroupOperations
-from .operations._operations import _RenamedOperationClientOperationsMixin
+from .operations import GroupOperations, _RenamedOperationClientOperationsMixin
 
 
 class RenamedOperationClient(

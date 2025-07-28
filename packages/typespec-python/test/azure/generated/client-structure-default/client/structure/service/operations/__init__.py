@@ -16,6 +16,7 @@ from ._operations import BazOperations  # type: ignore
 from ._operations import QuxOperations  # type: ignore
 from ._operations import FooOperations  # type: ignore
 from ._operations import BarOperations  # type: ignore
+from ._operations import _ServiceClientOperationsMixin  # type: ignore # pylint: disable=unused-import
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

@@ -16,7 +16,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import PageableClientConfiguration
-from ._operations._operations import _PageableClientOperationsMixin
+from ._operations import _PageableClientOperationsMixin
 
 
 class PageableClient(_PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword

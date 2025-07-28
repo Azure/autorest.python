@@ -104,7 +104,7 @@ class _StatusCodeRangeClientOperationsMixin(
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if 494 <= response.status_code <= 499:
-                error = _failsafe_deserialize(_models.ErrorInRange, response.json())
+                error = _failsafe_deserialize(_models.ErrorInRange, response)
             else:
                 error = _failsafe_deserialize(_models.DefaultError, response.json())
             raise HttpResponseError(response=response, model=error)
@@ -150,7 +150,7 @@ class _StatusCodeRangeClientOperationsMixin(
                 error = _failsafe_deserialize(_models.NotFoundError, response.json())
                 raise ResourceNotFoundError(response=response, model=error)
             if 400 <= response.status_code <= 499:
-                error = _failsafe_deserialize(_models.Standard4XXError, response.json())
+                error = _failsafe_deserialize(_models.Standard4XXError, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
