@@ -22,7 +22,6 @@ output-folder: $(python-sdks-folder)/multiapi/Expected/AcceptanceTests/MultiapiK
 ``` yaml
 package-name: multiapikeywordonly
 package-version: 0.1.0
-basic-setup-py: true
 no-namespace-folders: true
 license-header: MICROSOFT_MIT_NO_VERSION
 add-credentials: true
