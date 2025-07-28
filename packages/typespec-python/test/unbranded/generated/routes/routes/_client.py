@@ -9,8 +9,7 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import RoutesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import InInterfaceOperations
-from .operations._operations import _RoutesClientOperationsMixin
+from .operations import InInterfaceOperations, _RoutesClientOperationsMixin
 from .pathparameters.operations import PathParametersOperations
 from .queryparameters.operations import QueryParametersOperations
 
