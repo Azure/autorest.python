@@ -121,9 +121,7 @@ steps:
     workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
     condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'autorest.python'))
 
-  - script: |
-      rm -rf test/azure/generated test/unbranded/generated
-      npm run regenerate
+  - script: npm run regenerate
     displayName: "Regenerate Code(typespec)"
     workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
     condition: and(succeeded(), ${{ parameters.regenerate }}, eq('${{parameters.folderName}}', 'typespec-python'))
