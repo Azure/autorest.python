@@ -114,7 +114,10 @@ class Repo:
         return self.pull.title
 
     def checkout_branch(self, prefix: str = "auto-"):
-        self.new_branch_name = f"{prefix}{self.source_branch_name.replace(':', '-')}"
+        if prefix:
+            self.new_branch_name = f"{prefix}{self.source_branch_name.replace(':', '-')}"
+        else:
+            self.new_branch_name = self.source_branch_name.split(":")[-1]
         try:
             log_call(f"git checkout {self.new_branch_name}")
         except CalledProcessError:
