@@ -1669,7 +1669,7 @@ packages:
       '@typespec/compiler': ^1.2.1
 
   '@typespec/http-client-python@file:../typespec/packages/http-client-python/typespec-http-client-python-0.14.0.tgz':
-    resolution: {integrity: sha512-C2Xbi9ao/3l5m/emXIl/Yb7nGWLuoIt3wQmmdOIPFdEKTORdAyOLa0x7PeawzSS7t18GZtIcAB5Qr3uvEMjeDw==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.14.0.tgz}
+    resolution: {integrity: sha512-zPYqoQGixirxALVmurSGwsiM7FaQ3xwyMe/rk4OJVP+SLIiTr4JWRMHTRA6JI6d1+iIm+9OY8HEDfVHtdA/vNA==, tarball: file:../typespec/packages/http-client-python/typespec-http-client-python-0.14.0.tgz}
     version: 0.14.0
     engines: {node: '>=20.0.0'}
     peerDependencies:

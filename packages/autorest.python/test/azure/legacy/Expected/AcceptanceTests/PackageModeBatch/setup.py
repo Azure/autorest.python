@@ -46,6 +46,7 @@ setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
         "License :: OSI Approved :: MIT License",
     ],
     zip_safe=False,
@@ -63,7 +64,7 @@ setup(
     },
     install_requires=[
         "msrest>=0.7.1",
-        "azure-mgmt-core>=1.5.0",
+        "azure-mgmt-core>=1.6.0",
         "typing-extensions>=4.6.0",
     ],
     python_requires=">=3.9",

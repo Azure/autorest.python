@@ -16,6 +16,7 @@ from ._operations import MoveToExistingSubClientOperations  # type: ignore
 from ._operations import MoveToNewSubClientOperations  # type: ignore
 from ._operations import MoveToRootClientOperations  # type: ignore
 from ._operations import ArchiveOperationsOperations  # type: ignore
+from ._operations import _ClientLocationClientOperationsMixin  # type: ignore # pylint: disable=unused-import
 
 from ._patch import __all__ as _patch_all
 from ._patch import *

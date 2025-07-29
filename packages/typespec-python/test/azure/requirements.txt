@@ -1,8 +1,8 @@
 aiohttp;python_full_version>="3.5.2"
-requests==2.32.2
+requests==2.32.4
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
-azure-mgmt-core==1.5.0
+azure-mgmt-core==1.6.0
 # only for azure
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-client-initialization
