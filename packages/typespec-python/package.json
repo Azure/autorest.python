@@ -67,7 +67,7 @@
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
-    "@typespec/http-client-python": "/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.14.0.tgz",
+    "@typespec/http-client-python": "/Users/isabellacai/Desktop/github/typespec/packages/http-client-python/typespec-http-client-python-0.14.1.tgz",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
