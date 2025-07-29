@@ -112,8 +112,8 @@ class Repo:
     def pull_title(self):
         return self.pull.title
 
-    def checkout_branch(self):
-        self.new_branch_name = f"auto-{self.source_branch_name.replace(':', '-')}"
+    def checkout_branch(self, prefix: str = "auto-"):
+        self.new_branch_name = f"{prefix}{self.source_branch_name.replace(':', '-')}"
         try:
             log_call(f"git checkout {self.new_branch_name}")
         except CalledProcessError:
@@ -198,10 +198,15 @@ class Repo:
             )
 
     def run(self):
-        self.checkout_branch()
-        self.update_dependency()
-        self.create_pr()
-        self.prepare_pr()
+        if "https://github.com/microsoft/typespec" in self.pull_url:
+            self.checkout_branch()
+            self.update_dependency()
+            self.create_pr()
+            self.prepare_pr()
+        elif "https://github.com/Azure/autorest.python" in self.pull_url:
+            # regenerate for autorest.python PR then commit and push
+            self.checkout_branch(prefix="")
+            self.prepare_pr()
 
 
 if __name__ == "__main__":
