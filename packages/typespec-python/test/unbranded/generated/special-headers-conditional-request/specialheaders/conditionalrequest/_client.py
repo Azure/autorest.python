@@ -8,7 +8,7 @@ from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ConditionalRequestClientConfiguration
-from ._operations._operations import _ConditionalRequestClientOperationsMixin
+from ._operations import _ConditionalRequestClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
 
 
