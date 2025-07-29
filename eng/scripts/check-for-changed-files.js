@@ -2,7 +2,7 @@
 
 const { run } = require("./helpers.js");
 
-const proc = run("git", ["diff", "--ignore-space-at-eol", "--ignore-blank-lines", "."], {
+const proc = run("git", ["status", "--porcelain", "."], {
   encoding: "utf-8",
   stdio: [null, "pipe", "pipe"],
 });
