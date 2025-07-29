@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AutorestSecurityKeyConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations._autorest_security_key_operations import _AutorestSecurityKeyOperationsMixin
+from .operations import _AutorestSecurityKeyOperationsMixin
 
 
 class AutorestSecurityKey(_AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
