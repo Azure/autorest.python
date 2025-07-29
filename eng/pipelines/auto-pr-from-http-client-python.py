@@ -101,7 +101,8 @@ class Repo:
         if not self._pull:
             pull_number = re.findall(r"pull/\d+", self.pull_url)[0].replace("pull/", "")
             logger.info(f"Pull number: {pull_number}")
-            self._pull = self.tsp_repo.get_pull(int(pull_number))
+            repo = self.tsp_repo if "microsoft/typespec" in self.pull_url else self.autorest_repo
+            self._pull = repo.get_pull(int(pull_number))
         return self._pull
 
     @property
