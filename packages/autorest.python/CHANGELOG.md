@@ -1,5 +1,14 @@
 # Release
 
+## 6.37.1
+
+### Bug Fixes
+
+- [#3135](https://github.com/Azure/autorest.python/pull/3135) Import mixins from operations init file to get patch changes
+- [#3135](https://github.com/Azure/autorest.python/pull/3135) Don't hardcode client in sample to first client in list
+- [#3134](https://github.com/Azure/autorest.python/pull/3134) Fix regression that ignored patches to mixin operation groups when patched in the `operations` folder
+
+
 ## 6.37.0
 
 ### Bump dependencies
