@@ -20,7 +20,7 @@ resources:
 variables:
   - template: /eng/pipelines/templates/variables/image.yml
   - name: PythonVersion
-    value: "3.12"
+    value: "3.13"
   - name: AUTOREST_TESTSERVER_COVERAGE_DIRECTORY
     value: "$(Build.SourcesDirectory)/autorest.python/packages/autorest.python/coverage/"
   - name: PROXY_URL
@@ -69,16 +69,16 @@ jobs:
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
-        Linux_Python3.12:
+        Linux_Python3.13:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
-          PythonVersion: "3.12"
-        Windows_Python3.12:
+          PythonVersion: "3.13"
+        Windows_Python3.13:
           OSName: "Windows"
           Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.12"
+          PythonVersion: "3.13"
 
     pool:
       name: $(Pool)
@@ -168,16 +168,16 @@ jobs:
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
-        Linux_Python312:
+        Linux_Python313:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
-          PythonVersion: "3.12"
-        Windows_Python312:
+          PythonVersion: "3.13"
+        Windows_Python313:
           OSName: "Windows"
           Pool: ${{ variables.WINDOWSPOOL }}
           OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.12"
+          PythonVersion: "3.13"
 
     pool:
       name: $(Pool)
