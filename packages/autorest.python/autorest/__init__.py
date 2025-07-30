@@ -22,10 +22,10 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
-    def get_output_folder(self) -> str:
+    def get_output_folder(self) -> Path:
         # Get the output folder from AutoRest configuration to resolve against the correct base and
         # convert URI to file system path by removing file:// prefix if present
-        return self._autorestapi.get_value("outputFolderUri").lstrip("file:")
+        return Path(self._autorestapi.get_value("outputFolderUri").lstrip("file:"))
 
     def read_file(self, path: Union[str, Path]) -> str:
         return self._autorestapi.read_file(path)
