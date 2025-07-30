@@ -28,6 +28,17 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         return self._autorestapi.write_file(filename, file_content)
 
+    def remove_file(self, filename: Union[str, Path]) -> None:
+        try:
+            # Get the output folder from AutoRest configuration to resolve against the correct base
+            output_folder = self._autorestapi.get_value("outputFolderUri")
+            # Convert URI to file system path by removing file:// prefix if present
+            file_path = Path(output_folder.lstrip("file:")) / Path(filename)
+            if file_path.is_file():
+                file_path.unlink()
+        except (FileNotFoundError, OSError):
+            pass
+
     def list_file(self) -> List[str]:
         return self._autorestapi.list_inputs()
 
