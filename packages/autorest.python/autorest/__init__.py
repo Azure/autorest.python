@@ -22,6 +22,11 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
+    def get_output_folder(self) -> str:
+        # Get the output folder from AutoRest configuration to resolve against the correct base and
+        # convert URI to file system path by removing file:// prefix if present
+        return self._autorestapi.get_value("outputFolderUri").lstrip("file:")
+
     def read_file(self, path: Union[str, Path]) -> str:
         return self._autorestapi.read_file(path)
 
@@ -30,10 +35,7 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
 
     def remove_file(self, filename: Union[str, Path]) -> None:
         try:
-            # Get the output folder from AutoRest configuration to resolve against the correct base
-            output_folder = self._autorestapi.get_value("outputFolderUri")
-            # Convert URI to file system path by removing file:// prefix if present
-            file_path = Path(output_folder.lstrip("file:")) / Path(filename)
+            file_path = self.get_output_folder() / Path(filename)
             if file_path.is_file():
                 file_path.unlink()
         except (FileNotFoundError, OSError):
