@@ -14,7 +14,7 @@ name = "azure-resourcemanager-operationtemplates"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft CorporationAzure Resourcemanager Operationtemplates Client Library for Python"
+description = "Microsoft Corporation Azure Resourcemanager Operationtemplates Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

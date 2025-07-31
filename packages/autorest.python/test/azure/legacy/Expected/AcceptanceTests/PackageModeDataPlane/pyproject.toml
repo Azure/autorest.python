@@ -14,7 +14,7 @@ name = "azure-packagemode-dataplane"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft CorporationAzure Package Mode Data Plane Client Library for Python"
+description = "Microsoft Corporation Azure Package Mode Data Plane Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 5 - Production/Stable",

@@ -14,7 +14,7 @@ name = "azure-resourcemanager-largeheader"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft CorporationAzure Resourcemanager Largeheader Client Library for Python"
+description = "Microsoft Corporation Azure Resourcemanager Largeheader Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",
