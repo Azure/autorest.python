@@ -8,7 +8,7 @@ name = "payload-jsonmergepatch"
 authors = [
   { name = "" },
 ]
-description = "Payload Jsonmergepatch Client Library for Python"
+description = " Payload Jsonmergepatch Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

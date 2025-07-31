@@ -8,7 +8,7 @@ name = "versioning-removed"
 authors = [
   { name = "" },
 ]
-description = "Versioning Removed Client Library for Python"
+description = " Versioning Removed Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

@@ -8,7 +8,7 @@ name = "versioning-typechangedfrom"
 authors = [
   { name = "" },
 ]
-description = "Versioning Typechangedfrom Client Library for Python"
+description = " Versioning Typechangedfrom Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

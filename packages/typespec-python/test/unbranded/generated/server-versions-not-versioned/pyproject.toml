@@ -8,7 +8,7 @@ name = "server-versions-notversioned"
 authors = [
   { name = "" },
 ]
-description = "Server Versions Notversioned Client Library for Python"
+description = " Server Versions Notversioned Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

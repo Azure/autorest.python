@@ -8,7 +8,7 @@ name = "parameters-spread"
 authors = [
   { name = "" },
 ]
-description = "Parameters Spread Client Library for Python"
+description = " Parameters Spread Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

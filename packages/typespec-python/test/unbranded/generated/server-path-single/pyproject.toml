@@ -8,7 +8,7 @@ name = "server-path-single"
 authors = [
   { name = "" },
 ]
-description = "Server Path Single Client Library for Python"
+description = " Server Path Single Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

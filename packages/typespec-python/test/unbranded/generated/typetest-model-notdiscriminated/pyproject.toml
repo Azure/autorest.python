@@ -8,7 +8,7 @@ name = "typetest-model-notdiscriminated"
 authors = [
   { name = "" },
 ]
-description = "Typetest Model Notdiscriminated Client Library for Python"
+description = " Typetest Model Notdiscriminated Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

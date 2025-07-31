@@ -8,7 +8,7 @@ name = "typetest-property-valuetypes"
 authors = [
   { name = "" },
 ]
-description = "Typetest Property Valuetypes Client Library for Python"
+description = " Typetest Property Valuetypes Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

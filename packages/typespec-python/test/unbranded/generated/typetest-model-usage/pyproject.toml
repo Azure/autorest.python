@@ -8,7 +8,7 @@ name = "typetest-model-usage"
 authors = [
   { name = "" },
 ]
-description = "Typetest Model Usage Client Library for Python"
+description = " Typetest Model Usage Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

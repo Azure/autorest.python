@@ -8,7 +8,7 @@ name = "versioning-madeoptional"
 authors = [
   { name = "" },
 ]
-description = "Versioning Madeoptional Client Library for Python"
+description = " Versioning Madeoptional Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

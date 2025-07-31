@@ -8,7 +8,7 @@ name = "payload-pageable"
 authors = [
   { name = "" },
 ]
-description = "Payload Pageable Client Library for Python"
+description = " Payload Pageable Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

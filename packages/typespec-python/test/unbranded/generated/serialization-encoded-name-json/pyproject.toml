@@ -8,7 +8,7 @@ name = "serialization-encodedname-json"
 authors = [
   { name = "" },
 ]
-description = "Serialization Encodedname Json Client Library for Python"
+description = " Serialization Encodedname Json Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

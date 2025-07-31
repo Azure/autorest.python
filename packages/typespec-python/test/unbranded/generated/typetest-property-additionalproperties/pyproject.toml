@@ -8,7 +8,7 @@ name = "typetest-property-additionalproperties"
 authors = [
   { name = "" },
 ]
-description = "Typetest Property Additionalproperties Client Library for Python"
+description = " Typetest Property Additionalproperties Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

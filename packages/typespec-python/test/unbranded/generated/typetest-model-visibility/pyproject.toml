@@ -8,7 +8,7 @@ name = "typetest-model-visibility"
 authors = [
   { name = "" },
 ]
-description = "Typetest Model Visibility Client Library for Python"
+description = " Typetest Model Visibility Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",

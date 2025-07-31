@@ -8,7 +8,7 @@ name = "typetest-array"
 authors = [
   { name = "" },
 ]
-description = "Typetest Array Client Library for Python"
+description = " Typetest Array Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",
