@@ -100,6 +100,7 @@ def test_union_keyvalid(api_key_client, union_client_type):
     client = api_key_client(union_client_type)
     client.valid_key()
 
+
 @pytest.mark.parametrize("union_client_type", [UnionClient, SetuppyUnionClient])
 def test_union_tokenvalid(oauth2_client, union_client_type):
     client = oauth2_client(union_client_type)

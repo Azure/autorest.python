@@ -143,9 +143,9 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         },
         {
             "package-name": "setuppy-authentication-union",
-            namespace: "setuppy.authentication.union",
+            "namespace": "setuppy.authentication.union",
             "keep-setup-py": "true",
-        }
+        },
     ],
     "type/array": {
         "package-name": "typetest-array",
