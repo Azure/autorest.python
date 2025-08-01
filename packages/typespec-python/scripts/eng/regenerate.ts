@@ -263,24 +263,13 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
 // Function to execute CLI commands asynchronously
 async function executeCommand(tspCommand: TspCommand): Promise<void> {
     try {
-        if (tspCommand.command.includes("generation-subdir")) {
-            // For generation-subdir, only delete the _generated folder within the output directory
-            const generatedSubdir = join(tspCommand.outputDir, "_generated");
-            rmSync(generatedSubdir, { recursive: true, force: true });
-        } else {
-            // For normal generation, delete the entire output directory
-            rmSync(tspCommand.outputDir, { recursive: true, force: true });
-        }
-    } catch (error) {
-        console.error(`rm error: ${error}`);
-    }
-    try {
         console.log(`exec: ${tspCommand.command}`);
         const { stdout, stderr } = await exec(tspCommand.command);
         if (stdout) console.log(`stdout: ${stdout}`);
         if (stderr) console.error(`stderr: ${stderr}`);
     } catch (error) {
         console.error(`exec error: ${error}`);
+        rmSync(tspCommand.outputDir, { recursive: true, force: true });
         throw error;
     }
 }
