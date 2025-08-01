@@ -1,5 +1,13 @@
 # Release
 
+## 0.47.2
+
+### Bug Fixes
+
+- [#3154](https://github.com/Azure/autorest.python/pull/3154) fix outputfolder of packaging files for arm sdk
+- [#3154](https://github.com/Azure/autorest.python/pull/3154) Ensure necessary typing imports for internal models
+
+
 ## 0.47.1
 
 ### Bug Fixes
