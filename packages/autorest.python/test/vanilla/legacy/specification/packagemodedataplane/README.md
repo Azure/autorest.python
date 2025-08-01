@@ -4,7 +4,7 @@
 
 ``` yaml
 input-file: ../../../../../node_modules/@microsoft.azure/autorest.testserver/swagger/any-type.json
-output-folder: $(python-sdks-folder)/vanilla/legacy/Expected/AcceptanceTests/PackageModeDataPlane
+output-folder: ../../Expected/AcceptanceTests/PackageModeDataPlane
 namespace: packagemode
 package-name: packagemode
 package-pprint-name: Azure Package Mode

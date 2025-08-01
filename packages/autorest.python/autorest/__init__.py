@@ -22,11 +22,24 @@ class ReaderAndWriterAutorest(ReaderAndWriter):
         super().__init__(output_folder=output_folder)
         self._autorestapi = autorestapi
 
+    def get_output_folder(self) -> Path:
+        # Get the output folder from AutoRest configuration to resolve against the correct base and
+        # convert URI to file system path by removing file:// prefix if present
+        return Path(self._autorestapi.get_value("outputFolderUri").lstrip("file:"))
+
     def read_file(self, path: Union[str, Path]) -> str:
         return self._autorestapi.read_file(path)
 
     def write_file(self, filename: Union[str, Path], file_content: str) -> None:
         return self._autorestapi.write_file(filename, file_content)
+
+    def remove_file(self, filename: Union[str, Path]) -> None:
+        try:
+            file_path = self.get_output_folder() / Path(filename)
+            if file_path.is_file():
+                file_path.unlink()
+        except (FileNotFoundError, OSError):
+            pass
 
     def list_file(self) -> List[str]:
         return self._autorestapi.list_inputs()
