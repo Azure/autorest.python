@@ -14,6 +14,7 @@ package-version: 1.0.0b1
 clear-output-folder: true
 version-tolerant: false
 package-mode: azure-mgmt
+keep-setup-py: true
 ```
 
 ``` yaml $(python)
