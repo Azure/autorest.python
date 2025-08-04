@@ -64,6 +64,7 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "no-async": self._autorestapi.get_boolean_value("no-async"),
             "no-namespace-folders": self._autorestapi.get_boolean_value("no-namespace-folders"),
             "basic-setup-py": self._autorestapi.get_boolean_value("basic-setup-py"),
+            "keep-setup-py": self._autorestapi.get_boolean_value("keep-setup-py"),
             "package-name": self._autorestapi.get_value("package-name"),
             "package-version": self._autorestapi.get_value("package-version"),
             "client-side-validation": self._autorestapi.get_boolean_value("client-side-validation"),

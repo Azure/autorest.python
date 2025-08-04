@@ -137,7 +137,6 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         {
             "package-name": "authentication-api-key-subdir",
             "generation-subdir": "_generated/",
-            "generate-packaging-files": "false",
             "namespace": "authentication.api.key.subdir",
         }
     ],
@@ -146,10 +145,17 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "namespace": "authentication.http.custom",
         "package-pprint-name": "Authentication Http Custom",
     },
-    "authentication/union": {
-        "package-name": "authentication-union",
-        "namespace": "authentication.union",
-    },
+    "authentication/union": [
+        {
+            "package-name": "authentication-union",
+            "namespace": "authentication.union",
+        },
+        {
+            "package-name": "setuppy-authentication-union",
+            "namespace": "setuppy.authentication.union",
+            "keep-setup-py": "true",
+        },
+    ],
     "type/array": {
         "package-name": "typetest-array",
         "namespace": "typetest.array",
