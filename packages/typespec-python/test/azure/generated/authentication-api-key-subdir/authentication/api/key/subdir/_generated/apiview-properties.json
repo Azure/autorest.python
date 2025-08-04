@@ -1,0 +1,10 @@
+{
+    "CrossLanguagePackageId": "Authentication.ApiKey",
+    "CrossLanguageDefinitionId": {
+        "authentication.api.key.subdir.models.InvalidAuth": "Authentication.ApiKey.InvalidAuth",
+        "authentication.api.key.subdir.ApiKeyClient.valid": "Authentication.ApiKey.valid",
+        "authentication.api.key.subdir.aio.ApiKeyClient.valid": "Authentication.ApiKey.valid",
+        "authentication.api.key.subdir.ApiKeyClient.invalid": "Authentication.ApiKey.invalid",
+        "authentication.api.key.subdir.aio.ApiKeyClient.invalid": "Authentication.ApiKey.invalid"
+    }
+}
