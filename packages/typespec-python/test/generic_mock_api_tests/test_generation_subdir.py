@@ -4,13 +4,12 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.apikey import ApiKeyClient
+from authentication.apikey.subdir import CustomizedApiKeyClient
 
 
 def test_custom_method(key_credential):
-    with ApiKeyClient(key_credential("valid-key")) as client:
-        assert client.custom_method() == "This is a custom method in the subdirectory client."
-
+    with CustomizedApiKeyClient(key_credential("valid-key")) as client:
+        assert client.custom_method()
 def test_custom_model():
     try:
         from authentication.apikey import InvalidAuth

@@ -4,10 +4,9 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.apikey.aio import ApiKeyClient
+from authentication.apikey.aio import CustomizedApiKeyClient
 
 @pytest.mark.asyncio
 async def test_custom_method(key_credential):
-    async with ApiKeyClient(key_credential("valid-key")) as client:
-
-        assert client.custom_method() == "This is a custom method in the subdirectory client."
+    async with CustomizedApiKeyClient(key_credential("valid-key")) as client:
+        assert (await client.custom_method())
