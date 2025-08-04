@@ -138,6 +138,7 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
             "package-name": "authentication-api-key-with-subdir",
             "generation-subdir": "_generated/",
             "generate-packaging-files": "false",
+            "namespace": "authentication.api.key.with.subdir",
         }
     ],
     "authentication/http/custom": {

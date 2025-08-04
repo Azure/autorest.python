@@ -38,8 +38,8 @@ class TestResourcesExtensionsResourcesOperationsAsync(AzureMgmtRecordedTestCase)
                 resource_uri="str",
                 extensions_resource_name="str",
                 resource={
-                    "id": "str",
                     "name": "str",
+                    "id": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",
@@ -64,8 +64,8 @@ class TestResourcesExtensionsResourcesOperationsAsync(AzureMgmtRecordedTestCase)
             resource_uri="str",
             extensions_resource_name="str",
             properties={
-                "id": "str",
                 "name": "str",
+                "id": "str",
                 "properties": {"description": "str", "provisioningState": "str"},
                 "systemData": {
                     "createdAt": "2020-02-20 00:00:00",

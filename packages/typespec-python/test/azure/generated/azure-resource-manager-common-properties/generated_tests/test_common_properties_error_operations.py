@@ -37,8 +37,8 @@ class TestCommonPropertiesErrorOperations(AzureMgmtRecordedTestCase):
             confidential_resource_name="str",
             resource={
                 "location": "str",
-                "id": "str",
                 "name": "str",
+                "id": "str",
                 "properties": {"provisioningState": "str", "username": "str"},
                 "systemData": {
                     "createdAt": "2020-02-20 00:00:00",

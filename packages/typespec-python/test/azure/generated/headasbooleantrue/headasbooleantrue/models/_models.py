@@ -32,6 +32,8 @@ class VisibilityModel(_Model):
 
     :ivar read_prop: Required string, illustrating a readonly property. Required.
     :vartype read_prop: str
+    :ivar query_prop: Required int32, illustrating a query property. Required.
+    :vartype query_prop: int
     :ivar create_prop: Required string[], illustrating a create property. Required.
     :vartype create_prop: list[str]
     :ivar update_prop: Required int32[], illustrating a update property. Required.
@@ -42,6 +44,8 @@ class VisibilityModel(_Model):
 
     read_prop: str = rest_field(name="readProp", visibility=["read"])
     """Required string, illustrating a readonly property. Required."""
+    query_prop: int = rest_field(name="queryProp", visibility=["query"])
+    """Required int32, illustrating a query property. Required."""
     create_prop: List[str] = rest_field(name="createProp", visibility=["create"])
     """Required string[], illustrating a create property. Required."""
     update_prop: List[int] = rest_field(name="updateProp", visibility=["update"])
@@ -53,6 +57,7 @@ class VisibilityModel(_Model):
     def __init__(
         self,
         *,
+        query_prop: int,
         create_prop: List[str],
         update_prop: List[int],
         delete_prop: bool,

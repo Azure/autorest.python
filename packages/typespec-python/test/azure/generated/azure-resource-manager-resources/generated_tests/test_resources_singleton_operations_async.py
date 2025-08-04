@@ -37,8 +37,8 @@ class TestResourcesSingletonOperationsAsync(AzureMgmtRecordedTestCase):
                 resource_group_name=resource_group.name,
                 resource={
                     "location": "str",
-                    "id": "str",
                     "name": "str",
+                    "id": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",
@@ -64,8 +64,8 @@ class TestResourcesSingletonOperationsAsync(AzureMgmtRecordedTestCase):
             resource_group_name=resource_group.name,
             properties={
                 "location": "str",
-                "id": "str",
                 "name": "str",
+                "id": "str",
                 "properties": {"description": "str", "provisioningState": "str"},
                 "systemData": {
                     "createdAt": "2020-02-20 00:00:00",

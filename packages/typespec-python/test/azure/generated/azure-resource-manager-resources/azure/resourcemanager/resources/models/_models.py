@@ -141,8 +141,6 @@ class ExtensionsResource(ExtensionResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -151,12 +149,16 @@ class ExtensionsResource(ExtensionResource):
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.ExtensionsResourceProperties
+    :ivar name: The name of the ExtensionsResource. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.ExtensionsResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """The name of the ExtensionsResource. Required."""
 
     @overload
     def __init__(
@@ -236,8 +238,6 @@ class LocationResource(ProxyResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -246,12 +246,16 @@ class LocationResource(ProxyResource):
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.LocationResourceProperties
+    :ivar name: The name of the LocationResource. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.LocationResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """The name of the LocationResource. Required."""
 
     @overload
     def __init__(
@@ -313,8 +317,6 @@ class NestedProxyResource(ProxyResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -323,12 +325,16 @@ class NestedProxyResource(ProxyResource):
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.NestedProxyResourceProperties
+    :ivar name: Name of the nested resource. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.NestedProxyResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """Name of the nested resource. Required."""
 
     @overload
     def __init__(
@@ -468,8 +474,6 @@ class SingletonTrackedResource(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -482,12 +486,16 @@ class SingletonTrackedResource(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.SingletonTrackedResourceProperties
+    :ivar name: The name of the SingletonTrackedResource. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.SingletonTrackedResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """The name of the SingletonTrackedResource. Required."""
 
     @overload
     def __init__(
@@ -619,8 +627,6 @@ class TopLevelTrackedResource(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -633,12 +639,16 @@ class TopLevelTrackedResource(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.TopLevelTrackedResourceProperties
+    :ivar name: arm resource name for path. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.TopLevelTrackedResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """arm resource name for path. Required."""
 
     @overload
     def __init__(

@@ -39,8 +39,8 @@ class TestResourcesTopLevelOperationsAsync(AzureMgmtRecordedTestCase):
                 top_level_tracked_resource_name="str",
                 resource={
                     "location": "str",
-                    "id": "str",
                     "name": "str",
+                    "id": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",
@@ -68,8 +68,8 @@ class TestResourcesTopLevelOperationsAsync(AzureMgmtRecordedTestCase):
                 top_level_tracked_resource_name="str",
                 properties={
                     "location": "str",
-                    "id": "str",
                     "name": "str",
+                    "id": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",

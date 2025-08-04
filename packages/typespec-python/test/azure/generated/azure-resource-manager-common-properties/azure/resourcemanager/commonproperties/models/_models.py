@@ -212,8 +212,6 @@ class ConfidentialResource(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -227,12 +225,16 @@ class ConfidentialResource(TrackedResource):
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties:
      ~azure.resourcemanager.commonproperties.models.ConfidentialResourceProperties
+    :ivar name: The name of the ConfidentialResource. Required.
+    :vartype name: str
     """
 
     properties: Optional["_models.ConfidentialResourceProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """The name of the ConfidentialResource. Required."""
 
     @overload
     def __init__(
@@ -399,8 +401,6 @@ class ManagedIdentityTrackedResource(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
-    :ivar name: The name of the resource.
-    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -414,6 +414,8 @@ class ManagedIdentityTrackedResource(TrackedResource):
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties:
      ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResourceProperties
+    :ivar name: arm resource name for path. Required.
+    :vartype name: str
     :ivar identity: The managed service identities assigned to this resource.
     :vartype identity: ~azure.resourcemanager.commonproperties.models.ManagedServiceIdentity
     """
@@ -422,6 +424,8 @@ class ManagedIdentityTrackedResource(TrackedResource):
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+    name: str = rest_field(visibility=["read"])
+    """arm resource name for path. Required."""
     identity: Optional["_models.ManagedServiceIdentity"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
