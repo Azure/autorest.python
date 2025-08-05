@@ -15,6 +15,8 @@ class CustomizedApiKeyClient:
     :type credential: ~azure.core.credentials.AzureKeyCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
+    :keyword api_version: API version to use for requests. Default value is None.
+    :paramtype api_version: str or None
     """
 
     def __init__(
