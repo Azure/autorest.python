@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azure.multiapi.sample.v2.models.Error": null,
+        "azure.multiapi.sample.v2.models.ModelTwo": null,
+        "azure.multiapi.sample.v2.MultiapiServiceClient.test_one": null,
+        "azure.multiapi.sample.v2.aio.MultiapiServiceClient.test_one": null,
+        "azure.multiapi.sample.v2.MultiapiServiceClient.test_different_calls": null,
+        "azure.multiapi.sample.v2.aio.MultiapiServiceClient.test_different_calls": null,
+        "azure.multiapi.sample.v2.operations.OperationGroupOneOperations.test_two": null,
+        "azure.multiapi.sample.v2.aio.operations.OperationGroupOneOperations.test_two": null,
+        "azure.multiapi.sample.v2.operations.OperationGroupOneOperations.test_three": null,
+        "azure.multiapi.sample.v2.aio.operations.OperationGroupOneOperations.test_three": null,
+        "azure.multiapi.sample.v2.operations.OperationGroupTwoOperations.test_four": null,
+        "azure.multiapi.sample.v2.aio.operations.OperationGroupTwoOperations.test_four": null
+    }
+}

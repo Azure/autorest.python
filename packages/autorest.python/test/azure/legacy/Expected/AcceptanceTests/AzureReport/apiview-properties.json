@@ -1,0 +1,8 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azurereport.models.Error": null,
+        "azurereport.AutoRestReportServiceForAzure.get_report": null,
+        "azurereport.aio.AutoRestReportServiceForAzure.get_report": null
+    }
+}

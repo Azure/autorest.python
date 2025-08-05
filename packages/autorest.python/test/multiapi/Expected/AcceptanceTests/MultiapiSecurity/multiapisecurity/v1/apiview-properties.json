@@ -1,0 +1,19 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multiapisecurity.v1.models.Error": null,
+        "multiapisecurity.v1.models.PagingResult": null,
+        "multiapisecurity.v1.models.Product": null,
+        "multiapisecurity.v1.models.TestLroAndPagingOptions": null,
+        "multiapisecurity.v1.MultiapiServiceClient.test_one": null,
+        "multiapisecurity.v1.aio.MultiapiServiceClient.test_one": null,
+        "multiapisecurity.v1.MultiapiServiceClient.begin_test_lro": null,
+        "multiapisecurity.v1.aio.MultiapiServiceClient.begin_test_lro": null,
+        "multiapisecurity.v1.MultiapiServiceClient.begin_test_lro_and_paging": null,
+        "multiapisecurity.v1.aio.MultiapiServiceClient.begin_test_lro_and_paging": null,
+        "multiapisecurity.v1.MultiapiServiceClient.test_different_calls": null,
+        "multiapisecurity.v1.aio.MultiapiServiceClient.test_different_calls": null,
+        "multiapisecurity.v1.operations.OperationGroupOneOperations.test_two": null,
+        "multiapisecurity.v1.aio.operations.OperationGroupOneOperations.test_two": null
+    }
+}

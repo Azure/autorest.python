@@ -1,0 +1,19 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multiapinoasync.v1.models.Error": null,
+        "multiapinoasync.v1.models.PagingResult": null,
+        "multiapinoasync.v1.models.Product": null,
+        "multiapinoasync.v1.models.TestLroAndPagingOptions": null,
+        "multiapinoasync.v1.MultiapiServiceClient.test_one": null,
+        "multiapinoasync.v1.aio.MultiapiServiceClient.test_one": null,
+        "multiapinoasync.v1.MultiapiServiceClient.begin_test_lro": null,
+        "multiapinoasync.v1.aio.MultiapiServiceClient.begin_test_lro": null,
+        "multiapinoasync.v1.MultiapiServiceClient.begin_test_lro_and_paging": null,
+        "multiapinoasync.v1.aio.MultiapiServiceClient.begin_test_lro_and_paging": null,
+        "multiapinoasync.v1.MultiapiServiceClient.test_different_calls": null,
+        "multiapinoasync.v1.aio.MultiapiServiceClient.test_different_calls": null,
+        "multiapinoasync.v1.operations.OperationGroupOneOperations.test_two": null,
+        "multiapinoasync.v1.aio.operations.OperationGroupOneOperations.test_two": null
+    }
+}

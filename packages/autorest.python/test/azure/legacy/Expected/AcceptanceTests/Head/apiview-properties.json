@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "head.operations.HttpSuccessOperations.head200": null,
+        "head.aio.operations.HttpSuccessOperations.head200": null,
+        "head.operations.HttpSuccessOperations.head204": null,
+        "head.aio.operations.HttpSuccessOperations.head204": null,
+        "head.operations.HttpSuccessOperations.head404": null,
+        "head.aio.operations.HttpSuccessOperations.head404": null
+    }
+}

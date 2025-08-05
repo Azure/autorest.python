@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "parameterflatteningversiontolerant.operations.AvailabilitySetsOperations.update": null,
+        "parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations.update": null
+    }
+}

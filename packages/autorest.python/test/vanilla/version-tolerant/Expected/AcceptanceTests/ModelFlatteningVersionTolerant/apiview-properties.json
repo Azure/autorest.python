@@ -1,0 +1,28 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "modelflatteningversiontolerant.models.FlattenedProductPropertiesProvisioningStateValues": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_array": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_array": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.get_array": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.get_array": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_wrapped_array": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_wrapped_array": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.get_wrapped_array": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.get_wrapped_array": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_dictionary": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_dictionary": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.get_dictionary": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.get_dictionary": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_resource_collection": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_resource_collection": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.get_resource_collection": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.get_resource_collection": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_simple_product": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_simple_product": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.post_flattened_simple_product": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.post_flattened_simple_product": null,
+        "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_simple_product_with_grouping": null,
+        "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_simple_product_with_grouping": null
+    }
+}

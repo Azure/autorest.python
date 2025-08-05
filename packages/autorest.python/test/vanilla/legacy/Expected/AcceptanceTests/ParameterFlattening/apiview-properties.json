@@ -1,0 +1,8 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "parameterflattening.models.AvailabilitySetUpdateParameters": null,
+        "parameterflattening.operations.AvailabilitySetsOperations.update": null,
+        "parameterflattening.aio.operations.AvailabilitySetsOperations.update": null
+    }
+}

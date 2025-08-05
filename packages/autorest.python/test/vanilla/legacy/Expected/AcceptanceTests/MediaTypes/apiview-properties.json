@@ -1,0 +1,24 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "mediatypes.models.SourcePath": null,
+        "mediatypes.models.ContentType": null,
+        "mediatypes.models.ContentType1": null,
+        "mediatypes.models.ContentType2": null,
+        "mediatypes.models.ContentType3": null,
+        "mediatypes.MediaTypesClient.analyze_body": null,
+        "mediatypes.aio.MediaTypesClient.analyze_body": null,
+        "mediatypes.MediaTypesClient.analyze_body_no_accept_header": null,
+        "mediatypes.aio.MediaTypesClient.analyze_body_no_accept_header": null,
+        "mediatypes.MediaTypesClient.content_type_with_encoding": null,
+        "mediatypes.aio.MediaTypesClient.content_type_with_encoding": null,
+        "mediatypes.MediaTypesClient.binary_body_with_two_content_types": null,
+        "mediatypes.aio.MediaTypesClient.binary_body_with_two_content_types": null,
+        "mediatypes.MediaTypesClient.binary_body_with_three_content_types": null,
+        "mediatypes.aio.MediaTypesClient.binary_body_with_three_content_types": null,
+        "mediatypes.MediaTypesClient.body_three_types": null,
+        "mediatypes.aio.MediaTypesClient.body_three_types": null,
+        "mediatypes.MediaTypesClient.put_text_and_json_body": null,
+        "mediatypes.aio.MediaTypesClient.put_text_and_json_body": null
+    }
+}

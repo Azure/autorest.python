@@ -1,0 +1,10 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "report.models.Error": null,
+        "report.AutoRestReportService.get_report": null,
+        "report.aio.AutoRestReportService.get_report": null,
+        "report.AutoRestReportService.get_optional_report": null,
+        "report.aio.AutoRestReportService.get_optional_report": null
+    }
+}

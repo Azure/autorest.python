@@ -1,0 +1,18 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyboolean.models.Error": null,
+        "bodyboolean.operations.BoolOperations.get_true": null,
+        "bodyboolean.aio.operations.BoolOperations.get_true": null,
+        "bodyboolean.operations.BoolOperations.put_true": null,
+        "bodyboolean.aio.operations.BoolOperations.put_true": null,
+        "bodyboolean.operations.BoolOperations.get_false": null,
+        "bodyboolean.aio.operations.BoolOperations.get_false": null,
+        "bodyboolean.operations.BoolOperations.put_false": null,
+        "bodyboolean.aio.operations.BoolOperations.put_false": null,
+        "bodyboolean.operations.BoolOperations.get_null": null,
+        "bodyboolean.aio.operations.BoolOperations.get_null": null,
+        "bodyboolean.operations.BoolOperations.get_invalid": null,
+        "bodyboolean.aio.operations.BoolOperations.get_invalid": null
+    }
+}

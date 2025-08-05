@@ -1,0 +1,15 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.head_no_params": null,
+        "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.head_no_params": null,
+        "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.get_required": null,
+        "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.get_required": null,
+        "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.put_required_optional": null,
+        "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.put_required_optional": null,
+        "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.post_parameters": null,
+        "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.post_parameters": null,
+        "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.get_optional": null,
+        "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.get_optional": null
+    }
+}

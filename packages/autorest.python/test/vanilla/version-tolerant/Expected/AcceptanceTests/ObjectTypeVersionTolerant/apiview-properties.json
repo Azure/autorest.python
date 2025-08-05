@@ -1,0 +1,9 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "objecttypeversiontolerant.ObjectTypeClient.get": null,
+        "objecttypeversiontolerant.aio.ObjectTypeClient.get": null,
+        "objecttypeversiontolerant.ObjectTypeClient.put": null,
+        "objecttypeversiontolerant.aio.ObjectTypeClient.put": null
+    }
+}

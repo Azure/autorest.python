@@ -1,0 +1,24 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodydatetimerfc1123.models.Error": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_null": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_null": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_invalid": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_invalid": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_overflow": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_overflow": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_underflow": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_underflow": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.put_utc_max_date_time": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.put_utc_max_date_time": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_utc_lowercase_max_date_time": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_utc_lowercase_max_date_time": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_utc_uppercase_max_date_time": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_utc_uppercase_max_date_time": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.put_utc_min_date_time": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.put_utc_min_date_time": null,
+        "bodydatetimerfc1123.operations.Datetimerfc1123Operations.get_utc_min_date_time": null,
+        "bodydatetimerfc1123.aio.operations.Datetimerfc1123Operations.get_utc_min_date_time": null
+    }
+}

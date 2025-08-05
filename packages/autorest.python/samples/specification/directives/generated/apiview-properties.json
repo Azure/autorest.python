@@ -1,0 +1,9 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azure.directives.sample.PollingPagingExample.begin_basic_polling": null,
+        "azure.directives.sample.aio.PollingPagingExample.begin_basic_polling": null,
+        "azure.directives.sample.PollingPagingExample.basic_paging": null,
+        "azure.directives.sample.aio.PollingPagingExample.basic_paging": null
+    }
+}

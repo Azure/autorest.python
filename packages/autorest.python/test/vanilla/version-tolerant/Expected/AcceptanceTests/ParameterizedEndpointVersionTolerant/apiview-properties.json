@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "parameterizedendpointversiontolerant.ParmaterizedEndpointClient.get": null,
+        "parameterizedendpointversiontolerant.aio.ParmaterizedEndpointClient.get": null
+    }
+}

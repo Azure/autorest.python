@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "mergepatchjsonversiontolerant.MergePatchJsonClient.patch_single": null,
+        "mergepatchjsonversiontolerant.aio.MergePatchJsonClient.patch_single": null
+    }
+}
