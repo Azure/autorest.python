@@ -131,6 +131,14 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
+    "authentication/api-key": [
+        {},
+        {
+            "package-name": "authentication-api-key-subdir",
+            "generation-subdir": "_generated/",
+            "namespace": "authentication.api.key.subdir",
+        },
+    ],
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
         "namespace": "authentication.http.custom",
