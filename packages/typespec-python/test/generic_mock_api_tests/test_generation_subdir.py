@@ -8,8 +8,8 @@ from authentication.api.key.subdir import CustomizedApiKeyClient
 
 
 def test_custom_method(key_credential):
-    with CustomizedApiKeyClient(key_credential("valid-key")) as client:
-        assert client.custom_method()
+    client = CustomizedApiKeyClient(key_credential("valid-key"))
+    assert client.custom_method()
 
 
 def test_custom_model():

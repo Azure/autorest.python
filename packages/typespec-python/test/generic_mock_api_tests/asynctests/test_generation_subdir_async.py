@@ -9,5 +9,5 @@ from authentication.api.key.subdir.aio import CustomizedApiKeyClient
 
 @pytest.mark.asyncio
 async def test_custom_method(key_credential):
-    async with CustomizedApiKeyClient(key_credential("valid-key")) as client:
-        assert await client.custom_method()
+    client = CustomizedApiKeyClient(key_credential("valid-key"))
+    assert await client.custom_method()
