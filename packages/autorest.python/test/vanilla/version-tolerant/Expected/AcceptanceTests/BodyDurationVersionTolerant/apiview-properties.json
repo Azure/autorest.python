@@ -1,0 +1,13 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodydurationversiontolerant.operations.DurationOperations.get_null": null,
+        "bodydurationversiontolerant.aio.operations.DurationOperations.get_null": null,
+        "bodydurationversiontolerant.operations.DurationOperations.put_positive_duration": null,
+        "bodydurationversiontolerant.aio.operations.DurationOperations.put_positive_duration": null,
+        "bodydurationversiontolerant.operations.DurationOperations.get_positive_duration": null,
+        "bodydurationversiontolerant.aio.operations.DurationOperations.get_positive_duration": null,
+        "bodydurationversiontolerant.operations.DurationOperations.get_invalid": null,
+        "bodydurationversiontolerant.aio.operations.DurationOperations.get_invalid": null
+    }
+}

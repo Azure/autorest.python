@@ -1,0 +1,15 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "nonstringenums.models.IntEnum": null,
+        "nonstringenums.models.FloatEnum": null,
+        "nonstringenums.operations.IntOperations.put": null,
+        "nonstringenums.aio.operations.IntOperations.put": null,
+        "nonstringenums.operations.IntOperations.get": null,
+        "nonstringenums.aio.operations.IntOperations.get": null,
+        "nonstringenums.operations.FloatOperations.put": null,
+        "nonstringenums.aio.operations.FloatOperations.put": null,
+        "nonstringenums.operations.FloatOperations.get": null,
+        "nonstringenums.aio.operations.FloatOperations.get": null
+    }
+}

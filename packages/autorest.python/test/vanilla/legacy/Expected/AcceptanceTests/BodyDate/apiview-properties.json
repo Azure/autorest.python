@@ -1,0 +1,22 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodydate.models.Error": null,
+        "bodydate.operations.DateOperations.get_null": null,
+        "bodydate.aio.operations.DateOperations.get_null": null,
+        "bodydate.operations.DateOperations.get_invalid_date": null,
+        "bodydate.aio.operations.DateOperations.get_invalid_date": null,
+        "bodydate.operations.DateOperations.get_overflow_date": null,
+        "bodydate.aio.operations.DateOperations.get_overflow_date": null,
+        "bodydate.operations.DateOperations.get_underflow_date": null,
+        "bodydate.aio.operations.DateOperations.get_underflow_date": null,
+        "bodydate.operations.DateOperations.put_max_date": null,
+        "bodydate.aio.operations.DateOperations.put_max_date": null,
+        "bodydate.operations.DateOperations.get_max_date": null,
+        "bodydate.aio.operations.DateOperations.get_max_date": null,
+        "bodydate.operations.DateOperations.put_min_date": null,
+        "bodydate.aio.operations.DateOperations.put_min_date": null,
+        "bodydate.operations.DateOperations.get_min_date": null,
+        "bodydate.aio.operations.DateOperations.get_min_date": null
+    }
+}

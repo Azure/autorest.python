@@ -1,0 +1,19 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.head_no_params": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.head_no_params": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.get_required": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.get_required": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.put_required_optional": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.put_required_optional": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.post_parameters": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.post_parameters": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.delete_parameters": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.delete_parameters": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.get_optional": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.get_optional": null,
+        "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.get_new_operation": null,
+        "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.get_new_operation": null
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "validation.models.ChildProduct": null,
+        "validation.models.ConstantProduct": null,
+        "validation.models.Error": null,
+        "validation.models.Product": null,
+        "validation.AutoRestValidationTest.validation_of_method_parameters": null,
+        "validation.aio.AutoRestValidationTest.validation_of_method_parameters": null,
+        "validation.AutoRestValidationTest.validation_of_body": null,
+        "validation.aio.AutoRestValidationTest.validation_of_body": null,
+        "validation.AutoRestValidationTest.get_with_constant_in_path": null,
+        "validation.aio.AutoRestValidationTest.get_with_constant_in_path": null,
+        "validation.AutoRestValidationTest.post_with_constant_in_body": null,
+        "validation.aio.AutoRestValidationTest.post_with_constant_in_body": null
+    }
+}

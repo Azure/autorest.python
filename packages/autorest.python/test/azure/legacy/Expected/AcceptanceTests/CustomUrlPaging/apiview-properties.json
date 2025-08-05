@@ -1,0 +1,13 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "custombaseurlpaging.models.Error": null,
+        "custombaseurlpaging.models.Product": null,
+        "custombaseurlpaging.models.ProductProperties": null,
+        "custombaseurlpaging.models.ProductResult": null,
+        "custombaseurlpaging.operations.PagingOperations.get_pages_partial_url": null,
+        "custombaseurlpaging.aio.operations.PagingOperations.get_pages_partial_url": null,
+        "custombaseurlpaging.operations.PagingOperations.get_pages_partial_url_operation": null,
+        "custombaseurlpaging.aio.operations.PagingOperations.get_pages_partial_url_operation": null
+    }
+}

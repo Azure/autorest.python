@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.post_required": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_required": null,
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.post_optional": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_optional": null,
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.post_reserved_words": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_reserved_words": null,
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.post_multi_param_groups": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_multi_param_groups": null,
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.post_shared_parameter_group_object": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_shared_parameter_group_object": null,
+        "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.group_with_constant": null,
+        "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.group_with_constant": null
+    }
+}

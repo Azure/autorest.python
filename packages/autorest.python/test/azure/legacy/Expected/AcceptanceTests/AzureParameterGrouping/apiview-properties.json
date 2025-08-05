@@ -1,0 +1,24 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azureparametergrouping.models.Error": null,
+        "azureparametergrouping.models.FirstParameterGroup": null,
+        "azureparametergrouping.models.Grouper": null,
+        "azureparametergrouping.models.ParameterGroupingPostMultiParamGroupsSecondParamGroup": null,
+        "azureparametergrouping.models.ParameterGroupingPostOptionalParameters": null,
+        "azureparametergrouping.models.ParameterGroupingPostRequiredParameters": null,
+        "azureparametergrouping.models.ParameterGroupingPostReservedWordsParameters": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.post_required": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.post_required": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.post_optional": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.post_optional": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.post_reserved_words": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.post_reserved_words": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.post_multi_param_groups": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.post_multi_param_groups": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.post_shared_parameter_group_object": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.post_shared_parameter_group_object": null,
+        "azureparametergrouping.operations.ParameterGroupingOperations.group_with_constant": null,
+        "azureparametergrouping.aio.operations.ParameterGroupingOperations.group_with_constant": null
+    }
+}

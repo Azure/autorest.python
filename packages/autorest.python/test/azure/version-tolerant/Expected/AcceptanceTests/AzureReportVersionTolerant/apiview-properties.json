@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azurereportversiontolerant.AutoRestReportServiceForAzure.get_report": null,
+        "azurereportversiontolerant.aio.AutoRestReportServiceForAzure.get_report": null
+    }
+}

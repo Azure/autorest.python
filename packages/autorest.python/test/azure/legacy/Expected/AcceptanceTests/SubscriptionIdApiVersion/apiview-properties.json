@@ -1,0 +1,9 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "subscriptionidapiversion.models.Error": null,
+        "subscriptionidapiversion.models.SampleResourceGroup": null,
+        "subscriptionidapiversion.operations.GroupOperations.get_sample_resource_group": null,
+        "subscriptionidapiversion.aio.operations.GroupOperations.get_sample_resource_group": null
+    }
+}

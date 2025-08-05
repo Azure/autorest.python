@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "headexceptionsversiontolerant.operations.HeadExceptionOperations.head200": null,
+        "headexceptionsversiontolerant.aio.operations.HeadExceptionOperations.head200": null,
+        "headexceptionsversiontolerant.operations.HeadExceptionOperations.head204": null,
+        "headexceptionsversiontolerant.aio.operations.HeadExceptionOperations.head204": null,
+        "headexceptionsversiontolerant.operations.HeadExceptionOperations.head404": null,
+        "headexceptionsversiontolerant.aio.operations.HeadExceptionOperations.head404": null
+    }
+}

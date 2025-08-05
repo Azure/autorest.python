@@ -1,0 +1,9 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "clientenum.models.Error": null,
+        "clientenum.models.Enum0": null,
+        "clientenum.ClientWithEnum.head": null,
+        "clientenum.aio.ClientWithEnum.head": null
+    }
+}

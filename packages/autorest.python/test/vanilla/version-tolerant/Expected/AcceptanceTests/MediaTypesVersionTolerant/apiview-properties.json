@@ -1,0 +1,23 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "mediatypesversiontolerant.models.ContentType": null,
+        "mediatypesversiontolerant.models.ContentType1": null,
+        "mediatypesversiontolerant.models.ContentType2": null,
+        "mediatypesversiontolerant.models.ContentType3": null,
+        "mediatypesversiontolerant.MediaTypesClient.analyze_body": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.analyze_body": null,
+        "mediatypesversiontolerant.MediaTypesClient.analyze_body_no_accept_header": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.analyze_body_no_accept_header": null,
+        "mediatypesversiontolerant.MediaTypesClient.content_type_with_encoding": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.content_type_with_encoding": null,
+        "mediatypesversiontolerant.MediaTypesClient.binary_body_with_two_content_types": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.binary_body_with_two_content_types": null,
+        "mediatypesversiontolerant.MediaTypesClient.binary_body_with_three_content_types": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.binary_body_with_three_content_types": null,
+        "mediatypesversiontolerant.MediaTypesClient.body_three_types": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.body_three_types": null,
+        "mediatypesversiontolerant.MediaTypesClient.put_text_and_json_body": null,
+        "mediatypesversiontolerant.aio.MediaTypesClient.put_text_and_json_body": null
+    }
+}

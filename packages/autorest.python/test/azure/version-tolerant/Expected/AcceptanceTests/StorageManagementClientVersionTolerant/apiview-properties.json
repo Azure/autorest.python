@@ -1,0 +1,31 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "storageversiontolerant.models.ProvisioningState": null,
+        "storageversiontolerant.models.AccountType": null,
+        "storageversiontolerant.models.AccountStatus": null,
+        "storageversiontolerant.models.UsageUnit": null,
+        "storageversiontolerant.models.Reason": null,
+        "storageversiontolerant.models.KeyName": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.check_name_availability": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.check_name_availability": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.begin_create": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.begin_create": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.delete": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.delete": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.get_properties": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.get_properties": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.update": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.update": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.list_keys": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.list_keys": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.list": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.list": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.list_by_resource_group": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.list_by_resource_group": null,
+        "storageversiontolerant.operations.StorageAccountsOperations.regenerate_key": null,
+        "storageversiontolerant.aio.operations.StorageAccountsOperations.regenerate_key": null,
+        "storageversiontolerant.operations.UsageOperations.list": null,
+        "storageversiontolerant.aio.operations.UsageOperations.list": null
+    }
+}

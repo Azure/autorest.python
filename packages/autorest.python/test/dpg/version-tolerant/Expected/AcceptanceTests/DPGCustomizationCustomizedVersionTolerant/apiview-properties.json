@@ -1,0 +1,14 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "dpgcustomizationcustomizedversiontolerant.models.ProductReceived": null,
+        "dpgcustomizationcustomizedversiontolerant.DPGClient.get_model": null,
+        "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.get_model": null,
+        "dpgcustomizationcustomizedversiontolerant.DPGClient.post_model": null,
+        "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.post_model": null,
+        "dpgcustomizationcustomizedversiontolerant.DPGClient.get_pages": null,
+        "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.get_pages": null,
+        "dpgcustomizationcustomizedversiontolerant.DPGClient.begin_lro": null,
+        "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.begin_lro": null
+    }
+}

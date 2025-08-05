@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodybooleanversiontolerant.operations.BoolOperations.get_true": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.get_true": null,
+        "bodybooleanversiontolerant.operations.BoolOperations.put_true": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.put_true": null,
+        "bodybooleanversiontolerant.operations.BoolOperations.get_false": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.get_false": null,
+        "bodybooleanversiontolerant.operations.BoolOperations.put_false": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.put_false": null,
+        "bodybooleanversiontolerant.operations.BoolOperations.get_null": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.get_null": null,
+        "bodybooleanversiontolerant.operations.BoolOperations.get_invalid": null,
+        "bodybooleanversiontolerant.aio.operations.BoolOperations.get_invalid": null
+    }
+}

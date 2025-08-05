@@ -1,0 +1,24 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "additionalproperties.models.PetAPTrue": null,
+        "additionalproperties.models.CatAPTrue": null,
+        "additionalproperties.models.Error": null,
+        "additionalproperties.models.PetAPInProperties": null,
+        "additionalproperties.models.PetAPInPropertiesWithAPString": null,
+        "additionalproperties.models.PetAPObject": null,
+        "additionalproperties.models.PetAPString": null,
+        "additionalproperties.operations.PetsOperations.create_ap_true": null,
+        "additionalproperties.aio.operations.PetsOperations.create_ap_true": null,
+        "additionalproperties.operations.PetsOperations.create_cat_ap_true": null,
+        "additionalproperties.aio.operations.PetsOperations.create_cat_ap_true": null,
+        "additionalproperties.operations.PetsOperations.create_ap_object": null,
+        "additionalproperties.aio.operations.PetsOperations.create_ap_object": null,
+        "additionalproperties.operations.PetsOperations.create_ap_string": null,
+        "additionalproperties.aio.operations.PetsOperations.create_ap_string": null,
+        "additionalproperties.operations.PetsOperations.create_ap_in_properties": null,
+        "additionalproperties.aio.operations.PetsOperations.create_ap_in_properties": null,
+        "additionalproperties.operations.PetsOperations.create_ap_in_properties_with_ap_string": null,
+        "additionalproperties.aio.operations.PetsOperations.create_ap_in_properties_with_ap_string": null
+    }
+}
