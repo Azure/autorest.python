@@ -38,7 +38,6 @@ class TestCommonPropertiesManagedIdentityOperationsAsync(AzureMgmtRecordedTestCa
             managed_identity_tracked_resource_name="str",
             resource={
                 "location": "str",
-                "name": "str",
                 "id": "str",
                 "identity": {
                     "type": "str",
@@ -46,6 +45,7 @@ class TestCommonPropertiesManagedIdentityOperationsAsync(AzureMgmtRecordedTestCa
                     "tenantId": "str",
                     "userAssignedIdentities": {"str": {"clientId": "str", "principalId": "str"}},
                 },
+                "name": "str",
                 "properties": {"provisioningState": "str"},
                 "systemData": {
                     "createdAt": "2020-02-20 00:00:00",
@@ -71,7 +71,6 @@ class TestCommonPropertiesManagedIdentityOperationsAsync(AzureMgmtRecordedTestCa
             managed_identity_tracked_resource_name="str",
             properties={
                 "location": "str",
-                "name": "str",
                 "id": "str",
                 "identity": {
                     "type": "str",
@@ -79,6 +78,7 @@ class TestCommonPropertiesManagedIdentityOperationsAsync(AzureMgmtRecordedTestCa
                     "tenantId": "str",
                     "userAssignedIdentities": {"str": {"clientId": "str", "principalId": "str"}},
                 },
+                "name": "str",
                 "properties": {"provisioningState": "str"},
                 "systemData": {
                     "createdAt": "2020-02-20 00:00:00",

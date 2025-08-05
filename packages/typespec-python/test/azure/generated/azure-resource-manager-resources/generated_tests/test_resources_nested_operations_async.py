@@ -40,8 +40,8 @@ class TestResourcesNestedOperationsAsync(AzureMgmtRecordedTestCase):
                 top_level_tracked_resource_name="str",
                 nexted_proxy_resource_name="str",
                 resource={
-                    "name": "str",
                     "id": "str",
+                    "name": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",
@@ -68,8 +68,8 @@ class TestResourcesNestedOperationsAsync(AzureMgmtRecordedTestCase):
                 top_level_tracked_resource_name="str",
                 nexted_proxy_resource_name="str",
                 properties={
-                    "name": "str",
                     "id": "str",
+                    "name": "str",
                     "properties": {"description": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",

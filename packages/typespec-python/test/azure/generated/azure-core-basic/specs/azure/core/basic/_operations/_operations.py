@@ -164,9 +164,12 @@ def build_basic_list_request(
 
 
 def build_basic_delete_request(id: int, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2022-12-01-preview"))
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/azure/core/basic/users/{id}"
     path_format_arguments = {
@@ -178,7 +181,10 @@ def build_basic_delete_request(id: int, **kwargs: Any) -> HttpRequest:
     # Construct parameters
     _params["api-version"] = _SERIALIZER.query("api_version", api_version, "str")
 
-    return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
 def build_basic_export_request(id: int, *, format: str, **kwargs: Any) -> HttpRequest:

@@ -20,6 +20,7 @@ from azure.core.exceptions import (
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
+from azure.core.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import OAuth2ClientConfiguration
@@ -42,10 +43,17 @@ def build_oauth2_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/authentication/oauth2/invalid"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class _OAuth2ClientOperationsMixin(

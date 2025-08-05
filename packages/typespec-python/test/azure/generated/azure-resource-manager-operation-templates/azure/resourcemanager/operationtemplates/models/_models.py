@@ -522,6 +522,8 @@ class Order(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -534,16 +536,12 @@ class Order(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.operationtemplates.models.OrderProperties
-    :ivar name: The name of the Order. Required.
-    :vartype name: str
     """
 
     properties: Optional["_models.OrderProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
-    name: str = rest_field(visibility=["read"])
-    """The name of the Order. Required."""
 
     @overload
     def __init__(
@@ -677,6 +675,8 @@ class Widget(TrackedResource):
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
+    :ivar name: The name of the resource.
+    :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
      "Microsoft.Storage/storageAccounts".
     :vartype type: str
@@ -689,16 +689,12 @@ class Widget(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.operationtemplates.models.WidgetProperties
-    :ivar name: The name of the Widget. Required.
-    :vartype name: str
     """
 
     properties: Optional["_models.WidgetProperties"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
-    name: str = rest_field(visibility=["read"])
-    """The name of the Widget. Required."""
 
     @overload
     def __init__(

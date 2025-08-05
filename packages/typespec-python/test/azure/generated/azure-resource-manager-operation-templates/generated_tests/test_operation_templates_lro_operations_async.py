@@ -28,8 +28,8 @@ class TestOperationTemplatesLroOperationsAsync(AzureMgmtRecordedTestCase):
                 order_name="str",
                 resource={
                     "location": "str",
-                    "name": "str",
                     "id": "str",
+                    "name": "str",
                     "properties": {"amount": 0, "productId": "str", "provisioningState": "str"},
                     "systemData": {
                         "createdAt": "2020-02-20 00:00:00",

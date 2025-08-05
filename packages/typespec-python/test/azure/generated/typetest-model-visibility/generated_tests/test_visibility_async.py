@@ -18,7 +18,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_get_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.get_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
             query_prop=0,
         )
 
@@ -30,7 +30,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_head_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.head_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
             query_prop=0,
         )
 
@@ -42,7 +42,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_put_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.put_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -53,7 +53,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_patch_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.patch_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -64,7 +64,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_post_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.post_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself
@@ -75,7 +75,7 @@ class TestVisibilityAsync(VisibilityClientTestBaseAsync):
     async def test_delete_model(self, visibility_endpoint):
         client = self.create_async_client(endpoint=visibility_endpoint)
         response = await client.delete_model(
-            input={"createProp": ["str"], "deleteProp": bool, "queryProp": 0, "readProp": "str", "updateProp": [0]},
+            input={"createProp": ["str"], "deleteProp": bool, "readProp": "str", "updateProp": [0]},
         )
 
         # please add some check logic here by yourself

@@ -13,6 +13,7 @@ from corehttp.exceptions import (
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
+from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import StatusCodeRangeClientConfiguration
@@ -30,19 +31,33 @@ _SERIALIZER.client_side_validation = False
 def build_status_code_range_error_response_status_code_in_range_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-in-range"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 def build_status_code_range_error_response_status_code404_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    accept = _headers.pop("Accept", "application/json")
+
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-404"
 
-    return HttpRequest(method="GET", url=_url, **kwargs)
+    # Construct headers
+    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
 class _StatusCodeRangeClientOperationsMixin(
