@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.apikey.subdir import CustomizedApiKeyClient
+from authentication.api.key.subdir import CustomizedApiKeyClient
 
 
 def test_custom_method(key_credential):
@@ -14,7 +14,7 @@ def test_custom_method(key_credential):
 
 def test_custom_model():
     try:
-        from authentication.apikey import InvalidAuth
+        from authentication.api.key.subdir import InvalidAuth
 
         assert InvalidAuth is not None
     except ImportError:

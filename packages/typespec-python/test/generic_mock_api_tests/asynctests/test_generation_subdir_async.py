@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.apikey.aio import CustomizedApiKeyClient
+from authentication.api.key.subdir.aio import CustomizedApiKeyClient
 
 
 @pytest.mark.asyncio
