@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Optional
+from corehttp.credentials import ServiceKeyCredential
 from .._generated.aio import ApiKeyClient as GeneratedClient
 
 
@@ -10,15 +12,20 @@ class CustomizedApiKeyClient:
     """Tests customization of a client that is fully wrapped
 
     :param credential: Credential used to authenticate requests to the service. Required.
-    :type credential: ~azure.core.credentials.AzureKeyCredential
+    :type credential: ~corehttp.credentials.ServiceKeyCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(
-        self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: ServiceKeyCredential,
+        *,
+        endpoint: str = "http://localhost:3000",
+        api_version: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
-        self._client = GeneratedClient(credential=credential, endpoint=endpoint, **kwargs)
+        self._client = GeneratedClient(credential=credential, endpoint=endpoint, api_version=api_version, **kwargs)
 
     async def custom_method(self) -> bool:
         """An example of a custom method that could be added.

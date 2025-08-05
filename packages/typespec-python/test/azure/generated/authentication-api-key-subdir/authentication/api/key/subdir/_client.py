@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from typing import Any, Optional
+from azure.core.credentials import AzureKeyCredential
 from ._generated import ApiKeyClient as GeneratedClient
 
 
@@ -16,9 +18,14 @@ class CustomizedApiKeyClient:
     """
 
     def __init__(
-        self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self,
+        credential: AzureKeyCredential,
+        *,
+        endpoint: str = "http://localhost:3000",
+        api_version: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
-        self._client = GeneratedClient(credential=credential, endpoint=endpoint, **kwargs)
+        self._client = GeneratedClient(credential=credential, endpoint=endpoint, api_version=api_version, **kwargs)
 
     def custom_method(self) -> bool:
         """An example of a custom method that could be added.
