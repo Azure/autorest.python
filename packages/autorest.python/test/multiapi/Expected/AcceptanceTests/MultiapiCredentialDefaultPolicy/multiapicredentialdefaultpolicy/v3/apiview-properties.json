@@ -1,0 +1,22 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multiapicredentialdefaultpolicy.v3.models.Error": null,
+        "multiapicredentialdefaultpolicy.v3.models.ModelThree": null,
+        "multiapicredentialdefaultpolicy.v3.models.PagingResult": null,
+        "multiapicredentialdefaultpolicy.v3.models.SourcePath": null,
+        "multiapicredentialdefaultpolicy.v3.models.ContentType": null,
+        "multiapicredentialdefaultpolicy.v3.MultiapiServiceClient.test_paging": null,
+        "multiapicredentialdefaultpolicy.v3.aio.MultiapiServiceClient.test_paging": null,
+        "multiapicredentialdefaultpolicy.v3.MultiapiServiceClient.test_different_calls": null,
+        "multiapicredentialdefaultpolicy.v3.aio.MultiapiServiceClient.test_different_calls": null,
+        "multiapicredentialdefaultpolicy.v3.operations.OperationGroupOneOperations.test_operation_group_paging": null,
+        "multiapicredentialdefaultpolicy.v3.aio.operations.OperationGroupOneOperations.test_operation_group_paging": null,
+        "multiapicredentialdefaultpolicy.v3.operations.OperationGroupOneOperations.test_two": null,
+        "multiapicredentialdefaultpolicy.v3.aio.operations.OperationGroupOneOperations.test_two": null,
+        "multiapicredentialdefaultpolicy.v3.operations.OperationGroupTwoOperations.test_four": null,
+        "multiapicredentialdefaultpolicy.v3.aio.operations.OperationGroupTwoOperations.test_four": null,
+        "multiapicredentialdefaultpolicy.v3.operations.OperationGroupTwoOperations.test_five": null,
+        "multiapicredentialdefaultpolicy.v3.aio.operations.OperationGroupTwoOperations.test_five": null
+    }
+}

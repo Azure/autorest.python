@@ -1,0 +1,33 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyintegerversiontolerant.operations.IntOperations.get_null": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_null": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_invalid": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_invalid": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_overflow_int32": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_overflow_int32": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_underflow_int32": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_underflow_int32": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_overflow_int64": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_overflow_int64": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_underflow_int64": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_underflow_int64": null,
+        "bodyintegerversiontolerant.operations.IntOperations.put_max32": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.put_max32": null,
+        "bodyintegerversiontolerant.operations.IntOperations.put_max64": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.put_max64": null,
+        "bodyintegerversiontolerant.operations.IntOperations.put_min32": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.put_min32": null,
+        "bodyintegerversiontolerant.operations.IntOperations.put_min64": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.put_min64": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_unix_time": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_unix_time": null,
+        "bodyintegerversiontolerant.operations.IntOperations.put_unix_time_date": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.put_unix_time_date": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_invalid_unix_time": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_invalid_unix_time": null,
+        "bodyintegerversiontolerant.operations.IntOperations.get_null_unix_time": null,
+        "bodyintegerversiontolerant.aio.operations.IntOperations.get_null_unix_time": null
+    }
+}

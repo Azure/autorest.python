@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "urlmulticollectionformatversiontolerant.operations.QueriesOperations.array_string_multi_null": null,
+        "urlmulticollectionformatversiontolerant.aio.operations.QueriesOperations.array_string_multi_null": null,
+        "urlmulticollectionformatversiontolerant.operations.QueriesOperations.array_string_multi_empty": null,
+        "urlmulticollectionformatversiontolerant.aio.operations.QueriesOperations.array_string_multi_empty": null,
+        "urlmulticollectionformatversiontolerant.operations.QueriesOperations.array_string_multi_valid": null,
+        "urlmulticollectionformatversiontolerant.aio.operations.QueriesOperations.array_string_multi_valid": null
+    }
+}

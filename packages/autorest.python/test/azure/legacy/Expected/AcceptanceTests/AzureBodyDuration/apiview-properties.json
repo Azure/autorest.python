@@ -1,0 +1,14 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyduration.models.Error": null,
+        "bodyduration.operations.DurationOperations.get_null": null,
+        "bodyduration.aio.operations.DurationOperations.get_null": null,
+        "bodyduration.operations.DurationOperations.put_positive_duration": null,
+        "bodyduration.aio.operations.DurationOperations.put_positive_duration": null,
+        "bodyduration.operations.DurationOperations.get_positive_duration": null,
+        "bodyduration.aio.operations.DurationOperations.get_positive_duration": null,
+        "bodyduration.operations.DurationOperations.get_invalid": null,
+        "bodyduration.aio.operations.DurationOperations.get_invalid": null
+    }
+}

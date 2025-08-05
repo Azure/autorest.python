@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyfileversiontolerant.operations.FilesOperations.get_file": null,
+        "bodyfileversiontolerant.aio.operations.FilesOperations.get_file": null,
+        "bodyfileversiontolerant.operations.FilesOperations.get_file_large": null,
+        "bodyfileversiontolerant.aio.operations.FilesOperations.get_file_large": null,
+        "bodyfileversiontolerant.operations.FilesOperations.get_empty_file": null,
+        "bodyfileversiontolerant.aio.operations.FilesOperations.get_empty_file": null
+    }
+}

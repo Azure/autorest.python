@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "errorwithsecretsversiontolerant.models.ErrorCode": null,
+        "errorwithsecretsversiontolerant.models.InnerErrorCode": null,
+        "errorwithsecretsversiontolerant.ErrorWithSecrets.create_secret": null,
+        "errorwithsecretsversiontolerant.aio.ErrorWithSecrets.create_secret": null,
+        "errorwithsecretsversiontolerant.ErrorWithSecrets.get_error_with_secrets": null,
+        "errorwithsecretsversiontolerant.aio.ErrorWithSecrets.get_error_with_secrets": null
+    }
+}

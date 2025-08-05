@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multiapi.v2.models.Error": null,
+        "multiapi.v2.models.ModelTwo": null,
+        "multiapi.v2.MultiapiServiceClient.test_one": null,
+        "multiapi.v2.aio.MultiapiServiceClient.test_one": null,
+        "multiapi.v2.MultiapiServiceClient.test_different_calls": null,
+        "multiapi.v2.aio.MultiapiServiceClient.test_different_calls": null,
+        "multiapi.v2.operations.OperationGroupOneOperations.test_two": null,
+        "multiapi.v2.aio.operations.OperationGroupOneOperations.test_two": null,
+        "multiapi.v2.operations.OperationGroupOneOperations.test_three": null,
+        "multiapi.v2.aio.operations.OperationGroupOneOperations.test_three": null,
+        "multiapi.v2.operations.OperationGroupTwoOperations.test_four": null,
+        "multiapi.v2.aio.operations.OperationGroupTwoOperations.test_four": null
+    }
+}

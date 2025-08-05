@@ -1,0 +1,15 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "nonstringenumsversiontolerant.models.IntEnum": null,
+        "nonstringenumsversiontolerant.models.FloatEnum": null,
+        "nonstringenumsversiontolerant.operations.IntOperations.put": null,
+        "nonstringenumsversiontolerant.aio.operations.IntOperations.put": null,
+        "nonstringenumsversiontolerant.operations.IntOperations.get": null,
+        "nonstringenumsversiontolerant.aio.operations.IntOperations.get": null,
+        "nonstringenumsversiontolerant.operations.FloatOperations.put": null,
+        "nonstringenumsversiontolerant.aio.operations.FloatOperations.put": null,
+        "nonstringenumsversiontolerant.operations.FloatOperations.get": null,
+        "nonstringenumsversiontolerant.aio.operations.FloatOperations.get": null
+    }
+}

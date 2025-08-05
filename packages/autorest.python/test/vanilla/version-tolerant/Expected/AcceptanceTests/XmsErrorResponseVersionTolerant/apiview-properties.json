@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "xmserrorresponseversiontolerant.operations.PetOperations.get_pet_by_id": null,
+        "xmserrorresponseversiontolerant.aio.operations.PetOperations.get_pet_by_id": null,
+        "xmserrorresponseversiontolerant.operations.PetOperations.do_something": null,
+        "xmserrorresponseversiontolerant.aio.operations.PetOperations.do_something": null,
+        "xmserrorresponseversiontolerant.operations.PetOperations.has_models_param": null,
+        "xmserrorresponseversiontolerant.aio.operations.PetOperations.has_models_param": null
+    }
+}

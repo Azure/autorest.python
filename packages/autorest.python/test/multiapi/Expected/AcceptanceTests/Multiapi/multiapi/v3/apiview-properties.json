@@ -1,0 +1,22 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multiapi.v3.models.Error": null,
+        "multiapi.v3.models.ModelThree": null,
+        "multiapi.v3.models.PagingResult": null,
+        "multiapi.v3.models.SourcePath": null,
+        "multiapi.v3.models.ContentType": null,
+        "multiapi.v3.MultiapiServiceClient.test_paging": null,
+        "multiapi.v3.aio.MultiapiServiceClient.test_paging": null,
+        "multiapi.v3.MultiapiServiceClient.test_different_calls": null,
+        "multiapi.v3.aio.MultiapiServiceClient.test_different_calls": null,
+        "multiapi.v3.operations.OperationGroupOneOperations.test_operation_group_paging": null,
+        "multiapi.v3.aio.operations.OperationGroupOneOperations.test_operation_group_paging": null,
+        "multiapi.v3.operations.OperationGroupOneOperations.test_two": null,
+        "multiapi.v3.aio.operations.OperationGroupOneOperations.test_two": null,
+        "multiapi.v3.operations.OperationGroupTwoOperations.test_four": null,
+        "multiapi.v3.aio.operations.OperationGroupTwoOperations.test_four": null,
+        "multiapi.v3.operations.OperationGroupTwoOperations.test_five": null,
+        "multiapi.v3.aio.operations.OperationGroupTwoOperations.test_five": null
+    }
+}

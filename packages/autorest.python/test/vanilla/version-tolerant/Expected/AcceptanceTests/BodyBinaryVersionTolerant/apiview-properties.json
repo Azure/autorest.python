@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodybinaryversiontolerant.operations.UploadOperations.file": null,
+        "bodybinaryversiontolerant.aio.operations.UploadOperations.file": null,
+        "bodybinaryversiontolerant.operations.UploadOperations.binary": null,
+        "bodybinaryversiontolerant.aio.operations.UploadOperations.binary": null,
+        "bodybinaryversiontolerant.operations.DownloadOperations.error_stream": null,
+        "bodybinaryversiontolerant.aio.operations.DownloadOperations.error_stream": null
+    }
+}

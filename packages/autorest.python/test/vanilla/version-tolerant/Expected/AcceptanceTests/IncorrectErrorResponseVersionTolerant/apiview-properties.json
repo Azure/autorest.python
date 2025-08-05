@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "incorrecterrorresponseversiontolerant.IncorrectReturnedErrorModel.get_incorrect_error_from_server": null,
+        "incorrecterrorresponseversiontolerant.aio.IncorrectReturnedErrorModel.get_incorrect_error_from_server": null
+    }
+}

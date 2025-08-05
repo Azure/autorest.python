@@ -1,0 +1,21 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "xmserrorresponse.models.Animal": null,
+        "xmserrorresponse.models.BaseError": null,
+        "xmserrorresponse.models.NotFoundErrorBase": null,
+        "xmserrorresponse.models.AnimalNotFound": null,
+        "xmserrorresponse.models.LinkNotFound": null,
+        "xmserrorresponse.models.Pet": null,
+        "xmserrorresponse.models.PetAction": null,
+        "xmserrorresponse.models.PetActionError": null,
+        "xmserrorresponse.models.PetSadError": null,
+        "xmserrorresponse.models.PetHungryOrThirstyError": null,
+        "xmserrorresponse.operations.PetOperations.get_pet_by_id": null,
+        "xmserrorresponse.aio.operations.PetOperations.get_pet_by_id": null,
+        "xmserrorresponse.operations.PetOperations.do_something": null,
+        "xmserrorresponse.aio.operations.PetOperations.do_something": null,
+        "xmserrorresponse.operations.PetOperations.has_models_param": null,
+        "xmserrorresponse.aio.operations.PetOperations.has_models_param": null
+    }
+}

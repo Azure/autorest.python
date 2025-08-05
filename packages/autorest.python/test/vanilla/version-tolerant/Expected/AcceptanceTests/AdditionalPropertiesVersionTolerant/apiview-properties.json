@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_true": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_true": null,
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_cat_ap_true": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_cat_ap_true": null,
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_object": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_object": null,
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_string": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_string": null,
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_in_properties": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_in_properties": null,
+        "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_in_properties_with_ap_string": null,
+        "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_in_properties_with_ap_string": null
+    }
+}

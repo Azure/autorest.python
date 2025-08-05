@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyformurlencodeddataversiontolerant.models.PetFood": null,
+        "bodyformurlencodeddataversiontolerant.models.PetType": null,
+        "bodyformurlencodeddataversiontolerant.operations.FormdataurlencodedOperations.update_pet_with_form": null,
+        "bodyformurlencodeddataversiontolerant.aio.operations.FormdataurlencodedOperations.update_pet_with_form": null,
+        "bodyformurlencodeddataversiontolerant.operations.FormdataurlencodedOperations.partial_constant_body": null,
+        "bodyformurlencodeddataversiontolerant.aio.operations.FormdataurlencodedOperations.partial_constant_body": null
+    }
+}

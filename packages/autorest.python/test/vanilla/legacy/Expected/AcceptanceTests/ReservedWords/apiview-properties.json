@@ -1,0 +1,22 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "reservedwords.models.PathsJaneoqReservedwordsOperationDataPutRequestbodyContentApplicationXWwwFormUrlencodedSchema": null,
+        "reservedwords.models.PathsU1PxjnReservedwordsOperationFilesPutRequestbodyContentMultipartFormDataSchema": null,
+        "reservedwords.models.MyEnum": null,
+        "reservedwords.operations.ImportOperations.operation_one": null,
+        "reservedwords.aio.operations.ImportOperations.operation_one": null,
+        "reservedwords.ReservedWordsClient.operation_with_content_param": null,
+        "reservedwords.aio.ReservedWordsClient.operation_with_content_param": null,
+        "reservedwords.ReservedWordsClient.operation_with_json_param": null,
+        "reservedwords.aio.ReservedWordsClient.operation_with_json_param": null,
+        "reservedwords.ReservedWordsClient.operation_with_data_param": null,
+        "reservedwords.aio.ReservedWordsClient.operation_with_data_param": null,
+        "reservedwords.ReservedWordsClient.operation_with_files_param": null,
+        "reservedwords.aio.ReservedWordsClient.operation_with_files_param": null,
+        "reservedwords.ReservedWordsClient.operation_with_url": null,
+        "reservedwords.aio.ReservedWordsClient.operation_with_url": null,
+        "reservedwords.ReservedWordsClient.reserved_enum": null,
+        "reservedwords.aio.ReservedWordsClient.reserved_enum": null
+    }
+}

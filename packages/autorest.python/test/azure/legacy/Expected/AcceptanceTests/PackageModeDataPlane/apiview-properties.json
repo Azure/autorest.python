@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azure.packagemode.dataplane.operations.HttpSuccessOperations.head200": null,
+        "azure.packagemode.dataplane.aio.operations.HttpSuccessOperations.head200": null,
+        "azure.packagemode.dataplane.operations.HttpSuccessOperations.head204": null,
+        "azure.packagemode.dataplane.aio.operations.HttpSuccessOperations.head204": null,
+        "azure.packagemode.dataplane.operations.HttpSuccessOperations.head404": null,
+        "azure.packagemode.dataplane.aio.operations.HttpSuccessOperations.head404": null
+    }
+}
