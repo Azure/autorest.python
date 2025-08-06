@@ -14,7 +14,7 @@ name = "azure-resourcemanager-largeheader"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft Corporation Azure Resourcemanager Largeheader Client Library for Python"
+description = "Microsoft Corporation Azure Largeheader Management Client Library for Python"
 license = {text = "MIT License"}
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -41,11 +41,11 @@ dynamic = [
 ]
 
 [project.urls]
-repository = "https://github.com/Azure/azure-sdk-for-python/tree/main/sdk"
+repository = "https://github.com/Azure/azure-sdk-for-python"
 
 [tool.setuptools.dynamic]
 version = {attr = "azure.resourcemanager.largeheader._version.VERSION"}
-readme = {file = ["README.md"], content-type = "text/markdown"}
+readme = {file = ["README.md", "CHANGELOG.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
 exclude = [
