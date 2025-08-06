@@ -96,6 +96,7 @@ def test_azure_sdk_build():
             azure_sdk_build["pyright"] is False
         ), f"Expected pyright = false, but got pyright = {azure_sdk_build['pyright']} in {package_path}"
 
+
 def test_packaging():
     """Test that authentication-union packages have pyproject.toml with [packaging] is_stable = false."""
 
