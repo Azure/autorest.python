@@ -10,7 +10,7 @@ from generation.subdir import CustomizedClient, Extension
 @pytest.mark.asyncio
 async def test_custom_method():
     client = CustomizedClient()
-    assert (await client.custom_method()) == Extension(
+    assert (await client.customized_get()) == Extension(
         {
             "level": 0,
             "extension": [{"level": 1, "extension": [{"level": 2}]}, {"level": 1}],

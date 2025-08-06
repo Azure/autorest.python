@@ -8,7 +8,7 @@ from generation.subdir import CustomizedClient, Extension
 
 def test_custom_method():
     client = CustomizedClient()
-    assert client.custom_method() == Extension(
+    assert client.customized_get() == Extension(
         {
             "level": 0,
             "extension": [{"level": 1, "extension": [{"level": 2}]}, {"level": 1}],
