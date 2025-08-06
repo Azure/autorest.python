@@ -59,3 +59,6 @@ pytyped = ["py.typed"]
 
 [tool.azure-sdk-build]
 pyright = false
+
+[packaging]
+is_stable = false

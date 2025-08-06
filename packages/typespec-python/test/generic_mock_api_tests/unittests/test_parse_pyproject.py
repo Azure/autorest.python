@@ -95,3 +95,19 @@ def test_azure_sdk_build():
         assert (
             azure_sdk_build["pyright"] is False
         ), f"Expected pyright = false, but got pyright = {azure_sdk_build['pyright']} in {package_path}"
+
+def test_packaging():
+    """Test that authentication-union packages have pyproject.toml with [packaging] is_stable = false."""
+
+    test_paths = ["../../azure/generated/authentication-union"]
+    for package_path in test_paths:
+        # Get the [packaging] section
+        packaging_section = get_pyproject_section(package_path, "packaging")
+
+        # Check for is_stable = false
+        assert (
+            "is_stable" in packaging_section
+        ), f"[packaging] section does not contain 'is_stable' setting in {package_path}"
+        assert (
+            packaging_section["is_stable"] is False
+        ), f"Expected is_stable = false, but got is_stable = {packaging_section['is_stable']} in {package_path}"
