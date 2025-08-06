@@ -55,7 +55,6 @@ def test_sensitive_word():
     assert [] == check_sensitive_word(check_folder, "azure")
     # after update cadl-ranch, it shall also equal to []
     assert [
-        "authentication-api-key-subdir",
         "authentication-oauth2",
         "authentication-union",
         "setuppy-authentication-union",

@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.api.key.subdir import CustomizedApiKeyClient
+from generation.subdir import CustomizedApiKeyClient
 
 
 def test_custom_method(key_credential):
