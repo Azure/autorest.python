@@ -1,5 +1,20 @@
 # Release
 
+## 6.38.0
+
+### Features
+
+- [#3131](https://github.com/Azure/autorest.python/pull/3131) Add pyproject.toml generation by default
+
+### Bump dependencies
+
+- [#3156](https://github.com/Azure/autorest.python/pull/3156) Bump `http-client-python` dep
+
+### Bug Fixes
+
+- [#3157](https://github.com/Azure/autorest.python/pull/3157) Don't hardcode `emit-cross-language-definition-file` as `true` for azure generations
+
+
 ## 6.37.2
 
 ### Bug Fixes
