@@ -41,6 +41,7 @@ readme = {file = ["README.md"], content-type = "text/markdown"}
 exclude = [
     "tests*",
     "samples*",
+    "doc*",
     "parameters",
 ]
 
