@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union
+from typing import Any, Callable, IO, Optional, TypeVar, Union
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -37,7 +37,7 @@ from .._configuration import ReservedWordsClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _ReservedWordsClientOperationsMixin(
@@ -60,7 +60,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -112,7 +112,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -166,7 +166,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -226,7 +226,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -268,7 +268,7 @@ class _ReservedWordsClientOperationsMixin(
 
     @distributed_trace_async
     async def operation_with_url(
-        self, url: str, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+        self, url: str, header_parameters: str, query_parameters: Optional[list[str]] = None, **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.
@@ -291,7 +291,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -342,7 +342,7 @@ class _ReservedWordsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

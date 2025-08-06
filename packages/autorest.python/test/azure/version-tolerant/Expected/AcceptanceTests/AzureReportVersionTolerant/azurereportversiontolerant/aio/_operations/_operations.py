@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Optional, TypeVar, cast
+from typing import Any, Callable, Optional, TypeVar, cast
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -27,7 +27,7 @@ from ..._utils.utils import ClientMixinABC
 from .._configuration import AutoRestReportServiceForAzureConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _AutoRestReportServiceForAzureOperationsMixin(
@@ -35,7 +35,7 @@ class _AutoRestReportServiceForAzureOperationsMixin(
 ):
 
     @distributed_trace_async
-    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+    async def get_report(self, *, qualifier: Optional[str] = None, **kwargs: Any) -> dict[str, int]:
         """Get test coverage report.
 
         :keyword qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5'
@@ -60,12 +60,12 @@ class _AutoRestReportServiceForAzureOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
         _request = build_auto_rest_report_service_for_azure_get_report_request(
             qualifier=qualifier,
@@ -91,6 +91,6 @@ class _AutoRestReportServiceForAzureOperationsMixin(
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, int], deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(dict[str, int], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, int], deserialized)  # type: ignore
+        return cast(dict[str, int], deserialized)  # type: ignore

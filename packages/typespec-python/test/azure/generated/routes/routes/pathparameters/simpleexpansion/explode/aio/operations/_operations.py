@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -30,7 +30,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-too-long
@@ -66,7 +66,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -98,7 +98,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array(self, param: List[str], **kwargs: Any) -> None:
+    async def array(self, param: list[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -113,7 +113,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -145,7 +145,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
+    async def record(self, param: dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.
@@ -160,7 +160,7 @@ class PathParametersSimpleExpansionExplodeOperations:  # pylint: disable=name-to
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

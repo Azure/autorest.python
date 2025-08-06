@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -31,7 +31,7 @@ from ...operations._queries_operations import (
 from .._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class QueriesOperations:
@@ -56,7 +56,7 @@ class QueriesOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def array_string_multi_null(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_null(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get a null array of string using the multi-array format.
 
         :param array_query: a null array of string using the multi-array format. Default value is None.
@@ -71,7 +71,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -101,7 +101,7 @@ class QueriesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_empty(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_empty(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an empty array [] of string using the multi-array format.
 
         :param array_query: an empty array [] of string using the multi-array format. Default value is
@@ -117,7 +117,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -147,7 +147,7 @@ class QueriesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_multi_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_multi_valid(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
 
@@ -164,7 +164,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map |= kwargs.pop("error_map", {}) or {}
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
