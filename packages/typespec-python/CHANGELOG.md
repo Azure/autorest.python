@@ -1,5 +1,17 @@
 # Release
 
+## 0.48.0
+
+### Features
+
+- [#3131](https://github.com/Azure/autorest.python/pull/3131) Add pyproject.toml generation by default
+- [#3156](https://github.com/Azure/autorest.python/pull/3156) Add support for `generation-subdir`
+
+### Bug Fixes
+
+- [#3157](https://github.com/Azure/autorest.python/pull/3157) Don't hardcode `emit-cross-language-definition-file` as `true` for azure generations
+
+
 ## 0.47.2
 
 ### Bug Fixes
