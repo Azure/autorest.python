@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -39,7 +39,7 @@ from ...operations._datetimerfc1123_operations import (
 from .._configuration import AutoRestRFC1123DateTimeTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class Datetimerfc1123Operations:
@@ -77,7 +77,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -123,7 +123,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -169,7 +169,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -215,7 +215,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -263,7 +263,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -310,7 +310,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -356,7 +356,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -404,7 +404,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -451,7 +451,7 @@ class Datetimerfc1123Operations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .._utils import serialization as _serialization
 
@@ -82,7 +82,7 @@ class OdataProductResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs: Any
+        self, *, values: Optional[list["_models.Product"]] = None, odata_next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword values:
@@ -309,7 +309,7 @@ class ProductResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self, *, values: Optional[list["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword values:
@@ -337,7 +337,7 @@ class ProductResultValue(_serialization.Model):
     }
 
     def __init__(
-        self, *, value: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self, *, value: Optional[list["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword value:
@@ -365,7 +365,7 @@ class ProductResultValueWithXMSClientName(_serialization.Model):
     }
 
     def __init__(
-        self, *, indexes: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self, *, indexes: Optional[list["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword indexes:

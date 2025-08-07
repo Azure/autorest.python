@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from msrest import Deserializer, Serializer
 
@@ -28,7 +28,7 @@ from ...operations._flattencomplex_operations import build_get_valid_request
 from .._configuration import AutoRestComplexTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class FlattencomplexOperations:
@@ -66,7 +66,7 @@ class FlattencomplexOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, IO, Optional, TypeVar, Union, cast, overload
 
 from my.library.aio import AsyncCustomDefaultPollingMethod, AsyncCustomPager, AsyncCustomPoller
 
@@ -40,7 +40,7 @@ from .._configuration import PollingPagingExampleConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _PollingPagingExampleOperationsMixin(
@@ -56,7 +56,7 @@ class _PollingPagingExampleOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -279,7 +279,7 @@ class _PollingPagingExampleOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:

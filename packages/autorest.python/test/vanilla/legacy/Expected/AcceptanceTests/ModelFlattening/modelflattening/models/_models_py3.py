@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, List, Literal, Optional, TYPE_CHECKING
+from typing import Any, Literal, Optional, TYPE_CHECKING
 
 from .._utils import serialization as _serialization
 
@@ -120,7 +120,7 @@ class Resource(_serialization.Model):
         "name": {"key": "name", "type": "str"},
     }
 
-    def __init__(self, *, tags: Optional[Dict[str, str]] = None, location: Optional[str] = None, **kwargs: Any) -> None:
+    def __init__(self, *, tags: Optional[dict[str, str]] = None, location: Optional[str] = None, **kwargs: Any) -> None:
         """
         :keyword tags: Dictionary of :code:`<string>`.
         :paramtype tags: dict[str, str]
@@ -184,7 +184,7 @@ class FlattenedProduct(Resource):
     def __init__(
         self,
         *,
-        tags: Optional[Dict[str, str]] = None,
+        tags: Optional[dict[str, str]] = None,
         location: Optional[str] = None,
         p_name: Optional[str] = None,
         type_properties_type: Optional[str] = None,
@@ -385,8 +385,8 @@ class ResourceCollection(_serialization.Model):
         self,
         *,
         productresource: Optional["_models.FlattenedProduct"] = None,
-        arrayofresources: Optional[List["_models.FlattenedProduct"]] = None,
-        dictionaryofresources: Optional[Dict[str, "_models.FlattenedProduct"]] = None,
+        arrayofresources: Optional[list["_models.FlattenedProduct"]] = None,
+        dictionaryofresources: Optional[dict[str, "_models.FlattenedProduct"]] = None,
         **kwargs: Any
     ) -> None:
         """
