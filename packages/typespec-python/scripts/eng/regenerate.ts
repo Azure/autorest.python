@@ -192,7 +192,7 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
             "package-name": "generation-subdir",
             "namespace": "generation.subdir",
             "generation-subdir": "_generated",
-        }
+        },
     ],
     "type/model/usage": {
         "package-name": "typetest-model-usage",
