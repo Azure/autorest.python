@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from msrest import Deserializer, Serializer
 
@@ -36,7 +36,7 @@ from ...operations._dictionary_operations import (
 from .._configuration import AutoRestComplexTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class DictionaryOperations:
@@ -74,7 +74,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -107,7 +107,7 @@ class DictionaryOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_valid(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    async def put_valid(self, default_program: Optional[dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property.
 
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
@@ -122,7 +122,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -170,7 +170,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -203,7 +203,7 @@ class DictionaryOperations:
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def put_empty(self, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    async def put_empty(self, default_program: Optional[dict[str, str]] = None, **kwargs: Any) -> None:
         """Put complex types with dictionary property which is empty.
 
         :param default_program: Dictionary of :code:`<string>`. Default value is None.
@@ -218,7 +218,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -266,7 +266,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -312,7 +312,7 @@ class DictionaryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

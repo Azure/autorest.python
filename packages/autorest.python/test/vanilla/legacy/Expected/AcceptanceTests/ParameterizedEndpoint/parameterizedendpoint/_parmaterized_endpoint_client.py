@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Dict
+from typing import Any
 from typing_extensions import Self
 
 from azure.core import PipelineClient
@@ -53,7 +53,7 @@ class ParmaterizedEndpointClient(
             ]
         self._client: PipelineClient = PipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
-        client_models: Dict[str, Any] = {}
+        client_models: dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

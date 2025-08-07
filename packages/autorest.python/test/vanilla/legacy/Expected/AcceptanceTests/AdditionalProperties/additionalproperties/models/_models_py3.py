@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from .._utils import serialization as _serialization
 
@@ -45,7 +45,7 @@ class PetAPTrue(_serialization.Model):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -102,7 +102,7 @@ class CatAPTrue(PetAPTrue):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
         friendly: Optional[bool] = None,
         **kwargs: Any
@@ -182,7 +182,7 @@ class PetAPInProperties(_serialization.Model):
         *,
         id: int,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
-        additional_properties: Optional[Dict[str, float]] = None,
+        additional_properties: Optional[dict[str, float]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -242,9 +242,9 @@ class PetAPInPropertiesWithAPString(_serialization.Model):
         *,
         id: int,  # pylint: disable=redefined-builtin
         odata_location: str,
-        additional_properties: Optional[Dict[str, str]] = None,
+        additional_properties: Optional[dict[str, str]] = None,
         name: Optional[str] = None,
-        additional_properties1: Optional[Dict[str, float]] = None,
+        additional_properties1: Optional[dict[str, float]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -303,7 +303,7 @@ class PetAPObject(_serialization.Model):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         name: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -357,7 +357,7 @@ class PetAPString(_serialization.Model):
         self,
         *,
         id: int,  # pylint: disable=redefined-builtin
-        additional_properties: Optional[Dict[str, str]] = None,
+        additional_properties: Optional[dict[str, str]] = None,
         name: Optional[str] = None,
         **kwargs: Any
     ) -> None:
