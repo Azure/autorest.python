@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 from typing import Any
+from azure.core.tracing.decorator import distributed_trace
 from ._generated import RecursiveClient as GeneratedClient, models as _models
 
 
@@ -19,6 +20,7 @@ class CustomizedClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         self._client = GeneratedClient(endpoint=endpoint, **kwargs)
 
+    @distributed_trace
     def customized_get(self, **kwargs: Any) -> _models.Extension:
         """get.
 
