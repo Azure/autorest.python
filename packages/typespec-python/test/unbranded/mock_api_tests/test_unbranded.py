@@ -57,5 +57,6 @@ def test_sensitive_word():
     assert [
         "authentication-oauth2",
         "authentication-union",
+        "generation-subdir",
         "setuppy-authentication-union",
     ] == check_sensitive_word(check_folder, "microsoft")
