@@ -19,7 +19,9 @@ class CustomizedClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         self._client = GeneratedClient(endpoint=endpoint, **kwargs)
 
-    def customized_get(self, **kwargs: Any) -> _models.Extension:  # pylint: disable=client-method-missing-tracing-decorator
+    def customized_get(  # pylint: disable=client-method-missing-tracing-decorator
+        self, **kwargs: Any
+    ) -> _models.Extension:
         """get.
 
         :return: Extension. The Extension is compatible with MutableMapping
