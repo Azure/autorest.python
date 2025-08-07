@@ -4,7 +4,8 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from generation.subdir import CustomizedClient, Extension
+from generation.subdir import Extension
+from generation.subdir.aio import CustomizedClient
 
 
 @pytest.mark.asyncio
