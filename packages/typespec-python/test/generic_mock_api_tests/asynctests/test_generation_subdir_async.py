@@ -4,10 +4,16 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from authentication.api.key.subdir.aio import CustomizedApiKeyClient
+from generation.subdir import Extension
+from generation.subdir.aio import CustomizedClient
 
 
 @pytest.mark.asyncio
-async def test_custom_method(key_credential):
-    client = CustomizedApiKeyClient(key_credential("valid-key"))
-    assert await client.custom_method()
+async def test_custom_method():
+    client = CustomizedClient()
+    assert (await client.customized_get()) == Extension(
+        {
+            "level": 0,
+            "extension": [{"level": 1, "extension": [{"level": 2}]}, {"level": 1}],
+        }
+    )

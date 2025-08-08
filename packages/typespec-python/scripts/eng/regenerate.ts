@@ -21,10 +21,10 @@ interface TspCommand {
 
 // Add this near the top with other constants
 const SKIP_SPECS = [
-  "type/union/discriminated",
-  "client-operation-group",
-  "azure/client-generator-core/api-version",
-  "azure/client-generator-core/hierarchy-building",
+    "type/union/discriminated",
+    "client-operation-group",
+    "azure/client-generator-core/api-version",
+    "azure/client-generator-core/hierarchy-building",
 ];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
@@ -139,14 +139,6 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
-    "authentication/api-key": [
-        {},
-        {
-            "package-name": "authentication-api-key-subdir",
-            "generation-subdir": "_generated/",
-            "namespace": "authentication.api.key.subdir",
-        },
-    ],
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
         "namespace": "authentication.http.custom",
@@ -199,10 +191,17 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-name": "typetest-model-singlediscriminator",
         "namespace": "typetest.model.singlediscriminator",
     },
-    "type/model/inheritance/recursive": {
-        "package-name": "typetest-model-recursive",
-        "namespace": "typetest.model.recursive",
-    },
+    "type/model/inheritance/recursive": [
+        {
+            "package-name": "typetest-model-recursive",
+            "namespace": "typetest.model.recursive",
+        },
+        {
+            "package-name": "generation-subdir",
+            "namespace": "generation.subdir",
+            "generation-subdir": "_generated",
+        },
+    ],
     "type/model/usage": {
         "package-name": "typetest-model-usage",
         "namespace": "typetest.model.usage",
