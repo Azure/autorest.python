@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -22,7 +22,7 @@ class Element(_Model):
     :vartype extension: list[~typetest.model.recursive.models.Extension]
     """
 
-    extension: Optional[List["_models.Extension"]] = rest_field(
+    extension: Optional[list["_models.Extension"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -30,7 +30,7 @@ class Element(_Model):
     def __init__(
         self,
         *,
-        extension: Optional[List["_models.Extension"]] = None,
+        extension: Optional[list["_models.Extension"]] = None,
     ) -> None: ...
 
     @overload
@@ -61,7 +61,7 @@ class Extension(Element):
         self,
         *,
         level: int,
-        extension: Optional[List["_models.Extension"]] = None,
+        extension: Optional[list["_models.Extension"]] = None,
     ) -> None: ...
 
     @overload

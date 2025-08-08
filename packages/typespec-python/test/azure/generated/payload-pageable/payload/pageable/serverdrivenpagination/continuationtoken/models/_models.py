@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from ...._utils.model_base import Model as _Model, rest_field
 
@@ -22,14 +22,14 @@ class RequestHeaderNestedResponseBodyResponseNestedItems(_Model):  # pylint: dis
     :vartype pets: list[~payload.pageable.models.Pet]
     """
 
-    pets: List["_models3.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    pets: list["_models3.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        pets: List["_models3.Pet"],
+        pets: list["_models3.Pet"],
     ) -> None: ...
 
     @overload
@@ -77,14 +77,14 @@ class RequestQueryNestedResponseBodyResponseNestedItems(_Model):  # pylint: disa
     :vartype pets: list[~payload.pageable.models.Pet]
     """
 
-    pets: List["_models3.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    pets: list["_models3.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        pets: List["_models3.Pet"],
+        pets: list["_models3.Pet"],
     ) -> None: ...
 
     @overload

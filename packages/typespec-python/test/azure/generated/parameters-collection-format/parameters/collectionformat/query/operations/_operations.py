@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -26,13 +26,13 @@ from ..._configuration import CollectionFormatClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_multi_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_query_multi_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -44,7 +44,7 @@ def build_query_multi_request(*, colors: List[str], **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_ssv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_query_ssv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -56,7 +56,7 @@ def build_query_ssv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_pipes_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_query_pipes_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -68,7 +68,7 @@ def build_query_pipes_request(*, colors: List[str], **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_csv_request(*, colors: List[str], **kwargs: Any) -> HttpRequest:
+def build_query_csv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -98,7 +98,7 @@ class QueryOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def multi(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def multi(self, *, colors: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """multi.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -113,7 +113,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -145,7 +145,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def ssv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def ssv(self, *, colors: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """ssv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -160,7 +160,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -192,7 +192,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def pipes(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def pipes(self, *, colors: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """pipes.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -207,7 +207,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -239,7 +239,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def csv(self, *, colors: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def csv(self, *, colors: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -254,7 +254,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

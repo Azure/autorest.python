@@ -2,7 +2,7 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
-from typing import Any, List, Mapping, overload
+from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -98,7 +98,7 @@ class UnixTimestampArrayDatetimeProperty(_Model):
     :vartype value: list[~datetime.datetime]
     """
 
-    value: List[datetime.datetime] = rest_field(
+    value: list[datetime.datetime] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="unix-timestamp"
     )
     """Required."""
@@ -107,7 +107,7 @@ class UnixTimestampArrayDatetimeProperty(_Model):
     def __init__(
         self,
         *,
-        value: List[datetime.datetime],
+        value: list[datetime.datetime],
     ) -> None: ...
 
     @overload

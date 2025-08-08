@@ -1,7 +1,7 @@
 # coding=utf-8
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp import MatchConditions
 from corehttp.exceptions import (
@@ -23,7 +23,7 @@ from .._utils.serialization import Serializer
 from .._utils.utils import ClientMixinABC, prep_if_match, prep_if_none_match
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -127,7 +127,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -183,7 +183,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -231,7 +231,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -281,7 +281,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

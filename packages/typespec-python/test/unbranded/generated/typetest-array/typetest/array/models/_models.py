@@ -1,7 +1,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -20,7 +20,7 @@ class InnerModel(_Model):
 
     property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required string property. Required."""
-    children: Optional[List["_models.InnerModel"]] = rest_field(
+    children: Optional[list["_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -29,7 +29,7 @@ class InnerModel(_Model):
         self,
         *,
         property: str,  # pylint: disable=redefined-builtin
-        children: Optional[List["_models.InnerModel"]] = None,
+        children: Optional[list["_models.InnerModel"]] = None,
     ) -> None: ...
 
     @overload

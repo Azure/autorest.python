@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Dict, Optional, TYPE_CHECKING, cast
+from typing import Any, Awaitable, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -66,7 +66,7 @@ class HeadClient:  # pylint: disable=client-accepts-api-version-keyword
             base_url=cast(str, base_url), policies=_policies, **kwargs
         )
 
-        client_models: Dict[str, Any] = {}
+        client_models: dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

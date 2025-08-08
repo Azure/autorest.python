@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Dict, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 from typing_extensions import Self
 
 from azure.core import PipelineClient
@@ -55,7 +55,7 @@ class SecurityKeySwaggerCredentialFlag(
             ]
         self._client: PipelineClient = PipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
-        client_models: Dict[str, Any] = {}
+        client_models: dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

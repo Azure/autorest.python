@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
@@ -25,7 +25,7 @@ class ArrayOptionalWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(self, *, value: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: Optional[list[str]] = None, **kwargs: Any) -> None:
         """
         :keyword value:
         :paramtype value: list[str]
@@ -51,7 +51,7 @@ class ArrayWrapper(msrest.serialization.Model):
         "value": {"key": "value", "type": "[str]"},
     }
 
-    def __init__(self, *, value: List[str], **kwargs: Any) -> None:
+    def __init__(self, *, value: list[str], **kwargs: Any) -> None:
         """
         :keyword value: Required.
         :paramtype value: list[str]

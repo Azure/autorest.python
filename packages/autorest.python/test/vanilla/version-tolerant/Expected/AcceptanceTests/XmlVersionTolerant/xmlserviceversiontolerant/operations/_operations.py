@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Literal, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Literal, Optional, TypeVar, Union, overload
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -29,7 +29,7 @@ from .._configuration import AutoRestSwaggerBATXMLServiceConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -601,7 +601,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -650,7 +650,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -696,7 +696,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -745,7 +745,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -791,7 +791,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -841,7 +841,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -888,7 +888,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -937,7 +937,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -984,7 +984,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1028,7 +1028,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1077,7 +1077,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1123,7 +1123,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1172,7 +1172,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1205,7 +1205,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get_root_list(self, **kwargs: Any) -> List[_models.Banana]:
+    def get_root_list(self, **kwargs: Any) -> list[_models.Banana]:
         """Gets a list as the root element.
 
         :return: Banana
@@ -1218,12 +1218,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Banana]] = kwargs.pop("cls", None)
 
         _request = build_xml_get_root_list_request(
             headers=_headers,
@@ -1251,7 +1251,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
+        self, bananas: list[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts a list as the root element.
 
@@ -1267,7 +1267,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1301,7 +1301,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get_root_list_single_item(self, **kwargs: Any) -> List[_models.Banana]:
+    def get_root_list_single_item(self, **kwargs: Any) -> list[_models.Banana]:
         """Gets a list with a single item.
 
         :return: Banana
@@ -1314,12 +1314,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Banana]] = kwargs.pop("cls", None)
 
         _request = build_xml_get_root_list_single_item_request(
             headers=_headers,
@@ -1347,7 +1347,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_root_list_single_item(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
+        self, bananas: list[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts a list with a single item.
 
@@ -1363,7 +1363,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1397,7 +1397,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get_empty_root_list(self, **kwargs: Any) -> List[_models.Banana]:
+    def get_empty_root_list(self, **kwargs: Any) -> list[_models.Banana]:
         """Gets an empty list as the root element.
 
         :return: Banana
@@ -1410,12 +1410,12 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Banana]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Banana]] = kwargs.pop("cls", None)
 
         _request = build_xml_get_empty_root_list_request(
             headers=_headers,
@@ -1443,7 +1443,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_empty_root_list(  # pylint: disable=inconsistent-return-statements
-        self, bananas: List[_models.Banana], **kwargs: Any
+        self, bananas: list[_models.Banana], **kwargs: Any
     ) -> None:
         """Puts an empty list as the root element.
 
@@ -1459,7 +1459,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1506,7 +1506,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1555,7 +1555,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1601,7 +1601,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1648,7 +1648,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1701,7 +1701,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1738,7 +1738,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def get_acls(self, **kwargs: Any) -> List[_models.SignedIdentifier]:
+    def get_acls(self, **kwargs: Any) -> list[_models.SignedIdentifier]:
         """Gets storage ACLs for a container.
 
         :return: SignedIdentifier
@@ -1751,14 +1751,14 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
         comp: Literal["acl"] = kwargs.pop("comp", _params.pop("comp", "acl"))
         restype: Literal["container"] = kwargs.pop("restype", _params.pop("restype", "container"))
-        cls: ClsType[List[_models.SignedIdentifier]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.SignedIdentifier]] = kwargs.pop("cls", None)
 
         _request = build_xml_get_acls_request(
             comp=comp,
@@ -1788,7 +1788,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put_acls(  # pylint: disable=inconsistent-return-statements
-        self, properties: List[_models.SignedIdentifier], **kwargs: Any
+        self, properties: list[_models.SignedIdentifier], **kwargs: Any
     ) -> None:
         """Puts storage ACLs for a container.
 
@@ -1804,7 +1804,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1857,7 +1857,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1943,7 +1943,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1996,7 +1996,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2042,7 +2042,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2087,7 +2087,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2137,7 +2137,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2184,7 +2184,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2234,7 +2234,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

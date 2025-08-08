@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .._utils import serialization as _serialization
 
@@ -217,7 +217,7 @@ class Resource(_serialization.Model):
         "tags": {"key": "tags", "type": "{str}"},
     }
 
-    def __init__(self, *, location: str, tags: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, location: str, tags: Optional[dict[str, str]] = None, **kwargs: Any) -> None:
         """
         :keyword location: Resource location. Required.
         :paramtype location: str
@@ -316,7 +316,7 @@ class StorageAccount(Resource):
         self,
         *,
         location: str,
-        tags: Optional[Dict[str, str]] = None,
+        tags: Optional[dict[str, str]] = None,
         provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = None,
         account_type: Optional[Union[str, "_models.AccountType"]] = None,
         primary_endpoints: Optional["_models.Endpoints"] = None,
@@ -459,7 +459,7 @@ class StorageAccountCreateParameters(Resource):
         self,
         *,
         location: str,
-        tags: Optional[Dict[str, str]] = None,
+        tags: Optional[dict[str, str]] = None,
         account_type: Optional[Union[str, "_models.AccountType"]] = None,
         **kwargs: Any
     ) -> None:
@@ -518,7 +518,7 @@ class StorageAccountListResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, value: Optional[List["_models.StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self, *, value: Optional[list["_models.StorageAccount"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword value: Gets the list of storage accounts and their properties.
@@ -601,7 +601,7 @@ class StorageAccountUpdateParameters(Resource):
         self,
         *,
         location: str,
-        tags: Optional[Dict[str, str]] = None,
+        tags: Optional[dict[str, str]] = None,
         account_type: Optional[Union[str, "_models.AccountType"]] = None,
         custom_domain: Optional["_models.CustomDomain"] = None,
         **kwargs: Any
@@ -706,7 +706,7 @@ class UsageListResult(_serialization.Model):
         "value": {"key": "value", "type": "[Usage]"},
     }
 
-    def __init__(self, *, value: Optional[List["_models.Usage"]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, value: Optional[list["_models.Usage"]] = None, **kwargs: Any) -> None:
         """
         :keyword value: Gets or sets the list Storage Resource Usages.
         :paramtype value: list[~storage.models.Usage]

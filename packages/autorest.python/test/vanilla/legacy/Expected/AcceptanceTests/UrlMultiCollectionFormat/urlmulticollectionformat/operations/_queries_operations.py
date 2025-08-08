@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -27,13 +27,13 @@ from .._configuration import AutoRestUrlMutliCollectionFormatTestServiceConfigur
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_multi_null_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -54,7 +54,7 @@ def build_array_string_multi_null_request(*, array_query: Optional[List[str]] = 
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_multi_empty_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -75,7 +75,7 @@ def build_array_string_multi_empty_request(*, array_query: Optional[List[str]] =
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_multi_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_multi_valid_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -119,7 +119,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_null(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get a null array of string using the multi-array format.
 
@@ -135,7 +135,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -166,7 +166,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the multi-array format.
 
@@ -183,7 +183,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -214,7 +214,7 @@ class QueriesOperations:
 
     @distributed_trace
     def array_string_multi_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         mult-array format.
@@ -232,7 +232,7 @@ class QueriesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

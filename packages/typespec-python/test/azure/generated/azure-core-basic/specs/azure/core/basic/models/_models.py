@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -32,7 +32,7 @@ class User(_Model):
     """The user's id. Required."""
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's name. Required."""
-    orders: Optional[List["_models.UserOrder"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    orders: Optional[list["_models.UserOrder"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's order list."""
     etag: str = rest_field(visibility=["read"])
     """The entity tag for this resource. Required."""
@@ -42,7 +42,7 @@ class User(_Model):
         self,
         *,
         name: str,
-        orders: Optional[List["_models.UserOrder"]] = None,
+        orders: Optional[list["_models.UserOrder"]] = None,
     ) -> None: ...
 
     @overload
@@ -63,14 +63,14 @@ class UserList(_Model):
     :vartype users: list[~specs.azure.core.basic.models.User]
     """
 
-    users: List["_models.User"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    users: list["_models.User"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        users: List["_models.User"],
+        users: list["_models.User"],
     ) -> None: ...
 
     @overload

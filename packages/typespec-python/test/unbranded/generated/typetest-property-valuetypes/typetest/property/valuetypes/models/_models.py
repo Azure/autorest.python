@@ -3,7 +3,7 @@
 
 import datetime
 import decimal
-from typing import Any, Dict, List, Literal, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Literal, Mapping, TYPE_CHECKING, Union, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 from ._enums import ExtendedEnum
@@ -90,14 +90,14 @@ class CollectionsIntProperty(_Model):
     :vartype property: list[int]
     """
 
-    property: List[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: list[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: List[int],  # pylint: disable=redefined-builtin
+        property: list[int],  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -118,14 +118,14 @@ class CollectionsModelProperty(_Model):
     :vartype property: list[~typetest.property.valuetypes.models.InnerModel]
     """
 
-    property: List["_models.InnerModel"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: list["_models.InnerModel"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: List["_models.InnerModel"],  # pylint: disable=redefined-builtin
+        property: list["_models.InnerModel"],  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -146,14 +146,14 @@ class CollectionsStringProperty(_Model):
     :vartype property: list[str]
     """
 
-    property: List[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: List[str],  # pylint: disable=redefined-builtin
+        property: list[str],  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -260,14 +260,14 @@ class DictionaryStringProperty(_Model):
     :vartype property: dict[str, str]
     """
 
-    property: Dict[str, str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: dict[str, str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property. Required."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Dict[str, str],  # pylint: disable=redefined-builtin
+        property: dict[str, str],  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
