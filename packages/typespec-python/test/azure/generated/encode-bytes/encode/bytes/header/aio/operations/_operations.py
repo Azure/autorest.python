@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -31,7 +31,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class HeaderOperations:
@@ -67,7 +67,7 @@ class HeaderOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -114,7 +114,7 @@ class HeaderOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -161,7 +161,7 @@ class HeaderOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -193,7 +193,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def base64_url_array(self, *, value: List[bytes], **kwargs: Any) -> None:
+    async def base64_url_array(self, *, value: list[bytes], **kwargs: Any) -> None:
         """base64_url_array.
 
         :keyword value: Required.
@@ -208,7 +208,7 @@ class HeaderOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

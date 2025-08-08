@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -24,7 +24,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class QueryOperations:
@@ -44,7 +44,7 @@ class QueryOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def multi(self, *, colors: List[str], **kwargs: Any) -> None:
+    async def multi(self, *, colors: list[str], **kwargs: Any) -> None:
         """multi.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -59,7 +59,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -88,7 +88,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def ssv(self, *, colors: List[str], **kwargs: Any) -> None:
+    async def ssv(self, *, colors: list[str], **kwargs: Any) -> None:
         """ssv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -103,7 +103,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -132,7 +132,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def pipes(self, *, colors: List[str], **kwargs: Any) -> None:
+    async def pipes(self, *, colors: list[str], **kwargs: Any) -> None:
         """pipes.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -147,7 +147,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -176,7 +176,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def csv(self, *, colors: List[str], **kwargs: Any) -> None:
+    async def csv(self, *, colors: list[str], **kwargs: Any) -> None:
         """csv.
 
         :keyword colors: Possible values for colors are [blue,red,green]. Required.
@@ -191,7 +191,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

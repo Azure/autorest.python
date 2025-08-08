@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterator, Callable, Dict, Optional, TypeVar, Union, cast
+from typing import Any, AsyncIterator, Callable, Optional, TypeVar, Union, cast
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -33,7 +33,7 @@ from ...operations._operations import build_large_headers_two6_k_request
 from .._configuration import LargeHeaderClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class LargeHeadersOperations:
@@ -62,7 +62,7 @@ class LargeHeadersOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

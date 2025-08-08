@@ -9,7 +9,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 import urllib.parse
 
 from azure.core import AsyncPipelineClient
@@ -46,7 +46,7 @@ from .._configuration import BasicClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _BasicClientOperationsMixin(
@@ -136,7 +136,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -273,7 +273,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -345,7 +345,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -395,10 +395,10 @@ class _BasicClientOperationsMixin(
         *,
         top: Optional[int] = None,
         skip: Optional[int] = None,
-        orderby: Optional[List[str]] = None,
+        orderby: Optional[list[str]] = None,
         filter: Optional[str] = None,
-        select: Optional[List[str]] = None,
-        expand: Optional[List[str]] = None,
+        select: Optional[list[str]] = None,
+        expand: Optional[list[str]] = None,
         **kwargs: Any
     ) -> AsyncItemPaged["_models.User"]:
         """Lists all users.
@@ -427,7 +427,7 @@ class _BasicClientOperationsMixin(
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.User]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -435,7 +435,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -483,7 +483,7 @@ class _BasicClientOperationsMixin(
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(list[_models.User], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -523,7 +523,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -575,7 +575,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -638,7 +638,7 @@ class _BasicClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

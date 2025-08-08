@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterator, Callable, Dict, Optional, TypeVar
+from typing import Any, AsyncIterator, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -22,7 +22,7 @@ from ....aio._configuration import JsonlClientConfiguration
 from ...operations._operations import build_basic_receive_request, build_basic_send_request
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class BasicOperations:
@@ -57,7 +57,7 @@ class BasicOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -103,7 +103,7 @@ class BasicOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient, MatchConditions
 from azure.core.exceptions import (
@@ -34,7 +34,7 @@ from ..._utils.utils import ClientMixinABC
 from .._configuration import ConditionalRequestClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _ConditionalRequestClientOperationsMixin(
@@ -68,7 +68,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -127,7 +127,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -180,7 +180,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -233,7 +233,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

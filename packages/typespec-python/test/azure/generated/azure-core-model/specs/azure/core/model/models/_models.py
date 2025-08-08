@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, overload
+from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -19,14 +19,14 @@ class AzureEmbeddingModel(_Model):
     :vartype embedding: list[int]
     """
 
-    embedding: List[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    embedding: list[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        embedding: List[int],
+        embedding: list[int],
     ) -> None: ...
 
     @overload

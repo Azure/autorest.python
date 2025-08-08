@@ -10,7 +10,7 @@ from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient, MatchConditions
 from azure.core.exceptions import (
@@ -37,7 +37,7 @@ from .._configuration import TraitsClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _TraitsClientOperationsMixin(
@@ -89,7 +89,7 @@ class _TraitsClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -220,7 +220,7 @@ class _TraitsClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}

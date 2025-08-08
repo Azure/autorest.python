@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -26,7 +26,7 @@ from ..._configuration import BytesClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -68,7 +68,7 @@ def build_query_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64_url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
+def build_query_base64_url_array_request(*, value: list[bytes], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -113,7 +113,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -160,7 +160,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -207,7 +207,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -240,7 +240,7 @@ class QueryOperations:
 
     @distributed_trace
     def base64_url_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[bytes], **kwargs: Any
+        self, *, value: list[bytes], **kwargs: Any
     ) -> None:
         """base64_url_array.
 
@@ -256,7 +256,7 @@ class QueryOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

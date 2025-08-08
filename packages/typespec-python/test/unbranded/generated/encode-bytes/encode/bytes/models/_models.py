@@ -1,7 +1,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, overload
+from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -41,14 +41,14 @@ class Base64urlArrayBytesProperty(_Model):
     :vartype value: list[bytes]
     """
 
-    value: List[bytes] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64url")
+    value: list[bytes] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="base64url")
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: List[bytes],
+        value: list[bytes],
     ) -> None: ...
 
     @overload

@@ -9,7 +9,7 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
-from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
@@ -115,7 +115,7 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    derived_prop: List["_models.ModelForRecord"] = rest_field(
+    derived_prop: list["_models.ModelForRecord"] = rest_field(
         name="derivedProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """The index property. Required."""
@@ -125,7 +125,7 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
         self,
         *,
         known_prop: str,
-        derived_prop: List["_models.ModelForRecord"],
+        derived_prop: list["_models.ModelForRecord"],
     ) -> None: ...
 
     @overload
@@ -326,7 +326,7 @@ class ExtendsModelArrayAdditionalProperties(_Model):
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(
+    known_prop: list["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required."""
@@ -335,7 +335,7 @@ class ExtendsModelArrayAdditionalProperties(_Model):
     def __init__(
         self,
         *,
-        known_prop: List["_models.ModelForRecord"],
+        known_prop: list["_models.ModelForRecord"],
     ) -> None: ...
 
     @overload
@@ -453,7 +453,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disabl
     :vartype kind: str
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
@@ -585,7 +585,7 @@ class IsModelArrayAdditionalProperties(_Model):
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(
+    known_prop: list["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required."""
@@ -594,7 +594,7 @@ class IsModelArrayAdditionalProperties(_Model):
     def __init__(
         self,
         *,
-        known_prop: List["_models.ModelForRecord"],
+        known_prop: list["_models.ModelForRecord"],
     ) -> None: ...
 
     @overload
@@ -712,7 +712,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=nam
     :vartype kind: str
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
@@ -870,7 +870,7 @@ class SpreadModelArrayRecord(_Model):
     :vartype known_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
 
-    known_prop: List["_models.ModelForRecord"] = rest_field(
+    known_prop: list["_models.ModelForRecord"] = rest_field(
         name="knownProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required."""
@@ -879,7 +879,7 @@ class SpreadModelArrayRecord(_Model):
     def __init__(
         self,
         *,
-        known_prop: List["_models.ModelForRecord"],
+        known_prop: list["_models.ModelForRecord"],
     ) -> None: ...
 
     @overload
