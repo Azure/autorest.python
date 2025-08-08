@@ -20,7 +20,7 @@ class CustomizedClient:  # pylint: disable=client-accepts-api-version-keyword
     ) -> None:
         self._client = GeneratedClient(endpoint=endpoint, **kwargs)
 
-    async def customized_get(  # pylint: disable=client-method-missing-tracing-decorator
+    async def customized_get(  # pylint: disable=client-method-missing-tracing-decorator-async
         self, **kwargs: Any
     ) -> _models.Extension:
         """get.
