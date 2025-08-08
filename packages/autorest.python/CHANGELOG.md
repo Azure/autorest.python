@@ -1,5 +1,18 @@
 # Release
 
+## 6.38.1
+
+### Bump dependencies
+
+- [#3167](https://github.com/Azure/autorest.python/pull/3167) Bump tsp 1.3.0 and 0.59.0
+- [#3163](https://github.com/Azure/autorest.python/pull/3163) Bump dependency on `http-client-python`
+
+### Bug Fixes
+
+- [#3167](https://github.com/Azure/autorest.python/pull/3167) Don't include folder suffixes in documentation generated with `generation-subdir`
+- [#3167](https://github.com/Azure/autorest.python/pull/3167) Exclude doc folder in pyproject.toml and update license as per PEP 639
+
+
 ## 6.38.0
 
 ### Features
