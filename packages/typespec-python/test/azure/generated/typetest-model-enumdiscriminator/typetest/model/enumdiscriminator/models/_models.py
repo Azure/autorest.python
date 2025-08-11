@@ -54,8 +54,6 @@ class Snake(_Model):
 class Cobra(Snake, discriminator="cobra"):
     """Cobra model.
 
-    :ivar length: Length of the snake. Required.
-    :vartype length: int
     :ivar kind: discriminator property. Required. Species cobra
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.COBRA
     """
@@ -78,7 +76,8 @@ class Cobra(Snake, discriminator="cobra"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind=SnakeKind.COBRA, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = SnakeKind.COBRA
 
 
 class Dog(_Model):
@@ -121,8 +120,6 @@ class Dog(_Model):
 class Golden(Dog, discriminator="golden"):
     """Golden dog model.
 
-    :ivar weight: Weight of the dog. Required.
-    :vartype weight: int
     :ivar kind: discriminator property. Required. Species golden
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
@@ -145,4 +142,5 @@ class Golden(Dog, discriminator="golden"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = DogKind.GOLDEN

@@ -43,8 +43,6 @@ class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
     """The model extends from a model that spread Record<float32> with the different known property
     type.
 
-    :ivar name: The id property. Required.
-    :vartype name: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: float
     """
@@ -103,8 +101,6 @@ class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     """The model extends from a model that spread Record<ModelForRecord[]> with the different known
     property type.
 
-    :ivar known_prop: Required.
-    :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: list[~typetest.property.additionalproperties.models.ModelForRecord]
     """
@@ -165,8 +161,6 @@ class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
     """The model extends from a model that spread Record<ModelForRecord> with the different known
     property type.
 
-    :ivar known_prop: Required.
-    :vartype known_prop: str
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: ~typetest.property.additionalproperties.models.ModelForRecord
     """
@@ -227,8 +221,6 @@ class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
     """The model extends from a model that spread Record<string> with the different known property
     type.
 
-    :ivar id: The name property. Required.
-    :vartype id: float
     :ivar derived_prop: The index property. Required.
     :vartype derived_prop: str
     """
@@ -402,8 +394,6 @@ class ExtendsUnknownAdditionalProperties(_Model):
 class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperties):  # pylint: disable=name-too-long
     """The model extends from a type that extends from Record<unknown>.
 
-    :ivar name: The name property. Required.
-    :vartype name: str
     :ivar index: The index property. Required.
     :vartype index: int
     :ivar age: The age property.
@@ -477,8 +467,6 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 ):  # pylint: disable=name-too-long
     """The derived discriminated type.
 
-    :ivar name: The name property. Required.
-    :vartype name: str
     :ivar kind: Required. Default value is "derived".
     :vartype kind: str
     :ivar index: The index property. Required.
@@ -511,7 +499,8 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="derived", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "derived"
 
 
 class IsFloatAdditionalProperties(_Model):
@@ -661,8 +650,6 @@ class IsUnknownAdditionalProperties(_Model):
 class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
     """The model extends from a type that is Record<unknown> type.
 
-    :ivar name: The name property. Required.
-    :vartype name: str
     :ivar index: The index property. Required.
     :vartype index: int
     :ivar age: The age property.
@@ -736,8 +723,6 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 ):  # pylint: disable=name-too-long
     """The derived discriminated type.
 
-    :ivar name: The name property. Required.
-    :vartype name: str
     :ivar kind: Required. Default value is "derived".
     :vartype kind: str
     :ivar index: The index property. Required.
@@ -770,7 +755,8 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="derived", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "derived"
 
 
 class ModelForRecord(_Model):

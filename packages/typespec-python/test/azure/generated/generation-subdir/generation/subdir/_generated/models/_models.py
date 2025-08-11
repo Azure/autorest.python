@@ -47,8 +47,6 @@ class Element(_Model):
 class Extension(Element):
     """extension.
 
-    :ivar extension:
-    :vartype extension: list[~generation.subdir._generated.models.Extension]
     :ivar level: Required.
     :vartype level: int
     """

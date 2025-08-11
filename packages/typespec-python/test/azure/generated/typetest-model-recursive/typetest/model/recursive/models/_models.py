@@ -47,8 +47,6 @@ class Element(_Model):
 class Extension(Element):
     """extension.
 
-    :ivar extension:
-    :vartype extension: list[~typetest.model.recursive.models.Extension]
     :ivar level: Required.
     :vartype level: int
     """
