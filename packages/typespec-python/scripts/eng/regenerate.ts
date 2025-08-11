@@ -24,7 +24,6 @@ const SKIP_SPECS = [
     "type/union/discriminated",
     "client-operation-group",
     "azure/client-generator-core/api-version",
-    "azure/client-generator-core/hierarchy-building",
 ];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
@@ -51,6 +50,9 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     },
     "azure/client-generator-core/override": {
         namespace: "specs.azure.clientgenerator.core.override",
+    },
+    "azure/client-generator-core/hierarchy-building": {
+        namespace: "specs.azure.clientgenerator.core.hierarchybuilding",
     },
     "azure/core/basic": {
         namespace: "specs.azure.core.basic",
