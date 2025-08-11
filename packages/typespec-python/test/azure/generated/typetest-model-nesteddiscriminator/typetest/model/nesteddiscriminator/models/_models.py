@@ -89,7 +89,7 @@ class Shark(Fish, discriminator="shark"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind = "shark"
+        self.kind = "shark"  # type: ignore
 
 
 class GoblinShark(Shark, discriminator="goblin"):
@@ -119,7 +119,7 @@ class GoblinShark(Shark, discriminator="goblin"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.sharktype = "goblin"
+        self.sharktype = "goblin"  # type: ignore
 
 
 class Salmon(Fish, discriminator="salmon"):
@@ -161,7 +161,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind = "salmon"
+        self.kind = "salmon"  # type: ignore
 
 
 class SawShark(Shark, discriminator="saw"):
@@ -191,4 +191,4 @@ class SawShark(Shark, discriminator="saw"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.sharktype = "saw"
+        self.sharktype = "saw"  # type: ignore

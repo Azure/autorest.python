@@ -304,7 +304,7 @@ class RealModel(AbstractModel, discriminator="real"):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
-        self.kind = "real"
+        self.kind = "real"  # type: ignore
 
 
 class SharedModel(_Model):
