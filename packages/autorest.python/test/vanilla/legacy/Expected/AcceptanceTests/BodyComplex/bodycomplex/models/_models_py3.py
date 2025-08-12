@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 import msrest.serialization
 
@@ -27,7 +27,7 @@ class ArrayWrapper(msrest.serialization.Model):
         "array": {"key": "array", "type": "[str]"},
     }
 
-    def __init__(self, *, array: Optional[List[str]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, array: Optional[list[str]] = None, **kwargs: Any) -> None:
         """
         :keyword array:
         :paramtype array: list[str]
@@ -181,7 +181,7 @@ class Cat(Pet):
         id: Optional[int] = None,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["_models.Dog"]] = None,
+        hates: Optional[list["_models.Dog"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -236,7 +236,7 @@ class Fish(msrest.serialization.Model):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -301,7 +301,7 @@ class Shark(Fish):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         age: Optional[int] = None,
         **kwargs: Any
     ) -> None:
@@ -363,7 +363,7 @@ class Cookiecuttershark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         age: Optional[int] = None,
         **kwargs: Any
     ) -> None:
@@ -478,7 +478,7 @@ class DictionaryWrapper(msrest.serialization.Model):
         "default_program": {"key": "defaultProgram", "type": "{str}"},
     }
 
-    def __init__(self, *, default_program: Optional[Dict[str, str]] = None, **kwargs: Any) -> None:
+    def __init__(self, *, default_program: Optional[dict[str, str]] = None, **kwargs: Any) -> None:
         """
         :keyword default_program: Dictionary of :code:`<string>`.
         :paramtype default_program: dict[str, str]
@@ -583,9 +583,9 @@ class DotFishMarket(msrest.serialization.Model):
         self,
         *,
         sample_salmon: Optional["_models.DotSalmon"] = None,
-        salmons: Optional[List["_models.DotSalmon"]] = None,
+        salmons: Optional[list["_models.DotSalmon"]] = None,
         sample_fish: Optional["_models.DotFish"] = None,
-        fishes: Optional[List["_models.DotFish"]] = None,
+        fishes: Optional[list["_models.DotFish"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -816,7 +816,7 @@ class Goblinshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         age: Optional[int] = None,
         jawsize: Optional[int] = None,
         color: Union[str, "_models.GoblinSharkColor"] = "gray",
@@ -1057,7 +1057,7 @@ class Salmon(Fish):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
         **kwargs: Any
@@ -1123,7 +1123,7 @@ class Sawshark(Shark):
         length: float,
         birthday: datetime.datetime,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         age: Optional[int] = None,
         picture: Optional[bytes] = None,
         **kwargs: Any
@@ -1176,7 +1176,7 @@ class Siamese(Cat):
         id: Optional[int] = None,  # pylint: disable=redefined-builtin
         name: Optional[str] = None,
         color: Optional[str] = None,
-        hates: Optional[List["_models.Dog"]] = None,
+        hates: Optional[list["_models.Dog"]] = None,
         breed: Optional[str] = None,
         **kwargs: Any
     ) -> None:
@@ -1241,10 +1241,10 @@ class SmartSalmon(Salmon):
         *,
         length: float,
         species: Optional[str] = None,
-        siblings: Optional[List["_models.Fish"]] = None,
+        siblings: Optional[list["_models.Fish"]] = None,
         location: Optional[str] = None,
         iswild: Optional[bool] = None,
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         college_degree: Optional[str] = None,
         **kwargs: Any
     ) -> None:

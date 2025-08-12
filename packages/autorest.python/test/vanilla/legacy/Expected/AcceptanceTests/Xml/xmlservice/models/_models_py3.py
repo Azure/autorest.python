@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 
 import datetime
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .._utils import serialization as _serialization
 
@@ -71,7 +71,7 @@ class AppleBarrel(_serialization.Model):
     }
 
     def __init__(
-        self, *, good_apples: Optional[List[str]] = None, bad_apples: Optional[List[str]] = None, **kwargs: Any
+        self, *, good_apples: Optional[list[str]] = None, bad_apples: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """
         :keyword good_apples:
@@ -164,7 +164,7 @@ class Blob(_serialization.Model):
         deleted: bool,
         snapshot: str,
         properties: "_models.BlobProperties",
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[dict[str, str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -457,8 +457,8 @@ class Blobs(_serialization.Model):
     def __init__(
         self,
         *,
-        blob_prefix: Optional[List["_models.BlobPrefix"]] = None,
-        blob: Optional[List["_models.Blob"]] = None,
+        blob_prefix: Optional[list["_models.BlobPrefix"]] = None,
+        blob: Optional[list["_models.Blob"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -542,7 +542,7 @@ class Container(_serialization.Model):
         *,
         name: str,
         properties: "_models.ContainerProperties",
-        metadata: Optional[Dict[str, str]] = None,
+        metadata: Optional[dict[str, str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -908,7 +908,7 @@ class ListContainersResponse(_serialization.Model):
         max_results: int,
         next_marker: str,
         marker: Optional[str] = None,
-        containers: Optional[List["_models.Container"]] = None,
+        containers: Optional[list["_models.Container"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1278,7 +1278,7 @@ class Slide(_serialization.Model):
         *,
         type: Optional[str] = None,
         title: Optional[str] = None,
-        items: Optional[List[str]] = None,
+        items: Optional[list[str]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1322,7 +1322,7 @@ class Slideshow(_serialization.Model):
         title: Optional[str] = None,
         date: Optional[str] = None,
         author: Optional[str] = None,
-        slides: Optional[List["_models.Slide"]] = None,
+        slides: Optional[list["_models.Slide"]] = None,
         **kwargs: Any
     ) -> None:
         """
@@ -1378,7 +1378,7 @@ class StorageServiceProperties(_serialization.Model):
         logging: Optional["_models.Logging"] = None,
         hour_metrics: Optional["_models.Metrics"] = None,
         minute_metrics: Optional["_models.Metrics"] = None,
-        cors: Optional[List["_models.CorsRule"]] = None,
+        cors: Optional[list["_models.CorsRule"]] = None,
         default_service_version: Optional[str] = None,
         delete_retention_policy: Optional["_models.RetentionPolicy"] = None,
         **kwargs: Any

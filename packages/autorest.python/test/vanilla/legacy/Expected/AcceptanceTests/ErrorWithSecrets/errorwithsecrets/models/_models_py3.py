@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict, List, Optional, TYPE_CHECKING, Union
+from typing import Any, Optional, TYPE_CHECKING, Union
 
 from .._utils import serialization as _serialization
 
@@ -55,9 +55,9 @@ class Error(_serialization.Model):
         *,
         code: Union[str, "_models.ErrorCode"],
         message: str,
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         target: Optional[str] = None,
-        details: Optional[List["_models.Error"]] = None,
+        details: Optional[list["_models.Error"]] = None,
         innererror: Optional["_models.InnerError"] = None,
         **kwargs: Any
     ) -> None:
@@ -109,7 +109,7 @@ class ErrorResponse(_serialization.Model):
     }
 
     def __init__(
-        self, *, error: "_models.Error", additional_properties: Optional[Dict[str, Any]] = None, **kwargs: Any
+        self, *, error: "_models.Error", additional_properties: Optional[dict[str, Any]] = None, **kwargs: Any
     ) -> None:
         """
         :keyword additional_properties: Unmatched properties from the message are deserialized to this
@@ -160,7 +160,7 @@ class InnerError(_serialization.Model):
         *,
         code: Union[str, "_models.InnerErrorCode"],
         message: str,
-        additional_properties: Optional[Dict[str, Any]] = None,
+        additional_properties: Optional[dict[str, Any]] = None,
         innererror: Optional["_models.InnerError"] = None,
         **kwargs: Any
     ) -> None:

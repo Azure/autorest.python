@@ -2,7 +2,7 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
-from typing import Any, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -74,7 +74,7 @@ class CollectionsByteProperty(_Model):
     :vartype property: list[bytes]
     """
 
-    property: Optional[List[bytes]] = rest_field(
+    property: Optional[list[bytes]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="base64"
     )
     """Property."""
@@ -83,7 +83,7 @@ class CollectionsByteProperty(_Model):
     def __init__(
         self,
         *,
-        property: Optional[List[bytes]] = None,  # pylint: disable=redefined-builtin
+        property: Optional[list[bytes]] = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -104,7 +104,7 @@ class CollectionsModelProperty(_Model):
     :vartype property: list[~typetest.property.optional.models.StringProperty]
     """
 
-    property: Optional[List["_models.StringProperty"]] = rest_field(
+    property: Optional[list["_models.StringProperty"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """Property."""
@@ -113,7 +113,7 @@ class CollectionsModelProperty(_Model):
     def __init__(
         self,
         *,
-        property: Optional[List["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
+        property: Optional[list["_models.StringProperty"]] = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload

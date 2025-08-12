@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Dict
+from typing import Any
 
 from .._utils import serialization as _serialization
 
@@ -28,7 +28,7 @@ class AvailabilitySetUpdateParameters(_serialization.Model):
         "tags": {"key": "tags", "type": "{str}"},
     }
 
-    def __init__(self, *, tags: Dict[str, str], **kwargs: Any) -> None:
+    def __init__(self, *, tags: dict[str, str], **kwargs: Any) -> None:
         """
         :keyword tags: A description about the set of tags. Required.
         :paramtype tags: dict[str, str]

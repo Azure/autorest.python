@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, List, Mapping, Optional, overload
+from typing import Any, Mapping, Optional, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -21,9 +21,9 @@ class ReadOnlyModel(_Model):
     :vartype optional_string_record: dict[str, str]
     """
 
-    optional_nullable_int_list: Optional[List[int]] = rest_field(name="optionalNullableIntList", visibility=["read"])
+    optional_nullable_int_list: Optional[list[int]] = rest_field(name="optionalNullableIntList", visibility=["read"])
     """Optional readonly nullable int list."""
-    optional_string_record: Optional[Dict[str, str]] = rest_field(name="optionalStringRecord", visibility=["read"])
+    optional_string_record: Optional[dict[str, str]] = rest_field(name="optionalStringRecord", visibility=["read"])
     """Optional readonly string dictionary."""
 
 
@@ -42,9 +42,9 @@ class VisibilityModel(_Model):
 
     read_prop: str = rest_field(name="readProp", visibility=["read"])
     """Required string, illustrating a readonly property. Required."""
-    create_prop: List[str] = rest_field(name="createProp", visibility=["create"])
+    create_prop: list[str] = rest_field(name="createProp", visibility=["create"])
     """Required string[], illustrating a create property. Required."""
-    update_prop: List[int] = rest_field(name="updateProp", visibility=["update"])
+    update_prop: list[int] = rest_field(name="updateProp", visibility=["update"])
     """Required int32[], illustrating a update property. Required."""
     delete_prop: bool = rest_field(name="deleteProp", visibility=["delete"])
     """Required bool, illustrating a delete property. Required."""
@@ -53,8 +53,8 @@ class VisibilityModel(_Model):
     def __init__(
         self,
         *,
-        create_prop: List[str],
-        update_prop: List[int],
+        create_prop: list[str],
+        update_prop: list[int],
         delete_prop: bool,
     ) -> None: ...
 

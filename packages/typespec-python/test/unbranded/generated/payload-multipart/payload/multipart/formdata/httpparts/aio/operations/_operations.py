@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -25,7 +25,7 @@ from ...operations._operations import build_form_data_http_parts_json_array_and_
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class FormDataHttpPartsOperations:
@@ -91,7 +91,7 @@ class FormDataHttpPartsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -99,8 +99,8 @@ class FormDataHttpPartsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage", "pictures"]
-        _data_fields: List[str] = ["id", "address", "previousAddresses"]
+        _file_fields: list[str] = ["profileImage", "pictures"]
+        _data_fields: list[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_json_array_and_file_array_request(

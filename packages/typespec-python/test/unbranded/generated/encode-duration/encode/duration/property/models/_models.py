@@ -2,7 +2,7 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
-from typing import Any, List, Mapping, overload
+from typing import Any, Mapping, overload
 
 from ..._utils.model_base import Model as _Model, rest_field
 
@@ -70,14 +70,14 @@ class FloatSecondsDurationArrayProperty(_Model):
     :vartype value: list[float]
     """
 
-    value: List[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: List[float],
+        value: list[float],
     ) -> None: ...
 
     @overload

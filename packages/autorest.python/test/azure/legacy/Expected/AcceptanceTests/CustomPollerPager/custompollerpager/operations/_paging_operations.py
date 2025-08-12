@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Iterator, Literal, Optional, TypeVar, Union, cast
+from typing import Any, Callable, Iterator, Literal, Optional, TypeVar, Union, cast
 import urllib.parse
 
 from custompollerpagerdefinitions import CustomPager, CustomPoller
@@ -37,7 +37,7 @@ from .._configuration import AutoRestPagingTestServiceConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -567,7 +567,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -638,7 +638,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -709,7 +709,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -780,7 +780,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -856,7 +856,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -932,7 +932,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1013,7 +1013,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1097,7 +1097,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1168,7 +1168,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1243,7 +1243,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1325,7 +1325,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1414,7 +1414,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1497,7 +1497,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1569,7 +1569,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1640,7 +1640,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1711,7 +1711,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1782,7 +1782,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1859,7 +1859,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1932,7 +1932,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2004,7 +2004,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2081,7 +2081,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2200,7 +2200,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2274,7 +2274,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2349,7 +2349,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update(kwargs.pop("error_map", {}) or {})
+        error_map.update((kwargs.pop("error_map", {}) or {}))
 
         def prepare_request(next_link=None):
             if not next_link:

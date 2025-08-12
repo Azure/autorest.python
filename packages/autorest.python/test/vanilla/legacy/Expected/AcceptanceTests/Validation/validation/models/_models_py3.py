@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Literal, Optional, TYPE_CHECKING
+from typing import Any, Literal, Optional, TYPE_CHECKING
 
 import msrest.serialization
 
@@ -167,7 +167,7 @@ class Product(msrest.serialization.Model):
         *,
         child: "_models.ChildProduct",
         const_child: "_models.ConstantProduct",
-        display_names: Optional[List[str]] = None,
+        display_names: Optional[list[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
         const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
