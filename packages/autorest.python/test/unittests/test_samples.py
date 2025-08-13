@@ -54,7 +54,7 @@ def test_package_mode_for_azure_mgmt_test():
     assert (samples_dir / "azure/mgmt/test/py.typed").exists(), "py.typed should exist in inner folder azure/mgmt/test"
     assert not (samples_dir / "py.typed").exists(), "py.typed should not exist in root folder"
 
-    # generated samples/tests file shall be put directly under generated_samples/generted_tests instead of inner folder,
+    # generated samples/tests file shall be put directly under generated_samples/generated_tests instead of inner folder,
     # so there shall be no subfolder
     for folder in ["generated_samples", "generated_tests"]:
         subdir = [s for s in (samples_dir / folder).iterdir() if s.is_dir()]

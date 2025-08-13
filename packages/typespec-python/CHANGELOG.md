@@ -1,5 +1,13 @@
 # Release
 
+## 0.48.2
+
+### Bug Fixes
+
+- [#3173](https://github.com/Azure/autorest.python/pull/3173) fix generated output folder for packaging files
+- [#3173](https://github.com/Azure/autorest.python/pull/3173) keep declaration of pyproject.toml same with existing setup.py of ARM SDK
+
+
 ## 0.48.1
 
 ### Bump dependencies
