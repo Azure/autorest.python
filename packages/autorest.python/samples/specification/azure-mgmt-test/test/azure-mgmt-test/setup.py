@@ -13,7 +13,7 @@ from setuptools import setup, find_packages
 
 
 PACKAGE_NAME = "azure-mgmt-test"
-PACKAGE_PPRINT_NAME = "Azure Mgmt Test"
+PACKAGE_PPRINT_NAME = "Test Management"
 
 # a-b-c => a/b/c
 package_folder_path = PACKAGE_NAME.replace("-", "/")

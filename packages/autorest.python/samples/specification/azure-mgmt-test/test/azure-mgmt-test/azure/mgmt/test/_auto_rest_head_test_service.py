@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Optional, TYPE_CHECKING, cast
+from typing import Any, Dict, Optional, TYPE_CHECKING, cast
 from typing_extensions import Self
 
 from azure.core.pipeline import policies
@@ -17,20 +17,19 @@ from azure.mgmt.core import ARMPipelineClient
 from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from azure.mgmt.core.tools import get_arm_endpoints
 
-from . import models as _models
-from ._configuration import AutoRestSwaggerBATArrayServiceConfiguration
+from ._configuration import AutoRestHeadTestServiceConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ArrayOperations
+from .operations import HttpSuccessOperations
 
 if TYPE_CHECKING:
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-version-keyword
-    """Test Infrastructure for AutoRest Swagger BAT.
+class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword
+    """Test Infrastructure for AutoRest.
 
-    :ivar array: ArrayOperations operations
-    :vartype array: azure.mgmt.test.operations.ArrayOperations
+    :ivar http_success: HttpSuccessOperations operations
+    :vartype http_success: azure.mgmt.test.operations.HttpSuccessOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is None.
@@ -43,7 +42,7 @@ class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-vers
         if not base_url:
             base_url = _endpoints["resource_manager"]
         credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
-        self._config = AutoRestSwaggerBATArrayServiceConfiguration(
+        self._config = AutoRestHeadTestServiceConfiguration(
             credential=credential, credential_scopes=credential_scopes, **kwargs
         )
 
@@ -67,11 +66,11 @@ class AutoRestSwaggerBATArrayService:  # pylint: disable=client-accepts-api-vers
             ]
         self._client: ARMPipelineClient = ARMPipelineClient(base_url=cast(str, base_url), policies=_policies, **kwargs)
 
-        client_models = {k: v for k, v in _models.__dict__.items() if isinstance(v, type)}
+        client_models: Dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
-        self.array = ArrayOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

@@ -5,7 +5,7 @@ This file is to check whether standard [readme.python.md](https://github.com/Azu
 ### Settings
 
 ``` yaml $(python)
-input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/body-array.json
+input-file: ../../../node_modules/@microsoft.azure/autorest.testserver/swagger/head.json
 azure-arm: true
 license-header: MICROSOFT_MIT_NO_VERSION
 package-name: azure-mgmt-test
@@ -15,6 +15,9 @@ clear-output-folder: true
 version-tolerant: false
 package-mode: azure-mgmt
 keep-setup-py: true
+generate-test: true
+generate-sample: true
+include-x-ms-examples-original-file: true
 ```
 
 ``` yaml $(python)
