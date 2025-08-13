@@ -1,8 +1,0 @@
-{
-    "CrossLanguagePackageId": null,
-    "CrossLanguageDefinitionId": {
-        "multiapicustombaseurl.v1.models.Error": null,
-        "multiapicustombaseurl.v1.MultiapiCustomBaseUrlServiceClient.test": null,
-        "multiapicustombaseurl.v1.aio.MultiapiCustomBaseUrlServiceClient.test": null
-    }
-}
