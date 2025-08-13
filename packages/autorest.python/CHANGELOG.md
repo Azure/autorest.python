@@ -280,7 +280,7 @@ No changes, version bump only.
 
 ### Bump dependencies
 
-- [#2965](https://github.com/Azure/autorest.python/pull/2965) Bump `@typespec/*` 0.63.0 and `@azure-tools/*` 0.48.2
+- [#2965](https://github.com/Azure/autorest.python/pull/2965) Bump `@typespec/*` 0.63.0 and `@azure-tools/*` 0.49.0
 
 
 ## 6.27.0
