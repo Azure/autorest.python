@@ -17,8 +17,8 @@ if TYPE_CHECKING:
     from azure.core.credentials_async import AsyncTokenCredential
 
 
-class AutoRestSwaggerBATArrayServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
-    """Configuration for AutoRestSwaggerBATArrayService.
+class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
+    """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
