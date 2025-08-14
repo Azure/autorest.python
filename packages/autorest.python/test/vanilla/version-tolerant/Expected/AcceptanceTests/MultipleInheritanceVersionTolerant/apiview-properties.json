@@ -1,0 +1,25 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.get_horse": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_horse": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_horse": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_horse": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.get_pet": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_pet": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_pet": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_pet": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.get_feline": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_feline": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_feline": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_feline": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.get_cat": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_cat": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_cat": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_cat": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.get_kitten": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_kitten": null,
+        "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_kitten": null,
+        "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_kitten": null
+    }
+}

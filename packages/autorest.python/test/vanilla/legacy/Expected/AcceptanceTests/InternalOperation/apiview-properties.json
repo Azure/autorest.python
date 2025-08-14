@@ -1,0 +1,22 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "internaloperation.models.SourcePath": null,
+        "internaloperation.models.ContentType": null,
+        "internaloperation.models.ContentType1": null,
+        "internaloperation.models.ContentType2": null,
+        "internaloperation.models.ContentType3": null,
+        "internaloperation.MediaTypesClient.analyze_body": null,
+        "internaloperation.aio.MediaTypesClient.analyze_body": null,
+        "internaloperation.MediaTypesClient.analyze_body_no_accept_header": null,
+        "internaloperation.aio.MediaTypesClient.analyze_body_no_accept_header": null,
+        "internaloperation.MediaTypesClient.content_type_with_encoding": null,
+        "internaloperation.aio.MediaTypesClient.content_type_with_encoding": null,
+        "internaloperation.MediaTypesClient.binary_body_with_two_content_types": null,
+        "internaloperation.aio.MediaTypesClient.binary_body_with_two_content_types": null,
+        "internaloperation.MediaTypesClient.binary_body_with_three_content_types": null,
+        "internaloperation.aio.MediaTypesClient.binary_body_with_three_content_types": null,
+        "internaloperation.MediaTypesClient.put_text_and_json_body": null,
+        "internaloperation.aio.MediaTypesClient.put_text_and_json_body": null
+    }
+}

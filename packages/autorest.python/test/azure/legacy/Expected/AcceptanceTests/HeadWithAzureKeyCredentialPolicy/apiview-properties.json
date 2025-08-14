@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "headwithazurekeycredentialpolicy.operations.HttpSuccessOperations.head200": null,
+        "headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations.head200": null,
+        "headwithazurekeycredentialpolicy.operations.HttpSuccessOperations.head204": null,
+        "headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations.head204": null,
+        "headwithazurekeycredentialpolicy.operations.HttpSuccessOperations.head404": null,
+        "headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations.head404": null
+    }
+}

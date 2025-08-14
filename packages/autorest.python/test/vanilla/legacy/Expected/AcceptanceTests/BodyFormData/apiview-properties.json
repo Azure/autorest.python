@@ -1,0 +1,14 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyformdata.models.Error": null,
+        "bodyformdata.models.Paths1MqqetpFormdataStreamUploadfilePostRequestbodyContentMultipartFormDataSchema": null,
+        "bodyformdata.models.Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDataSchema": null,
+        "bodyformdata.operations.FormdataOperations.upload_file": null,
+        "bodyformdata.aio.operations.FormdataOperations.upload_file": null,
+        "bodyformdata.operations.FormdataOperations.upload_file_via_body": null,
+        "bodyformdata.aio.operations.FormdataOperations.upload_file_via_body": null,
+        "bodyformdata.operations.FormdataOperations.upload_files": null,
+        "bodyformdata.aio.operations.FormdataOperations.upload_files": null
+    }
+}

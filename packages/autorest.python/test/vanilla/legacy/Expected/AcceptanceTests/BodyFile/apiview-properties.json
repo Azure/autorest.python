@@ -1,0 +1,12 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyfile.models.Error": null,
+        "bodyfile.operations.FilesOperations.get_file": null,
+        "bodyfile.aio.operations.FilesOperations.get_file": null,
+        "bodyfile.operations.FilesOperations.get_file_large": null,
+        "bodyfile.aio.operations.FilesOperations.get_file_large": null,
+        "bodyfile.operations.FilesOperations.get_empty_file": null,
+        "bodyfile.aio.operations.FilesOperations.get_empty_file": null
+    }
+}

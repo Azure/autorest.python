@@ -1,0 +1,15 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodybyteversiontolerant.operations.ByteOperations.get_null": null,
+        "bodybyteversiontolerant.aio.operations.ByteOperations.get_null": null,
+        "bodybyteversiontolerant.operations.ByteOperations.get_empty": null,
+        "bodybyteversiontolerant.aio.operations.ByteOperations.get_empty": null,
+        "bodybyteversiontolerant.operations.ByteOperations.get_non_ascii": null,
+        "bodybyteversiontolerant.aio.operations.ByteOperations.get_non_ascii": null,
+        "bodybyteversiontolerant.operations.ByteOperations.put_non_ascii": null,
+        "bodybyteversiontolerant.aio.operations.ByteOperations.put_non_ascii": null,
+        "bodybyteversiontolerant.operations.ByteOperations.get_invalid": null,
+        "bodybyteversiontolerant.aio.operations.ByteOperations.get_invalid": null
+    }
+}

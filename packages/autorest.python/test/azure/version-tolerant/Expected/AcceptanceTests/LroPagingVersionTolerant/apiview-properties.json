@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "lropagingversiontolerant.models.ErrorCode": null,
+        "lropagingversiontolerant.models.InnerErrorCode": null,
+        "lropagingversiontolerant.models.UpdateOperationKind": null,
+        "lropagingversiontolerant.models.SourceKind": null,
+        "lropagingversiontolerant.models.SourceContentStructureKind": null,
+        "lropagingversiontolerant.models.JobStatus": null,
+        "lropagingversiontolerant.models.Enum6": null,
+        "lropagingversiontolerant.models.Format": null,
+        "lropagingversiontolerant.operations.QuestionAnsweringProjectsOperations.get_qnas": null,
+        "lropagingversiontolerant.aio.operations.QuestionAnsweringProjectsOperations.get_qnas": null,
+        "lropagingversiontolerant.operations.QuestionAnsweringProjectsOperations.begin_update_qnas": null,
+        "lropagingversiontolerant.aio.operations.QuestionAnsweringProjectsOperations.begin_update_qnas": null
+    }
+}

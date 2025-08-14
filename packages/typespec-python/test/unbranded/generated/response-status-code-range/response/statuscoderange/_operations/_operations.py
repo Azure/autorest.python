@@ -13,7 +13,6 @@ from corehttp.exceptions import (
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
-from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import StatusCodeRangeClientConfiguration
@@ -31,33 +30,19 @@ _SERIALIZER.client_side_validation = False
 def build_status_code_range_error_response_status_code_in_range_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-in-range"
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 def build_status_code_range_error_response_status_code404_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/response/status-code-range/error-response-status-code-404"
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 class _StatusCodeRangeClientOperationsMixin(
@@ -104,9 +89,9 @@ class _StatusCodeRangeClientOperationsMixin(
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if 494 <= response.status_code <= 499:
-                error = _failsafe_deserialize(_models.ErrorInRange, response.json())
+                error = _failsafe_deserialize(_models.ErrorInRange, response)
             else:
-                error = _failsafe_deserialize(_models.DefaultError, response.json())
+                error = _failsafe_deserialize(_models.DefaultError, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:
@@ -147,10 +132,10 @@ class _StatusCodeRangeClientOperationsMixin(
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 404:
-                error = _failsafe_deserialize(_models.NotFoundError, response.json())
+                error = _failsafe_deserialize(_models.NotFoundError, response)
                 raise ResourceNotFoundError(response=response, model=error)
             if 400 <= response.status_code <= 499:
-                error = _failsafe_deserialize(_models.Standard4XXError, response.json())
+                error = _failsafe_deserialize(_models.Standard4XXError, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

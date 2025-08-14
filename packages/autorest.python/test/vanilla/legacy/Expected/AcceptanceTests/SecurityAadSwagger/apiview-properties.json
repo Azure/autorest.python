@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "securityaadswagger.AutorestSecurityAad.head": null,
+        "securityaadswagger.aio.AutorestSecurityAad.head": null
+    }
+}

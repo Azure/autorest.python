@@ -19,6 +19,13 @@ interface TspCommand {
     command: string;
 }
 
+// Add this near the top with other constants
+const SKIP_SPECS = [
+    "type/union/discriminated",
+    "client-operation-group",
+    "azure/client-generator-core/hierarchy-building",
+];
+
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
         namespace: "specs.azure.clientgenerator.core.access",
@@ -92,6 +99,9 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     "client/naming": {
         namespace: "client.naming",
     },
+    "client/overload": {
+        namespace: "client.overload",
+    },
     "encode/duration": {
         namespace: "encode.duration",
     },
@@ -136,10 +146,17 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "namespace": "authentication.http.custom",
         "package-pprint-name": "Authentication Http Custom",
     },
-    "authentication/union": {
-        "package-name": "authentication-union",
-        "namespace": "authentication.union",
-    },
+    "authentication/union": [
+        {
+            "package-name": "authentication-union",
+            "namespace": "authentication.union",
+        },
+        {
+            "package-name": "setuppy-authentication-union",
+            "namespace": "setuppy.authentication.union",
+            "keep-setup-py": "true",
+        },
+    ],
     "type/array": {
         "package-name": "typetest-array",
         "namespace": "typetest.array",
@@ -176,10 +193,17 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-name": "typetest-model-singlediscriminator",
         "namespace": "typetest.model.singlediscriminator",
     },
-    "type/model/inheritance/recursive": {
-        "package-name": "typetest-model-recursive",
-        "namespace": "typetest.model.recursive",
-    },
+    "type/model/inheritance/recursive": [
+        {
+            "package-name": "typetest-model-recursive",
+            "namespace": "typetest.model.recursive",
+        },
+        {
+            "package-name": "generation-subdir",
+            "namespace": "generation.subdir",
+            "generation-subdir": "_generated",
+        },
+    ],
     "type/model/usage": {
         "package-name": "typetest-model-usage",
         "namespace": "typetest.model.usage",
@@ -254,17 +278,13 @@ function getEmitterOption(spec: string, flavor: string): Record<string, string>[
 // Function to execute CLI commands asynchronously
 async function executeCommand(tspCommand: TspCommand): Promise<void> {
     try {
-        rmSync(tspCommand.outputDir, { recursive: true, force: true });
-    } catch (error) {
-        console.error(`rm error: ${error}`);
-    }
-    try {
         console.log(`exec: ${tspCommand.command}`);
         const { stdout, stderr } = await exec(tspCommand.command);
         if (stdout) console.log(`stdout: ${stdout}`);
         if (stderr) console.error(`stderr: ${stderr}`);
     } catch (error) {
         console.error(`exec error: ${error}`);
+        rmSync(tspCommand.outputDir, { recursive: true, force: true });
         throw error;
     }
 }
@@ -302,14 +322,8 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 
                 const mainTspRelativePath = toPosix(relative(baseDir, mainTspPath));
 
-                // after support discriminated union, remove this check
-                if (mainTspRelativePath.includes("type/union/discriminated")) return;
-
-                // after fix test generation for nested operation group, remove this check
-                if (mainTspRelativePath.includes("client-operation-group")) return;
-
-                // after https://github.com/Azure/autorest.python/issues/3043 fixed, remove this check
-                if (mainTspRelativePath.includes("azure/client-generator-core/api-version")) return;
+                // Replace the individual skip checks with:
+                if (SKIP_SPECS.some((skipSpec) => mainTspRelativePath.includes(skipSpec))) return;
 
                 const hasMainTsp = await promises
                     .access(mainTspPath)

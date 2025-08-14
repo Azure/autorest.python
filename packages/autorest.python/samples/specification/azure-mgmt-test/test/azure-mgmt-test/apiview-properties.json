@@ -1,0 +1,11 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "azure.mgmt.test.operations.HttpSuccessOperations.head200": null,
+        "azure.mgmt.test.aio.operations.HttpSuccessOperations.head200": null,
+        "azure.mgmt.test.operations.HttpSuccessOperations.head204": null,
+        "azure.mgmt.test.aio.operations.HttpSuccessOperations.head204": null,
+        "azure.mgmt.test.operations.HttpSuccessOperations.head404": null,
+        "azure.mgmt.test.aio.operations.HttpSuccessOperations.head404": null
+    }
+}

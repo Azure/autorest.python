@@ -1,0 +1,9 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodytimeversiontolerant.operations.TimeOperations.get": null,
+        "bodytimeversiontolerant.aio.operations.TimeOperations.get": null,
+        "bodytimeversiontolerant.operations.TimeOperations.put": null,
+        "bodytimeversiontolerant.aio.operations.TimeOperations.put": null
+    }
+}

@@ -10,6 +10,7 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 -e ./generated/authentication-union
 -e ./generated/encode-duration
 -e ./generated/encode-numeric
+-e ./generated/generation-subdir
 -e ./generated/parameters-basic
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-path
@@ -43,6 +44,7 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 -e ./generated/headasbooleantrue
 -e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
+-e ./generated/setuppy-authentication-union
 -e ./generated/special-headers-repeatability
 -e ./generated/special-headers-conditional-request
 -e ./generated/encode-datetime

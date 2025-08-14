@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "anythingversiontolerant.AnythingClient.get_object": null,
+        "anythingversiontolerant.aio.AnythingClient.get_object": null,
+        "anythingversiontolerant.AnythingClient.put_object": null,
+        "anythingversiontolerant.aio.AnythingClient.put_object": null,
+        "anythingversiontolerant.AnythingClient.get_string": null,
+        "anythingversiontolerant.aio.AnythingClient.get_string": null,
+        "anythingversiontolerant.AnythingClient.put_string": null,
+        "anythingversiontolerant.aio.AnythingClient.put_string": null,
+        "anythingversiontolerant.AnythingClient.get_array": null,
+        "anythingversiontolerant.aio.AnythingClient.get_array": null,
+        "anythingversiontolerant.AnythingClient.put_array": null,
+        "anythingversiontolerant.aio.AnythingClient.put_array": null
+    }
+}

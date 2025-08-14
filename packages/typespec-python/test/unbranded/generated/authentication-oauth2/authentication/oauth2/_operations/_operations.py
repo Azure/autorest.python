@@ -13,7 +13,6 @@ from corehttp.exceptions import (
 from corehttp.rest import HttpRequest, HttpResponse
 from corehttp.runtime import PipelineClient
 from corehttp.runtime.pipeline import PipelineResponse
-from corehttp.utils import case_insensitive_dict
 
 from .. import models as _models
 from .._configuration import OAuth2ClientConfiguration
@@ -36,17 +35,10 @@ def build_oauth2_valid_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_oauth2_invalid_request(**kwargs: Any) -> HttpRequest:
-    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
-
-    accept = _headers.pop("Accept", "application/json")
-
     # Construct URL
     _url = "/authentication/oauth2/invalid"
 
-    # Construct headers
-    _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
-
-    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 class _OAuth2ClientOperationsMixin(
@@ -132,7 +124,7 @@ class _OAuth2ClientOperationsMixin(
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 403:
-                error = _failsafe_deserialize(_models.InvalidAuth, response.json())
+                error = _failsafe_deserialize(_models.InvalidAuth, response)
             raise HttpResponseError(response=response, model=error)
 
         if cls:

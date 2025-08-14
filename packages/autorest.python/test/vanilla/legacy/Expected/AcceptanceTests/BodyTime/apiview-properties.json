@@ -1,0 +1,10 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodytime.models.Error": null,
+        "bodytime.operations.TimeOperations.get": null,
+        "bodytime.aio.operations.TimeOperations.get": null,
+        "bodytime.operations.TimeOperations.put": null,
+        "bodytime.aio.operations.TimeOperations.put": null
+    }
+}

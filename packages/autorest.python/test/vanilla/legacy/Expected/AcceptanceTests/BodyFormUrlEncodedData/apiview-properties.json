@@ -1,0 +1,13 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodyformurlencodeddata.models.Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicationXWwwFormUrlencodedSchema": null,
+        "bodyformurlencodeddata.models.PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApplicationXWwwFormUrlencodedSchema": null,
+        "bodyformurlencodeddata.models.PetFood": null,
+        "bodyformurlencodeddata.models.PetType": null,
+        "bodyformurlencodeddata.operations.FormdataurlencodedOperations.update_pet_with_form": null,
+        "bodyformurlencodeddata.aio.operations.FormdataurlencodedOperations.update_pet_with_form": null,
+        "bodyformurlencodeddata.operations.FormdataurlencodedOperations.partial_constant_body": null,
+        "bodyformurlencodeddata.aio.operations.FormdataurlencodedOperations.partial_constant_body": null
+    }
+}

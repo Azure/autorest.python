@@ -1,0 +1,13 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "validationversiontolerant.AutoRestValidationTest.validation_of_method_parameters": null,
+        "validationversiontolerant.aio.AutoRestValidationTest.validation_of_method_parameters": null,
+        "validationversiontolerant.AutoRestValidationTest.validation_of_body": null,
+        "validationversiontolerant.aio.AutoRestValidationTest.validation_of_body": null,
+        "validationversiontolerant.AutoRestValidationTest.get_with_constant_in_path": null,
+        "validationversiontolerant.aio.AutoRestValidationTest.get_with_constant_in_path": null,
+        "validationversiontolerant.AutoRestValidationTest.post_with_constant_in_body": null,
+        "validationversiontolerant.aio.AutoRestValidationTest.post_with_constant_in_body": null
+    }
+}

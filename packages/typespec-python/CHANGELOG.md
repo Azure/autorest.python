@@ -1,5 +1,55 @@
 # Release
 
+## 0.48.2
+
+### Bug Fixes
+
+- [#3173](https://github.com/Azure/autorest.python/pull/3173) fix generated output folder for packaging files
+- [#3173](https://github.com/Azure/autorest.python/pull/3173) keep declaration of pyproject.toml same with existing setup.py of ARM SDK
+
+
+## 0.48.1
+
+### Bump dependencies
+
+- [#3168](https://github.com/Azure/autorest.python/pull/3168) Bump tsp 1.3.0 and 0.59.0
+
+### Bug Fixes
+
+- [#3168](https://github.com/Azure/autorest.python/pull/3168) Don't include folder suffixes in documentation generated with `generation-subdir`
+- [#3168](https://github.com/Azure/autorest.python/pull/3168) Exclude doc folder in pyproject.toml and update license as per PEP 639
+- [#3163](https://github.com/Azure/autorest.python/pull/3163) Don't throw when deserializing error model responses
+
+
+## 0.48.0
+
+### Features
+
+- [#3131](https://github.com/Azure/autorest.python/pull/3131) Add pyproject.toml generation by default
+- [#3156](https://github.com/Azure/autorest.python/pull/3156) Add support for `generation-subdir`
+
+### Bug Fixes
+
+- [#3157](https://github.com/Azure/autorest.python/pull/3157) Don't hardcode `emit-cross-language-definition-file` as `true` for azure generations
+
+
+## 0.47.2
+
+### Bug Fixes
+
+- [#3154](https://github.com/Azure/autorest.python/pull/3154) fix outputfolder of packaging files for arm sdk
+- [#3154](https://github.com/Azure/autorest.python/pull/3154) Ensure necessary typing imports for internal models
+
+
+## 0.47.1
+
+### Bug Fixes
+
+- [#3135](https://github.com/Azure/autorest.python/pull/3135) Import mixins from operations init file to get patch changes
+- [#3135](https://github.com/Azure/autorest.python/pull/3135) Don't hardcode client in sample to first client in list
+- [#3134](https://github.com/Azure/autorest.python/pull/3134) Fix regression that ignored patches to mixin operation groups when patched in the `operations` folder
+
+
 ## 0.47.0
 
 ### Features

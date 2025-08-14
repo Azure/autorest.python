@@ -1,0 +1,12 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "extensibleenumsswagger.models.Pet": null,
+        "extensibleenumsswagger.models.DaysOfWeekExtensibleEnum": null,
+        "extensibleenumsswagger.models.IntEnum": null,
+        "extensibleenumsswagger.operations.PetOperations.get_by_pet_id": null,
+        "extensibleenumsswagger.aio.operations.PetOperations.get_by_pet_id": null,
+        "extensibleenumsswagger.operations.PetOperations.add_pet": null,
+        "extensibleenumsswagger.aio.operations.PetOperations.add_pet": null
+    }
+}

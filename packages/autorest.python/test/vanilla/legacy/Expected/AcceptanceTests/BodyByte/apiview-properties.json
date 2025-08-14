@@ -1,0 +1,16 @@
+{
+    "CrossLanguagePackageId": null,
+    "CrossLanguageDefinitionId": {
+        "bodybyte.models.Error": null,
+        "bodybyte.operations.ByteOperations.get_null": null,
+        "bodybyte.aio.operations.ByteOperations.get_null": null,
+        "bodybyte.operations.ByteOperations.get_empty": null,
+        "bodybyte.aio.operations.ByteOperations.get_empty": null,
+        "bodybyte.operations.ByteOperations.get_non_ascii": null,
+        "bodybyte.aio.operations.ByteOperations.get_non_ascii": null,
+        "bodybyte.operations.ByteOperations.put_non_ascii": null,
+        "bodybyte.aio.operations.ByteOperations.put_non_ascii": null,
+        "bodybyte.operations.ByteOperations.get_invalid": null,
+        "bodybyte.aio.operations.ByteOperations.get_invalid": null
+    }
+}
