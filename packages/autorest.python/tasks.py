@@ -597,7 +597,10 @@ def regenerate_samples(c, debug=False):
         "directives": None,
         "basic": None,
         "azure-mgmt-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-test", "python": True},
-        "azure-mgmt-pyproject": {"python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-pyproject", "python": True},
+        "azure-mgmt-pyproject": {
+            "python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-pyproject",
+            "python": True,
+        },
         "azure-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-test"},
     }
 
