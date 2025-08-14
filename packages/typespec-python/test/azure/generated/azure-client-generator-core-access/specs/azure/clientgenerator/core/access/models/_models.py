@@ -196,6 +196,8 @@ class NoDecoratorModelInPublic(_Model):
 class OuterModel(BaseModel):
     """Used in internal operations, should be generated but not exported.
 
+    :ivar name: Required.
+    :vartype name: str
     :ivar inner: Required.
     :vartype inner: ~specs.azure.clientgenerator.core.access.models._models.InnerModel
     """
@@ -281,6 +283,8 @@ class PublicDecoratorModelInPublic(_Model):
 class RealModel(AbstractModel, discriminator="real"):
     """Used in internal operations, should be generated but not exported.
 
+    :ivar name: Required.
+    :vartype name: str
     :ivar kind: Required. Default value is "real".
     :vartype kind: str
     """

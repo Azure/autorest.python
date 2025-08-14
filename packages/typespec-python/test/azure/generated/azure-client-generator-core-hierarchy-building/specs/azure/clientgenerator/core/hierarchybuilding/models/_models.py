@@ -56,6 +56,8 @@ class Pet(Animal, discriminator="pet"):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     Dog
 
+    :ivar name: Name of the animal. Required.
+    :vartype name: str
     :ivar kind: Required. Default value is "pet".
     :vartype kind: str
     :ivar trained: Whether the pet is trained. Required.
@@ -91,6 +93,10 @@ class Pet(Animal, discriminator="pet"):
 class Dog(Pet, discriminator="dog"):
     """Dog.
 
+    :ivar name: Name of the animal. Required.
+    :vartype name: str
+    :ivar trained: Whether the pet is trained. Required.
+    :vartype trained: bool
     :ivar kind: Required. Default value is "dog".
     :vartype kind: str
     :ivar breed: The breed of the dog. Required.

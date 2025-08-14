@@ -60,6 +60,8 @@ class Shark(Fish, discriminator="shark"):
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
     GoblinShark, SawShark
 
+    :ivar age: Required.
+    :vartype age: int
     :ivar kind: Required. Default value is "shark".
     :vartype kind: str
     :ivar sharktype: Required. Default value is None.
@@ -95,6 +97,10 @@ class Shark(Fish, discriminator="shark"):
 class GoblinShark(Shark, discriminator="goblin"):
     """The third level model GoblinShark in polymorphic multiple levels inheritance.
 
+    :ivar age: Required.
+    :vartype age: int
+    :ivar kind: Required. Default value is "shark".
+    :vartype kind: str
     :ivar sharktype: Required. Default value is "goblin".
     :vartype sharktype: str
     """
@@ -126,6 +132,8 @@ class Salmon(Fish, discriminator="salmon"):
     """The second level model in polymorphic multiple levels inheritance which contains references to
     other polymorphic instances.
 
+    :ivar age: Required.
+    :vartype age: int
     :ivar kind: Required. Default value is "salmon".
     :vartype kind: str
     :ivar friends:
@@ -167,6 +175,10 @@ class Salmon(Fish, discriminator="salmon"):
 class SawShark(Shark, discriminator="saw"):
     """The third level model SawShark in polymorphic multiple levels inheritance.
 
+    :ivar age: Required.
+    :vartype age: int
+    :ivar kind: Required. Default value is "shark".
+    :vartype kind: str
     :ivar sharktype: Required. Default value is "saw".
     :vartype sharktype: str
     """

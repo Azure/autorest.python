@@ -89,6 +89,8 @@ class Eagle(Bird, discriminator="eagle"):
     """The second level model in polymorphic single levels inheritance which contains references to
     other polymorphic instances.
 
+    :ivar wingspan: Required.
+    :vartype wingspan: int
     :ivar kind: Required. Default value is "eagle".
     :vartype kind: str
     :ivar friends:
@@ -130,6 +132,8 @@ class Eagle(Bird, discriminator="eagle"):
 class Goose(Bird, discriminator="goose"):
     """The second level model in polymorphic single level inheritance.
 
+    :ivar wingspan: Required.
+    :vartype wingspan: int
     :ivar kind: Required. Default value is "goose".
     :vartype kind: str
     """
@@ -159,6 +163,8 @@ class Goose(Bird, discriminator="goose"):
 class SeaGull(Bird, discriminator="seagull"):
     """The second level model in polymorphic single level inheritance.
 
+    :ivar wingspan: Required.
+    :vartype wingspan: int
     :ivar kind: Required. Default value is "seagull".
     :vartype kind: str
     """
@@ -188,6 +194,8 @@ class SeaGull(Bird, discriminator="seagull"):
 class Sparrow(Bird, discriminator="sparrow"):
     """The second level model in polymorphic single level inheritance.
 
+    :ivar wingspan: Required.
+    :vartype wingspan: int
     :ivar kind: Required. Default value is "sparrow".
     :vartype kind: str
     """
@@ -217,6 +225,8 @@ class Sparrow(Bird, discriminator="sparrow"):
 class TRex(Dinosaur, discriminator="t-rex"):
     """The second level legacy model in polymorphic single level inheritance.
 
+    :ivar size: Required.
+    :vartype size: int
     :ivar kind: Required. Default value is "t-rex".
     :vartype kind: str
     """

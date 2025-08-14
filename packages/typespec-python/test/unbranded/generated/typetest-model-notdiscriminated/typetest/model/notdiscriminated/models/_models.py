@@ -37,6 +37,8 @@ class Pet(_Model):
 class Cat(Pet):
     """The second level model in the normal multiple levels inheritance.
 
+    :ivar name: Required.
+    :vartype name: str
     :ivar age: Required.
     :vartype age: int
     """
@@ -66,6 +68,10 @@ class Cat(Pet):
 class Siamese(Cat):
     """The third level model in the normal multiple levels inheritance.
 
+    :ivar name: Required.
+    :vartype name: str
+    :ivar age: Required.
+    :vartype age: int
     :ivar smart: Required.
     :vartype smart: bool
     """

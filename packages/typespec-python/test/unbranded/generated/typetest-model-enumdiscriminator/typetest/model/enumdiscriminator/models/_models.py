@@ -48,6 +48,8 @@ class Snake(_Model):
 class Cobra(Snake, discriminator="cobra"):
     """Cobra model.
 
+    :ivar length: Length of the snake. Required.
+    :vartype length: int
     :ivar kind: discriminator property. Required. Species cobra
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.COBRA
     """
@@ -114,6 +116,8 @@ class Dog(_Model):
 class Golden(Dog, discriminator="golden"):
     """Golden dog model.
 
+    :ivar weight: Weight of the dog. Required.
+    :vartype weight: int
     :ivar kind: discriminator property. Required. Species golden
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
