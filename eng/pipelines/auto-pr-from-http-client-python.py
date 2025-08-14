@@ -54,6 +54,7 @@ def regen_for_typespec_python():
     log_call("git add .")
     try:
         log_call(f'git commit -m "Regenerate for typespec-python ({get_current_time()})"')
+        git_push()
     except CalledProcessError:
         logger.info("No changes to commit.")
 
@@ -64,6 +65,7 @@ def regen_for_autorest_python():
     log_call("git add .")
     try:
         log_call(f'git commit -m "Regenerate for autorest.python ({get_current_time()})"')
+        git_push()
     except CalledProcessError:
         logger.info("No changes to commit.")
 
