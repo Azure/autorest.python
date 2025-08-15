@@ -31,21 +31,21 @@ class MicrosoftAzureTestUrl:
 
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversion.operations.GroupOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is None.
     :type base_url: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "2014-04-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(
-        self, credential: "TokenCredential", subscription_id: str, base_url: Optional[str] = None, **kwargs: Any
+        self, subscription_id: str, base_url: Optional[str] = None, *, credential: "TokenCredential", **kwargs: Any
     ) -> None:
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:
             base_url = _endpoints["resource_manager"]

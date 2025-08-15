@@ -33,17 +33,17 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_one: multiapinoasync.v3.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapinoasync.v3.operations.OperationGroupTwoOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is None.
     :type base_url: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "3.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: Optional[str] = None, **kwargs: Any) -> None:
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+    def __init__(self, base_url: Optional[str] = None, *, credential: "TokenCredential", **kwargs: Any) -> None:
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:
             base_url = _endpoints["resource_manager"]

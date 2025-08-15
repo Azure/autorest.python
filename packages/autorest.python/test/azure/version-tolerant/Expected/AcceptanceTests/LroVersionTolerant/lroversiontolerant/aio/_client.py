@@ -36,16 +36,16 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
     :vartype lrosads: lroversiontolerant.aio.operations.LROSADsOperations
     :ivar lr_os_custom_header: LROsCustomHeaderOperations operations
     :vartype lr_os_custom_header: lroversiontolerant.aio.operations.LROsCustomHeaderOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", endpoint: Optional[str] = None, **kwargs: Any) -> None:
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+    def __init__(self, endpoint: Optional[str] = None, *, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
             endpoint = _endpoints["resource_manager"]

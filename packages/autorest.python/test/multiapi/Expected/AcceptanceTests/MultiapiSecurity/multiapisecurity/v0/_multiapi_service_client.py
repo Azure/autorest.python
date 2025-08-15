@@ -28,16 +28,18 @@ class MultiapiServiceClient:
 
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one: multiapisecurity.v0.operations.OperationGroupOneOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "0.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: "TokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(
+        self, base_url: str = "http://localhost:3000", *, credential: "TokenCredential", **kwargs: Any
+    ) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
 
         _policies = kwargs.pop("policies", None)

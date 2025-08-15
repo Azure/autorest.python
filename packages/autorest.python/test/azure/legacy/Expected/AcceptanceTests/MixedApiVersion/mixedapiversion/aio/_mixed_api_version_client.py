@@ -55,20 +55,21 @@ class MixedApiVersionClient:  # pylint: disable=client-accepts-api-version-keywo
     :vartype odata: mixedapiversion.aio.operations.OdataOperations
     :ivar header: HeaderOperations operations
     :vartype header: mixedapiversion.aio.operations.HeaderOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         subscription_id: str,
         base_url: str = "http://localhost:3000",
+        *,
+        credential: "AsyncTokenCredential",
         **kwargs: Any
     ) -> None:
         self._config = MixedApiVersionClientConfiguration(
