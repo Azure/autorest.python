@@ -23,7 +23,6 @@ interface TspCommand {
 const SKIP_SPECS = [
     "type/union/discriminated",
     "client-operation-group",
-    "azure/client-generator-core/api-version",
 ];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
