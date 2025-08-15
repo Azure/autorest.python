@@ -95,6 +95,7 @@ words:
   - pylintrc
   - pyodide
   - pygen
+  - pytyped
   - qnas
   - ragrs
   - rcfile
