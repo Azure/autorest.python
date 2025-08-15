@@ -59,22 +59,22 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :vartype odata: azurespecialpropertiesversiontolerant.operations.OdataOperations
     :ivar header: HeaderOperations operations
     :vartype header: azurespecialpropertiesversiontolerant.operations.HeaderOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(
-        self, credential: "TokenCredential", subscription_id: str, endpoint: Optional[str] = None, **kwargs: Any
+        self, subscription_id: str, endpoint: Optional[str] = None, *, credential: "TokenCredential", **kwargs: Any
     ) -> None:
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
             endpoint = _endpoints["resource_manager"]

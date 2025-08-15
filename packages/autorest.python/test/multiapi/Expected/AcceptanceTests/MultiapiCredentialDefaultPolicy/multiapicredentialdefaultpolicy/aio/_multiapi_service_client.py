@@ -66,10 +66,11 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def __init__(
         self,
-        credential: AzureKeyCredential,
         api_version: Optional[str] = None,
         base_url: str = "http://localhost:3000",
         profile: KnownProfiles = KnownProfiles.default,
+        *,
+        credential: AzureKeyCredential,
         **kwargs: Any
     ) -> None:
         if api_version:

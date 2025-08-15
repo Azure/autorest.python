@@ -32,10 +32,10 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :ivar operation_group_one: OperationGroupOneOperations operations
     :vartype operation_group_one:
      multiapiwithsubmodule.submodule.v1.aio.operations.OperationGroupOneOperations
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is None.
     :type base_url: str
+    :keyword credential: Credential needed for the client to connect to Azure. Required.
+    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
@@ -43,8 +43,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
      Retry-After header is present.
     """
 
-    def __init__(self, credential: "AsyncTokenCredential", base_url: Optional[str] = None, **kwargs: Any) -> None:
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+    def __init__(self, base_url: Optional[str] = None, *, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:
             base_url = _endpoints["resource_manager"]

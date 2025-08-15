@@ -24,25 +24,25 @@ class MultiapiCustomBaseUrlServiceClientConfiguration:
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param credential: Credential needed for the client to connect to Azure. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param endpoint: Pass in https://localhost:3000. Required.
     :type endpoint: str
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     """
 
     def __init__(
         self,
-        credential: "AsyncTokenCredential",
         endpoint: str,
+        credential: "AsyncTokenCredential",
         **kwargs: Any
     ) -> None:
-        if credential is None:
-            raise ValueError("Parameter 'credential' must not be None.")
         if endpoint is None:
             raise ValueError("Parameter 'endpoint' must not be None.")
+        if credential is None:
+            raise ValueError("Parameter 'credential' must not be None.")
 
-        self.credential = credential
         self.endpoint = endpoint
+        self.credential = credential
         self.credential_scopes = kwargs.pop('credential_scopes', [])
         kwargs.setdefault('sdk_moniker', 'multiapicustombaseurl/{}'.format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)

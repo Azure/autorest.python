@@ -30,7 +30,7 @@ _SERIALIZER.client_side_validation = False
 
 
 def build_conditional_request_post_if_match_request(  # pylint: disable=name-too-long
-    *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+    *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -49,7 +49,7 @@ def build_conditional_request_post_if_match_request(  # pylint: disable=name-too
 
 
 def build_conditional_request_post_if_none_match_request(  # pylint: disable=name-too-long
-    *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+    *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -102,7 +102,7 @@ class _ConditionalRequestClientOperationsMixin(
 ):
 
     def post_if_match(  # pylint: disable=inconsistent-return-statements
-        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
 
@@ -158,7 +158,7 @@ class _ConditionalRequestClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     def post_if_none_match(  # pylint: disable=inconsistent-return-statements
-        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
 
