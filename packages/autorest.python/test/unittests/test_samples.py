@@ -64,13 +64,8 @@ def test_package_mode_for_azure_mgmt_pyproject():
     import tomli
 
     pyproject = (
-        Path(__file__).parent.parent
-        / "samples"
-        / "specification"
-        / "azure-mgmt-pyproject"
-        / "test"
-        / "azure-mgmt-pyproject"
-        / "pyproject.toml"
+        Path(__file__).parent.parent.parent
+        / "samples/specification/azure-mgmt-pyproject/test/azure-mgmt-pyproject/pyproject.toml"
     )
     assert pyproject.exists(), "pyproject.toml should exist in the specified path"
 
