@@ -20,10 +20,7 @@ interface TspCommand {
 }
 
 // Add this near the top with other constants
-const SKIP_SPECS = [
-    "type/union/discriminated",
-    "client-operation-group",
-];
+const SKIP_SPECS = ["type/union/discriminated", "client-operation-group"];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
