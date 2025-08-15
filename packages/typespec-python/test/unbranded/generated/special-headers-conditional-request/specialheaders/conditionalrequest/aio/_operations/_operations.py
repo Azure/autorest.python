@@ -35,7 +35,7 @@ class _ConditionalRequestClientOperationsMixin(
 ):
 
     async def post_if_match(
-        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
 
@@ -93,7 +93,7 @@ class _ConditionalRequestClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     async def post_if_none_match(
-        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
 

@@ -125,8 +125,7 @@ class Eagle(Bird, discriminator="eagle"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "eagle"  # type: ignore
+        super().__init__(*args, kind="eagle", **kwargs)
 
 
 class Goose(Bird, discriminator="goose"):
@@ -156,8 +155,7 @@ class Goose(Bird, discriminator="goose"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "goose"  # type: ignore
+        super().__init__(*args, kind="goose", **kwargs)
 
 
 class SeaGull(Bird, discriminator="seagull"):
@@ -187,8 +185,7 @@ class SeaGull(Bird, discriminator="seagull"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "seagull"  # type: ignore
+        super().__init__(*args, kind="seagull", **kwargs)
 
 
 class Sparrow(Bird, discriminator="sparrow"):
@@ -218,8 +215,7 @@ class Sparrow(Bird, discriminator="sparrow"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "sparrow"  # type: ignore
+        super().__init__(*args, kind="sparrow", **kwargs)
 
 
 class TRex(Dinosaur, discriminator="t-rex"):
@@ -249,5 +245,4 @@ class TRex(Dinosaur, discriminator="t-rex"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "t-rex"  # type: ignore
+        super().__init__(*args, kind="t-rex", **kwargs)

@@ -78,8 +78,7 @@ class Cobra(Snake, discriminator="cobra"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = SnakeKind.COBRA  # type: ignore
+        super().__init__(*args, kind=SnakeKind.COBRA, **kwargs)
 
 
 class Dog(_Model):
@@ -146,5 +145,4 @@ class Golden(Dog, discriminator="golden"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = DogKind.GOLDEN  # type: ignore
+        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)

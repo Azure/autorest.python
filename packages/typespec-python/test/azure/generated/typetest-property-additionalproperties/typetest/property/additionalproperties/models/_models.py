@@ -517,8 +517,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "derived"  # type: ignore
+        super().__init__(*args, kind="derived", **kwargs)
 
 
 class IsFloatAdditionalProperties(_Model):
@@ -777,8 +776,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.kind = "derived"  # type: ignore
+        super().__init__(*args, kind="derived", **kwargs)
 
 
 class ModelForRecord(_Model):
