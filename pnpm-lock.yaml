@@ -98,8 +98,8 @@ importers:
         version: 4.19.3
     devDependencies:
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.25
-        version: 0.1.0-alpha.25(tsnbxk7z3h65bhkmgjy2jtqk7m)
+        specifier: 0.1.0-alpha.27
+        version: 0.1.0-alpha.27(tsnbxk7z3h65bhkmgjy2jtqk7m)
       '@azure-tools/typespec-autorest':
         specifier: ~0.59.0
         version: 0.59.0(tlfj6gbglsbr5x2lirzpm33h7y)
@@ -209,8 +209,8 @@ packages:
     resolution: {integrity: sha512-T21naRb6JDdjjn2s/zwr9iCIv/9jviL/PRtiWAhi+3UA2WKH2wrId2VqJa4uVD7iEV8BLkuGgFmMkaMBG26hFw==}
     engines: {node: '>=12.0.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.25':
-    resolution: {integrity: sha512-fvexvGbDUUcd6su+RCln/hrOosbWYvl1FaycaifX0NVJub/ne492G2dvHLgp2N8rnUJ9uIenXYjHZHYsrjyGHQ==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.27':
+    resolution: {integrity: sha512-70+PKuUGz/Uw7M5bS8daIf8OGw2nvZy9j4OC0Sy2dcEy8I85JgysE9Cjv59f9qsUFyVsGydI/uQSv4Njvnjfcg==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.59.0
@@ -4866,7 +4866,7 @@ snapshots:
       command-exists: 1.2.9
       semver: 7.6.3
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.25(tsnbxk7z3h65bhkmgjy2jtqk7m)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.27(tsnbxk7z3h65bhkmgjy2jtqk7m)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.59.0(@typespec/compiler@1.3.0(@types/node@24.1.0))(@typespec/http@1.3.0(@typespec/compiler@1.3.0(@types/node@24.1.0))(@typespec/streams@0.73.0(@typespec/compiler@1.3.0(@types/node@24.1.0))))(@typespec/rest@0.73.0(@typespec/compiler@1.3.0(@types/node@24.1.0))(@typespec/http@1.3.0(@typespec/compiler@1.3.0(@types/node@24.1.0))(@typespec/streams@0.73.0(@typespec/compiler@1.3.0(@types/node@24.1.0)))))
       '@typespec/compiler': 1.3.0(@types/node@24.1.0)
