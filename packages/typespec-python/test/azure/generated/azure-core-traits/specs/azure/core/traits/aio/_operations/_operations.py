@@ -53,7 +53,7 @@ class _TraitsClientOperationsMixin(
         if_unmodified_since: Optional[datetime.datetime] = None,
         if_modified_since: Optional[datetime.datetime] = None,
         etag: Optional[str] = None,
-        match_condition: Optional["MatchConditions"] = None,
+        match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
     ) -> _models.User:
         """Get a resource, sending and receiving headers.

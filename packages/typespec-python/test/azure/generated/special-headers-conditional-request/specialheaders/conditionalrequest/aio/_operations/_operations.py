@@ -43,7 +43,7 @@ class _ConditionalRequestClientOperationsMixin(
 
     @distributed_trace_async
     async def post_if_match(
-        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Match in header is defined.
 
@@ -102,7 +102,7 @@ class _ConditionalRequestClientOperationsMixin(
 
     @distributed_trace_async
     async def post_if_none_match(
-        self, *, etag: Optional[str] = None, match_condition: Optional["MatchConditions"] = None, **kwargs: Any
+        self, *, etag: Optional[str] = None, match_condition: Optional[MatchConditions] = None, **kwargs: Any
     ) -> None:
         """Check when only If-None-Match in header is defined.
 
