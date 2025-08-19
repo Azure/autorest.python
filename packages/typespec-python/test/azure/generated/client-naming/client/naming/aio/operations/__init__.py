@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ClientModelOperations  # type: ignore
+from ._operations import ModelClientOperations  # type: ignore
 from ._operations import UnionEnumOperations  # type: ignore
 from ._operations import _NamingClientOperationsMixin  # type: ignore # pylint: disable=unused-import
 
@@ -21,7 +21,7 @@ from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ClientModelOperations",
+    "ModelClientOperations",
     "UnionEnumOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore

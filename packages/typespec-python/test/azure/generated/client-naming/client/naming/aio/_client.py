@@ -16,14 +16,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ClientModelOperations, UnionEnumOperations, _NamingClientOperationsMixin
+from .operations import ModelClientOperations, UnionEnumOperations, _NamingClientOperationsMixin
 
 
 class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
 
-    :ivar client_model: ClientModelOperations operations
-    :vartype client_model: client.naming.aio.operations.ClientModelOperations
+    :ivar model_client: ModelClientOperations operations
+    :vartype model_client: client.naming.aio.operations.ModelClientOperations
     :ivar union_enum: UnionEnumOperations operations
     :vartype union_enum: client.naming.aio.operations.UnionEnumOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
@@ -58,7 +58,7 @@ class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.client_model = ClientModelOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.model_client = ModelClientOperations(self._client, self._config, self._serialize, self._deserialize)
         self.union_enum = UnionEnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(

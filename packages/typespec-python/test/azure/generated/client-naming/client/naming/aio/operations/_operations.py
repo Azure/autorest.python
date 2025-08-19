@@ -30,8 +30,8 @@ from ..._utils.model_base import SdkJSONEncoder
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
-    build_client_model_client_request,
-    build_client_model_language_request,
+    build_model_client_client_request,
+    build_model_client_language_request,
     build_naming_client_name_request,
     build_naming_client_request,
     build_naming_compatible_with_encoded_name_request,
@@ -49,14 +49,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
 
 
-class ClientModelOperations:
+class ModelClientOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.aio.NamingClient`'s
-        :attr:`client_model` attribute.
+        :attr:`model_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -139,7 +139,7 @@ class ClientModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_client_model_client_request(
+        _request = build_model_client_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -239,7 +239,7 @@ class ClientModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_client_model_language_request(
+        _request = build_model_client_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
