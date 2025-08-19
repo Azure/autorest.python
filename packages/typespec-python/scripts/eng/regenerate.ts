@@ -97,7 +97,10 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
         "namespace": "client.structure.twooperationgroup",
     },
     "client/naming": {
-        namespace: "client.naming",
+        namespace: "client.naming.main",
+    },
+    "client/naming/enum-conflict": {
+        namespace: "client.naming.enumconflict",
     },
     "client/overload": {
         namespace: "client.overload",
