@@ -33,6 +33,7 @@ from .operations import (
 )
 
 if TYPE_CHECKING:
+    from azure.core import AzureClouds
     from azure.core.credentials import TokenCredential
 
 
@@ -64,13 +65,22 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :type base_url: str
     :keyword credential: Credential needed for the client to connect to Azure. Required.
     :paramtype credential: ~azure.core.credentials.TokenCredential
+    :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
+     None.
+    :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(
-        self, subscription_id: str, base_url: Optional[str] = None, *, credential: "TokenCredential", **kwargs: Any
+        self,
+        subscription_id: str,
+        base_url: Optional[str] = None,
+        *,
+        credential: "TokenCredential",
+        cloud_setting: Optional["AzureClouds"] = None,
+        **kwargs: Any
     ) -> None:
         _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
@@ -78,7 +88,11 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
             base_url = _endpoints["resource_manager"]
         credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
         self._config = AutoRestAzureSpecialParametersTestClientConfiguration(
-            credential=credential, subscription_id=subscription_id, credential_scopes=credential_scopes, **kwargs
+            credential=credential,
+            subscription_id=subscription_id,
+            cloud_setting=cloud_setting,
+            credential_scopes=credential_scopes,
+            **kwargs
         )
 
         _policies = kwargs.pop("policies", None)

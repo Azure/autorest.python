@@ -6,13 +6,16 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMHttpLoggingPolicy, AsyncARMChallengeAuthenticationPolicy
 
 from .._version import VERSION
+
+if TYPE_CHECKING:
+    from azure.core import AzureClouds
 
 
 class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
@@ -23,13 +26,19 @@ class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
+    :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
+     None.
+    :type cloud_setting: ~azure.core.AzureClouds
     """
 
-    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
+    def __init__(
+        self, credential: AzureKeyCredential, cloud_setting: Optional["AzureClouds"] = None, **kwargs: Any
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.cloud_setting = cloud_setting
         kwargs.setdefault("sdk_moniker", "autorestheadtestservice/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)

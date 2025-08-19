@@ -88,8 +88,8 @@
         "credential_scopes": null,
         "credential_call_sync": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
         "credential_call_async": "policies.AzureKeyCredentialPolicy(self.credential, \"api-key\", **kwargs)",
-        "sync_imports": "{\"regular\": {\"sdkcore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"sdkcore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}",
-        "async_imports": "{\"regular\": {\"sdkcore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"sdkcore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}}"
+        "sync_imports": "{\"regular\": {\"sdkcore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMChallengeAuthenticationPolicy\", \"ARMHttpLoggingPolicy\"]}, \"local\": {\"._version\": [\"VERSION\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"sdkcore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"typing\": {\"sdkcore\": {\"azure.core\": [\"AzureClouds\"]}}}",
+        "async_imports": "{\"regular\": {\"sdkcore\": {\"azure.core.pipeline\": [\"policies\"], \"azure.mgmt.core.policies\": [\"ARMHttpLoggingPolicy\", \"AsyncARMChallengeAuthenticationPolicy\"]}, \"local\": {\".._version\": [\"VERSION\"]}, \"stdlib\": {\"typing\": [\"Optional\"]}}, \"conditional\": {\"stdlib\": {\"typing\": [\"Any\"]}, \"sdkcore\": {\"azure.core.credentials\": [\"AzureKeyCredential\"]}}, \"typing\": {\"sdkcore\": {\"azure.core\": [\"AzureClouds\"]}}}"
     },
     "operation_groups": {
         "operation_group_one": "OperationGroupOneOperations"

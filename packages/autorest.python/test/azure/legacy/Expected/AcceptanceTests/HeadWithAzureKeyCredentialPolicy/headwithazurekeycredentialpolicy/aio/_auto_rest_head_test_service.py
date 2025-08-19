@@ -35,7 +35,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     def __init__(
         self, base_url: str = "http://localhost:3000", *, credential: AzureKeyCredential, **kwargs: Any
     ) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(
+            credential=credential, cloud_setting=cloud_setting, **kwargs
+        )
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:

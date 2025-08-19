@@ -22,6 +22,7 @@ from ._configuration import AutoRestLongRunningOperationTestServiceConfiguration
 from .operations import LRORetrysOperations, LROSADsOperations, LROsCustomHeaderOperations, LROsOperations
 
 if TYPE_CHECKING:
+    from azure.core import AzureClouds
     from azure.core.credentials_async import AsyncTokenCredential
 
 
@@ -40,18 +41,28 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
     :type endpoint: str
     :keyword credential: Credential needed for the client to connect to Azure. Required.
     :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
+     None.
+    :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
     """
 
-    def __init__(self, endpoint: Optional[str] = None, *, credential: "AsyncTokenCredential", **kwargs: Any) -> None:
+    def __init__(
+        self,
+        endpoint: Optional[str] = None,
+        *,
+        credential: "AsyncTokenCredential",
+        cloud_setting: Optional["AzureClouds"] = None,
+        **kwargs: Any
+    ) -> None:
         _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not endpoint:
             endpoint = _endpoints["resource_manager"]
         credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
         self._config = AutoRestLongRunningOperationTestServiceConfiguration(
-            credential=credential, credential_scopes=credential_scopes, **kwargs
+            credential=credential, cloud_setting=cloud_setting, credential_scopes=credential_scopes, **kwargs
         )
 
         _policies = kwargs.pop("policies", None)
