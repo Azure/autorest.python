@@ -31,12 +31,12 @@ class MicrosoftAzureTestUrl:
 
     :ivar group: GroupOperations operations
     :vartype group: subscriptionidapiversionversiontolerant.aio.operations.GroupOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Subscription Id. Required.
     :type subscription_id: str
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
@@ -47,10 +47,10 @@ class MicrosoftAzureTestUrl:
 
     def __init__(
         self,
+        credential: "AsyncTokenCredential",
         subscription_id: str,
         endpoint: Optional[str] = None,
         *,
-        credential: "AsyncTokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:

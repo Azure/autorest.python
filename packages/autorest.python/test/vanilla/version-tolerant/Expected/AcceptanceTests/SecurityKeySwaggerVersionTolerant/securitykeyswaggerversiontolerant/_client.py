@@ -23,14 +23,14 @@ from ._utils.serialization import Deserializer, Serializer
 class AutorestSecurityKey(_AutorestSecurityKeyOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Key REST APIs.
 
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials.AzureKeyCredential
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(
-        self, *, credential: AzureKeyCredential, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, credential: AzureKeyCredential, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = AutorestSecurityKeyConfiguration(credential=credential, **kwargs)
 

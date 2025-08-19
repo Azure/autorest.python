@@ -20,7 +20,7 @@
                 "description": "Credential needed for the client to connect to Azure. Required.",
                 "docstring_type": "~azure.core.credentials.AzureKeyCredential",
                 "required": true,
-                "method_location": "keywordOnly"
+                "method_location": "positional"
             }
         },
         "async": {

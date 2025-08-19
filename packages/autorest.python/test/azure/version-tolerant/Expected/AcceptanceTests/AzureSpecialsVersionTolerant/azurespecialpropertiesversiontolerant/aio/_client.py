@@ -60,13 +60,13 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :vartype odata: azurespecialpropertiesversiontolerant.aio.operations.OdataOperations
     :ivar header: HeaderOperations operations
     :vartype header: azurespecialpropertiesversiontolerant.aio.operations.HeaderOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
@@ -77,10 +77,10 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
 
     def __init__(
         self,
+        credential: "AsyncTokenCredential",
         subscription_id: str,
         endpoint: Optional[str] = None,
         *,
-        credential: "AsyncTokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:

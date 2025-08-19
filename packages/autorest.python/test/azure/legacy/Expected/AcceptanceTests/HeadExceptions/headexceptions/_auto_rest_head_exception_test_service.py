@@ -31,10 +31,10 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
 
     :ivar head_exception: HeadExceptionOperations operations
     :vartype head_exception: headexceptions.operations.HeadExceptionOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is None.
     :type base_url: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
@@ -42,9 +42,9 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
 
     def __init__(
         self,
+        credential: "TokenCredential",
         base_url: Optional[str] = None,
         *,
-        credential: "TokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:

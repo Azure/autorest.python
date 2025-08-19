@@ -31,10 +31,10 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.mgmt.sample.aio.operations.HttpSuccessOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is None.
     :type base_url: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
@@ -42,9 +42,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
 
     def __init__(
         self,
+        credential: "AsyncTokenCredential",
         base_url: Optional[str] = None,
         *,
-        credential: "AsyncTokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:

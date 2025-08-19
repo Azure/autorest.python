@@ -74,11 +74,11 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     def __init__(
         self,
+        credential: "TokenCredential",
         api_version: Optional[str]=None,
         base_url: Optional[str] = None,
         profile: KnownProfiles=KnownProfiles.default,
         *,
-        credential: "TokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ):

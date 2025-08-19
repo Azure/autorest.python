@@ -20,7 +20,7 @@
                 "description": "Credential needed for the client to connect to Azure. Required.",
                 "docstring_type": "~azure.core.credentials.TokenCredential",
                 "required": true,
-                "method_location": "keywordOnly"
+                "method_location": "positional"
             },
             "cloud_setting": {
                 "signature": "cloud_setting: Optional[\"AzureClouds\"] = None,",

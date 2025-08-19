@@ -33,13 +33,13 @@ class StorageManagementClient:
     :vartype storage_accounts: storageversiontolerant.operations.StorageAccountsOperations
     :ivar usage: UsageOperations operations
     :vartype usage: storageversiontolerant.operations.UsageOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials.TokenCredential
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
@@ -52,10 +52,10 @@ class StorageManagementClient:
 
     def __init__(
         self,
+        credential: "TokenCredential",
         subscription_id: str,
         endpoint: Optional[str] = None,
         *,
-        credential: "TokenCredential",
         cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:

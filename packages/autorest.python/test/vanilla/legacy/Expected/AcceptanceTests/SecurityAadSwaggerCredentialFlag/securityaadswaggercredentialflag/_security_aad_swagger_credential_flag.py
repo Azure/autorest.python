@@ -25,15 +25,13 @@ class SecurityAadSwaggerCredentialFlag(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Autorest Security Aad REST APIs.
 
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials.AzureKeyCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials.AzureKeyCredential
     """
 
-    def __init__(
-        self, base_url: str = "http://localhost:3000", *, credential: AzureKeyCredential, **kwargs: Any
-    ) -> None:
+    def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
         self._config = SecurityAadSwaggerCredentialFlagConfiguration(credential=credential, **kwargs)
 
         _policies = kwargs.pop("policies", None)

@@ -43,10 +43,10 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
     The api-version parameter sets the default API version if the operation
     group is not described in the profile.
 
-    :param endpoint: Pass in https://localhost:3000. Required.
-    :type endpoint: str
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
+    :param endpoint: Pass in https://localhost:3000. Required.
+    :type endpoint: str
     :param api_version: API version to use if no profile is provided, or if missing in profile.
     :type api_version: str
     :param profile: A profile definition, from KnownProfiles to dict.
@@ -64,11 +64,10 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
 
     def __init__(
         self,
+        credential: "TokenCredential",
         endpoint: str,
         api_version: Optional[str]=None,
         profile: KnownProfiles=KnownProfiles.default,
-        *,
-        credential: "TokenCredential",
         **kwargs: Any
     ):
         if api_version == '1.0.0':
@@ -79,7 +78,7 @@ class MultiapiCustomBaseUrlServiceClient(MultiapiCustomBaseUrlServiceClientOpera
             raise ValueError("API version {} is not available".format(api_version))
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(endpoint, credential, **kwargs)
+        self._config = MultiapiCustomBaseUrlServiceClientConfiguration(credential, endpoint, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

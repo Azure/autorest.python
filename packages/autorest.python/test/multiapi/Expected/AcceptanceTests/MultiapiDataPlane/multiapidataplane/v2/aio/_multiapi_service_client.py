@@ -30,17 +30,17 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     :vartype operation_group_one: multiapidataplane.v2.aio.operations.OperationGroupOneOperations
     :ivar operation_group_two: OperationGroupTwoOperations operations
     :vartype operation_group_two: multiapidataplane.v2.aio.operations.OperationGroupTwoOperations
+    :param credential: Credential needed for the client to connect to Azure. Required.
+    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword credential: Credential needed for the client to connect to Azure. Required.
-    :paramtype credential: ~azure.core.credentials_async.AsyncTokenCredential
     :keyword api_version: Api Version. Default value is "2.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
     def __init__(
-        self, base_url: str = "http://localhost:3000", *, credential: "AsyncTokenCredential", **kwargs: Any
+        self, credential: "AsyncTokenCredential", base_url: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
 
