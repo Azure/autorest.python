@@ -225,7 +225,8 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None)) if input else None
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         _json = None
@@ -350,7 +351,8 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None)) if input else None
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = None
@@ -413,7 +415,8 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None)) if input else None
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:

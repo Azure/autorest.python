@@ -521,9 +521,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -578,9 +577,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -635,9 +633,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -692,9 +689,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -749,9 +745,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -806,9 +801,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -863,9 +857,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -920,9 +913,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -977,9 +969,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -1034,9 +1025,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -1133,9 +1123,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -1190,9 +1179,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -1247,9 +1235,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
@@ -1304,9 +1291,8 @@ class HttpSuccessOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = (
-            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if boolean_value else None
-        )
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if boolean_value else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if boolean_value is not None:
