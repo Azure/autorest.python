@@ -1,4 +1,4 @@
-# pylint: disable=line-too-long,useless-suppression
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -11,7 +11,7 @@ from io import IOBase
 import json
 from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
 
-from azure.core import AsyncPipelineClient
+from azure.core import PipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
     HttpResponseError,
@@ -21,32 +21,156 @@ from azure.core.exceptions import (
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
-from azure.core.rest import AsyncHttpResponse, HttpRequest
-from azure.core.tracing.decorator_async import distributed_trace_async
+from azure.core.rest import HttpRequest, HttpResponse
+from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
-from ... import models as _models
-from ..._utils.model_base import SdkJSONEncoder
-from ..._utils.serialization import Deserializer, Serializer
-from ..._utils.utils import ClientMixinABC
-from ...operations._operations import (
-    build_model_client_client_request,
-    build_model_client_language_request,
-    build_naming_client_name_request,
-    build_naming_client_request,
-    build_naming_compatible_with_encoded_name_request,
-    build_naming_language_request,
-    build_naming_parameter_request,
-    build_naming_request_request,
-    build_naming_response_request,
-    build_union_enum_union_enum_member_name_request,
-    build_union_enum_union_enum_name_request,
-)
+from .. import models as _models
 from .._configuration import NamingClientConfiguration
+from .._utils.model_base import SdkJSONEncoder
+from .._utils.serialization import Deserializer, Serializer
+from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+
+_SERIALIZER = Serializer()
+_SERIALIZER.client_side_validation = False
+
+
+def build_model_client_client_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/client/naming/model/client"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_model_client_language_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/client/naming/model/language"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_union_enum_union_enum_name_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: str = kwargs.pop("content_type")
+    # Construct URL
+    _url = "/client/naming/union-enum/union-enum-name"
+
+    # Construct headers
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_union_enum_union_enum_member_name_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: str = kwargs.pop("content_type")
+    # Construct URL
+    _url = "/client/naming/union-enum/union-enum-member-name"
+
+    # Construct headers
+    _headers["content-type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_naming_client_name_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    _url = "/client/naming/operation"
+
+    return HttpRequest(method="POST", url=_url, **kwargs)
+
+
+def build_naming_parameter_request(*, client_name: str, **kwargs: Any) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/client/naming/parameter"
+
+    # Construct parameters
+    _params["defaultName"] = _SERIALIZER.query("client_name", client_name, "str")
+
+    return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
+
+
+def build_naming_client_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/client/naming/property/client"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_naming_language_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/client/naming/property/language"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_naming_compatible_with_encoded_name_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+    # Construct URL
+    _url = "/client/naming/property/compatible-with-encoded-name"
+
+    # Construct headers
+    if content_type is not None:
+        _headers["Content-Type"] = _SERIALIZER.header("content_type", content_type, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_naming_request_request(*, client_name: str, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/client/naming/header"
+
+    # Construct headers
+    _headers["default-name"] = _SERIALIZER.header("client_name", client_name, "str")
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_naming_response_request(**kwargs: Any) -> HttpRequest:
+    # Construct URL
+    _url = "/client/naming/header"
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
 
 
 class ModelClientOperations:
@@ -55,23 +179,23 @@ class ModelClientOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~client.naming.aio.NamingClient`'s
+        :class:`~client.naming.main.NamingClient`'s
         :attr:`model_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NamingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @overload
-    async def client(self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def client(self, body: _models.ClientModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
-        :type body: ~client.naming.models.ClientModel
+        :type body: ~client.naming.main.models.ClientModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -81,7 +205,7 @@ class ModelClientOperations:
         """
 
     @overload
-    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -95,7 +219,7 @@ class ModelClientOperations:
         """
 
     @overload
-    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -108,12 +232,14 @@ class ModelClientOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def client(self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def client(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ClientModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """client.
 
         :param body: Is one of the following types: ClientModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.models.ClientModel or JSON or IO[bytes]
+        :type body: ~client.naming.main.models.ClientModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -151,7 +277,7 @@ class ModelClientOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -165,13 +291,11 @@ class ModelClientOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(
-        self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def language(self, body: _models.PythonModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
-        :type body: ~client.naming.models.PythonModel
+        :type body: ~client.naming.main.models.PythonModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -181,7 +305,7 @@ class ModelClientOperations:
         """
 
     @overload
-    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -195,7 +319,7 @@ class ModelClientOperations:
         """
 
     @overload
-    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -208,12 +332,14 @@ class ModelClientOperations:
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def language(self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def language(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.PythonModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """language.
 
         :param body: Is one of the following types: PythonModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.models.PythonModel or JSON or IO[bytes]
+        :type body: ~client.naming.main.models.PythonModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -251,7 +377,7 @@ class ModelClientOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -271,23 +397,25 @@ class UnionEnumOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~client.naming.aio.NamingClient`'s
+        :class:`~client.naming.main.NamingClient`'s
         :attr:`union_enum` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
-        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
         self._config: NamingClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    @distributed_trace_async
-    async def union_enum_name(self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any) -> None:
+    @distributed_trace
+    def union_enum_name(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[str, _models.ClientExtensibleEnum], **kwargs: Any
+    ) -> None:
         """union_enum_name.
 
         :param body: "value1" Required.
-        :type body: str or ~client.naming.models.ClientExtensibleEnum
+        :type body: str or ~client.naming.main.models.ClientExtensibleEnum
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -320,7 +448,7 @@ class UnionEnumOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -333,12 +461,14 @@ class UnionEnumOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def union_enum_member_name(self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any) -> None:
+    @distributed_trace
+    def union_enum_member_name(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[str, _models.ExtensibleEnum], **kwargs: Any
+    ) -> None:
         """union_enum_member_name.
 
         :param body: Known values are: "value1" and "value2". Required.
-        :type body: str or ~client.naming.models.ExtensibleEnum
+        :type body: str or ~client.naming.main.models.ExtensibleEnum
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -371,7 +501,7 @@ class UnionEnumOperations:
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -386,11 +516,11 @@ class UnionEnumOperations:
 
 
 class _NamingClientOperationsMixin(
-    ClientMixinABC[AsyncPipelineClient[HttpRequest, AsyncHttpResponse], NamingClientConfiguration]
+    ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], NamingClientConfiguration]
 ):
 
-    @distributed_trace_async
-    async def client_name(self, **kwargs: Any) -> None:
+    @distributed_trace
+    def client_name(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """client_name.
 
         :return: None
@@ -420,7 +550,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -433,8 +563,8 @@ class _NamingClientOperationsMixin(
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def parameter(self, *, client_name: str, **kwargs: Any) -> None:
+    @distributed_trace
+    def parameter(self, *, client_name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """parameter.
 
         :keyword client_name: Required.
@@ -467,7 +597,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -481,13 +611,11 @@ class _NamingClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def client(
-        self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> None:
+    def client(self, body: _models.ClientNameModel, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
-        :type body: ~client.naming.models.ClientNameModel
+        :type body: ~client.naming.main.models.ClientNameModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -497,7 +625,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def client(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -511,7 +639,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def client(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """client.
 
         :param body: Required.
@@ -524,12 +652,14 @@ class _NamingClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def client(self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def client(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.ClientNameModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """client.
 
         :param body: Is one of the following types: ClientNameModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.models.ClientNameModel or JSON or IO[bytes]
+        :type body: ~client.naming.main.models.ClientNameModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -567,7 +697,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -581,13 +711,13 @@ class _NamingClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def language(
+    def language(
         self, body: _models.LanguageClientNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """language.
 
         :param body: Required.
-        :type body: ~client.naming.models.LanguageClientNameModel
+        :type body: ~client.naming.main.models.LanguageClientNameModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -597,7 +727,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def language(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -611,7 +741,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def language(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """language.
 
         :param body: Required.
@@ -624,12 +754,14 @@ class _NamingClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def language(self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any) -> None:
+    @distributed_trace
+    def language(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.LanguageClientNameModel, JSON, IO[bytes]], **kwargs: Any
+    ) -> None:
         """language.
 
         :param body: Is one of the following types: LanguageClientNameModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.models.LanguageClientNameModel or JSON or IO[bytes]
+        :type body: ~client.naming.main.models.LanguageClientNameModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -667,7 +799,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -681,13 +813,13 @@ class _NamingClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @overload
-    async def compatible_with_encoded_name(
+    def compatible_with_encoded_name(
         self, body: _models.ClientNameAndJsonEncodedNameModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
 
         :param body: Required.
-        :type body: ~client.naming.models.ClientNameAndJsonEncodedNameModel
+        :type body: ~client.naming.main.models.ClientNameAndJsonEncodedNameModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -697,7 +829,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def compatible_with_encoded_name(
+    def compatible_with_encoded_name(
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -713,7 +845,7 @@ class _NamingClientOperationsMixin(
         """
 
     @overload
-    async def compatible_with_encoded_name(
+    def compatible_with_encoded_name(
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
@@ -728,15 +860,15 @@ class _NamingClientOperationsMixin(
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
-    @distributed_trace_async
-    async def compatible_with_encoded_name(
+    @distributed_trace
+    def compatible_with_encoded_name(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.ClientNameAndJsonEncodedNameModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """compatible_with_encoded_name.
 
         :param body: Is one of the following types: ClientNameAndJsonEncodedNameModel, JSON, IO[bytes]
          Required.
-        :type body: ~client.naming.models.ClientNameAndJsonEncodedNameModel or JSON or IO[bytes]
+        :type body: ~client.naming.main.models.ClientNameAndJsonEncodedNameModel or JSON or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -774,7 +906,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -787,8 +919,8 @@ class _NamingClientOperationsMixin(
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def request(self, *, client_name: str, **kwargs: Any) -> None:
+    @distributed_trace
+    def request(self, *, client_name: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """request.
 
         :keyword client_name: Required.
@@ -821,7 +953,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
@@ -834,8 +966,8 @@ class _NamingClientOperationsMixin(
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    @distributed_trace_async
-    async def response(self, **kwargs: Any) -> None:
+    @distributed_trace
+    def response(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """response.
 
         :return: None
@@ -865,7 +997,7 @@ class _NamingClientOperationsMixin(
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
         _stream = False
-        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # type: ignore # pylint: disable=protected-access
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
         )
 
