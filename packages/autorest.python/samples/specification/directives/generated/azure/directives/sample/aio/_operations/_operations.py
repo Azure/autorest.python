@@ -61,7 +61,7 @@ class _PollingPagingExampleOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[Optional[str]] = (
+        content_type: Optional[str] = (
             kwargs.pop("content_type", _headers.pop("Content-Type", None)) if product else None
         )
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
@@ -205,7 +205,7 @@ class _PollingPagingExampleOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[Optional[str]] = (
+        content_type: Optional[str] = (
             kwargs.pop("content_type", _headers.pop("Content-Type", None)) if product else None
         )
         cls: ClsType[JSON] = kwargs.pop("cls", None)

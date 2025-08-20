@@ -932,7 +932,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[Optional[str]] = (
+        content_type: Optional[str] = (
             kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
@@ -1224,7 +1224,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[Optional[str]] = (
+        content_type: Optional[str] = (
             kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
