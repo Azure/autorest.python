@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 import pytest
 from client.naming.enumconflict.aio import EnumConflictClient
-from client.naming.enumconflict import models
+from client.naming.enumconflict.firstnamespace import models as first_models
+from client.naming.enumconflict.secondnamespace import models as second_models
 
 
 @pytest.fixture
@@ -17,7 +18,7 @@ async def client():
 @pytest.mark.asyncio
 async def test_first_operations_first_async(client: EnumConflictClient):
     """Test enum with same name in different namespace - first namespace (async)."""
-    body = models.FirstModel(status=models.Status.ACTIVE, name="test")
+    body = first_models.FirstModel(status=first_models.Status.ACTIVE, name="test")
 
     response = await client.first_operations.first(body=body)
 
@@ -28,7 +29,7 @@ async def test_first_operations_first_async(client: EnumConflictClient):
 @pytest.mark.asyncio
 async def test_second_operations_second_async(client: EnumConflictClient):
     """Test enum with same name in different namespace - second namespace (async)."""
-    body = models.SecondModel(status=models.SecondStatus.RUNNING, description="test description")
+    body = second_models.SecondModel(status=second_models.SecondStatus.RUNNING, description="test description")
 
     response = await client.second_operations.second(body=body)
 
