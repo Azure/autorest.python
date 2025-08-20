@@ -18,13 +18,10 @@ async def client():
 @pytest.mark.asyncio
 async def test_first_operations_first_async(client: EnumConflictClient):
     """Test enum with same name in different namespace - first namespace (async)."""
-    body = first_models.FirstModel(
-        status=first_models.Status.ACTIVE,
-        name="test"
-    )
-    
+    body = first_models.FirstModel(status=first_models.Status.ACTIVE, name="test")
+
     response = await client.first_operations.first(body=body)
-    
+
     assert response.status == "active"
     assert response.name == "test"
 
@@ -32,12 +29,9 @@ async def test_first_operations_first_async(client: EnumConflictClient):
 @pytest.mark.asyncio
 async def test_second_operations_second_async(client: EnumConflictClient):
     """Test enum with same name in different namespace - second namespace (async)."""
-    body = second_models.SecondModel(
-        status=second_models.SecondStatus.RUNNING,
-        description="test description"
-    )
-    
+    body = second_models.SecondModel(status=second_models.SecondStatus.RUNNING, description="test description")
+
     response = await client.second_operations.second(body=body)
-    
+
     assert response.status == "running"
     assert response.description == "test description"

@@ -26,11 +26,10 @@ from azure.core.rest import HttpRequest, HttpResponse
 from azure.core.tracing.decorator import distributed_trace
 from azure.core.utils import case_insensitive_dict
 
+from .. import models as _models
 from .._configuration import EnumConflictClientConfiguration
 from .._utils.model_base import SdkJSONEncoder, _deserialize
 from .._utils.serialization import Deserializer, Serializer
-from ..firstnamespace import models as _firstnamespace_models2
-from ..secondnamespace import models as _secondnamespace_models2
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -93,24 +92,22 @@ class FirstOperationsOperations:
 
     @overload
     def first(
-        self, body: _firstnamespace_models2.FirstModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _firstnamespace_models2.FirstModel:
+        self, body: _models.FirstModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FirstModel:
         """Operation using first namespace Status enum.
 
         :param body: Required.
-        :type body: ~client.naming.enumconflict.firstnamespace.models.FirstModel
+        :type body: ~client.naming.enumconflict.models.FirstModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: FirstModel. The FirstModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.firstnamespace.models.FirstModel
+        :rtype: ~client.naming.enumconflict.models.FirstModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def first(
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _firstnamespace_models2.FirstModel:
+    def first(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.FirstModel:
         """Operation using first namespace Status enum.
 
         :param body: Required.
@@ -119,14 +116,12 @@ class FirstOperationsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: FirstModel. The FirstModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.firstnamespace.models.FirstModel
+        :rtype: ~client.naming.enumconflict.models.FirstModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def first(
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _firstnamespace_models2.FirstModel:
+    def first(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.FirstModel:
         """Operation using first namespace Status enum.
 
         :param body: Required.
@@ -135,20 +130,18 @@ class FirstOperationsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: FirstModel. The FirstModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.firstnamespace.models.FirstModel
+        :rtype: ~client.naming.enumconflict.models.FirstModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
-    def first(
-        self, body: Union[_firstnamespace_models2.FirstModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> _firstnamespace_models2.FirstModel:
+    def first(self, body: Union[_models.FirstModel, JSON, IO[bytes]], **kwargs: Any) -> _models.FirstModel:
         """Operation using first namespace Status enum.
 
         :param body: Is one of the following types: FirstModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.enumconflict.firstnamespace.models.FirstModel or JSON or IO[bytes]
+        :type body: ~client.naming.enumconflict.models.FirstModel or JSON or IO[bytes]
         :return: FirstModel. The FirstModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.firstnamespace.models.FirstModel
+        :rtype: ~client.naming.enumconflict.models.FirstModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -163,7 +156,7 @@ class FirstOperationsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_firstnamespace_models2.FirstModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models.FirstModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -202,7 +195,7 @@ class FirstOperationsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_firstnamespace_models2.FirstModel, response.json())
+            deserialized = _deserialize(_models.FirstModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -229,24 +222,22 @@ class SecondOperationsOperations:
 
     @overload
     def second(
-        self, body: _secondnamespace_models2.SecondModel, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _secondnamespace_models2.SecondModel:
+        self, body: _models.SecondModel, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.SecondModel:
         """Operation using second namespace Status enum.
 
         :param body: Required.
-        :type body: ~client.naming.enumconflict.secondnamespace.models.SecondModel
+        :type body: ~client.naming.enumconflict.models.SecondModel
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
         :return: SecondModel. The SecondModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.secondnamespace.models.SecondModel
+        :rtype: ~client.naming.enumconflict.models.SecondModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def second(
-        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
-    ) -> _secondnamespace_models2.SecondModel:
+    def second(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.SecondModel:
         """Operation using second namespace Status enum.
 
         :param body: Required.
@@ -255,14 +246,12 @@ class SecondOperationsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: SecondModel. The SecondModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.secondnamespace.models.SecondModel
+        :rtype: ~client.naming.enumconflict.models.SecondModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @overload
-    def second(
-        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
-    ) -> _secondnamespace_models2.SecondModel:
+    def second(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.SecondModel:
         """Operation using second namespace Status enum.
 
         :param body: Required.
@@ -271,20 +260,18 @@ class SecondOperationsOperations:
          Default value is "application/json".
         :paramtype content_type: str
         :return: SecondModel. The SecondModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.secondnamespace.models.SecondModel
+        :rtype: ~client.naming.enumconflict.models.SecondModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
 
     @distributed_trace
-    def second(
-        self, body: Union[_secondnamespace_models2.SecondModel, JSON, IO[bytes]], **kwargs: Any
-    ) -> _secondnamespace_models2.SecondModel:
+    def second(self, body: Union[_models.SecondModel, JSON, IO[bytes]], **kwargs: Any) -> _models.SecondModel:
         """Operation using second namespace Status enum.
 
         :param body: Is one of the following types: SecondModel, JSON, IO[bytes] Required.
-        :type body: ~client.naming.enumconflict.secondnamespace.models.SecondModel or JSON or IO[bytes]
+        :type body: ~client.naming.enumconflict.models.SecondModel or JSON or IO[bytes]
         :return: SecondModel. The SecondModel is compatible with MutableMapping
-        :rtype: ~client.naming.enumconflict.secondnamespace.models.SecondModel
+        :rtype: ~client.naming.enumconflict.models.SecondModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -299,7 +286,7 @@ class SecondOperationsOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        cls: ClsType[_secondnamespace_models2.SecondModel] = kwargs.pop("cls", None)
+        cls: ClsType[_models.SecondModel] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
         _content = None
@@ -338,7 +325,7 @@ class SecondOperationsOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_secondnamespace_models2.SecondModel, response.json())
+            deserialized = _deserialize(_models.SecondModel, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
