@@ -33,6 +33,3 @@ def test_second_operations_second(client: EnumConflictClient):
 
     assert response.status == "running"
     assert response.description == "test description"
-
-    assert response.status == "running"
-    assert response.description == "test description"
