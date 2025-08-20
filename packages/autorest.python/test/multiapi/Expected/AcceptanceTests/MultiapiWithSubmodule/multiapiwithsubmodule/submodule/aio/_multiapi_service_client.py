@@ -26,6 +26,7 @@ from ._operations_mixin import MultiapiServiceClientOperationsMixin
 
 if TYPE_CHECKING:
     # pylint: disable=unused-import,ungrouped-imports
+    from azure.core import AzureClouds
     from azure.core.credentials_async import AsyncTokenCredential
 
 class _SDKClient(object):
@@ -48,6 +49,8 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
+    :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is None.
+    :type cloud_setting: ~azure.core.AzureClouds
     :param api_version: API version to use if no profile is provided, or if missing in profile.
     :type api_version: str
     :param base_url: Service URL
@@ -75,16 +78,18 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin, MultiApiClient
         api_version: Optional[str] = None,
         base_url: Optional[str] = None,
         profile: KnownProfiles = KnownProfiles.default,
+        *,
+        cloud_setting: Optional["AzureClouds"] = None,
         **kwargs: Any
     ) -> None:
         if api_version:
             kwargs.setdefault('api_version', api_version)
-        _cloud = kwargs.pop("cloud_setting", None) or settings.current.azure_cloud  # type: ignore
+        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
         _endpoints = get_arm_endpoints(_cloud)
         if not base_url:
             base_url = _endpoints["resource_manager"]
         credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
-        self._config = MultiapiServiceClientConfiguration(credential, credential_scopes=credential_scopes, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential, cloud_setting, credential_scopes=credential_scopes, **kwargs)
         _policies = kwargs.pop("policies", None)
         if _policies is None:
             _policies = [

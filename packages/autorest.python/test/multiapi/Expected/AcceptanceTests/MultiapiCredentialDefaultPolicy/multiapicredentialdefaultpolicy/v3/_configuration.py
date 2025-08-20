@@ -6,11 +6,14 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
+
+if TYPE_CHECKING:
+    from azure.core import AzureClouds
 
 VERSION = "unknown"
 
@@ -23,18 +26,24 @@ class MultiapiServiceClientConfiguration:  # pylint: disable=too-many-instance-a
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential
+    :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
+     None.
+    :type cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: Api Version. Default value is "3.0.0". Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 
-    def __init__(self, credential: AzureKeyCredential, **kwargs: Any) -> None:
+    def __init__(
+        self, credential: AzureKeyCredential, cloud_setting: Optional["AzureClouds"] = None, **kwargs: Any
+    ) -> None:
         api_version: str = kwargs.pop("api_version", "3.0.0")
 
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.cloud_setting = cloud_setting
         self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "multiapicredentialdefaultpolicy/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
