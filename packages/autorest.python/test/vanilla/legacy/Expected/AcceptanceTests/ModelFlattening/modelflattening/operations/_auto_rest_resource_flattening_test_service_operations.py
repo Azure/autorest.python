@@ -291,7 +291,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if resource_array else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -450,7 +452,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if resource_array else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -607,7 +611,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if resource_dictionary else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -769,7 +775,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if resource_complex_object else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -925,7 +933,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if simple_body_product else None
+        )
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1013,7 +1023,11 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+            if _simple_body_product
+            else None
+        )
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _simple_body_product = _models.SimpleProduct(
@@ -1082,7 +1096,11 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+            if _simple_body_product
+            else None
+        )
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _name = None

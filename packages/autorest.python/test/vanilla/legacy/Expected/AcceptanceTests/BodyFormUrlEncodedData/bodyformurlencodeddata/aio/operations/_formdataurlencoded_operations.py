@@ -97,8 +97,10 @@ class FormdataurlencodedOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
+            if data
+            else None
         )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
@@ -159,8 +161,10 @@ class FormdataurlencodedOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop(
-            "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded"))
+            if data
+            else None
         )
         grant_type: Literal["access_token"] = kwargs.pop("grant_type", "access_token")
         cls: ClsType[None] = kwargs.pop("cls", None)

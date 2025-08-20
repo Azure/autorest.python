@@ -798,7 +798,9 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -851,7 +853,11 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+            if body_parameter
+            else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = body_parameter
@@ -1047,7 +1053,11 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+            if body_parameter
+            else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = body_parameter
@@ -1198,7 +1208,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -1407,7 +1419,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -1611,7 +1625,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", "application/json")) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -1820,7 +1836,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -2133,7 +2151,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -2361,7 +2381,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -2561,7 +2583,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
@@ -2785,7 +2809,9 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: Optional[Optional[str]] = (
+            kwargs.pop("content_type", _headers.pop("Content-Type", None)) if body_parameter else None
+        )
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         content_type = content_type or "application/json"
