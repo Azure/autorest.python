@@ -276,10 +276,9 @@ class _ReservedWordsClientOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop(
+        content_type: str = kwargs.pop(
             "content_type", _headers.pop("Content-Type", "application/x-www-form-urlencoded")
         )
-        content_type = content_type if data else None
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         # Construct form data
@@ -338,7 +337,6 @@ class _ReservedWordsClientOperationsMixin(
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        content_type = content_type if files else None
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
         # Construct form data

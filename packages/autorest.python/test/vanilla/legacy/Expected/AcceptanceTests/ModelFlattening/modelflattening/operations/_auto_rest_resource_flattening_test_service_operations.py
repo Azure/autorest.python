@@ -1018,7 +1018,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _simple_body_product = _models.SimpleProduct(
@@ -1087,7 +1087,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[_models.SimpleProduct] = kwargs.pop("cls", None)
 
         _name = None

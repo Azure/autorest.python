@@ -83,7 +83,6 @@ class FormdataOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        content_type = content_type if files else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
@@ -204,7 +203,6 @@ class FormdataOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
-        content_type = content_type if files else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
         # Construct form data
