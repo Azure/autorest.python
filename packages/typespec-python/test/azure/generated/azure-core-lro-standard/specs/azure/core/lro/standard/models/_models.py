@@ -7,9 +7,14 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
+
+from azure.core.exceptions import ODataV4Format
 
 from .._utils.model_base import Model as _Model, rest_field
+
+if TYPE_CHECKING:
+    from .. import models as _models
 
 
 class ExportedUser(_Model):
@@ -32,6 +37,95 @@ class ExportedUser(_Model):
         *,
         name: str,
         resource_uri: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class OperationStatusError(_Model):
+    """Provides status details for long running operations.
+
+    :ivar id: The unique ID of the operation. Required.
+    :vartype id: str
+    :ivar status: The status of the operation. Required. Known values are: "NotStarted", "Running",
+     "Succeeded", "Failed", and "Canceled".
+    :vartype status: str or ~specs.azure.core.lro.standard.models.OperationState
+    :ivar error: Error object that describes the error when status is "Failed".
+    :vartype error: ~azure.core.ODataV4Format
+    """
+
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The unique ID of the operation. Required."""
+    status: Union[str, "_models.OperationState"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The status of the operation. Required. Known values are: \"NotStarted\", \"Running\",
+     \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    error: Optional[ODataV4Format] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Error object that describes the error when status is \"Failed\"."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        status: Union[str, "_models.OperationState"],
+        error: Optional[ODataV4Format] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ResourceOperationStatusUserExportedUserError(_Model):  # pylint: disable=name-too-long
+    """Provides status details for long running operations.
+
+    :ivar id: The unique ID of the operation. Required.
+    :vartype id: str
+    :ivar status: The status of the operation. Required. Known values are: "NotStarted", "Running",
+     "Succeeded", "Failed", and "Canceled".
+    :vartype status: str or ~specs.azure.core.lro.standard.models.OperationState
+    :ivar error: Error object that describes the error when status is "Failed".
+    :vartype error: ~azure.core.ODataV4Format
+    :ivar result: The result of the operation.
+    :vartype result: ~specs.azure.core.lro.standard.models.ExportedUser
+    """
+
+    id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The unique ID of the operation. Required."""
+    status: Union[str, "_models.OperationState"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The status of the operation. Required. Known values are: \"NotStarted\", \"Running\",
+     \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    error: Optional[ODataV4Format] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Error object that describes the error when status is \"Failed\"."""
+    result: Optional["_models.ExportedUser"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """The result of the operation."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: str,  # pylint: disable=redefined-builtin
+        status: Union[str, "_models.OperationState"],
+        error: Optional[ODataV4Format] = None,
+        result: Optional["_models.ExportedUser"] = None,
     ) -> None: ...
 
     @overload

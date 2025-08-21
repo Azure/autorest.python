@@ -7,9 +7,14 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
+
+from azure.core.exceptions import ODataV4Format
 
 from .._utils.model_base import Model as _Model, rest_field
+
+if TYPE_CHECKING:
+    from .. import models as _models
 
 
 class GenerationOptions(_Model):
@@ -55,6 +60,54 @@ class GenerationResult(_Model):
         self,
         *,
         data: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ResourceOperationStatusGenerationResponseGenerationResultError(_Model):  # pylint: disable=name-too-long
+    """Provides status details for long running operations.
+
+    :ivar id: The unique ID of the operation. Required.
+    :vartype id: str
+    :ivar status: The status of the operation. Required. Known values are: "NotStarted", "Running",
+     "Succeeded", "Failed", and "Canceled".
+    :vartype status: str or ~specs.azure.core.lro.rpc.models.OperationState
+    :ivar error: Error object that describes the error when status is "Failed".
+    :vartype error: ~azure.core.ODataV4Format
+    :ivar result: The result of the operation.
+    :vartype result: ~specs.azure.core.lro.rpc.models.GenerationResult
+    """
+
+    id: str = rest_field(visibility=["read"])
+    """The unique ID of the operation. Required."""
+    status: Union[str, "_models.OperationState"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The status of the operation. Required. Known values are: \"NotStarted\", \"Running\",
+     \"Succeeded\", \"Failed\", and \"Canceled\"."""
+    error: Optional[ODataV4Format] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Error object that describes the error when status is \"Failed\"."""
+    result: Optional["_models.GenerationResult"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+    """The result of the operation."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        status: Union[str, "_models.OperationState"],
+        error: Optional[ODataV4Format] = None,
+        result: Optional["_models.GenerationResult"] = None,
     ) -> None: ...
 
     @overload
