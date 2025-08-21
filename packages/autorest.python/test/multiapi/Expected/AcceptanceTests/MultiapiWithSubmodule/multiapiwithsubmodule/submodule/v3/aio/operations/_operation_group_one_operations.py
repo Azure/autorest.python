@@ -196,7 +196,6 @@ class OperationGroupOneOperations:
         content_type = content_type if parameter_one else None
         cls: ClsType[_models.ModelThree] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(parameter_one, (IOBase, bytes)):

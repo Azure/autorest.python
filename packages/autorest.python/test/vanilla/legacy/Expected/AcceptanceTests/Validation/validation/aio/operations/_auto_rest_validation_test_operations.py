@@ -187,7 +187,6 @@ class _AutoRestValidationTestOperationsMixin(
         content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -333,7 +332,6 @@ class _AutoRestValidationTestOperationsMixin(
         content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):

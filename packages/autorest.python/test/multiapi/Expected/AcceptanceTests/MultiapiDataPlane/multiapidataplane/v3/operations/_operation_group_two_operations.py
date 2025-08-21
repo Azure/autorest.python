@@ -166,7 +166,6 @@ class OperationGroupTwoOperations:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
-            content_type = content_type or "application/json"
 
         _request = build_test_four_request(
             api_version=api_version,

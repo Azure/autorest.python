@@ -156,7 +156,6 @@ class PetOperations:
         content_type = content_type if pet_param else None
         cls: ClsType[_models.Pet] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
         _json = None
         _content = None
         if isinstance(pet_param, (IOBase, bytes)):
