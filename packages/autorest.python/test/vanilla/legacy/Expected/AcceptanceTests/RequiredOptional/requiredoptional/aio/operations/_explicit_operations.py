@@ -929,6 +929,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if body_parameter else None"
         _json = None
         _content = None
         if isinstance(body_parameter, (IOBase, bytes)):
@@ -1217,6 +1218,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if body_parameter else None"
         _json = None
         _content = None
         if isinstance(body_parameter, (IOBase, bytes)):

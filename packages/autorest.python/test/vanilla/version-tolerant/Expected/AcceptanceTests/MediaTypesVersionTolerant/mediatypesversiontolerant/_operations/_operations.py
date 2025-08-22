@@ -243,6 +243,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
                 _json = input
             else:
                 _json = None
+            content_type = content_type or "application/json if input else None"
 
         _request = build_media_types_analyze_body_request(
             content_type=content_type,
@@ -368,6 +369,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
                 _json = input
             else:
                 _json = None
+            content_type = content_type or "application/json if input else None"
 
         _request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,

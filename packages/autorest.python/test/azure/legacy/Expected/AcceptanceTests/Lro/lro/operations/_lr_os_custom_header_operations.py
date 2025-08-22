@@ -146,6 +146,7 @@ class LROsCustomHeaderOperations:
         content_type = content_type if product else None
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -319,6 +320,7 @@ class LROsCustomHeaderOperations:
         content_type = content_type if product else None
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -477,6 +479,7 @@ class LROsCustomHeaderOperations:
         content_type = content_type if product else None
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -632,6 +635,7 @@ class LROsCustomHeaderOperations:
         content_type = content_type if product else None
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):

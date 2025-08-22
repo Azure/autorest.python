@@ -122,6 +122,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -277,6 +278,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -443,6 +445,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -601,6 +604,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -763,6 +767,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1015,6 +1020,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1170,6 +1176,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1328,6 +1335,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1486,6 +1494,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1644,6 +1653,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1802,6 +1812,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -1960,6 +1971,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2122,6 +2134,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2295,6 +2308,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2466,6 +2480,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2639,6 +2654,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2810,6 +2826,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -2979,6 +2996,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if sku else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if sku else None"
         _json = None
         _content = None
         if isinstance(sku, (IOBase, bytes)):
@@ -3122,6 +3140,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if sku else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if sku else None"
         _json = None
         _content = None
         if isinstance(sku, (IOBase, bytes)):
@@ -4694,6 +4713,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -4846,6 +4866,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -5300,6 +5321,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -5466,6 +5488,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -5632,6 +5655,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
@@ -5790,6 +5814,7 @@ class LROsOperations:  # pylint: disable=too-many-public-methods
         content_type = content_type if product else None
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/json if product else None"
         _json = None
         _content = None
         if isinstance(product, (IOBase, bytes)):
