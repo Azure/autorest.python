@@ -407,6 +407,7 @@ class _JsonMergePatchClientOperationsMixin(
         content_type = content_type if body else None
         cls: ClsType[_models.Resource] = kwargs.pop("cls", None)
 
+        content_type = content_type or "application/merge-patch+json if body else None"
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body
