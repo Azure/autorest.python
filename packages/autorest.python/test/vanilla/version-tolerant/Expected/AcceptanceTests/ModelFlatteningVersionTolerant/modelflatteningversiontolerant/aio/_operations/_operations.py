@@ -134,7 +134,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if resource_array else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if resource_array else None"
+        content_type = content_type or "application/json" if resource_array else None
         _json = None
         _content = None
         if isinstance(resource_array, (IOBase, bytes)):
@@ -323,7 +323,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if resource_array else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if resource_array else None"
+        content_type = content_type or "application/json" if resource_array else None
         _json = None
         _content = None
         if isinstance(resource_array, (IOBase, bytes)):
@@ -516,7 +516,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if resource_dictionary else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if resource_dictionary else None"
+        content_type = content_type or "application/json" if resource_dictionary else None
         _json = None
         _content = None
         if isinstance(resource_dictionary, (IOBase, bytes)):
@@ -810,7 +810,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if resource_complex_object else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if resource_complex_object else None"
+        content_type = content_type or "application/json" if resource_complex_object else None
         _json = None
         _content = None
         if isinstance(resource_complex_object, (IOBase, bytes)):
@@ -1099,7 +1099,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if simple_body_product else None
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if simple_body_product else None"
+        content_type = content_type or "application/json" if simple_body_product else None
         _json = None
         _content = None
         if isinstance(simple_body_product, (IOBase, bytes)):
@@ -1288,7 +1288,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if simple_body_product else None
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if simple_body_product else None"
+        content_type = content_type or "application/json" if simple_body_product else None
         _json = None
         _content = None
         if isinstance(simple_body_product, (IOBase, bytes)):
@@ -1493,7 +1493,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         content_type = content_type if simple_body_product else None
         cls: ClsType[JSON] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json if simple_body_product else None"
+        content_type = content_type or "application/json" if simple_body_product else None
         _json = None
         _content = None
         if isinstance(simple_body_product, (IOBase, bytes)):

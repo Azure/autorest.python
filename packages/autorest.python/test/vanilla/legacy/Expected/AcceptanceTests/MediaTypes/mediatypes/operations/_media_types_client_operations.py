@@ -227,7 +227,7 @@ class _MediaTypesClientOperationsMixin(
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
-            content_type = content_type or "application/json if input else None"
+            content_type = content_type or "application/json" if input else None
 
         _request = build_analyze_body_request(
             content_type=content_type,
@@ -329,7 +329,7 @@ class _MediaTypesClientOperationsMixin(
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
-            content_type = content_type or "application/json if input else None"
+            content_type = content_type or "application/json" if input else None
 
         _request = build_analyze_body_no_accept_header_request(
             content_type=content_type,
