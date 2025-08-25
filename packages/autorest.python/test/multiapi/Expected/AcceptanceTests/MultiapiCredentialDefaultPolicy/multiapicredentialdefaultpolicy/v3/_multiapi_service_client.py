@@ -41,7 +41,7 @@ class MultiapiServiceClient(MultiapiServiceClientOperationsMixin):
     """
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = MultiapiServiceClientConfiguration(credential=credential, **kwargs)
+        self._config = MultiapiServiceClientConfiguration(credential=credential, cloud_setting=cloud_setting, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:

@@ -110,6 +110,7 @@ class OperationGroupTwoOperations:
 
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", self._api_version or "3.0.0"))
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = None
@@ -121,7 +122,7 @@ class OperationGroupTwoOperations:
                 _json = self._serialize.body(input, "SourcePath")
             else:
                 _json = None
-            content_type = content_type or "application/json"
+            content_type = content_type or "application/json" if input else None
 
         _request = build_test_four_request(
             api_version=api_version,
