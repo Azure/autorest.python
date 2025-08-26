@@ -1243,9 +1243,10 @@ class OptionalBodyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if properties else None
         cls: ClsType[_models.Widget] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if properties else None
         _content = None
         if isinstance(properties, (IOBase, bytes)):
             _content = properties
@@ -1412,9 +1413,10 @@ class OptionalBodyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.ActionResult] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body
@@ -1544,9 +1546,10 @@ class OptionalBodyOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.ChangeAllowanceResult] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body

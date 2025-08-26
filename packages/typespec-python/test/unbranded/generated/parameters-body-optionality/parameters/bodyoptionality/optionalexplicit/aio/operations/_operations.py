@@ -112,9 +112,10 @@ class OptionalExplicitOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body
@@ -214,9 +215,10 @@ class OptionalExplicitOperations:
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body

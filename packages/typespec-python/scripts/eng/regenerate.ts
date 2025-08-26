@@ -23,7 +23,6 @@ interface TspCommand {
 const SKIP_SPECS = [
     "type/union/discriminated",
     "client-operation-group",
-    "azure/client-generator-core/api-version",
     "azure/client-generator-core/hierarchy-building",
 ];
 
@@ -98,7 +97,10 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
         "namespace": "client.structure.twooperationgroup",
     },
     "client/naming": {
-        namespace: "client.naming",
+        namespace: "client.naming.main",
+    },
+    "client/overload": {
+        namespace: "client.overload",
     },
     "encode/duration": {
         namespace: "encode.duration",

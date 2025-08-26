@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from azure.core.pipeline import policies
 from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLoggingPolicy
@@ -14,24 +14,31 @@ from azure.mgmt.core.policies import ARMChallengeAuthenticationPolicy, ARMHttpLo
 from ._version import VERSION
 
 if TYPE_CHECKING:
+    from azure.core import AzureClouds
     from azure.core.credentials import TokenCredential
 
 
-class AutoRestSwaggerBATArrayServiceConfiguration:  # pylint: disable=too-many-instance-attributes,name-too-long
-    """Configuration for AutoRestSwaggerBATArrayService.
+class AutoRestHeadTestServiceConfiguration:  # pylint: disable=too-many-instance-attributes
+    """Configuration for AutoRestHeadTestService.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
+    :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
+     None.
+    :type cloud_setting: ~azure.core.AzureClouds
     """
 
-    def __init__(self, credential: "TokenCredential", **kwargs: Any) -> None:
+    def __init__(
+        self, credential: "TokenCredential", cloud_setting: Optional["AzureClouds"] = None, **kwargs: Any
+    ) -> None:
         if credential is None:
             raise ValueError("Parameter 'credential' must not be None.")
 
         self.credential = credential
+        self.cloud_setting = cloud_setting
         self.credential_scopes = kwargs.pop("credential_scopes", ["https://management.azure.com/.default"])
         kwargs.setdefault("sdk_moniker", "mgmt-test/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)

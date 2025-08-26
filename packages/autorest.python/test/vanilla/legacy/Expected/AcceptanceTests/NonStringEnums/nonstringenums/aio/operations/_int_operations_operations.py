@@ -70,7 +70,8 @@ class IntOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if input else None
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:

@@ -278,9 +278,10 @@ class _AutoRestValidationTestOperationsMixin(
 
         api_version: str = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -423,9 +424,10 @@ class _AutoRestValidationTestOperationsMixin(
 
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):
