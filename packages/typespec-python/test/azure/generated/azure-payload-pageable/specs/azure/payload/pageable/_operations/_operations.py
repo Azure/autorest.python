@@ -30,6 +30,7 @@ from .._utils.serialization import Serializer
 from .._utils.utils import ClientMixinABC
 from .._validation import api_version_validation
 
+List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
@@ -75,7 +76,7 @@ class _PageableClientOperationsMixin(
         _params = kwargs.pop("params", {}) or {}
 
         maxpagesize = kwargs.pop("maxpagesize", None)
-        cls: ClsType[list[_models.User]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.User]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -83,7 +84,7 @@ class _PageableClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -113,7 +114,7 @@ class _PageableClientOperationsMixin(
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)

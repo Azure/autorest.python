@@ -841,7 +841,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -901,7 +901,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1138,7 +1138,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1369,7 +1369,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1501,7 +1501,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1587,7 +1587,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1761,7 +1761,7 @@ class TopLevelOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1851,7 +1851,7 @@ class NestedOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1913,7 +1913,7 @@ class NestedOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2165,7 +2165,7 @@ class NestedOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -2414,7 +2414,7 @@ class NestedOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2556,7 +2556,7 @@ class NestedOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -2659,7 +2659,7 @@ class SingletonOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -2717,7 +2717,7 @@ class SingletonOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3009,7 +3009,7 @@ class SingletonOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3090,7 +3090,7 @@ class SingletonOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -3193,7 +3193,7 @@ class ExtensionsResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3252,7 +3252,7 @@ class ExtensionsResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3584,7 +3584,7 @@ class ExtensionsResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -3661,7 +3661,7 @@ class ExtensionsResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3718,7 +3718,7 @@ class ExtensionsResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -3819,7 +3819,7 @@ class LocationResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -3971,7 +3971,7 @@ class LocationResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4133,7 +4133,7 @@ class LocationResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -4210,7 +4210,7 @@ class LocationResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -4266,7 +4266,7 @@ class LocationResourcesOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:

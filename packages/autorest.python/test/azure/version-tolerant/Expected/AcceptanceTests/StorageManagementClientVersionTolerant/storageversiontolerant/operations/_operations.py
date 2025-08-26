@@ -35,6 +35,7 @@ from .._configuration import StorageManagementClientConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
+List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
@@ -432,7 +433,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -489,7 +490,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -875,7 +876,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -979,7 +980,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1307,7 +1308,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1385,7 +1386,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -1493,7 +1494,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1620,7 +1621,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -1796,7 +1797,7 @@ class StorageAccountsOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
@@ -1896,7 +1897,7 @@ class UsageOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

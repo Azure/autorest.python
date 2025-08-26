@@ -148,7 +148,7 @@ class QuxOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -211,7 +211,7 @@ class FooOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -256,7 +256,7 @@ class FooOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -319,7 +319,7 @@ class BarOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -364,7 +364,7 @@ class BarOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -414,7 +414,7 @@ class _ServiceClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -459,7 +459,7 @@ class _ServiceClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -522,7 +522,7 @@ class BazFooOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -585,7 +585,7 @@ class QuxBarOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -30,6 +30,7 @@ from ..._utils.model_base import _deserialize
 from ..._utils.utils import ClientMixinABC
 from .._configuration import OverloadClientConfiguration
 
+List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
@@ -39,7 +40,7 @@ class _OverloadClientOperationsMixin(
 ):
 
     @distributed_trace_async
-    async def list(self, **kwargs: Any) -> list[_models.Resource]:
+    async def list(self, **kwargs: Any) -> List[_models.Resource]:
         """list.
 
         :return: list of Resource
@@ -52,12 +53,12 @@ class _OverloadClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[list[_models.Resource]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Resource]] = kwargs.pop("cls", None)
 
         _request = build_overload_list_request(
             headers=_headers,
@@ -87,7 +88,7 @@ class _OverloadClientOperationsMixin(
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(list[_models.Resource], response.json())
+            deserialized = _deserialize(List[_models.Resource], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -95,7 +96,7 @@ class _OverloadClientOperationsMixin(
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def list_by_scope(self, scope: str, **kwargs: Any) -> list[_models.Resource]:
+    async def list_by_scope(self, scope: str, **kwargs: Any) -> List[_models.Resource]:
         """list_by_scope.
 
         :param scope: Required.
@@ -110,12 +111,12 @@ class _OverloadClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[list[_models.Resource]] = kwargs.pop("cls", None)
+        cls: ClsType[List[_models.Resource]] = kwargs.pop("cls", None)
 
         _request = build_overload_list_by_scope_request(
             scope=scope,
@@ -146,7 +147,7 @@ class _OverloadClientOperationsMixin(
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(list[_models.Resource], response.json())
+            deserialized = _deserialize(List[_models.Resource], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

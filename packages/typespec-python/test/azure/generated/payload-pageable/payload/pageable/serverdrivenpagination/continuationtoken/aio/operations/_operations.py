@@ -81,7 +81,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 
@@ -147,7 +147,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 
@@ -213,7 +213,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 
@@ -279,7 +279,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 
@@ -345,7 +345,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 
@@ -411,7 +411,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(_continuation_token=None):
 

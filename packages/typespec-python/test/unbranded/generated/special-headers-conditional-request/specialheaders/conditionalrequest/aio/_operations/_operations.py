@@ -60,7 +60,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -118,7 +118,7 @@ class _ConditionalRequestClientOperationsMixin(
             error_map[412] = ResourceNotFoundError
         elif match_condition == MatchConditions.IfMissing:
             error_map[412] = ResourceExistsError
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -170,7 +170,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
@@ -222,7 +222,7 @@ class _ConditionalRequestClientOperationsMixin(
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}

@@ -205,7 +205,7 @@ class TwoModelsAsPageItemOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -288,7 +288,7 @@ class TwoModelsAsPageItemOperations:
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -373,7 +373,7 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -540,7 +540,7 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
         content_type = content_type or "application/json"
         _content = None
         if isinstance(body_input, (IOBase, bytes)):
@@ -631,7 +631,7 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
@@ -719,7 +719,7 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
             409: ResourceExistsError,
             304: ResourceNotModifiedError,
         }
-        error_map.update((kwargs.pop("error_map", {}) or {}))
+        error_map.update(kwargs.pop("error_map", {}) or {})
 
         def prepare_request(next_link=None):
             if not next_link:
