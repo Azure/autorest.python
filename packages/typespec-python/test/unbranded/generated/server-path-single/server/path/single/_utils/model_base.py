@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # pylint: disable=protected-access, broad-except
 
@@ -771,7 +771,7 @@ def _sorted_annotations(types: list[typing.Any]) -> list[typing.Any]:
     )
 
 
-def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-branches
+def _get_deserialize_callable_from_annotation(  # pylint: disable=too-many-return-statements, too-many-statements, too-many-branches
     annotation: typing.Any,
     module: typing.Optional[str],
     rf: typing.Optional["_RestField"] = None,
