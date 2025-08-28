@@ -69,7 +69,6 @@ class CodeGeneratorAutorest(CodeGenerator, PluginAutorest):
             "package-version": self._autorestapi.get_value("package-version"),
             "client-side-validation": self._autorestapi.get_boolean_value("client-side-validation"),
             "tracing": self._autorestapi.get_boolean_value("trace"),
-            "multiapi": self._autorestapi.get_boolean_value("multiapi", False),
             "polymorphic-examples": self._autorestapi.get_value("polymorphic-examples"),
             "models-mode": self._autorestapi.get_value("models-mode"),
             "builders-visibility": self._autorestapi.get_value("builders-visibility"),

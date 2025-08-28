@@ -26,7 +26,6 @@ def GetPluginNames():
         "preprocess",
         "m4reformatter",
         "black",
-        "multiapiscript",
         "multiclientscript",
     ]
 
@@ -53,8 +52,6 @@ def Process(plugin_name: str, session_id: str) -> bool:
             from ..codegen import CodeGeneratorAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "black":
             from ..black import BlackScriptPluginAutorest as PluginToLoad  # type: ignore
-        elif plugin_name == "multiapiscript":
-            from ..multiapi import MultiApiScriptPluginAutorest as PluginToLoad  # type: ignore
         elif plugin_name == "multiclientscript":
             from ..multiclient import MultiClientPluginAutorest as PluginToLoad  # type: ignore
         else:
