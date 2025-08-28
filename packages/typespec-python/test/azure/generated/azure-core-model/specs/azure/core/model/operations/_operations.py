@@ -8,7 +8,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -33,7 +33,7 @@ from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -102,7 +102,7 @@ class AzureCoreEmbeddingVectorOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get(self, **kwargs: Any) -> List[int]:
+    def get(self, **kwargs: Any) -> list[int]:
         """get an embedding vector.
 
         :return: list of int
@@ -120,7 +120,7 @@ class AzureCoreEmbeddingVectorOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_azure_core_embedding_vector_get_request(
             headers=_headers,
@@ -150,7 +150,7 @@ class AzureCoreEmbeddingVectorOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(list[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -158,7 +158,7 @@ class AzureCoreEmbeddingVectorOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put an embedding vector.
 
         :param body: _. Required.
@@ -187,7 +187,7 @@ class AzureCoreEmbeddingVectorOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+        self, body: Union[list[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put an embedding vector.
 

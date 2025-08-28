@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -42,7 +42,7 @@ from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _AutoRestResourceFlatteningTestServiceOperationsMixin(
@@ -53,7 +53,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @overload
     async def put_array(
-        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[list[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -106,7 +106,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """
 
     @distributed_trace_async
-    async def put_array(self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any) -> None:
+    async def put_array(self, resource_array: Optional[Union[list[JSON], IO[bytes]]] = None, **kwargs: Any) -> None:
         """Put External Resource as an Array.
 
         .. seealso::
@@ -169,7 +169,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_array(self, **kwargs: Any) -> List[JSON]:
+    async def get_array(self, **kwargs: Any) -> list[JSON]:
         """Get External Resource as an Array.
 
         .. seealso::
@@ -212,7 +212,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[list[JSON]] = kwargs.pop("cls", None)
 
         _request = build_auto_rest_resource_flattening_test_service_get_array_request(
             headers=_headers,
@@ -237,13 +237,13 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(list[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)  # type: ignore
+        return cast(list[JSON], deserialized)  # type: ignore
 
     @overload
     async def put_wrapped_array(
-        self, resource_array: Optional[List[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, resource_array: Optional[list[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -293,7 +293,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @distributed_trace_async
     async def put_wrapped_array(
-        self, resource_array: Optional[Union[List[JSON], IO[bytes]]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[list[JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -358,7 +358,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs: Any) -> List[JSON]:
+    async def get_wrapped_array(self, **kwargs: Any) -> list[JSON]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -392,7 +392,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[list[JSON]] = kwargs.pop("cls", None)
 
         _request = build_auto_rest_resource_flattening_test_service_get_wrapped_array_request(
             headers=_headers,
@@ -417,14 +417,14 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(List[JSON], deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(list[JSON], deserialized), {})  # type: ignore
 
-        return cast(List[JSON], deserialized)  # type: ignore
+        return cast(list[JSON], deserialized)  # type: ignore
 
     @overload
     async def put_dictionary(
         self,
-        resource_dictionary: Optional[Dict[str, JSON]] = None,
+        resource_dictionary: Optional[dict[str, JSON]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -487,7 +487,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @distributed_trace_async
     async def put_dictionary(
-        self, resource_dictionary: Optional[Union[Dict[str, JSON], IO[bytes]]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Union[dict[str, JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -551,7 +551,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs: Any) -> Dict[str, JSON]:
+    async def get_dictionary(self, **kwargs: Any) -> dict[str, JSON]:
         """Get External Resource as a Dictionary.
 
         .. seealso::
@@ -594,7 +594,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, JSON]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, JSON]] = kwargs.pop("cls", None)
 
         _request = build_auto_rest_resource_flattening_test_service_get_dictionary_request(
             headers=_headers,
@@ -619,9 +619,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             deserialized = None
 
         if cls:
-            return cls(pipeline_response, cast(Dict[str, JSON], deserialized), {})  # type: ignore
+            return cls(pipeline_response, cast(dict[str, JSON], deserialized), {})  # type: ignore
 
-        return cast(Dict[str, JSON], deserialized)  # type: ignore
+        return cast(dict[str, JSON], deserialized)  # type: ignore
 
     @overload
     async def put_resource_collection(

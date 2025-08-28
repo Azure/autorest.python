@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -44,7 +44,7 @@ from .._configuration import MultiPartClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class FormDataOperations:
@@ -112,8 +112,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = ["id"]
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
@@ -187,8 +187,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage", "pictures"]
-        _data_fields: List[str] = ["id", "address"]
+        _file_fields: list[str] = ["profileImage", "pictures"]
+        _data_fields: list[str] = ["id", "address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_file_array_and_basic_request(
@@ -262,8 +262,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = ["address"]
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = ["address"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_part_request(
@@ -337,8 +337,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["pictures"]
-        _data_fields: List[str] = ["id"]
+        _file_fields: list[str] = ["pictures"]
+        _data_fields: list[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_binary_array_parts_request(
@@ -412,8 +412,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage", "picture"]
-        _data_fields: List[str] = []
+        _file_fields: list[str] = ["profileImage", "picture"]
+        _data_fields: list[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_multi_binary_parts_request(
@@ -489,8 +489,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = ["id"]
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = ["id"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_check_file_name_and_content_type_request(
@@ -564,8 +564,8 @@ class FormDataOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = []
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_anonymous_model_request(
@@ -666,8 +666,8 @@ class FormDataHttpPartsOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage", "pictures"]
-        _data_fields: List[str] = ["id", "address", "previousAddresses"]
+        _file_fields: list[str] = ["profileImage", "pictures"]
+        _data_fields: list[str] = ["id", "address", "previousAddresses"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_json_array_and_file_array_request(
@@ -764,8 +764,8 @@ class FormDataHttpPartsContentTypeOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = []
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_image_jpeg_content_type_request(
@@ -844,8 +844,8 @@ class FormDataHttpPartsContentTypeOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = []
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_required_content_type_request(
@@ -924,8 +924,8 @@ class FormDataHttpPartsContentTypeOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = ["profileImage"]
-        _data_fields: List[str] = []
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = []
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_optional_content_type_request(
@@ -1017,8 +1017,8 @@ class FormDataHttpPartsNonStringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = []
-        _data_fields: List[str] = ["temperature"]
+        _file_fields: list[str] = []
+        _data_fields: list[str] = ["temperature"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_non_string_float_request(

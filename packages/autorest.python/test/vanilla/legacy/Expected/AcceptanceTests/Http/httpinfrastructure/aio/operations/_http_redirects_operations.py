@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar
+from typing import Any, Callable, Literal, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -45,7 +45,7 @@ from ...operations._http_redirects_operations import (
 from .._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class HttpRedirectsOperations:
@@ -116,7 +116,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace_async
-    async def get300(self, **kwargs: Any) -> Optional[List[str]]:
+    async def get300(self, **kwargs: Any) -> Optional[list[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
         :return: list of str or None or the result of cls(response)
@@ -134,7 +134,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_get300_request(
             headers=_headers,

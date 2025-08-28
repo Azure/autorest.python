@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, cast
+from typing import Any, Callable, Literal, Optional, TypeVar, cast
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -27,7 +27,7 @@ from .._configuration import AutoRestHttpInfrastructureTestServiceConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
@@ -2986,7 +2986,7 @@ class HttpRedirectsOperations:
             return cls(pipeline_response, None, response_headers)  # type: ignore
 
     @distributed_trace
-    def get300(self, **kwargs: Any) -> Optional[List[str]]:
+    def get300(self, **kwargs: Any) -> Optional[list[str]]:
         """Return 300 status code and redirect to /http/success/200.
 
         :return: list of str or None
@@ -3012,7 +3012,7 @@ class HttpRedirectsOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Optional[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[Optional[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_http_redirects_get300_request(
             headers=_headers,

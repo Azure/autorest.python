@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterator, Callable, Dict, IO, Literal, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, IO, Literal, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from custompollerpagerdefinitions.aio import AsyncCustomPager, AsyncCustomPoller
@@ -67,7 +67,7 @@ from .._configuration import AutoRestPagingTestServiceConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class PagingOperations:  # pylint: disable=too-many-public-methods

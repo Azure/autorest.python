@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, IO, Optional, TypeVar
+from typing import Any, Callable, IO, Optional, TypeVar
 
 from msrest import Deserializer, Serializer
 
@@ -38,7 +38,7 @@ from ...operations._implicit_operations import (
 from .._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class ImplicitOperations:

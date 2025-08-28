@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, List, Optional, TYPE_CHECKING
+from typing import Any, Optional, TYPE_CHECKING
 
 from .._utils import serialization as _serialization
 
@@ -107,7 +107,7 @@ class ProductResult(_serialization.Model):
     }
 
     def __init__(
-        self, *, values: Optional[List["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
+        self, *, values: Optional[list["_models.Product"]] = None, next_link: Optional[str] = None, **kwargs: Any
     ) -> None:
         """
         :keyword values:

@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
+from typing import Any, Callable, Literal, Optional, TypeVar, Union
 
 from msrest import Deserializer, Serializer
 
@@ -30,7 +30,7 @@ from .. import models as _models
 from .._configuration import AutoRestUrlTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 
@@ -529,7 +529,7 @@ def build_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> HttpRequest:
+def build_array_csv_in_path_request(array_path: list[str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1716,7 +1716,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
-        self, array_path: List[str], **kwargs: Any
+        self, array_path: list[str], **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.

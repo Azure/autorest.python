@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
+from typing import Any, Callable, Literal, Optional, TypeVar, Union
 
 from msrest import Deserializer, Serializer
 
@@ -67,7 +67,7 @@ from ...operations._queries_operations import (
 from .._configuration import AutoRestUrlTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class QueriesOperations:  # pylint: disable=too-many-public-methods
@@ -1343,7 +1343,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_csv_valid(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 
@@ -1390,7 +1390,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_null(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_csv_null(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get a null array of string using the csv-array format.
 
         :param array_query: a null array of string using the csv-array format. Default value is None.
@@ -1435,7 +1435,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_csv_empty(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_csv_empty(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an empty array [] of string using the csv-array format.
 
         :param array_query: an empty array [] of string using the csv-array format. Default value is
@@ -1482,7 +1482,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def array_string_no_collection_format_empty(
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -1530,7 +1530,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_ssv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_ssv_valid(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
 
@@ -1577,7 +1577,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_tsv_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_tsv_valid(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
 
@@ -1624,7 +1624,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_string_pipes_valid(self, array_query: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def array_string_pipes_valid(self, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.
 

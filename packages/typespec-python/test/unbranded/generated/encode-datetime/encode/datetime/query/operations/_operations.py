@@ -1,7 +1,7 @@
 # coding=utf-8
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -20,7 +20,7 @@ from ..._configuration import DatetimeClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -74,7 +74,7 @@ def build_query_unix_timestamp_request(*, value: datetime.datetime, **kwargs: An
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_unix_timestamp_array_request(*, value: List[datetime.datetime], **kwargs: Any) -> HttpRequest:
+def build_query_unix_timestamp_array_request(*, value: list[datetime.datetime], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -288,7 +288,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def unix_timestamp_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[datetime.datetime], **kwargs: Any
+        self, *, value: list[datetime.datetime], **kwargs: Any
     ) -> None:
         """unix_timestamp_array.
 

@@ -8,7 +8,7 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
-from typing import Any, List, Mapping, TYPE_CHECKING, overload
+from typing import Any, Mapping, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -67,7 +67,7 @@ class CollectionsByteProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
-    nullable_property: List[bytes] = rest_field(
+    nullable_property: list[bytes] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
     )
     """Property. Required."""
@@ -77,7 +77,7 @@ class CollectionsByteProperty(_Model):
         self,
         *,
         required_property: str,
-        nullable_property: List[bytes],
+        nullable_property: list[bytes],
     ) -> None: ...
 
     @overload
@@ -104,7 +104,7 @@ class CollectionsModelProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
-    nullable_property: List["_models.InnerModel"] = rest_field(
+    nullable_property: list["_models.InnerModel"] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Property. Required."""
@@ -114,7 +114,7 @@ class CollectionsModelProperty(_Model):
         self,
         *,
         required_property: str,
-        nullable_property: List["_models.InnerModel"],
+        nullable_property: list["_models.InnerModel"],
     ) -> None: ...
 
     @overload
@@ -141,7 +141,7 @@ class CollectionsStringProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
-    nullable_property: List[str] = rest_field(
+    nullable_property: list[str] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Property. Required."""
@@ -151,7 +151,7 @@ class CollectionsStringProperty(_Model):
         self,
         *,
         required_property: str,
-        nullable_property: List[str],
+        nullable_property: list[str],
     ) -> None: ...
 
     @overload

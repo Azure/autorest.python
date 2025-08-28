@@ -1,7 +1,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -64,10 +64,10 @@ class Resource(_Model):
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
+    map: Optional[dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
-    array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    array: Optional[list["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
     float_value: Optional[float] = rest_field(
         name="floatValue", visibility=["read", "create", "update", "delete", "query"]
@@ -75,7 +75,7 @@ class Resource(_Model):
     inner_model: Optional["_models.InnerModel"] = rest_field(
         name="innerModel", visibility=["read", "create", "update", "delete", "query"]
     )
-    int_array: Optional[List[int]] = rest_field(
+    int_array: Optional[list[int]] = rest_field(
         name="intArray", visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -85,12 +85,12 @@ class Resource(_Model):
         *,
         name: str,
         description: Optional[str] = None,
-        map: Optional[Dict[str, "_models.InnerModel"]] = None,
-        array: Optional[List["_models.InnerModel"]] = None,
+        map: Optional[dict[str, "_models.InnerModel"]] = None,
+        array: Optional[list["_models.InnerModel"]] = None,
         int_value: Optional[int] = None,
         float_value: Optional[float] = None,
         inner_model: Optional["_models.InnerModel"] = None,
-        int_array: Optional[List[int]] = None,
+        int_array: Optional[list[int]] = None,
     ) -> None: ...
 
     @overload
@@ -124,10 +124,10 @@ class ResourcePatch(_Model):
     """
 
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    map: Optional[Dict[str, "_models.InnerModel"]] = rest_field(
+    map: Optional[dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
-    array: Optional[List["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    array: Optional[list["_models.InnerModel"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     int_value: Optional[int] = rest_field(name="intValue", visibility=["read", "create", "update", "delete", "query"])
     float_value: Optional[float] = rest_field(
         name="floatValue", visibility=["read", "create", "update", "delete", "query"]
@@ -135,7 +135,7 @@ class ResourcePatch(_Model):
     inner_model: Optional["_models.InnerModel"] = rest_field(
         name="innerModel", visibility=["read", "create", "update", "delete", "query"]
     )
-    int_array: Optional[List[int]] = rest_field(
+    int_array: Optional[list[int]] = rest_field(
         name="intArray", visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -144,12 +144,12 @@ class ResourcePatch(_Model):
         self,
         *,
         description: Optional[str] = None,
-        map: Optional[Dict[str, "_models.InnerModel"]] = None,
-        array: Optional[List["_models.InnerModel"]] = None,
+        map: Optional[dict[str, "_models.InnerModel"]] = None,
+        array: Optional[list["_models.InnerModel"]] = None,
         int_value: Optional[int] = None,
         float_value: Optional[float] = None,
         inner_model: Optional["_models.InnerModel"] = None,
-        int_array: Optional[List[int]] = None,
+        int_array: Optional[list[int]] = None,
     ) -> None: ...
 
     @overload
