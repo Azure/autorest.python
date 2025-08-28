@@ -23,7 +23,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 #### Python code gen
 
-```yaml !$(multiapiscript) && !$(multiclientscript)
+```yaml !$(multiclientscript)
 # default values for version tolerant and black
 black: true
 ```
@@ -39,7 +39,7 @@ modelerfour:
   flatten-payloads: true
 ```
 
-```yaml !$(multiapiscript) && !$(multiclientscript)
+```yaml !$(multiclientscript)
 pass-thru:
   - model-deduplicator
   - subset-reducer
@@ -93,25 +93,6 @@ pipeline:
     scope: scope-codegen/emitter
 
 scope-codegen/emitter:
-  input-artifact: python-files
-  output-uri-expr: $key
-
-output-artifact: python-files
-```
-
-# Multiapi script pipeline
-
-```yaml $(multiapiscript)
-pipeline:
-  python/multiapiscript:
-    scope: multiapiscript
-    output-artifact: python-files
-
-  python/multiapiscript/emitter:
-    input: multiapiscript
-    scope: scope-multiapiscript/emitter
-
-scope-multiapiscript/emitter:
   input-artifact: python-files
   output-uri-expr: $key
 
@@ -173,12 +154,6 @@ help-content:
       - key: basic-setup-py
         description: Whether to generate a build script for setuptools to package your SDK.  Defaults to `false`, generally not suggested if you are going to wrap the generated code
         type: bool
-      - key: multiapi
-        description: Whether to generate a multiapi client.
-        type: bool
-      - key: default-api
-        description: In the case of `--multiapi`, you can override the default service API version with this flag. If not specified, we use the latest GA service version as the default API.
-        type: string
       - key: no-namespace-folders
         description: Specify if you don't want pkgutil-style namespace folders. Defaults to `false`.
         type: bool

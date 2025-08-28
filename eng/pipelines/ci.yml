@@ -112,14 +112,6 @@ jobs:
       - template: generated-code-checks-template.yml
         parameters:
             folderName: "dpg/version-tolerant"
-      - script: tox run -e ci
-        displayName: 'Execute "multiapi" Tests - Python $(PythonVersion)'
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
-
-      - script: tox run -e apiview
-        displayName: 'Validate multiapi APIView - Python $(PythonVersion)'
-        condition: and(succeededOrFailed(), eq(variables['PythonVersion'], '3.11'))
-        workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/autorest.python/test/multiapi
 
       - ${{ if eq(ne(variables['Build.Reason'], 'PullRequest'), 'True') }}:
           - script: |
