@@ -1,7 +1,7 @@
 # coding=utf-8
 from collections.abc import MutableMapping
 import json
-from typing import Any, Callable, Dict, Optional, TypeVar, Union
+from typing import Any, Callable, Optional, TypeVar, Union
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -30,7 +30,7 @@ from ...operations._operations import (
 from .._configuration import ExtensibleClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class StringOperations:

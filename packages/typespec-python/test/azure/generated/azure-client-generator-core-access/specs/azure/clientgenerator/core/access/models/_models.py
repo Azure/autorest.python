@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, Literal, Mapping, TYPE_CHECKING, overload
+from typing import Any, Literal, Mapping, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
@@ -28,7 +28,7 @@ class AbstractModel(_Model):
     :vartype name: str
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for AbstractModel. Required. Default value is None."""
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])

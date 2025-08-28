@@ -2,7 +2,7 @@
 from collections.abc import MutableMapping
 import decimal
 import json
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -42,7 +42,7 @@ from ...operations._operations import (
 from .._configuration import ScalarClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class StringOperations:
@@ -760,7 +760,7 @@ class DecimalVerifyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
+    async def prepare_verify(self, **kwargs: Any) -> list[decimal.Decimal]:
         """prepare_verify.
 
         :return: list of decimal.Decimal
@@ -778,7 +778,7 @@ class DecimalVerifyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[decimal.Decimal]] = kwargs.pop("cls", None)
+        cls: ClsType[list[decimal.Decimal]] = kwargs.pop("cls", None)
 
         _request = build_decimal_verify_prepare_verify_request(
             headers=_headers,
@@ -806,7 +806,7 @@ class DecimalVerifyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[decimal.Decimal], response.json())
+            deserialized = _deserialize(list[decimal.Decimal], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -879,7 +879,7 @@ class Decimal128VerifyOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def prepare_verify(self, **kwargs: Any) -> List[decimal.Decimal]:
+    async def prepare_verify(self, **kwargs: Any) -> list[decimal.Decimal]:
         """prepare_verify.
 
         :return: list of decimal.Decimal
@@ -897,7 +897,7 @@ class Decimal128VerifyOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[decimal.Decimal]] = kwargs.pop("cls", None)
+        cls: ClsType[list[decimal.Decimal]] = kwargs.pop("cls", None)
 
         _request = build_decimal128_verify_prepare_verify_request(
             headers=_headers,
@@ -925,7 +925,7 @@ class Decimal128VerifyOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[decimal.Decimal], response.json())
+            deserialized = _deserialize(list[decimal.Decimal], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore

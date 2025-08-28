@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -23,7 +23,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-too-long
@@ -87,7 +87,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def array(self, param: List[str], **kwargs: Any) -> None:
+    async def array(self, param: list[str], **kwargs: Any) -> None:
         """array.
 
         :param param: Required.
@@ -131,7 +131,7 @@ class PathParametersMatrixExpansionExplodeOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def record(self, param: Dict[str, int], **kwargs: Any) -> None:
+    async def record(self, param: dict[str, int], **kwargs: Any) -> None:
         """record.
 
         :param param: Required.

@@ -1,7 +1,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 from .._utils.utils import FileType
@@ -49,7 +49,7 @@ class BinaryArrayPartsRequest(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    pictures: List[FileType] = rest_field(
+    pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
@@ -59,7 +59,7 @@ class BinaryArrayPartsRequest(_Model):
         self,
         *,
         id: str,  # pylint: disable=redefined-builtin
-        pictures: List[FileType],
+        pictures: list[FileType],
     ) -> None: ...
 
     @overload
@@ -96,11 +96,11 @@ class ComplexHttpPartsModelRequest(_Model):
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
-    previous_addresses: List["_models.Address"] = rest_field(
+    previous_addresses: list["_models.Address"] = rest_field(
         name="previousAddresses", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required."""
-    pictures: List[FileType] = rest_field(
+    pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
@@ -112,8 +112,8 @@ class ComplexHttpPartsModelRequest(_Model):
         id: str,  # pylint: disable=redefined-builtin
         address: "_models.Address",
         profile_image: FileType,
-        previous_addresses: List["_models.Address"],
-        pictures: List[FileType],
+        previous_addresses: list["_models.Address"],
+        pictures: list[FileType],
     ) -> None: ...
 
     @overload
@@ -148,7 +148,7 @@ class ComplexPartsRequest(_Model):
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
-    pictures: List[FileType] = rest_field(
+    pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
@@ -160,7 +160,7 @@ class ComplexPartsRequest(_Model):
         id: str,  # pylint: disable=redefined-builtin
         address: "_models.Address",
         profile_image: FileType,
-        pictures: List[FileType],
+        pictures: list[FileType],
     ) -> None: ...
 
     @overload

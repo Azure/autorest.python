@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Literal, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Literal, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -42,7 +42,7 @@ from ...operations._auto_rest_resource_flattening_test_service_operations import
 from .._configuration import AutoRestResourceFlatteningTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _AutoRestResourceFlatteningTestServiceOperationsMixin(
@@ -54,7 +54,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     @overload
     async def put_array(
         self,
-        resource_array: Optional[List[_models.Resource]] = None,
+        resource_array: Optional[list[_models.Resource]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -95,7 +95,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @distributed_trace_async
     async def put_array(
-        self, resource_array: Optional[Union[List[_models.Resource], IO[bytes]]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[list[_models.Resource], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as an Array.
 
@@ -160,7 +160,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_array(self, **kwargs: Any) -> List[_models.FlattenedProduct]:
+    async def get_array(self, **kwargs: Any) -> list[_models.FlattenedProduct]:
         """Get External Resource as an Array.
 
         .. seealso::
@@ -181,7 +181,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.FlattenedProduct]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         _request = build_get_array_request(
             headers=_headers,
@@ -211,7 +211,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     @overload
     async def put_wrapped_array(
         self,
-        resource_array: Optional[List[_models.WrappedProduct]] = None,
+        resource_array: Optional[list[_models.WrappedProduct]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -254,7 +254,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @distributed_trace_async
     async def put_wrapped_array(
-        self, resource_array: Optional[Union[List[_models.WrappedProduct], IO[bytes]]] = None, **kwargs: Any
+        self, resource_array: Optional[Union[list[_models.WrappedProduct], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
@@ -320,7 +320,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_wrapped_array(self, **kwargs: Any) -> List[_models.ProductWrapper]:
+    async def get_wrapped_array(self, **kwargs: Any) -> list[_models.ProductWrapper]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
         is not removed if it's referenced in an array.
 
@@ -342,7 +342,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.ProductWrapper]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.ProductWrapper]] = kwargs.pop("cls", None)
 
         _request = build_get_wrapped_array_request(
             headers=_headers,
@@ -372,7 +372,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     @overload
     async def put_dictionary(
         self,
-        resource_dictionary: Optional[Dict[str, _models.FlattenedProduct]] = None,
+        resource_dictionary: Optional[dict[str, _models.FlattenedProduct]] = None,
         *,
         content_type: str = "application/json",
         **kwargs: Any
@@ -413,7 +413,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
     @distributed_trace_async
     async def put_dictionary(
-        self, resource_dictionary: Optional[Union[Dict[str, _models.FlattenedProduct], IO[bytes]]] = None, **kwargs: Any
+        self, resource_dictionary: Optional[Union[dict[str, _models.FlattenedProduct], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Put External Resource as a Dictionary.
 
@@ -478,7 +478,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary(self, **kwargs: Any) -> Dict[str, _models.FlattenedProduct]:
+    async def get_dictionary(self, **kwargs: Any) -> dict[str, _models.FlattenedProduct]:
         """Get External Resource as a Dictionary.
 
         .. seealso::
@@ -499,7 +499,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, _models.FlattenedProduct]] = kwargs.pop("cls", None)
 
         _request = build_get_dictionary_request(
             headers=_headers,

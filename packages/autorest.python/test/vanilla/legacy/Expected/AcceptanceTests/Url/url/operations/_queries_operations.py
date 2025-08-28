@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
+from typing import Any, Callable, Literal, Optional, TypeVar, Union
 
 from msrest import Deserializer, Serializer
 
@@ -30,7 +30,7 @@ from .. import models as _models
 from .._configuration import AutoRestUrlTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 
@@ -577,7 +577,7 @@ def build_date_time_null_request(*, date_time_query: Optional[datetime.datetime]
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_csv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_valid_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -596,7 +596,7 @@ def build_array_string_csv_valid_request(*, array_query: Optional[List[str]] = N
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_csv_null_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_null_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -615,7 +615,7 @@ def build_array_string_csv_null_request(*, array_query: Optional[List[str]] = No
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_csv_empty_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -635,7 +635,7 @@ def build_array_string_csv_empty_request(*, array_query: Optional[List[str]] = N
 
 
 def build_array_string_no_collection_format_empty_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -655,7 +655,7 @@ def build_array_string_no_collection_format_empty_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_ssv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_ssv_valid_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -674,7 +674,7 @@ def build_array_string_ssv_valid_request(*, array_query: Optional[List[str]] = N
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_tsv_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_tsv_valid_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -693,7 +693,7 @@ def build_array_string_tsv_valid_request(*, array_query: Optional[List[str]] = N
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_array_string_pipes_valid_request(*, array_query: Optional[List[str]] = None, **kwargs: Any) -> HttpRequest:
+def build_array_string_pipes_valid_request(*, array_query: Optional[list[str]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -2010,7 +2010,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
@@ -2059,7 +2059,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get a null array of string using the csv-array format.
 
@@ -2106,7 +2106,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
@@ -2154,7 +2154,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -2203,7 +2203,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
@@ -2252,7 +2252,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
@@ -2301,7 +2301,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
-        self, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.

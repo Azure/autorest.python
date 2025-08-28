@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -33,10 +33,10 @@ class ActionRequest(_Model):
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
     )
-    array_property: Optional[List[str]] = rest_field(
+    array_property: Optional[list[str]] = rest_field(
         name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
     )
-    record_property: Optional[Dict[str, str]] = rest_field(
+    record_property: Optional[dict[str, str]] = rest_field(
         name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -46,8 +46,8 @@ class ActionRequest(_Model):
         *,
         string_property: str,
         model_property: Optional["_models.Model"] = None,
-        array_property: Optional[List[str]] = None,
-        record_property: Optional[Dict[str, str]] = None,
+        array_property: Optional[list[str]] = None,
+        record_property: Optional[dict[str, str]] = None,
     ) -> None: ...
 
     @overload
@@ -79,10 +79,10 @@ class ActionResponse(_Model):
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
     )
-    array_property: Optional[List[str]] = rest_field(
+    array_property: Optional[list[str]] = rest_field(
         name="arrayProperty", visibility=["read", "create", "update", "delete", "query"]
     )
-    record_property: Optional[Dict[str, str]] = rest_field(
+    record_property: Optional[dict[str, str]] = rest_field(
         name="recordProperty", visibility=["read", "create", "update", "delete", "query"]
     )
 
@@ -92,8 +92,8 @@ class ActionResponse(_Model):
         *,
         string_property: str,
         model_property: Optional["_models.Model"] = None,
-        array_property: Optional[List[str]] = None,
-        record_property: Optional[Dict[str, str]] = None,
+        array_property: Optional[list[str]] = None,
+        record_property: Optional[dict[str, str]] = None,
     ) -> None: ...
 
     @overload

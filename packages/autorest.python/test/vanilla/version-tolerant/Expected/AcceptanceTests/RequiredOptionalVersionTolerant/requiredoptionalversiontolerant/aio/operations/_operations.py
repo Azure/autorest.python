@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -62,7 +62,7 @@ from ...operations._operations import (
 from .._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]
 
 
@@ -1823,7 +1823,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_required_array_parameter(
-        self, body_parameter: List[str], *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: list[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
@@ -1864,7 +1864,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def post_required_array_parameter(self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
+    async def post_required_array_parameter(self, body_parameter: Union[list[str], IO[bytes]], **kwargs: Any) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
 
@@ -1921,7 +1921,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def post_optional_array_parameter(
-        self, body_parameter: Optional[List[str]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[list[str]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
@@ -1961,7 +1961,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def post_optional_array_parameter(
-        self, body_parameter: Optional[Union[List[str], IO[bytes]]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[list[str], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
@@ -2244,7 +2244,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_required_array_header(self, *, header_parameter: List[str], **kwargs: Any) -> None:
+    async def post_required_array_header(self, *, header_parameter: list[str], **kwargs: Any) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
 
@@ -2289,7 +2289,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def post_optional_array_header(self, *, header_parameter: Optional[List[str]] = None, **kwargs: Any) -> None:
+    async def post_optional_array_header(self, *, header_parameter: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 
         :keyword header_parameter: Default value is None.
