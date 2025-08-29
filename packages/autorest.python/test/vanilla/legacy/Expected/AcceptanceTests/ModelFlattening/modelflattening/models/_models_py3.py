@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, Literal, Optional, TYPE_CHECKING
+from typing import Any, Literal, Optional, TYPE_CHECKING, Union
 
 from .._utils import serialization as _serialization
 
