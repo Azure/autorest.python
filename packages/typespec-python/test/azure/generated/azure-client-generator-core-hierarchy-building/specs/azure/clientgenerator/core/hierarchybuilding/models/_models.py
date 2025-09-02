@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, Literal, Mapping, overload
+from typing import Any, Literal, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
@@ -25,7 +25,7 @@ class Animal(_Model):
     :vartype name: str
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The kind of animal. Required. Default value is None."""
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -64,7 +64,7 @@ class Pet(Animal, discriminator="pet"):
     :vartype trained: bool
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: Literal["pet"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"pet\"."""
     trained: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
