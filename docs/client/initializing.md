@@ -68,25 +68,8 @@ client. Say your custom credential is called `MyCredential`, and the policy that
 client would look something like `client = PetsClient(credential=MyCredential(), authentication_policy=MyAuthenticationPolicy())`, though this of course varies
 based on inputs.
 
-## Multi API Client
-
-Initializing your Multi API client is very similar to initializing a normal client. The only difference is there's an added optional
-parameter `api_version`. With this parameter, you can specify the API version you want your client to have. If not specified, the multi
-API client uses the default API version.
-
-Using the Multi API client we generated in our [multi API generation][multiapi_generation], our example client uses default API version
-`v2`. If we would like our client at runtime to have API version `v1`, we would initialize our client like:
-
-```python
-from azure.identity import DefaultAzureCredential
-from azure.pets import PetsClient
-
-client = PetsClient(credential=DefaultAzureCredential(), api_version="v1")
-```
-
 <!-- LINKS -->
 
-[multiapi_generation]: https://github.com/Azure/autorest.python/blob/main/docs/generate/multiapi.md
 [azure_core_library]: https://pypi.org/project/azure-core/
 [msrest_library]: https://pypi.org/project/msrest/
 [azure_mgmt_core_library]: https://pypi.org/project/azure-mgmt-core/

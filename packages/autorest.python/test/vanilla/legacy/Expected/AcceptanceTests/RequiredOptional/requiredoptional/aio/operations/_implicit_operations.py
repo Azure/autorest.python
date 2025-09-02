@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, IO, Optional, TypeVar
+from typing import Any, Callable, IO, Optional, TypeVar
 
 from msrest import Deserializer, Serializer
 
@@ -38,7 +38,7 @@ from ...operations._implicit_operations import (
 from .._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class ImplicitOperations:
@@ -218,7 +218,8 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -270,7 +271,10 @@ class ImplicitOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/octet-stream")
+        )
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = body_parameter

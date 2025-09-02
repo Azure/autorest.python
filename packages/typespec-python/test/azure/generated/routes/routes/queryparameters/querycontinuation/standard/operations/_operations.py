@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -26,7 +26,7 @@ from ....._configuration import RoutesClientConfiguration
 from ....._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -47,7 +47,7 @@ def build_query_parameters_query_continuation_standard_primitive_request(  # pyl
 
 
 def build_query_parameters_query_continuation_standard_array_request(  # pylint: disable=name-too-long
-    *, param: List[str], **kwargs: Any
+    *, param: list[str], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -61,7 +61,7 @@ def build_query_parameters_query_continuation_standard_array_request(  # pylint:
 
 
 def build_query_parameters_query_continuation_standard_record_request(  # pylint: disable=name-too-long
-    *, param: Dict[str, int], **kwargs: Any
+    *, param: dict[str, int], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -139,7 +139,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def array(self, *, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def array(self, *, param: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """array.
 
         :keyword param: Required.
@@ -186,7 +186,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def record(self, *, param: Dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def record(self, *, param: dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """record.
 
         :keyword param: Required.

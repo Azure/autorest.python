@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar, Union
+from typing import Any, Callable, Literal, Optional, TypeVar, Union
 
 from msrest import Deserializer, Serializer
 
@@ -58,7 +58,7 @@ from ...operations._paths_operations import (
 from .._configuration import AutoRestUrlTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class PathsOperations:  # pylint: disable=too-many-public-methods
@@ -1194,7 +1194,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def array_csv_in_path(self, array_path: List[str], **kwargs: Any) -> None:
+    async def array_csv_in_path(self, array_path: list[str], **kwargs: Any) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
 

@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -19,7 +19,7 @@ from ..._configuration import BytesClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -61,7 +61,7 @@ def build_header_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64_url_array_request(*, value: List[bytes], **kwargs: Any) -> HttpRequest:
+def build_header_base64_url_array_request(*, value: list[bytes], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -223,7 +223,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def base64_url_array(  # pylint: disable=inconsistent-return-statements
-        self, *, value: List[bytes], **kwargs: Any
+        self, *, value: list[bytes], **kwargs: Any
     ) -> None:
         """base64_url_array.
 

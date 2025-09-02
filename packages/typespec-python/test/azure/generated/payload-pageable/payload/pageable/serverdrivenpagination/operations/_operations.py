@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -30,7 +30,7 @@ from ..._utils.serialization import Deserializer, Serializer
 from ..continuationtoken.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -96,7 +96,7 @@ class ServerDrivenPaginationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models2.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models2.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -133,7 +133,7 @@ class ServerDrivenPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models2.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(list[_models2.Pet], deserialized.get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, iter(list_of_elem)
@@ -166,7 +166,7 @@ class ServerDrivenPaginationOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models2.Pet]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models2.Pet]] = kwargs.pop("cls", None)
 
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -203,7 +203,7 @@ class ServerDrivenPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models2.Pet], deserialized.get("nestedItems", {}).get("pets", []))
+            list_of_elem = _deserialize(list[_models2.Pet], deserialized.get("nestedItems", {}).get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nestedNext.next") or None, iter(list_of_elem)

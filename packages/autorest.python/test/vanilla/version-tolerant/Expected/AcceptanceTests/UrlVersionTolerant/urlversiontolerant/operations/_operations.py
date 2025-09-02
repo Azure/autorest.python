@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Literal, Optional, TypeVar
+from typing import Any, Callable, Literal, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -28,7 +28,7 @@ from .._configuration import AutoRestUrlTestServiceConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -526,7 +526,7 @@ def build_paths_base64_url_request(base64_url_path: bytes, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_paths_array_csv_in_path_request(array_path: List[str], **kwargs: Any) -> HttpRequest:
+def build_paths_array_csv_in_path_request(array_path: list[str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -1107,7 +1107,7 @@ def build_queries_date_time_null_request(
 
 
 def build_queries_array_string_csv_valid_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1128,7 +1128,7 @@ def build_queries_array_string_csv_valid_request(  # pylint: disable=name-too-lo
 
 
 def build_queries_array_string_csv_null_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1149,7 +1149,7 @@ def build_queries_array_string_csv_null_request(  # pylint: disable=name-too-lon
 
 
 def build_queries_array_string_csv_empty_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1170,7 +1170,7 @@ def build_queries_array_string_csv_empty_request(  # pylint: disable=name-too-lo
 
 
 def build_queries_array_string_no_collection_format_empty_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1191,7 +1191,7 @@ def build_queries_array_string_no_collection_format_empty_request(  # pylint: di
 
 
 def build_queries_array_string_ssv_valid_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1212,7 +1212,7 @@ def build_queries_array_string_ssv_valid_request(  # pylint: disable=name-too-lo
 
 
 def build_queries_array_string_tsv_valid_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1233,7 +1233,7 @@ def build_queries_array_string_tsv_valid_request(  # pylint: disable=name-too-lo
 
 
 def build_queries_array_string_pipes_valid_request(  # pylint: disable=name-too-long
-    *, array_query: Optional[List[str]] = None, **kwargs: Any
+    *, array_query: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -2524,7 +2524,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_csv_in_path(  # pylint: disable=inconsistent-return-statements
-        self, array_path: List[str], **kwargs: Any
+        self, array_path: list[str], **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
@@ -3885,7 +3885,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         csv-array format.
@@ -3933,7 +3933,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_null(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get a null array of string using the csv-array format.
 
@@ -3979,7 +3979,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_csv_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an empty array [] of string using the csv-array format.
 
@@ -4026,7 +4026,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_no_collection_format_empty(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
         'bonjour'] for the 'arrayQuery' parameter to the service.
@@ -4074,7 +4074,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_ssv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         ssv-array format.
@@ -4122,7 +4122,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_tsv_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         tsv-array format.
@@ -4170,7 +4170,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def array_string_pipes_valid(  # pylint: disable=inconsistent-return-statements
-        self, *, array_query: Optional[List[str]] = None, **kwargs: Any
+        self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
         pipes-array format.

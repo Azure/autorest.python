@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -23,7 +23,7 @@ from ....._utils.utils import prepare_multipart_form_data
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -102,8 +102,8 @@ class FormDataHttpPartsNonStringOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _body = body.as_dict() if isinstance(body, _Model) else body
-        _file_fields: List[str] = []
-        _data_fields: List[str] = ["temperature"]
+        _file_fields: list[str] = []
+        _data_fields: list[str] = ["temperature"]
         _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_non_string_float_request(

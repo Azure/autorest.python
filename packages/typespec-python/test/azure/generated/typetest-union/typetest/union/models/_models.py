@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Literal, Mapping, TYPE_CHECKING, Union, overload
+from typing import Any, Literal, Mapping, TYPE_CHECKING, Union, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -490,7 +490,7 @@ class MixedTypesCases(_Model):
     )
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
      Literal[\"a\"], int, bool"""
-    array: List[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
+    array: list[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send 4 element with Cat, \"a\", int, and boolean. Required."""
@@ -503,7 +503,7 @@ class MixedTypesCases(_Model):
         literal: Union["_models.Cat", Literal["a"], int, bool],
         int_property: Union["_models.Cat", Literal["a"], int, bool],
         boolean: Union["_models.Cat", Literal["a"], int, bool],
-        array: List[Union["_models.Cat", Literal["a"], int, bool]],
+        array: list[Union["_models.Cat", Literal["a"], int, bool]],
     ) -> None: ...
 
     @overload
@@ -528,17 +528,17 @@ class StringAndArrayCases(_Model):
     :vartype array: str or list[str]
     """
 
-    string: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    string: Union[str, list[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
-    array: Union[str, List[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    array: Union[str, list[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
 
     @overload
     def __init__(
         self,
         *,
-        string: Union[str, List[str]],
-        array: Union[str, List[str]],
+        string: Union[str, list[str]],
+        array: Union[str, list[str]],
     ) -> None: ...
 
     @overload

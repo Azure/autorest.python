@@ -2,7 +2,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -31,7 +31,7 @@ from .._configuration import JsonMergePatchClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _JsonMergePatchClientOperationsMixin(
@@ -346,9 +346,10 @@ class _JsonMergePatchClientOperationsMixin(
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.Resource] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/merge-patch+json"
+        content_type = content_type or "application/merge-patch+json" if body else None
         _content = None
         if isinstance(body, (IOBase, bytes)):
             _content = body

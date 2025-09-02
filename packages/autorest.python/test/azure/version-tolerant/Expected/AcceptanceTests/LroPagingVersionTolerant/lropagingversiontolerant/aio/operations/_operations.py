@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, AsyncIterator, Callable, Dict, IO, List, Optional, TypeVar, Union, cast, overload
+from typing import Any, AsyncIterator, Callable, IO, Optional, TypeVar, Union, cast, overload
 import urllib.parse
 
 from azure.core import AsyncPipelineClient
@@ -39,7 +39,7 @@ from .._configuration import LroPagingClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class QuestionAnsweringProjectsOperations:
@@ -222,7 +222,7 @@ class QuestionAnsweringProjectsOperations:
         return AsyncItemPaged(get_next, extract_data)
 
     async def _update_qnas_initial(
-        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
+        self, project_name: str, body: Union[list[JSON], IO[bytes]], **kwargs: Any
     ) -> AsyncIterator[bytes]:
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -287,7 +287,7 @@ class QuestionAnsweringProjectsOperations:
 
     @overload
     async def begin_update_qnas(
-        self, project_name: str, body: List[JSON], *, content_type: str = "application/json", **kwargs: Any
+        self, project_name: str, body: list[JSON], *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged[JSON]]:
         """Updates the QnAs of a project.
 
@@ -496,7 +496,7 @@ class QuestionAnsweringProjectsOperations:
 
     @distributed_trace_async
     async def begin_update_qnas(
-        self, project_name: str, body: Union[List[JSON], IO[bytes]], **kwargs: Any
+        self, project_name: str, body: Union[list[JSON], IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[AsyncItemPaged[JSON]]:
         """Updates the QnAs of a project.
 

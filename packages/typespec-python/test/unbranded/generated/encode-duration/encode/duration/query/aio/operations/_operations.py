@@ -1,7 +1,7 @@
 # coding=utf-8
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -27,7 +27,7 @@ from ...operations._operations import (
 )
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class QueryOperations:
@@ -267,7 +267,7 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def int32_seconds_array(self, *, input: List[int], **kwargs: Any) -> None:
+    async def int32_seconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_seconds_array.
 
         :keyword input: Required.

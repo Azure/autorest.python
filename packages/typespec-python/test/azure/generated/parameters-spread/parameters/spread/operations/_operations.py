@@ -9,7 +9,7 @@
 from collections.abc import MutableMapping
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -33,7 +33,7 @@ from .._utils.serialization import Deserializer, Serializer
 JSON = MutableMapping[str, Any]
 _Unset: Any = object()
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1183,10 +1183,10 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         required_string: str,
-        required_int_list: List[int],
+        required_int_list: list[int],
         content_type: str = "application/json",
         optional_int: Optional[int] = None,
-        optional_string_list: Optional[List[str]] = None,
+        optional_string_list: Optional[list[str]] = None,
         **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
@@ -1259,9 +1259,9 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         required_string: str = _Unset,
-        required_int_list: List[int] = _Unset,
+        required_int_list: list[int] = _Unset,
         optional_int: Optional[int] = None,
-        optional_string_list: Optional[List[str]] = None,
+        optional_string_list: Optional[list[str]] = None,
         **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.

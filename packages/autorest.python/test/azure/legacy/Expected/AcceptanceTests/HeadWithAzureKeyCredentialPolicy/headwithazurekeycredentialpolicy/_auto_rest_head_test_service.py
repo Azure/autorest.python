@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Dict
+from typing import Any
 from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
@@ -33,7 +33,9 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
     """
 
     def __init__(self, credential: AzureKeyCredential, base_url: str = "http://localhost:3000", **kwargs: Any) -> None:
-        self._config = AutoRestHeadTestServiceConfiguration(credential=credential, **kwargs)
+        self._config = AutoRestHeadTestServiceConfiguration(
+            credential=credential, cloud_setting=cloud_setting, **kwargs
+        )
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -55,7 +57,7 @@ class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-key
             ]
         self._client: ARMPipelineClient = ARMPipelineClient(base_url=base_url, policies=_policies, **kwargs)
 
-        client_models: Dict[str, Any] = {}
+        client_models: dict[str, Any] = {}
         self._serialize = Serializer(client_models)
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False

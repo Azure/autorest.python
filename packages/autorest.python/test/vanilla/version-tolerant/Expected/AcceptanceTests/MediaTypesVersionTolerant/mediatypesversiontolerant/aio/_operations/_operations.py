@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, cast, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, cast, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -37,7 +37,7 @@ from .._configuration import MediaTypesClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
@@ -122,6 +122,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         _json = None
@@ -138,7 +139,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
                 _json = input
             else:
                 _json = None
-            content_type = content_type or "application/json"
+            content_type = content_type or "application/json" if input else None
 
         _request = build_media_types_analyze_body_request(
             content_type=content_type,
@@ -247,6 +248,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _json = None
@@ -263,7 +265,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
                 _json = input
             else:
                 _json = None
-            content_type = content_type or "application/json"
+            content_type = content_type or "application/json" if input else None
 
         _request = build_media_types_analyze_body_no_accept_header_request(
             content_type=content_type,
@@ -310,6 +312,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if input else None
         cls: ClsType[str] = kwargs.pop("cls", None)
 
         if input is not None:

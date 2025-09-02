@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, AsyncIterator, Callable, Dict, IO, Optional, TypeVar, cast
+from typing import Any, AsyncIterator, Callable, IO, Optional, TypeVar, cast
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -30,7 +30,7 @@ from ...operations._operations import build_formdata_upload_file_via_body_reques
 from .._configuration import AutoRestSwaggerBATFormDataServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class FormdataOperations:  # pylint: disable=abstract-class-instantiated

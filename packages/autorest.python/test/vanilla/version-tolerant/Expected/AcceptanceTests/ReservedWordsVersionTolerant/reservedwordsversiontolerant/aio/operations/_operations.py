@@ -7,7 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, cast
+from typing import Any, Callable, IO, Optional, TypeVar, cast
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -36,7 +36,7 @@ from .._configuration import ReservedWordsClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class ImportOperations:
@@ -233,7 +233,7 @@ class _ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-ins
 
     @distributed_trace_async
     async def operation_with_url(
-        self, url: str, *, header_parameters: str, query_parameters: Optional[List[str]] = None, **kwargs: Any
+        self, url: str, *, header_parameters: str, query_parameters: Optional[list[str]] = None, **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
         queryParameters.

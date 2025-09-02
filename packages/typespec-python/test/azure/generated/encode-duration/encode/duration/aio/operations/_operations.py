@@ -10,7 +10,7 @@ from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -54,7 +54,7 @@ from ...operations._operations import (
 from .._configuration import DurationClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]
 
 
@@ -311,7 +311,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_seconds_array(self, *, input: List[int], **kwargs: Any) -> None:
+    async def int32_seconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_seconds_array.
 
         :keyword input: Required.
@@ -1216,7 +1216,7 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def iso8601_array(self, *, duration: List[datetime.timedelta], **kwargs: Any) -> None:
+    async def iso8601_array(self, *, duration: list[datetime.timedelta], **kwargs: Any) -> None:
         """iso8601_array.
 
         :keyword duration: Required.
