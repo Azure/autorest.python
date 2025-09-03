@@ -79,7 +79,7 @@ def test_package_mode_for_azure_mgmt_pyproject():
     assert packaging.get("is_stable") is False, "is_stable shall be kept in pyproject.toml"
     assert packaging.get("is_arm") is True, "is_arm shall be kept in pyproject.toml"
 
-    dependencies = packaging.get("project", {}).get("dependencies", [])
+    dependencies = pyproject_data.get("project", {}).get("dependencies", [])
     assert any(
         dep.startswith("azure-mgmt-core") for dep in dependencies
     ), "azure-mgmt-core dependencies shall be kept in pyproject.toml"
