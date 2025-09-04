@@ -20,11 +20,7 @@ interface TspCommand {
 }
 
 // Add this near the top with other constants
-const SKIP_SPECS = [
-    "type/union/discriminated",
-    "client-operation-group",
-    "azure/client-generator-core/hierarchy-building",
-];
+const SKIP_SPECS = ["type/union/discriminated", "client-operation-group"];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
@@ -50,6 +46,9 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     },
     "azure/client-generator-core/override": {
         namespace: "specs.azure.clientgenerator.core.override",
+    },
+    "azure/client-generator-core/hierarchy-building": {
+        namespace: "specs.azure.clientgenerator.core.hierarchybuilding",
     },
     "azure/core/basic": {
         namespace: "specs.azure.core.basic",
