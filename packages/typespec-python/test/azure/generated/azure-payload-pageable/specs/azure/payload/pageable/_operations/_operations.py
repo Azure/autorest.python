@@ -30,9 +30,9 @@ from .._utils.serialization import Serializer
 from .._utils.utils import ClientMixinABC
 from .._validation import api_version_validation
 
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

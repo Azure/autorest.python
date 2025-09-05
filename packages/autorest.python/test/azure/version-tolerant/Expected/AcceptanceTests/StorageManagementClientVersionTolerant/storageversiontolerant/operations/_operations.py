@@ -35,9 +35,9 @@ from .._configuration import StorageManagementClientConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
 JSON = MutableMapping[str, Any]
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

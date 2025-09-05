@@ -26,3 +26,65 @@ output-folder: $(python-sdks-folder)/test/azure-mgmt-pyproject/azure/mgmt/pyproj
 modelerfour:
   flatten-models: false
 ```
+
+``` yaml $(python)
+directive:
+  - from: swagger-document
+    where: $.paths
+    transform: >
+      $["/self-define/post1"] = {
+        "post": {
+          "operationId": "Operations_List",
+          "summary": "Process list of strings",
+          "description": "Processes a list of strings with no return value",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "List of strings to process"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Operation completed successfully with no content"
+            }
+          }
+        }
+      };
+  - from: swagger-document
+    where: $.paths
+    transform: >
+      $["/self-define/post2"] = {
+        "post": {
+          "operationId": "SelfDefine_Post",
+          "summary": "Process list of strings",
+          "description": "Processes a list of strings with no return value",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "required": true,
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "description": "List of strings to process"
+            }
+          ],
+          "responses": {
+            "204": {
+              "description": "Operation completed successfully with no content"
+            }
+          }
+        }
+      };
+```

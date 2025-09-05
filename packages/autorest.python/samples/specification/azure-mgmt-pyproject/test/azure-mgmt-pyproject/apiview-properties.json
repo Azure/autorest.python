@@ -6,6 +6,10 @@
         "azure.mgmt.pyproject.operations.HttpSuccessOperations.head204": null,
         "azure.mgmt.pyproject.aio.operations.HttpSuccessOperations.head204": null,
         "azure.mgmt.pyproject.operations.HttpSuccessOperations.head404": null,
-        "azure.mgmt.pyproject.aio.operations.HttpSuccessOperations.head404": null
+        "azure.mgmt.pyproject.aio.operations.HttpSuccessOperations.head404": null,
+        "azure.mgmt.pyproject.operations.Operations.list": null,
+        "azure.mgmt.pyproject.aio.operations.Operations.list": null,
+        "azure.mgmt.pyproject.operations.SelfDefineOperations.post": null,
+        "azure.mgmt.pyproject.aio.operations.SelfDefineOperations.post": null
     }
 }

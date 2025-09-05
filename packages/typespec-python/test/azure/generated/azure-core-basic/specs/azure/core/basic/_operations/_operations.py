@@ -35,9 +35,9 @@ from .._utils.serialization import Serializer
 from .._utils.utils import ClientMixinABC
 
 JSON = MutableMapping[str, Any]
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
