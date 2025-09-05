@@ -30,9 +30,9 @@ from ..._utils.model_base import _deserialize
 from ..._utils.utils import ClientMixinABC
 from .._configuration import OverloadClientConfiguration
 
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 
 class _OverloadClientOperationsMixin(
