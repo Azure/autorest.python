@@ -13,6 +13,8 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 from ._http_success_operations import HttpSuccessOperations  # type: ignore
+from ._operations import Operations  # type: ignore
+from ._self_define_operations import SelfDefineOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -20,6 +22,8 @@ from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
     "HttpSuccessOperations",
+    "Operations",
+    "SelfDefineOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()
