@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import PyprojectMgmtClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import HttpSuccessOperations
+from .operations import HttpSuccessOperations, Operations, SelfDefineOperations
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -31,6 +31,10 @@ class PyprojectMgmtClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar http_success: HttpSuccessOperations operations
     :vartype http_success: azure.mgmt.pyproject.operations.HttpSuccessOperations
+    :ivar operations: Operations operations
+    :vartype operations: azure.mgmt.pyproject.operations.Operations
+    :ivar self_define: SelfDefineOperations operations
+    :vartype self_define: azure.mgmt.pyproject.operations.SelfDefineOperations
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param base_url: Service URL. Default value is None.
@@ -82,6 +86,8 @@ class PyprojectMgmtClient:  # pylint: disable=client-accepts-api-version-keyword
         self._deserialize = Deserializer(client_models)
         self._serialize.client_side_validation = False
         self.http_success = HttpSuccessOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.self_define = SelfDefineOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def _send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
