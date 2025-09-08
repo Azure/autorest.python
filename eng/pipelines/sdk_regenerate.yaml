@@ -44,8 +44,8 @@ jobs:
     inputs:
       versionSpec: '20.x'
 
-  - script: npm install -g pnpm@9.5.0
-    displayName: Install pnpm 9.5.0
+  - script: npm install -g pnpm@10.11.0
+    displayName: Install pnpm 10.11.0
 
   - script: pnpm install
     displayName: pnpm install

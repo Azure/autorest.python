@@ -26,8 +26,8 @@ steps:
     inputs:
       versionSpec: $(PythonVersion)
 
-  - script: npm install -g pnpm@9.5.0
-    displayName: Install pnpm 9.5.0
+  - script: npm install -g pnpm@10.11.0
+    displayName: Install pnpm 10.11.0
 
   - script: npm install -g autorest
     displayName: Install autorest
