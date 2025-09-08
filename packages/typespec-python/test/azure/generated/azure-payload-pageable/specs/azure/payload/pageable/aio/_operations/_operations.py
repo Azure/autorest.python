@@ -30,9 +30,9 @@ from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
 from .._configuration import PageableClientConfiguration
 
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 
 class _PageableClientOperationsMixin(

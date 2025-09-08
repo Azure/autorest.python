@@ -46,9 +46,9 @@ from ...operations._storage_accounts_operations import (
 )
 from .._configuration import StorageManagementClientConfiguration
 
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 
 class StorageAccountsOperations:

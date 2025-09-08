@@ -27,9 +27,9 @@ from azure.mgmt.core.exceptions import ARMErrorFormat
 from .._configuration import PyprojectMgmtClientConfiguration
 from .._utils.serialization import Deserializer, Serializer
 
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False

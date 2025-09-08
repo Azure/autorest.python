@@ -45,9 +45,9 @@ from ..._utils.utils import ClientMixinABC
 from .._configuration import BasicClientConfiguration
 
 JSON = MutableMapping[str, Any]
-List = list
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+List = list
 
 
 class _BasicClientOperationsMixin(
