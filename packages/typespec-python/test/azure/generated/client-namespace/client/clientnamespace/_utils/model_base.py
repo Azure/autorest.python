@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1235,3 +1234,4 @@ def _convert_element(e: ET.Element):
         return array_result
     # primitive case
     return e.text
+,line-too-long,useless-suppression

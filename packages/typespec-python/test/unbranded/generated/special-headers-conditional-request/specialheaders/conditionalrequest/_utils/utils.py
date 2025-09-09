@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 from abc import ABC
 from typing import Generic, Optional, TYPE_CHECKING, TypeVar
 

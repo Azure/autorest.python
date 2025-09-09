@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 
 # pyright: reportUnnecessaryTypeIgnoreComment=false
@@ -2022,3 +2021,4 @@ class Deserializer:
             msg = "Cannot deserialize to unix datetime object."
             raise DeserializationError(msg) from err
         return date_obj
+,line-too-long,useless-suppression

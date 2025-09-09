@@ -185,3 +185,4 @@ class LargeHeadersOperations:
         return AsyncLROPoller[_models.CancelResult](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
+,line-too-long,useless-suppression

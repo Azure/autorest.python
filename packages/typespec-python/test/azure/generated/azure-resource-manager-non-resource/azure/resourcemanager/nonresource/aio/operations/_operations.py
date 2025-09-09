@@ -268,3 +268,4 @@ class NonResourceOperationsOperations:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
+,line-too-long,useless-suppression

@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -1402,3 +1401,4 @@ class HeaderOperations:
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+,line-too-long,useless-suppression

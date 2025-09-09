@@ -55,3 +55,4 @@ class OAuth2ClientConfiguration:  # pylint: disable=too-many-instance-attributes
             self.authentication_policy = policies.AsyncBearerTokenCredentialPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+,line-too-long,useless-suppression

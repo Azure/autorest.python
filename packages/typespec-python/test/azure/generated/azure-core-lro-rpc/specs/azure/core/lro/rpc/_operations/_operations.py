@@ -249,3 +249,4 @@ class _RpcClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
         return LROPoller[_models.GenerationResult](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
+,line-too-long,useless-suppression

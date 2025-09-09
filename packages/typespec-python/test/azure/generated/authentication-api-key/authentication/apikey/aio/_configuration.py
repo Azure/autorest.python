@@ -48,3 +48,4 @@ class ApiKeyClientConfiguration:  # pylint: disable=too-many-instance-attributes
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = policies.AzureKeyCredentialPolicy(self.credential, "x-ms-api-key", **kwargs)
+,line-too-long,useless-suppression

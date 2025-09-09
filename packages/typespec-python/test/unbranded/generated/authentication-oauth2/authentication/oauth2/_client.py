@@ -82,3 +82,4 @@ class OAuth2Client(_OAuth2ClientOperationsMixin):  # pylint: disable=client-acce
 
     def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)
+,line-too-long,useless-suppression

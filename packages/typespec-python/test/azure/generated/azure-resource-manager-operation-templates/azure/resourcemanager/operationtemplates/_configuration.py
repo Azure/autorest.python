@@ -78,3 +78,4 @@ class OperationTemplatesClientConfiguration:  # pylint: disable=too-many-instanc
             self.authentication_policy = ARMChallengeAuthenticationPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+,line-too-long,useless-suppression

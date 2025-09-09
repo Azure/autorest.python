@@ -155,3 +155,4 @@ class BasicOperations:
             return cls(pipeline_response, deserialized, response_headers)  # type: ignore
 
         return deserialized  # type: ignore
+,line-too-long,useless-suppression

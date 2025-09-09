@@ -156,3 +156,4 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+,line-too-long,useless-suppression

@@ -98,3 +98,4 @@ class RemovedClient(_RemovedClientOperationsMixin):  # pylint: disable=client-ac
 
     async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)
+,line-too-long,useless-suppression

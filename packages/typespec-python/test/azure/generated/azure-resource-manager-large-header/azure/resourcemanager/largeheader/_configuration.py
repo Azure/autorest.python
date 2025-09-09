@@ -78,3 +78,4 @@ class LargeHeaderClientConfiguration:  # pylint: disable=too-many-instance-attri
             self.authentication_policy = ARMChallengeAuthenticationPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+,line-too-long,useless-suppression

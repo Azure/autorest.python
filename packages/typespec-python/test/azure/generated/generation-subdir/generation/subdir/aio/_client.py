@@ -30,3 +30,4 @@ class CustomizedClient:  # pylint: disable=client-accepts-api-version-keyword
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         return await self._client.get(**kwargs)
+,line-too-long,useless-suppression

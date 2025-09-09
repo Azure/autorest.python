@@ -78,3 +78,4 @@ class NonResourceClientConfiguration:  # pylint: disable=too-many-instance-attri
             self.authentication_policy = AsyncARMChallengeAuthenticationPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+,line-too-long,useless-suppression

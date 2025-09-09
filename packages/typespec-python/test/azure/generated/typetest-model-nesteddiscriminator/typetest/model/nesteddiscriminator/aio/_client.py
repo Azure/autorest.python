@@ -94,3 +94,4 @@ class NestedDiscriminatorClient(
 
     async def __aexit__(self, *exc_details: Any) -> None:
         await self._client.__aexit__(*exc_details)
+,line-too-long,useless-suppression

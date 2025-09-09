@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
@@ -1162,3 +1161,4 @@ class WidgetData2(_Model):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.kind: Literal["kind1"] = "kind1"
+,line-too-long,useless-suppression

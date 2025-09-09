@@ -36,3 +36,4 @@ class QueryParametersQueryContinuationOperations:  # pylint: disable=name-too-lo
         self.explode = QueryParametersQueryContinuationExplodeOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+,line-too-long,useless-suppression

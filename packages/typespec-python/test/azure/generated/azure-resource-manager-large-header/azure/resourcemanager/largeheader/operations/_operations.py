@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -214,3 +213,4 @@ class LargeHeadersOperations:
         return LROPoller[_models.CancelResult](
             self._client, raw_result, get_long_running_output, polling_method  # type: ignore
         )
+,line-too-long,useless-suppression

@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
@@ -198,3 +197,4 @@ class SawShark(Shark, discriminator="saw"):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.sharktype = "saw"  # type: ignore
+,line-too-long,useless-suppression

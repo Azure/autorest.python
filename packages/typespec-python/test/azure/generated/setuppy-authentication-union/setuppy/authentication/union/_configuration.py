@@ -66,3 +66,4 @@ class UnionClientConfiguration:  # pylint: disable=too-many-instance-attributes
         self.authentication_policy = kwargs.get("authentication_policy")
         if self.credential and not self.authentication_policy:
             self.authentication_policy = self._infer_policy(**kwargs)
+,line-too-long,useless-suppression

@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # pylint: disable=protected-access, broad-except
 
@@ -1229,3 +1228,4 @@ def _convert_element(e: ET.Element):
         return array_result
     # primitive case
     return e.text
+,line-too-long,useless-suppression

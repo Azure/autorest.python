@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 from corehttp.runtime import AsyncPipelineClient
 

@@ -196,3 +196,4 @@ class ServerDrivenPaginationOperations:
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+,line-too-long,useless-suppression

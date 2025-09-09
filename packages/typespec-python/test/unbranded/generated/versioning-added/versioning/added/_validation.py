@@ -58,3 +58,4 @@ def api_version_validation(**kwargs):
         return wrapper
 
     return decorator
+,line-too-long,useless-suppression

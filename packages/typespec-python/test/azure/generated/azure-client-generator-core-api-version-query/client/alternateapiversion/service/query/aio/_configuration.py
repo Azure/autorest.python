@@ -45,3 +45,4 @@ class QueryClientConfiguration:  # pylint: disable=too-many-instance-attributes
         self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
         self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")
+,line-too-long,useless-suppression

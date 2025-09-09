@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -254,3 +253,4 @@ class _BodyOptionalityClientOperationsMixin(
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+,line-too-long,useless-suppression

@@ -90,3 +90,4 @@ class RecursiveClient(_RecursiveClientOperationsMixin):  # pylint: disable=clien
 
     def __exit__(self, *exc_details: Any) -> None:
         self._client.__exit__(*exc_details)
+,line-too-long,useless-suppression

@@ -103,3 +103,4 @@ class Siamese(Cat):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
+,line-too-long,useless-suppression

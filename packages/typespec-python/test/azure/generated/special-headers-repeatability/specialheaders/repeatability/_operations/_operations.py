@@ -104,3 +104,4 @@ class _RepeatabilityClientOperationsMixin(
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
+,line-too-long,useless-suppression

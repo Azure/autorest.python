@@ -786,3 +786,4 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
+,line-too-long,useless-suppression

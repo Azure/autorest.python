@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 import json
 from typing import Any, IO, Mapping, Optional, Union
 

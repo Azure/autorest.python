@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -113,3 +112,4 @@ class _PageableClientOperationsMixin(
             return pipeline_response
 
         return AsyncItemPaged(get_next, extract_data)
+,line-too-long,useless-suppression

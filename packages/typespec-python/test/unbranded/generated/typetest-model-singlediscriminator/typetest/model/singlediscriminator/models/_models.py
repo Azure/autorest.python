@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
@@ -251,3 +250,4 @@ class TRex(Dinosaur, discriminator="t-rex"):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self.kind = "t-rex"  # type: ignore
+,line-too-long,useless-suppression

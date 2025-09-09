@@ -196,3 +196,4 @@ class _NotVersionedClientOperationsMixin(
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
         return 200 <= response.status_code <= 299
+,line-too-long,useless-suppression

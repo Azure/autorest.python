@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 from collections.abc import MutableMapping
 from typing import Any, Callable, Optional, TypeVar
@@ -573,3 +572,4 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
+,line-too-long,useless-suppression

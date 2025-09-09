@@ -78,3 +78,4 @@ class CommonPropertiesClientConfiguration:  # pylint: disable=too-many-instance-
             self.authentication_policy = ARMChallengeAuthenticationPolicy(
                 self.credential, *self.credential_scopes, **kwargs
             )
+,line-too-long,useless-suppression

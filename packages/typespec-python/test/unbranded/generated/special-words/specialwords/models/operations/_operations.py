@@ -1,4 +1,3 @@
-# pylint: disable=too-many-lines
 # coding=utf-8
 from collections.abc import MutableMapping
 from io import IOBase
@@ -3716,3 +3715,4 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+,line-too-long,useless-suppression

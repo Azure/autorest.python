@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -592,3 +591,4 @@ class UserAssignedIdentity(_Model):
     """The principal ID of the assigned identity."""
     client_id: Optional[str] = rest_field(name="clientId", visibility=["read"])
     """The client ID of the assigned identity."""
+,line-too-long,useless-suppression

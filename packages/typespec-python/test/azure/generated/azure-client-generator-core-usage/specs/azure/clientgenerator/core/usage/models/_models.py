@@ -142,3 +142,4 @@ class RoundTripModel(_Model):
 
     result: "_models.ResultModel" = rest_field(visibility=["read"])
     """Required."""
+,line-too-long,useless-suppression

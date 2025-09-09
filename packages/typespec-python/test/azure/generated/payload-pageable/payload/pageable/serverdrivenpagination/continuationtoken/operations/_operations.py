@@ -1,4 +1,3 @@
-# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -598,3 +597,4 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
             return pipeline_response
 
         return ItemPaged(get_next, extract_data)
+,line-too-long,useless-suppression

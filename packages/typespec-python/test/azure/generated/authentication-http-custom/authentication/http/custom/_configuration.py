@@ -50,3 +50,4 @@ class CustomClientConfiguration:  # pylint: disable=too-many-instance-attributes
             self.authentication_policy = policies.AzureKeyCredentialPolicy(
                 self.credential, "Authorization", prefix="SharedAccessKey", **kwargs
             )
+,line-too-long,useless-suppression
