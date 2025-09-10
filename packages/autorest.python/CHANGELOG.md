@@ -1,5 +1,17 @@
 # Release
 
+## 6.40.0
+
+### Bump dependencies
+
+- [#3190](https://github.com/Azure/autorest.python/pull/3190) Bump dependencies on `http-client-python`
+- [#3192](https://github.com/Azure/autorest.python/pull/3192) Bump dependency on `http-client-python` which optimizes exception handling logic when Python and package managers are available but installation fails
+
+### Bug Fixes
+
+- [#3194](https://github.com/Azure/autorest.python/pull/3194) Fix dependencies of pyproject.toml for ARM SDK
+
+
 ## 6.39.0
 
 ### Deprecations

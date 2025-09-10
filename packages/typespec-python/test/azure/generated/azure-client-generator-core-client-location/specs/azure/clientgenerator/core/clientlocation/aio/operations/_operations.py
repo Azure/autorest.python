@@ -16,17 +16,22 @@ from azure.core.exceptions import (
     ResourceExistsError,
     ResourceNotFoundError,
     ResourceNotModifiedError,
+    StreamClosedError,
+    StreamConsumedError,
     map_error,
 )
 from azure.core.pipeline import PipelineResponse
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
+from ... import models as _models
+from ..._utils.model_base import _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
     build_archive_operations_archive_product_request,
     build_client_location_get_health_status_request,
+    build_move_method_parameter_to_client_blob_operations_get_blob_request,
     build_move_to_existing_sub_client_admin_operations_delete_user_request,
     build_move_to_existing_sub_client_admin_operations_get_admin_info_request,
     build_move_to_existing_sub_client_user_operations_get_user_request,
@@ -104,6 +109,28 @@ class MoveToRootClientOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.resource_operations = MoveToRootClientResourceOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+
+
+class MoveMethodParameterToClientOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~specs.azure.clientgenerator.core.clientlocation.aio.ClientLocationClient`'s
+        :attr:`move_method_parameter_to_client` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ClientLocationClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+        self.blob_operations = MoveMethodParameterToClientBlobOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -509,3 +536,86 @@ class MoveToRootClientResourceOperationsOperations:  # pylint: disable=name-too-
 
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
+
+
+class MoveMethodParameterToClientBlobOperationsOperations:  # pylint: disable=name-too-long
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~specs.azure.clientgenerator.core.clientlocation.aio.ClientLocationClient`'s
+        :attr:`blob_operations` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: ClientLocationClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace_async
+    async def get_blob(self, *, storage_account: str, container: str, blob: str, **kwargs: Any) -> _models.Blob:
+        """get_blob.
+
+        :keyword storage_account: Required.
+        :paramtype storage_account: str
+        :keyword container: Required.
+        :paramtype container: str
+        :keyword blob: Required.
+        :paramtype blob: str
+        :return: Blob. The Blob is compatible with MutableMapping
+        :rtype: ~specs.azure.clientgenerator.core.clientlocation.models.Blob
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[_models.Blob] = kwargs.pop("cls", None)
+
+        _request = build_move_method_parameter_to_client_blob_operations_get_blob_request(
+            storage_account=storage_account,
+            container=container,
+            blob=blob,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Blob, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
