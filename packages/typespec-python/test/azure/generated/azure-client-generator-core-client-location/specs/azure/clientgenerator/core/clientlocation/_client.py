@@ -18,6 +18,7 @@ from ._configuration import ClientLocationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     ArchiveOperationsOperations,
+    MoveMethodParameterToClientOperations,
     MoveToExistingSubClientOperations,
     MoveToNewSubClientOperations,
     MoveToRootClientOperations,
@@ -37,6 +38,9 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
     :ivar move_to_root_client: MoveToRootClientOperations operations
     :vartype move_to_root_client:
      specs.azure.clientgenerator.core.clientlocation.operations.MoveToRootClientOperations
+    :ivar move_method_parameter_to_client: MoveMethodParameterToClientOperations operations
+    :vartype move_method_parameter_to_client:
+     specs.azure.clientgenerator.core.clientlocation.operations.MoveMethodParameterToClientOperations
     :ivar archive_operations: ArchiveOperationsOperations operations
     :vartype archive_operations:
      specs.azure.clientgenerator.core.clientlocation.operations.ArchiveOperationsOperations
@@ -79,6 +83,9 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
             self._client, self._config, self._serialize, self._deserialize
         )
         self.move_to_root_client = MoveToRootClientOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.move_method_parameter_to_client = MoveMethodParameterToClientOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.archive_operations = ArchiveOperationsOperations(
