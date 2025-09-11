@@ -27,7 +27,7 @@ def test_operations_list(client):
     operations = client.operations.list()
     operations_list = [op for op in operations]
     assert len(operations_list) > 0
-    
+
     operation = operations_list[0]
     assert operation.name == "Azure.ResourceManager.MethodSubscriptionId/services/read"
     assert operation.is_data_action is False
@@ -43,8 +43,11 @@ def test_two_subscription_resources_method_level_subscription_resource1_operatio
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource1_name="sub-resource-1",
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/sub-resource-1"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/sub-resource-1"
+    )
     assert result.name == "sub-resource-1"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s"
     assert result.properties.description == "Valid subscription resource 1"
@@ -55,18 +58,19 @@ def test_two_subscription_resources_method_level_subscription_resource1_operatio
 def test_two_subscription_resources_method_level_subscription_resource1_operations_put(client):
     """Test put operation for SubscriptionResource1 with method-level subscription ID."""
     resource = models.SubscriptionResource1(
-        properties=models.SubscriptionResource1Properties(
-            description="Valid subscription resource 1"
-        )
+        properties=models.SubscriptionResource1Properties(description="Valid subscription resource 1")
     )
-    
+
     result = client.two_subscription_resources_method_level.subscription_resource1_operations.put(
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource1_name="sub-resource-1",
         resource=resource,
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/sub-resource-1"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s/sub-resource-1"
+    )
     assert result.name == "sub-resource-1"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResource1s"
     assert result.properties.description == "Valid subscription resource 1"
@@ -88,8 +92,11 @@ def test_two_subscription_resources_method_level_subscription_resource2_operatio
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource2_name="sub-resource-2",
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/sub-resource-2"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/sub-resource-2"
+    )
     assert result.name == "sub-resource-2"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s"
     assert result.properties.config_value == "test-config"
@@ -100,18 +107,19 @@ def test_two_subscription_resources_method_level_subscription_resource2_operatio
 def test_two_subscription_resources_method_level_subscription_resource2_operations_put(client):
     """Test put operation for SubscriptionResource2 with method-level subscription ID."""
     resource = models.SubscriptionResource2(
-        properties=models.SubscriptionResource2Properties(
-            config_value="test-config"
-        )
+        properties=models.SubscriptionResource2Properties(config_value="test-config")
     )
-    
+
     result = client.two_subscription_resources_method_level.subscription_resource2_operations.put(
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource2_name="sub-resource-2",
         resource=resource,
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/sub-resource-2"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s/sub-resource-2"
+    )
     assert result.name == "sub-resource-2"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResource2s"
     assert result.properties.config_value == "test-config"
@@ -133,8 +141,11 @@ def test_mixed_subscription_placement_subscription_resource_operations_get(clien
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource_name="sub-resource",
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/sub-resource"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/sub-resource"
+    )
     assert result.name == "sub-resource"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResources"
     assert result.properties.subscription_setting == "test-sub-setting"
@@ -145,18 +156,19 @@ def test_mixed_subscription_placement_subscription_resource_operations_get(clien
 def test_mixed_subscription_placement_subscription_resource_operations_put(client):
     """Test put operation for SubscriptionResource in mixed placement scenario."""
     resource = models.SubscriptionResource(
-        properties=models.SubscriptionResourceProperties(
-            subscription_setting="test-sub-setting"
-        )
+        properties=models.SubscriptionResourceProperties(subscription_setting="test-sub-setting")
     )
-    
+
     result = client.mixed_subscription_placement.subscription_resource_operations.put(
         subscription_id=SUBSCRIPTION_ID,
         subscription_resource_name="sub-resource",
         resource=resource,
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/sub-resource"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/providers/Azure.ResourceManager.MethodSubscriptionId/subscriptionResources/sub-resource"
+    )
     assert result.name == "sub-resource"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/subscriptionResources"
     assert result.properties.subscription_setting == "test-sub-setting"
@@ -178,8 +190,11 @@ def test_mixed_subscription_placement_resource_group_resource_operations_get(cli
         resource_group_name=RESOURCE_GROUP_NAME,
         resource_group_resource_name="rg-resource",
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP_NAME}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/rg-resource"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP_NAME}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/rg-resource"
+    )
     assert result.name == "rg-resource"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources"
     assert result.location == "eastus"
@@ -191,19 +206,19 @@ def test_mixed_subscription_placement_resource_group_resource_operations_get(cli
 def test_mixed_subscription_placement_resource_group_resource_operations_put(client):
     """Test put operation for ResourceGroupResource with client-level subscription ID."""
     resource = models.ResourceGroupResource(
-        location="eastus",
-        properties=models.ResourceGroupResourceProperties(
-            resource_group_setting="test-setting"
-        )
+        location="eastus", properties=models.ResourceGroupResourceProperties(resource_group_setting="test-setting")
     )
-    
+
     result = client.mixed_subscription_placement.resource_group_resource_operations.put(
         resource_group_name=RESOURCE_GROUP_NAME,
         resource_group_resource_name="rg-resource",
         resource=resource,
     )
-    
-    assert result.id == f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP_NAME}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/rg-resource"
+
+    assert (
+        result.id
+        == f"/subscriptions/{SUBSCRIPTION_ID}/resourceGroups/{RESOURCE_GROUP_NAME}/providers/Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources/rg-resource"
+    )
     assert result.name == "rg-resource"
     assert result.type == "Azure.ResourceManager.MethodSubscriptionId/resourceGroupResources"
     assert result.location == "eastus"
