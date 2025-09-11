@@ -18,8 +18,6 @@ from ._models import (  # type: ignore
     EmptyInputOutput,
     EmptyOutput,
 )
-
-from . import _enums
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk

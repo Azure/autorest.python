@@ -13,8 +13,6 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from . import _models
-
 from ._non_string_enums_client_enums import (  # type: ignore
     FloatEnum,
     IntEnum,

@@ -7,8 +7,6 @@ if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
 
-from . import _models
-
 from ._enums import (  # type: ignore
     Versions,
 )
