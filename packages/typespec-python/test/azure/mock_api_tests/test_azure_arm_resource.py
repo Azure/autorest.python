@@ -335,7 +335,7 @@ def test_extensions_resources_get(client, scope):
         "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/test-rg/providers/Azure.ResourceManager.Resources/topLevelTrackedResources/top",
     ],
 )
-def test_extensions_resources_list(client, scope):
+def test_extensions_resources_list_by_scope(client, scope):
     response = client.extensions_resources.list_by_scope(
         resource_uri=scope,
     )
