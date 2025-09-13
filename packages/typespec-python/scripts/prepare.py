@@ -18,9 +18,9 @@ _ROOT_DIR = Path(__file__).parent.parent
 
 def main():
     venv_path = _ROOT_DIR / "venv"
-    venv_preexists = venv_path.exists()
 
-    assert venv_preexists  # Otherwise install was not done
+    # Create virtual environment using package manager abstraction
+    from package_manager import create_venv_with_package_manager, install_packages
 
     venv_context = create_venv_with_package_manager(venv_path)
 
