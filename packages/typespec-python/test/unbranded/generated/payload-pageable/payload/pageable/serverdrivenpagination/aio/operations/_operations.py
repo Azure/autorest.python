@@ -235,7 +235,7 @@ class ServerDrivenPaginationOperations:
             list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("nestedItems", {}).get("pets", []))
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("nestedNext.next") or None, AsyncList(list_of_elem)
+            return deserialized.get("nestedNext", {}).get("next") or None, AsyncList(list_of_elem)
 
         async def get_next(next_link=None):
             _request = prepare_request(next_link)
