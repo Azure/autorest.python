@@ -1529,7 +1529,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             list_of_elem = deserialized.get("values", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
+            return deserialized.get("odata", {}).get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             _request = prepare_request(next_link)
@@ -2120,7 +2120,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             list_of_elem = deserialized.get("values", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
+            return deserialized.get("odata", {}).get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             _request = prepare_request(next_link)
@@ -2206,7 +2206,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
             list_of_elem = deserialized.get("values", [])
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
-            return deserialized.get("odata.nextLink") or None, iter(list_of_elem)
+            return deserialized.get("odata", {}).get("nextLink") or None, iter(list_of_elem)
 
         def get_next(next_link=None):
             _request = prepare_request(next_link)
