@@ -23,24 +23,4 @@ except ImportError:
     raise Exception("Your Python installation doesn't have venv available")
 
 
-# Now we have a package manager (uv or pip) and Py >= 3.9, go to work
-
-from pathlib import Path
-
-_ROOT_DIR = Path(__file__).parent.parent
-
-
-def main():
-    venv_path = _ROOT_DIR / "venv"
-
-    # Create virtual environment using package manager abstraction
-    from package_manager import create_venv_with_package_manager, install_packages
-
-    venv_context = create_venv_with_package_manager(venv_path)
-
-    # Install required packages - install_packages handles package manager logic
-    install_packages(["-U", "black"], venv_context)
-
-
-if __name__ == "__main__":
-    main()
+# Now we have a package manager (uv or pip) and Py >= 3.9 and check is over
