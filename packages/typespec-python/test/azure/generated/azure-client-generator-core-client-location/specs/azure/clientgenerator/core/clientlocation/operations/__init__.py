@@ -15,6 +15,7 @@ if TYPE_CHECKING:
 from ._operations import MoveToExistingSubClientOperations  # type: ignore
 from ._operations import MoveToNewSubClientOperations  # type: ignore
 from ._operations import MoveToRootClientOperations  # type: ignore
+from ._operations import MoveMethodParameterToClientOperations  # type: ignore
 from ._operations import ArchiveOperationsOperations  # type: ignore
 from ._operations import _ClientLocationClientOperationsMixin  # type: ignore # pylint: disable=unused-import
 
@@ -26,6 +27,7 @@ __all__ = [
     "MoveToExistingSubClientOperations",
     "MoveToNewSubClientOperations",
     "MoveToRootClientOperations",
+    "MoveMethodParameterToClientOperations",
     "ArchiveOperationsOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore

@@ -16,6 +16,8 @@ from util import run_check
 
 logging.getLogger().setLevel(logging.INFO)
 
+PACKAGES_TO_SKIP = ["azure-client-generator-core-client-initialization"]
+
 
 def get_config_file_location():
     mypy_ini_path = os.path.join(os.getcwd(), "../../scripts/eng/mypy.ini")
@@ -26,7 +28,15 @@ def get_config_file_location():
 
 
 def _single_dir_mypy(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
+    if any(p for p in PACKAGES_TO_SKIP if p in str(mod)):
+        logging.warning("Skipping mypy for {}".format(mod))
+        return True
+    inner_class = next(
+        d for d in mod.iterdir()
+        if d.is_dir()
+        and not str(d).endswith("egg-info")
+        and not str(d).startswith(tuple(PACKAGES_TO_SKIP))
+    )
     try:
         check_call(
             [
@@ -47,5 +57,5 @@ def _single_dir_mypy(mod):
 
 if __name__ == "__main__":
     # skip mypy check for now and will reopen it soon
-    # run_check("mypy", _single_dir_mypy, "MyPy")
+    run_check("mypy", _single_dir_mypy, "MyPy")
     sys.exit(0)
