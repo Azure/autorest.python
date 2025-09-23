@@ -65,6 +65,7 @@ from .._configuration import ArrayClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]
 
 
 class Int32ValueOperations:
@@ -1425,6 +1426,20 @@ class ModelValueOperations:
         """
 
     @overload
+    async def put(self, body: list[JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: list[JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -1439,11 +1454,11 @@ class ModelValueOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[list[_models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[list[_models.InnerModel], list[JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
-        :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: [InnerModel], [JSON], IO[bytes] Required.
+        :type body: list[~typetest.array.models.InnerModel] or list[JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2217,6 +2232,20 @@ class NullableModelValueOperations:
         """
 
     @overload
+    async def put(self, body: list[JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: list[JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -2231,11 +2260,11 @@ class NullableModelValueOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[list[_models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[list[_models.InnerModel], list[JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
-        :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: [InnerModel], [JSON], IO[bytes] Required.
+        :type body: list[~typetest.array.models.InnerModel] or list[JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
