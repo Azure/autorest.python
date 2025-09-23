@@ -1,0 +1,14 @@
+{
+    "CrossLanguagePackageId": "_Specs_.Azure.Versioning.PreviewVersion",
+    "CrossLanguageDefinitionId": {
+        "_specs_.azure.versioning.previewversion.models.ListWidgetsResponse": "_Specs_.Azure.Versioning.PreviewVersion.listWidgets.Response.anonymous",
+        "_specs_.azure.versioning.previewversion.models.UpdateWidgetColorRequest": "_Specs_.Azure.Versioning.PreviewVersion.UpdateWidgetColorRequest",
+        "_specs_.azure.versioning.previewversion.models.Widget": "_Specs_.Azure.Versioning.PreviewVersion.Widget",
+        "_specs_.azure.versioning.previewversion.PreviewVersionClient.get_widget": "_Specs_.Azure.Versioning.PreviewVersion.getWidget",
+        "_specs_.azure.versioning.previewversion.aio.PreviewVersionClient.get_widget": "_Specs_.Azure.Versioning.PreviewVersion.getWidget",
+        "_specs_.azure.versioning.previewversion.PreviewVersionClient.update_widget_color": "_Specs_.Azure.Versioning.PreviewVersion.updateWidgetColor",
+        "_specs_.azure.versioning.previewversion.aio.PreviewVersionClient.update_widget_color": "_Specs_.Azure.Versioning.PreviewVersion.updateWidgetColor",
+        "_specs_.azure.versioning.previewversion.PreviewVersionClient.list_widgets": "_Specs_.Azure.Versioning.PreviewVersion.listWidgets",
+        "_specs_.azure.versioning.previewversion.aio.PreviewVersionClient.list_widgets": "_Specs_.Azure.Versioning.PreviewVersion.listWidgets"
+    }
+}
