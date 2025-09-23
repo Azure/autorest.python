@@ -35,6 +35,7 @@ from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -1720,6 +1721,20 @@ class ModelValueOperations:
         """
 
     @overload
+    def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -1735,12 +1750,12 @@ class ModelValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
+        self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -1882,6 +1897,20 @@ class RecursiveModelValueOperations:
         """
 
     @overload
+    def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
     def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -1897,12 +1926,12 @@ class RecursiveModelValueOperations:
 
     @distributed_trace
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any
+        self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

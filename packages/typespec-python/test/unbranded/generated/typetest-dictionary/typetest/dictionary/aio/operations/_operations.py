@@ -52,6 +52,7 @@ from .._configuration import DictionaryClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]
 
 
 class Int32ValueOperations:
@@ -1361,6 +1362,20 @@ class ModelValueOperations:
         """
 
     @overload
+    async def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
     async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -1374,11 +1389,11 @@ class ModelValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1515,6 +1530,20 @@ class RecursiveModelValueOperations:
         """
 
     @overload
+    async def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
     async def put(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
@@ -1528,11 +1557,11 @@ class RecursiveModelValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
