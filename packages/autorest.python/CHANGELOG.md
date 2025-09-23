@@ -1,5 +1,16 @@
 # Release
 
+## 6.41.0
+
+### Features
+
+- [#3209](https://github.com/Azure/autorest.python/pull/3209) Support nested nextLink for paging operation
+
+### Bug Fixes
+
+- [#3216](https://github.com/Azure/autorest.python/pull/3216) Add overload for operation when body type is array of model
+
+
 ## 6.40.0
 
 ### Bump dependencies
