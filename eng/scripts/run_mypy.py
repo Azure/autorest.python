@@ -32,10 +32,9 @@ def _single_dir_mypy(mod):
         logging.warning("Skipping mypy for {}".format(mod))
         return True
     inner_class = next(
-        d for d in mod.iterdir()
-        if d.is_dir()
-        and not str(d).endswith("egg-info")
-        and not str(d).startswith(tuple(PACKAGES_TO_SKIP))
+        d
+        for d in mod.iterdir()
+        if d.is_dir() and not str(d).endswith("egg-info") and not str(d).startswith(tuple(PACKAGES_TO_SKIP))
     )
     try:
         check_call(
