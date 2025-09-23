@@ -110,7 +110,7 @@ class Repo:
     @property
     def source_branch_name(self):
         return self.pull.head.label
-    
+
     @property
     def pull_title(self):
         return self.pull.title
@@ -203,10 +203,39 @@ class Repo:
                 draft=True,
             )
 
+    def add_changelog(self):
+        try:
+            branch_name_in_typespec_log = self.source_branch_name.split(":")[-1].replace("/", "-")
+            branch_name_in_azure_log = self.new_branch_name.replace("/", "-")
+            typespec_changelog_prefix = f".chronus/changes/{branch_name_in_typespec_log}"
+            for file in self.pull.get_files():
+                if typespec_changelog_prefix in file.filename and file.status == "added":
+                    azure_log_path = file.filename.replace(
+                        typespec_changelog_prefix, f".chronus/changes/{branch_name_in_azure_log}"
+                    )
+                    if Path(azure_log_path).exists():
+                        logger.info(f"Changelog {azure_log_path} already exists.")
+                        return
+
+                    file_content = repo.get_contents(file.filename, ref=self.pull.head.sha).decoded_content.decode()
+                    new_file_content = file_content.replace(
+                        '  - "@typespec/http-client-python"',
+                        '  - "@autorest/python"\n  - "@azure-tools/typespec-python"',
+                    )
+
+                    with open(azure_log_path, "w") as f:
+                        f.write(new_file_content)
+                    log_call(f"git add {azure_log_path}")
+                    log_call(f'git commit -m "Add changelog {azure_log_path}"')
+                    break
+        except Exception as e:
+            logger.warning(f"Failed to add changelog: {e}")
+
     def run(self):
         if "https://github.com/microsoft/typespec" in self.pull_url:
             self.checkout_branch()
             self.update_dependency()
+            self.add_changelog()
             self.create_pr()
             self.prepare_pr()
         elif "https://github.com/Azure/autorest.python" in self.pull_url:
