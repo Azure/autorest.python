@@ -1,5 +1,34 @@
 # Release
 
+## 6.40.0
+
+### Bump dependencies
+
+- [#3190](https://github.com/Azure/autorest.python/pull/3190) Bump dependencies on `http-client-python`
+- [#3192](https://github.com/Azure/autorest.python/pull/3192) Bump dependency on `http-client-python` which optimizes exception handling logic when Python and package managers are available but installation fails
+
+### Bug Fixes
+
+- [#3194](https://github.com/Azure/autorest.python/pull/3194) Fix dependencies of pyproject.toml for ARM SDK
+
+
+## 6.39.0
+
+### Deprecations
+
+- [#3188](https://github.com/Azure/autorest.python/pull/3188) Deprecate multiapi
+
+### Features
+
+- [#3176](https://github.com/Azure/autorest.python/pull/3176) Add keyword only signature `cloud_setting` into ARM client
+
+### Bug Fixes
+
+- [#3166](https://github.com/Azure/autorest.python/pull/3166) Fix typing to take advantage of `3.9` being the min python version
+- [#3174](https://github.com/Azure/autorest.python/pull/3174) fix to keep some existing parts of pyproject.toml
+- [#3181](https://github.com/Azure/autorest.python/pull/3181) don't send content-type when no request body
+
+
 ## 6.38.2
 
 ### Bug Fixes

@@ -1,7 +1,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from ..._utils.model_base import Model as _Model, rest_field
 
@@ -16,14 +16,14 @@ class NestedLinkResponseNestedItems(_Model):
     :vartype pets: list[~payload.pageable.models.Pet]
     """
 
-    pets: List["_models2.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    pets: list["_models2.Pet"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        pets: List["_models2.Pet"],
+        pets: list["_models2.Pet"],
     ) -> None: ...
 
     @overload

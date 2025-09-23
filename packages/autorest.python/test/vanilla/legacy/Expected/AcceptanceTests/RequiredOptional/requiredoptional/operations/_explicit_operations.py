@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from msrest import Deserializer, Serializer
 
@@ -30,7 +30,7 @@ from .. import models as _models
 from .._configuration import AutoRestRequiredOptionalTestServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 
@@ -419,7 +419,7 @@ def build_post_optional_array_property_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_post_required_array_header_request(*, header_parameter: List[str], **kwargs: Any) -> HttpRequest:
+def build_post_required_array_header_request(*, header_parameter: list[str], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -435,7 +435,7 @@ def build_post_required_array_header_request(*, header_parameter: List[str], **k
 
 
 def build_post_optional_array_header_request(
-    *, header_parameter: Optional[List[str]] = None, **kwargs: Any
+    *, header_parameter: Optional[list[str]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -496,7 +496,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/octet-stream"))
+        content_type: Optional[str] = kwargs.pop(
+            "content_type", _headers.pop("Content-Type", "application/octet-stream")
+        )
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _content = body_parameter
@@ -650,7 +653,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -959,7 +963,8 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         if body_parameter is not None:
@@ -1342,9 +1347,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body_parameter else None
         _json = None
         _content = None
         if isinstance(body_parameter, (IOBase, bytes)):
@@ -1489,7 +1495,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_required_array_parameter(
-        self, body_parameter: List[str], *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: list[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
@@ -1523,7 +1529,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Union[List[str], IO[bytes]], **kwargs: Any
+        self, body_parameter: Union[list[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put null and the client library should throw before the
         request is sent.
@@ -1582,7 +1588,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def post_optional_array_parameter(
-        self, body_parameter: Optional[List[str]] = None, *, content_type: str = "application/json", **kwargs: Any
+        self, body_parameter: Optional[list[str]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
@@ -1614,7 +1620,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_parameter(  # pylint: disable=inconsistent-return-statements
-        self, body_parameter: Optional[Union[List[str], IO[bytes]]] = None, **kwargs: Any
+        self, body_parameter: Optional[Union[list[str], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put null.
 
@@ -1636,9 +1642,10 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
         _params = kwargs.pop("params", {}) or {}
 
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body_parameter else None
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body_parameter else None
         _json = None
         _content = None
         if isinstance(body_parameter, (IOBase, bytes)):
@@ -1675,7 +1682,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_array_property(  # pylint: disable=inconsistent-return-statements
-        self, value: List[str], **kwargs: Any
+        self, value: list[str], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a valid array-wrapper with 'value' = null and the
         client library should throw before the request is sent.
@@ -1728,7 +1735,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_property(  # pylint: disable=inconsistent-return-statements
-        self, value: Optional[List[str]] = None, **kwargs: Any
+        self, value: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional array. Please put a valid array-wrapper with 'value' = null.
 
@@ -1783,7 +1790,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_required_array_header(  # pylint: disable=inconsistent-return-statements
-        self, header_parameter: List[str], **kwargs: Any
+        self, header_parameter: list[str], **kwargs: Any
     ) -> None:
         """Test explicitly required array. Please put a header 'headerParameter' => null and the client
         library should throw before the request is sent.
@@ -1831,7 +1838,7 @@ class ExplicitOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post_optional_array_header(  # pylint: disable=inconsistent-return-statements
-        self, header_parameter: Optional[List[str]] = None, **kwargs: Any
+        self, header_parameter: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Test explicitly optional integer. Please put a header 'headerParameter' => null.
 

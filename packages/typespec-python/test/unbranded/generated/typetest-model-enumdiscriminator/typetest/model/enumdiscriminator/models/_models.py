@@ -2,7 +2,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, Literal, Mapping, overload
+from typing import Any, Literal, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 from ._enums import DogKind, SnakeKind
@@ -20,7 +20,7 @@ class Snake(_Model):
     :vartype length: int
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"cobra\""""
     length: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -72,7 +72,8 @@ class Cobra(Snake, discriminator="cobra"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind=SnakeKind.COBRA, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = SnakeKind.COBRA  # type: ignore
 
 
 class Dog(_Model):
@@ -87,7 +88,7 @@ class Dog(_Model):
     :vartype weight: int
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"golden\""""
     weight: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -139,4 +140,5 @@ class Golden(Dog, discriminator="golden"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind=DogKind.GOLDEN, **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = DogKind.GOLDEN  # type: ignore

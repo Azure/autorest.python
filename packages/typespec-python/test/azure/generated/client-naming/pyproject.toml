@@ -10,11 +10,11 @@ requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "client-naming"
+name = "client-naming-main"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft Corporation Azure Client Naming Client Library for Python"
+description = "Microsoft Corporation Azure Client Naming Main Client Library for Python"
 license = "MIT"
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -43,7 +43,7 @@ dynamic = [
 repository = "https://github.com/Azure/azure-sdk-for-python"
 
 [tool.setuptools.dynamic]
-version = {attr = "client.naming._version.VERSION"}
+version = {attr = "client.naming.main._version.VERSION"}
 readme = {file = ["README.md", "CHANGELOG.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
@@ -52,6 +52,7 @@ exclude = [
     "samples*",
     "doc*",
     "client",
+    "client.naming",
 ]
 
 [tool.setuptools.package-data]

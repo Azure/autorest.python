@@ -8,7 +8,7 @@
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
 from io import IOBase
-from typing import Any, Callable, Dict, IO, Literal, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Literal, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -35,7 +35,7 @@ from ...operations._auto_rest_validation_test_operations import (
 from .._configuration import AutoRestValidationTestConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class _AutoRestValidationTestOperationsMixin(
@@ -184,9 +184,10 @@ class _AutoRestValidationTestOperationsMixin(
 
         api_version: str = kwargs.pop("api_version", _params.pop("apiVersion", self._config.api_version))
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):
@@ -329,9 +330,10 @@ class _AutoRestValidationTestOperationsMixin(
 
         constant_param: Literal["constant"] = kwargs.pop("constant_param", "constant")
         content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type = content_type if body else None
         cls: ClsType[_models.Product] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
+        content_type = content_type or "application/json" if body else None
         _json = None
         _content = None
         if isinstance(body, (IOBase, bytes)):

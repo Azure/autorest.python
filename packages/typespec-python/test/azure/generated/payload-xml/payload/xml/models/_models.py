@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, List, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -22,7 +22,7 @@ class ModelWithArrayOfModel(_Model):
     :vartype items_property: ~payload.xml.models.SimpleModel
     """
 
-    items_property: List["_models.SimpleModel"] = rest_field(
+    items_property: list["_models.SimpleModel"] = rest_field(
         name="items",
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
@@ -35,7 +35,7 @@ class ModelWithArrayOfModel(_Model):
     def __init__(
         self,
         *,
-        items_property: List["_models.SimpleModel"],
+        items_property: list["_models.SimpleModel"],
     ) -> None: ...
 
     @overload
@@ -105,7 +105,7 @@ class ModelWithDictionary(_Model):
     :vartype metadata: dict[str, str]
     """
 
-    metadata: Dict[str, str] = rest_field(
+    metadata: dict[str, str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "metadata", "text": False, "unwrapped": False},
     )
@@ -117,7 +117,7 @@ class ModelWithDictionary(_Model):
     def __init__(
         self,
         *,
-        metadata: Dict[str, str],
+        metadata: dict[str, str],
     ) -> None: ...
 
     @overload
@@ -138,7 +138,7 @@ class ModelWithEmptyArray(_Model):
     :vartype items_property: ~payload.xml.models.SimpleModel
     """
 
-    items_property: List["_models.SimpleModel"] = rest_field(
+    items_property: list["_models.SimpleModel"] = rest_field(
         name="items",
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
@@ -151,7 +151,7 @@ class ModelWithEmptyArray(_Model):
     def __init__(
         self,
         *,
-        items_property: List["_models.SimpleModel"],
+        items_property: list["_models.SimpleModel"],
     ) -> None: ...
 
     @overload
@@ -180,7 +180,7 @@ class ModelWithEncodedNames(_Model):
         xml={"attribute": False, "name": "SimpleModelData", "text": False, "unwrapped": False},
     )
     """Required."""
-    colors: List[str] = rest_field(
+    colors: list[str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "string", "name": "PossibleColors", "text": False, "unwrapped": False},
     )
@@ -193,7 +193,7 @@ class ModelWithEncodedNames(_Model):
         self,
         *,
         model_data: "_models.SimpleModel",
-        colors: List[str],
+        colors: list[str],
     ) -> None: ...
 
     @overload
@@ -257,12 +257,12 @@ class ModelWithRenamedArrays(_Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(
+    colors: list[str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "Colors", "name": "Colors", "text": False, "unwrapped": True},
     )
     """Required."""
-    counts: List[int] = rest_field(
+    counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "Counts", "text": False, "unwrapped": False},
     )
@@ -274,8 +274,8 @@ class ModelWithRenamedArrays(_Model):
     def __init__(
         self,
         *,
-        colors: List[str],
-        counts: List[int],
+        colors: list[str],
+        counts: list[int],
     ) -> None: ...
 
     @overload
@@ -341,12 +341,12 @@ class ModelWithSimpleArrays(_Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(
+    colors: list[str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "string", "name": "colors", "text": False, "unwrapped": False},
     )
     """Required."""
-    counts: List[int] = rest_field(
+    counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False},
     )
@@ -358,8 +358,8 @@ class ModelWithSimpleArrays(_Model):
     def __init__(
         self,
         *,
-        colors: List[str],
-        counts: List[int],
+        colors: list[str],
+        counts: list[int],
     ) -> None: ...
 
     @overload
@@ -423,12 +423,12 @@ class ModelWithUnwrappedArray(_Model):
     :vartype counts: list[int]
     """
 
-    colors: List[str] = rest_field(
+    colors: list[str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "colors", "name": "colors", "text": False, "unwrapped": True},
     )
     """Required."""
-    counts: List[int] = rest_field(
+    counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False},
     )
@@ -440,8 +440,8 @@ class ModelWithUnwrappedArray(_Model):
     def __init__(
         self,
         *,
-        colors: List[str],
-        counts: List[int],
+        colors: list[str],
+        counts: list[int],
     ) -> None: ...
 
     @overload

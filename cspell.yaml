@@ -64,15 +64,12 @@ words:
   - macvmimage
   - mday
   - mergepatchjsonversiontolerant
+  - methodsubscriptionid
   - mgmt
   - mgmtplane
   - mros
   - mspaint
   - msrc
-  - multiapi
-  - multiapiclient
-  - multiapinoasync
-  - multiapisecurity
   - mutli
   - myenv
   - myoption
@@ -95,6 +92,7 @@ words:
   - pylintrc
   - pyodide
   - pygen
+  - pytyped
   - qnas
   - ragrs
   - rcfile

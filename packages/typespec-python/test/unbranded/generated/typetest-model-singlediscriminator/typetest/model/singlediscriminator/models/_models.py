@@ -2,7 +2,7 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Dict, List, Literal, Mapping, Optional, TYPE_CHECKING, overload
+from typing import Any, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
 
@@ -22,7 +22,7 @@ class Bird(_Model):
     :vartype wingspan: int
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
     wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -60,7 +60,7 @@ class Dinosaur(_Model):
     :vartype size: int
     """
 
-    __mapping__: Dict[str, _Model] = {}
+    __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -103,8 +103,8 @@ class Eagle(Bird, discriminator="eagle"):
 
     kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"eagle\"."""
-    friends: Optional[List["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    hate: Optional[Dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    friends: Optional[list["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    hate: Optional[dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     partner: Optional["_models.Bird"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
 
     @overload
@@ -112,8 +112,8 @@ class Eagle(Bird, discriminator="eagle"):
         self,
         *,
         wingspan: int,
-        friends: Optional[List["_models.Bird"]] = None,
-        hate: Optional[Dict[str, "_models.Bird"]] = None,
+        friends: Optional[list["_models.Bird"]] = None,
+        hate: Optional[dict[str, "_models.Bird"]] = None,
         partner: Optional["_models.Bird"] = None,
     ) -> None: ...
 
@@ -125,7 +125,8 @@ class Eagle(Bird, discriminator="eagle"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="eagle", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "eagle"  # type: ignore
 
 
 class Goose(Bird, discriminator="goose"):
@@ -155,7 +156,8 @@ class Goose(Bird, discriminator="goose"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="goose", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "goose"  # type: ignore
 
 
 class SeaGull(Bird, discriminator="seagull"):
@@ -185,7 +187,8 @@ class SeaGull(Bird, discriminator="seagull"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="seagull", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "seagull"  # type: ignore
 
 
 class Sparrow(Bird, discriminator="sparrow"):
@@ -215,7 +218,8 @@ class Sparrow(Bird, discriminator="sparrow"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="sparrow", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "sparrow"  # type: ignore
 
 
 class TRex(Dinosaur, discriminator="t-rex"):
@@ -245,4 +249,5 @@ class TRex(Dinosaur, discriminator="t-rex"):
         """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, kind="t-rex", **kwargs)
+        super().__init__(*args, **kwargs)
+        self.kind = "t-rex"  # type: ignore

@@ -1,6 +1,6 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -18,7 +18,7 @@ from ....._configuration import RoutesClientConfiguration
 from ....._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -39,7 +39,7 @@ def build_path_parameters_label_expansion_standard_primitive_request(  # pylint:
 
 
 def build_path_parameters_label_expansion_standard_array_request(  # pylint: disable=name-too-long
-    param: List[str], **kwargs: Any
+    param: list[str], **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
     _url = "/routes/path/label/standard/array{param}"
@@ -53,7 +53,7 @@ def build_path_parameters_label_expansion_standard_array_request(  # pylint: dis
 
 
 def build_path_parameters_label_expansion_standard_record_request(  # pylint: disable=name-too-long
-    param: Dict[str, int], **kwargs: Any
+    param: dict[str, int], **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
     _url = "/routes/path/label/standard/record{param}"
@@ -127,7 +127,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def array(self, param: List[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def array(self, param: list[str], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """array.
 
         :param param: Required.
@@ -171,7 +171,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def record(self, param: Dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def record(self, param: dict[str, int], **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """record.
 
         :param param: Required.

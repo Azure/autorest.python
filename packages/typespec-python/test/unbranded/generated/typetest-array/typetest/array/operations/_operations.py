@@ -4,7 +4,7 @@ from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -27,7 +27,8 @@ from .._utils.model_base import SdkJSONEncoder, _deserialize
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -442,7 +443,7 @@ class Int32ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[int]:
+    def get(self, **kwargs: Any) -> list[int]:
         """get.
 
         :return: list of int
@@ -460,7 +461,7 @@ class Int32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_int32_value_get_request(
             headers=_headers,
@@ -488,7 +489,7 @@ class Int32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(list[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -496,7 +497,7 @@ class Int32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -524,7 +525,7 @@ class Int32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+        self, body: Union[list[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -596,7 +597,7 @@ class Int64ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[int]:
+    def get(self, **kwargs: Any) -> list[int]:
         """get.
 
         :return: list of int
@@ -614,7 +615,7 @@ class Int64ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_int64_value_get_request(
             headers=_headers,
@@ -642,7 +643,7 @@ class Int64ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(list[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -650,7 +651,7 @@ class Int64ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -678,7 +679,7 @@ class Int64ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+        self, body: Union[list[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -750,7 +751,7 @@ class BooleanValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[bool]:
+    def get(self, **kwargs: Any) -> list[bool]:
         """get.
 
         :return: list of bool
@@ -768,7 +769,7 @@ class BooleanValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bool]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
         _request = build_boolean_value_get_request(
             headers=_headers,
@@ -796,7 +797,7 @@ class BooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[bool], response.json())
+            deserialized = _deserialize(list[bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -804,7 +805,7 @@ class BooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -832,7 +833,7 @@ class BooleanValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[bool], IO[bytes]], **kwargs: Any
+        self, body: Union[list[bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -904,7 +905,7 @@ class StringValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[str]:
+    def get(self, **kwargs: Any) -> list[str]:
         """get.
 
         :return: list of str
@@ -922,7 +923,7 @@ class StringValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_string_value_get_request(
             headers=_headers,
@@ -950,7 +951,7 @@ class StringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[str], response.json())
+            deserialized = _deserialize(list[str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -958,7 +959,7 @@ class StringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -986,7 +987,7 @@ class StringValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[str], IO[bytes]], **kwargs: Any
+        self, body: Union[list[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1058,7 +1059,7 @@ class Float32ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[float]:
+    def get(self, **kwargs: Any) -> list[float]:
         """get.
 
         :return: list of float
@@ -1076,7 +1077,7 @@ class Float32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_float32_value_get_request(
             headers=_headers,
@@ -1104,7 +1105,7 @@ class Float32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[float], response.json())
+            deserialized = _deserialize(list[float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1112,7 +1113,7 @@ class Float32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1140,7 +1141,7 @@ class Float32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO[bytes]], **kwargs: Any
+        self, body: Union[list[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1212,7 +1213,7 @@ class DatetimeValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[datetime.datetime]:
+    def get(self, **kwargs: Any) -> list[datetime.datetime]:
         """get.
 
         :return: list of datetime
@@ -1230,7 +1231,7 @@ class DatetimeValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_datetime_value_get_request(
             headers=_headers,
@@ -1258,7 +1259,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[datetime.datetime], response.json())
+            deserialized = _deserialize(list[datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1266,7 +1267,7 @@ class DatetimeValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1294,7 +1295,7 @@ class DatetimeValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
+        self, body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1366,7 +1367,7 @@ class DurationValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[datetime.timedelta]:
+    def get(self, **kwargs: Any) -> list[datetime.timedelta]:
         """get.
 
         :return: list of timedelta
@@ -1384,7 +1385,7 @@ class DurationValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.timedelta]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.timedelta]] = kwargs.pop("cls", None)
 
         _request = build_duration_value_get_request(
             headers=_headers,
@@ -1412,7 +1413,7 @@ class DurationValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[datetime.timedelta], response.json())
+            deserialized = _deserialize(list[datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1420,7 +1421,7 @@ class DurationValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1448,7 +1449,7 @@ class DurationValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any
+        self, body: Union[list[datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1520,7 +1521,7 @@ class UnknownValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[Any]:
+    def get(self, **kwargs: Any) -> list[Any]:
         """get.
 
         :return: list of any
@@ -1538,7 +1539,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Any]] = kwargs.pop("cls", None)
+        cls: ClsType[list[Any]] = kwargs.pop("cls", None)
 
         _request = build_unknown_value_get_request(
             headers=_headers,
@@ -1566,7 +1567,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[Any], response.json())
+            deserialized = _deserialize(list[Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1574,7 +1575,7 @@ class UnknownValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1602,7 +1603,7 @@ class UnknownValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[Any], IO[bytes]], **kwargs: Any
+        self, body: Union[list[Any], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1674,7 +1675,7 @@ class ModelValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[_models.InnerModel]:
+    def get(self, **kwargs: Any) -> list[_models.InnerModel]:
         """get.
 
         :return: list of InnerModel
@@ -1692,7 +1693,7 @@ class ModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.InnerModel]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.InnerModel]] = kwargs.pop("cls", None)
 
         _request = build_model_value_get_request(
             headers=_headers,
@@ -1720,7 +1721,7 @@ class ModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[_models.InnerModel], response.json())
+            deserialized = _deserialize(list[_models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1728,11 +1729,25 @@ class ModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
         :type body: list[~typetest.array.models.InnerModel]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(self, body: list[JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1756,12 +1771,12 @@ class ModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any
+        self, body: Union[list[_models.InnerModel], list[JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
-        :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: [InnerModel], [JSON], IO[bytes] Required.
+        :type body: list[~typetest.array.models.InnerModel] or list[JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1828,7 +1843,7 @@ class NullableFloatValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[float]:
+    def get(self, **kwargs: Any) -> list[float]:
         """get.
 
         :return: list of float
@@ -1846,7 +1861,7 @@ class NullableFloatValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_nullable_float_value_get_request(
             headers=_headers,
@@ -1874,7 +1889,7 @@ class NullableFloatValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[float], response.json())
+            deserialized = _deserialize(list[float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1882,7 +1897,7 @@ class NullableFloatValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1910,7 +1925,7 @@ class NullableFloatValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[float], IO[bytes]], **kwargs: Any
+        self, body: Union[list[float], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -1982,7 +1997,7 @@ class NullableInt32ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[int]:
+    def get(self, **kwargs: Any) -> list[int]:
         """get.
 
         :return: list of int
@@ -2000,7 +2015,7 @@ class NullableInt32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_nullable_int32_value_get_request(
             headers=_headers,
@@ -2028,7 +2043,7 @@ class NullableInt32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[int], response.json())
+            deserialized = _deserialize(list[int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2036,7 +2051,7 @@ class NullableInt32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2064,7 +2079,7 @@ class NullableInt32ValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[int], IO[bytes]], **kwargs: Any
+        self, body: Union[list[int], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -2136,7 +2151,7 @@ class NullableBooleanValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[bool]:
+    def get(self, **kwargs: Any) -> list[bool]:
         """get.
 
         :return: list of bool
@@ -2154,7 +2169,7 @@ class NullableBooleanValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bool]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
         _request = build_nullable_boolean_value_get_request(
             headers=_headers,
@@ -2182,7 +2197,7 @@ class NullableBooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[bool], response.json())
+            deserialized = _deserialize(list[bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2190,7 +2205,7 @@ class NullableBooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2218,7 +2233,7 @@ class NullableBooleanValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[bool], IO[bytes]], **kwargs: Any
+        self, body: Union[list[bool], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -2290,7 +2305,7 @@ class NullableStringValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[str]:
+    def get(self, **kwargs: Any) -> list[str]:
         """get.
 
         :return: list of str
@@ -2308,7 +2323,7 @@ class NullableStringValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_nullable_string_value_get_request(
             headers=_headers,
@@ -2336,7 +2351,7 @@ class NullableStringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[str], response.json())
+            deserialized = _deserialize(list[str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2344,7 +2359,7 @@ class NullableStringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -2372,7 +2387,7 @@ class NullableStringValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[str], IO[bytes]], **kwargs: Any
+        self, body: Union[list[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
@@ -2444,7 +2459,7 @@ class NullableModelValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> List[_models.InnerModel]:
+    def get(self, **kwargs: Any) -> list[_models.InnerModel]:
         """get.
 
         :return: list of InnerModel
@@ -2462,7 +2477,7 @@ class NullableModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.InnerModel]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.InnerModel]] = kwargs.pop("cls", None)
 
         _request = build_nullable_model_value_get_request(
             headers=_headers,
@@ -2490,7 +2505,7 @@ class NullableModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(List[_models.InnerModel], response.json())
+            deserialized = _deserialize(list[_models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -2498,11 +2513,25 @@ class NullableModelValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: List[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[_models.InnerModel], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
         :type body: list[~typetest.array.models.InnerModel]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def put(self, body: list[JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: list[JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -2526,12 +2555,12 @@ class NullableModelValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[List[_models.InnerModel], IO[bytes]], **kwargs: Any
+        self, body: Union[list[_models.InnerModel], list[JSON], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [InnerModel] type or a IO[bytes] type. Required.
-        :type body: list[~typetest.array.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: [InnerModel], [JSON], IO[bytes] Required.
+        :type body: list[~typetest.array.models.InnerModel] or list[JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

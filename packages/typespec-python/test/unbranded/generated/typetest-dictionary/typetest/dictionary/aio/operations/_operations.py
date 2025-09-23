@@ -4,7 +4,7 @@ from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -51,7 +51,8 @@ from ...operations._operations import (
 from .._configuration import DictionaryClientConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
+JSON = MutableMapping[str, Any]
 
 
 class Int32ValueOperations:
@@ -71,7 +72,7 @@ class Int32ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, int]:
+    async def get(self, **kwargs: Any) -> dict[str, int]:
         """get.
 
         :return: dict mapping str to int
@@ -89,7 +90,7 @@ class Int32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
         _request = build_int32_value_get_request(
             headers=_headers,
@@ -117,7 +118,7 @@ class Int32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, int], response.json())
+            deserialized = _deserialize(dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -125,7 +126,7 @@ class Int32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -152,7 +153,7 @@ class Int32ValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, int], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: int} type or a IO[bytes] type. Required.
@@ -223,7 +224,7 @@ class Int64ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, int]:
+    async def get(self, **kwargs: Any) -> dict[str, int]:
         """get.
 
         :return: dict mapping str to int
@@ -241,7 +242,7 @@ class Int64ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
         _request = build_int64_value_get_request(
             headers=_headers,
@@ -269,7 +270,7 @@ class Int64ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, int], response.json())
+            deserialized = _deserialize(dict[str, int], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -277,7 +278,7 @@ class Int64ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, int], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, int], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -304,7 +305,7 @@ class Int64ValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, int], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, int], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: int} type or a IO[bytes] type. Required.
@@ -375,7 +376,7 @@ class BooleanValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, bool]:
+    async def get(self, **kwargs: Any) -> dict[str, bool]:
         """get.
 
         :return: dict mapping str to bool
@@ -393,7 +394,7 @@ class BooleanValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, bool]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, bool]] = kwargs.pop("cls", None)
 
         _request = build_boolean_value_get_request(
             headers=_headers,
@@ -421,7 +422,7 @@ class BooleanValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, bool], response.json())
+            deserialized = _deserialize(dict[str, bool], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -429,7 +430,7 @@ class BooleanValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, bool], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -456,7 +457,7 @@ class BooleanValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, bool], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, bool], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: bool} type or a IO[bytes] type. Required.
@@ -527,7 +528,7 @@ class StringValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, str]:
+    async def get(self, **kwargs: Any) -> dict[str, str]:
         """get.
 
         :return: dict mapping str to str
@@ -545,7 +546,7 @@ class StringValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, str]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, str]] = kwargs.pop("cls", None)
 
         _request = build_string_value_get_request(
             headers=_headers,
@@ -573,7 +574,7 @@ class StringValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, str], response.json())
+            deserialized = _deserialize(dict[str, str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -581,7 +582,7 @@ class StringValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, str], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -608,7 +609,7 @@ class StringValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, str], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, str], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: str} type or a IO[bytes] type. Required.
@@ -679,7 +680,7 @@ class Float32ValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, float]:
+    async def get(self, **kwargs: Any) -> dict[str, float]:
         """get.
 
         :return: dict mapping str to float
@@ -697,7 +698,7 @@ class Float32ValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, float]] = kwargs.pop("cls", None)
 
         _request = build_float32_value_get_request(
             headers=_headers,
@@ -725,7 +726,7 @@ class Float32ValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json())
+            deserialized = _deserialize(dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -733,7 +734,7 @@ class Float32ValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -760,7 +761,7 @@ class Float32ValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, float], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: float} type or a IO[bytes] type. Required.
@@ -831,7 +832,7 @@ class DatetimeValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, datetime.datetime]:
+    async def get(self, **kwargs: Any) -> dict[str, datetime.datetime]:
         """get.
 
         :return: dict mapping str to datetime
@@ -849,7 +850,7 @@ class DatetimeValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_datetime_value_get_request(
             headers=_headers,
@@ -877,7 +878,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, datetime.datetime], response.json())
+            deserialized = _deserialize(dict[str, datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -886,7 +887,7 @@ class DatetimeValueOperations:
 
     @overload
     async def put(
-        self, body: Dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
+        self, body: dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -914,7 +915,7 @@ class DatetimeValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
@@ -985,7 +986,7 @@ class DurationValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, datetime.timedelta]:
+    async def get(self, **kwargs: Any) -> dict[str, datetime.timedelta]:
         """get.
 
         :return: dict mapping str to timedelta
@@ -1003,7 +1004,7 @@ class DurationValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, datetime.timedelta]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, datetime.timedelta]] = kwargs.pop("cls", None)
 
         _request = build_duration_value_get_request(
             headers=_headers,
@@ -1031,7 +1032,7 @@ class DurationValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, datetime.timedelta], response.json())
+            deserialized = _deserialize(dict[str, datetime.timedelta], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1040,7 +1041,7 @@ class DurationValueOperations:
 
     @overload
     async def put(
-        self, body: Dict[str, datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
+        self, body: dict[str, datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
@@ -1068,7 +1069,7 @@ class DurationValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
@@ -1139,7 +1140,7 @@ class UnknownValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, Any]:
+    async def get(self, **kwargs: Any) -> dict[str, Any]:
         """get.
 
         :return: dict mapping str to any
@@ -1157,7 +1158,7 @@ class UnknownValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, Any]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, Any]] = kwargs.pop("cls", None)
 
         _request = build_unknown_value_get_request(
             headers=_headers,
@@ -1185,7 +1186,7 @@ class UnknownValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, Any], response.json())
+            deserialized = _deserialize(dict[str, Any], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1193,7 +1194,7 @@ class UnknownValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, Any], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1220,7 +1221,7 @@ class UnknownValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, Any], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, Any], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: Any} type or a IO[bytes] type. Required.
@@ -1291,7 +1292,7 @@ class ModelValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
+    async def get(self, **kwargs: Any) -> dict[str, _models.InnerModel]:
         """get.
 
         :return: dict mapping str to InnerModel
@@ -1309,7 +1310,7 @@ class ModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
 
         _request = build_model_value_get_request(
             headers=_headers,
@@ -1337,7 +1338,7 @@ class ModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
+            deserialized = _deserialize(dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1346,12 +1347,26 @@ class ModelValueOperations:
 
     @overload
     async def put(
-        self, body: Dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
+        self, body: dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1374,11 +1389,11 @@ class ModelValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1445,7 +1460,7 @@ class RecursiveModelValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, _models.InnerModel]:
+    async def get(self, **kwargs: Any) -> dict[str, _models.InnerModel]:
         """get.
 
         :return: dict mapping str to InnerModel
@@ -1463,7 +1478,7 @@ class RecursiveModelValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
 
         _request = build_recursive_model_value_get_request(
             headers=_headers,
@@ -1491,7 +1506,7 @@ class RecursiveModelValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, _models.InnerModel], response.json())
+            deserialized = _deserialize(dict[str, _models.InnerModel], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1500,12 +1515,26 @@ class RecursiveModelValueOperations:
 
     @overload
     async def put(
-        self, body: Dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
+        self, body: dict[str, _models.InnerModel], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """put.
 
         :param body: Required.
         :type body: dict[str, ~typetest.dictionary.models.InnerModel]
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def put(self, body: dict[str, JSON], *, content_type: str = "application/json", **kwargs: Any) -> None:
+        """put.
+
+        :param body: Required.
+        :type body: dict[str, JSON]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1528,11 +1557,11 @@ class RecursiveModelValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, _models.InnerModel], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, _models.InnerModel], dict[str, JSON], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a {str: InnerModel} type or a IO[bytes] type. Required.
-        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or IO[bytes]
+        :param body: Is one of the following types: {str: InnerModel}, {str: JSON}, IO[bytes] Required.
+        :type body: dict[str, ~typetest.dictionary.models.InnerModel] or dict[str, JSON] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1599,7 +1628,7 @@ class NullableFloatValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def get(self, **kwargs: Any) -> Dict[str, float]:
+    async def get(self, **kwargs: Any) -> dict[str, float]:
         """get.
 
         :return: dict mapping str to float
@@ -1617,7 +1646,7 @@ class NullableFloatValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, float]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, float]] = kwargs.pop("cls", None)
 
         _request = build_nullable_float_value_get_request(
             headers=_headers,
@@ -1645,7 +1674,7 @@ class NullableFloatValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(Dict[str, float], response.json())
+            deserialized = _deserialize(dict[str, float], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1653,7 +1682,7 @@ class NullableFloatValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: Dict[str, float], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(self, body: dict[str, float], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
@@ -1680,7 +1709,7 @@ class NullableFloatValueOperations:
         :raises ~corehttp.exceptions.HttpResponseError:
         """
 
-    async def put(self, body: Union[Dict[str, float], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, float], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
         :param body: Is either a {str: float} type or a IO[bytes] type. Required.

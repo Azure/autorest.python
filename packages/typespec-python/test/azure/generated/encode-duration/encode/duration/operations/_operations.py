@@ -10,7 +10,7 @@ from collections.abc import MutableMapping
 import datetime
 from io import IOBase
 import json
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -34,7 +34,7 @@ from .._utils.model_base import SdkJSONEncoder, _deserialize
 from .._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 JSON = MutableMapping[str, Any]
 
 _SERIALIZER = Serializer()
@@ -101,7 +101,7 @@ def build_query_float64_seconds_request(*, input: float, **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_seconds_array_request(*, input: List[int], **kwargs: Any) -> HttpRequest:
+def build_query_int32_seconds_array_request(*, input: list[int], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -239,7 +239,7 @@ def build_header_iso8601_request(*, duration: datetime.timedelta, **kwargs: Any)
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_iso8601_array_request(*, duration: List[datetime.timedelta], **kwargs: Any) -> HttpRequest:
+def build_header_iso8601_array_request(*, duration: list[datetime.timedelta], **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -545,7 +545,7 @@ class QueryOperations:
 
     @distributed_trace
     def int32_seconds_array(  # pylint: disable=inconsistent-return-statements
-        self, *, input: List[int], **kwargs: Any
+        self, *, input: list[int], **kwargs: Any
     ) -> None:
         """int32_seconds_array.
 
@@ -1456,7 +1456,7 @@ class HeaderOperations:
 
     @distributed_trace
     def iso8601_array(  # pylint: disable=inconsistent-return-statements
-        self, *, duration: List[datetime.timedelta], **kwargs: Any
+        self, *, duration: list[datetime.timedelta], **kwargs: Any
     ) -> None:
         """iso8601_array.
 

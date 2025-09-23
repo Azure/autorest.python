@@ -411,7 +411,6 @@ def regenerate_legacy(c, swagger_name=None, debug=False):
     regenerate_azure_legacy(c, swagger_name, debug)
     regenerate_azure_arm_legacy(c, swagger_name, debug)
     if not swagger_name:
-        regenerate_multiapi(c, debug)
         regenerate_samples(c, debug)
 
 
@@ -492,48 +491,6 @@ def test(c):
         os.chdir(f"{base_dir}/test/{autorest_type}/{gen_type}")
         c.run(cmd)
 
-    # multiapi
-    os.chdir(f"{base_dir}/test/multiapi/")
-    c.run(cmd)
-
-
-def _multiapi_command_line(location, debug):
-    cwd = os.getcwd()
-    cmd = (
-        f"autorest {M4_VERSION} {location} --use=. --multiapi --output-artifact=code-model-v4-no-tags "
-        + f"--python-sdks-folder={cwd}/test/"
-    )
-    if debug:
-        cmd += " --python.debugger"
-    return cmd
-
-
-@task
-def regenerate_multiapi(c, debug=False, swagger_name="test"):
-    # being hacky: making default swagger_name 'test', since it appears in each spec name
-    available_specifications = [
-        # create basic multiapi client (package-name=multiapi)
-        "test/multiapi/specification/multiapi/README.md",
-        # create multiapi client with submodule (package-name=multiapi#submodule)
-        "test/multiapi/specification/multiapiwithsubmodule/README.md",
-        # create multiapi client with no aio folder (package-name=multiapinoasync)
-        "test/multiapi/specification/multiapinoasync/README.md",
-        # create multiapi client with AzureKeyCredentialPolicy (package-name=multiapicredentialdefaultpolicy)
-        "test/multiapi/specification/multiapicredentialdefaultpolicy/README.md",
-        # create multiapi client data plane (package-name=multiapidataplane)
-        "test/multiapi/specification/multiapidataplane/README.md",
-        # multiapi client with custom base url (package-name=multiapicustombaseurl)
-        "test/multiapi/specification/multiapicustombaseurl/README.md",
-        # create multiapi client with security definition (package-name=multiapisecurity)
-        "test/multiapi/specification/multiapisecurity/README.md",
-        # create multiapi client with keyword only params
-        "test/multiapi/specification/multiapikeywordonly/README.md",
-    ]
-
-    cmds = [_multiapi_command_line(spec, debug) for spec in available_specifications if swagger_name.lower() in spec]
-
-    _run_autorest(cmds, debug)
-
 
 @task
 def regenerate_package_mode(c, debug=False, swagger_group=None):
@@ -592,11 +549,14 @@ def regenerate_samples(c, debug=False):
     cwd = os.getcwd()
     sample_to_special_flags = {
         "management": None,
-        "multiapi": {"multiapi": True, "python-sdks-folder": f"{cwd}/samples/specification/multiapi"},
         "azure_key_credential": None,
         "directives": None,
         "basic": None,
         "azure-mgmt-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-test", "python": True},
+        "azure-mgmt-pyproject": {
+            "python-sdks-folder": f"{cwd}/samples/specification/azure-mgmt-pyproject",
+            "python": True,
+        },
         "azure-test": {"python-sdks-folder": f"{cwd}/samples/specification/azure-test"},
     }
 

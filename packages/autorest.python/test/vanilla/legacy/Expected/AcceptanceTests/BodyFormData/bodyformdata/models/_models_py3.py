@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 
-from typing import Any, IO, List, Optional
+from typing import Any, IO, Optional
 
 from .._utils import serialization as _serialization
 
@@ -92,7 +92,7 @@ class Paths1P3Stk3FormdataStreamUploadfilesPostRequestbodyContentMultipartFormDa
         "file_content": {"key": "fileContent", "type": "[IO]"},
     }
 
-    def __init__(self, *, file_content: List[IO[bytes]], **kwargs: Any) -> None:
+    def __init__(self, *, file_content: list[IO[bytes]], **kwargs: Any) -> None:
         """
         :keyword file_content: Files to upload. Required.
         :paramtype file_content: list[IO[bytes]]

@@ -9,7 +9,7 @@
 from collections.abc import MutableMapping
 import datetime
 from io import IOBase
-from typing import Any, Callable, Dict, IO, List, Optional, TypeVar, Union, overload
+from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
@@ -101,7 +101,7 @@ from ...operations._operations import (
 from .._configuration import AutoRestSwaggerBATArrayServiceConfiguration
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
 class ArrayOperations:  # pylint: disable=too-many-public-methods
@@ -126,7 +126,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_null(self, **kwargs: Any) -> List[int]:
+    async def get_null(self, **kwargs: Any) -> list[int]:
         """Get null array value.
 
         :return: list of int
@@ -144,7 +144,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_null_request(
             headers=_headers,
@@ -172,7 +172,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_invalid(self, **kwargs: Any) -> List[int]:
+    async def get_invalid(self, **kwargs: Any) -> list[int]:
         """Get invalid array [1, 2, 3.
 
         :return: list of int
@@ -190,7 +190,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_invalid_request(
             headers=_headers,
@@ -218,7 +218,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_empty(self, **kwargs: Any) -> List[int]:
+    async def get_empty(self, **kwargs: Any) -> list[int]:
         """Get empty array value [].
 
         :return: list of int
@@ -236,7 +236,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_empty_request(
             headers=_headers,
@@ -264,7 +264,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @overload
-    async def put_empty(self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put_empty(self, array_body: list[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Set array value empty [].
 
         :param array_body: Required.
@@ -292,7 +292,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_empty(self, array_body: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
+    async def put_empty(self, array_body: Union[list[str], IO[bytes]], **kwargs: Any) -> None:
         """Set array value empty [].
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
@@ -348,7 +348,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_tfft(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_tfft(self, **kwargs: Any) -> list[bool]:
         """Get boolean array value [true, false, false, true].
 
         :return: list of bool
@@ -366,7 +366,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bool]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
         _request = build_array_get_boolean_tfft_request(
             headers=_headers,
@@ -395,7 +395,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_boolean_tfft(
-        self, array_body: List[bool], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[bool], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [true, false, false, true].
 
@@ -426,7 +426,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_boolean_tfft(self, array_body: Union[List[bool], IO[bytes]], **kwargs: Any) -> None:
+    async def put_boolean_tfft(self, array_body: Union[list[bool], IO[bytes]], **kwargs: Any) -> None:
         """Set array value empty [true, false, false, true].
 
         :param array_body: Is either a [bool] type or a IO[bytes] type. Required.
@@ -482,7 +482,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_invalid_null(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_invalid_null(self, **kwargs: Any) -> list[bool]:
         """Get boolean array value [true, null, false].
 
         :return: list of bool
@@ -500,7 +500,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bool]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
         _request = build_array_get_boolean_invalid_null_request(
             headers=_headers,
@@ -528,7 +528,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_boolean_invalid_string(self, **kwargs: Any) -> List[bool]:
+    async def get_boolean_invalid_string(self, **kwargs: Any) -> list[bool]:
         """Get boolean array value [true, 'boolean', false].
 
         :return: list of bool
@@ -546,7 +546,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bool]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
         _request = build_array_get_boolean_invalid_string_request(
             headers=_headers,
@@ -574,7 +574,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_integer_valid(self, **kwargs: Any) -> List[int]:
+    async def get_integer_valid(self, **kwargs: Any) -> list[int]:
         """Get integer array value [1, -1, 3, 300].
 
         :return: list of int
@@ -592,7 +592,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_integer_valid_request(
             headers=_headers,
@@ -621,7 +621,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_integer_valid(
-        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
@@ -652,7 +652,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_integer_valid(self, array_body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
+    async def put_integer_valid(self, array_body: Union[list[int], IO[bytes]], **kwargs: Any) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
@@ -708,7 +708,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_int_invalid_null(self, **kwargs: Any) -> List[int]:
+    async def get_int_invalid_null(self, **kwargs: Any) -> list[int]:
         """Get integer array value [1, null, 0].
 
         :return: list of int
@@ -726,7 +726,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_int_invalid_null_request(
             headers=_headers,
@@ -754,7 +754,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_int_invalid_string(self, **kwargs: Any) -> List[int]:
+    async def get_int_invalid_string(self, **kwargs: Any) -> list[int]:
         """Get integer array value [1, 'integer', 0].
 
         :return: list of int
@@ -772,7 +772,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_int_invalid_string_request(
             headers=_headers,
@@ -800,7 +800,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_long_valid(self, **kwargs: Any) -> List[int]:
+    async def get_long_valid(self, **kwargs: Any) -> list[int]:
         """Get integer array value [1, -1, 3, 300].
 
         :return: list of int
@@ -818,7 +818,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_long_valid_request(
             headers=_headers,
@@ -847,7 +847,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_long_valid(
-        self, array_body: List[int], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[int], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value empty [1, -1, 3, 300].
 
@@ -878,7 +878,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_long_valid(self, array_body: Union[List[int], IO[bytes]], **kwargs: Any) -> None:
+    async def put_long_valid(self, array_body: Union[list[int], IO[bytes]], **kwargs: Any) -> None:
         """Set array value empty [1, -1, 3, 300].
 
         :param array_body: Is either a [int] type or a IO[bytes] type. Required.
@@ -934,7 +934,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_long_invalid_null(self, **kwargs: Any) -> List[int]:
+    async def get_long_invalid_null(self, **kwargs: Any) -> list[int]:
         """Get long array value [1, null, 0].
 
         :return: list of int
@@ -952,7 +952,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_long_invalid_null_request(
             headers=_headers,
@@ -980,7 +980,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_long_invalid_string(self, **kwargs: Any) -> List[int]:
+    async def get_long_invalid_string(self, **kwargs: Any) -> list[int]:
         """Get long array value [1, 'integer', 0].
 
         :return: list of int
@@ -998,7 +998,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[int]] = kwargs.pop("cls", None)
+        cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
         _request = build_array_get_long_invalid_string_request(
             headers=_headers,
@@ -1026,7 +1026,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_float_valid(self, **kwargs: Any) -> List[float]:
+    async def get_float_valid(self, **kwargs: Any) -> list[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         :return: list of float
@@ -1044,7 +1044,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_float_valid_request(
             headers=_headers,
@@ -1073,7 +1073,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_float_valid(
-        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
@@ -1104,7 +1104,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_float_valid(self, array_body: Union[List[float], IO[bytes]], **kwargs: Any) -> None:
+    async def put_float_valid(self, array_body: Union[list[float], IO[bytes]], **kwargs: Any) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
@@ -1160,7 +1160,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_float_invalid_null(self, **kwargs: Any) -> List[float]:
+    async def get_float_invalid_null(self, **kwargs: Any) -> list[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         :return: list of float
@@ -1178,7 +1178,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_float_invalid_null_request(
             headers=_headers,
@@ -1206,7 +1206,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_float_invalid_string(self, **kwargs: Any) -> List[float]:
+    async def get_float_invalid_string(self, **kwargs: Any) -> list[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :return: list of float
@@ -1224,7 +1224,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_float_invalid_string_request(
             headers=_headers,
@@ -1252,7 +1252,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_double_valid(self, **kwargs: Any) -> List[float]:
+    async def get_double_valid(self, **kwargs: Any) -> list[float]:
         """Get float array value [0, -0.01, 1.2e20].
 
         :return: list of float
@@ -1270,7 +1270,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_double_valid_request(
             headers=_headers,
@@ -1299,7 +1299,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_double_valid(
-        self, array_body: List[float], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[float], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
@@ -1330,7 +1330,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_double_valid(self, array_body: Union[List[float], IO[bytes]], **kwargs: Any) -> None:
+    async def put_double_valid(self, array_body: Union[list[float], IO[bytes]], **kwargs: Any) -> None:
         """Set array value [0, -0.01, 1.2e20].
 
         :param array_body: Is either a [float] type or a IO[bytes] type. Required.
@@ -1386,7 +1386,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_double_invalid_null(self, **kwargs: Any) -> List[float]:
+    async def get_double_invalid_null(self, **kwargs: Any) -> list[float]:
         """Get float array value [0.0, null, -1.2e20].
 
         :return: list of float
@@ -1404,7 +1404,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_double_invalid_null_request(
             headers=_headers,
@@ -1432,7 +1432,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_double_invalid_string(self, **kwargs: Any) -> List[float]:
+    async def get_double_invalid_string(self, **kwargs: Any) -> list[float]:
         """Get boolean array value [1.0, 'number', 0.0].
 
         :return: list of float
@@ -1450,7 +1450,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[float]] = kwargs.pop("cls", None)
+        cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
         _request = build_array_get_double_invalid_string_request(
             headers=_headers,
@@ -1478,7 +1478,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_string_valid(self, **kwargs: Any) -> List[str]:
+    async def get_string_valid(self, **kwargs: Any) -> list[str]:
         """Get string array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of str
@@ -1496,7 +1496,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_array_get_string_valid_request(
             headers=_headers,
@@ -1525,7 +1525,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_valid(
-        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1556,7 +1556,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_string_valid(self, array_body: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
+    async def put_string_valid(self, array_body: Union[list[str], IO[bytes]], **kwargs: Any) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
@@ -1612,7 +1612,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.FooEnum]]:
+    async def get_enum_valid(self, **kwargs: Any) -> list[Union[str, _models.FooEnum]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of FooEnum
@@ -1630,7 +1630,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Union[str, _models.FooEnum]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[Union[str, _models.FooEnum]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_enum_valid_request(
             headers=_headers,
@@ -1659,7 +1659,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_enum_valid(
-        self, array_body: List[Union[str, _models.FooEnum]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[Union[str, _models.FooEnum]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1691,7 +1691,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_enum_valid(
-        self, array_body: Union[List[Union[str, _models.FooEnum]], IO[bytes]], **kwargs: Any
+        self, array_body: Union[list[Union[str, _models.FooEnum]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1749,7 +1749,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_string_enum_valid(self, **kwargs: Any) -> List[Union[str, _models.Enum0]]:
+    async def get_string_enum_valid(self, **kwargs: Any) -> list[Union[str, _models.Enum0]]:
         """Get enum array value ['foo1', 'foo2', 'foo3'].
 
         :return: list of Enum0
@@ -1767,7 +1767,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Union[str, _models.Enum0]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[Union[str, _models.Enum0]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_string_enum_valid_request(
             headers=_headers,
@@ -1796,7 +1796,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_string_enum_valid(
-        self, array_body: List[Union[str, _models.Enum1]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[Union[str, _models.Enum1]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1828,7 +1828,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_string_enum_valid(
-        self, array_body: Union[List[Union[str, _models.Enum1]], IO[bytes]], **kwargs: Any
+        self, array_body: Union[list[Union[str, _models.Enum1]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value ['foo1', 'foo2', 'foo3'].
 
@@ -1886,7 +1886,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_string_with_null(self, **kwargs: Any) -> List[str]:
+    async def get_string_with_null(self, **kwargs: Any) -> list[str]:
         """Get string array value ['foo', null, 'foo2'].
 
         :return: list of str
@@ -1904,7 +1904,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_array_get_string_with_null_request(
             headers=_headers,
@@ -1932,7 +1932,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_string_with_invalid(self, **kwargs: Any) -> List[str]:
+    async def get_string_with_invalid(self, **kwargs: Any) -> list[str]:
         """Get string array value ['foo', 123, 'foo2'].
 
         :return: list of str
@@ -1950,7 +1950,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_array_get_string_with_invalid_request(
             headers=_headers,
@@ -1978,7 +1978,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_uuid_valid(self, **kwargs: Any) -> List[str]:
+    async def get_uuid_valid(self, **kwargs: Any) -> list[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -1997,7 +1997,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_array_get_uuid_valid_request(
             headers=_headers,
@@ -2026,7 +2026,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_uuid_valid(
-        self, array_body: List[str], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
@@ -2059,7 +2059,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_uuid_valid(self, array_body: Union[List[str], IO[bytes]], **kwargs: Any) -> None:
+    async def put_uuid_valid(self, array_body: Union[list[str], IO[bytes]], **kwargs: Any) -> None:
         """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
@@ -2116,7 +2116,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_uuid_invalid_chars(self, **kwargs: Any) -> List[str]:
+    async def get_uuid_invalid_chars(self, **kwargs: Any) -> list[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652', 'foo'].
 
         :return: list of str
@@ -2134,7 +2134,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[str]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_array_get_uuid_invalid_chars_request(
             headers=_headers,
@@ -2162,7 +2162,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_date_valid(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_valid(self, **kwargs: Any) -> list[datetime.date]:
         """Get integer array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :return: list of date
@@ -2180,7 +2180,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.date]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_valid_request(
             headers=_headers,
@@ -2209,7 +2209,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_valid(
-        self, array_body: List[datetime.date], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
@@ -2240,7 +2240,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_date_valid(self, array_body: Union[List[datetime.date], IO[bytes]], **kwargs: Any) -> None:
+    async def put_date_valid(self, array_body: Union[list[datetime.date], IO[bytes]], **kwargs: Any) -> None:
         """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Is either a [datetime.date] type or a IO[bytes] type. Required.
@@ -2296,7 +2296,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_date_invalid_null(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_invalid_null(self, **kwargs: Any) -> list[datetime.date]:
         """Get date array value ['2012-01-01', null, '1776-07-04'].
 
         :return: list of date
@@ -2314,7 +2314,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.date]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_invalid_null_request(
             headers=_headers,
@@ -2342,7 +2342,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_date_invalid_chars(self, **kwargs: Any) -> List[datetime.date]:
+    async def get_date_invalid_chars(self, **kwargs: Any) -> list[datetime.date]:
         """Get date array value ['2011-03-22', 'date'].
 
         :return: list of date
@@ -2360,7 +2360,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.date]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.date]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_invalid_chars_request(
             headers=_headers,
@@ -2388,7 +2388,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time_valid(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_valid(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -2407,7 +2407,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_time_valid_request(
             headers=_headers,
@@ -2436,7 +2436,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_valid(
-        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
@@ -2469,7 +2469,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_date_time_valid(self, array_body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
+    async def put_date_time_valid(self, array_body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
         """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
         '1492-10-12T10:15:01-08:00'].
 
@@ -2526,7 +2526,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time_invalid_null(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_invalid_null(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', null].
 
         :return: list of datetime
@@ -2544,7 +2544,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_time_invalid_null_request(
             headers=_headers,
@@ -2572,7 +2572,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time_invalid_chars(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_invalid_chars(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date array value ['2000-12-01t00:00:01z', 'date-time'].
 
         :return: list of datetime
@@ -2590,7 +2590,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_time_invalid_chars_request(
             headers=_headers,
@@ -2618,7 +2618,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> List[datetime.datetime]:
+    async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
@@ -2637,7 +2637,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_array_get_date_time_rfc1123_valid_request(
             headers=_headers,
@@ -2666,7 +2666,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_date_time_rfc1123_valid(
-        self, array_body: List[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
@@ -2700,7 +2700,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_rfc1123_valid(
-        self, array_body: Union[List[datetime.datetime], IO[bytes]], **kwargs: Any
+        self, array_body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
         Oct 1492 10:15:01 GMT'].
@@ -2758,7 +2758,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_duration_valid(self, **kwargs: Any) -> List[datetime.timedelta]:
+    async def get_duration_valid(self, **kwargs: Any) -> list[datetime.timedelta]:
         """Get duration array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :return: list of timedelta
@@ -2776,7 +2776,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[datetime.timedelta]] = kwargs.pop("cls", None)
+        cls: ClsType[list[datetime.timedelta]] = kwargs.pop("cls", None)
 
         _request = build_array_get_duration_valid_request(
             headers=_headers,
@@ -2805,7 +2805,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_duration_valid(
-        self, array_body: List[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
@@ -2836,7 +2836,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_duration_valid(self, array_body: Union[List[datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
+    async def put_duration_valid(self, array_body: Union[list[datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
         """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
@@ -2892,7 +2892,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_byte_valid(self, **kwargs: Any) -> List[bytes]:
+    async def get_byte_valid(self, **kwargs: Any) -> list[bytes]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
         in base64.
 
@@ -2911,7 +2911,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bytes]] = kwargs.pop("cls", None)
 
         _request = build_array_get_byte_valid_request(
             headers=_headers,
@@ -2940,7 +2940,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_byte_valid(
-        self, array_body: List[bytes], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
@@ -2973,7 +2973,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_byte_valid(self, array_body: Union[List[bytes], IO[bytes]], **kwargs: Any) -> None:
+    async def put_byte_valid(self, array_body: Union[list[bytes], IO[bytes]], **kwargs: Any) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
         elementencoded in base 64.
 
@@ -3030,7 +3030,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_byte_invalid_null(self, **kwargs: Any) -> List[bytes]:
+    async def get_byte_invalid_null(self, **kwargs: Any) -> list[bytes]:
         """Get byte array value [hex(AB, AC, AD), null] with the first item base64 encoded.
 
         :return: list of bytes
@@ -3048,7 +3048,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bytes]] = kwargs.pop("cls", None)
 
         _request = build_array_get_byte_invalid_null_request(
             headers=_headers,
@@ -3076,7 +3076,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_base64_url(self, **kwargs: Any) -> List[bytes]:
+    async def get_base64_url(self, **kwargs: Any) -> list[bytes]:
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
         the items base64url encoded.
 
@@ -3095,7 +3095,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[bytes]] = kwargs.pop("cls", None)
+        cls: ClsType[list[bytes]] = kwargs.pop("cls", None)
 
         _request = build_array_get_base64_url_request(
             headers=_headers,
@@ -3123,7 +3123,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_null(self, **kwargs: Any) -> List[_models.Product]:
+    async def get_complex_null(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type null value.
 
         :return: list of Product
@@ -3141,7 +3141,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Product]] = kwargs.pop("cls", None)
 
         _request = build_array_get_complex_null_request(
             headers=_headers,
@@ -3169,7 +3169,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_empty(self, **kwargs: Any) -> List[_models.Product]:
+    async def get_complex_empty(self, **kwargs: Any) -> list[_models.Product]:
         """Get empty array of complex type [].
 
         :return: list of Product
@@ -3187,7 +3187,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Product]] = kwargs.pop("cls", None)
 
         _request = build_array_get_complex_empty_request(
             headers=_headers,
@@ -3215,7 +3215,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_null(self, **kwargs: Any) -> List[_models.Product]:
+    async def get_complex_item_null(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
         'string': '6'}].
 
@@ -3234,7 +3234,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Product]] = kwargs.pop("cls", None)
 
         _request = build_array_get_complex_item_null_request(
             headers=_headers,
@@ -3262,7 +3262,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_item_empty(self, **kwargs: Any) -> List[_models.Product]:
+    async def get_complex_item_empty(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
         'string': '6'}].
 
@@ -3281,7 +3281,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Product]] = kwargs.pop("cls", None)
 
         _request = build_array_get_complex_item_empty_request(
             headers=_headers,
@@ -3309,7 +3309,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_complex_valid(self, **kwargs: Any) -> List[_models.Product]:
+    async def get_complex_valid(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
         {'integer': 5, 'string': '6'}].
 
@@ -3328,7 +3328,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[_models.Product]] = kwargs.pop("cls", None)
+        cls: ClsType[list[_models.Product]] = kwargs.pop("cls", None)
 
         _request = build_array_get_complex_valid_request(
             headers=_headers,
@@ -3357,7 +3357,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_complex_valid(
-        self, array_body: List[_models.Product], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[_models.Product], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
@@ -3390,7 +3390,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_complex_valid(self, array_body: Union[List[_models.Product], IO[bytes]], **kwargs: Any) -> None:
+    async def put_complex_valid(self, array_body: Union[list[_models.Product], IO[bytes]], **kwargs: Any) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
         'string': '4'}, {'integer': 5, 'string': '6'}].
 
@@ -3447,7 +3447,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_array_null(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_null(self, **kwargs: Any) -> list[list[str]]:
         """Get a null array.
 
         :return: list of list of str
@@ -3465,7 +3465,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_array_null_request(
             headers=_headers,
@@ -3493,7 +3493,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_array_empty(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_empty(self, **kwargs: Any) -> list[list[str]]:
         """Get an empty array [].
 
         :return: list of list of str
@@ -3511,7 +3511,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_array_empty_request(
             headers=_headers,
@@ -3539,7 +3539,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_array_item_null(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_item_null(self, **kwargs: Any) -> list[list[str]]:
         """Get an array of array of strings [['1', '2', '3'], null, ['7', '8', '9']].
 
         :return: list of list of str
@@ -3557,7 +3557,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_array_item_null_request(
             headers=_headers,
@@ -3585,7 +3585,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_array_item_empty(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_item_empty(self, **kwargs: Any) -> list[list[str]]:
         """Get an array of array of strings [['1', '2', '3'], [], ['7', '8', '9']].
 
         :return: list of list of str
@@ -3603,7 +3603,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_array_item_empty_request(
             headers=_headers,
@@ -3631,7 +3631,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_array_valid(self, **kwargs: Any) -> List[List[str]]:
+    async def get_array_valid(self, **kwargs: Any) -> list[list[str]]:
         """Get an array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :return: list of list of str
@@ -3649,7 +3649,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[List[str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[list[str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_array_valid_request(
             headers=_headers,
@@ -3678,7 +3678,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_array_valid(
-        self, array_body: List[List[str]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[list[str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
@@ -3709,7 +3709,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_array_valid(self, array_body: Union[List[List[str]], IO[bytes]], **kwargs: Any) -> None:
+    async def put_array_valid(self, array_body: Union[list[list[str]], IO[bytes]], **kwargs: Any) -> None:
         """Put An array of array of strings [['1', '2', '3'], ['4', '5', '6'], ['7', '8', '9']].
 
         :param array_body: Is either a [[str]] type or a IO[bytes] type. Required.
@@ -3765,7 +3765,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_null(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries with value null.
 
         :return: list of dict mapping str to str
@@ -3783,7 +3783,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[dict[str, str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_dictionary_null_request(
             headers=_headers,
@@ -3811,7 +3811,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_empty(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [].
 
         :return: list of dict mapping str to str
@@ -3829,7 +3829,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[dict[str, str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_dictionary_empty_request(
             headers=_headers,
@@ -3857,7 +3857,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary_item_null(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_item_null(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3876,7 +3876,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[dict[str, str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_dictionary_item_null_request(
             headers=_headers,
@@ -3904,7 +3904,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary_item_empty(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_item_empty(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3923,7 +3923,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[dict[str, str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_dictionary_item_empty_request(
             headers=_headers,
@@ -3951,7 +3951,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         return deserialized  # type: ignore
 
     @distributed_trace_async
-    async def get_dictionary_valid(self, **kwargs: Any) -> List[Dict[str, str]]:
+    async def get_dictionary_valid(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
@@ -3970,7 +3970,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[List[Dict[str, str]]] = kwargs.pop("cls", None)
+        cls: ClsType[list[dict[str, str]]] = kwargs.pop("cls", None)
 
         _request = build_array_get_dictionary_valid_request(
             headers=_headers,
@@ -3999,7 +3999,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     async def put_dictionary_valid(
-        self, array_body: List[Dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
+        self, array_body: list[dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
@@ -4032,7 +4032,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         """
 
     @distributed_trace_async
-    async def put_dictionary_valid(self, array_body: Union[List[Dict[str, str]], IO[bytes]], **kwargs: Any) -> None:
+    async def put_dictionary_valid(self, array_body: Union[list[dict[str, str]], IO[bytes]], **kwargs: Any) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 

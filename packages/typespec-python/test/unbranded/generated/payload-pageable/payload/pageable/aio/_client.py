@@ -10,9 +10,10 @@ from corehttp.runtime import AsyncPipelineClient, policies
 from .._utils.serialization import Deserializer, Serializer
 from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
 from ._configuration import PageableClientConfiguration
+from ._operations import _PageableClientOperationsMixin
 
 
-class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
+class PageableClient(_PageableClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for pageable payload.
 
     :ivar server_driven_pagination: ServerDrivenPaginationOperations operations

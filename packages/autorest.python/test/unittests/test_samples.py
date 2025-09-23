@@ -3,7 +3,6 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
-import os
 from pathlib import Path
 
 
@@ -59,3 +58,34 @@ def test_package_mode_for_azure_mgmt_test():
     for folder in ["generated_samples", "generated_tests"]:
         subdir = [s for s in (samples_dir / folder).iterdir() if s.is_dir()]
         assert not subdir, f"Subfolder should not exist in {folder} folder"
+
+
+def test_package_mode_for_azure_mgmt_pyproject():
+    import tomli
+
+    pyproject = (
+        Path(__file__).parent.parent.parent
+        / "samples/specification/azure-mgmt-pyproject/test/azure-mgmt-pyproject/pyproject.toml"
+    )
+    assert pyproject.exists(), "pyproject.toml should exist in the specified path"
+
+    with open(pyproject, "rb") as f:
+        pyproject_data = tomli.load(f)
+
+    tool_azure_sdk_build = pyproject_data.get("tool", {}).get("azure-sdk-build", {})
+    assert tool_azure_sdk_build.get("mypy") is False, "mypy shall be kept in pyproject.toml"
+
+    packaging = pyproject_data.get("packaging", {})
+    assert packaging.get("is_stable") is False, "is_stable shall be kept in pyproject.toml"
+    assert packaging.get("is_arm") is True, "is_arm shall be kept in pyproject.toml"
+
+    dependencies = pyproject_data.get("project", {}).get("dependencies", [])
+    assert any(
+        dep.startswith("azure-mgmt-core") for dep in dependencies
+    ), "azure-mgmt-core dependencies shall be kept in pyproject.toml"
+
+
+def test_import_azure_mgmt_pyproject():
+    # just need to check import so that we could make sure the generated code is valid
+    from azure.mgmt.pyproject import PyprojectMgmtClient
+    from azure.mgmt.pyproject import operations

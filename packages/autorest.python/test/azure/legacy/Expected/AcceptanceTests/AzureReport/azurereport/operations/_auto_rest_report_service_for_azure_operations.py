@@ -6,7 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-from typing import Any, Callable, Dict, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import PipelineClient
 from azure.core.exceptions import (
@@ -28,7 +28,7 @@ from .._utils.serialization import Serializer
 from .._utils.utils import ClientMixinABC
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -58,7 +58,7 @@ class _AutoRestReportServiceForAzureOperationsMixin(
 ):
 
     @distributed_trace
-    def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> Dict[str, int]:
+    def get_report(self, qualifier: Optional[str] = None, **kwargs: Any) -> dict[str, int]:
         """Get test coverage report.
 
         :param qualifier: If specified, qualifies the generated report further (e.g. '2.7' vs '3.5' in
@@ -80,7 +80,7 @@ class _AutoRestReportServiceForAzureOperationsMixin(
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[Dict[str, int]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
         _request = build_get_report_request(
             qualifier=qualifier,

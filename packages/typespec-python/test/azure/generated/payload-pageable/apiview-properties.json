@@ -10,7 +10,11 @@
         "payload.pageable.serverdrivenpagination.continuationtoken.models.RequestQueryNestedResponseBodyResponseNestedNext": "Payload.Pageable.ServerDrivenPagination.ContinuationToken.requestQueryNestedResponseBody.Response.nestedNext.anonymous",
         "payload.pageable.operations.ServerDrivenPaginationOperations.link": "Payload.Pageable.ServerDrivenPagination.link",
         "payload.pageable.aio.operations.ServerDrivenPaginationOperations.link": "Payload.Pageable.ServerDrivenPagination.link",
+        "payload.pageable.operations.ServerDrivenPaginationOperations.link_string": "Payload.Pageable.ServerDrivenPagination.linkString",
+        "payload.pageable.aio.operations.ServerDrivenPaginationOperations.link_string": "Payload.Pageable.ServerDrivenPagination.linkString",
         "payload.pageable.operations.ServerDrivenPaginationOperations.nested_link": "Payload.Pageable.ServerDrivenPagination.nestedLink",
-        "payload.pageable.aio.operations.ServerDrivenPaginationOperations.nested_link": "Payload.Pageable.ServerDrivenPagination.nestedLink"
+        "payload.pageable.aio.operations.ServerDrivenPaginationOperations.nested_link": "Payload.Pageable.ServerDrivenPagination.nestedLink",
+        "payload.pageable.PageableClient.list_without_continuation": "Payload.Pageable.listWithoutContinuation",
+        "payload.pageable.aio.PageableClient.list_without_continuation": "Payload.Pageable.listWithoutContinuation"
     }
 }

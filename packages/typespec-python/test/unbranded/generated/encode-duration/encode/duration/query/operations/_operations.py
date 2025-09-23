@@ -1,7 +1,7 @@
 # coding=utf-8
 from collections.abc import MutableMapping
 import datetime
-from typing import Any, Callable, Dict, List, Optional, TypeVar
+from typing import Any, Callable, Optional, TypeVar
 
 from corehttp.exceptions import (
     ClientAuthenticationError,
@@ -20,7 +20,7 @@ from ..._configuration import DurationClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
 
 T = TypeVar("T")
-ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, Dict[str, Any]], Any]]
+ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
 
 _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
@@ -86,7 +86,7 @@ def build_query_float64_seconds_request(*, input: float, **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_seconds_array_request(*, input: List[int], **kwargs: Any) -> HttpRequest:
+def build_query_int32_seconds_array_request(*, input: list[int], **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -340,7 +340,7 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def int32_seconds_array(  # pylint: disable=inconsistent-return-statements
-        self, *, input: List[int], **kwargs: Any
+        self, *, input: list[int], **kwargs: Any
     ) -> None:
         """int32_seconds_array.
 

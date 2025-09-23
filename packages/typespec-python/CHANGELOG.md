@@ -1,5 +1,39 @@
 # Release
 
+## 0.50.0
+
+### Features
+
+- [#3169](https://github.com/Azure/autorest.python/pull/3169) DPG model supports multi-layer discriminator.
+
+### Bump dependencies
+
+- [#3190](https://github.com/Azure/autorest.python/pull/3190) Bump dependencies on `http-client-python`
+- [#3192](https://github.com/Azure/autorest.python/pull/3192) Bump dependency on `http-client-python` which optimizes exception handling logic when Python and package managers are available but installation fails
+
+### Bug Fixes
+
+- [#3194](https://github.com/Azure/autorest.python/pull/3194) Fix dependencies of pyproject.toml for ARM SDK
+
+
+## 0.49.0
+
+### Features
+
+- [#3176](https://github.com/Azure/autorest.python/pull/3176) Add keyword only signature `cloud_setting` into ARM client
+
+### Bump dependencies
+
+- [#3188](https://github.com/Azure/autorest.python/pull/3188) Bump dep on `http-client-python`
+- [#3177](https://github.com/Azure/autorest.python/pull/3177) Upgrade azure-http-specs version.
+
+### Bug Fixes
+
+- [#3166](https://github.com/Azure/autorest.python/pull/3166) Fix typing to take advantage of `3.9` being the min python version
+- [#3174](https://github.com/Azure/autorest.python/pull/3174) fix to keep some existing parts of pyproject.toml
+- [#3181](https://github.com/Azure/autorest.python/pull/3181) don't send content-type when no request body
+
+
 ## 0.48.2
 
 ### Bug Fixes
