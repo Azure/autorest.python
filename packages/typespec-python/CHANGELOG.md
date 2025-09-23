@@ -1,5 +1,12 @@
 # Release
 
+## 0.51.1
+
+### Bump dependencies
+
+- [#3220](https://github.com/Azure/autorest.python/pull/3220) Fix dependency bump from `@azure-tools/typespec` libraries
+
+
 ## 0.51.0
 
 ### Features
