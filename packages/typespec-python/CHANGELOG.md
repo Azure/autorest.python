@@ -1,5 +1,11 @@
 # Release
 
+## 0.51.2
+
+### Bump dependencies
+
+- [#3221](https://github.com/Azure/autorest.python/pull/3221) Bump dependency to fix install
+
 ## 0.51.1
 
 ### Bump dependencies

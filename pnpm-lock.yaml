@@ -60,8 +60,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.18.0
-        version: 0.18.0(xd3x5iacuy73inmcnqmslujf7u)
+        specifier: ~0.18.1
+        version: 0.18.1(xd3x5iacuy73inmcnqmslujf7u)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -82,8 +82,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.18.0
-        version: 0.18.0(xd3x5iacuy73inmcnqmslujf7u)
+        specifier: ~0.18.1
+        version: 0.18.1(xd3x5iacuy73inmcnqmslujf7u)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -1677,14 +1677,14 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.4.0
 
-  '@typespec/http-client-python@0.18.0':
-    resolution: {integrity: sha512-SgXmVXX5tiZ4ftkJVGFyqm84f6RwwAL2W1pSEDqptyOWrz2mO9ZWGOgRRBJ4oWKpyAJocqmxAbim9WmVlWJdqg==}
+  '@typespec/http-client-python@0.18.1':
+    resolution: {integrity: sha512-OQlcc7M6pCsdq/FxrvbRkH3AOJKacxiTboUSbniHbZyXGhfrPvvnPganOncG0ttFT2RH1ueEitCdbuU537FPyw==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
-      '@azure-tools/typespec-autorest': '>=0.60.2 <1.0.0'
-      '@azure-tools/typespec-azure-core': '>=0.60.2 <1.0.0'
-      '@azure-tools/typespec-azure-resource-manager': '>=0.60.2 <1.0.0'
-      '@azure-tools/typespec-azure-rulesets': '>=0.60.2 <1.0.0'
+      '@azure-tools/typespec-autorest': '>=0.60.0 <1.0.0'
+      '@azure-tools/typespec-azure-core': '>=0.60.0 <1.0.0'
+      '@azure-tools/typespec-azure-resource-manager': '>=0.60.0 <1.0.0'
+      '@azure-tools/typespec-azure-rulesets': '>=0.60.0 <1.0.0'
       '@azure-tools/typespec-client-generator-core': '>=0.60.2 <1.0.0'
       '@typespec/compiler': ^1.4.0
       '@typespec/events': '>=0.74.0 <1.0.0'
@@ -6459,7 +6459,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.4.0(@types/node@24.1.0)
 
-  '@typespec/http-client-python@0.18.0(xd3x5iacuy73inmcnqmslujf7u)':
+  '@typespec/http-client-python@0.18.1(xd3x5iacuy73inmcnqmslujf7u)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.60.0(mpeik6lrosno7jd4tcgh2q5a2a)
       '@azure-tools/typespec-azure-core': 0.60.0(@typespec/compiler@1.4.0(@types/node@24.1.0))(@typespec/http@1.4.0(@typespec/compiler@1.4.0(@types/node@24.1.0))(@typespec/streams@0.74.0(@typespec/compiler@1.4.0(@types/node@24.1.0))))(@typespec/rest@0.74.0(@typespec/compiler@1.4.0(@types/node@24.1.0))(@typespec/http@1.4.0(@typespec/compiler@1.4.0(@types/node@24.1.0))(@typespec/streams@0.74.0(@typespec/compiler@1.4.0(@types/node@24.1.0)))))
