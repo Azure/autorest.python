@@ -4,7 +4,7 @@
 
 ### Bug Fixes
 
-- [#3221](https://github.com/Azure/autorest.python/pull/3216) Bump dependency to fix install
+- [#3221](https://github.com/Azure/autorest.python/pull/3221) Bump dependency to fix install
 
 
 ## 6.41.0
