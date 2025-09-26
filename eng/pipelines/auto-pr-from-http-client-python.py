@@ -217,7 +217,9 @@ class Repo:
                         logger.info(f"Changelog {azure_log_path} already exists.")
                         return
 
-                    file_content = repo.get_contents(file.filename, ref=self.pull.head.sha).decoded_content.decode()
+                    file_content = self.tsp_repo.get_contents(
+                        file.filename, ref=self.pull.head.sha
+                    ).decoded_content.decode()
                     new_file_content = file_content.replace(
                         '  - "@typespec/http-client-python"',
                         '  - "@autorest/python"\n  - "@azure-tools/typespec-python"',
