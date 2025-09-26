@@ -13,25 +13,20 @@ from azure.core.pipeline import policies
 from .._version import VERSION
 
 
-class ClientLocationClientConfiguration:  # pylint: disable=too-many-instance-attributes
-    """Configuration for ClientLocationClient.
+class PreviewVersionClientConfiguration:  # pylint: disable=too-many-instance-attributes
+    """Configuration for PreviewVersionClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param storage_account: Required.
-    :type storage_account: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
     """
 
-    def __init__(self, storage_account: str, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        if storage_account is None:
-            raise ValueError("Parameter 'storage_account' must not be None.")
+    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
-        self.storage_account = storage_account
         self.endpoint = endpoint
-        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-clientlocation/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-versioning-previewversion/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
